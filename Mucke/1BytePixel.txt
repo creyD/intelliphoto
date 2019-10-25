@@ -1,0 +1,14 @@
+Req-ID: 0002
+Req-Type: Funktional
+Events/UCs: Speicherung des Bildes, sowohl intern als auch als externen Dateiformat
+Description:
+	-Bild soll mittels eines Bytes dargestellt werden
+	-Byte 7-8 - 4 codierungsmöglichkeiten:
+		00 - transparent
+		01 - Rot
+		02 - Grün
+		03 - Blua
+	-Bytes 1-6:
+		Farbkodierung
+		111111 - intensiv
+		000000 - blass
