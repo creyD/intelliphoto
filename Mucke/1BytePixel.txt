@@ -10,21 +10,5 @@ Description:
 		03 - Blua
 	-Bytes 1-6:
 		Farbkodierung
-		111111 - intensiv maximum
-		000000 - intensiv minimum
-Originator: Shadi
-Fit Criterion:
-	-Visuelle Test, über volles farbspektrum, am festen, flüssiger Farbübergang von blass zu intensiv jeder Farbe
-Customer Satisfaktion:
-	-nicht bekannt
-Customer Dissatisfaktion:
-	-nicht bekannt
-Priority:
-	-100/100 -grundbaustein für weitere Verarbeitung
-Support Material:
-	-Ubungsblat_01.pdf
-Conflict:
-	-keine volle Farbdarstellung, rücksprache mit dem Kunden um volles Spektrum zu erlangen und um auch gängige Dateiformate wie png bearbeiten zu können
-	-wunsch:generell arbeit mit png datein
-History:
-	-Erstellt am 25.10.2019 um 17:52, von Jonas Mucke
+		111111 - intensiv
+		000000 - blass
