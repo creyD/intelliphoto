@@ -7,11 +7,17 @@ Description:
 		00 - transparent
 		01 - Rot
 		02 - Grün
-		03 - Blua
+		03 - Blau
 	-Bytes 1-6:
-		Farbkodierung
+		Farbkodierung bei RGB Kanal
 		111111 - intensiv maximum
-		000000 - intensiv minimum
+		000000 - intensiv minimum (schwarz)
+
+		Farbkodierung bei Alpha Kanal
+		0***** - Pixel wird als transparent angesehen
+		1***** - Pixel wird als Graustufe angesehen
+			11111 - Pixel ist weiß
+			00000 - Pixel ist schwarz 
 Originator: Shadi
 Fit Criterion:
 	-Visuelle Test, über volles farbspektrum, am festen, flüssiger Farbübergang von blass zu intensiv jeder Farbe
