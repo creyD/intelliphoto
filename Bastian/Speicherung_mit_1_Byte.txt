@@ -1,5 +1,5 @@
 Req-ID: 0002
-Req-Type: Funktional
+Req-Type: Non-Funktional
 Events/UCs: Speicherplatz pro Pixel sowie Dateiformate
 Description:
 	-Bild soll mittels eines Bytes pro Pixel dargestellt werden
