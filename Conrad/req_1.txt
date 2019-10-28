@@ -1,0 +1,21 @@
+Req-ID: 0001
+Req-Type: Funktionale Anforderung
+Events/UCs:
+	- Zusammenfügen von zwei Bildern zu einem neuen Bild
+Description:
+	- 2 Bilder sollen in das Programm eingefügt werden und -optional nach weiterer Bearbeitung- zu einem neuen zusammengefügt werden können
+	- Der Vorgang des "Zusammenfügens" soll innerhalb von .2 Sekunden abgeschlossen sein
+Originator: Kunde/ Auftraggeber
+Fit Criteria:
+	- Test, ob der Vorgang in 0.2 Sekunden ausgeführt wurde (ab der Auswahl der beiden Bilder)
+	- Warnung beim Überschreiben eines der Testbilder mit dem neuen Bild
+	- Test mittels zweier Testbilder, die eingefügt werden und dann -zu einem neuen- gespeichert werden
+	- Fehlermeldungen bei Problemen (Bild zu groß für Speicher usw.) innerhalb der angegebenen Zeit
+Priority:
+	- 100/100
+Support Material:
+	- Übungsblatt_01.pdf
+Conflicts:
+	- keine Konflikte (Stand: 28.10.2019 20:00)
+History:
+	- 28.10.2019 20:00| Anforderung erstellt | Conrad
