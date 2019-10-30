@@ -15,7 +15,7 @@ Description:
 Originator: Shadi
 Fit Criterion:
 	- Eingabe und Bearbeiten muss in 0.2 s eine Reaktion auslösen. 
-	- Farbwerte müssen in 95% aller Fälle korrekt geändert werden.
+	- Farbwerte müssen in 99,99% aller Fälle korrekt geändert werden.
 Priority:
 	- 80/100
 Support Material:
