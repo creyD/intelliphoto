@@ -1,0 +1,28 @@
+Req-ID: 0002
+Req-Type: nicht Funktional
+Events/UCs: Speicherung des Bildes, sowohl als externen Dateiformat
+Description:
+	-Bild soll als zweidimensionale Array dargestllt werden
+	-pro Pixel soll ein Byte verwendet werden
+	-Lösung 1:
+		-Verwenden der Farbpalette für gifs mit dem ersetzen einer Farbe für Transperenz
+	-Lösung 2:
+		-Verwenden des üblichen 8-bit RGB Formates mit RRRGGGBB und ebenfalls ersetzen einer Farbe für Transperenz
+
+Originator: Shadi
+Fit Criterion:
+	-kein Pixel belegt mehr als 1 Byte
+	-255 Farben mit unterschiedlichen Farbwerten die über das gesamte Spektrum verteielt sind
+Customer Satisfaktion:
+	-nicht bekannt
+Customer Dissatisfaktion:
+	-nicht bekannt
+Priority:
+	-100/100 -grundbaustein für weitere Verarbeitung
+Support Material:
+	-Ubungsblat_01.pdf
+Conflict:
+	-Probleme bei Berechnung wenn versucht wird alle Pixel durch z.B. Aufhellen zu bearbeiten
+	-relativ wenige Farben möglich
+History:
+	-Erstellt am 30.10.2019 von Sebastian Künzl
