@@ -1,0 +1,62 @@
+Req-ID:
+    0002
+Req-Type:
+    Funktional
+Events/UCs:
+    -Bearbeitung des Bildes mit einer Betriebssystem unterstützen Eingabemöglichkeit, zum Beispiel Maus oder Stift und ähnliche
+    -Bearbeitung mittels verschiedener Zeichen Tools
+    -Freiwählbare Farbe aus dem möglichen Farbbereich
+Description:
+    -Ein Farbwert, auch Transparent, welcher durch die genutzte Codierung (siehe Req_0001) Darstellbar ist, soll mittels Tools
+     gesetzt werden können, dabei spezifizieren die Tools was "gesetzt" bedeutet
+    -Tools:
+        Pinsel:
+            -Der Pinsel ist ein Tool, welches um seinen Mittelpunkt alles in einem gewissen Pixelradius einfärbt,
+             der Pixelradius geht dabei von 1-Pixel bis zu 10-Pixel
+        Formen:
+            -Linie:
+                Das Tool Formen (Linie), soll es einem ermöglichen eine Linie in der gewählten Farbe zwischen 2 Punkten zu
+                ziehen. Dabei wird am ersten Punkt angesetzt und zum Zielpunkt gezogen, dabei verändert sich die Linie live.
+                Sobald das Eingabegerät getogglet wird so wird die aktuelle stelle als Endpunkt angenommen und die Linie wird gezeichnet.
+                Es exestieren verschiedene Linien Formen:
+                    -durchgezogene Linie (eine Linie ohne Lücken)
+                    -gestrichelte Linie (auf der Linie werden nur striche in regelmäigen abständen gezeichnet)
+                    -gepunktete Linie (auf der Linie wird Punktweise zwischen Farbig und Transparent geweschelt)
+                Die Linie kann mittels dem Breite Attribut veränder werden (Breite zwischen 1 und 10 Pixel)
+            -Rechteck:
+                Das Tool Formen (Rechteck), soll es einem ermöglichen ein Rechteck ein einer gewählten Farbe aufzuspannen.
+                Dabei wird am ersten Punkt angesetzt und zum Zielpunkt gezogen, dabei verändert sich das Rechteck live.
+                Sobald das Eingabegerät getogglet wird so wird die aktuelle stelle als Endpunkt angenommen und das Rechteck wird gezeichnet.
+                Das Rechteck besitzt 2 Farbattribute, den Rand und die Füllung. Der Rand ist um das Rechteck gesetzt und kann
+                im Bezug auf Breite und Farbe eingesetellt werden. Die Füllung ist innerhalb des Randes und kann im Bezug
+                auf die Farbe eingestellt werden.
+            -Konvexe Form:
+                Das Tool Formen (Konvex), soll einem ermöglichen beliebige Konvexe Formen zu erstellen.
+                Dabei werden Punkte gesetzt durch Tastenklick des Eingabegeräts an der Stelle des Cursors. Sollte ein Punkt
+                im Radius von 10 Pixel zum Startpunkt sein, so wird die erstellung abgeschlossen und Linien zwischen den gesetzten Punkten
+                (in Reihenfolge dazu), gezeichnet und der zwischenraum Gefüllt. Dabei besitzt die Konvexe Form  2 Farbattribute, den Rand
+                und die Füllung. Der Rand ist um die Konexe Form gesetzt und kann im Bezug auf Breite und Farbe 
+                eingesetellt werden. Die Füllung ist innerhalb des Randes und kann im Bezug
+                auf die Farbe eingestellt werden.
+        FloodFill:
+            -Das Floodfill Tool, bei diesem wird ein Pixel gewählt, alles Pixel die mit diesem Pixel in einer Äquivalenzklasse
+            im Bezug auf Farbe und Position stehen werden in die gewählte Farbe eingefärbt.
+        Einfarbig:
+            -Das Einfarbig Tool färbt das gesamte Bild in die gewählte Farbe ein.
+        Reverse:
+            -Der letzte State des Bildes wird wieder hergestellt. (Speicherung von mindestens 10 alten Zuständen). 
+Originator:
+    Jonas Mucke
+Fit Criterion:
+    -Das etzten eines Pixels, in einer beliebigen Farbe, funktioniert in 99,9% in unter 0.01 Sekunden
+    -Der Vollständige Farbbreich ist Frei wählbar
+    -Es müssen mindestens 3 Tools benutzbar sein
+    -Tools besitzen in 100% der Fälle das gewünschte Verhalten
+Priority:
+    80
+Support Material:
+    Ubungsblat_01.pdf
+Conflicts:
+    -keine Bekannten Konflikte(stand: 30.10.2019 22:10)
+History:
+    -Erstellt am 30.10.2019 um 22:10, von Jonas Mucke
