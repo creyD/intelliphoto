@@ -13,7 +13,7 @@ Description:
             0b0000'0000, wobei die 0 nach dem Prefix 0b als Bit 7 Indiziert ist, und jedes rechtere Bit
             davon um eins Dekrementiert Indiziert wird
     -Minimale RGB-A Darstellung des Bildes mittel einem Byte
-    -Codierungsmöglichkeit nach folgendem Shema:
+    -Codierungsmöglichkeit nach folgendem Schema:
             -Bit 7,6 werden Benutz um den Alpha-Kanal zu codieren:
                 -0b00   ->  Bit ist 100%    Transparent (Transparent)
                 -0b01   ->  Bit ist  66%    Transparent
@@ -39,13 +39,13 @@ Description:
             Rot             (0b1111'1111, 0b0000'0000, 0b0000'0000, 0b1111'1111)
             Grün            (0b0000'0000, 0b1111'1111, 0b0000'0000, 0b1111'1111)
             Blau            (0b0000'0000, 0b0000'0000, 0b1111'1111, 0b1111'1111)
-            Transparent     (0b0000'0000, 0b0000'0000, 0b0000'0000, 0b1111'1111)
+            Transparent     (0b0000'0000, 0b0000'0000, 0b0000'0000, 0b0000'0000)
     -verschiedene Transparenzstufen, bis auf 0b11, werden als einzelne Farbstufen gezählt: 2^(8)-1 verschiede Farbstufen
 Originator:
     Jonas Mucke
 Fit Criterion:
     -Darstellung von mindestens 250 paarweise verschiedenen Farbstufen
-    -Darstellung einen transparenten Bits (Alpha Kanal = 1)
+    -Darstellung einen transparenten Bits (Alpha Kanal = 0b0000'0000)
     -Verarbeitungsmöglichkeit für 2^10 Pixel in unter 0.1 Sekunde beim Einlesen und Speichern
 Priority:
     100

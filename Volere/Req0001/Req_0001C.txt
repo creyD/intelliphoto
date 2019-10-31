@@ -13,10 +13,10 @@ Description:
             0b0000'0000, wobei die 0 nach dem Prefix 0b als Bit 7 Indiziert ist, und jedes rechtere Bit
             davon um eins Dekrementiert Indiziert wird
     -Die Bits 7,6 werden benutzt um einen Farbchannel zu setzen. Bei einem Farbchannel handelt es sich um einen
-     Schalter, welcher zwischen den Channeln "Rot", "Grün", "Blau", "Grau/Alpha" Handelt
+     Schalter, welcher zwischen den Channeln "Rot", "Grün", "Blau", "Grau/Alpha" Handelt.
      Wenn ein Channel gesetzt ist, für ein Pixel, so wird dieses Pixel nur mittels einer Farbstufe dieses Channels
      Dargestellt.
-    -Codierungsmöglichkeit nach folgendem Shema:
+    -Codierungsmöglichkeit nach folgendem Schema:
         -0b00XX'XXXX entspricht dem "Grau/Alpha" Channel
             0b0000'0000 entspricht dem Transparenzwert 100% (Transparent)
             0b0000'0001 enstpricht den Farbwert         Schwarz (Schwarz)
@@ -24,15 +24,15 @@ Description:
             Dazwischen exestiert eine uniform partitionierte Farbkurve
         -0b01XX'XXXX entspricht dem "Rot" Channel:
             0b0111'1111 entspricht dem intensivstem     Rot(Rot)
-            0b0100'0000 enstpricht dem blasesten        Rot(Schwarz)
+            0b0100'0000 enstpricht dem blasesten        Rot(Schwarz-Rot)
             Dazwischen exestiert eine uniform partitionierte Farbkurve
-        -0b01XX'XXXX entspricht dem "Grün" Channel:
-            0b0111'1111 entspricht dem intensivstem     Grün (Grün)
-            0b0100'0000 enstpricht dem blasesten        Grün(Schwarz)
+        -0b10XX'XXXX entspricht dem "Grün" Channel:
+            0b1011'1111 entspricht dem intensivstem     Grün (Grün)
+            0b1000'0000 enstpricht dem blasesten        Grün(Schwarz-Grün)
             Dazwischen exestiert eine uniform partitionierte Farbkurve
-        -0b01XX'XXXX entspricht dem "Blau" Channel:
-            0b0111'1111 entspricht dem intensivstem     Blau (Blau)
-            0b0100'0000 enstpricht dem blasesten        Blau(Schwarz)
+        -0b11XX'XXXX entspricht dem "Blau" Channel:
+            0b1111'1111 entspricht dem intensivstem     Blau (Blau)
+            0b1100'0000 enstpricht dem blasesten        Blau(Schwarz-Blau)
             Dazwischen exestiert eine uniform partitionierte Farbkurve
         Definitionen der benutzen Farben nach RGB-A Modell:
             Weiß            (0b1111'1111, 0b1111'1111, 0b1111'1111, 0b1111'1111)
@@ -40,7 +40,10 @@ Description:
             Rot             (0b1111'1111, 0b0000'0000, 0b0000'0000, 0b1111'1111)
             Grün            (0b0000'0000, 0b1111'1111, 0b0000'0000, 0b1111'1111)
             Blau            (0b0000'0000, 0b0000'0000, 0b1111'1111, 0b1111'1111)
-            Transparent     (0b0000'0000, 0b0000'0000, 0b0000'0000, 0b1111'1111)
+            (Schwarz-Rot)   (0b0000'0001, 0b0000'0000, 0b0000'0000, 0b1111'1111)
+            (Schwarz-Grün)  (0b0000'0000, 0b0000'0001, 0b0000'0000, 0b1111'1111)
+            (Schwarz-Blau)  (0b0000'0000, 0b0000'0000, 0b0000'0001, 0b1111'1111)
+            Transparent     (0b0000'0000, 0b0000'0000, 0b0000'0000, 0b0000'0000)
     -Nach diesem Prinzip können nur die Grundfarben der Additiven Farbdarstellung projeziert werden,
      dies hat ein sehr bunt beschränktes Farbshema zur folgendem
     -Es können insgesamt [3*2^(6)]+[2^(6)-1] = 2^(8)-1 Farbstufen dargestellt werden + Transparenz
