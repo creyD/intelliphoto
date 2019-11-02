@@ -1,0 +1,171 @@
+Klasse: Tool (abstrakt)
+    Vererbung:
+        -
+    Verantwortlichkeiten:
+        -Wissen über das Bild
+
+        -Bearbeiten von Bildern
+        -Anzeigen von Bildern
+    Kollaborationen:
+        -Der Anwender will ein Bild sehen
+        -Der Anwender will ein Bild Bearbeiten
+
+Klasse: Bild (abstrakt)
+    Vererbung:
+        -
+    Verantwortlichkeiten:
+        -Speicherung der Bildinformationen
+        -Speicherung eines 2d Arrays bestehend aus Farbcodes
+        -Ausgabe des Bildes
+    Kollaborationen:
+        -Der Anwender will ein Bild öffnen
+        -Der Anwender möchte ein Bild ausgeben
+
+Klasse: FarbCode
+    Vererbung:
+        -
+    Verantowrtlichkeiten:
+        -Interpretation des Byte Codes in einen Farbwert
+        -Speicherung der Bits
+    Kollaborationen:
+        -Der Anwender möchte die Farbe des Pixels bekommen
+
+Klasse: RasterImage
+    Vererbung:
+        Bild
+    Verantwortlichkeiten:
+        -Speicherung der Bildinformationen
+        -Speicherung eines 2d Arrays bestehend aus Farbcodes
+        -Ausgabe des Bildes ohne Transparenz
+    Kollaborationen:
+        -Der Anwender will ein Bild öffnen
+        -Der Anwender möchte ein Bild ausgeben
+
+Klasse: ShapedImage
+    Vererbung:
+        Bild
+    Verantwortlichkeiten:
+        -Speicherung der Bildinformationen
+        -Speicherung eines 2d Arrays bestehend aus Farbcodes
+        -Ausgabe des Bildes mit Transparenz
+    Kollaborationen:
+        -Der Anwender will ein Bild öffnen
+        -Der Anwender möchte ein Bild ausgeben
+
+Klasse: Dreh-Tool
+    Vererbung:
+        Tool
+    Verantwortlichkeiten:
+        -Dreheung der Anzeigen
+        -Drehung der Internen Werte
+    Kollaborationen:
+        -Der Anwender möchte die Sicht des Bildes Dreheung
+        -Der Anwender möchte das Bild gedreht speichern
+
+Klasse: Resize-Tool
+    Vererbung:
+        Tool
+    Verantwortlichkeiten:
+        -Vergößerung des Bildes (Ansicht und Werte)
+        -Verkleinerung des Bildes (Ansicht und Werte)
+    Kollaborationen:
+        -Der Anwender möchte in ein Bild zoomen
+        -Der Anwender möchte aus dem Bild herraus zoomen
+        -Der Anwender möchte die Auflösung des Bildes Vergößerung
+        -Der Anwender möchte die Auflösung des Bildes Verkleinern
+
+Klasse: Merge-Tool
+    Vererbung:
+        Tool
+    Verantwortlichkeiten:
+        -Das zusammenfügen zweier Bilder in der Ansicht
+        -Die zusammenfügen zweier Bilder in eine Datei
+        -Das zusammenfügen überinander oder Nebeneinander (wenn alpha kanal vorhanden)
+    Kollaborationen:
+        -Der Anwender möchte ein Bild neben einem Anderen Bild Anzeigen
+        -Der Anwender möchte ein Bild neben einem Anderen Bild speichern
+        -Der Anwender möchte ein Bild über einem Anderen Anzeigen lassen
+        -Der Anwender möchte ein Bild über einem Anderen speichern
+
+Klasse: Set-Color-Tool (abstrakt)
+    Vererbung:
+        Tool
+    Verantwortlichkeiten:
+        -Bearbeiten des Bildes durch Verändern von Farbcodes in Pixeln
+    Kollaborationen:
+        -Der Anwender möchte das Bild farblich Verändern
+
+Klasse: Pen-Tool
+    Vererbung:
+        Set-Color-Tool
+    Verantwortlichkeiten:
+        -Setzen von Pixelwerten um die Cursor Stelle in einen setzbaren Radius in einer setzbaren Farbe
+    Kollaborationen:
+        -Der Anwender möchte Freihandhand in einer freiwählbaren Farbe in einem freiwählbaren Raius zeichnen ohne beschränkung innerhalb des Bildes
+
+Klasse: Un-/Redo
+    Vererbung:
+        Set-Color-Tool
+    Verantwortlichkeiten:
+        -die letzten (bis zu 10) Änderungen Rückgängig machen
+        -die letzten (bis zu 10) Undo Aufforderungen Rückgänig machen
+        -sobald gezeichnet wird, werden alle Redo einträge gelöscht
+    Kollaborationen:
+        -Der Anwender möchte eine Tool Änderung Rückgängig machen
+        -Der Anwender möchte eine Undo Aktivität Rückgängig machen
+
+Klasse: FloodFill-Tool
+    Vererbung:
+        Set-Color-Tool
+    Verantwortlichkeiten:
+        -alle Pixel in einer Äquivalenzklasse zum aktuellen Pixel in eine freiwählbare Farbe einfärben
+    Kollaborationen:
+        -Der Anwender möchte eine Fläche einer Farbe komplett umfärben
+
+Klasse: Plain-Tool
+    Vererbung:
+        Set-Color-Tool
+    Verantwortlichkeiten:
+        -alle Pixel in eine Farbe Änderung
+    Kollaborationen:
+        -Der Anwender möchte das Bild einfarbig einfärben
+
+Klasse: Formen-Tool (abstrakt)
+    Vererbung:
+        Set-Color-Tool
+    Verantowrtlichkeiten:
+        -Zeichnen eines geometrischen Primitives
+    Kollaborationen:
+        -Der Anwender möchte ein Rechteck/Liniene oder konvexe Form zeichnen    
+
+Klasse: Linien-Tool
+    Vererbung:
+        Formen-Tool
+    Verantowrtlichkeiten:
+        -Zeichnen einer Linie in einer wählbaren dicke und Farbe
+        -die Linie kann durchgängig, gestrichelt oder gepunktet speichern
+    Kollaborationen:
+        -Der Anwender möchte eine durchgezogene Linie zeichnen
+        -Der Anwender möchte eiene gestrichelte Linie zeichnen
+        -Der Anwender möchte eine gepunktete Linie zeichnen
+
+Klasse: Rechteck-Tool
+    Vererbung:
+        Formen-Tool
+    Verantowrtlichkeiten:
+        -Aufspannen eines Rechtecks zwischen zwei Punkten, der Rand und die Fläche sind ind Farbe frei wählbar,
+         diese wählbarkeit ist seperat vom anderen möglich. Der Rand kann in der dicke eingestellt werden.
+    Kollaborationen:
+        -Der Anwender möchte ein Rechteck zeichnen, die innere Fläche soll Transparent speichern
+        -Der Anwender möchte ein Rechteck zeichnen, die inner Fläche soll eine Farbe haben der Rand soll eine gewisse Breite und Farbe haben
+
+Klasse: Konvexe-Form-Tool
+    Vererbung:
+        Formen-Tool
+    Verantowrtlichkeiten:
+        -Aufspannen einer Konvexen Form mittels Punkten (max 100)
+        -Die Konvexe Form hat einen Rand und eine interne Fläche deren Farbe kann seperat gewählt werden
+        -Der Rand kann im bezug auf seine dicke eingestellt werden
+    Kollaborationen:
+        -Der Anwender möchte ein n-Eck zeichnen, dazu berüht wer auf dem Bildschirm n Punkt und am Schluss den Anfangspunkt
+        -In der Berührten Reihenfolge werden Linien gezogen die die Form aufspannenen und je nach einstellungen wird der Rand und die interne Fläche dargestellt
