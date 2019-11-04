@@ -21,7 +21,7 @@ Klasse: Rasterimage
 		- 2-dimensionales array mit Farbwerten
 		- je ein Bit pro Pixel
 	Kollaborationen:
-        	- Nutzer kann Bild öffnen und speichern
+        	- Nutzer kann Bild speichern, zeichnen lassen
 
 Klasse: Shapeimage
 	Vererbung:
