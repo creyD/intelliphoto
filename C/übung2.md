@@ -17,3 +17,14 @@
 - Farbe
   - Custom Model zur Speicherung der Farben
   - Konvertierung anderer Farbmodelle in den des Editors
+
+## Verantwortlichkeiten
+- Bild
+  - Speichern
+  - Laden
+  - Anzeigen von Farben
+- Tool
+  - Verändern von Pixeln im Bild
+  - Verändern von Farbwerten im Bild
+- Farbe
+  - Anzeigen auf dem Bildschirm
