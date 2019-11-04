@@ -1,0 +1,97 @@
+(Tool)
+> Verantwortlich für... <
+- Name, Beschreibung, Tooltip und Icon des Tools speichern
+- Anzeige des Tools in der Toolbar
+- Utilities und gemeinsamer Code, den alle Tools verwenden
+
+(ColorTool)
+> Verantwortlich für... <
+- Speicherung der gewählten Farbe
+
+ColorPicker
+> erbt von <
+ColorTool
+> Verantwortlich für... <
+- Darstellung der Farbpallette
+- Handling der Farbänderung
+
+HistoryTool
+> erbt von <
+Tool
+> Verantwortlich für... <
+- 10 Operationen speichern
+- In den 10 Operationen nach vorn (Redo) oder hinten (Undo) springen
+- Änderungen rückgängig machen oder wiederholen
+
+ResizeTool
+> erbt von <
+Tool
+> Verantwortlich für... <
+- Änderung der Bilddimension
+- Änderung des Zooms
+
+RotationTool
+> erbt von <
+Tool
+> Verantwortlich für... <
+- Rotation des Bildes
+- Änderung der Darstellungsrotation
+
+PenTool
+> erbt von <
+ColorTool
+> Verantwortlich für... <
+- Speicherung des eingestellten Radius
+- Änderung von Pixeln um einen geklickten Punkt in gewissem Radius
+
+FloodFillTool
+> erbt von <
+ColorTool
+> Verantwortlich für... <
+- Änderung der Pixelfarbe von Pixeln der selben Farbe eines geklickten Pixels, die direkt an ihn angrenzen
+
+PlainTool
+> erbt von <
+ColorTool
+> Verantwortlich für... <
+- Einfärbung des gesamten Canvas in der gewählen Farbe
+
+(FormsTool)
+> erbt von <
+ColorTool
+> Verantwortlich für... <
+- Streamlining des Codes der anderen Forms Tools
+- vereinheitlichte Darstellung der Formauswahl und Ränder
+- Styling der Canvaselemente
+
+RectangleFormsTool
+> erbt von <
+FormsTool
+> Verantwortlich für... <
+- Zeichnen von Rechteckformen
+
+CircleFormsTool
+> erbt von <
+FormsTool
+> Verantwortlich für... <
+- Zeichnen von Kreisformen
+
+PolygonFormsTool
+> erbt von <
+FormsTool
+> Verantwortlich für... <
+- Zeichnen von Polygonen
+- Auswahl kreieren für ShapedImage
+
+RasterImage
+> Verantwortlich für... <
+- Darstellung des gezeichneten Bildes
+- Laden von Bilddaten aus Dateiformat
+- Darstellung von Zoom & Rotation des Viewports
+
+ShapedImage
+> erbt von <
+RasterImage
+> Verantwortlich für... <
+- Speicherung der Polygondaten
+- Darstellung der Transparenz außerhalb des Polygons
