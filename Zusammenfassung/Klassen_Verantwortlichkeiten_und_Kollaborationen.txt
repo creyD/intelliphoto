@@ -5,12 +5,12 @@ Klasse: Bild (abstrakt)
 		- Speicherung der Daten in einem 2d-Array
 		- Speicherung der Farbdaten jedes einzelnen Pixels
 	Kollaborationen:
-		- Der Anwender will ein Bild öffenen und speichern können, ohne sich darüber Gedanken machen zu müssen
+		- Der Anwender will ein Bild öffnen und speichern können, ohne sich darüber Gedanken machen zu müssen
 
 Klasse: Bilddimensionen
 	Vererbung:
         	- Bild
-	Verantowrtlichkeiten:
+	Verantwortlichkeiten:
 		- Wissen über die Größe des Bildes
 	Kollaborationen:
         	- Nutzer kann die Anzahl der Pixel in x und y Richtung abfragen
@@ -23,7 +23,7 @@ Klasse: RasterImage
 		- Speicherung der Daten in einem 2d-Array
 		- Speicherung der Farbdaten jedes einzelnen Pixels (je ein Bit pro Pixel)
 	Kollaborationen:
-		- Der Anwender will ein Bild öffenen, bearbeiten und speichern können, ohne sich darüber Gedanken machen zu müssen
+		- Der Anwender will ein Bild öffnen, bearbeiten und speichern können, ohne sich darüber Gedanken machen zu müssen
 
 Klasse: ShapedImage
 	Vererbung:
@@ -34,12 +34,12 @@ Klasse: ShapedImage
 		- Speicherung der Polygondaten
 		- Darstellung der Transparenz außerhalb des Polygons und das Bild innerhalb des Polygons
 	Kollaborationen:
-		- Der Anwender will ein Bild öffenen und speichern können, ohne sich darüber Gedanken machen zu müssen
+		- Der Anwender will ein Bild öffnen und speichern können, ohne sich darüber Gedanken machen zu müssen
 
 Klasse: Tool (abstrakt)
 	Vererbung:
         	- 
-	Verantowrtlichkeiten:
+	Verantwortlichkeiten:
 		- Name, Beschreibung, Tooltip und Icon des Tools speichern
 		- Wissen über das Bild
 	        - Veränderung der Pixeldaten des Bildes
@@ -57,7 +57,7 @@ Klasse: Set-Color-Tool (abstrakt)
         	- Der Anwender möchte das Bild farblich geziehlt verändern
 		- Der Anwender möchte die Farbwerte der einzelnen Pixel bekommen
 
-Klasse: Un-/Redo
+Klasse: Un-/Redo-Tool
     	Vererbung:
         	- Set-Color-Tool
     	Verantwortlichkeiten:
@@ -69,36 +69,36 @@ Klasse: Un-/Redo
         	- Der Anwender möchte eine Tool Änderung Rückgängig machen
         	- Der Anwender möchte eine Undo Aktivität Rückgängig machen
 
-Klasse: Drehtool
+Klasse: Dreh-Tool
 	Vererbung:
-        	- Tools
-	Verantowrtlichkeiten:
+        	- Tool
+	Verantwortlichkeiten:
 		- Rotation des angezeigten Bildes
         	- Ändern der Farbwerte, so dass sie mit dem rotierten Bild übereinstimmen
 	Kollaborationen:
         	- Möglichkeit für den Nutzer das Bild zu drehen
 		- Der Anwender möchte das Bild gedreht speichern
 
-Klasse: Size-tool
+Klasse: Size-Tool
 	Vererbung:
-        	- Tools
-	Verantowrtlichkeiten:
-		- Vergößerung des Bildes (Ansicht und Werte)
+        	- Tool
+	Verantwortlichkeiten:
+		- Vergrößerung des Bildes (Ansicht und Werte)
         	- Verkleinerung des Bildes (Ansicht und Werte)
 		- zoomen oder skalieren
 	Kollaborationen:
 		- Der Anwender möchte in ein Bild zoomen
-        	- Der Anwender möchte aus dem Bild herraus zoomen
+        	- Der Anwender möchte aus dem Bild heraus zoomen
         	- Der Anwender möchte die Auflösung des Bildes vergrößern
         	- Der Anwender möchte die Auflösung des Bildes verkleinern
 
-Klasse: Mergetool
+Klasse: Merge-Tool
 	Vererbung:
-        	- Tools
-	Verantowrtlichkeiten:
+        	- Tool
+	Verantwortlichkeiten:
 		- Das Zusammenfügen zweier angezeigter Bilder
         	- Die Zusammenfügen zweier Bilder in eine neue Datei, Abspeichern der neuen Farbwerte
-        	- Das Zusammenfügen übereinander oder nebeneinander (wenn alpha kanal vorhanden)
+        	- Das Zusammenfügen übereinander oder nebeneinander (wenn alpha Kanal vorhanden)
 	Kollaborationen:
         	- Der Anwender möchte ein Bild neben einem anderen Bild anzeigen
         	- Der Anwender möchte ein Bild neben einem anderen Bild speichern
@@ -133,7 +133,7 @@ Klasse: Plain-Tool
 Klasse: Formen-Tool (abstrakt)
     	Vererbung:
         	- Set-Color-Tool
-    	Verantowrtlichkeiten:
+    	Verantwortlichkeiten:
         	- Zeichnen eines geometrischen Primitives
 		- vereinheitlichte Darstellung der Formauswahl und Ränder
     	Kollaborationen:
@@ -142,20 +142,20 @@ Klasse: Formen-Tool (abstrakt)
 Klasse: Linien-Tool
     	Vererbung:
         	- Formen-Tool
-    	Verantowrtlichkeiten:
+    	Verantwortlichkeiten:
         	- Zeichnen einer Linie in einer wählbaren dicke und Farbe
         	- die Linie kann durchgängig, gestrichelt oder gepunktet speichern
     	Kollaborationen:
         	- Der Anwender möchte eine durchgezogene Linie zeichnen
-        	- Der Anwender möchte eiene gestrichelte Linie zeichnen
+        	- Der Anwender möchte eine gestrichelte Linie zeichnen
         	- Der Anwender möchte eine gepunktete Linie zeichnen
 
 Klasse: Rechteck-Tool
     	Vererbung:
         	- Formen-Tool
-    	Verantowrtlichkeiten:
+    	Verantwortlichkeiten:
         	- Aufspannen eines Rechtecks zwischen zwei Punkten, der Rand und die Fläche sind in der Farbe frei wählbar,
-         	  diese Wählbarkeit ist seperat vom anderen Zustand möglich. Der Rand kann in der Dicke eingestellt werden.
+         	  diese Wählbarkeit ist separat vom anderen Zustand möglich. Der Rand kann in der Dicke eingestellt werden.
     	Kollaborationen:
         	- Der Anwender möchte ein Rechteck zeichnen, die innere Fläche soll Transparenz speichern
         	- Der Anwender möchte ein Rechteck zeichnen, die innere Fläche soll eine Farbe haben der Rand soll eine gewisse Breite und Farbe haben
@@ -163,9 +163,9 @@ Klasse: Rechteck-Tool
 Klasse: Konvexe-Form-Tool
     	Vererbung:
         	- Formen-Tool
-    	Verantowrtlichkeiten:
+    	Verantwortlichkeiten:
         	- Aufspannen einer Konvexen Form mittels Punkten (max 100)
-        	- Die Konvexe Form hat einen Rand und eine interne Fläche, deren Farbe seperat gewählt werden kann
+        	- Die Konvexe Form hat einen Rand und eine interne Fläche, deren Farbe separat gewählt werden kann
         	- Der Rand kann im Bezug auf seine Dicke eingestellt werden
    	Kollaborationen:
         	- Der Anwender möchte ein n-Eck zeichnen, dazu berüht er auf dem Bildschirm n Punkt und am Schluss den Anfangspunkt (10pxl Radius?)
@@ -176,7 +176,7 @@ Klasse: Polygon-Form-Tool
 		- Formen-Tool
 	Verantwortlichkeiten:
 		- Aufspannen eines Polygons über das Bild
-		- Das Polygon hat einen Rand und eine interne Fläche, deren Farbe seperat gewählt werden kann
+		- Das Polygon hat einen Rand und eine interne Fläche, deren Farbe separat gewählt werden kann
         	- Der Rand kann im Bezug auf seine Dicke eingestellt werden
 	Kollaborationen:
 		- Der Anwender möchte ein Polygon zeichnen
@@ -184,8 +184,8 @@ Klasse: Polygon-Form-Tool
 Klasse: Kreis-Tool
 	Vererbung:
 		- Set-Color-Tool
-	Verantwortlichkeit:
-		- Erstellen einer Kreisform in dem man den Mittelpunkt bestimmt und zwei Radien festlegen kann (NS und WO radius),
+	Verantwortlichkeiten:
+		- Erstellen einer Kreisform in dem man den Mittelpunkt bestimmt und zwei Radien festlegen kann (NS und WO Radius),
 		- die Dicke des Randes des Kreises ist freiwählbar,sowie die Art des Randes (Gepunktet, etc.), genauso wie die Farbe des Kreises und des Randes
 	Kollaborationen:
-		- Der Anwender möchte einen beliebigen Kreis und eine beliebige Ellypse zeichnen können
+		- Der Anwender möchte einen beliebigen Kreis und eine beliebige Ellipse zeichnen können
