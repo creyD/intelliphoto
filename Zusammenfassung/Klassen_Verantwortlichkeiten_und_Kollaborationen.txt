@@ -169,7 +169,7 @@ Klasse: Konvexe-Form-Tool
         	- Der Rand kann im Bezug auf seine Dicke eingestellt werden
    	Kollaborationen:
         	- Der Anwender möchte ein n-Eck zeichnen, dazu berührt er auf dem Bildschirm n-Punkte und am Schluss den Anfangspunkt (10pxl Radius?)
-        	- In der berührten Reihenfolge werden Linien gezogen, die die Form aufspannenen und je nach Einstellungen wird der Rand und die interne Fläche dargestellt
+        	- In der berührten Reihenfolge werden Linien gezogen, die die Form aufspannen und je nach Einstellungen wird der Rand und die interne Fläche dargestellt
 
 Klasse: Polygon-Form-Tool
 	Vererbung:
