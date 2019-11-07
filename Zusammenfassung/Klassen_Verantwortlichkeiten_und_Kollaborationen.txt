@@ -41,10 +41,9 @@ Klasse: Tool (abstrakt)
         	- 
 	Verantwortlichkeiten:
 		- Name, Beschreibung, Tooltip und Icon des Tools speichern
-		- Wissen über das Bild
 	        - Veränderung der Pixeldaten des Bildes
 	Kollaborationen:
-        	- Der Anwender will ein Bild sehen und bearbeiten können
+        	- Der Anwender will ein Bild bearbeiten können
 
 Klasse: Set-Color-Tool (abstrakt)
     	Vererbung:
@@ -54,7 +53,7 @@ Klasse: Set-Color-Tool (abstrakt)
         	- Bearbeiten des Bildes durch Verändern von Farbcodes an bestimmten Pixeln
 		- Darstellung der Farbpallette
     	Kollaborationen:
-        	- Der Anwender möchte das Bild farblich geziehlt verändern
+        	- Der Anwender möchte das Bild farblich gezielt verändern
 		- Der Anwender möchte die Farbwerte der einzelnen Pixel abfragen
 
 Klasse: Un-/Redo-Tool
@@ -159,7 +158,7 @@ Klasse: Rechteck-Tool
 		- Der Rand kann in der Dicke eingestellt werden
     	Kollaborationen:
         	- Der Anwender möchte ein Rechteck zeichnen, die innere Fläche soll Transparenz speichern
-        	- Der Anwender möchte ein Rechteck zeichnen, die innere Fläche soll eine Farbe haben der Rand soll eine gewisse Breite und Farbe haben
+        	- Der Anwender möchte ein Rechteck zeichnen, die innere Fläche soll eine Farbe haben, der Rand soll eine gewisse Breite und Farbe haben
 
 Klasse: Konvexe-Form-Tool
     	Vererbung:
@@ -186,7 +185,7 @@ Klasse: Kreis-Tool
 	Vererbung:
 		- Set-Color-Tool
 	Verantwortlichkeiten:
-		- Erstellen einer Kreisform in dem man den Mittelpunkt bestimmt und zwei Radien festlegen kann (NS und WO Radius),
+		- Erstellen einer Kreisform in dem man den Mittelpunkt bestimmt und zwei Radien festlegen kann (NS und WO Radius)
 		- Die Dicke des Randes des Kreises ist freiwählbar, sowie die Art des Randes (Gepunktet, etc.), genauso wie die Farbe des Kreises und des Randes
 	Kollaborationen:
 		- Der Anwender möchte einen beliebigen Kreis und eine beliebige Ellipse zeichnen können
