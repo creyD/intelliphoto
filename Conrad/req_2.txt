@@ -1,0 +1,18 @@
+Req-ID: 0002
+Req-Type: Funktionale Anforderung
+Events/UCs:
+	- Abfragen der Bilddimensionen
+Description:
+	- Der Benutzer soll über eine Funktion die Dimensionen des aktuellen Bildes abfragen können
+	- Die Bilddimensionen werden aus der Höhe und der Breite der Arbeitsfläche errechnet werden
+Originator: Kunde/ Auftraggeber
+Fit Criteria:
+	- Test mit einem Bild, dessen Größe vorher bekannt ist --> Vergleich mit vom Programm errechneten Dimensionen
+Priority:
+	- 100/100
+Support Material:
+	- Übungsblatt_01.pdf
+Conflicts:
+	- keine Konflikte (Stand: 28.10.2019 20:00)
+History:
+	- 28.10.2019 20:00| Anforderung erstellt | Conrad
