@@ -29,10 +29,10 @@
       <w>210</w>
       <h>190</h>
     </coordinates>
-    <panel_attributes>Bild
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Bild
 --
 bildID
-Dimesnsionen
 layers
 info[layer][info]
 --
@@ -92,7 +92,8 @@ DisplayName
       <w>210</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>Tool
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Tool
 --
 toolID
 --
@@ -488,5 +489,17 @@ width
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>340.0;10.0;250.0;300.0;140.0;450.0;10.0;490.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1290</x>
+      <y>480</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Tranzperens beachten
+bg=blue</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
