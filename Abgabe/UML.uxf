@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2106</x>
+      <y>171</y>
+      <w>171</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>/*Image*/
+--
++pixel_data: byte[][]
++size: Vector2
+--
++clear_image(Color)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2115</x>
+      <y>450</y>
+      <w>162</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>*RasterImage*
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2106</x>
+      <y>702</y>
+      <w>189</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*ShapedImage*
+--
+-polygon_data: byte[][]
+--
++create_vertex(Vector2)
++remove_vertex(Vector2)
++clear_polygon()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>171</y>
+      <w>261</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>/*Tool*/
+--
++effected_area_border_color: Color
++effected_area_border_radius: int
++effected_area_border_line_type: LineType
++name: String
++icon: Sprite
++tooltip: String
++description: String
+...
+--
+/+handleImageClick(Vector2): void/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2187</x>
+      <y>243</y>
+      <w>27</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2187</x>
+      <y>477</y>
+      <w>27</w>
+      <h>243</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>450</y>
+      <w>225</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>/*SetColorTool*/
+--
++colors: Color[255]
++selected_colors: Color[2]
+--
++renderColorPalette(): void
++setMainColor(Color): void
++setSecondaryColor(Color): void
++getMainColor(): Color
++getSecondaryColor(): Color</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>450</y>
+      <w>225</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>*HistoryTool*
+--
+-history: HistoryAction[20]
+-current_location: int
+--
++undo(): bool
++redo(): bool
++clearRedo(): void
++addUndo(HistoryAction): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>945</x>
+      <y>171</y>
+      <w>216</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+*LineType*
+--
+   Solid
+   Dotted
+   Dashed
+   LongDash
+   ...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>99</x>
+      <y>558</y>
+      <w>27</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>702</y>
+      <w>225</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>*HistoryAction*
+--
++string action_data[]
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>864</y>
+      <w>225</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+*HistoryActionType*
+--
+  ColorChange
+  Deletion
+  PolygonVertex
+  ....</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>99</x>
+      <y>738</y>
+      <w>99</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
++action_type</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>702</y>
+      <w>225</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>*FloodFillTool*
+--
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>234</x>
+      <y>702</y>
+      <w>225</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>*PlainTool*
+--
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>702</x>
+      <y>702</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/*FormsTool*/
+--
++edge_display_line_type: LineType
++edge_display_color: Color
++edge_display_thickness: int
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>936</x>
+      <y>702</y>
+      <w>225</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>*PenTool*
+--
+-radius: int
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>702</x>
+      <y>864</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*RectangleTool*
+--
++edge_thickness: int
++edge_line_type: LineType
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1179</x>
+      <y>864</y>
+      <w>216</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>*LineTool*
+--
++thickness: int
++line_type: LineType
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>936</x>
+      <y>864</y>
+      <w>234</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*ConvexFormsTool*
+--
++edge_thickness: int
++edge_line_type: LineType
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>864</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*PolygonTool*
+--
++edge_thickness: int
++edge_line_type: LineType
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>594</y>
+      <w>423</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;450.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>594</y>
+      <w>225</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>567</x>
+      <y>594</y>
+      <w>27</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>333</x>
+      <y>594</y>
+      <w>225</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>333</y>
+      <w>27</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>837</x>
+      <y>783</y>
+      <w>225</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>774</y>
+      <w>27</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>783</y>
+      <w>423</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;450.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>783</y>
+      <w>252</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>260.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>99</x>
+      <y>333</y>
+      <w>414</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>440.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>234</x>
+      <y>864</y>
+      <w>225</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>*CircleTool*
+--
++edge_thickness: int
++edge_line_type: LineType
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>783</y>
+      <w>459</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>490.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>234</x>
+      <y>450</y>
+      <w>225</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>*MergeTool*
+--
++import_file: DataStream&lt;File&gt;
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>702</x>
+      <y>450</y>
+      <w>225</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>*RotateTool*
+--
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>936</x>
+      <y>450</y>
+      <w>225</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>*ResizeTool*
+--
+--
++handleImageClick(Vector2): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>621</x>
+      <y>333</y>
+      <w>216</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;220.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>666</x>
+      <y>333</y>
+      <w>405</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;430.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>333</x>
+      <y>333</y>
+      <w>225</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1170</x>
+      <y>450</y>
+      <w>225</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>*SelectionTool*
+--
++pos1: int
++pos2: int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>684</x>
+      <y>333</y>
+      <w>630</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;680.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1170</x>
+      <y>702</y>
+      <w>225</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>*CutTool*
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1278</x>
+      <y>495</y>
+      <w>27</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1404</x>
+      <y>450</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*KorrekturTool*
+--
++Value: int
+--
++increse(Value)
++decrese(Value)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>333</y>
+      <w>837</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;910.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1404</x>
+      <y>702</y>
+      <w>225</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>*HelligkeitsTool*
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1512</x>
+      <y>531</y>
+      <w>27</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1638</x>
+      <y>702</y>
+      <w>225</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>*FarbtonTool*
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1539</x>
+      <y>531</y>
+      <w>234</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1872</x>
+      <y>702</y>
+      <w>225</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>*GradationsTool*
+--
+--
++generate_gradient(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1575</x>
+      <y>531</y>
+      <w>432</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;460.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1170</x>
+      <y>171</y>
+      <w>225</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>*3D-object*
+--
++vertices
+--
++load_3D(Object): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1404</x>
+      <y>171</y>
+      <w>225</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>*3D-inspector*
+--
+--
++generate_3D(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1872</x>
+      <y>171</y>
+      <w>225</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>*Layer-Manager*
+--
+--
++generate_layer(): void
++delete_layer(int): void
++overlab_layer(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1638</x>
+      <y>171</y>
+      <w>225</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>*Layer*
+--
+--
++display_layer(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
