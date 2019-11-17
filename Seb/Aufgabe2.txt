@@ -1,0 +1,72 @@
+Klasse: Bilder
+	Vererbung:
+        	- 
+	Verantowrtlichkeiten:
+		- Bilddaten
+	Kollaborationen:
+        	- 
+
+Klasse: Bilddimensionen
+	Vererbung:
+        	- Bilder
+	Verantowrtlichkeiten:
+		- Wissen über die Größe des Bildes
+	Kollaborationen:
+        	- Nutzer kann die Anzahl der Pixel in x und y Richtung abfragen
+
+Klasse: Rasterimage
+	Vererbung:
+        	- Bilder
+	Verantowrtlichkeiten:
+		- 2-dimensionales array mit Farbwerten
+		- je ein Bit pro Pixel
+	Kollaborationen:
+        	- Nutzer kann Bild speichern, zeichnen lassen
+
+Klasse: Shapeimage
+	Vererbung:
+        	- Rasterimage
+	Verantowrtlichkeiten:
+		- Transparenz
+	Kollaborationen:
+        	- Spezalisierung des Rasterimage mit Transparenz
+
+Klasse: Tools
+	Vererbung:
+        	- 
+	Verantowrtlichkeiten:
+		- Veränderung des Bildes
+	Kollaborationen:
+        	- Der Benutzer möchte das Bild ohne Probleme veränderen können
+
+Klasse: Drehtool
+	Vererbung:
+        	- Tools
+	Verantowrtlichkeiten:
+		- Veränderung der Position der Farbwerte im Array
+	Kollaborationen:
+        	- Möglichkeit für den Nutzer das Bild zu drehen
+
+Klasse: Size-tool
+	Vererbung:
+        	- Tools
+	Verantowrtlichkeiten:
+		- ändern der Größe des Bildes
+	Kollaborationen:
+        	- Nutzer möchte die Bilddimensionen anpassen
+
+Klasse: Colour-Tool
+	Vererbung:
+        	- Tools
+	Verantowrtlichkeiten:
+		- änderung der Frabwerte im array
+	Kollaborationen:
+        	- Nutzer möchte die Farben ändern
+
+Klasse: Mergetool
+	Vererbung:
+        	- Tools
+	Verantowrtlichkeiten:
+		- Erschaffen eines neuen Bildes aus 2 anderen
+	Kollaborationen:
+        	- Nutzer möchte 2 Bilder zusammenfügen

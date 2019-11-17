@@ -1,0 +1,89 @@
+(Tool)
+> Verantwortlich für... <
+- Name, Beschreibung, Tooltip und Icon des Tools speichern
+- Utilities und gemeinsamer Code, den alle Tools verwenden
+
+
+ColorPicker
+> Verantwortlich für... <
+-Speicherung der Farbwerte
+- Darstellung der Farbpallette
+- Handling der Farbänderung
+
+HistoryTool
+> erbt von <
+Tool
+> Verantwortlich für... <
+- 20 Operationen speichern
+- In den 10 Operationen nach vorn (Redo) oder hinten (Undo) springen
+- Änderungen rückgängig machen oder wiederholen
+
+ResizeTool
+> erbt von <
+Tool
+> Verantwortlich für... <
+- Änderung der Bilddimension
+- Änderung des Zooms
+
+RotationTool
+> erbt von <
+Tool
+> Verantwortlich für... <
+- Rotation des Bildes
+- Änderung der Darstellungsrotation
+
+PenTool
+> erbt von <
+Tool
+> Verantwortlich für... <
+- Speicherung des eingestellten Radius
+- Änderung von Pixeln um einen geklickten Punkt in gewissem Radius
+
+FloodFillTool
+> erbt von <
+Tool
+> Verantwortlich für... <
+- Änderung der Pixelfarbe von Pixeln der selben Farbe eines geklickten Pixels, die direkt an ihn angrenzen
+
+PlainTool
+> erbt von <
+Tool
+> Verantwortlich für... <
+- Einfärbung des gesamten Canvas in der gewählten Farbe
+
+(FormsTool)
+> erbt von <
+Tool
+> Verantwortlich für... <
+- vereinheitlichte Darstellung der Formauswahl und Ränder
+- Styling der Canvaselemente
+
+RectangleFormsTool
+> erbt von <
+FormsTool
+> Verantwortlich für... <
+- Zeichnen von Rechteckformen
+
+CircleFormsTool
+> erbt von <
+FormsTool
+> Verantwortlich für... <
+- Zeichnen von Kreisformen
+
+PolygonFormsTool
+> erbt von <
+FormsTool
+> Verantwortlich für... <
+- Zeichnen von Polygonen
+
+RasterImage
+> Verantwortlich für... <
+- Darstellung des gezeichneten Bildes
+- Speicherung der Pixeldaten
+
+ShapedImage
+> erbt von <
+RasterImage
+> Verantwortlich für... <
+- Speicherung der Polygondaten
+- Darstellung der Transparenz außerhalb des Polygons
