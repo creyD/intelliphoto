@@ -1,4 +1,0 @@
-use:
-	https://prezi.com/p/tvcz2nax2rff/prezi1/
-or:
-	https://prezi.com/view/SWWOdhqFxMVozU3qzOm6/
