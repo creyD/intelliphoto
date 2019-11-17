@@ -123,7 +123,7 @@ Klasse: Merge-View-Tool
 	Vererbung:
         - View-Tool
 	Verantwortlichkeiten:
-		- Das anzeigen zweier Bilder in der Datei
+		- Das Anzeigen zweier Bilder in der Datei
 	Kollaborationen:
         - Der Anwender möchte ein Bild neben einem anderen Bild anzeigen
         - Der Anwender möchte ein Bild über einem anderen anzeigen lassen
@@ -213,3 +213,91 @@ Klasse: Kreis-Tool
 		- Die Dicke des Randes des Kreises ist freiwählbar, sowie die Art des Randes (Gepunktet, etc.), genauso wie die Farbe des Kreises und des Randes
 	Kollaborationen:
 		- Der Anwender möchte einen beliebigen Kreis und eine beliebige Ellipse zeichnen können
+
+Klasse: Selection-Tool(abstrakt)
+	Vererbung:
+		-Tool
+	Verantwortlichkeiten:
+		-Auswählen von einem Bereich(beliebiger Bereich)
+	Kollaborationen:
+		- Der Anwender möchte ein Bereich Auswählen (quadratisch)
+
+Klasse: Cut-Tool
+	Vererbung:
+		-Selection-Tool
+	Verantwortlichkeiten:
+		-Auswählen von Bildern und das ausschneiden dieser
+	Kollaborationen
+		- Der Anwender möchte ein Bild auswählen und bewegen oder löschen
+
+Klasse: Korrektur-Tool(abstrakt)
+	Vererbung:
+		-Tool
+	Verantwortlichkeiten:
+		-Verändern von Bild Daten (Korrektur)
+	Kollaborationen:
+		-Der Anwender möchte ein Bild verändern und dies mit Korrektur
+
+Klasse: Helligkeits-Tool
+	Vererbung:
+		Korrektur-Tool
+	Verantwortlichkeiten
+		Verändert die Helligkeits Werte
+	Kollaboration:
+		Der Anwender möchte das Bild verdunkeln oder aufhellen
+
+Klasse: Farbton-Tool
+	Vererbung:
+		Korrektur-Tool
+	Verantwortlichkeiten:
+		Verändert die Sättigung von Farbdaten
+	Kollaborationen:
+		Der User möchte ein Bild sättigen oder verblassen
+
+Klasse: Gradations-Tool
+	Vererbung:
+		Korrektur-Tool:
+	Verantwortlichkeiten:
+		Setzen einer Gradationskurve
+	Kollaboration:
+		Der User möchte eine Gradationskurve eines Farbschemas Erstellen
+
+Klasse: 3D-Objekt
+	Vererbung:
+		-
+	Verantwortlichkeiten:
+		-Wissen über die Vertices und das Managen dieser
+	Kollaborationen:
+		-Der User möchte ein 3D Objekt laden
+
+Klassen: 3D-Inspector
+	Vererbung:
+		-
+	Verantwortlichkeiten:
+		-Darstellen eines 3D Objekts und der Projezierung (RayTracer)
+	Kollaborationen:
+		-Der User möchte ein 3D Objekt auf das Layer projezieren
+
+Klasse: Layer
+	Vererbung:
+		-
+	Verantwortlichkeiten:
+		-Darstellung eines Bildes und Sichtbarkeit auf sich selbst
+	Kollaborationen:
+		-Der User möchte ein Bild auf einem Layer darstellen
+
+Klasse: Layer-Manager
+	Vererbung:
+		-
+	Verantwortlichkeiten:
+		-Sichtbarkeit und Darstellung der Bilder auf verschiedenen Layern
+		-Projektion auf ein Bild
+	Kollaborationen:
+		-Der User möchte ein Layer über das andere schieben
+		-Der User möchte die Layer löschen
+		-neues Layer erstellen
+	
+
+
+	
+	
