@@ -1,0 +1,20 @@
+Req-ID: 0001
+Req-Type: Funktionale
+Events/UCs:
+	-Eingabe durch Mausklick
+Description:
+	-Bei Eingabe durch Mausklick soll ein oder mehrere Pixel in der Nähe je nach Einstellung in verschiedenen Formen und Größen auf den frei wählbaren Farbton des Farbraumes gesetzt werden
+	-"Fülleimertool" für das ändern aller zusamenhängender Pixel, der gleichen Farbe zu einer neuen Farbe
+Originator: Shadi
+Fit Criterion:
+	-mindestens 3 verschiednene Formen und 3 verschiedene Größen 
+	-Farben sind frei wählbar (im Bereich)
+	-Tools weißen keine Fehler auf 
+Priority:
+	- 90/100 (gewünschte Grundfunktion des Kunden)
+Support Material:
+	-Ubungsblat_01.pdf
+Conflicts:
+	-keine Bekannten Konflikte(stand: 30.10.2019 10:00)
+History:
+	-Erstellt am 30.10.2019 von Sebastian Künzl
