@@ -6,14 +6,26 @@
 
 class Layer{
 private:
+    //pixelmap for the image, used because of performance and api reasons
     QImage* Canvas;
+
+    //width of the image
     int width;
+
+    //height of the imahe
     int height;
 public:
+    //setup everything for the image
     Layer(const int& width,const int& height);
     ~Layer();
-    void setPixel(const int& w,const int& h,const int& a,const int& r,const int& g,const int& b);
+
+    //set one pixel with rgba values
+    void setPixel(const int& w,const int& h,const int& r,const int& g,const int& b, const int& a);
+
+    //load an image to the canvas
     void loadImage(const QString& fileName);
+
+    //return the image as QPixmap
     QPixmap getAsPixmap();
 };
 

@@ -1,36 +1,44 @@
 #include "intelligui.h"
 #include "ui_intelligui.h"
-#include<QDebug>
-#include<QGridLayout>
-#include<QLabel>
-#include<QColor>
+#include "LayerManager.h"
 
 IntelliGUI::IntelliGUI(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::IntelliGUI){
     ui->setupUi(this);
+
+    //Setting up basic IntelliPhoto structure
+    this->EbenenManager = new LayerManager();
+
+        //Test Layer
+        this->EbenenManager->AddLayerAfer(0);
+        this->EbenenManager->activateLayer(0);
+
+    //Setting up basic IntelliGui Structure
+    this->GUI = new QWidget();
+    this->Layout = new QGridLayout(GUI);
+    this->setCentralWidget(GUI);
+
+    //setup all gui elements down here
+    this->EinKnopf = new QPushButton("Ein Knopf");
+
+
+
+    //Merge all gui elements to Layout down here
+    this->Layout->addWidget(this->EinKnopf, 0,10);
+    this->Layout->addWidget(this->EbenenManager->getDisplayable(),1,1,10,10);
+    //this->Layout->addWidget(this->EbenenManager->getDisplayable(),0,0,10,10);
+    //Layout is set in here
+    this->setLayout(Layout);
 }
 
 IntelliGUI::~IntelliGUI(){
     delete ui;
+    delete GUI;
+    delete Layout;
+    delete EbenenManager;
+
+    //delete all Gui elements down here
 }
 
-void IntelliGUI::setColor(double R, double G, double B){
-    R *= 255;
-    G *= 255;
-    B *= 255;
-    QString color = "rgb(";
-    color += QString::number(R)+ ",";
-    color += QString::number(G)+ ",";
-    color += QString::number(B)+ ")";
-    this->setStyleSheet("background-color:"+color);
-}
-
-void IntelliGUI::setColor(int R, int G, int B){
-    QString color = "rgb(";
-    color += QString::number(R)+ ",";
-    color += QString::number(G)+ ",";
-    color += QString::number(B)+ ")";
-    this->setStyleSheet("background-color:"+color);
-}
 
