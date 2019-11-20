@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <LayerManager.h>
 #include <QGridLayout>
+#include <QLineEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class IntelliGUI; }
@@ -22,6 +23,9 @@ class IntelliGUI : public QMainWindow
 
     //Declare all Gui elements down here
     QPushButton *EinKnopf;
+    QLineEdit *Red;
+    QLineEdit *Blue;
+    QLineEdit *Green;
 
 private:
     Ui::IntelliGUI *ui;
@@ -32,6 +36,7 @@ public:
     //Delets everything in connection to one project
     ~IntelliGUI();
 
-private slots:
+public slots:
+    void on_EinKnopf_clicked();
 };
 #endif // INTELLIGUI_H

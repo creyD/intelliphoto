@@ -22,3 +22,11 @@ QPixmap Layer::getAsPixmap(){
     return QPixmap::fromImage(*(this->Canvas));
 }
 
+
+void Layer::floodFill(int r, int g, int b){
+    for(int i=0; i<width; i++){
+        for(int j=0; j<height; j++){
+            this->Canvas->setPixelColor(i,j,QColor(r,g,b,255));
+        }
+    }
+}

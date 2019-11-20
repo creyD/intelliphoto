@@ -4,6 +4,7 @@
 
 #include<vector>
 #include <QLabel>
+#include <QWidget>
 
 
 
@@ -34,6 +35,9 @@ private:
 
     //all the meta data parallel to Ebenen Container
     std::vector<EbenenMetaDaten> MetaEbenen;
+
+    //updates the display
+    void UpdateLabel();
 public:
     LayerManager();
     ~LayerManager();
@@ -58,6 +62,9 @@ public:
 
     //delets a layer at the given index
     void DeleteLayer(int idx);
+
+    //fill active Layer
+    void floodFillLayer(int r, int g, int b);
 
     //returns the output ready label
     QLabel* getDisplayable();

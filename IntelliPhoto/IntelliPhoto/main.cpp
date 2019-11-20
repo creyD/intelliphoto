@@ -1,3 +1,5 @@
+#include<QDebug>
+
 #include "intelligui.h"
 
 #include <QApplication>
@@ -6,6 +8,7 @@
 #include<QPushButton>
 #include<QImage>
 #include<QPixmap>
+
 
 int main(int argc, char *argv[])
 {

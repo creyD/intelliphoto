@@ -103,3 +103,26 @@ QLabel* LayerManager::getDisplayable(){
     this->imgLabel->setPixmap(aMap);
     return imgLabel;
 }
+
+void LayerManager::floodFillLayer(int r, int g, int b){
+    for(size_t i=0; i< static_cast<size_t>(this->getLayerCount()); i++){
+           if(MetaEbenen[i].a==255){
+               Ebenen[i]->floodFill(r,g,b);
+               this->UpdateLabel();
+               return;
+           }
+    }
+}
+
+void LayerManager::UpdateLabel(){
+    //Tranzparenz der Ebenen muss möglich sein
+    QPixmap aMap;
+    for(size_t i=0; i<static_cast<size_t>(this->getLayerCount()); i++){
+        if(MetaEbenen[i].a==255){
+            aMap = Ebenen[i]->getAsPixmap();
+            break;
+        }
+    }
+
+    this->imgLabel->setPixmap(aMap);
+}

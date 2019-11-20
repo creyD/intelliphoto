@@ -25,6 +25,9 @@ public:
     //load an image to the canvas
     void loadImage(const QString& fileName);
 
+    //flood fills canvas
+    void floodFill(int r, int g, int b);
+
     //return the image as QPixmap
     QPixmap getAsPixmap();
 };
