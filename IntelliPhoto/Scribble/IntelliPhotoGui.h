@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef IntelliPhotoGui_H
+#define IntelliPhotoGui_H
 
 #include <QList>
 #include <QMainWindow>
@@ -7,9 +7,9 @@
 #include<QPushButton>
 
 // ScribbleArea used to paint the image
-class ScribbleArea;
+class PaintingArea;
 
-class MainWindow : public QMainWindow
+class IntelliPhotoGui : public QMainWindow
 {
     // Declares our class as a QObject which is the base class
     // for all Qt objects
@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow();
+    IntelliPhotoGui();
 protected:
     // Function used to close an event
     void closeEvent(QCloseEvent *event) override;
@@ -48,7 +48,7 @@ private:
     bool saveFile(const QByteArray &fileFormat);
 
     // What we'll draw on
-    ScribbleArea *scribbleArea;
+    PaintingArea *paintingArea;
 
     // The menu widgets
     QMenu *saveAsMenu;

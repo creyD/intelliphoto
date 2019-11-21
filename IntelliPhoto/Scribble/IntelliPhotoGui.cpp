@@ -1,12 +1,12 @@
-// ---------- mainwindow.cpp ----------
+// ---------- IntelliPhotoGui.cpp ----------
 
 #include <QtWidgets>
 
-#include "mainwindow.h"
-#include "scribblearea.h"
+#include "IntelliPhotoGui.h"
+#include "PaintingArea.h"
 
-// MainWindow constructor
-MainWindow::MainWindow()
+// IntelliPhotoGui constructor
+IntelliPhotoGui::IntelliPhotoGui()
 {   
     //create Gui elemnts and lay them out
     createGui();
@@ -23,7 +23,7 @@ MainWindow::MainWindow()
 
 
 // User tried to close the app
-void MainWindow::closeEvent(QCloseEvent *event)
+void IntelliPhotoGui::closeEvent(QCloseEvent *event)
 {
     // If they try to close maybeSave() returns true
     // if no changes have been made and the app closes
@@ -38,7 +38,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 // Check if the current image has been changed and then
 // open a dialog to open a file
-void MainWindow::open()
+void IntelliPhotoGui::open()
 {
     // Check if changes have been made since last save
     // maybeSave() returns true if no changes have been made
@@ -53,12 +53,12 @@ void MainWindow::open()
         // If we have a file name load the image and place
         // it in the scribbleArea
         if (!fileName.isEmpty())
-            scribbleArea->openImage(fileName);
+            paintingArea->openImage(fileName);
     }
 }
 
 // Called when the user clicks Save As in the menu
-void MainWindow::save()
+void IntelliPhotoGui::save()
 {
     // A QAction represents the action of the user clicking
     QAction *action = qobject_cast<QAction *>(sender());
@@ -71,18 +71,18 @@ void MainWindow::save()
 }
 
 // Opens a dialog to change the pen color
-void MainWindow::penColor()
+void IntelliPhotoGui::penColor()
 {
     // Store the chosen color from the dialog
-    QColor newColor = QColorDialog::getColor(scribbleArea->penColor());
+    QColor newColor = QColorDialog::getColor(paintingArea->penColor());
 
     // If a valid color set it
     if (newColor.isValid())
-        scribbleArea->setPenColor(newColor);
+        paintingArea->setPenColor(newColor);
 }
 
 // Opens a dialog that allows the user to change the pen width
-void MainWindow::penWidth()
+void IntelliPhotoGui::penWidth()
 {
     // Stores button value
     bool ok;
@@ -91,28 +91,28 @@ void MainWindow::penWidth()
     // the next tr is the text to display
     // Get the current pen width
     // Define the min, max, step and ok button
-    int newWidth = QInputDialog::getInt(this, tr("Scribble"),
+    int newWidth = QInputDialog::getInt(this, tr("Painting"),
                                         tr("Select pen width:"),
-                                        scribbleArea->penWidth(),
+                                        paintingArea->penWidth(),
                                         1, 500, 1, &ok);
     // Change the pen width
     if (ok)
-        scribbleArea->setPenWidth(newWidth);
+        paintingArea->setPenWidth(newWidth);
 }
 
 // Open an about dialog
-void MainWindow::about()
+void IntelliPhotoGui::about()
 {
     // Window title and text to display
-    QMessageBox::about(this, tr("About Scribble"),
-            tr("<p>The <b>Scribble</b> example is awesome</p>"));
+    QMessageBox::about(this, tr("About Painting"),
+            tr("<p>The <b>Painting</b> example is awesome</p>"));
 }
 
 // Define menu actions that call functions
-void MainWindow::createActions()
+void IntelliPhotoGui::createActions()
 {
     //connect signal and slots of gui element
-    connect(this->clearButton, SIGNAL(clicked()), scribbleArea, SLOT(clearImage()));
+    connect(this->clearButton, SIGNAL(clicked()), paintingArea, SLOT(clearImage()));
 
     // Create the action tied to the menu
     openAct = new QAction(tr("&Open..."), this);
@@ -120,7 +120,7 @@ void MainWindow::createActions()
     // Define the associated shortcut key
     openAct->setShortcuts(QKeySequence::Open);
 
-    // Tie the action to MainWindow::open()
+    // Tie the action to IntelliPhotoGui::open()
     connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
 
     // Get a list of the supported file formats
@@ -134,7 +134,7 @@ void MainWindow::createActions()
         // Set an action for each file format
         action->setData(format);
 
-        // When clicked call MainWindow::save()
+        // When clicked call IntelliPhotoGui::save()
         connect(action, SIGNAL(triggered()), this, SLOT(save()));
 
         // Attach each file format option menu item to Save As
@@ -142,36 +142,36 @@ void MainWindow::createActions()
     }
 
 
-    // Create exit action and tie to MainWindow::close()
+    // Create exit action and tie to IntelliPhotoGui::close()
     exitAct = new QAction(tr("E&xit"), this);
     exitAct->setShortcuts(QKeySequence::Quit);
     connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
 
-    // Create pen color action and tie to MainWindow::penColor()
+    // Create pen color action and tie to IntelliPhotoGui::penColor()
     penColorAct = new QAction(tr("&Pen Color..."), this);
     connect(penColorAct, SIGNAL(triggered()), this, SLOT(penColor()));
 
-    // Create pen width action and tie to MainWindow::penWidth()
+    // Create pen width action and tie to IntelliPhotoGui::penWidth()
     penWidthAct = new QAction(tr("Pen &Width..."), this);
     connect(penWidthAct, SIGNAL(triggered()), this, SLOT(penWidth()));
 
-    // Create clear screen action and tie to MainWindow::clearImage()
+    // Create clear screen action and tie to IntelliPhotoGui::clearImage()
     clearScreenAct = new QAction(tr("&Clear Screen"), this);
     clearScreenAct->setShortcut(tr("Ctrl+L"));
     connect(clearScreenAct, SIGNAL(triggered()),
-            scribbleArea, SLOT(clearImage()));
+            paintingArea, SLOT(clearImage()));
 
-    // Create about action and tie to MainWindow::about()
+    // Create about action and tie to IntelliPhotoGui::about()
     aboutAct = new QAction(tr("&About"), this);
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
 
-    // Create about Qt action and tie to MainWindow::aboutQt()
+    // Create about Qt action and tie to IntelliPhotoGui::aboutQt()
     aboutQtAct = new QAction(tr("About &Qt"), this);
     connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 }
 
 // Create the menubar
-void MainWindow::createMenus()
+void IntelliPhotoGui::createMenus()
 {
     // Create Save As option and the list of file types
     saveAsMenu = new QMenu(tr("&Save As"), this);
@@ -203,7 +203,7 @@ void MainWindow::createMenus()
     menuBar()->addMenu(helpMenu);
 }
 
-void MainWindow::createGui(){
+void IntelliPhotoGui::createGui(){
     //create a central widget to work on
     centralGuiWidget = new QWidget(this);
     setCentralWidget(centralGuiWidget);
@@ -214,14 +214,14 @@ void MainWindow::createGui(){
 
     //create Gui elements
     clearButton = new QPushButton("Clear");
-    scribbleArea = new ScribbleArea();
+    paintingArea = new PaintingArea();
 
     //set gui elemtns position
-    mainLayout->addWidget(scribbleArea,0,0,10,10);
+    mainLayout->addWidget(paintingArea,0,0,10,10);
     mainLayout->addWidget(clearButton,0,10,1,1);
 }
 
-void MainWindow::setIntelliStyle(){
+void IntelliPhotoGui::setIntelliStyle(){
     // Set the title
     setWindowTitle("IntelliPhoto Prototype");
     //set style sheet
@@ -230,15 +230,15 @@ void MainWindow::setIntelliStyle(){
     this->menuBar()->setStyleSheet("color:rgb(255,255,255)");
 }
 
-bool MainWindow::maybeSave()
+bool IntelliPhotoGui::maybeSave()
 {
     // Check for changes since last save
-    if (scribbleArea->isModified()) {
+    if (paintingArea->isModified()) {
        QMessageBox::StandardButton ret;
 
        // Scribble is the title
        // Add text and the buttons
-       ret = QMessageBox::warning(this, tr("Scribble"),
+       ret = QMessageBox::warning(this, tr("Painting"),
                           tr("The image has been modified.\n"
                              "Do you want to save your changes?"),
                           QMessageBox::Save | QMessageBox::Discard
@@ -256,7 +256,7 @@ bool MainWindow::maybeSave()
     return true;
 }
 
-bool MainWindow::saveFile(const QByteArray &fileFormat)
+bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat)
 {
     // Define path, name and default file type
     QString initialPath = QDir::currentPath() + "/untitled." + fileFormat;
@@ -275,7 +275,7 @@ bool MainWindow::saveFile(const QByteArray &fileFormat)
     } else {
 
         // Call for the file to be saved
-        return scribbleArea->saveImage(fileName, fileFormat.constData());
+        return paintingArea->saveImage(fileName, fileFormat.constData());
     }
 }
 

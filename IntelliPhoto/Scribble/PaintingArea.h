@@ -1,4 +1,4 @@
-// ---------- scribblearea.h ----------
+// ---------- PaintingArea.h ----------
 
 #ifndef SCRIBBLEAREA_H
 #define SCRIBBLEAREA_H
@@ -8,7 +8,7 @@
 #include <QPoint>
 #include <QWidget>
 
-class ScribbleArea : public QWidget
+class PaintingArea : public QWidget
 {
     // Declares our class as a QObject which is the base class
     // for all Qt objects
@@ -16,7 +16,7 @@ class ScribbleArea : public QWidget
     Q_OBJECT
 
 public:
-    ScribbleArea(QWidget *parent = nullptr);
+    PaintingArea(QWidget *parent = nullptr);
 
     // Handles all events
     bool openImage(const QString &fileName);

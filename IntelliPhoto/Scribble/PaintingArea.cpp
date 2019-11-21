@@ -1,9 +1,9 @@
-// ---------- scribblearea.cpp ----------
+// ---------- PaintingArea.cpp ----------
 
 #include <QtWidgets>
-#include "scribblearea.h"
+#include "PaintingArea.h"
 
-ScribbleArea::ScribbleArea(QWidget *parent)
+PaintingArea::PaintingArea(QWidget *parent)
     : QWidget(parent)
 {
     // Roots the widget to the top left even if resized
@@ -17,7 +17,7 @@ ScribbleArea::ScribbleArea(QWidget *parent)
 }
 
 // Used to load the image and place it in the widget
-bool ScribbleArea::openImage(const QString &fileName)
+bool PaintingArea::openImage(const QString &fileName)
 {
     // Holds the image
     QImage loadedImage;
@@ -35,7 +35,7 @@ bool ScribbleArea::openImage(const QString &fileName)
 }
 
 // Save the current image
-bool ScribbleArea::saveImage(const QString &fileName, const char *fileFormat)
+bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
 {
     // Created to hold the image
     QImage visibleImage = image;
@@ -50,19 +50,19 @@ bool ScribbleArea::saveImage(const QString &fileName, const char *fileFormat)
 }
 
 // Used to change the pen color
-void ScribbleArea::setPenColor(const QColor &newColor)
+void PaintingArea::setPenColor(const QColor &newColor)
 {
     myPenColor = newColor;
 }
 
 // Used to change the pen width
-void ScribbleArea::setPenWidth(int newWidth)
+void PaintingArea::setPenWidth(int newWidth)
 {
     myPenWidth = newWidth;
 }
 
 // Color the image area with white
-void ScribbleArea::clearImage()
+void PaintingArea::clearImage()
 {
     image.fill(qRgb(255, 255, 255));
     modified = true;
@@ -72,7 +72,7 @@ void ScribbleArea::clearImage()
 // If a mouse button is pressed check if it was the
 // left button and if so store the current position
 // Set that we are currently drawing
-void ScribbleArea::mousePressEvent(QMouseEvent *event)
+void PaintingArea::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
         lastPoint = event->pos();
@@ -83,14 +83,14 @@ void ScribbleArea::mousePressEvent(QMouseEvent *event)
 // When the mouse moves if the left button is clicked
 // we call the drawline function which draws a line
 // from the last position to the current
-void ScribbleArea::mouseMoveEvent(QMouseEvent *event)
+void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && scribbling)
         drawLineTo(event->pos());
 }
 
 // If the button is released we set variables to stop drawing
-void ScribbleArea::mouseReleaseEvent(QMouseEvent *event)
+void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton && scribbling) {
         drawLineTo(event->pos());
@@ -101,7 +101,7 @@ void ScribbleArea::mouseReleaseEvent(QMouseEvent *event)
 // QPainter provides functions to draw on the widget
 // The QPaintEvent is sent to widgets that need to
 // update themselves
-void ScribbleArea::paintEvent(QPaintEvent *event)
+void PaintingArea::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
 
@@ -115,7 +115,7 @@ void ScribbleArea::paintEvent(QPaintEvent *event)
 
 // Resize the image to slightly larger then the main window
 // to cut down on the need to resize the image
-void ScribbleArea::resizeEvent(QResizeEvent *event)
+void PaintingArea::resizeEvent(QResizeEvent *event)
 {
     if (width() > image.width() || height() > image.height()) {
         int newWidth = qMax(width() + 128, image.width());
@@ -126,7 +126,7 @@ void ScribbleArea::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
-void ScribbleArea::drawLineTo(const QPoint &endPoint)
+void PaintingArea::drawLineTo(const QPoint &endPoint)
 {
     // Used to draw on the widget
     QPainter painter(&image);
@@ -153,7 +153,7 @@ void ScribbleArea::drawLineTo(const QPoint &endPoint)
 
 // When the app is resized create a new image using
 // the changes made to the image
-void ScribbleArea::resizeImage(QImage *image, const QSize &newSize)
+void PaintingArea::resizeImage(QImage *image, const QSize &newSize)
 {
     // Check if we need to redraw the image
     if (image->size() == newSize)

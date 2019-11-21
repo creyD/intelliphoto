@@ -4,7 +4,7 @@
 
 // ---------- main.cpp ----------
 
-#include "mainwindow.h"
+#include "IntelliPhotoGui.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     // Create and open the main window
-    MainWindow window;
+    IntelliPhotoGui window;
     window.show();
 
     // Display the main window
