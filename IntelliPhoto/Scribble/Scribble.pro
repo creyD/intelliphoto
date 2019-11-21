@@ -16,18 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    LayerManager.cpp \
-    intelligui.cpp \
-    layer.cpp \
-    main.cpp
+    main.cpp \
+    mainwindow.cpp \
+    scribblearea.cpp
 
 HEADERS += \
-    LayerManager.h \
-    intelligui.h \
-    layer.h
+    mainwindow.h \
+    scribblearea.h
 
 FORMS += \
-    intelligui.ui
+    widget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
