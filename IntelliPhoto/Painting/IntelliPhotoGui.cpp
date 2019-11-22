@@ -51,7 +51,7 @@ void IntelliPhotoGui::open()
                                    tr("Open File"), QDir::currentPath());
 
         // If we have a file name load the image and place
-        // it in the scribbleArea
+        // it in the paintingArea
         if (!fileName.isEmpty())
             paintingArea->openImage(fileName);
     }
@@ -87,7 +87,7 @@ void IntelliPhotoGui::penWidth()
     // Stores button value
     bool ok;
 
-    // tr("Scribble") is the title
+    // tr("Painting") is the title
     // the next tr is the text to display
     // Get the current pen width
     // Define the min, max, step and ok button
@@ -236,7 +236,7 @@ bool IntelliPhotoGui::maybeSave()
     if (paintingArea->isModified()) {
        QMessageBox::StandardButton ret;
 
-       // Scribble is the title
+       // Painting is the title
        // Add text and the buttons
        ret = QMessageBox::warning(this, tr("Painting"),
                           tr("The image has been modified.\n"

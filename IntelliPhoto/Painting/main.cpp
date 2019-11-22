@@ -1,9 +1,3 @@
-
-
-
-
-// ---------- main.cpp ----------
-
 #include "IntelliPhotoGui.h"
 #include <QApplication>
 
@@ -20,7 +14,6 @@ int main(int argc, char *argv[])
     return app.exec();
 }
 
-// ---------- END main.cpp ----------
 
 
 

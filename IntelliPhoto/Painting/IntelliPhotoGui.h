@@ -6,7 +6,7 @@
 #include<QGridLayout>
 #include<QPushButton>
 
-// ScribbleArea used to paint the image
+// PaintingArea used to paint the image
 class PaintingArea;
 
 class IntelliPhotoGui : public QMainWindow

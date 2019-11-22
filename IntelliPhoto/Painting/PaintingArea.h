@@ -1,7 +1,6 @@
-// ---------- PaintingArea.h ----------
 
-#ifndef SCRIBBLEAREA_H
-#define SCRIBBLEAREA_H
+#ifndef PaintingArea_H
+#define PaintingArea_H
 
 #include <QColor>
 #include <QImage>
@@ -39,7 +38,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
 
-    // Updates the scribble area where we are painting
+    // Updates the painting area where we are painting
     void paintEvent(QPaintEvent *event) override;
 
     // Makes sure the area we are drawing on remains
