@@ -16,13 +16,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    IntelliPhotoGui.cpp \
-    PaintingArea.cpp \
+    GUI/IntelliPhotoGui.cpp \
+    Image/IntelliImage.cpp \
+    Image/IntelliRasterImage.cpp \
+    Image/IntelliShapedImage.cpp \
+    IntelliHelper/IntelliHelper.cpp \
+    Layer/PaintingArea.cpp \
     main.cpp
 
 HEADERS += \
-    IntelliPhotoGui.h \
-    PaintingArea.h
+    GUI/IntelliPhotoGui.h \
+    Image/IntelliImage.h \
+    Image/IntelliRasterImage.h \
+    Image/IntelliShapedImage.h \
+    IntelliHelper/IntelliHelper.h \
+    Layer/PaintingArea.h
 
 FORMS += \
     widget.ui

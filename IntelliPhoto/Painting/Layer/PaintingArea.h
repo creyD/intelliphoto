@@ -4,6 +4,7 @@
 
 #include <QColor>
 #include <QImage>
+#include"Image/IntelliImage.h"
 #include <QPoint>
 #include <QWidget>
 
@@ -15,7 +16,9 @@ class PaintingArea : public QWidget
     Q_OBJECT
 
 public:
+    //create raster image 400*200
     PaintingArea(QWidget *parent = nullptr);
+    PaintingArea(int width, int height, ImageType type, QWidget *parent = nullptr);
 
     // Handles all events
     bool openImage(const QString &fileName);
@@ -33,6 +36,8 @@ public slots:
     // Events to handle
     void clearImage();
 
+    //void setUp helper for konstruktor
+    void setUp();
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -62,7 +67,7 @@ private:
     QColor myPenColor;
 
     // Stores the image being drawn
-    QImage image;
+    IntelliImage* image;
 
     // Stores the location at the current mouse event
     QPoint lastPoint;

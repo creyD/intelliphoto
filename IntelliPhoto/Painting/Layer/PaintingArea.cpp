@@ -2,10 +2,31 @@
 
 #include <QtWidgets>
 #include "PaintingArea.h"
+#include "Image/IntelliRasterImage.h"
+#include "Image/IntelliShapedimage.h"
 
 PaintingArea::PaintingArea(QWidget *parent)
     : QWidget(parent)
 {
+    //create standart image
+    this->image = new IntelliRasterimage(400,200);
+
+    this->setUp();
+}
+
+PaintingArea::PaintingArea(int width, int height, ImageType type, QWidget *parent)
+    : QWidget(parent){
+    if(type==ImageType::Raster_Image){
+        this->image = new IntelliRasterimage(width, height);
+    }else if(type==ImageType::Shaped_Image){
+        this->image = new IntelliShapedImage(width, height);
+    }else{
+        qDebug() << "No valid Image type error";
+        return;
+    }
+}
+
+void PaintingArea::setUp(){
     // Roots the widget to the top left even if resized
     setAttribute(Qt::WA_StaticContents);
 
@@ -19,26 +40,14 @@ PaintingArea::PaintingArea(QWidget *parent)
 // Used to load the image and place it in the widget
 bool PaintingArea::openImage(const QString &fileName)
 {
-    // Holds the image
-    QImage loadedImage;
-
-    // If the image wasn't loaded leave this function
-    if (!loadedImage.load(fileName))
-        return false;
-
-    QSize newSize = loadedImage.size().expandedTo(size());
-    resizeImage(&loadedImage, newSize);
-    image = loadedImage;
-    modified = false;
-    update();
-    return true;
+    return image->loadImage(fileName);
 }
 
 // Save the current image
 bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
 {
     // Created to hold the image
-    QImage visibleImage = image;
+    QImage visibleImage = image->getDisplayable(size());
     resizeImage(&visibleImage, size());
 
     if (visibleImage.save(fileName, fileFormat)) {
@@ -64,7 +73,7 @@ void PaintingArea::setPenWidth(int newWidth)
 // Color the image area with white
 void PaintingArea::clearImage()
 {
-    image.fill(qRgb(255, 255, 255));
+    image->floodFill(qRgb(255, 255, 255));
     modified = true;
     update();
 }
@@ -110,33 +119,27 @@ void PaintingArea::paintEvent(QPaintEvent *event)
 
     // Draws the rectangle where the image needs to
     // be updated
-    painter.drawImage(dirtyRect, image, dirtyRect);
+    //painter.drawImage(dirtyRect, image, dirtyRect);
 }
 
 // Resize the image to slightly larger then the main window
 // to cut down on the need to resize the image
 void PaintingArea::resizeEvent(QResizeEvent *event)
 {
-    if (width() > image.width() || height() > image.height()) {
-        int newWidth = qMax(width() + 128, image.width());
-        int newHeight = qMax(height() + 128, image.height());
-        resizeImage(&image, QSize(newWidth, newHeight));
-        update();
-    }
+    //resizing done here
+    //if (width() > image.width() || height() > image.height()) {
+    //    int newWidth = qMax(width() + 128, image.width());
+    //    int newHeight = qMax(height() + 128, image.height());
+    //    resizeImage(&image, QSize(newWidth, newHeight));
+    //    update();
+    //}
     QWidget::resizeEvent(event);
 }
 
 void PaintingArea::drawLineTo(const QPoint &endPoint)
 {
     // Used to draw on the widget
-    QPainter painter(&image);
-
-    // Set the current settings for the pen
-    painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
-                        Qt::RoundJoin));
-
-    // Draw a line from the last registered point to the current
-    painter.drawLine(lastPoint, endPoint);
+    image->drawLine(lastPoint, endPoint,myPenColor, myPenWidth);
 
     // Set that the image hasn't been saved
     modified = true;

@@ -3,7 +3,7 @@
 #include <QtWidgets>
 
 #include "IntelliPhotoGui.h"
-#include "PaintingArea.h"
+#include "Layer/PaintingArea.h"
 
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui()

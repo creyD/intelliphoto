@@ -1,4 +1,4 @@
-#include "IntelliPhotoGui.h"
+#include "GUI/IntelliPhotoGui.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
