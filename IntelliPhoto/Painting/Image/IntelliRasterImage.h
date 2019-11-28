@@ -3,13 +3,16 @@
 
 #include"Image/IntelliImage.h"
 
-class IntelliRasterimage : public IntelliImage{
+class IntelliRasterImage : public IntelliImage{
+
 public:
-    IntelliRasterimage(int weight, int height);
-    virtual ~IntelliRasterimage() override;
+    IntelliRasterImage(int weight, int height);
+    virtual ~IntelliRasterImage() override;
 
     //returns the filtered output
     virtual QImage getDisplayable(const QSize& displaySize) override;
+    virtual QImage getDisplayable() override;
+
 
     //sets the data for the visible image
     virtual void setPolygon(const std::vector<QPoint>& polygonData) override;

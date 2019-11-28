@@ -52,11 +52,11 @@ protected:
 
 private:
     void drawLineTo(const QPoint &endPoint);
-    void resizeImage(QImage *image, const QSize &newSize);
+    void resizeImage(QImage *image_res, const QSize &newSize);
 
     // Will be marked true or false depending on if
     // we have saved after a change
-    bool modified;
+    bool modified=false;
 
     // Marked true or false depending on if the user
     // is drawing

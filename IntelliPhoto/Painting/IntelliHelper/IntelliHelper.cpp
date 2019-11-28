@@ -1,9 +1,9 @@
 #include"IntelliHelper.h"
 #include<algorithm>
 
-int IntelliHelper::orientation(QPoint& p1,  QPoint& p2, QPoint& p3){
-    int value = (p2.x()-p1.x())*(p3.x()-p2.x())-
-                (p2.y()-p1.y())*(p3.y()-p2.y());
+int IntelliHelper::orientation(QPoint& p,  QPoint& q, QPoint& r){
+    int value = (q.y()-p.y())*(r.x()-q.x())-
+                (q.x()-p.x())*(r.y()-q.y());
     if(value==0) return 0;
     return (value>0)?1:2;
 }

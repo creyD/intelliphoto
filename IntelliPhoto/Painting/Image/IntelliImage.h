@@ -5,6 +5,7 @@
 #include<QPoint>
 #include<QColor>
 #include<QSize>
+#include<QWidget>
 #include<vector>
 
 enum class ImageType{
@@ -13,6 +14,7 @@ enum class ImageType{
 };
 
 class IntelliImage{
+
 protected:
     void resizeImage(QImage *image, const QSize &newSize);
 
@@ -28,11 +30,17 @@ public:
 
     //returns the filtered output
     virtual QImage getDisplayable(const QSize& displaySize)=0;
+    virtual QImage getDisplayable()=0;
+
+    //returns the filtered output
 
     //sets the data for the visible image
     virtual void setPolygon(const std::vector<QPoint>& polygonData)=0;
 
     virtual bool loadImage(const QString &fileName);
+
+    int x();
+    int y();
 };
 
 #endif

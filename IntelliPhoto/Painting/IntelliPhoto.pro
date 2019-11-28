@@ -35,6 +35,10 @@ HEADERS += \
 FORMS += \
     widget.ui
 
+
+QMAKE_CXXFLAGS += -fopenmp
+QMAKE_LFLAGS += -fopenmp
+
 RC_ICONS = icon.ico
 
 # Default rules for deployment.

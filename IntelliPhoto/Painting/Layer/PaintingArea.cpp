@@ -1,29 +1,27 @@
 // ---------- PaintingArea.cpp ----------
 
 #include <QtWidgets>
+#include<QRect>
 #include "PaintingArea.h"
 #include "Image/IntelliRasterImage.h"
-#include "Image/IntelliShapedimage.h"
+#include "Image/IntelliShapedImage.h"
+
+#include<vector>
+#include<QPoint>
 
 PaintingArea::PaintingArea(QWidget *parent)
     : QWidget(parent)
 {
     //create standart image
-    this->image = new IntelliRasterimage(400,200);
+    this->image = new IntelliRasterImage(400,400);
+    std::vector<QPoint> poly;
+    poly.push_back(QPoint(200,0));
+    poly.push_back(QPoint(400,300));
+    poly.push_back(QPoint(0,300));
+    poly.push_back(QPoint(200,0));
+    image->setPolygon(poly);
 
     this->setUp();
-}
-
-PaintingArea::PaintingArea(int width, int height, ImageType type, QWidget *parent)
-    : QWidget(parent){
-    if(type==ImageType::Raster_Image){
-        this->image = new IntelliRasterimage(width, height);
-    }else if(type==ImageType::Shaped_Image){
-        this->image = new IntelliShapedImage(width, height);
-    }else{
-        qDebug() << "No valid Image type error";
-        return;
-    }
 }
 
 void PaintingArea::setUp(){
@@ -31,27 +29,41 @@ void PaintingArea::setUp(){
     setAttribute(Qt::WA_StaticContents);
 
     // Set defaults for the monitored variables
-    modified = false;
     scribbling = false;
     myPenWidth = 1;
     myPenColor = Qt::blue;
+
 }
+
+PaintingArea::PaintingArea(int width, int height, ImageType type, QWidget *parent)
+    : QWidget(parent){
+    if(type==ImageType::Raster_Image){
+        this->image = new IntelliRasterImage(width, height);
+    }else if(type==ImageType::Shaped_Image){
+        this->image = new IntelliShapedImage(width, height);
+    }else{
+        qDebug() << "No valid Image type error";
+        return;
+    }
+    this->setUp();
+}
+
 
 // Used to load the image and place it in the widget
 bool PaintingArea::openImage(const QString &fileName)
 {
-    return image->loadImage(fileName);
+    bool open = image->loadImage(fileName);
+    update();
+    return open;
 }
 
 // Save the current image
 bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
 {
     // Created to hold the image
-    QImage visibleImage = image->getDisplayable(size());
-    resizeImage(&visibleImage, size());
+    QImage visibleImage = image->getDisplayable();
 
     if (visibleImage.save(fileName, fileFormat)) {
-        modified = false;
         return true;
     } else {
         return false;
@@ -74,7 +86,6 @@ void PaintingArea::setPenWidth(int newWidth)
 void PaintingArea::clearImage()
 {
     image->floodFill(qRgb(255, 255, 255));
-    modified = true;
     update();
 }
 
@@ -84,25 +95,35 @@ void PaintingArea::clearImage()
 void PaintingArea::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        lastPoint = event->pos();
+        int x = event->x()*(float)image->x()/(float)size().width();
+        int y = event->y()*(float)image->y()/(float)size().height();
+        lastPoint=QPoint(x,y);
         scribbling = true;
     }
 }
+
 
 // When the mouse moves if the left button is clicked
 // we call the drawline function which draws a line
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((event->buttons() & Qt::LeftButton) && scribbling)
-        drawLineTo(event->pos());
+    if ((event->buttons() & Qt::LeftButton) && scribbling){
+        int x = event->x()*(float)image->x()/(float)size().width();
+        int y = event->y()*(float)image->y()/(float)size().height();
+        drawLineTo(QPoint(x,y));
+        update();
+    }
 }
 
 // If the button is released we set variables to stop drawing
 void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton && scribbling) {
-        drawLineTo(event->pos());
+        int x = event->x()*(float)image->x()/(float)size().width();
+        int y = event->y()*(float)image->y()/(float)size().height();
+        drawLineTo(QPoint(x,y));
+        update();
         scribbling = false;
     }
 }
@@ -113,62 +134,31 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 void PaintingArea::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-
-    // Returns the rectangle that needs to be updated
-    QRect dirtyRect = event->rect();
-
-    // Draws the rectangle where the image needs to
-    // be updated
-    //painter.drawImage(dirtyRect, image, dirtyRect);
+    QRect dirtyRec = event->rect();
+    painter.drawImage(dirtyRec, image->getDisplayable(dirtyRec.size()), dirtyRec);
+    update();
 }
 
 // Resize the image to slightly larger then the main window
 // to cut down on the need to resize the image
 void PaintingArea::resizeEvent(QResizeEvent *event)
 {
-    //resizing done here
-    //if (width() > image.width() || height() > image.height()) {
-    //    int newWidth = qMax(width() + 128, image.width());
-    //    int newHeight = qMax(height() + 128, image.height());
-    //    resizeImage(&image, QSize(newWidth, newHeight));
-    //    update();
-    //}
-    QWidget::resizeEvent(event);
+    QPainter painter(this);
+    QRect dirtyRec(QPoint(0,0), event->size());
+    painter.drawImage(dirtyRec, image->getDisplayable(event->size()), dirtyRec);
+    update();
+    //QWidget::resizeEvent(event);
 }
 
 void PaintingArea::drawLineTo(const QPoint &endPoint)
 {
     // Used to draw on the widget
     image->drawLine(lastPoint, endPoint,myPenColor, myPenWidth);
-
-    // Set that the image hasn't been saved
-    modified = true;
-
-    int rad = (myPenWidth / 2) + 2;
-
-    // Call to update the rectangular space where we drew
-    update(QRect(lastPoint, endPoint).normalized()
-                                     .adjusted(-rad, -rad, +rad, +rad));
-
-    // Update the last position where we left off drawing
     lastPoint = endPoint;
+    update();
 }
 
-// When the app is resized create a new image using
-// the changes made to the image
-void PaintingArea::resizeImage(QImage *image, const QSize &newSize)
-{
-    // Check if we need to redraw the image
-    if (image->size() == newSize)
-        return;
-
-    // Create a new image to display and fill it with white
-    QImage newImage(newSize, QImage::Format_RGB32);
-    newImage.fill(qRgb(255, 255, 255));
-
-    // Draw the image
-    QPainter painter(&newImage);
-    painter.drawImage(QPoint(0, 0), *image);
-    *image = newImage;
+void PaintingArea::resizeImage(QImage *image_res, const QSize &newSize){
+    image_res->scaled(newSize,Qt::IgnoreAspectRatio);
 }
 

@@ -3,8 +3,8 @@
 #include<QPainter>
 
 IntelliImage::IntelliImage(int weight, int height)
-    :imageData(QSize(weight, height), QImage::Format_RGB32){
-
+    :imageData(QSize(weight, height), QImage::Format_ARGB32){
+    imageData.fill(QColor(255,255,255,255));
 }
 
 IntelliImage::~IntelliImage(){
@@ -19,9 +19,8 @@ bool IntelliImage::loadImage(const QString &fileName){
     if (!loadedImage.load(fileName))
         return false;
 
-    QSize newSize = loadedImage.size().expandedTo(imageData.size());
-    resizeImage(&loadedImage, newSize);
-    imageData = loadedImage;
+    loadedImage =loadedImage.scaled(imageData.size(),Qt::IgnoreAspectRatio);
+    imageData= loadedImage.convertToFormat(QImage::Format_ARGB32);
     return true;
 }
 
@@ -31,7 +30,7 @@ void IntelliImage::resizeImage(QImage *image, const QSize &newSize){
         return;
 
     // Create a new image to display and fill it with white
-    QImage newImage(newSize, QImage::Format_RGB32);
+    QImage newImage(newSize, QImage::Format_ARGB32);
     newImage.fill(qRgb(255, 255, 255));
 
     // Draw the image
@@ -68,4 +67,13 @@ void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& co
 
 void IntelliImage::floodFill(const QColor& color){
     imageData.fill(color);
+
+}
+
+int IntelliImage::x(){
+    return imageData.size().width();
+}
+
+int IntelliImage::y(){
+    return imageData.size().height();
 }

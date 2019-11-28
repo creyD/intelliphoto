@@ -4,6 +4,7 @@
 #include"Image/IntelliImage.h"
 
 class IntelliShapedImage : public IntelliImage{
+
 protected:
     std::vector<QPoint> polygonData;
 public:
@@ -12,6 +13,7 @@ public:
 
     //returns the filtered output
     virtual QImage getDisplayable(const QSize& displaySize) override;
+    virtual QImage getDisplayable() override;
 
     //sets the data for the visible image
     virtual void setPolygon(const std::vector<QPoint>& polygonData) override;
