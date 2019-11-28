@@ -105,7 +105,7 @@ void IntelliPhotoGui::about()
 {
     // Window title and text to display
     QMessageBox::about(this, tr("About Painting"),
-            tr("<p>The <b>Painting</b> example is awesome</p>"));
+            tr("<p><b>IntelliPhoto</b> Some nice ass looking software</p>"));
 }
 
 // Define menu actions that call functions
