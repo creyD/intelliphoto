@@ -73,6 +73,8 @@ private:
     std::vector<LayerObject> layerStructure;
     int activeLayer=-1;
 
+    void assembleLayers();
+
     void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image_res, const QSize &newSize);
 

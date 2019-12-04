@@ -15,7 +15,10 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
 
     //tetsing
     this->addLayer(200,200,0,0);
-    this->addLayer(200,200,201,201);
+    layerStructure[0].image->floodFill(QColor(255,0,0,255));
+    this->addLayer(200,200,150,150);
+    layerStructure[1].image->floodFill(QColor(0,255,0,255));
+    layerStructure[1].alpha=100;
 }
 
 
@@ -51,6 +54,7 @@ void PaintingArea::addLayer(int width, int height, int widthOffset, int heightOf
     }
     newLayer.alpha = 255;
     this->layerStructure.push_back(newLayer);
+
 }
 
 void PaintingArea::deleteLayer(int index){
@@ -89,22 +93,16 @@ bool PaintingArea::openImage(const QString &fileName)
 // Save the current image
 bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
 {
-    if(this->activeLayer==-1){
+    if(layerStructure.size()==0){
         return false;
     }
-    // Created to hold the image
+    this->assembleLayers();
 
-    for(size_t i=0; i<layerStructure.size(); i++){
-        LayerObject layer;
-        QImage cpy = layer.image->getDisplayable(layer.alpha);
-        //TODO draw cpy to CANVAS
+    if (Canvas->save(fileName, fileFormat)) {
+        return true;
+    } else {
+        return false;
     }
-
-    //if (Canvas.save(fileName, fileFormat)) {
-    //    return true;
-    //} else {
-    //    return false;
-    //}
 }
 
 // Used to change the pen color
@@ -196,14 +194,11 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 // update themselves
 void PaintingArea::paintEvent(QPaintEvent *event)
 {
-    if(this->activeLayer==-1){
-        return;
-    }
-    LayerObject active = layerStructure[activeLayer];
+    this->assembleLayers();
 
     QPainter painter(this);
     QRect dirtyRec = event->rect();
-    painter.drawImage(dirtyRec, active.image->getDisplayable(dirtyRec.size(), active.alpha), dirtyRec);
+    painter.drawImage(dirtyRec, *Canvas, dirtyRec);
     update();
 }
 
@@ -237,5 +232,30 @@ void PaintingArea::drawLineTo(const QPoint &endPoint)
 
 void PaintingArea::resizeImage(QImage *image_res, const QSize &newSize){
     image_res->scaled(newSize,Qt::IgnoreAspectRatio);
+}
+
+void PaintingArea::assembleLayers(){
+    Canvas->fill(Qt::GlobalColor::black);
+    for(size_t i=0; i<layerStructure.size(); i++){
+        LayerObject layer = layerStructure[i];
+        QImage cpy = layer.image->getDisplayable(layer.alpha);
+        QColor clr_0;
+        QColor clr_1;
+        for(int y=0; y<layer.height; y++){
+            for(int x=0; x<layer.width; x++){
+                clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.heightOffset+y);
+                clr_1=cpy.pixelColor(x,y);
+                float t = (float)clr_1.alpha()/255.f;
+                int r =(float)clr_1.red()*(t)+(float)clr_0.red()*(1.-t);
+                int g =(float)clr_1.green()*(t)+(float)clr_0.green()*(1.-t);
+                int b =(float)clr_1.blue()*(t)+(float)clr_0.blue()*(1.-t);
+                clr_0.setRed(r);
+                clr_0.setGreen(g);
+                clr_0.setBlue(b);
+
+                Canvas->setPixelColor(layer.widthOffset+x, layer.heightOffset+y, clr_0);
+            }
+        }
+    }
 }
 
