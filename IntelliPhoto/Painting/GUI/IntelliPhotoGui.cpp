@@ -143,7 +143,7 @@ void IntelliPhotoGui::createActions()
 
 
     // Create exit action and tie to IntelliPhotoGui::close()
-    exitAct = new QAction(tr("&Exit"), this);
+    exitAct = new QAction(tr("E&xit"), this);
     exitAct->setShortcuts(QKeySequence::Quit);
     connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
 
