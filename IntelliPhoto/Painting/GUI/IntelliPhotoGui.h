@@ -3,8 +3,8 @@
 
 #include <QList>
 #include <QMainWindow>
-#include<QGridLayout>
-#include<QPushButton>
+#include <QGridLayout>
+#include <QPushButton>
 
 // PaintingArea used to paint the image
 class PaintingArea;

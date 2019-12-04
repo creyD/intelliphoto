@@ -25,6 +25,7 @@ public:
     bool saveImage(const QString &fileName, const char *fileFormat);
     void setPenColor(const QColor &newColor);
     void setPenWidth(int newWidth);
+    void standart_image();
 
     // Has the image been modified since last save
     bool isModified() const { return modified; }

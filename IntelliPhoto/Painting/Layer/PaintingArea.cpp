@@ -1,19 +1,19 @@
 // ---------- PaintingArea.cpp ----------
 
 #include <QtWidgets>
-#include<QRect>
+#include <QRect>
 #include "PaintingArea.h"
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
 
-#include<vector>
-#include<QPoint>
+#include <vector>
+#include <QPoint>
 
 PaintingArea::PaintingArea(QWidget *parent)
     : QWidget(parent)
 {
     //create standart image
-    this->image = new IntelliRasterImage(400,400);
+    standart_image();
     std::vector<QPoint> poly;
     poly.push_back(QPoint(200,0));
     poly.push_back(QPoint(400,300));
@@ -22,6 +22,10 @@ PaintingArea::PaintingArea(QWidget *parent)
     image->setPolygon(poly);
 
     this->setUp();
+}
+
+void PaintingArea::standart_image(){
+    this->image = new IntelliRasterImage(400,400);
 }
 
 void PaintingArea::setUp(){
@@ -52,7 +56,9 @@ PaintingArea::PaintingArea(int width, int height, ImageType type, QWidget *paren
 // Used to load the image and place it in the widget
 bool PaintingArea::openImage(const QString &fileName)
 {
+    qDebug("%d, %d",image->x(),image->y());
     bool open = image->loadImage(fileName);
+    qDebug("%d, %d",image->x(),image->y());
     update();
     return open;
 }
@@ -86,6 +92,12 @@ void PaintingArea::setPenWidth(int newWidth)
 void PaintingArea::clearImage()
 {
     image->floodFill(qRgb(255, 255, 255));
+
+    //recreate standart image
+    IntelliImage* temp = image;
+    standart_image();
+    delete [] temp;
+
     update();
 }
 
@@ -95,8 +107,8 @@ void PaintingArea::clearImage()
 void PaintingArea::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        int x = event->x()*(float)image->x()/(float)size().width();
-        int y = event->y()*(float)image->y()/(float)size().height();
+        int x = static_cast<int>(event->x()*static_cast<float>(image->x())/static_cast<float>(size().width()));
+        int y = static_cast<int>(event->y()*static_cast<float>(image->y())/static_cast<float>(size().height()));
         lastPoint=QPoint(x,y);
         scribbling = true;
     }
@@ -109,8 +121,8 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && scribbling){
-        int x = event->x()*(float)image->x()/(float)size().width();
-        int y = event->y()*(float)image->y()/(float)size().height();
+        int x = static_cast<int>(event->x()*static_cast<float>(image->x())/static_cast<float>(size().width()));
+        int y = static_cast<int>(event->y()*static_cast<float>(image->y())/static_cast<float>(size().height()));
         drawLineTo(QPoint(x,y));
         update();
     }
@@ -120,8 +132,8 @@ void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton && scribbling) {
-        int x = event->x()*(float)image->x()/(float)size().width();
-        int y = event->y()*(float)image->y()/(float)size().height();
+        int x = static_cast<int>(event->x()*static_cast<float>(image->x())/static_cast<float>(size().width()));
+        int y = static_cast<int>(event->y()*static_cast<float>(image->y())/static_cast<float>(size().height()));
         drawLineTo(QPoint(x,y));
         update();
         scribbling = false;
