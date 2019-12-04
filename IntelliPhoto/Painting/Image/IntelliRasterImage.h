@@ -10,8 +10,8 @@ public:
     virtual ~IntelliRasterImage() override;
 
     //returns the filtered output
-    virtual QImage getDisplayable(const QSize& displaySize) override;
-    virtual QImage getDisplayable() override;
+    virtual QImage getDisplayable(const QSize& displaySize,int alpha) override;
+    virtual QImage getDisplayable(int alpha=255) override;
 
 
     //sets the data for the visible image

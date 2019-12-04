@@ -12,11 +12,11 @@ IntelliShapedImage::~IntelliShapedImage(){
 
 }
 
-QImage IntelliShapedImage::getDisplayable(){
+QImage IntelliShapedImage::getDisplayable(int alpha){
     return getDisplayable(imageData.size());
 }
 
-QImage IntelliShapedImage::getDisplayable(const QSize& displaySize){
+QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
     QImage copy = imageData;
     QPoint startPoint;
     QPoint extrem(0,copy.width()+1);
@@ -38,6 +38,10 @@ QImage IntelliShapedImage::getDisplayable(const QSize& displaySize){
                 QColor tmpColor(0,0,0);
                 tmpColor.setAlpha(0);
                 copy.setPixelColor(startPoint,tmpColor);
+            }else{
+                QColor clr = copy.pixelColor(x,y);
+                clr.setAlpha(alpha);
+                copy.setPixelColor(x,y,clr);
             }
         }
     }

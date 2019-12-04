@@ -29,8 +29,8 @@ public:
     virtual void floodFill(const QColor& color);
 
     //returns the filtered output
-    virtual QImage getDisplayable(const QSize& displaySize)=0;
-    virtual QImage getDisplayable()=0;
+    virtual QImage getDisplayable(const QSize& displaySize, int alpha)=0;
+    virtual QImage getDisplayable(int alpha=255)=0;
 
     //returns the filtered output
 

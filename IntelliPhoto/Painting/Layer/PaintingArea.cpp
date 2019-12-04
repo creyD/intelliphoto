@@ -9,26 +9,26 @@
 #include <vector>
 #include <QPoint>
 
-PaintingArea::PaintingArea(QWidget *parent)
-    : QWidget(parent)
-{
-    //create standart image
-    standart_image();
-    std::vector<QPoint> poly;
-    poly.push_back(QPoint(200,0));
-    poly.push_back(QPoint(400,300));
-    poly.push_back(QPoint(0,300));
-    poly.push_back(QPoint(200,0));
-    image->setPolygon(poly);
+PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
+    :QWidget(parent){
+    this->setUp(maxWidth, maxHeight);
 
-    this->setUp();
+    //tetsing
+    this->addLayer(200,200,0,0);
+    this->addLayer(200,200,201,201);
 }
 
-void PaintingArea::standart_image(){
-    this->image = new IntelliRasterImage(400,400);
-}
 
-void PaintingArea::setUp(){
+
+
+void PaintingArea::setUp(int maxWidth, int maxHeight){
+
+    //set standart parameter
+    this->maxWidth = maxWidth;
+    this->maxHeight = maxHeight;
+    Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
+    Canvas->fill(Qt::GlobalColor::white);
+
     // Roots the widget to the top left even if resized
     setAttribute(Qt::WA_StaticContents);
 
@@ -36,29 +36,52 @@ void PaintingArea::setUp(){
     scribbling = false;
     myPenWidth = 1;
     myPenColor = Qt::blue;
-
 }
 
-PaintingArea::PaintingArea(int width, int height, ImageType type, QWidget *parent)
-    : QWidget(parent){
+void PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, ImageType type){
+    LayerObject newLayer;
+    newLayer.width = width;
+    newLayer.height = height;
+    newLayer.widthOffset = widthOffset;
+    newLayer.heightOffset = heightOffset;
     if(type==ImageType::Raster_Image){
-        this->image = new IntelliRasterImage(width, height);
+        newLayer.image = new IntelliRasterImage(width,height);
     }else if(type==ImageType::Shaped_Image){
-        this->image = new IntelliShapedImage(width, height);
-    }else{
-        qDebug() << "No valid Image type error";
-        return;
+        newLayer.image = new IntelliShapedImage(width, height);
     }
-    this->setUp();
+    newLayer.alpha = 255;
+    this->layerStructure.push_back(newLayer);
 }
 
+void PaintingArea::deleteLayer(int index){
+    if(index<layerStructure.size()){
+        this->layerStructure.erase(layerStructure.begin()+index);
+        if(activeLayer>=index){
+            activeLayer--;
+        }
+    }
+}
+
+void PaintingArea::setLayerToActive(int index) {
+    if(index<layerStructure.size()){
+        this->activeLayer=index;
+    }
+}
+
+void PaintingArea::setAlphaToLayer(int index, int alpha){
+    if(index<layerStructure.size()){
+        layerStructure[index].alpha=alpha;
+    }
+}
 
 // Used to load the image and place it in the widget
 bool PaintingArea::openImage(const QString &fileName)
 {
-    qDebug("%d, %d",image->x(),image->y());
-    bool open = image->loadImage(fileName);
-    qDebug("%d, %d",image->x(),image->y());
+    if(this->activeLayer==-1){
+        return false;
+    }
+    IntelliImage* active = layerStructure[activeLayer].image;
+    bool open = active->loadImage(fileName);
     update();
     return open;
 }
@@ -66,14 +89,22 @@ bool PaintingArea::openImage(const QString &fileName)
 // Save the current image
 bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
 {
-    // Created to hold the image
-    QImage visibleImage = image->getDisplayable();
-
-    if (visibleImage.save(fileName, fileFormat)) {
-        return true;
-    } else {
+    if(this->activeLayer==-1){
         return false;
     }
+    // Created to hold the image
+
+    for(size_t i=0; i<layerStructure.size(); i++){
+        LayerObject layer;
+        QImage cpy = layer.image->getDisplayable(layer.alpha);
+        //TODO draw cpy to CANVAS
+    }
+
+    //if (Canvas.save(fileName, fileFormat)) {
+    //    return true;
+    //} else {
+    //    return false;
+    //}
 }
 
 // Used to change the pen color
@@ -91,14 +122,13 @@ void PaintingArea::setPenWidth(int newWidth)
 // Color the image area with white
 void PaintingArea::clearImage()
 {
-    image->floodFill(qRgb(255, 255, 255));
+   if(this->activeLayer==-1){
+       return;
+   }
+   IntelliImage* active = layerStructure[activeLayer].image;
+   active->floodFill(qRgb(255, 255, 255));
 
-    //recreate standart image
-    IntelliImage* temp = image;
-    standart_image();
-    delete [] temp;
-
-    update();
+   update();
 }
 
 // If a mouse button is pressed check if it was the
@@ -107,8 +137,14 @@ void PaintingArea::clearImage()
 void PaintingArea::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        int x = static_cast<int>(event->x()*static_cast<float>(image->x())/static_cast<float>(size().width()));
-        int y = static_cast<int>(event->y()*static_cast<float>(image->y())/static_cast<float>(size().height()));
+        if(this->activeLayer==-1){
+            return;
+        }
+        IntelliImage* active = layerStructure[activeLayer].image;
+
+        int x = static_cast<int>(event->x()*static_cast<float>(active->x())/static_cast<float>(size().width()));
+        int y = static_cast<int>(event->y()*static_cast<float>(active->y())/static_cast<float>(size().height()));
+        //TODO CALCULATE LAST POINT
         lastPoint=QPoint(x,y);
         scribbling = true;
     }
@@ -120,9 +156,17 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
+
     if ((event->buttons() & Qt::LeftButton) && scribbling){
-        int x = static_cast<int>(event->x()*static_cast<float>(image->x())/static_cast<float>(size().width()));
-        int y = static_cast<int>(event->y()*static_cast<float>(image->y())/static_cast<float>(size().height()));
+        if(this->activeLayer==-1){
+            return;
+        }
+        IntelliImage* active = layerStructure[activeLayer].image;
+
+        int x = static_cast<int>(event->x()*static_cast<float>(active->x())/static_cast<float>(size().width()));
+        int y = static_cast<int>(event->y()*static_cast<float>(active->y())/static_cast<float>(size().height()));
+
+        //TODO CALCULATE NEW POINT
         drawLineTo(QPoint(x,y));
         update();
     }
@@ -132,8 +176,15 @@ void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton && scribbling) {
-        int x = static_cast<int>(event->x()*static_cast<float>(image->x())/static_cast<float>(size().width()));
-        int y = static_cast<int>(event->y()*static_cast<float>(image->y())/static_cast<float>(size().height()));
+        if(this->activeLayer==-1){
+            return;
+        }
+        IntelliImage* active = layerStructure[activeLayer].image;
+
+        int x = static_cast<int>(event->x()*static_cast<float>(active->x())/static_cast<float>(size().width()));
+        int y = static_cast<int>(event->y()*static_cast<float>(active->y())/static_cast<float>(size().height()));
+
+        //TODO CALCULATE NEW POINT
         drawLineTo(QPoint(x,y));
         update();
         scribbling = false;
@@ -145,9 +196,14 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 // update themselves
 void PaintingArea::paintEvent(QPaintEvent *event)
 {
+    if(this->activeLayer==-1){
+        return;
+    }
+    LayerObject active = layerStructure[activeLayer];
+
     QPainter painter(this);
     QRect dirtyRec = event->rect();
-    painter.drawImage(dirtyRec, image->getDisplayable(dirtyRec.size()), dirtyRec);
+    painter.drawImage(dirtyRec, active.image->getDisplayable(dirtyRec.size(), active.alpha), dirtyRec);
     update();
 }
 
@@ -155,17 +211,26 @@ void PaintingArea::paintEvent(QPaintEvent *event)
 // to cut down on the need to resize the image
 void PaintingArea::resizeEvent(QResizeEvent *event)
 {
+    if(this->activeLayer==-1){
+        return;
+    }
+    LayerObject active = layerStructure[activeLayer];
+
     QPainter painter(this);
     QRect dirtyRec(QPoint(0,0), event->size());
-    painter.drawImage(dirtyRec, image->getDisplayable(event->size()), dirtyRec);
+    painter.drawImage(dirtyRec, active.image->getDisplayable(event->size(), active.alpha), dirtyRec);
     update();
-    //QWidget::resizeEvent(event);
 }
 
 void PaintingArea::drawLineTo(const QPoint &endPoint)
 {
-    // Used to draw on the widget
-    image->drawLine(lastPoint, endPoint,myPenColor, myPenWidth);
+    //// Used to draw on the widget
+    if(this->activeLayer==-1){
+        return;
+    }
+    LayerObject active = layerStructure[activeLayer];
+
+    active.image->drawLine(lastPoint, endPoint,myPenColor, myPenWidth);
     lastPoint = endPoint;
     update();
 }

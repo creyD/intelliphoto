@@ -12,8 +12,8 @@ public:
     virtual ~IntelliShapedImage() override;
 
     //returns the filtered output
-    virtual QImage getDisplayable(const QSize& displaySize) override;
-    virtual QImage getDisplayable() override;
+    virtual QImage getDisplayable(const QSize& displaySize, int alpha=255) override;
+    virtual QImage getDisplayable(int alpha=255) override;
 
     //sets the data for the visible image
     virtual void setPolygon(const std::vector<QPoint>& polygonData) override;
