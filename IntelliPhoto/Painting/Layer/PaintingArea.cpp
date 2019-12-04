@@ -19,6 +19,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     this->addLayer(200,200,150,150);
     layerStructure[1].image->floodFill(QColor(0,255,0,255));
     layerStructure[1].alpha=100;
+    activeLayer=1;
 }
 
 
@@ -124,7 +125,7 @@ void PaintingArea::clearImage()
        return;
    }
    IntelliImage* active = layerStructure[activeLayer].image;
-   active->floodFill(qRgb(255, 255, 255));
+   active->floodFill(QColor(255, 255, 255, 255));
 
    update();
 }
