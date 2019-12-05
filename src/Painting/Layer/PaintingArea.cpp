@@ -2,6 +2,7 @@
 
 #include <QtWidgets>
 #include <QRect>
+#include "string.h"
 #include "PaintingArea.h"
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
@@ -111,7 +112,7 @@ bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
     }
     this->assembleLayers(true);
 
-    if(!std::strcmp(fileFormat,"PNG")){
+    if(!strcmp(fileFormat,"PNG")){
         QImage visibleImage = Canvas->convertToFormat(QImage::Format_Indexed8);
         fileFormat = "png";
         if (visibleImage.save(fileName, fileFormat)) {

@@ -245,7 +245,7 @@ void IntelliPhotoGui::createActions()
     clearScreenAct = new QAction(tr("&Clear Screen"), this);
     clearScreenAct->setShortcut(tr("Ctrl+L"));
     connect(clearScreenAct, SIGNAL(triggered()),
-            paintingArea, SLOT(clearImage()));
+            this, SLOT(onClearedPressed()));
 
     // Create about action and tie to IntelliPhotoGui::about()
     aboutAct = new QAction(tr("&About"), this);
