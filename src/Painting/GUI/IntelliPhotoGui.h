@@ -41,6 +41,7 @@ private slots:
     void save();
     void penColor();
     void penWidth();
+    void newLayer();
     void about();
 
     void onClearedPressed();
@@ -77,6 +78,7 @@ private:
     QMenu *saveAsMenu;
     QMenu *fileMenu;
     QMenu *optionMenu;
+    QMenu *layerMenu;
     QMenu *helpMenu;
 
 
@@ -89,6 +91,7 @@ private:
     QAction *penColorAct;
     QAction *penWidthAct;
     QAction *clearScreenAct;
+    QAction *newLayerAct;
     QAction *aboutAct;
     QAction *aboutQtAct;
 

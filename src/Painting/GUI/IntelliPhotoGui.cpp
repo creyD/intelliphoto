@@ -9,7 +9,7 @@
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui()
 {   
-    //create Gui elemnts and lay them out
+    //create Gui elements and lay them out
     createGui();
     // Create actions
     createActions();
@@ -99,6 +99,30 @@ void IntelliPhotoGui::penWidth()
     // Change the pen width
     if (ok)
         paintingArea->setPenWidth(newWidth);
+}
+
+// Opens a dialog that allows the user to create a new Layer
+void IntelliPhotoGui::newLayer()
+{
+    // Stores button value
+    bool ok;
+
+    // tr("new Layer") is the title
+    // the next tr is the text to display
+    // Get the current pen width
+    // Define the min, max, step and ok button
+    int width = QInputDialog::getInt(this, tr("new Layer"),
+                                        tr("Width:"),
+                                        200,1, 500, 1, &ok);
+    int height = QInputDialog::getInt(this, tr("new Layer"),
+                                        tr("Height:"),
+                                        200,1, 500, 1, &ok);
+    // Change the pen width
+    if (ok)
+    {
+        int layer = paintingArea->addLayer(width,height,100,100);
+        paintingArea->activate(layer);
+    }
 }
 
 // Open an about dialog
@@ -247,6 +271,10 @@ void IntelliPhotoGui::createActions()
     connect(clearScreenAct, SIGNAL(triggered()),
             this, SLOT(onClearedPressed()));
 
+    // Create New Layer action and tie to IntelliPhotoGui::newLayer()
+    newLayerAct = new QAction(tr("&new Layer..."), this);
+    connect(newLayerAct, SIGNAL(triggered()), this, SLOT(newLayer()));
+
     // Create about action and tie to IntelliPhotoGui::about()
     aboutAct = new QAction(tr("&About"), this);
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
@@ -279,6 +307,10 @@ void IntelliPhotoGui::createMenus()
     optionMenu->addSeparator();
     optionMenu->addAction(clearScreenAct);
 
+    // Attach all actions to Layer
+    layerMenu = new QMenu(tr("&Layer"), this);
+    layerMenu->addAction(newLayerAct);
+
     // Attach all actions to Help
     helpMenu = new QMenu(tr("&Help"), this);
     helpMenu->addAction(aboutAct);
@@ -287,6 +319,7 @@ void IntelliPhotoGui::createMenus()
     // Add menu items to the menubar
     menuBar()->addMenu(fileMenu);
     menuBar()->addMenu(optionMenu);
+    menuBar()->addMenu(layerMenu);
     menuBar()->addMenu(helpMenu);
 }
 
