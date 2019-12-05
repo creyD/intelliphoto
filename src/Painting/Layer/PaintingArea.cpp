@@ -30,11 +30,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     activeLayer=1;
 }
 
-
-
-
 void PaintingArea::setUp(int maxWidth, int maxHeight){
-
     //set standart parameter
     this->maxWidth = maxWidth;
     this->maxHeight = maxHeight;
@@ -218,7 +214,6 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
-
     if ((event->buttons() & Qt::LeftButton) && scribbling){
         if(this->activeLayer==-1){
             return;
@@ -329,4 +324,3 @@ void PaintingArea::assembleLayers(bool forSaving){
         }
     }
 }
-
