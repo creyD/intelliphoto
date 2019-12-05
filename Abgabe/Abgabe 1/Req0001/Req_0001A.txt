@@ -1,0 +1,58 @@
+Req-ID:
+    0001A
+Req-Type:
+    Nicht-Funktional
+Events/UCs:
+    -Speicherung eines Bildes
+    -Pixel wird mit einem Byte dargestellt
+    -Overhead für Metainformationen erlaubt
+    -Keine seperate abhandlung von "RasterImage" und "ShapedImage"
+Description:
+    -Ein Bild wird mit maximal einem Byte pro Pixel kodiert
+    -Repräsentation im folgenden:
+            0b0000'0000, wobei die 0 nach dem Prefix 0b als Bit 7 Indiziert ist, und jedes rechtere Bit
+            davon um eins Dekrementiert Indiziert wird
+    -Minimale RGB-A Darstellung des Bildes mittel einem Byte
+    -Codierungsmöglichkeit nach folgendem Schema:
+            -Bit 7,6 werden Benutz um den Alpha-Kanal zu codieren:
+                -0b00   ->  Bit ist 100%    Transparent (Transparent)
+                -0b01   ->  Bit ist  66%    Transparent
+                -0b10   ->  Bit ist  33%    Transparent
+                -0b11   ->  Bit ist   0%    Transparent
+            -Bit 5,4 werden Benutz um den Rot-Kanal zu codieren:
+                -0b00   ->  Bit ist   0%    Rot (Schwarz)
+                -0b01   ->  Bit ist  33%    Rot 
+                -0b10   ->  Bit ist  66%    Rot
+                -0b11   ->  Bit ist 100%    Rot (Rot)
+            -Bit 3,2 werden Benutz um den Grün-Kanal zu codieren:
+                -0b00   ->  Bit ist   0%    Grün (Schwarz)
+                -0b01   ->  Bit ist  33%    Grün
+                -0b10   ->  Bit ist  66%    Grün
+                -0b11   ->  Bit ist 100%    Grün (Grün)
+            -Bit 1,0 werden Benutz um den Blau-Kanal zu codieren:
+                -0b00   ->  Bit ist   0%    Blau (Schwarz)
+                -0b01   ->  Bit ist  33%    Blau
+                -0b10   ->  Bit ist  66%    Blau
+                -0b11   ->  Bit ist 100%    Blau (Blau)
+         Definitionen der benutzen Farben nach RGB-A Modell:
+            Schwarz         (0b0000'0000, 0b0000'0000, 0b0000'0000, 0b1111'1111)
+            Rot             (0b1111'1111, 0b0000'0000, 0b0000'0000, 0b1111'1111)
+            Grün            (0b0000'0000, 0b1111'1111, 0b0000'0000, 0b1111'1111)
+            Blau            (0b0000'0000, 0b0000'0000, 0b1111'1111, 0b1111'1111)
+            Transparent     (0b0000'0000, 0b0000'0000, 0b0000'0000, 0b0000'0000)
+    -verschiedene Transparenzstufen, bis auf 0b11, werden als einzelne Farbstufen gezählt: 2^(8)-1 verschiede Farbstufen
+Originator:
+    Jonas Mucke
+Fit Criterion:
+    -Darstellung von mindestens 250 paarweise verschiedenen Farbstufen
+    -Darstellung einen transparenten Bits (Alpha Kanal = 0b0000'0000)
+    -Verarbeitungsmöglichkeit für 2^10 Pixel in unter 0.1 Sekunde beim Einlesen und Speichern
+Priority:
+    100
+Support Material:
+    Ubungsblat_01.pdf
+Conflicts:
+    Noch keine Einigung auf Farbkodierung (0001A-0001C)-> Rücksprache mit dem Kunden
+    (Ein Byte deckt einen sehr kleinen Farbbereich ab und ist nicht sehr elegant -> Rücksprache mit dem Kunden ob 4 Byte akzeptabel wären)
+History:
+    -Erstellt am 30.10.2019 um 21:59, von Jonas Mucke
