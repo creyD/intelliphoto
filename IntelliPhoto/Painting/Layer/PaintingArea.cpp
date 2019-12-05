@@ -63,6 +63,11 @@ bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
     // Created to hold the image
     QImage visibleImage = image->getDisplayable();
 
+    if(!std::strcmp(fileFormat,"PNG")){
+        visibleImage = visibleImage.convertToFormat(QImage::Format_Indexed8);
+        fileFormat = "png";
+    }
+
     if (visibleImage.save(fileName, fileFormat)) {
         return true;
     } else {

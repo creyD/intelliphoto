@@ -60,11 +60,13 @@ void IntelliPhotoGui::open()
 // Called when the user clicks Save As in the menu
 void IntelliPhotoGui::save()
 {
+
     // A QAction represents the action of the user clicking
     QAction *action = qobject_cast<QAction *>(sender());
 
     // Stores the array of bytes of the users data
     QByteArray fileFormat = action->data().toByteArray();
+
 
     // Pass it to be saved
     saveFile(fileFormat);
@@ -141,6 +143,18 @@ void IntelliPhotoGui::createActions()
         saveAsActs.append(action);
     }
 
+    QAction *action = new QAction("PNG-8", this);
+
+    // Set an action for each file format
+    action->setData("PNG");
+
+    // When clicked call IntelliPhotoGui::save()
+    connect(action, SIGNAL(triggered()), this, SLOT(save()));
+
+    // Attach each file format option menu item to Save As
+    saveAsActs.append(action);
+
+
 
     // Create exit action and tie to IntelliPhotoGui::close()
     exitAct = new QAction(tr("E&xit"), this);
@@ -177,6 +191,7 @@ void IntelliPhotoGui::createMenus()
     saveAsMenu = new QMenu(tr("&Save As"), this);
     foreach (QAction *action, saveAsActs)
         saveAsMenu->addAction(action);
+
 
     // Attach all actions to File
     fileMenu = new QMenu(tr("&File"), this);
@@ -260,6 +275,10 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat)
 {
     // Define path, name and default file type
     QString initialPath = QDir::currentPath() + "/untitled." + fileFormat;
+
+
+
+
 
     // Get selected file from dialog
     // Add the proper file formats and extensions
