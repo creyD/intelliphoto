@@ -19,10 +19,8 @@ bool IntelliImage::loadImage(const QString &fileName){
     if (!loadedImage.load(fileName))
         return false;
 
-    // scaled Image to size of Layer
-    // loadedImage = loadedImage.scaled(imageData.size(),Qt::IgnoreAspectRatio);
-
-    imageData = loadedImage.convertToFormat(QImage::Format_ARGB32);
+    loadedImage =loadedImage.scaled(imageData.size(),Qt::IgnoreAspectRatio);
+    imageData= loadedImage.convertToFormat(QImage::Format_ARGB32);
     return true;
 }
 

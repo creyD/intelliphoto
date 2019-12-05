@@ -12,19 +12,12 @@ IntelliRasterImage::~IntelliRasterImage(){
 
 }
 
-QImage IntelliRasterImage::getDisplayable(int alpha){
-    return getDisplayable(imageData.size(), alpha);
+QImage IntelliRasterImage::getDisplayable(){
+    return getDisplayable(imageData.size());
 }
 
-QImage IntelliRasterImage::getDisplayable(const QSize& displaySize, int alpha){
+QImage IntelliRasterImage::getDisplayable(const QSize& displaySize){
     QImage copy = imageData;
-    for(int y = 0; y<copy.height(); y++){
-        for(int x = 0; x<copy.width(); x++){
-            QColor clr = copy.pixelColor(x,y);
-            clr.setAlpha(alpha);
-            copy.setPixelColor(x,y, clr);
-        }
-    }
     return copy.scaled(displaySize,Qt::IgnoreAspectRatio);
 }
 

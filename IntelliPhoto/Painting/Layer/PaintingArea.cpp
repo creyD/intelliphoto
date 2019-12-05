@@ -1,17 +1,25 @@
 // ---------- PaintingArea.cpp ----------
 
 #include <QtWidgets>
-#include <QRect>
+#include<QRect>
 #include "PaintingArea.h"
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
 
-#include <vector>
-#include <QPoint>
+#include<vector>
+#include<QPoint>
 
-PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
-    :QWidget(parent){
-    this->setUp(maxWidth, maxHeight);
+PaintingArea::PaintingArea(QWidget *parent)
+    : QWidget(parent)
+{
+    //create standart image
+    this->image = new IntelliRasterImage(400,400);
+    std::vector<QPoint> poly;
+    poly.push_back(QPoint(200,0));
+    poly.push_back(QPoint(400,300));
+    poly.push_back(QPoint(0,300));
+    poly.push_back(QPoint(200,0));
+    image->setPolygon(poly);
 
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
@@ -29,17 +37,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     activeLayer=1;
 }
 
-
-
-
-void PaintingArea::setUp(int maxWidth, int maxHeight){
-
-    //set standart parameter
-    this->maxWidth = maxWidth;
-    this->maxHeight = maxHeight;
-    Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
-    Canvas->fill(Qt::GlobalColor::white);
-
+void PaintingArea::setUp(){
     // Roots the widget to the top left even if resized
     setAttribute(Qt::WA_StaticContents);
 
@@ -47,16 +45,13 @@ void PaintingArea::setUp(int maxWidth, int maxHeight){
     scribbling = false;
     myPenWidth = 1;
     myPenColor = Qt::blue;
+
 }
 
-void PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, ImageType type){
-    LayerObject newLayer;
-    newLayer.width = width;
-    newLayer.height = height;
-    newLayer.widthOffset = widthOffset;
-    newLayer.heightOffset = heightOffset;
+PaintingArea::PaintingArea(int width, int height, ImageType type, QWidget *parent)
+    : QWidget(parent){
     if(type==ImageType::Raster_Image){
-        newLayer.image = new IntelliRasterImage(width,height);
+        this->image = new IntelliRasterImage(width, height);
     }else if(type==ImageType::Shaped_Image){
         newLayer.image = new IntelliShapedImage(width, height);
     }
@@ -72,19 +67,9 @@ void PaintingArea::deleteLayer(int index){
             activeLayer--;
         }
     }
+    this->setUp();
 }
 
-void PaintingArea::setLayerToActive(int index) {
-    if(index<layerStructure.size()){
-        this->activeLayer=index;
-    }
-}
-
-void PaintingArea::setAlphaToLayer(int index, int alpha){
-    if(index<layerStructure.size()){
-        layerStructure[index].alpha=alpha;
-    }
-}
 
 QPixmap PaintingArea::getAsPixmap(){
     assembleLayers();
@@ -94,11 +79,7 @@ QPixmap PaintingArea::getAsPixmap(){
 // Used to load the image and place it in the widget
 bool PaintingArea::openImage(const QString &fileName)
 {
-    if(this->activeLayer==-1){
-        return false;
-    }
-    IntelliImage* active = layerStructure[activeLayer].image;
-    bool open = active->loadImage(fileName);
+    bool open = image->loadImage(fileName);
     update();
     return open;
 }
@@ -206,7 +187,6 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
-
     if ((event->buttons() & Qt::LeftButton) && scribbling){
         if(this->activeLayer==-1){
             return;
@@ -258,26 +238,17 @@ void PaintingArea::paintEvent(QPaintEvent *event)
 // to cut down on the need to resize the image
 void PaintingArea::resizeEvent(QResizeEvent *event)
 {
-    if(this->activeLayer==-1){
-        return;
-    }
-    LayerObject active = layerStructure[activeLayer];
-
     QPainter painter(this);
     QRect dirtyRec(QPoint(0,0), event->size());
-    painter.drawImage(dirtyRec, active.image->getDisplayable(event->size(), active.alpha), dirtyRec);
+    painter.drawImage(dirtyRec, image->getDisplayable(event->size()), dirtyRec);
     update();
+    //QWidget::resizeEvent(event);
 }
 
 void PaintingArea::drawLineTo(const QPoint &endPoint)
 {
-    //// Used to draw on the widget
-    if(this->activeLayer==-1){
-        return;
-    }
-    LayerObject active = layerStructure[activeLayer];
-
-    active.image->drawLine(lastPoint, endPoint,myPenColor, myPenWidth);
+    // Used to draw on the widget
+    image->drawLine(lastPoint, endPoint,myPenColor, myPenWidth);
     lastPoint = endPoint;
     update();
 }

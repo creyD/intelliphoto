@@ -12,7 +12,7 @@ IntelliShapedImage::~IntelliShapedImage(){
 
 }
 
-QImage IntelliShapedImage::getDisplayable(int alpha){
+QImage IntelliShapedImage::getDisplayable(){
     return getDisplayable(imageData.size());
 }
 
@@ -49,10 +49,6 @@ QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
                 QColor tmpColor(0,0,0);
                 tmpColor.setAlpha(0);
                 copy.setPixelColor(startPoint,tmpColor);
-            }else{
-                QColor clr = copy.pixelColor(x,y);
-                clr.setAlpha(alpha);
-                copy.setPixelColor(x,y,clr);
             }
         }
     }

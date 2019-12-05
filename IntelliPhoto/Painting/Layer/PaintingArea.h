@@ -7,7 +7,6 @@
 #include"Image/IntelliImage.h"
 #include <QPoint>
 #include <QWidget>
-#include <QList>
 
 class PaintingArea : public QWidget
 {
@@ -17,24 +16,19 @@ class PaintingArea : public QWidget
     Q_OBJECT
 
 public:
-    PaintingArea(int maxWidth=1000, int maxHeight=800, QWidget *parent = nullptr);
+    //create raster image 400*200
+    PaintingArea(QWidget *parent = nullptr);
+    PaintingArea(int width, int height, ImageType type, QWidget *parent = nullptr);
 
     // Handles all events
     bool openImage(const QString &fileName);
     bool saveImage(const QString &fileName, const char *fileFormat);
-
-    void addLayer(int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image);
-    void deleteLayer(int index);
-    void setLayerToActive(int index);
-    void setAlphaToLayer(int index, int alpha);
+    void setPenColor(const QColor &newColor);
+    void setPenWidth(int newWidth);
 
     // Has the image been modified since last save
     bool isModified() const { return modified; }
-
-    void setPenColor(const QColor &newColor);
     QColor penColor() const { return myPenColor; }
-
-    void setPenWidth(int newWidth);
     int penWidth() const { return myPenWidth; }
 
 
@@ -53,7 +47,7 @@ public slots:
     void getMoveLayerUp();
     void getMoveLayerDown();
     //void setUp helper for konstruktor
-    void setUp(int maxWidth, int maxHeight);
+    void setUp();
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -101,6 +95,7 @@ private:
     QColor myPenColor;
 
     // Stores the image being drawn
+    IntelliImage* image;
 
     // Stores the location at the current mouse event
     QPoint lastPoint;
