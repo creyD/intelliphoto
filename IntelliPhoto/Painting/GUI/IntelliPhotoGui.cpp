@@ -216,6 +216,17 @@ void IntelliPhotoGui::createActions()
         saveAsActs.append(action);
     }
 
+    QAction *action = new QAction("PNG-8", this);
+
+    // Set an action for each file format
+    action->setData("PNG");
+
+    // When clicked call IntelliPhotoGui::save()
+    connect(action, SIGNAL(triggered()), this, SLOT(save()));
+
+    // Attach each file format option menu item to Save As
+    saveAsActs.append(action);
+
 
     // Create exit action and tie to IntelliPhotoGui::close()
     exitAct = new QAction(tr("&Exit"), this);
@@ -298,7 +309,7 @@ void IntelliPhotoGui::createGui(){
     BlueLabel = new QLabel("Blue:");
     RedEdit = new QLineEdit("255");
     GreenEdit = new QLineEdit("255");
-    BlueEdit = new QLineEdit("255");;
+    BlueEdit = new QLineEdit("255");
     RedEdit->setMaximumSize(150,20);
     GreenEdit->setMaximumSize(150,20);
     BlueEdit->setMaximumSize(150,20);

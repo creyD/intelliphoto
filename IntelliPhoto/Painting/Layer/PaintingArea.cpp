@@ -111,6 +111,17 @@ bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
     }
     this->assembleLayers(true);
 
+    if(!std::strcmp(fileFormat,"PNG")){
+        QImage visibleImage = Canvas->convertToFormat(QImage::Format_Indexed8);
+        fileFormat = "png";
+        if (visibleImage.save(fileName, fileFormat)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     if (Canvas->save(fileName, fileFormat)) {
         return true;
     } else {
