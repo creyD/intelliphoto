@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_IntelliPhotoGui_t {
-    QByteArrayData data[30];
-    char stringdata0[287];
+    QByteArrayData data[31];
+    char stringdata0[299];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,26 +51,28 @@ QT_MOC_LITERAL(16, 132, 4), // "save"
 QT_MOC_LITERAL(17, 137, 8), // "penColor"
 QT_MOC_LITERAL(18, 146, 8), // "penWidth"
 QT_MOC_LITERAL(19, 155, 8), // "newLayer"
-QT_MOC_LITERAL(20, 164, 5), // "about"
-QT_MOC_LITERAL(21, 170, 16), // "onClearedPressed"
-QT_MOC_LITERAL(22, 187, 15), // "onActivePressed"
-QT_MOC_LITERAL(23, 203, 10), // "onSetAlpha"
-QT_MOC_LITERAL(24, 214, 8), // "onMoveUp"
-QT_MOC_LITERAL(25, 223, 10), // "onMoveDown"
-QT_MOC_LITERAL(26, 234, 10), // "onMoveLeft"
-QT_MOC_LITERAL(27, 245, 11), // "onMoveRight"
-QT_MOC_LITERAL(28, 257, 13), // "onMoveLayerUp"
-QT_MOC_LITERAL(29, 271, 15) // "onMoveLayerDown"
+QT_MOC_LITERAL(20, 164, 11), // "deleteLayer"
+QT_MOC_LITERAL(21, 176, 5), // "about"
+QT_MOC_LITERAL(22, 182, 16), // "onClearedPressed"
+QT_MOC_LITERAL(23, 199, 15), // "onActivePressed"
+QT_MOC_LITERAL(24, 215, 10), // "onSetAlpha"
+QT_MOC_LITERAL(25, 226, 8), // "onMoveUp"
+QT_MOC_LITERAL(26, 235, 10), // "onMoveDown"
+QT_MOC_LITERAL(27, 246, 10), // "onMoveLeft"
+QT_MOC_LITERAL(28, 257, 11), // "onMoveRight"
+QT_MOC_LITERAL(29, 269, 13), // "onMoveLayerUp"
+QT_MOC_LITERAL(30, 283, 15) // "onMoveLayerDown"
 
     },
     "IntelliPhotoGui\0sendClearColor\0\0r\0g\0"
     "b\0sendActiveLayer\0a\0sendAlpha\0moveUp\0"
     "moveDown\0moveRight\0moveLeft\0moveLayerUp\0"
     "moveLayerDown\0open\0save\0penColor\0"
-    "penWidth\0newLayer\0about\0onClearedPressed\0"
-    "onActivePressed\0onSetAlpha\0onMoveUp\0"
-    "onMoveDown\0onMoveLeft\0onMoveRight\0"
-    "onMoveLayerUp\0onMoveLayerDown"
+    "penWidth\0newLayer\0deleteLayer\0about\0"
+    "onClearedPressed\0onActivePressed\0"
+    "onSetAlpha\0onMoveUp\0onMoveDown\0"
+    "onMoveLeft\0onMoveRight\0onMoveLayerUp\0"
+    "onMoveLayerDown"
 };
 #undef QT_MOC_LITERAL
 
@@ -80,7 +82,7 @@ static const uint qt_meta_data_IntelliPhotoGui[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      25,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -88,32 +90,33 @@ static const uint qt_meta_data_IntelliPhotoGui[] = {
        9,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    3,  134,    2, 0x06 /* Public */,
-       6,    1,  141,    2, 0x06 /* Public */,
-       8,    1,  144,    2, 0x06 /* Public */,
-       9,    1,  147,    2, 0x06 /* Public */,
-      10,    1,  150,    2, 0x06 /* Public */,
-      11,    1,  153,    2, 0x06 /* Public */,
-      12,    1,  156,    2, 0x06 /* Public */,
-      13,    0,  159,    2, 0x06 /* Public */,
-      14,    0,  160,    2, 0x06 /* Public */,
+       1,    3,  139,    2, 0x06 /* Public */,
+       6,    1,  146,    2, 0x06 /* Public */,
+       8,    1,  149,    2, 0x06 /* Public */,
+       9,    1,  152,    2, 0x06 /* Public */,
+      10,    1,  155,    2, 0x06 /* Public */,
+      11,    1,  158,    2, 0x06 /* Public */,
+      12,    1,  161,    2, 0x06 /* Public */,
+      13,    0,  164,    2, 0x06 /* Public */,
+      14,    0,  165,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      15,    0,  161,    2, 0x08 /* Private */,
-      16,    0,  162,    2, 0x08 /* Private */,
-      17,    0,  163,    2, 0x08 /* Private */,
-      18,    0,  164,    2, 0x08 /* Private */,
-      19,    0,  165,    2, 0x08 /* Private */,
-      20,    0,  166,    2, 0x08 /* Private */,
-      21,    0,  167,    2, 0x08 /* Private */,
-      22,    0,  168,    2, 0x08 /* Private */,
-      23,    0,  169,    2, 0x08 /* Private */,
-      24,    0,  170,    2, 0x08 /* Private */,
-      25,    0,  171,    2, 0x08 /* Private */,
-      26,    0,  172,    2, 0x08 /* Private */,
-      27,    0,  173,    2, 0x08 /* Private */,
-      28,    0,  174,    2, 0x08 /* Private */,
-      29,    0,  175,    2, 0x08 /* Private */,
+      15,    0,  166,    2, 0x08 /* Private */,
+      16,    0,  167,    2, 0x08 /* Private */,
+      17,    0,  168,    2, 0x08 /* Private */,
+      18,    0,  169,    2, 0x08 /* Private */,
+      19,    0,  170,    2, 0x08 /* Private */,
+      20,    0,  171,    2, 0x08 /* Private */,
+      21,    0,  172,    2, 0x08 /* Private */,
+      22,    0,  173,    2, 0x08 /* Private */,
+      23,    0,  174,    2, 0x08 /* Private */,
+      24,    0,  175,    2, 0x08 /* Private */,
+      25,    0,  176,    2, 0x08 /* Private */,
+      26,    0,  177,    2, 0x08 /* Private */,
+      27,    0,  178,    2, 0x08 /* Private */,
+      28,    0,  179,    2, 0x08 /* Private */,
+      29,    0,  180,    2, 0x08 /* Private */,
+      30,    0,  181,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,
@@ -127,6 +130,7 @@ static const uint qt_meta_data_IntelliPhotoGui[] = {
     QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -166,16 +170,17 @@ void IntelliPhotoGui::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 11: _t->penColor(); break;
         case 12: _t->penWidth(); break;
         case 13: _t->newLayer(); break;
-        case 14: _t->about(); break;
-        case 15: _t->onClearedPressed(); break;
-        case 16: _t->onActivePressed(); break;
-        case 17: _t->onSetAlpha(); break;
-        case 18: _t->onMoveUp(); break;
-        case 19: _t->onMoveDown(); break;
-        case 20: _t->onMoveLeft(); break;
-        case 21: _t->onMoveRight(); break;
-        case 22: _t->onMoveLayerUp(); break;
-        case 23: _t->onMoveLayerDown(); break;
+        case 14: _t->deleteLayer(); break;
+        case 15: _t->about(); break;
+        case 16: _t->onClearedPressed(); break;
+        case 17: _t->onActivePressed(); break;
+        case 18: _t->onSetAlpha(); break;
+        case 19: _t->onMoveUp(); break;
+        case 20: _t->onMoveDown(); break;
+        case 21: _t->onMoveLeft(); break;
+        case 22: _t->onMoveRight(); break;
+        case 23: _t->onMoveLayerUp(); break;
+        case 24: _t->onMoveLayerDown(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -275,13 +280,13 @@ int IntelliPhotoGui::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 25;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 25)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 24;
+        _id -= 25;
     }
     return _id;
 }

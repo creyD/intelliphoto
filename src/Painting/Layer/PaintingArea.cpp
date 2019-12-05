@@ -76,6 +76,11 @@ void PaintingArea::deleteLayer(int index){
     }
 }
 
+void PaintingArea::deleteActiveLayer(){
+        this->layerStructure.erase(layerStructure.begin()+activeLayer);
+        activeLayer--;
+}
+
 void PaintingArea::setLayerToActive(int index) {
     if(index<layerStructure.size()){
         this->activeLayer=index;

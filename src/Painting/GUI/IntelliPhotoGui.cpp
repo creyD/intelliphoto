@@ -109,20 +109,36 @@ void IntelliPhotoGui::newLayer()
 
     // tr("new Layer") is the title
     // the next tr is the text to display
-    // Get the current pen width
-    // Define the min, max, step and ok button
+    // Define the standard Value, min, max, step and ok button
     int width = QInputDialog::getInt(this, tr("new Layer"),
                                         tr("Width:"),
                                         200,1, 500, 1, &ok);
     int height = QInputDialog::getInt(this, tr("new Layer"),
                                         tr("Height:"),
                                         200,1, 500, 1, &ok);
-    // Change the pen width
+    // Create new Layer
     if (ok)
     {
         int layer = paintingArea->addLayer(width,height,100,100);
         paintingArea->activate(layer);
     }
+}
+
+// Opens a dialog that allows the user to delete a Layer
+void IntelliPhotoGui::deleteLayer()
+{
+    // Stores button value
+    bool ok;
+
+    // tr("delete Layer") is the title
+    // the next tr is the text to display
+    // Define the standard Value, min, max, step and ok button
+    int layerNumber = QInputDialog::getInt(this, tr("delete Layer"),
+                                        tr("Number:"),
+                                        1,1, 500, 1, &ok);
+    // Create new Layer
+    if (ok)
+        paintingArea->deleteLayer(layerNumber-1);
 }
 
 // Open an about dialog
@@ -135,7 +151,8 @@ void IntelliPhotoGui::about()
 
 void IntelliPhotoGui::onSetAlpha(){
     int a = this->setAlphaEdit->text().toInt();
-    emit this->sendAlpha(a);
+    if (a >= 0 && a < 256)
+        emit this->sendAlpha(a);
 }
 
 void IntelliPhotoGui::onMoveUp(){
@@ -170,12 +187,13 @@ void IntelliPhotoGui::onClearedPressed(){
     int r = this->RedEdit->text().toInt();
     int g = this->GreenEdit->text().toInt();
     int b = this->BlueEdit->text().toInt();
-    emit this->sendClearColor(r,g,b);
+    if(r < 256 && r >= 0 && g < 256 && g >= 0 && b < 256 && b >= 0)
+        emit this->sendClearColor(r,g,b);
 }
 
 void IntelliPhotoGui::onActivePressed(){
     int a = this->selectActiveEdit->text().toInt();
-    emit this->sendActiveLayer(a);
+    emit this->sendActiveLayer(a-1);
 };
 
 
@@ -275,6 +293,14 @@ void IntelliPhotoGui::createActions()
     newLayerAct = new QAction(tr("&new Layer..."), this);
     connect(newLayerAct, SIGNAL(triggered()), this, SLOT(newLayer()));
 
+    // Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
+    deleteLayerAct = new QAction(tr("&Delete Layer..."), this);
+    connect(deleteLayerAct, SIGNAL(triggered()), this, SLOT(deleteLayer()));
+
+    // Delete Active Layer action and tie to paintingArea::deleteActiveLayerLayer()
+    deleteActiveLayerAct = new QAction(tr("&Delete active Layer"), this);
+    connect(deleteActiveLayerAct, SIGNAL(triggered()), paintingArea, SLOT(deleteActiveLayer()));
+
     // Create about action and tie to IntelliPhotoGui::about()
     aboutAct = new QAction(tr("&About"), this);
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
@@ -310,6 +336,8 @@ void IntelliPhotoGui::createMenus()
     // Attach all actions to Layer
     layerMenu = new QMenu(tr("&Layer"), this);
     layerMenu->addAction(newLayerAct);
+    layerMenu->addAction(deleteLayerAct);
+    layerMenu->addAction(deleteActiveLayerAct);
 
     // Attach all actions to Help
     helpMenu = new QMenu(tr("&Help"), this);
@@ -349,7 +377,7 @@ void IntelliPhotoGui::createGui(){
 
     selectActiveButton = new QPushButton("select Active");
     selectActiveLabel = new QLabel("Active:");
-    selectActiveEdit = new QLineEdit("0");
+    selectActiveEdit = new QLineEdit("1");
     selectActiveLabel->setMaximumSize(150,20);
     selectActiveEdit->setMaximumSize(150,20);
 

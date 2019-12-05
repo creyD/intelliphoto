@@ -42,6 +42,7 @@ private slots:
     void penColor();
     void penWidth();
     void newLayer();
+    void deleteLayer();
     void about();
 
     void onClearedPressed();
@@ -92,6 +93,8 @@ private:
     QAction *penWidthAct;
     QAction *clearScreenAct;
     QAction *newLayerAct;
+    QAction *deleteLayerAct;
+    QAction *deleteActiveLayerAct;
     QAction *aboutAct;
     QAction *aboutQtAct;
 
