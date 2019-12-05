@@ -3,8 +3,11 @@
 
 #include <QList>
 #include <QMainWindow>
-#include<QGridLayout>
-#include<QPushButton>
+#include <QGridLayout>
+#include <QPushButton>
+#include <QTextEdit>
+#include <QLabel>
+#include <QLineEdit>
 
 // PaintingArea used to paint the image
 class PaintingArea;
@@ -15,6 +18,16 @@ class IntelliPhotoGui : public QMainWindow
     // for all Qt objects
     // QObjects handle events
     Q_OBJECT
+signals:
+    void sendClearColor(int r, int g, int b);
+    void sendActiveLayer(int a);
+    void sendAlpha(int a);
+    void moveUp(int a);
+    void moveDown(int a);
+    void moveRight(int a);
+    void moveLeft(int a);
+    void moveLayerUp();
+    void moveLayerDown();
 
 public:
     IntelliPhotoGui();
@@ -29,6 +42,16 @@ private slots:
     void penColor();
     void penWidth();
     void about();
+
+    void onClearedPressed();
+    void onActivePressed();
+    void onSetAlpha();
+    void onMoveUp();
+    void onMoveDown();
+    void onMoveLeft();
+    void onMoveRight();
+    void onMoveLayerUp();
+    void onMoveLayerDown();
 
 private:
     // Will tie user actions to functions
@@ -56,6 +79,7 @@ private:
     QMenu *optionMenu;
     QMenu *helpMenu;
 
+
     // All the actions that can occur
     QAction *openAct;
 
@@ -72,6 +96,30 @@ private:
     QWidget* centralGuiWidget;
     QGridLayout *mainLayout;
     QPushButton *clearButton;
+
+    QLabel *RedLabel;
+    QLabel *GreenLabel;
+    QLabel *BlueLabel;
+    QLineEdit *RedEdit;
+    QLineEdit *GreenEdit;
+    QLineEdit *BlueEdit;
+
+    QPushButton *selectActiveButton;
+    QLabel *selectActiveLabel;
+    QLineEdit *selectActiveEdit;
+
+    QPushButton *setAlphaButton;
+    QLabel *setAlphaLabel;
+    QLineEdit *setAlphaEdit;
+
+    QPushButton *moveActiveUpButton;
+    QPushButton *moveActiveDownButton;
+    QPushButton *moveActiveLeftButton;
+    QPushButton *moveActiveRightButton;
+
+    QPushButton *layerMoveActiveDownButton;
+    QPushButton *layerMoveActiveUpButton;
+
 };
 
 #endif

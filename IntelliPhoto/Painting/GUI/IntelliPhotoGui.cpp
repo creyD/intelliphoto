@@ -1,6 +1,7 @@
 // ---------- IntelliPhotoGui.cpp ----------
 
 #include <QtWidgets>
+#include <QPixmap>
 
 #include "IntelliPhotoGui.h"
 #include "Layer/PaintingArea.h"
@@ -110,11 +111,85 @@ void IntelliPhotoGui::about()
             tr("<p><b>IntelliPhoto</b> Some nice ass looking software</p>"));
 }
 
+void IntelliPhotoGui::onSetAlpha(){
+    int a = this->setAlphaEdit->text().toInt();
+    emit this->sendAlpha(a);
+}
+
+void IntelliPhotoGui::onMoveUp(){
+    int a = 5;
+    emit this->moveUp(a);
+}
+
+void IntelliPhotoGui::onMoveDown(){
+    int a = 5;
+    emit this->moveDown(a);
+}
+
+void IntelliPhotoGui::onMoveLeft(){
+    int a = 5;
+    emit this->moveLeft(a);
+}
+
+void IntelliPhotoGui::onMoveRight(){
+    int a = 5;
+    emit this->moveRight(a);
+}
+
+void IntelliPhotoGui::onMoveLayerUp(){
+    emit this->moveLayerUp();
+}
+
+void IntelliPhotoGui::onMoveLayerDown(){
+    emit this->moveLayerDown();
+}
+
+void IntelliPhotoGui::onClearedPressed(){
+    int r = this->RedEdit->text().toInt();
+    int g = this->GreenEdit->text().toInt();
+    int b = this->BlueEdit->text().toInt();
+    emit this->sendClearColor(r,g,b);
+}
+
+void IntelliPhotoGui::onActivePressed(){
+    int a = this->selectActiveEdit->text().toInt();
+    emit this->sendActiveLayer(a);
+};
+
+
+
 // Define menu actions that call functions
 void IntelliPhotoGui::createActions()
 {
     //connect signal and slots of gui element
-    connect(this->clearButton, SIGNAL(clicked()), paintingArea, SLOT(clearImage()));
+    connect(this->clearButton, SIGNAL(clicked()), this, SLOT(onClearedPressed()));
+    connect(this, SIGNAL(sendClearColor(int,int,int)), paintingArea, SLOT(clearImage(int, int, int)));
+
+    connect(this->selectActiveButton, SIGNAL(clicked()), this, SLOT(onActivePressed()));
+    connect(this, SIGNAL(sendActiveLayer(int)),paintingArea, SLOT(activate(int)));
+
+    connect(this->setAlphaButton, SIGNAL(clicked()), this, SLOT(onSetAlpha()));
+    connect(this, SIGNAL(sendAlpha(int)), paintingArea, SLOT(setAlpha(int)));
+
+    connect(this->moveActiveUpButton, SIGNAL(clicked()), this, SLOT(onMoveUp()));
+    connect(this, SIGNAL(moveUp(int)), paintingArea, SLOT(getMoveUp(int)));
+
+    connect(this->moveActiveDownButton, SIGNAL(clicked()), this, SLOT(onMoveDown()));
+    connect(this, SIGNAL(moveDown(int)), paintingArea, SLOT(getMoveDown(int)));
+
+    connect(this->moveActiveLeftButton, SIGNAL(clicked()), this, SLOT(onMoveLeft()));
+    connect(this, SIGNAL(moveLeft(int)), paintingArea, SLOT(getMoveLeft(int)));
+
+    connect(this->moveActiveRightButton, SIGNAL(clicked()), this, SLOT(onMoveRight()));
+    connect(this, SIGNAL(moveRight(int)), paintingArea, SLOT(getMoveRight(int)));
+
+    connect(this->layerMoveActiveDownButton, SIGNAL(clicked()), this, SLOT(onMoveLayerDown()));
+    connect(this, SIGNAL(moveLayerDown()), paintingArea, SLOT(getMoveLayerDown()));
+
+    connect(this->layerMoveActiveUpButton, SIGNAL(clicked()), this, SLOT(onMoveLayerUp()));
+    connect(this, SIGNAL(moveLayerUp()), paintingArea, SLOT(getMoveLayerUp()));
+
+
 
     // Create the action tied to the menu
     openAct = new QAction(tr("&Open..."), this);
@@ -228,12 +303,67 @@ void IntelliPhotoGui::createGui(){
     centralGuiWidget->setLayout(mainLayout);
 
     //create Gui elements
-    clearButton = new QPushButton("Clear");
+    clearButton = new QPushButton("set Color");
     paintingArea = new PaintingArea();
 
+
+    RedLabel = new QLabel("Red:");
+    GreenLabel = new QLabel("Green");
+    BlueLabel = new QLabel("Blue:");
+    RedEdit = new QLineEdit("255");
+    GreenEdit = new QLineEdit("255");
+    BlueEdit = new QLineEdit("255");;
+    RedEdit->setMaximumSize(150,20);
+    GreenEdit->setMaximumSize(150,20);
+    BlueEdit->setMaximumSize(150,20);
+
+    selectActiveButton = new QPushButton("select Active");
+    selectActiveLabel = new QLabel("Active:");
+    selectActiveEdit = new QLineEdit("0");
+    selectActiveLabel->setMaximumSize(150,20);
+    selectActiveEdit->setMaximumSize(150,20);
+
+    setAlphaButton = new QPushButton("set Alpha");
+    setAlphaLabel = new QLabel("Alpha:");
+    setAlphaEdit = new QLineEdit("255");
+    setAlphaEdit->setMaximumSize(150,20);
+
+    moveActiveUpButton = new QPushButton("move 5 Up");
+    moveActiveDownButton = new QPushButton("move 5 Down");
+    moveActiveLeftButton = new QPushButton("move 5 Left");
+    moveActiveRightButton = new QPushButton("move 5 Right");
+
+    layerMoveActiveDownButton = new QPushButton("Active Layer Down");
+    layerMoveActiveUpButton = new QPushButton("Active Layer Up");
+
     //set gui elemtns position
-    mainLayout->addWidget(paintingArea,0,0,10,10);
-    mainLayout->addWidget(clearButton,0,10,1,1);
+    mainLayout->addWidget(clearButton,0,25,1,1);
+    mainLayout->addWidget(paintingArea,0,0,25,25);
+
+    mainLayout->addWidget(RedLabel,1,25,1,1);
+    mainLayout->addWidget(RedEdit,2,25,1,1);
+    mainLayout->addWidget(GreenLabel,3,25,1,1);
+    mainLayout->addWidget(GreenEdit,4,25,1,1);
+    mainLayout->addWidget(BlueLabel,5,25,1,1);
+    mainLayout->addWidget(BlueEdit,6,25,1,1);
+
+    mainLayout->addWidget(selectActiveButton,7,25,1,1);
+    mainLayout->addWidget(selectActiveLabel,8,25,1,1);
+    mainLayout->addWidget(selectActiveEdit,9,25,1,1);
+
+    mainLayout->addWidget(setAlphaButton,10,25,1,1);
+    mainLayout->addWidget(setAlphaLabel,11,25,1,1);
+    mainLayout->addWidget(setAlphaEdit,12,25,1,1);
+
+    mainLayout->addWidget(moveActiveUpButton,13,25,1,1);
+    mainLayout->addWidget(moveActiveDownButton,14,25,1,1);
+    mainLayout->addWidget(moveActiveLeftButton,15,25,1,1);
+    mainLayout->addWidget(moveActiveRightButton,16,25,1,1);
+
+    mainLayout->addWidget(layerMoveActiveDownButton,17,25,1,1);
+    mainLayout->addWidget(layerMoveActiveUpButton,18,25,1,1);
+
+
 }
 
 void IntelliPhotoGui::setIntelliStyle(){

@@ -31,11 +31,21 @@ public:
     QColor penColor() const { return myPenColor; }
     int penWidth() const { return myPenWidth; }
 
+
+    QPixmap getAsPixmap();
 public slots:
 
     // Events to handle
-    void clearImage();
+    void clearImage(int r, int g, int b);
+    void activate(int a);
 
+    void setAlpha(int a);
+    void getMoveUp(int a);
+    void getMoveDown(int a);
+    void getMoveRight(int a);
+    void getMoveLeft(int a);
+    void getMoveLayerUp();
+    void getMoveLayerDown();
     //void setUp helper for konstruktor
     void setUp();
 protected:
@@ -51,6 +61,24 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
+    struct LayerObject{
+        IntelliImage* image;
+        int width;
+        int height;
+        int widthOffset;
+        int heightOffset;
+        int alpha=255;
+    };
+
+    QImage* Canvas;
+    int maxWidth;
+    int maxHeight;
+
+    std::vector<LayerObject> layerStructure;
+    int activeLayer=-1;
+
+    void assembleLayers(bool forSaving=false);
+
     void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image_res, const QSize &newSize);
 

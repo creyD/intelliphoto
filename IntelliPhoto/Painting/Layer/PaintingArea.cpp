@@ -21,7 +21,20 @@ PaintingArea::PaintingArea(QWidget *parent)
     poly.push_back(QPoint(200,0));
     image->setPolygon(poly);
 
-    this->setUp();
+    //tetsing
+    this->addLayer(200,200,0,0,ImageType::Shaped_Image);
+    layerStructure[0].image->floodFill(QColor(255,0,0,255));
+    std::vector<QPoint> polygon;
+    polygon.push_back(QPoint(100,0));
+    polygon.push_back(QPoint(200,200));
+    polygon.push_back(QPoint(0,200));
+    polygon.push_back(QPoint(100,0));
+    layerStructure[0].image->setPolygon(polygon);
+
+    this->addLayer(200,200,150,150);
+    layerStructure[1].image->floodFill(QColor(0,255,0,255));
+    layerStructure[1].alpha=200;
+    activeLayer=1;
 }
 
 void PaintingArea::setUp(){
@@ -40,14 +53,28 @@ PaintingArea::PaintingArea(int width, int height, ImageType type, QWidget *paren
     if(type==ImageType::Raster_Image){
         this->image = new IntelliRasterImage(width, height);
     }else if(type==ImageType::Shaped_Image){
-        this->image = new IntelliShapedImage(width, height);
-    }else{
-        qDebug() << "No valid Image type error";
-        return;
+        newLayer.image = new IntelliShapedImage(width, height);
+    }
+    newLayer.alpha = 255;
+    this->layerStructure.push_back(newLayer);
+
+}
+
+void PaintingArea::deleteLayer(int index){
+    if(index<layerStructure.size()){
+        this->layerStructure.erase(layerStructure.begin()+index);
+        if(activeLayer>=index){
+            activeLayer--;
+        }
     }
     this->setUp();
 }
 
+
+QPixmap PaintingArea::getAsPixmap(){
+    assembleLayers();
+    return QPixmap::fromImage(*Canvas);
+}
 
 // Used to load the image and place it in the widget
 bool PaintingArea::openImage(const QString &fileName)
@@ -60,15 +87,12 @@ bool PaintingArea::openImage(const QString &fileName)
 // Save the current image
 bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
 {
-    // Created to hold the image
-    QImage visibleImage = image->getDisplayable();
-
-    if(!std::strcmp(fileFormat,"PNG")){
-        visibleImage = visibleImage.convertToFormat(QImage::Format_Indexed8);
-        fileFormat = "png";
+    if(layerStructure.size()==0){
+        return false;
     }
+    this->assembleLayers(true);
 
-    if (visibleImage.save(fileName, fileFormat)) {
+    if (Canvas->save(fileName, fileFormat)) {
         return true;
     } else {
         return false;
@@ -88,10 +112,54 @@ void PaintingArea::setPenWidth(int newWidth)
 }
 
 // Color the image area with white
-void PaintingArea::clearImage()
-{
-    image->floodFill(qRgb(255, 255, 255));
+void PaintingArea::clearImage(int r, int g, int b){
+    if(this->activeLayer==-1){
+        return;
+    }
+    IntelliImage* active = layerStructure[activeLayer].image;
+    active->floodFill(QColor(r, g, b, 255));
+
     update();
+}
+
+void PaintingArea::activate(int a){
+    this->setLayerToActive(a);
+}
+
+void PaintingArea::setAlpha(int a){
+    if(activeLayer>=0){
+        layerStructure[activeLayer].alpha=a;
+    }
+}
+
+void PaintingArea::getMoveUp(int a){
+    layerStructure[activeLayer].heightOffset-=a;
+}
+
+void PaintingArea::getMoveDown(int a){
+    layerStructure[activeLayer].heightOffset+=a;
+}
+
+void PaintingArea::getMoveRight(int a){
+    layerStructure[activeLayer].widthOffset+=a;
+}
+
+void PaintingArea::getMoveLeft(int a){
+    layerStructure[activeLayer].widthOffset-=a;
+}
+
+void PaintingArea::getMoveLayerUp(){
+    if(activeLayer<layerStructure.size() && activeLayer>=0){
+        std::swap(layerStructure[activeLayer], layerStructure[activeLayer+1]);
+        activeLayer++;
+    }
+}
+
+void PaintingArea::getMoveLayerDown(){
+    if(activeLayer>0){
+        std::swap(layerStructure[activeLayer], layerStructure[activeLayer-1]);
+        activeLayer--;
+    }
 }
 
 // If a mouse button is pressed check if it was the
@@ -100,8 +168,14 @@ void PaintingArea::clearImage()
 void PaintingArea::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        int x = event->x()*(float)image->x()/(float)size().width();
-        int y = event->y()*(float)image->y()/(float)size().height();
+        if(this->activeLayer==-1){
+            return;
+        }
+        LayerObject& active = layerStructure[activeLayer];
+
+        int x = event->x()-active.widthOffset;
+        int y = event->y()-active.heightOffset;
+        //TODO CALCULATE LAST POINT
         lastPoint=QPoint(x,y);
         scribbling = true;
     }
@@ -114,8 +188,15 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && scribbling){
-        int x = event->x()*(float)image->x()/(float)size().width();
-        int y = event->y()*(float)image->y()/(float)size().height();
+        if(this->activeLayer==-1){
+            return;
+        }
+        LayerObject& active = layerStructure[activeLayer];
+
+        int x = event->x()-active.widthOffset;
+        int y = event->y()-active.heightOffset;
+
+        //TODO CALCULATE NEW POINT
         drawLineTo(QPoint(x,y));
         update();
     }
@@ -125,8 +206,15 @@ void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton && scribbling) {
-        int x = event->x()*(float)image->x()/(float)size().width();
-        int y = event->y()*(float)image->y()/(float)size().height();
+        if(this->activeLayer==-1){
+            return;
+        }
+        LayerObject& active = layerStructure[activeLayer];
+
+        int x = event->x()-active.widthOffset;
+        int y = event->y()-active.heightOffset;
+
+        //TODO CALCULATE NEW POINT
         drawLineTo(QPoint(x,y));
         update();
         scribbling = false;
@@ -138,9 +226,11 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 // update themselves
 void PaintingArea::paintEvent(QPaintEvent *event)
 {
+    this->assembleLayers();
+
     QPainter painter(this);
     QRect dirtyRec = event->rect();
-    painter.drawImage(dirtyRec, image->getDisplayable(dirtyRec.size()), dirtyRec);
+    painter.drawImage(dirtyRec, *Canvas, dirtyRec);
     update();
 }
 
@@ -165,5 +255,37 @@ void PaintingArea::drawLineTo(const QPoint &endPoint)
 
 void PaintingArea::resizeImage(QImage *image_res, const QSize &newSize){
     image_res->scaled(newSize,Qt::IgnoreAspectRatio);
+}
+
+void PaintingArea::assembleLayers(bool forSaving){
+    if(forSaving){
+        Canvas->fill(Qt::GlobalColor::transparent);
+    }else{
+        Canvas->fill(Qt::GlobalColor::black);
+    }
+    //TODO interpolation of alpha for saving
+    for(size_t i=0; i<layerStructure.size(); i++){
+        LayerObject layer = layerStructure[i];
+        QImage cpy = layer.image->getDisplayable(layer.alpha);
+        QColor clr_0;
+        QColor clr_1;
+        for(int y=0; y<layer.height; y++){
+            for(int x=0; x<layer.width; x++){
+                clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.heightOffset+y);
+                clr_1=cpy.pixelColor(x,y);
+                float t = (float)clr_1.alpha()/255.f;
+                int r =(float)clr_1.red()*(t)+(float)clr_0.red()*(1.-t);
+                int g =(float)clr_1.green()*(t)+(float)clr_0.green()*(1.-t);
+                int b =(float)clr_1.blue()*(t)+(float)clr_0.blue()*(1.-t);
+                int a =std::min(clr_0.alpha()+clr_1.alpha(), 255);
+                clr_0.setRed(r);
+                clr_0.setGreen(g);
+                clr_0.setBlue(b);
+                clr_0.setAlpha(a);
+
+                Canvas->setPixelColor(layer.widthOffset+x, layer.heightOffset+y, clr_0);
+            }
+        }
+    }
 }
 
