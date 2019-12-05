@@ -17,6 +17,17 @@ QImage IntelliShapedImage::getDisplayable(int alpha){
 }
 
 QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
+    if(polygonData.size()==0){
+        QImage copy = imageData;
+        for(int y = 0; y<copy.height(); y++){
+            for(int x = 0; x<copy.width(); x++){
+                QColor clr = copy.pixelColor(x,y);
+                clr.setAlpha(alpha);
+                copy.setPixelColor(x,y, clr);
+            }
+        }
+        return copy.scaled(displaySize,Qt::IgnoreAspectRatio);
+    }
     QImage copy = imageData;
     QPoint startPoint;
     QPoint extrem(0,copy.width()+1);
@@ -50,6 +61,9 @@ QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
 }
 
 void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
+    if(polygonData.size()<3){
+        return;
+    }
     for(auto element:polygonData){
         this->polygonData.push_back(QPoint(element.x(), element.y()));
     }

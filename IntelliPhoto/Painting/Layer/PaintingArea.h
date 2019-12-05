@@ -37,11 +37,21 @@ public:
     void setPenWidth(int newWidth);
     int penWidth() const { return myPenWidth; }
 
+
+    QPixmap getAsPixmap();
 public slots:
 
     // Events to handle
-    void clearImage();
+    void clearImage(int r, int g, int b);
+    void activate(int a);
 
+    void setAlpha(int a);
+    void getMoveUp(int a);
+    void getMoveDown(int a);
+    void getMoveRight(int a);
+    void getMoveLeft(int a);
+    void getMoveLayerUp();
+    void getMoveLayerDown();
     //void setUp helper for konstruktor
     void setUp(int maxWidth, int maxHeight);
 protected:
@@ -73,7 +83,7 @@ private:
     std::vector<LayerObject> layerStructure;
     int activeLayer=-1;
 
-    void assembleLayers();
+    void assembleLayers(bool forSaving=false);
 
     void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image_res, const QSize &newSize);

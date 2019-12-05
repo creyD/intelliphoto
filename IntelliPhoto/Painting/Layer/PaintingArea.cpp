@@ -14,11 +14,18 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     this->setUp(maxWidth, maxHeight);
 
     //tetsing
-    this->addLayer(200,200,0,0);
+    this->addLayer(200,200,0,0,ImageType::Shaped_Image);
     layerStructure[0].image->floodFill(QColor(255,0,0,255));
+    std::vector<QPoint> polygon;
+    polygon.push_back(QPoint(100,0));
+    polygon.push_back(QPoint(200,200));
+    polygon.push_back(QPoint(0,200));
+    polygon.push_back(QPoint(100,0));
+    layerStructure[0].image->setPolygon(polygon);
+
     this->addLayer(200,200,150,150);
     layerStructure[1].image->floodFill(QColor(0,255,0,255));
-    layerStructure[1].alpha=100;
+    layerStructure[1].alpha=200;
     activeLayer=1;
 }
 
@@ -79,6 +86,11 @@ void PaintingArea::setAlphaToLayer(int index, int alpha){
     }
 }
 
+QPixmap PaintingArea::getAsPixmap(){
+    assembleLayers();
+    return QPixmap::fromImage(*Canvas);
+}
+
 // Used to load the image and place it in the widget
 bool PaintingArea::openImage(const QString &fileName)
 {
@@ -97,7 +109,7 @@ bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
     if(layerStructure.size()==0){
         return false;
     }
-    this->assembleLayers();
+    this->assembleLayers(true);
 
     if (Canvas->save(fileName, fileFormat)) {
         return true;
@@ -119,15 +131,54 @@ void PaintingArea::setPenWidth(int newWidth)
 }
 
 // Color the image area with white
-void PaintingArea::clearImage()
-{
-   if(this->activeLayer==-1){
-       return;
-   }
-   IntelliImage* active = layerStructure[activeLayer].image;
-   active->floodFill(QColor(255, 255, 255, 255));
+void PaintingArea::clearImage(int r, int g, int b){
+    if(this->activeLayer==-1){
+        return;
+    }
+    IntelliImage* active = layerStructure[activeLayer].image;
+    active->floodFill(QColor(r, g, b, 255));
 
-   update();
+    update();
+}
+
+void PaintingArea::activate(int a){
+    this->setLayerToActive(a);
+}
+
+void PaintingArea::setAlpha(int a){
+    if(activeLayer>=0){
+        layerStructure[activeLayer].alpha=a;
+    }
+}
+
+void PaintingArea::getMoveUp(int a){
+    layerStructure[activeLayer].heightOffset-=a;
+}
+
+void PaintingArea::getMoveDown(int a){
+    layerStructure[activeLayer].heightOffset+=a;
+}
+
+void PaintingArea::getMoveRight(int a){
+    layerStructure[activeLayer].widthOffset+=a;
+}
+
+void PaintingArea::getMoveLeft(int a){
+    layerStructure[activeLayer].widthOffset-=a;
+}
+
+void PaintingArea::getMoveLayerUp(){
+    if(activeLayer<layerStructure.size() && activeLayer>=0){
+        std::swap(layerStructure[activeLayer], layerStructure[activeLayer+1]);
+        activeLayer++;
+    }
+}
+
+void PaintingArea::getMoveLayerDown(){
+    if(activeLayer>0){
+        std::swap(layerStructure[activeLayer], layerStructure[activeLayer-1]);
+        activeLayer--;
+    }
 }
 
 // If a mouse button is pressed check if it was the
@@ -139,10 +190,10 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
         if(this->activeLayer==-1){
             return;
         }
-        IntelliImage* active = layerStructure[activeLayer].image;
+        LayerObject& active = layerStructure[activeLayer];
 
-        int x = static_cast<int>(event->x()*static_cast<float>(active->x())/static_cast<float>(size().width()));
-        int y = static_cast<int>(event->y()*static_cast<float>(active->y())/static_cast<float>(size().height()));
+        int x = event->x()-active.widthOffset;
+        int y = event->y()-active.heightOffset;
         //TODO CALCULATE LAST POINT
         lastPoint=QPoint(x,y);
         scribbling = true;
@@ -160,10 +211,10 @@ void PaintingArea::mouseMoveEvent(QMouseEvent *event)
         if(this->activeLayer==-1){
             return;
         }
-        IntelliImage* active = layerStructure[activeLayer].image;
+        LayerObject& active = layerStructure[activeLayer];
 
-        int x = static_cast<int>(event->x()*static_cast<float>(active->x())/static_cast<float>(size().width()));
-        int y = static_cast<int>(event->y()*static_cast<float>(active->y())/static_cast<float>(size().height()));
+        int x = event->x()-active.widthOffset;
+        int y = event->y()-active.heightOffset;
 
         //TODO CALCULATE NEW POINT
         drawLineTo(QPoint(x,y));
@@ -178,10 +229,10 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
         if(this->activeLayer==-1){
             return;
         }
-        IntelliImage* active = layerStructure[activeLayer].image;
+        LayerObject& active = layerStructure[activeLayer];
 
-        int x = static_cast<int>(event->x()*static_cast<float>(active->x())/static_cast<float>(size().width()));
-        int y = static_cast<int>(event->y()*static_cast<float>(active->y())/static_cast<float>(size().height()));
+        int x = event->x()-active.widthOffset;
+        int y = event->y()-active.heightOffset;
 
         //TODO CALCULATE NEW POINT
         drawLineTo(QPoint(x,y));
@@ -235,8 +286,9 @@ void PaintingArea::resizeImage(QImage *image_res, const QSize &newSize){
     image_res->scaled(newSize,Qt::IgnoreAspectRatio);
 }
 
-void PaintingArea::assembleLayers(){
+void PaintingArea::assembleLayers(bool forSaving){
     Canvas->fill(Qt::GlobalColor::black);
+    //TODO interpolation of alpha for saving
     for(size_t i=0; i<layerStructure.size(); i++){
         LayerObject layer = layerStructure[i];
         QImage cpy = layer.image->getDisplayable(layer.alpha);
