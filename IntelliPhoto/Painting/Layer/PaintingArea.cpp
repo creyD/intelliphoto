@@ -287,7 +287,11 @@ void PaintingArea::resizeImage(QImage *image_res, const QSize &newSize){
 }
 
 void PaintingArea::assembleLayers(bool forSaving){
-    Canvas->fill(Qt::GlobalColor::black);
+    if(forSaving){
+        Canvas->fill(Qt::GlobalColor::transparent);
+    }else{
+        Canvas->fill(Qt::GlobalColor::black);
+    }
     //TODO interpolation of alpha for saving
     for(size_t i=0; i<layerStructure.size(); i++){
         LayerObject layer = layerStructure[i];
@@ -302,9 +306,11 @@ void PaintingArea::assembleLayers(bool forSaving){
                 int r =(float)clr_1.red()*(t)+(float)clr_0.red()*(1.-t);
                 int g =(float)clr_1.green()*(t)+(float)clr_0.green()*(1.-t);
                 int b =(float)clr_1.blue()*(t)+(float)clr_0.blue()*(1.-t);
+                int a =std::min(clr_0.alpha()+clr_1.alpha(), 255);
                 clr_0.setRed(r);
                 clr_0.setGreen(g);
                 clr_0.setBlue(b);
+                clr_0.setAlpha(a);
 
                 Canvas->setPixelColor(layer.widthOffset+x, layer.heightOffset+y, clr_0);
             }
