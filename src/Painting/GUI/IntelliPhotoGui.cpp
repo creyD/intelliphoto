@@ -9,7 +9,7 @@
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui()
 {   
-    //create Gui elemnts and lay them out
+    //create Gui elements and lay them out
     createGui();
     // Create actions
     createActions();
@@ -101,6 +101,46 @@ void IntelliPhotoGui::penWidth()
         paintingArea->setPenWidth(newWidth);
 }
 
+// Opens a dialog that allows the user to create a New Layer
+void IntelliPhotoGui::newLayer()
+{
+    // Stores button value
+    bool ok;
+
+    // tr("New Layer") is the title
+    // the next tr is the text to display
+    // Define the standard Value, min, max, step and ok button
+    int width = QInputDialog::getInt(this, tr("New Layer"),
+                                        tr("Width:"),
+                                        200,1, 500, 1, &ok);
+    int height = QInputDialog::getInt(this, tr("New Layer"),
+                                        tr("Height:"),
+                                        200,1, 500, 1, &ok);
+    // Create New Layer
+    if (ok)
+    {
+        int layer = paintingArea->addLayer(width,height,100,100);
+        paintingArea->activate(layer);
+    }
+}
+
+// Opens a dialog that allows the user to delete a Layer
+void IntelliPhotoGui::deleteLayer()
+{
+    // Stores button value
+    bool ok;
+
+    // tr("delete Layer") is the title
+    // the next tr is the text to display
+    // Define the standard Value, min, max, step and ok button
+    int layerNumber = QInputDialog::getInt(this, tr("delete Layer"),
+                                        tr("Number:"),
+                                        1,1, 500, 1, &ok);
+    // Create New Layer
+    if (ok)
+        paintingArea->deleteLayer(layerNumber-1);
+}
+
 // Open an about dialog
 void IntelliPhotoGui::about()
 {
@@ -111,7 +151,8 @@ void IntelliPhotoGui::about()
 
 void IntelliPhotoGui::onSetAlpha(){
     int a = this->setAlphaEdit->text().toInt();
-    emit this->sendAlpha(a);
+    if (a >= 0 && a < 256)
+        emit this->sendAlpha(a);
 }
 
 void IntelliPhotoGui::onMoveUp(){
@@ -146,12 +187,13 @@ void IntelliPhotoGui::onClearedPressed(){
     int r = this->RedEdit->text().toInt();
     int g = this->GreenEdit->text().toInt();
     int b = this->BlueEdit->text().toInt();
-    emit this->sendClearColor(r,g,b);
+    if(r < 256 && r >= 0 && g < 256 && g >= 0 && b < 256 && b >= 0)
+        emit this->sendClearColor(r,g,b);
 }
 
 void IntelliPhotoGui::onActivePressed(){
     int a = this->selectActiveEdit->text().toInt();
-    emit this->sendActiveLayer(a);
+    emit this->sendActiveLayer(a-1);
 };
 
 
@@ -247,6 +289,18 @@ void IntelliPhotoGui::createActions()
     connect(clearScreenAct, SIGNAL(triggered()),
             this, SLOT(onClearedPressed()));
 
+    // Create New Layer action and tie to IntelliPhotoGui::newLayer()
+    newLayerAct = new QAction(tr("&New Layer..."), this);
+    connect(newLayerAct, SIGNAL(triggered()), this, SLOT(newLayer()));
+
+    // Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
+    deleteLayerAct = new QAction(tr("&Delete Layer..."), this);
+    connect(deleteLayerAct, SIGNAL(triggered()), this, SLOT(deleteLayer()));
+
+    // Delete Active Layer action and tie to paintingArea::deleteActiveLayerLayer()
+    deleteActiveLayerAct = new QAction(tr("&Delete active Layer"), this);
+    connect(deleteActiveLayerAct, SIGNAL(triggered()), paintingArea, SLOT(deleteActiveLayer()));
+
     // Create about action and tie to IntelliPhotoGui::about()
     aboutAct = new QAction(tr("&About"), this);
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
@@ -279,6 +333,12 @@ void IntelliPhotoGui::createMenus()
     optionMenu->addSeparator();
     optionMenu->addAction(clearScreenAct);
 
+    // Attach all actions to Layer
+    layerMenu = new QMenu(tr("&Layer"), this);
+    layerMenu->addAction(newLayerAct);
+    layerMenu->addAction(deleteLayerAct);
+    layerMenu->addAction(deleteActiveLayerAct);
+
     // Attach all actions to Help
     helpMenu = new QMenu(tr("&Help"), this);
     helpMenu->addAction(aboutAct);
@@ -287,6 +347,7 @@ void IntelliPhotoGui::createMenus()
     // Add menu items to the menubar
     menuBar()->addMenu(fileMenu);
     menuBar()->addMenu(optionMenu);
+    menuBar()->addMenu(layerMenu);
     menuBar()->addMenu(helpMenu);
 }
 
@@ -316,7 +377,7 @@ void IntelliPhotoGui::createGui(){
 
     selectActiveButton = new QPushButton("select Active");
     selectActiveLabel = new QLabel("Active:");
-    selectActiveEdit = new QLineEdit("0");
+    selectActiveEdit = new QLineEdit("1");
     selectActiveLabel->setMaximumSize(150,20);
     selectActiveEdit->setMaximumSize(150,20);
 

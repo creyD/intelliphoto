@@ -1,7 +1,8 @@
 # Build folder
+IntelliPhoto/build-*/
 src/build-*/
 
-# QT Creator User File
+# 
 IntelliPhoto.pro.user
 
 # macOS Environment Files
