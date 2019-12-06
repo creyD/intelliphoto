@@ -10,10 +10,18 @@
 #include <vector>
 #include <QPoint>
 
+#define EXPORT
+
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
     this->setUp(maxWidth, maxHeight);
 
+#ifdef EXPORT
+    this->addLayer(maxWidth, maxHeight);
+    layerStructure[0].image->floodFill(QColor(255,255,255,255));
+    activeLayer=0;
+#endif
+#ifndef EXPORT
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
     layerStructure[0].image->floodFill(QColor(255,0,0,255));
@@ -28,6 +36,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     layerStructure[1].image->floodFill(QColor(0,255,0,255));
     layerStructure[1].alpha=200;
     activeLayer=1;
+#endif
 }
 
 

@@ -17,7 +17,7 @@ class PaintingArea : public QWidget
     Q_OBJECT
 
 public:
-    PaintingArea(int maxWidth=1000, int maxHeight=800, QWidget *parent = nullptr);
+    PaintingArea(int maxWidth=600, int maxHeight=600, QWidget *parent = nullptr);
 
     // Handles all events
     bool openImage(const QString &fileName);
