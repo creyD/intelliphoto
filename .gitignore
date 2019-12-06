@@ -2,8 +2,20 @@
 IntelliPhoto/build-*/
 src/build-*/
 
-# 
-IntelliPhoto.pro.user
+# QT Creator Files
+*.creator.user*
+*.pro.user*
+*.pyqtc.user*
+*.qbs.user*
+*.qmlproject.user*
+CMakeLists.txt.user*
+/share/qtcreator/examples/
+/share/qtcreator/externaltools/
+/share/qtcreator/fonts/
+/share/qtcreator/generic-highlighter/
+/share/qtcreator/qmldesigner/QtProject/
+app_version.h
+phony.c
 
 # macOS Environment Files
 .DS_STORE
