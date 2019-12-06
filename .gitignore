@@ -2,5 +2,8 @@
 IntelliPhoto/build-*/
 src/build-*/
 
+# 
+IntelliPhoto.pro.user
+
 # macOS Environment Files
 .DS_STORE
