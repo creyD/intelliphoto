@@ -9,6 +9,15 @@
 #include <QWidget>
 #include <QList>
 
+struct LayerObject{
+    IntelliImage* image;
+    int width;
+    int height;
+    int widthOffset;
+    int heightOffset;
+    int alpha=255;
+};
+
 class PaintingArea : public QWidget
 {
     // Declares our class as a QObject which is the base class
@@ -68,14 +77,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    struct LayerObject{
-        IntelliImage* image;
-        int width;
-        int height;
-        int widthOffset;
-        int heightOffset;
-        int alpha=255;
-    };
+
 
     QImage* Canvas;
     int maxWidth;
