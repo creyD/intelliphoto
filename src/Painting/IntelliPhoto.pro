@@ -37,8 +37,8 @@ FORMS += \
     widget.ui
 
 
-QMAKE_CXXFLAGS += -fopenmp
-QMAKE_LFLAGS += -fopenmp
+QMAKE_CXXFLAGS
+QMAKE_LFLAGS
 
 RC_ICONS = icon.ico
 
