@@ -17,5 +17,9 @@ CMakeLists.txt.user*
 app_version.h
 phony.c
 
+# Ignore User Files except for the pro file
+IntelliPhoto.*
+!IntelliPhoto.pro
+
 # macOS Environment Files
 .DS_STORE
