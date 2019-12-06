@@ -35,6 +35,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     this->addLayer(200,200,150,150);
     layerStructure[1].image->floodFill(QColor(0,255,0,255));
     layerStructure[1].alpha=200;
+
     activeLayer=1;
 #endif
 }
@@ -55,7 +56,7 @@ void PaintingArea::setUp(int maxWidth, int maxHeight){
     myPenColor = Qt::blue;
 }
 
-void PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, ImageType type){
+int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, ImageType type){
     LayerObject newLayer;
     newLayer.width = width;
     newLayer.height = height;
@@ -68,7 +69,7 @@ void PaintingArea::addLayer(int width, int height, int widthOffset, int heightOf
     }
     newLayer.alpha = 255;
     this->layerStructure.push_back(newLayer);
-
+    return layerStructure.size()-1;
 }
 
 void PaintingArea::deleteLayer(int index){
@@ -78,6 +79,11 @@ void PaintingArea::deleteLayer(int index){
             activeLayer--;
         }
     }
+}
+
+void PaintingArea::deleteActiveLayer(){
+        this->layerStructure.erase(layerStructure.begin()+activeLayer);
+        activeLayer--;
 }
 
 void PaintingArea::setLayerToActive(int index) {
@@ -185,7 +191,7 @@ void PaintingArea::getMoveLeft(int a){
 }
 
 void PaintingArea::getMoveLayerUp(){
-    if(activeLayer<layerStructure.size() && activeLayer>=0){
+    if(activeLayer<layerStructure.size()-1 && activeLayer>=0){
         std::swap(layerStructure[activeLayer], layerStructure[activeLayer+1]);
         activeLayer++;
     }

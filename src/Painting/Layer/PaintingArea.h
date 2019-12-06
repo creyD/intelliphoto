@@ -23,7 +23,7 @@ public:
     bool openImage(const QString &fileName);
     bool saveImage(const QString &fileName, const char *fileFormat);
 
-    void addLayer(int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image);
+    int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image);
     void deleteLayer(int index);
     void setLayerToActive(int index);
     void setAlphaToLayer(int index, int alpha);
@@ -44,6 +44,7 @@ public slots:
     // Events to handle
     void clearImage(int r, int g, int b);
     void activate(int a);
+    void deleteActiveLayer();
 
     void setAlpha(int a);
     void getMoveUp(int a);
