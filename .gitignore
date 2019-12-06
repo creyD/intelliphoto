@@ -1,6 +1,7 @@
-# Build folder
-IntelliPhoto/build-*/
-src/build-*/
+# Build folders
+/build-*/
+/*-debug/
+/*-release/
 
 # QT Creator Files
 *.creator.user*
