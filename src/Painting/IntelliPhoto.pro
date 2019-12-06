@@ -30,7 +30,8 @@ HEADERS += \
     Image/IntelliRasterImage.h \
     Image/IntelliShapedImage.h \
     IntelliHelper/IntelliHelper.h \
-    Layer/PaintingArea.h
+    Layer/PaintingArea.h \
+    Tool/IntelliTool.h
 
 FORMS += \
     widget.ui
