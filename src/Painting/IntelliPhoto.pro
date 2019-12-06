@@ -30,14 +30,15 @@ HEADERS += \
     Image/IntelliRasterImage.h \
     Image/IntelliShapedImage.h \
     IntelliHelper/IntelliHelper.h \
-    Layer/PaintingArea.h
+    Layer/PaintingArea.h \
+    Tool/IntelliTool.h
 
 FORMS += \
     widget.ui
 
 
-QMAKE_CXXFLAGS += -fopenmp
-QMAKE_LFLAGS += -fopenmp
+QMAKE_CXXFLAGS
+QMAKE_LFLAGS
 
 RC_ICONS = icon.ico
 
