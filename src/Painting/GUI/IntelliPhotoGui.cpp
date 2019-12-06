@@ -101,22 +101,22 @@ void IntelliPhotoGui::penWidth()
         paintingArea->setPenWidth(newWidth);
 }
 
-// Opens a dialog that allows the user to create a new Layer
+// Opens a dialog that allows the user to create a New Layer
 void IntelliPhotoGui::newLayer()
 {
     // Stores button value
     bool ok;
 
-    // tr("new Layer") is the title
+    // tr("New Layer") is the title
     // the next tr is the text to display
     // Define the standard Value, min, max, step and ok button
-    int width = QInputDialog::getInt(this, tr("new Layer"),
+    int width = QInputDialog::getInt(this, tr("New Layer"),
                                         tr("Width:"),
                                         200,1, 500, 1, &ok);
-    int height = QInputDialog::getInt(this, tr("new Layer"),
+    int height = QInputDialog::getInt(this, tr("New Layer"),
                                         tr("Height:"),
                                         200,1, 500, 1, &ok);
-    // Create new Layer
+    // Create New Layer
     if (ok)
     {
         int layer = paintingArea->addLayer(width,height,100,100);
@@ -136,7 +136,7 @@ void IntelliPhotoGui::deleteLayer()
     int layerNumber = QInputDialog::getInt(this, tr("delete Layer"),
                                         tr("Number:"),
                                         1,1, 500, 1, &ok);
-    // Create new Layer
+    // Create New Layer
     if (ok)
         paintingArea->deleteLayer(layerNumber-1);
 }
@@ -290,7 +290,7 @@ void IntelliPhotoGui::createActions()
             this, SLOT(onClearedPressed()));
 
     // Create New Layer action and tie to IntelliPhotoGui::newLayer()
-    newLayerAct = new QAction(tr("&new Layer..."), this);
+    newLayerAct = new QAction(tr("&New Layer..."), this);
     connect(newLayerAct, SIGNAL(triggered()), this, SLOT(newLayer()));
 
     // Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
