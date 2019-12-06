@@ -1,7 +1,6 @@
 # Build folders
-/build-*/
-/*-debug/
-/*-release/
+src/*-debug/
+src/*-release/
 
 # QT Creator Files
 *.creator.user*
