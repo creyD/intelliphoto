@@ -27,21 +27,21 @@ protected:
 
 // The events that can be triggered
 private slots:
-    void open();
-    void save();
-    void newLayer();
-    void deleteLayer();
-    void about();
+    void slotOpen();
+    void slotSave();
+    void slotCreateNewLayer();
+    void slotDeleteLayer();
+    void slotAboutDialog();
 
-    void onClearedPressed();
-    void onActivePressed();
-    void onSetAlpha();
-    void onMoveUp();
-    void onMoveDown();
-    void onMoveLeft();
-    void onMoveRight();
-    void onMoveLayerUp();
-    void onMoveLayerDown();
+    void slotClearActiveLayer();
+    void slotSetActiveLayer();
+    void slotSetActiveAlpha();
+    void slotPositionMoveUp();
+    void slotPositionMoveDown();
+    void slotPositionMoveLeft();
+    void slotPositionMoveRight();
+    void slotMoveLayerUp();
+    void slotMoveLayerDown();
 
 private:
     // Will tie user actions to functions
@@ -70,28 +70,28 @@ private:
     QMenu *helpMenu;
 
     // All the actions that can occur
-    QAction *openAct;
-    QAction *exitAct;
+    QAction *actionOpen;
+    QAction *actionExit;
 
-    QAction *newLayerAct;
-    QAction *deleteLayerAct;
-    QAction *deleteActiveLayerAct;
+    QAction *actionCreateNewLayer;
+    QAction *actionDeleteLayer;
+    QAction *actionDeleteActiveLayer;
 
-    QAction *aboutAct;
-    QAction *aboutQtAct;
+    QAction *actionAboutDialog;
+    QAction *actionAboutQtDialog;
 
-    QAction* clearedActions;
-    QAction* setActiveAction;
-    QAction* setAlphaAction;
-    QAction* moveUpAction;
-    QAction* moveDownAction;
-    QAction* moveLeftAction;
-    QAction* moveRightAction;
-    QAction* moveLayerUpAction;
-    QAction* moveLayerDownAction;
+    QAction* actionFloodFill;
+    QAction* actionSetActiveLayer;
+    QAction* actionSetActiveAlpha;
+    QAction* actionMovePositionUp;
+    QAction* actionMovePositionDown;
+    QAction* actionMovePositionLeft;
+    QAction* actionMovePositionRight;
+    QAction* actionMoveLayerUp;
+    QAction* actionMoveLayerDown;
 
     // Actions tied to specific file formats
-    QList<QAction *> saveAsActs;
+    QList<QAction *> actionSaveAs;
 
     //main GUI elements
     QWidget* centralGuiWidget;

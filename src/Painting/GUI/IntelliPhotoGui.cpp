@@ -39,7 +39,7 @@ void IntelliPhotoGui::closeEvent(QCloseEvent *event)
 
 // Check if the current image has been changed and then
 // open a dialog to open a file
-void IntelliPhotoGui::open()
+void IntelliPhotoGui::slotOpen()
 {
     // Check if changes have been made since last save
     // maybeSave() returns true if no changes have been made
@@ -54,12 +54,12 @@ void IntelliPhotoGui::open()
         // If we have a file name load the image and place
         // it in the paintingArea
         if (!fileName.isEmpty())
-            paintingArea->openImage(fileName);
+            paintingArea->open(fileName);
     }
 }
 
 // Called when the user clicks Save As in the menu
-void IntelliPhotoGui::save()
+void IntelliPhotoGui::slotSave()
 {
     // A QAction represents the action of the user clicking
     QAction *action = qobject_cast<QAction *>(sender());
@@ -72,7 +72,7 @@ void IntelliPhotoGui::save()
 }
 
 // Opens a dialog that allows the user to create a New Layer
-void IntelliPhotoGui::newLayer()
+void IntelliPhotoGui::slotCreateNewLayer()
 {
     // Stores button value
     bool ok1, ok2;
@@ -90,12 +90,12 @@ void IntelliPhotoGui::newLayer()
     if (ok1&&ok2)
     {
         int layer = paintingArea->addLayer(width,height,100,100);
-        paintingArea->activate(layer);
+        paintingArea->slotActivateLayer(layer);
     }
 }
 
 // Opens a dialog that allows the user to delete a Layer
-void IntelliPhotoGui::deleteLayer()
+void IntelliPhotoGui::slotDeleteLayer()
 {
     // Stores button value
     bool ok;
@@ -112,7 +112,7 @@ void IntelliPhotoGui::deleteLayer()
 }
 
 
-void IntelliPhotoGui::onSetAlpha(){
+void IntelliPhotoGui::slotSetActiveAlpha(){
     // Stores button value
     bool ok1, ok2;
 
@@ -128,41 +128,41 @@ void IntelliPhotoGui::onSetAlpha(){
                                         255,0, 255, 1, &ok2);
     if (ok1&&ok2)
     {
-        paintingArea->setAlphaToLayer(layer,alpha);
+        paintingArea->setAlphaOfLayer(layer,alpha);
     }
 }
 
-void IntelliPhotoGui::onMoveUp(){
-    paintingArea->moveActive(0,-2);
+void IntelliPhotoGui::slotPositionMoveUp(){
+    paintingArea->movePositionActive(0,-2);
     update();
 }
 
-void IntelliPhotoGui::onMoveDown(){
-    paintingArea->moveActive(0,2);
+void IntelliPhotoGui::slotPositionMoveDown(){
+    paintingArea->movePositionActive(0,2);
     update();
 }
 
-void IntelliPhotoGui::onMoveLeft(){
-    paintingArea->moveActive(-2,0);
+void IntelliPhotoGui::slotPositionMoveLeft(){
+    paintingArea->movePositionActive(-2,0);
     update();
 }
 
-void IntelliPhotoGui::onMoveRight(){
-    paintingArea->moveActive(2,0);
+void IntelliPhotoGui::slotPositionMoveRight(){
+    paintingArea->movePositionActive(2,0);
     update();
 }
 
-void IntelliPhotoGui::onMoveLayerUp(){
+void IntelliPhotoGui::slotMoveLayerUp(){
     paintingArea->moveActiveLayer(1);
     update();
 }
 
-void IntelliPhotoGui::onMoveLayerDown(){
+void IntelliPhotoGui::slotMoveLayerDown(){
     paintingArea->moveActiveLayer(-1);
     update();
 }
 
-void IntelliPhotoGui::onClearedPressed(){
+void IntelliPhotoGui::slotClearActiveLayer(){
     // Stores button value
     bool ok1, ok2, ok3, ok4;
 
@@ -186,11 +186,11 @@ void IntelliPhotoGui::onClearedPressed(){
                                         255,0, 255, 1, &ok4);
     if (ok1&&ok2&&ok3&&ok4)
     {
-        paintingArea->clearImage(red, green, blue, alpha);
+        paintingArea->floodFill(red, green, blue, alpha);
     }
 }
 
-void IntelliPhotoGui::onActivePressed(){
+void IntelliPhotoGui::slotSetActiveLayer(){
     // Stores button value
     bool ok1;
 
@@ -208,7 +208,7 @@ void IntelliPhotoGui::onActivePressed(){
 
 
 // Open an about dialog
-void IntelliPhotoGui::about()
+void IntelliPhotoGui::slotAboutDialog()
 {
     // Window title and text to display
     QMessageBox::about(this, tr("About Painting"),
@@ -219,13 +219,13 @@ void IntelliPhotoGui::about()
 void IntelliPhotoGui::createActions()
 {
     // Create the action tied to the menu
-    openAct = new QAction(tr("&Open..."), this);
+    actionOpen = new QAction(tr("&Open..."), this);
 
     // Define the associated shortcut key
-    openAct->setShortcuts(QKeySequence::Open);
+    actionOpen->setShortcuts(QKeySequence::Open);
 
     // Tie the action to IntelliPhotoGui::open()
-    connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
+    connect(actionOpen, SIGNAL(triggered()), this, SLOT(slotOpen()));
 
     // Get a list of the supported file formats
     // QImageWriter is used to write images to files
@@ -239,80 +239,80 @@ void IntelliPhotoGui::createActions()
         action->setData(format);
 
         // When clicked call IntelliPhotoGui::save()
-        connect(action, SIGNAL(triggered()), this, SLOT(save()));
+        connect(action, SIGNAL(triggered()), this, SLOT(slotSave()));
 
         // Attach each file format option menu item to Save As
-        saveAsActs.append(action);
+        actionSaveAs.append(action);
     }
 
     //set exporter to actions
     QAction *pngSaveAction = new QAction("PNG-8", this);
     pngSaveAction->setData("PNG");
     // When clicked call IntelliPhotoGui::save()
-    connect(pngSaveAction, SIGNAL(triggered()), this, SLOT(save()));
+    connect(pngSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
     // Attach each PNG in save Menu
-    saveAsActs.append(pngSaveAction);
+    actionSaveAs.append(pngSaveAction);
 
 
 
     // Create exit action and tie to IntelliPhotoGui::close()
-    exitAct = new QAction(tr("&Exit"), this);
-    exitAct->setShortcuts(QKeySequence::Quit);
-    connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
+    actionOpen = new QAction(tr("&Exit"), this);
+    actionOpen->setShortcuts(QKeySequence::Quit);
+    connect(actionOpen, SIGNAL(triggered()), this, SLOT(close()));
 
     // Create New Layer action and tie to IntelliPhotoGui::newLayer()
-    newLayerAct = new QAction(tr("&New Layer..."), this);
-    connect(newLayerAct, SIGNAL(triggered()), this, SLOT(newLayer()));
+    actionCreateNewLayer = new QAction(tr("&New Layer..."), this);
+    connect(actionCreateNewLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewLayer()));
 
 
     // Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
-    deleteLayerAct = new QAction(tr("&Delete Layer..."), this);
-    connect(deleteLayerAct, SIGNAL(triggered()), this, SLOT(deleteLayer()));
+    actionDeleteLayer = new QAction(tr("&Delete Layer..."), this);
+    connect(actionDeleteLayer, SIGNAL(triggered()), this, SLOT(slotDeleteLayer()));
 
     // Delete Active Layer action and tie to paintingArea::deleteActiveLayerLayer()
-    deleteActiveLayerAct = new QAction(tr("&Delete active Layer"), this);
-    connect(deleteActiveLayerAct, SIGNAL(triggered()), paintingArea, SLOT(deleteActiveLayer()));
+    actionDeleteActiveLayer = new QAction(tr("&Delete active Layer"), this);
+    connect(actionDeleteActiveLayer, SIGNAL(triggered()), paintingArea, SLOT(deleteActiveLayer()));
 
-    clearedActions = new QAction(tr("&clear Image"), this);
-    connect(clearedActions, SIGNAL(triggered()), this, SLOT(onClearedPressed()));
+    actionFloodFill = new QAction(tr("&clear Image"), this);
+    connect(actionFloodFill, SIGNAL(triggered()), this, SLOT(slotClearActiveLayer()));
 
-    setActiveAction = new QAction(tr("&set Active"), this);
-    connect(setActiveAction, SIGNAL(triggered()), this, SLOT(onActivePressed()));
+    actionSetActiveLayer = new QAction(tr("&set Active"), this);
+    connect(actionSetActiveLayer, SIGNAL(triggered()), this, SLOT(slotSetActiveLayer()));
 
-    setAlphaAction = new QAction(tr("&set Alpha"), this);
-    connect(setAlphaAction, SIGNAL(triggered()), this, SLOT(onSetAlpha()));
+    actionSetActiveAlpha = new QAction(tr("&set Alpha"), this);
+    connect(actionSetActiveAlpha, SIGNAL(triggered()), this, SLOT(slotSetActiveAlpha()));
 
-    moveUpAction = new QAction(tr("&move Up"), this);
-    moveUpAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Up));
-    connect(moveUpAction, SIGNAL(triggered()), this, SLOT(onMoveUp()));
+    actionMovePositionUp = new QAction(tr("&move Up"), this);
+    actionMovePositionUp->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Up));
+    connect(actionMovePositionUp, SIGNAL(triggered()), this, SLOT(slotPositionMoveUp()));
 
-    moveDownAction = new QAction(tr("&move Down"), this);
-    moveDownAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Down));
-    connect(moveDownAction, SIGNAL(triggered()), this, SLOT(onMoveDown()));
+    actionMovePositionDown = new QAction(tr("&move Down"), this);
+    actionMovePositionDown->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Down));
+    connect(actionMovePositionDown, SIGNAL(triggered()), this, SLOT(slotPositionMoveDown()));
 
-    moveLeftAction = new QAction(tr("&move Left"), this);
-    moveLeftAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
-    connect(moveLeftAction, SIGNAL(triggered()), this, SLOT(onMoveLeft()));
+    actionMovePositionLeft = new QAction(tr("&move Left"), this);
+    actionMovePositionLeft->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
+    connect(actionMovePositionLeft, SIGNAL(triggered()), this, SLOT(slotPositionMoveLeft()));
 
-    moveRightAction = new QAction(tr("&move Right"), this);
-    moveRightAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Right));
-    connect(moveRightAction, SIGNAL(triggered()), this, SLOT(onMoveRight()));
+    actionMovePositionRight = new QAction(tr("&move Right"), this);
+    actionMovePositionRight->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Right));
+    connect(actionMovePositionRight, SIGNAL(triggered()), this, SLOT(slotPositionMoveRight()));
 
-    moveLayerUpAction = new QAction(tr("&move Layer Up"), this);
-    moveLayerUpAction->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Up));
-    connect(moveLayerUpAction, SIGNAL(triggered()), this, SLOT(onMoveLayerUp()));
+    actionMoveLayerUp = new QAction(tr("&move Layer Up"), this);
+    actionMoveLayerUp->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Up));
+    connect(actionMoveLayerUp, SIGNAL(triggered()), this, SLOT(slotMoveLayerUp()));
 
-    moveLayerDownAction= new QAction(tr("&move Layer Down"), this);
-    moveLayerDownAction->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
-    connect(moveLayerDownAction, SIGNAL(triggered()), this, SLOT(onMoveLayerDown()));
+    actionMoveLayerDown= new QAction(tr("&move Layer Down"), this);
+    actionMoveLayerDown->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
+    connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
 
     // Create about action and tie to IntelliPhotoGui::about()
-    aboutAct = new QAction(tr("&About"), this);
-    connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
+    actionAboutDialog = new QAction(tr("&About"), this);
+    connect(actionAboutDialog, SIGNAL(triggered()), this, SLOT(slotAboutDialog()));
 
     // Create about Qt action and tie to IntelliPhotoGui::aboutQt()
-    aboutQtAct = new QAction(tr("About &Qt"), this);
-    connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    actionAboutQtDialog = new QAction(tr("About &Qt"), this);
+    connect(actionAboutQtDialog, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 }
 
 // Create the menubar
@@ -320,42 +320,42 @@ void IntelliPhotoGui::createMenus()
 {
     // Create Save As option and the list of file types
     saveAsMenu = new QMenu(tr("&Save As"), this);
-    foreach (QAction *action, saveAsActs)
+    foreach (QAction *action, actionSaveAs)
         saveAsMenu->addAction(action);
 
 
     // Attach all actions to File
     fileMenu = new QMenu(tr("&File"), this);
-    fileMenu->addAction(openAct);
+    fileMenu->addAction(actionOpen);
     fileMenu->addMenu(saveAsMenu);
     fileMenu->addSeparator();
-    fileMenu->addAction(exitAct);
+    fileMenu->addAction(actionOpen);
 
     // Attach all actions to Options
     optionMenu = new QMenu(tr("&Options"), this);
-    optionMenu->addAction(clearedActions);
-    optionMenu->addAction(setActiveAction);
-    optionMenu->addAction(setAlphaAction);
-    optionMenu->addAction(moveUpAction);
-    optionMenu->addAction(moveDownAction);
-    optionMenu->addAction(moveLeftAction);
-    optionMenu->addAction(moveRightAction);
-    optionMenu->addAction(moveLayerUpAction);
-    optionMenu->addAction(moveLayerDownAction);
+    optionMenu->addAction(actionFloodFill);
+    optionMenu->addAction(actionSetActiveLayer);
+    optionMenu->addAction(actionSetActiveAlpha);
+    optionMenu->addAction(actionMovePositionUp);
+    optionMenu->addAction(actionMovePositionDown);
+    optionMenu->addAction(actionMovePositionLeft);
+    optionMenu->addAction(actionMovePositionRight);
+    optionMenu->addAction(actionMoveLayerUp);
+    optionMenu->addAction(actionMoveLayerDown);
 
     // Attach all actions to Layer
     layerMenu = new QMenu(tr("&Layer"), this);
-    layerMenu->addAction(newLayerAct);
-    layerMenu->addAction(deleteLayerAct);
-    layerMenu->addAction(deleteActiveLayerAct);
+    layerMenu->addAction(actionCreateNewLayer);
+    layerMenu->addAction(actionDeleteLayer);
+    layerMenu->addAction(actionDeleteActiveLayer);
 
     //Attach all Tool Options
     toolMenu = new QMenu(tr("&Tools"), this);
 
     // Attach all actions to Help
     helpMenu = new QMenu(tr("&Help"), this);
-    helpMenu->addAction(aboutAct);
-    helpMenu->addAction(aboutQtAct);
+    helpMenu->addAction(actionAboutDialog);
+    helpMenu->addAction(actionAboutQtDialog);
 
     // Add menu items to the menubar
     menuBar()->addMenu(fileMenu);
@@ -435,7 +435,7 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat)
     } else {
 
         // Call for the file to be saved
-        return paintingArea->saveImage(fileName, fileFormat.constData());
+        return paintingArea->save(fileName, fileFormat.constData());
     }
 }
 

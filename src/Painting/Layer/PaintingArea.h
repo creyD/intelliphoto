@@ -12,9 +12,9 @@
 struct LayerObject{
     IntelliImage* image;
     int width;
-    int height;
+    int hight;
     int widthOffset;
-    int heightOffset;
+    int hightOffset;
     int alpha=255;
 };
 
@@ -29,15 +29,15 @@ public:
     PaintingArea(int maxWidth=600, int maxHeight=600, QWidget *parent = nullptr);
 
     // Handles all events
-    bool openImage(const QString &fileName);
-    bool saveImage(const QString &fileName, const char *fileFormat);
+    bool open(const QString &fileName);
+    bool save(const QString &fileName, const char *fileFormat);
 
     int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image);
     void deleteLayer(int index);
     void setLayerToActive(int index);
-    void setAlphaToLayer(int index, int alpha);
-    void clearImage(int r, int g, int b, int a);
-    void moveActive(int x, int y);
+    void setAlphaOfLayer(int index, int alpha);
+    void floodFill(int r, int g, int b, int a);
+    void movePositionActive(int x, int y);
     void moveActiveLayer(int idx);
 
     // Has the image been modified since last save
@@ -46,11 +46,9 @@ public:
 public slots:
 
     // Events to handle
-    void activate(int a);
-    void deleteActiveLayer();
+    void slotActivateLayer(int a);
+    void slotDeleteActiveLayer();
 
-    //void setUp helper for konstruktor
-    void setUp(int maxWidth, int maxHeight);
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -64,14 +62,15 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    void activeLayerUp();
-    void activeLayerDown();
+    void setUp(int maxWidth, int maxHeight);
+    void activateUpperLayer();
+    void activateLowerLayer();
 
     QImage* Canvas;
     int maxWidth;
     int maxHeight;
 
-    std::vector<LayerObject> layerStructure;
+    std::vector<LayerObject> layerBundle;
     int activeLayer=-1;
 
     void assembleLayers(bool forSaving=false);
@@ -81,19 +80,6 @@ private:
     // Will be marked true or false depending on if
     // we have saved after a change
     bool modified=false;
-
-    // Marked true or false depending on if the user
-    // is drawing
-    bool scribbling;
-
-    // Holds the current pen width & color
-    int myPenWidth;
-    QColor myPenColor;
-
-    // Stores the image being drawn
-
-    // Stores the location at the current mouse event
-    QPoint lastPoint;
 };
 
 #endif

@@ -16,17 +16,17 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
-    layerStructure[0].image->floodFill(QColor(255,0,0,255));
+    layerBundle[0].image->floodFill(QColor(255,0,0,255));
     std::vector<QPoint> polygon;
     polygon.push_back(QPoint(100,000));
     polygon.push_back(QPoint(200,100));
     polygon.push_back(QPoint(100,200));
     polygon.push_back(QPoint(000,100));
-    layerStructure[0].image->setPolygon(polygon);
+    layerBundle[0].image->setPolygon(polygon);
 
     this->addLayer(200,200,150,150);
-    layerStructure[1].image->floodFill(QColor(0,255,0,255));
-    layerStructure[1].alpha=200;
+    layerBundle[1].image->floodFill(QColor(0,255,0,255));
+    layerBundle[1].alpha=200;
 
     activeLayer=1;
 }
@@ -40,73 +40,69 @@ void PaintingArea::setUp(int maxWidth, int maxHeight){
     // Roots the widget to the top left even if resized
     setAttribute(Qt::WA_StaticContents);
 
-    // Set defaults for the monitored variables
-    scribbling = false;
-    myPenWidth = 1;
-    myPenColor = Qt::blue;
 }
 
 int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, ImageType type){
     LayerObject newLayer;
     newLayer.width = width;
-    newLayer.height = height;
+    newLayer.hight = height;
     newLayer.widthOffset = widthOffset;
-    newLayer.heightOffset = heightOffset;
+    newLayer.hightOffset = heightOffset;
     if(type==ImageType::Raster_Image){
         newLayer.image = new IntelliRasterImage(width,height);
     }else if(type==ImageType::Shaped_Image){
         newLayer.image = new IntelliShapedImage(width, height);
     }
     newLayer.alpha = 255;
-    this->layerStructure.push_back(newLayer);
-    return static_cast<int>(layerStructure.size())-1;
+    this->layerBundle.push_back(newLayer);
+    return static_cast<int>(layerBundle.size())-1;
 }
 
 void PaintingArea::deleteLayer(int index){
-    if(index<static_cast<int>(layerStructure.size())){
-        this->layerStructure.erase(layerStructure.begin()+index);
+    if(index<static_cast<int>(layerBundle.size())){
+        this->layerBundle.erase(layerBundle.begin()+index);
         if(activeLayer>=index){
             activeLayer--;
         }
     }
 }
 
-void PaintingArea::deleteActiveLayer(){
-    if(activeLayer>=0 && activeLayer < static_cast<int>(layerStructure.size())){
-        this->layerStructure.erase(layerStructure.begin()+activeLayer);
+void PaintingArea::slotDeleteActiveLayer(){
+    if(activeLayer>=0 && activeLayer < static_cast<int>(layerBundle.size())){
+        this->layerBundle.erase(layerBundle.begin()+activeLayer);
         activeLayer--;
     }
 }
 
 void PaintingArea::setLayerToActive(int index) {
-    if(index>=0&&index<static_cast<int>(layerStructure.size())){
+    if(index>=0&&index<static_cast<int>(layerBundle.size())){
         this->activeLayer=index;
     }
 }
 
-void PaintingArea::setAlphaToLayer(int index, int alpha){
-    if(index>=0&&index<static_cast<int>(layerStructure.size())){
-        layerStructure[static_cast<size_t>(index)].alpha=alpha;
+void PaintingArea::setAlphaOfLayer(int index, int alpha){
+    if(index>=0&&index<static_cast<int>(layerBundle.size())){
+        layerBundle[static_cast<size_t>(index)].alpha=alpha;
     }
 }
 
 
 // Used to load the image and place it in the widget
-bool PaintingArea::openImage(const QString &fileName)
+bool PaintingArea::open(const QString &fileName)
 {
     if(this->activeLayer==-1){
         return false;
     }
-    IntelliImage* active = layerStructure[static_cast<size_t>(activeLayer)].image;
+    IntelliImage* active = layerBundle[static_cast<size_t>(activeLayer)].image;
     bool open = active->loadImage(fileName);
     update();
     return open;
 }
 
 // Save the current image
-bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
+bool PaintingArea::save(const QString &fileName, const char *fileFormat)
 {
-    if(layerStructure.size()==0){
+    if(layerBundle.size()==0){
         return false;
     }
     this->assembleLayers(true);
@@ -130,30 +126,30 @@ bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
 
 
 // Color the image area with white
-void PaintingArea::clearImage(int r, int g, int b, int a){
+void PaintingArea::floodFill(int r, int g, int b, int a){
     if(this->activeLayer==-1){
         return;
     }
-    IntelliImage* active = layerStructure[static_cast<size_t>(activeLayer)].image;
+    IntelliImage* active = layerBundle[static_cast<size_t>(activeLayer)].image;
     active->floodFill(QColor(r, g, b, a));
     update();
 }
 
-void PaintingArea::moveActive(int x, int y){
-    layerStructure[static_cast<size_t>(activeLayer)].widthOffset += x;
-    layerStructure[static_cast<size_t>(activeLayer)].heightOffset += y;
+void PaintingArea::movePositionActive(int x, int y){
+    layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
+    layerBundle[static_cast<size_t>(activeLayer)].hightOffset += y;
 }
 
 void PaintingArea::moveActiveLayer(int idx){
     if(idx==1){
-        this->activeLayerUp();
+        this->activateUpperLayer();
     }else if(idx==-1){
-        this->activeLayerDown();
+        this->activateLowerLayer();
     }
 }
 
-void PaintingArea::activate(int a){
-    if(a>=0 && a < static_cast<int>(layerStructure.size())){
+void PaintingArea::slotActivateLayer(int a){
+    if(a>=0 && a < static_cast<int>(layerBundle.size())){
         this->setLayerToActive(a);
     }
 }
@@ -207,16 +203,16 @@ void PaintingArea::resizeImage(QImage *image_res, const QSize &newSize){
     //TODO implement
 }
 
-void PaintingArea::activeLayerUp(){
-    if(activeLayer!=-1 && activeLayer<layerStructure.size()-1){
-        std::swap(layerStructure[activeLayer], layerStructure[activeLayer+1]);
+void PaintingArea::activateUpperLayer(){
+    if(activeLayer!=-1 && activeLayer<layerBundle.size()-1){
+        std::swap(layerBundle[activeLayer], layerBundle[activeLayer+1]);
         activeLayer++;
     }
 }
 
-void PaintingArea::activeLayerDown(){
+void PaintingArea::activateLowerLayer(){
     if(activeLayer!=-1 && activeLayer>0){
-        std::swap(layerStructure[activeLayer], layerStructure[activeLayer-1]);
+        std::swap(layerBundle[activeLayer], layerBundle[activeLayer-1]);
         activeLayer--;
     }
 }
@@ -227,18 +223,18 @@ void PaintingArea::assembleLayers(bool forSaving){
     }else{
         Canvas->fill(Qt::GlobalColor::black);
     }
-    for(size_t i=0; i<layerStructure.size(); i++){
-        LayerObject layer = layerStructure[i];
+    for(size_t i=0; i<layerBundle.size(); i++){
+        LayerObject layer = layerBundle[i];
         QImage cpy = layer.image->getDisplayable(layer.alpha);
         QColor clr_0;
         QColor clr_1;
-        for(int y=0; y<layer.height; y++){
-            if(layer.heightOffset+y<0) continue;
-            if(layer.heightOffset+y>=maxHeight) break;
+        for(int y=0; y<layer.hight; y++){
+            if(layer.hightOffset+y<0) continue;
+            if(layer.hightOffset+y>=maxHeight) break;
             for(int x=0; x<layer.width; x++){
                 if(layer.widthOffset+x<0) continue;
-                if(layer.heightOffset+y>=maxWidth) break;
-                clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.heightOffset+y);
+                if(layer.hightOffset+y>=maxWidth) break;
+                clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.hightOffset+y);
                 clr_1=cpy.pixelColor(x,y);
                 float t = static_cast<float>(clr_1.alpha())/255.f;
                 int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
@@ -250,7 +246,7 @@ void PaintingArea::assembleLayers(bool forSaving){
                 clr_0.setBlue(b);
                 clr_0.setAlpha(a);
 
-                Canvas->setPixelColor(layer.widthOffset+x, layer.heightOffset+y, clr_0);
+                Canvas->setPixelColor(layer.widthOffset+x, layer.hightOffset+y, clr_0);
             }
         }
     }
