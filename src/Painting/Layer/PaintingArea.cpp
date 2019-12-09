@@ -233,7 +233,7 @@ void PaintingArea::paintEvent(QPaintEvent *event)
 // to cut down on the need to resize the image
 void PaintingArea::resizeEvent(QResizeEvent *event)
 {
-    //TODO Doesnt quit work
+    //TODO wait till tool works
     update();
 }
 
@@ -252,7 +252,6 @@ void PaintingArea::assembleLayers(bool forSaving){
     }else{
         Canvas->fill(Qt::GlobalColor::black);
     }
-    //TODO interpolation of alpha for saving
     for(size_t i=0; i<layerStructure.size(); i++){
         LayerObject layer = layerStructure[i];
         QImage cpy = layer.image->getDisplayable(layer.alpha);
