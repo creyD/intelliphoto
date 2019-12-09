@@ -12,6 +12,10 @@ IntelliRasterImage::~IntelliRasterImage(){
 
 }
 
+void IntelliRasterImage::calculateVisiblity(){
+
+}
+
 QImage IntelliRasterImage::getDisplayable(int alpha){
     return getDisplayable(imageData.size(), alpha);
 }

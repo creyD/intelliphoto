@@ -71,11 +71,3 @@ void IntelliImage::floodFill(const QColor& color){
     imageData.fill(color);
 
 }
-
-int IntelliImage::x(){
-    return imageData.size().width();
-}
-
-int IntelliImage::y(){
-    return imageData.size().height();
-}

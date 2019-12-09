@@ -47,7 +47,6 @@ public:
     int penWidth() const { return myPenWidth; }
 
 
-    QPixmap getAsPixmap();
 public slots:
 
     // Events to handle

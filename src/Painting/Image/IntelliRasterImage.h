@@ -4,7 +4,8 @@
 #include"Image/IntelliImage.h"
 
 class IntelliRasterImage : public IntelliImage{
-
+protected:
+    virtual void calculateVisiblity() override;
 public:
     IntelliRasterImage(int weight, int height);
     virtual ~IntelliRasterImage() override;

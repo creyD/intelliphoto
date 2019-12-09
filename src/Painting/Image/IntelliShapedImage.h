@@ -6,6 +6,7 @@
 class IntelliShapedImage : public IntelliImage{
 
 protected:
+    virtual void calculateVisiblity() override;
     std::vector<QPoint> polygonData;
 public:
     IntelliShapedImage(int weight, int height);
