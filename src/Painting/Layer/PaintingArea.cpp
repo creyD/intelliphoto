@@ -128,68 +128,33 @@ bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
     }
 }
 
-// Used to change the pen color
-void PaintingArea::setPenColor(const QColor &newColor)
-{
-    //TODO give to Tool
-}
-
-// Used to change the pen width
-void PaintingArea::setPenWidth(int newWidth)
-{
-    //TODO give to Tool
-}
 
 // Color the image area with white
-void PaintingArea::clearImage(int r, int g, int b){
+void PaintingArea::clearImage(int r, int g, int b, int a){
     if(this->activeLayer==-1){
         return;
     }
     IntelliImage* active = layerStructure[static_cast<size_t>(activeLayer)].image;
-    active->floodFill(QColor(r, g, b, 255));
-
+    active->floodFill(QColor(r, g, b, a));
     update();
+}
+
+void PaintingArea::moveActive(int x, int y){
+    layerStructure[static_cast<size_t>(activeLayer)].widthOffset += x;
+    layerStructure[static_cast<size_t>(activeLayer)].heightOffset += y;
+}
+
+void PaintingArea::moveActiveLayer(int idx){
+    if(idx==1){
+        this->activeLayerUp();
+    }else if(idx==-1){
+        this->activeLayerDown();
+    }
 }
 
 void PaintingArea::activate(int a){
     if(a>=0 && a < static_cast<int>(layerStructure.size())){
         this->setLayerToActive(a);
-    }
-}
-
-void PaintingArea::setAlpha(int a){
-    if(activeLayer>=0){
-        layerStructure[static_cast<size_t>(activeLayer)].alpha=a;
-    }
-}
-
-void PaintingArea::getMoveUp(int a){
-    layerStructure[static_cast<size_t>(activeLayer)].heightOffset-=a;
-}
-
-void PaintingArea::getMoveDown(int a){
-    layerStructure[static_cast<size_t>(activeLayer)].heightOffset+=a;
-}
-
-void PaintingArea::getMoveRight(int a){
-    layerStructure[static_cast<size_t>(activeLayer)].widthOffset+=a;
-}
-
-void PaintingArea::getMoveLeft(int a){
-    layerStructure[static_cast<size_t>(activeLayer)].widthOffset-=a;
-}
-
-void PaintingArea::getMoveLayerUp(){
-    if(activeLayer<static_cast<int>(layerStructure.size()-1) && activeLayer>=0){
-        std::swap(layerStructure[static_cast<size_t>(activeLayer)], layerStructure[static_cast<size_t>(activeLayer+1)]);
-        activeLayer++;
-    }
-}
-
-void PaintingArea::getMoveLayerDown(){
-    if(activeLayer>0){
-        std::swap(layerStructure[static_cast<size_t>(activeLayer)], layerStructure[static_cast<size_t>(activeLayer-1)]);
-        activeLayer--;
     }
 }
 
@@ -237,13 +202,23 @@ void PaintingArea::resizeEvent(QResizeEvent *event)
     update();
 }
 
-void PaintingArea::drawLineTo(const QPoint &endPoint)
-{
-
-}
 
 void PaintingArea::resizeImage(QImage *image_res, const QSize &newSize){
     //TODO implement
+}
+
+void PaintingArea::activeLayerUp(){
+    if(activeLayer!=-1 && activeLayer<layerStructure.size()-1){
+        std::swap(layerStructure[activeLayer], layerStructure[activeLayer+1]);
+        activeLayer++;
+    }
+}
+
+void PaintingArea::activeLayerDown(){
+    if(activeLayer!=-1 && activeLayer>0){
+        std::swap(layerStructure[activeLayer], layerStructure[activeLayer-1]);
+        activeLayer--;
+    }
 }
 
 void PaintingArea::assembleLayers(bool forSaving){

@@ -36,31 +36,19 @@ public:
     void deleteLayer(int index);
     void setLayerToActive(int index);
     void setAlphaToLayer(int index, int alpha);
+    void clearImage(int r, int g, int b, int a);
+    void moveActive(int x, int y);
+    void moveActiveLayer(int idx);
 
     // Has the image been modified since last save
     bool isModified() const { return modified; }
 
-    void setPenColor(const QColor &newColor);
-    QColor penColor() const { return myPenColor; }
-
-    void setPenWidth(int newWidth);
-    int penWidth() const { return myPenWidth; }
-
-
 public slots:
 
     // Events to handle
-    void clearImage(int r, int g, int b);
     void activate(int a);
     void deleteActiveLayer();
 
-    void setAlpha(int a);
-    void getMoveUp(int a);
-    void getMoveDown(int a);
-    void getMoveRight(int a);
-    void getMoveLeft(int a);
-    void getMoveLayerUp();
-    void getMoveLayerDown();
     //void setUp helper for konstruktor
     void setUp(int maxWidth, int maxHeight);
 protected:
@@ -76,7 +64,8 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-
+    void activeLayerUp();
+    void activeLayerDown();
 
     QImage* Canvas;
     int maxWidth;
@@ -87,7 +76,6 @@ private:
 
     void assembleLayers(bool forSaving=false);
 
-    void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image_res, const QSize &newSize);
 
     // Will be marked true or false depending on if
