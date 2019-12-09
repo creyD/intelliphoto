@@ -73,7 +73,8 @@ private:
     bool saveFile(const QByteArray &fileFormat);
 
     // What we'll draw on
-    PaintingArea *paintingArea;
+    PaintingArea* paintingArea;
+
 
     // The menu widgets
     QMenu *saveAsMenu;

@@ -10,26 +10,18 @@
 #include <vector>
 #include <QPoint>
 
-#define EXPORT
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
     this->setUp(maxWidth, maxHeight);
-
-#ifdef EXPORT
-    this->addLayer(maxWidth, maxHeight);
-    layerStructure[0].image->floodFill(QColor(255,255,255,255));
-    activeLayer=0;
-#endif
-#ifndef EXPORT
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
     layerStructure[0].image->floodFill(QColor(255,0,0,255));
     std::vector<QPoint> polygon;
-    polygon.push_back(QPoint(100,0));
-    polygon.push_back(QPoint(200,200));
-    polygon.push_back(QPoint(0,200));
-    polygon.push_back(QPoint(100,0));
+    polygon.push_back(QPoint(100,000));
+    polygon.push_back(QPoint(200,100));
+    polygon.push_back(QPoint(100,200));
+    polygon.push_back(QPoint(000,100));
     layerStructure[0].image->setPolygon(polygon);
 
     this->addLayer(200,200,150,150);
@@ -37,7 +29,6 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     layerStructure[1].alpha=200;
 
     activeLayer=1;
-#endif
 }
 
 void PaintingArea::setUp(int maxWidth, int maxHeight){
@@ -45,7 +36,6 @@ void PaintingArea::setUp(int maxWidth, int maxHeight){
     this->maxWidth = maxWidth;
     this->maxHeight = maxHeight;
     Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
-    Canvas->fill(Qt::GlobalColor::white);
 
     // Roots the widget to the top left even if resized
     setAttribute(Qt::WA_StaticContents);
@@ -69,11 +59,11 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
     }
     newLayer.alpha = 255;
     this->layerStructure.push_back(newLayer);
-    return layerStructure.size()-1;
+    return static_cast<int>(layerStructure.size())-1;
 }
 
 void PaintingArea::deleteLayer(int index){
-    if(index<layerStructure.size()){
+    if(index<static_cast<int>(layerStructure.size())){
         this->layerStructure.erase(layerStructure.begin()+index);
         if(activeLayer>=index){
             activeLayer--;
@@ -82,26 +72,24 @@ void PaintingArea::deleteLayer(int index){
 }
 
 void PaintingArea::deleteActiveLayer(){
+    if(activeLayer>=0 && activeLayer < static_cast<int>(layerStructure.size())){
         this->layerStructure.erase(layerStructure.begin()+activeLayer);
         activeLayer--;
+    }
 }
 
 void PaintingArea::setLayerToActive(int index) {
-    if(index<layerStructure.size()){
+    if(index>=0&&index<static_cast<int>(layerStructure.size())){
         this->activeLayer=index;
     }
 }
 
 void PaintingArea::setAlphaToLayer(int index, int alpha){
-    if(index<layerStructure.size()){
-        layerStructure[index].alpha=alpha;
+    if(index>=0&&index<static_cast<int>(layerStructure.size())){
+        layerStructure[static_cast<size_t>(index)].alpha=alpha;
     }
 }
 
-QPixmap PaintingArea::getAsPixmap(){
-    assembleLayers();
-    return QPixmap::fromImage(*Canvas);
-}
 
 // Used to load the image and place it in the widget
 bool PaintingArea::openImage(const QString &fileName)
@@ -109,7 +97,7 @@ bool PaintingArea::openImage(const QString &fileName)
     if(this->activeLayer==-1){
         return false;
     }
-    IntelliImage* active = layerStructure[activeLayer].image;
+    IntelliImage* active = layerStructure[static_cast<size_t>(activeLayer)].image;
     bool open = active->loadImage(fileName);
     update();
     return open;
@@ -133,7 +121,6 @@ bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
         }
     }
 
-
     if (Canvas->save(fileName, fileFormat)) {
         return true;
     } else {
@@ -144,13 +131,13 @@ bool PaintingArea::saveImage(const QString &fileName, const char *fileFormat)
 // Used to change the pen color
 void PaintingArea::setPenColor(const QColor &newColor)
 {
-    myPenColor = newColor;
+    //TODO give to Tool
 }
 
 // Used to change the pen width
 void PaintingArea::setPenWidth(int newWidth)
 {
-    myPenWidth = newWidth;
+    //TODO give to Tool
 }
 
 // Color the image area with white
@@ -158,48 +145,50 @@ void PaintingArea::clearImage(int r, int g, int b){
     if(this->activeLayer==-1){
         return;
     }
-    IntelliImage* active = layerStructure[activeLayer].image;
+    IntelliImage* active = layerStructure[static_cast<size_t>(activeLayer)].image;
     active->floodFill(QColor(r, g, b, 255));
 
     update();
 }
 
 void PaintingArea::activate(int a){
-    this->setLayerToActive(a);
+    if(a>=0 && a < static_cast<int>(layerStructure.size())){
+        this->setLayerToActive(a);
+    }
 }
 
 void PaintingArea::setAlpha(int a){
     if(activeLayer>=0){
-        layerStructure[activeLayer].alpha=a;
+        layerStructure[static_cast<size_t>(activeLayer)].alpha=a;
     }
 }
 
 void PaintingArea::getMoveUp(int a){
-    layerStructure[activeLayer].heightOffset-=a;
+    layerStructure[static_cast<size_t>(activeLayer)].heightOffset-=a;
 }
 
 void PaintingArea::getMoveDown(int a){
-    layerStructure[activeLayer].heightOffset+=a;
+    layerStructure[static_cast<size_t>(activeLayer)].heightOffset+=a;
 }
 
 void PaintingArea::getMoveRight(int a){
-    layerStructure[activeLayer].widthOffset+=a;
+    layerStructure[static_cast<size_t>(activeLayer)].widthOffset+=a;
 }
 
 void PaintingArea::getMoveLeft(int a){
-    layerStructure[activeLayer].widthOffset-=a;
+    layerStructure[static_cast<size_t>(activeLayer)].widthOffset-=a;
 }
 
 void PaintingArea::getMoveLayerUp(){
-    if(activeLayer<layerStructure.size()-1 && activeLayer>=0){
-        std::swap(layerStructure[activeLayer], layerStructure[activeLayer+1]);
+    if(activeLayer<static_cast<int>(layerStructure.size()-1) && activeLayer>=0){
+        std::swap(layerStructure[static_cast<size_t>(activeLayer)], layerStructure[static_cast<size_t>(activeLayer+1)]);
         activeLayer++;
     }
 }
 
 void PaintingArea::getMoveLayerDown(){
     if(activeLayer>0){
-        std::swap(layerStructure[activeLayer], layerStructure[activeLayer-1]);
+        std::swap(layerStructure[static_cast<size_t>(activeLayer)], layerStructure[static_cast<size_t>(activeLayer-1)]);
         activeLayer--;
     }
 }
@@ -209,18 +198,7 @@ void PaintingArea::getMoveLayerDown(){
 // Set that we are currently drawing
 void PaintingArea::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton) {
-        if(this->activeLayer==-1){
-            return;
-        }
-        LayerObject& active = layerStructure[activeLayer];
-
-        int x = event->x()-active.widthOffset;
-        int y = event->y()-active.heightOffset;
-        //TODO CALCULATE LAST POINT
-        lastPoint=QPoint(x,y);
-        scribbling = true;
-    }
+    //TODO implement in tool
 }
 
 
@@ -229,38 +207,13 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((event->buttons() & Qt::LeftButton) && scribbling){
-        if(this->activeLayer==-1){
-            return;
-        }
-        LayerObject& active = layerStructure[activeLayer];
-
-        int x = event->x()-active.widthOffset;
-        int y = event->y()-active.heightOffset;
-
-        //TODO CALCULATE NEW POINT
-        drawLineTo(QPoint(x,y));
-        update();
-    }
+    //TODO implement in Tool
 }
 
 // If the button is released we set variables to stop drawing
 void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton && scribbling) {
-        if(this->activeLayer==-1){
-            return;
-        }
-        LayerObject& active = layerStructure[activeLayer];
-
-        int x = event->x()-active.widthOffset;
-        int y = event->y()-active.heightOffset;
-
-        //TODO CALCULATE NEW POINT
-        drawLineTo(QPoint(x,y));
-        update();
-        scribbling = false;
-    }
+    //TODO implement in tool
 }
 
 // QPainter provides functions to draw on the widget
@@ -280,32 +233,17 @@ void PaintingArea::paintEvent(QPaintEvent *event)
 // to cut down on the need to resize the image
 void PaintingArea::resizeEvent(QResizeEvent *event)
 {
-    if(this->activeLayer==-1){
-        return;
-    }
-    LayerObject active = layerStructure[activeLayer];
-
-    QPainter painter(this);
-    QRect dirtyRec(QPoint(0,0), event->size());
-    painter.drawImage(dirtyRec, active.image->getDisplayable(event->size(), active.alpha), dirtyRec);
+    //TODO wait till tool works
     update();
 }
 
 void PaintingArea::drawLineTo(const QPoint &endPoint)
 {
-    //// Used to draw on the widget
-    if(this->activeLayer==-1){
-        return;
-    }
-    LayerObject active = layerStructure[activeLayer];
 
-    active.image->drawLine(lastPoint, endPoint,myPenColor, myPenWidth);
-    lastPoint = endPoint;
-    update();
 }
 
 void PaintingArea::resizeImage(QImage *image_res, const QSize &newSize){
-    image_res->scaled(newSize,Qt::IgnoreAspectRatio);
+    //TODO implement
 }
 
 void PaintingArea::assembleLayers(bool forSaving){
@@ -314,20 +252,23 @@ void PaintingArea::assembleLayers(bool forSaving){
     }else{
         Canvas->fill(Qt::GlobalColor::black);
     }
-    //TODO interpolation of alpha for saving
     for(size_t i=0; i<layerStructure.size(); i++){
         LayerObject layer = layerStructure[i];
         QImage cpy = layer.image->getDisplayable(layer.alpha);
         QColor clr_0;
         QColor clr_1;
         for(int y=0; y<layer.height; y++){
+            if(layer.heightOffset+y<0) continue;
+            if(layer.heightOffset+y>=maxHeight) break;
             for(int x=0; x<layer.width; x++){
+                if(layer.widthOffset+x<0) continue;
+                if(layer.heightOffset+y>=maxWidth) break;
                 clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.heightOffset+y);
                 clr_1=cpy.pixelColor(x,y);
-                float t = (float)clr_1.alpha()/255.f;
-                int r =(float)clr_1.red()*(t)+(float)clr_0.red()*(1.-t);
-                int g =(float)clr_1.green()*(t)+(float)clr_0.green()*(1.-t);
-                int b =(float)clr_1.blue()*(t)+(float)clr_0.blue()*(1.-t);
+                float t = static_cast<float>(clr_1.alpha())/255.f;
+                int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
+                int g =static_cast<int>(static_cast<float>(clr_1.green())*(t)+static_cast<float>(clr_0.green())*(1.f-t)+0.5f);
+                int b =static_cast<int>(static_cast<float>(clr_1.blue())*(t)+static_cast<float>(clr_0.blue()*(1.f-t))+0.5f);
                 int a =std::min(clr_0.alpha()+clr_1.alpha(), 255);
                 clr_0.setRed(r);
                 clr_0.setGreen(g);

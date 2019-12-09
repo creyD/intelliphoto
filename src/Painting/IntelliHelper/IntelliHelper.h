@@ -5,18 +5,27 @@
 
 
 class IntelliHelper{
+
 public:
-    //checks for orientation:
-    //  0 - colinear
-    //  1 - clockwise
-    //  2 - counter clockwise
-    static int orientation(QPoint& p1, QPoint& p2, QPoint& p3);
 
-    //checks if q is on segment p1-p2
-    static bool onSegment(QPoint& p1, QPoint& q, QPoint& p2);
+    static inline float sign(QPoint& p1, QPoint& p2, QPoint& p3){
+        return (p1.x()-p3.x())*(p2.y()-p3.y())-(p2.x()-p3.x())*(p1.y()-p3.y());
+    }
 
-    //cheks if p1-q1 intersects with p2-q2
-    static bool hasIntersection(QPoint& p1, QPoint& q1, QPoint& p2, QPoint& q2);
+
+    static inline bool isInTriangle(QPoint& A, QPoint& B, QPoint& C, QPoint& P){
+        float val1, val2, val3;
+        bool neg, pos;
+
+        val1 = IntelliHelper::sign(P,A,B);
+        val2 = IntelliHelper::sign(P,B,C);
+        val3 = IntelliHelper::sign(P,C,A);
+
+        neg = (val1<0.f) || (val2<0.f) || (val3<0.f);
+        pos = (val1>0.f) || (val2>0.f) || (val3>0.f);
+
+        return !(neg && pos);
+    }
 };
 
 #endif
