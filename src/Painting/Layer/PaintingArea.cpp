@@ -58,6 +58,7 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
     return static_cast<int>(layerBundle.size())-1;
 }
 
+
 void PaintingArea::deleteLayer(int index){
     if(index<static_cast<int>(layerBundle.size())){
         this->layerBundle.erase(layerBundle.begin()+index);
@@ -217,6 +218,7 @@ void PaintingArea::activateLowerLayer(){
     }
 }
 
+
 void PaintingArea::assembleLayers(bool forSaving){
     if(forSaving){
         Canvas->fill(Qt::GlobalColor::transparent);
@@ -249,5 +251,18 @@ void PaintingArea::assembleLayers(bool forSaving){
                 Canvas->setPixelColor(layer.widthOffset+x, layer.hightOffset+y, clr_0);
             }
         }
+    }
+}
+
+void PaintingArea::createTempLayerAfter(int idx){
+    if(idx>=0){
+        LayerObject newLayer;
+        newLayer.alpha = layerBundle[idx].alpha;
+        newLayer.hight = layerBundle[idx].hight;
+        newLayer.width = layerBundle[idx].width;
+        newLayer.hightOffset = layerBundle[idx].hightOffset;
+        newLayer.widthOffset = layerBundle[idx].widthOffset;
+        newLayer.image = layerBundle[idx].image->getDeepCopy();
+        layerBundle.insert(layerBundle.begin()+idx+1,newLayer);
     }
 }

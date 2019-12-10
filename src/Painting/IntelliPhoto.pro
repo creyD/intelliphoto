@@ -22,6 +22,7 @@ SOURCES += \
     Image/IntelliShapedImage.cpp \
     IntelliHelper/IntelliHelper.cpp \
     Layer/PaintingArea.cpp \
+    Tool/IntelliTool.cpp \
     main.cpp
 
 HEADERS += \

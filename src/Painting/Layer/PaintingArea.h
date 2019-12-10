@@ -5,9 +5,11 @@
 #include <QColor>
 #include <QImage>
 #include"Image/IntelliImage.h"
+#include"Tool/IntelliTool.h"
 #include <QPoint>
 #include <QWidget>
 #include <QList>
+
 
 struct LayerObject{
     IntelliImage* image;
@@ -16,6 +18,8 @@ struct LayerObject{
     int widthOffset;
     int hightOffset;
     int alpha=255;
+
+
 };
 
 class PaintingArea : public QWidget
@@ -24,7 +28,7 @@ class PaintingArea : public QWidget
     // for all Qt objects
     // QObjects handle events
     Q_OBJECT
-
+    friend IntelliTool;
 public:
     PaintingArea(int maxWidth=600, int maxHeight=600, QWidget *parent = nullptr);
 
@@ -33,6 +37,7 @@ public:
     bool save(const QString &fileName, const char *fileFormat);
 
     int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image);
+    int addLayerAt(int idx, int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image);
     void deleteLayer(int index);
     void setLayerToActive(int index);
     void setAlphaOfLayer(int index, int alpha);
@@ -42,6 +47,7 @@ public:
 
     // Has the image been modified since last save
     bool isModified() const { return modified; }
+
 
 public slots:
 
@@ -66,6 +72,7 @@ private:
     void activateUpperLayer();
     void activateLowerLayer();
 
+
     QImage* Canvas;
     int maxWidth;
     int maxHeight;
@@ -80,6 +87,9 @@ private:
     // Will be marked true or false depending on if
     // we have saved after a change
     bool modified=false;
+
+    //Helper for Tool
+    void createTempLayerAfter(int idx);
 };
 
 #endif

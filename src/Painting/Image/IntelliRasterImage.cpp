@@ -12,8 +12,14 @@ IntelliRasterImage::~IntelliRasterImage(){
 
 }
 
-void IntelliRasterImage::calculateVisiblity(){
+IntelliImage* IntelliRasterImage::getDeepCopy(){
+    IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height());
+    raster->imageData.fill(Qt::transparent);
+    return raster;
+}
 
+void IntelliRasterImage::calculateVisiblity(){
+    //not used in raster image
 }
 
 QImage IntelliRasterImage::getDisplayable(int alpha){

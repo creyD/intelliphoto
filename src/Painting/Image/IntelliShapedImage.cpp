@@ -16,6 +16,13 @@ QImage IntelliShapedImage::getDisplayable(int alpha){
     return getDisplayable(imageData.size(),alpha);
 }
 
+IntelliImage* IntelliShapedImage::getDeepCopy(){
+    IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height());
+    shaped->setPolygon(this->polygonData);
+    shaped->imageData.fill(Qt::transparent);
+    return shaped;
+}
+
 void IntelliShapedImage::calculateVisiblity(){
     if(polygonData.size()<=2){
         QColor clr;
