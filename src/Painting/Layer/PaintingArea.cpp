@@ -163,8 +163,8 @@ void PaintingArea::slotActivateLayer(int a){
 // Set that we are currently drawing
 void PaintingArea::mousePressEvent(QMouseEvent *event)
 {
-    int x = (float)layerBundle[activeLayer].width/(float)width()*event->x()+layerBundle[activeLayer].widthOffset;
-    int y = (float)layerBundle[activeLayer].hight/(float)height()*event->y()+layerBundle[activeLayer].hightOffset;
+    int x = event->x()-layerBundle[activeLayer].widthOffset;
+    int y = event->y()-layerBundle[activeLayer].hightOffset;
     if(event->button() == Qt::LeftButton){
         Tool->onMouseLeftPressed(x, y);
     }else if(event->button() == Qt::RightButton){
@@ -178,16 +178,16 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
-    int x = (float)layerBundle[activeLayer].width/(float)width()*event->x()+layerBundle[activeLayer].widthOffset;
-    int y = (float)layerBundle[activeLayer].hight/(float)height()*event->y()+layerBundle[activeLayer].hightOffset;
+    int x = event->x()-layerBundle[activeLayer].widthOffset;
+    int y = event->y()-layerBundle[activeLayer].hightOffset;
     Tool->onMouseMoved(x, y);
 }
 
 // If the button is released we set variables to stop drawing
 void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 {
-    int x = (float)layerBundle[activeLayer].width/(float)width()*event->x()+layerBundle[activeLayer].widthOffset;
-    int y = (float)layerBundle[activeLayer].hight/(float)height()*event->y()+layerBundle[activeLayer].hightOffset;
+    int x = event->x()-layerBundle[activeLayer].widthOffset;
+    int y = event->y()-layerBundle[activeLayer].hightOffset;
     if(event->button() == Qt::LeftButton){
         Tool->onMouseLeftReleased(x, y);
     }else if(event->button() == Qt::RightButton){

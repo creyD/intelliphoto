@@ -14,8 +14,6 @@ IntelliToolPen::~IntelliToolPen(){
 void IntelliToolPen::onMouseRightPressed(int x, int y){
     IntelliTool::onMouseRightPressed(x,y);
     //implement in here
-    this->point=QPoint(x,y);
-    this->Canvas->image->drawPixel(point, QColor(255,0,0,255));
 }
 
 void IntelliToolPen::onMouseRightReleased(int x, int y){
@@ -26,6 +24,7 @@ void IntelliToolPen::onMouseRightReleased(int x, int y){
 void IntelliToolPen::onMouseLeftPressed(int x, int y){
     //implement in here
     IntelliTool::onMouseLeftPressed(x,y);
+    this->point=QPoint(x,y);
 }
 
 void IntelliToolPen::onMouseLeftReleased(int x, int y){

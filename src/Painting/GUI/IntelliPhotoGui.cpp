@@ -89,7 +89,7 @@ void IntelliPhotoGui::slotCreateNewLayer()
     // Create New Layer
     if (ok1&&ok2)
     {
-        int layer = paintingArea->addLayer(width,height,100,100);
+        int layer = paintingArea->addLayer(width,height,0,0);
         paintingArea->slotActivateLayer(layer);
     }
 }
