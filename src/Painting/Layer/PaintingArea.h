@@ -4,11 +4,11 @@
 
 #include <QColor>
 #include <QImage>
-#include"Image/IntelliImage.h"
-#include"Tool/IntelliTool.h"
 #include <QPoint>
 #include <QWidget>
 #include <QList>
+#include"Image/IntelliImage.h"
+#include"Tool/IntelliTool.h"
 
 
 struct LayerObject{
@@ -76,6 +76,8 @@ private:
     QImage* Canvas;
     int maxWidth;
     int maxHeight;
+
+    IntelliTool* Tool;
 
     std::vector<LayerObject> layerBundle;
     int activeLayer=-1;

@@ -12,28 +12,29 @@ IntelliTool::~IntelliTool(){
 
 
 void IntelliTool::onMouseRightPressed(int x, int y){
-    this->drawing=true;
-    //create drawing layer
-    this->createToolLayer();
+    if(drawing){
+        drawing=false;
+        this->deleteToolLayer();
+    }
 }
 
 void IntelliTool::onMouseRightReleased(int x, int y){
+    //optional for tool
+}
+
+void IntelliTool::onMouseLeftPressed(int x, int y){
+    this->drawing=true;
+    //create drawing layer
+    this->createToolLayer();
+
+}
+
+void IntelliTool::onMouseLeftReleased(int x, int y){
     if(drawing){
         drawing=false;
         this->mergeToolLayer();
         this->deleteToolLayer();
     }
-}
-
-void IntelliTool::onMouseLeftPressed(int x, int y){
-    if(drawing){
-        drawing=false;
-        this->deleteToolLayer();
-    }
-}
-
-void IntelliTool::onMouseLeftReleased(int x, int y){
-    //optional for tool
 }
 
 void IntelliTool::onMouseMoved(int x, int y){

@@ -23,6 +23,7 @@ SOURCES += \
     IntelliHelper/IntelliHelper.cpp \
     Layer/PaintingArea.cpp \
     Tool/IntelliTool.cpp \
+    Tool/IntelliToolPen.cpp \
     main.cpp
 
 HEADERS += \
@@ -32,7 +33,8 @@ HEADERS += \
     Image/IntelliShapedImage.h \
     IntelliHelper/IntelliHelper.h \
     Layer/PaintingArea.h \
-    Tool/IntelliTool.h
+    Tool/IntelliTool.h \
+    Tool/IntelliToolPen.h
 
 FORMS += \
     widget.ui

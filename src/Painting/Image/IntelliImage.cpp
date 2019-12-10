@@ -50,9 +50,6 @@ void IntelliImage::drawPixel(const QPoint &p1, const QColor& color){
 
     // Draw a line from the last registered point to the current
     painter.drawPoint(p1);
-
-    // Call to update the rectangular space where we drew
-        //update(QRect(p1, p2));
 }
 
 void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& color, const int& penWidth){
@@ -69,5 +66,4 @@ void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& co
 
 void IntelliImage::floodFill(const QColor& color){
     imageData.fill(color);
-
 }

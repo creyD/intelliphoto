@@ -133,22 +133,22 @@ void IntelliPhotoGui::slotSetActiveAlpha(){
 }
 
 void IntelliPhotoGui::slotPositionMoveUp(){
-    paintingArea->movePositionActive(0,-2);
+    paintingArea->movePositionActive(0,-20);
     update();
 }
 
 void IntelliPhotoGui::slotPositionMoveDown(){
-    paintingArea->movePositionActive(0,2);
+    paintingArea->movePositionActive(0,20);
     update();
 }
 
 void IntelliPhotoGui::slotPositionMoveLeft(){
-    paintingArea->movePositionActive(-2,0);
+    paintingArea->movePositionActive(-20,0);
     update();
 }
 
 void IntelliPhotoGui::slotPositionMoveRight(){
-    paintingArea->movePositionActive(2,0);
+    paintingArea->movePositionActive(20,0);
     update();
 }
 
@@ -269,10 +269,6 @@ void IntelliPhotoGui::createActions()
     actionDeleteLayer = new QAction(tr("&Delete Layer..."), this);
     connect(actionDeleteLayer, SIGNAL(triggered()), this, SLOT(slotDeleteLayer()));
 
-    // Delete Active Layer action and tie to paintingArea::deleteActiveLayerLayer()
-    actionDeleteActiveLayer = new QAction(tr("&Delete active Layer"), this);
-    connect(actionDeleteActiveLayer, SIGNAL(triggered()), paintingArea, SLOT(deleteActiveLayer()));
-
     actionFloodFill = new QAction(tr("&clear Image"), this);
     connect(actionFloodFill, SIGNAL(triggered()), this, SLOT(slotClearActiveLayer()));
 
@@ -347,7 +343,6 @@ void IntelliPhotoGui::createMenus()
     layerMenu = new QMenu(tr("&Layer"), this);
     layerMenu->addAction(actionCreateNewLayer);
     layerMenu->addAction(actionDeleteLayer);
-    layerMenu->addAction(actionDeleteActiveLayer);
 
     //Attach all Tool Options
     toolMenu = new QMenu(tr("&Tools"), this);

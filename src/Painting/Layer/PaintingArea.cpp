@@ -1,18 +1,21 @@
 // ---------- PaintingArea.cpp ----------
+#include "string.h"
+
+#include <vector>
 
 #include <QtWidgets>
+#include <QPoint>
 #include <QRect>
-#include "string.h"
+
 #include "PaintingArea.h"
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
-
-#include <vector>
-#include <QPoint>
+#include "Tool/IntelliToolPen.h"
 
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
+    this->Tool = new IntelliToolPen(this);
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
@@ -160,7 +163,13 @@ void PaintingArea::slotActivateLayer(int a){
 // Set that we are currently drawing
 void PaintingArea::mousePressEvent(QMouseEvent *event)
 {
-    //TODO implement in tool
+    int x = (float)layerBundle[activeLayer].width/(float)width()*event->x()+layerBundle[activeLayer].widthOffset;
+    int y = (float)layerBundle[activeLayer].hight/(float)height()*event->y()+layerBundle[activeLayer].hightOffset;
+    if(event->button() == Qt::LeftButton){
+        Tool->onMouseLeftPressed(x, y);
+    }else if(event->button() == Qt::RightButton){
+        Tool->onMouseRightPressed(x, y);
+    }
 }
 
 
@@ -169,13 +178,21 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
-    //TODO implement in Tool
+    int x = (float)layerBundle[activeLayer].width/(float)width()*event->x()+layerBundle[activeLayer].widthOffset;
+    int y = (float)layerBundle[activeLayer].hight/(float)height()*event->y()+layerBundle[activeLayer].hightOffset;
+    Tool->onMouseMoved(x, y);
 }
 
 // If the button is released we set variables to stop drawing
 void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 {
-    //TODO implement in tool
+    int x = (float)layerBundle[activeLayer].width/(float)width()*event->x()+layerBundle[activeLayer].widthOffset;
+    int y = (float)layerBundle[activeLayer].hight/(float)height()*event->y()+layerBundle[activeLayer].hightOffset;
+    if(event->button() == Qt::LeftButton){
+        Tool->onMouseLeftReleased(x, y);
+    }else if(event->button() == Qt::RightButton){
+        Tool->onMouseRightReleased(x, y);
+    }
 }
 
 // QPainter provides functions to draw on the widget
@@ -235,7 +252,7 @@ void PaintingArea::assembleLayers(bool forSaving){
             if(layer.hightOffset+y>=maxHeight) break;
             for(int x=0; x<layer.width; x++){
                 if(layer.widthOffset+x<0) continue;
-                if(layer.hightOffset+y>=maxWidth) break;
+                if(layer.widthOffset+x>=maxWidth) break;
                 clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.hightOffset+y);
                 clr_1=cpy.pixelColor(x,y);
                 float t = static_cast<float>(clr_1.alpha())/255.f;
@@ -257,7 +274,7 @@ void PaintingArea::assembleLayers(bool forSaving){
 void PaintingArea::createTempLayerAfter(int idx){
     if(idx>=0){
         LayerObject newLayer;
-        newLayer.alpha = layerBundle[idx].alpha;
+        newLayer.alpha = 255;
         newLayer.hight = layerBundle[idx].hight;
         newLayer.width = layerBundle[idx].width;
         newLayer.hightOffset = layerBundle[idx].hightOffset;

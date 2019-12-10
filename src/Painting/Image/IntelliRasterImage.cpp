@@ -31,7 +31,7 @@ QImage IntelliRasterImage::getDisplayable(const QSize& displaySize, int alpha){
     for(int y = 0; y<copy.height(); y++){
         for(int x = 0; x<copy.width(); x++){
             QColor clr = copy.pixelColor(x,y);
-            clr.setAlpha(alpha);
+            clr.setAlpha(std::min(alpha, clr.alpha()));
             copy.setPixelColor(x,y, clr);
         }
     }

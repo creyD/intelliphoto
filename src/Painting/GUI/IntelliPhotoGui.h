@@ -75,7 +75,6 @@ private:
 
     QAction *actionCreateNewLayer;
     QAction *actionDeleteLayer;
-    QAction *actionDeleteActiveLayer;
 
     QAction *actionAboutDialog;
     QAction *actionAboutQtDialog;
