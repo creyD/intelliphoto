@@ -12,6 +12,8 @@
 // PaintingArea used to paint the image
 class PaintingArea;
 
+class IntelliTool;
+
 class IntelliPhotoGui : public QMainWindow
 {
     // Declares our class as a QObject which is the base class
@@ -31,6 +33,9 @@ private slots:
     void slotSave();
     void slotCreateNewLayer();
     void slotDeleteLayer();
+
+    void slotGetColorbar();
+
     void slotAboutDialog();
 
     void slotClearActiveLayer();
@@ -60,6 +65,7 @@ private:
 
     // What we'll draw on
     PaintingArea* paintingArea;
+    IntelliTool* Tool;
 
     // The menu widgets
     QMenu *saveAsMenu;
@@ -75,6 +81,8 @@ private:
 
     QAction *actionCreateNewLayer;
     QAction *actionDeleteLayer;
+
+    QAction *actionGetColorbar;
 
     QAction *actionAboutDialog;
     QAction *actionAboutQtDialog;

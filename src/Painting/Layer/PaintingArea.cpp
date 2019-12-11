@@ -11,11 +11,14 @@
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
 #include "Tool/IntelliToolPen.h"
+#include "Tool/IntelliToolSetColorTool.h"
+#include "Tool/IntelliToolFloodFillTool.h"
 
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
-    this->Tool = new IntelliToolPen(this);
+    this->Tool = new IntelliToolFloodFillTool(this);
+    this->ColorTool = new IntelliToolSetColorTool(this);
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
@@ -32,6 +35,10 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     layerBundle[1].alpha=200;
 
     activeLayer=1;
+}
+
+IntelliToolSetColorTool* PaintingArea::getTool(){
+    return ColorTool;
 }
 
 void PaintingArea::setUp(int maxWidth, int maxHeight){

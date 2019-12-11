@@ -111,6 +111,17 @@ void IntelliPhotoGui::slotDeleteLayer()
         paintingArea->deleteLayer(layerNumber);
 }
 
+void IntelliPhotoGui::slotGetColorbar(){
+
+    bool ok1;
+
+    int firstOrSecondColor = QInputDialog::getInt(this, tr("Which Color"),
+                                            tr("Number:"),
+                                            1,1, 2, 1, &ok1);
+
+    Tool = paintingArea->getTool();
+    Tool->getColorbar(firstOrSecondColor);
+}
 
 void IntelliPhotoGui::slotSetActiveAlpha(){
     // Stores button value
@@ -269,6 +280,9 @@ void IntelliPhotoGui::createActions()
     actionDeleteLayer = new QAction(tr("&Delete Layer..."), this);
     connect(actionDeleteLayer, SIGNAL(triggered()), this, SLOT(slotDeleteLayer()));
 
+    actionGetColorbar = new QAction(tr("&Set Color"),this);
+    connect(actionGetColorbar, SIGNAL(triggered()), this, SLOT(slotGetColorbar()));
+
     actionFloodFill = new QAction(tr("&clear Image"), this);
     connect(actionFloodFill, SIGNAL(triggered()), this, SLOT(slotClearActiveLayer()));
 
@@ -346,6 +360,7 @@ void IntelliPhotoGui::createMenus()
 
     //Attach all Tool Options
     toolMenu = new QMenu(tr("&Tools"), this);
+    toolMenu->addAction(actionGetColorbar);
 
     // Attach all actions to Help
     helpMenu = new QMenu(tr("&Help"), this);

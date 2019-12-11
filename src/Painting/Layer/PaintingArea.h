@@ -7,8 +7,9 @@
 #include <QPoint>
 #include <QWidget>
 #include <QList>
-#include"Image/IntelliImage.h"
-#include"Tool/IntelliTool.h"
+#include "Image/IntelliImage.h"
+#include "Tool/IntelliTool.h"
+#include "Tool/IntelliToolSetColorTool.h"
 
 
 struct LayerObject{
@@ -31,6 +32,8 @@ class PaintingArea : public QWidget
     friend IntelliTool;
 public:
     PaintingArea(int maxWidth=600, int maxHeight=600, QWidget *parent = nullptr);
+
+    IntelliToolSetColorTool* getTool(); //TODO: rename function, when there are more Tools
 
     // Handles all events
     bool open(const QString &fileName);
@@ -78,6 +81,7 @@ private:
     int maxHeight;
 
     IntelliTool* Tool;
+    IntelliToolSetColorTool* ColorTool;
 
     std::vector<LayerObject> layerBundle;
     int activeLayer=-1;

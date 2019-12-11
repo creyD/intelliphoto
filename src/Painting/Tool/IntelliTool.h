@@ -1,7 +1,7 @@
 #ifndef Intelli_Tool_H
 #define Intelli_Tool_H
 
-#include<vector>
+#include <vector>
 
 class LayerObject;
 class PaintingArea;
@@ -16,9 +16,12 @@ protected:
     LayerObject* Active;
     LayerObject* Canvas;
     bool drawing = false;
+
 public:
     IntelliTool(PaintingArea* Area);
     virtual ~IntelliTool() = 0;
+
+    virtual void getColorbar(int firstOrSecondColor);
 
     virtual void onMouseRightPressed(int x, int y);
     virtual void onMouseRightReleased(int x, int y);
