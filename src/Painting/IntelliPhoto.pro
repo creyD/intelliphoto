@@ -43,6 +43,7 @@ QMAKE_CXXFLAGS
 QMAKE_LFLAGS
 
 RC_ICONS = icon.ico
+ICON = icon.icns
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
