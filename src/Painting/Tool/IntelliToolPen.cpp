@@ -1,10 +1,15 @@
 #include "IntelliToolPen.h"
 #include "Layer/PaintingArea.h"
 #include "QDebug"
+#include "QColorDialog"
+#include "QInputDialog"
 
 IntelliToolPen::IntelliToolPen(PaintingArea* Area)
-    :IntelliToolSetColorTool(Area){
+    :IntelliTool(Area){
+    this->color = QColorDialog::getColor(Qt::blue,nullptr,"Flood Fill Color");
 
+    bool ok;
+    this->penWidth = QInputDialog::getInt(nullptr, "Pen width", "Number:", 1,0, 50, 1, &ok);
 }
 
 IntelliToolPen::~IntelliToolPen(){
@@ -35,9 +40,7 @@ void IntelliToolPen::onMouseLeftReleased(int x, int y){
 void IntelliToolPen::onMouseMoved(int x, int y){
     if(this->drawing){
         QPoint newPoint(x,y);
-        Tool = Area->getTool();
-        qDebug() << Tool->getFirstColor();
-        this->Canvas->image->drawLine(this->point, newPoint, Tool->getFirstColor(), 2);
+        this->Canvas->image->drawLine(this->point, newPoint, color, penWidth);
         this->point=newPoint;
     }
 }

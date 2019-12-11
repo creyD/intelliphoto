@@ -33,11 +33,6 @@ private slots:
     void slotSave();
     void slotCreateNewLayer();
     void slotDeleteLayer();
-
-    void slotGetColorbar();
-
-    void slotAboutDialog();
-
     void slotClearActiveLayer();
     void slotSetActiveLayer();
     void slotSetActiveAlpha();
@@ -47,6 +42,11 @@ private slots:
     void slotPositionMoveRight();
     void slotMoveLayerUp();
     void slotMoveLayerDown();
+
+    void slotCreatePenTool();
+    void slotCreateFloodFillTool();
+
+    void slotAboutDialog();
 
 private:
     // Will tie user actions to functions
@@ -82,12 +82,12 @@ private:
     QAction *actionCreateNewLayer;
     QAction *actionDeleteLayer;
 
-    QAction *actionGetColorbar;
+    QAction *actionCreatePenTool;
+    QAction *actionCreateFloodFillTool;
 
     QAction *actionAboutDialog;
     QAction *actionAboutQtDialog;
 
-    QAction* actionFloodFill;
     QAction* actionSetActiveLayer;
     QAction* actionSetActiveAlpha;
     QAction* actionMovePositionUp;

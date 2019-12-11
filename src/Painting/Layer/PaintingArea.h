@@ -9,7 +9,6 @@
 #include <QList>
 #include "Image/IntelliImage.h"
 #include "Tool/IntelliTool.h"
-#include "Tool/IntelliToolSetColorTool.h"
 
 
 struct LayerObject{
@@ -33,8 +32,6 @@ class PaintingArea : public QWidget
 public:
     PaintingArea(int maxWidth=600, int maxHeight=600, QWidget *parent = nullptr);
 
-    IntelliToolSetColorTool* getTool(); //TODO: rename function, when there are more Tools
-
     // Handles all events
     bool open(const QString &fileName);
     bool save(const QString &fileName, const char *fileFormat);
@@ -51,6 +48,9 @@ public:
     // Has the image been modified since last save
     bool isModified() const { return modified; }
 
+    //create tools
+    void createPenTool();
+    void createFloodFillTool();
 
 public slots:
 
@@ -81,7 +81,6 @@ private:
     int maxHeight;
 
     IntelliTool* Tool;
-    IntelliToolSetColorTool* ColorTool;
 
     std::vector<LayerObject> layerBundle;
     int activeLayer=-1;

@@ -11,14 +11,12 @@
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
 #include "Tool/IntelliToolPen.h"
-#include "Tool/IntelliToolSetColorTool.h"
 #include "Tool/IntelliToolFloodFillTool.h"
 
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
-    this->Tool = new IntelliToolFloodFillTool(this);
-    this->ColorTool = new IntelliToolSetColorTool(this);
+    this->Tool = nullptr;
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
@@ -37,9 +35,6 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     activeLayer=1;
 }
 
-IntelliToolSetColorTool* PaintingArea::getTool(){
-    return ColorTool;
-}
 
 void PaintingArea::setUp(int maxWidth, int maxHeight){
     //set standart parameter
@@ -165,11 +160,23 @@ void PaintingArea::slotActivateLayer(int a){
     }
 }
 
+void PaintingArea::createPenTool(){
+    delete this->Tool;
+    Tool = new IntelliToolPen(this);
+}
+
+void PaintingArea::createFloodFillTool(){
+    delete this->Tool;
+    Tool = new IntelliToolFloodFillTool(this);
+}
+
 // If a mouse button is pressed check if it was the
 // left button and if so store the current position
 // Set that we are currently drawing
 void PaintingArea::mousePressEvent(QMouseEvent *event)
 {
+    if(Tool == nullptr)
+        return;
     int x = event->x()-layerBundle[activeLayer].widthOffset;
     int y = event->y()-layerBundle[activeLayer].hightOffset;
     if(event->button() == Qt::LeftButton){
@@ -185,6 +192,8 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 {
+    if(Tool == nullptr)
+        return;
     int x = event->x()-layerBundle[activeLayer].widthOffset;
     int y = event->y()-layerBundle[activeLayer].hightOffset;
     Tool->onMouseMoved(x, y);
@@ -193,6 +202,8 @@ void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 // If the button is released we set variables to stop drawing
 void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 {
+    if(Tool == nullptr)
+        return;
     int x = event->x()-layerBundle[activeLayer].widthOffset;
     int y = event->y()-layerBundle[activeLayer].hightOffset;
     if(event->button() == Qt::LeftButton){

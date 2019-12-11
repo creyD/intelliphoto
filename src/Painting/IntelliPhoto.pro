@@ -25,7 +25,6 @@ SOURCES += \
     Tool/IntelliTool.cpp \
     Tool/IntelliToolFloodFillTool.cpp \
     Tool/IntelliToolPen.cpp \
-    Tool/IntelliToolSetColorTool.cpp \
     main.cpp
 
 HEADERS += \
@@ -37,8 +36,7 @@ HEADERS += \
     Layer/PaintingArea.h \
     Tool/IntelliTool.h \
     Tool/IntelliToolFloodFillTool.h \
-    Tool/IntelliToolPen.h \
-    Tool/IntelliToolSetColorTool.h
+    Tool/IntelliToolPen.h
 
 FORMS += \
     widget.ui

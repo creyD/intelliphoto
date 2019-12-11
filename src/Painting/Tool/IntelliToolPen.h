@@ -1,11 +1,13 @@
 #ifndef INTELLITOOLPEN_H
 #define INTELLITOOLPEN_H
 
-#include"IntelliToolSetColorTool.h"
+#include"IntelliTool.h"
 #include"QColor"
 #include"QPoint"
 
-class IntelliToolPen : public IntelliToolSetColorTool{
+class IntelliToolPen : public IntelliTool{
+    QColor color;
+    int penWidth;
     QPoint point;
 public:
     IntelliToolPen(PaintingArea* Area);
@@ -17,9 +19,6 @@ public:
     virtual void onMouseLeftReleased(int x, int y) override;
 
     virtual void onMouseMoved(int x, int y) override;
-
-private:
-    IntelliToolSetColorTool* Tool;
 };
 
 #endif // INTELLITOOLPEN_H

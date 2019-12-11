@@ -1,41 +1,30 @@
 #include "IntelliToolFloodFillTool.h"
 #include "Layer/PaintingArea.h"
+#include "QColorDialog"
 
 IntelliToolFloodFillTool::IntelliToolFloodFillTool(PaintingArea* Area)
-    :IntelliToolSetColorTool(Area)
-{
-    Tool = Area->getTool();
-    isPressed = false;
+    :IntelliTool(Area){
+
+    this->color = QColorDialog::getColor(Qt::blue,nullptr,"Flood Fill Color");
 }
 
 void IntelliToolFloodFillTool::onMouseLeftPressed(int x, int y){
-    if(!isPressed){
-        isPressed = true;
-        IntelliTool::onMouseLeftPressed(x,y);
-        Tool = Area->getTool();
-        this->Canvas->image->floodFill(Tool->getFirstColor());
-    }
+    IntelliTool::onMouseLeftPressed(x,y);
+    this->Canvas->image->floodFill(color);
 }
 
 void IntelliToolFloodFillTool::onMouseRightPressed(int x, int y){
-    if(!isPressed){
-        isPressed = true;
-        IntelliTool::onMouseLeftPressed(x,y);
-        Tool = Area->getTool();
-        this->Canvas->image->floodFill(Tool->getSecondColor());
-    }
+    IntelliTool::onMouseRightPressed(x,y);
 }
 
 void IntelliToolFloodFillTool::onMouseRightReleased(int x, int y){
-     IntelliTool::onMouseLeftReleased(x,y);
-     if(isPressed) isPressed = false;
+     IntelliTool::onMouseRightReleased(x,y);
 }
 
 void IntelliToolFloodFillTool::onMouseLeftReleased(int x, int y){
      IntelliTool::onMouseLeftReleased(x,y);
-     if(isPressed) isPressed = false;
 }
 
 void IntelliToolFloodFillTool::onMouseMoved(int x, int y){
-    IntelliTool::onMouseRightPressed(x,y);
+    IntelliTool::onMouseMoved(x,y);
 }
