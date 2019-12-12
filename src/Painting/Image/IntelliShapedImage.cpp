@@ -5,7 +5,7 @@
 #include<QDebug>
 
 IntelliShapedImage::IntelliShapedImage(int weight, int height)
-    :IntelliImage(weight, height){
+    :IntelliRasterImage(weight, height){
 }
 
 IntelliShapedImage::~IntelliShapedImage(){

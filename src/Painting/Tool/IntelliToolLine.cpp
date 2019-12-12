@@ -40,8 +40,15 @@ void IntelliToolLine::onMouseMoved(int x, int y){
         this->Canvas->image->drawPlain(Qt::transparent);
         QPoint next(x,y);
         switch(lineStyle){
-            case LineStyle::SOLID_LINE :
+            case LineStyle::SOLID_LINE:
                 this->Canvas->image->drawLine(start,next,colorPicker->getFirstColor(),lineWidth);
+                break;
+            case LineStyle::DOTTED_LINE:
+                QPoint p1 =start.x() <= next.x() ? start : next;
+                QPoint p2 =start.x() < next.x() ? next : start;
+                int m = (float)(p2.y()-p1.y())/(float)(p2.x()-p1.x())+0.5f;
+                int c = start.y()-start.x()*m;
+
                 break;
         }
     }

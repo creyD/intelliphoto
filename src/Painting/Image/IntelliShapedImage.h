@@ -1,9 +1,9 @@
 #ifndef INTELLISHAPE_H
 #define INTELLISHAPE_H
 
-#include"Image/IntelliImage.h"
+#include"Image/IntelliRasterImage.h"
 
-class IntelliShapedImage : public IntelliImage{
+class IntelliShapedImage : public IntelliRasterImage{
     friend IntelliTool;
 protected:
 

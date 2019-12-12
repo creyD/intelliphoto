@@ -19,7 +19,7 @@ IntelliPhotoGui::IntelliPhotoGui()
     setIntelliStyle();
 
     // Size the app
-    resize(500, 500);
+    showMaximized();
 }
 
 

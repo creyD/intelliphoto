@@ -6,7 +6,8 @@
 #include "QPoint"
 
 enum class LineStyle{
-    SOLID_LINE
+    SOLID_LINE,
+    DOTTED_LINE
 };
 
 class IntelliToolLine : public IntelliTool
