@@ -190,6 +190,7 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
     }else if(event->button() == Qt::RightButton){
         Tool->onMouseRightPressed(x, y);
     }
+    update();
 }
 
 
@@ -203,6 +204,7 @@ void PaintingArea::mouseMoveEvent(QMouseEvent *event)
     int x = event->x()-layerBundle[activeLayer].widthOffset;
     int y = event->y()-layerBundle[activeLayer].hightOffset;
     Tool->onMouseMoved(x, y);
+    update();
 }
 
 // If the button is released we set variables to stop drawing
@@ -217,6 +219,7 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
     }else if(event->button() == Qt::RightButton){
         Tool->onMouseRightReleased(x, y);
     }
+    update();
 }
 
 // QPainter provides functions to draw on the widget
