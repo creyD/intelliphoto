@@ -3,9 +3,8 @@
 #include "QColorDialog"
 #include "QInputDialog"
 
-IntelliToolLine::IntelliToolLine(PaintingArea* Area)
-    :IntelliTool(Area){
-    this->color = QColorDialog::getColor(Qt::blue, nullptr, "Line Color");
+IntelliToolLine::IntelliToolLine(PaintingArea* Area, IntelliColorPicker* colorPicker)
+    :IntelliTool(Area, colorPicker){
     this->lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",1,1,50,1);
     //create checkbox or scroll dialog to get line style
     this->lineStyle = LineStyle::SOLID_LINE;
@@ -27,7 +26,8 @@ void IntelliToolLine::onMouseRightReleased(int x, int y){
 void IntelliToolLine::onMouseLeftPressed(int x, int y){
     IntelliTool::onMouseLeftPressed(x,y);
     this->start=QPoint(x,y);
-    this->Canvas->image->drawLine(start, start, this->color, this->lineWidth);
+    this->Canvas->image->drawLine(start, start, colorPicker->getFirstColor(),lineWidth);
+    Canvas->image->calculateVisiblity();
 }
 
 void IntelliToolLine::onMouseLeftReleased(int x, int y){
@@ -41,9 +41,9 @@ void IntelliToolLine::onMouseMoved(int x, int y){
         QPoint next(x,y);
         switch(lineStyle){
             case LineStyle::SOLID_LINE :
-                this->Canvas->image->drawLine(start,next,color,lineWidth);
+                this->Canvas->image->drawLine(start,next,colorPicker->getFirstColor(),lineWidth);
                 break;
         }
     }
-
+    IntelliTool::onMouseMoved(x,y);
 }

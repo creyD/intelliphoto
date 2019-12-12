@@ -6,11 +6,10 @@
 #include"QPoint"
 
 class IntelliToolPen : public IntelliTool{
-    QColor color;
     int penWidth;
     QPoint point;
 public:
-    IntelliToolPen(PaintingArea* Area);
+    IntelliToolPen(PaintingArea* Area, IntelliColorPicker* colorPicker);
     virtual ~IntelliToolPen() override;
 
     virtual void onMouseRightPressed(int x, int y) override;

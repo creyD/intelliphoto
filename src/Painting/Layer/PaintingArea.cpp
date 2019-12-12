@@ -37,22 +37,6 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
 }
 
 
-void PaintingArea::switchColors(){
-    ColorTool->switchColors();
-}
-
-void PaintingArea::createPenTool(){
-    IntelliTool *temp = this->Tool;
-    this->Tool = new IntelliToolPen(this);
-    delete temp;
-}
-
-void PaintingArea::createFloodFillTool(){
-    IntelliTool *temp = this->Tool;
-    this->Tool = new IntelliToolFloodFillTool(this);
-    delete temp;
-}
-
 void PaintingArea::setUp(int maxWidth, int maxHeight){
     //set standart parameter
     this->maxWidth = maxWidth;
@@ -177,19 +161,33 @@ void PaintingArea::slotActivateLayer(int a){
     }
 }
 
+void PaintingArea::colorPickerSetFirstColor(){
+    QColor clr = QColorDialog::getColor(colorPicker.getFirstColor(), nullptr, "Main Color");
+    this->colorPicker.setFirstColor(clr);
+}
+
+void PaintingArea::colorPickerSetSecondColor(){
+    QColor clr = QColorDialog::getColor(colorPicker.getSecondColor(), nullptr, "Secondary Color");
+    this->colorPicker.setSecondColor(clr);
+}
+
+void PaintingArea::colorPickerSwitchColor(){
+    this->colorPicker.switchColors();
+}
+
 void PaintingArea::createPenTool(){
     delete this->Tool;
-    Tool = new IntelliToolPen(this);
+    Tool = new IntelliToolPen(this, &colorPicker);
 }
 
 void PaintingArea::createPlainTool(){
     delete this->Tool;
-    Tool = new IntelliToolPlainTool(this);
+    Tool = new IntelliToolPlainTool(this, &colorPicker);
 }
 
 void PaintingArea::createLineTool(){
     delete this->Tool;
-    Tool = new IntelliToolLine(this);
+    Tool = new IntelliToolLine(this, &colorPicker);
 }
 
 // If a mouse button is pressed check if it was the

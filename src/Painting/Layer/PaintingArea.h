@@ -11,6 +11,7 @@
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
 #include "Tool/IntelliTool.h"
+#include "IntelliHelper/IntelliColorPicker.h"
 
 
 struct LayerObject{
@@ -23,8 +24,6 @@ struct LayerObject{
 
 
 };
-
-class IntelliColorPicker;
 
 class PaintingArea : public QWidget
 {
@@ -51,6 +50,11 @@ public:
 
     // Has the image been modified since last save
     bool isModified() const { return modified; }
+
+    //change properties of colorPicker
+    void colorPickerSetFirstColor();
+    void colorPickerSetSecondColor();
+    void colorPickerSwitchColor();
 
     //create tools
     void createPenTool();
@@ -86,6 +90,7 @@ private:
     int maxHeight;
 
     IntelliTool* Tool;
+    IntelliColorPicker colorPicker;
 
     std::vector<LayerObject> layerBundle;
     int activeLayer=-1;

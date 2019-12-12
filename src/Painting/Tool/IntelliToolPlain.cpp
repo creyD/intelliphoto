@@ -2,15 +2,14 @@
 #include "Layer/PaintingArea.h"
 #include "QColorDialog"
 
-IntelliToolPlainTool::IntelliToolPlainTool(PaintingArea* Area)
-    :IntelliTool(Area){
-
-    this->color = QColorDialog::getColor(Qt::blue,nullptr,"Flood Fill Color");
+IntelliToolPlainTool::IntelliToolPlainTool(PaintingArea* Area, IntelliColorPicker* colorPicker)
+    :IntelliTool(Area, colorPicker){
 }
 
 void IntelliToolPlainTool::onMouseLeftPressed(int x, int y){
     IntelliTool::onMouseLeftPressed(x,y);
-    this->Canvas->image->floodFill(color);
+    this->Canvas->image->floodFill(colorPicker->getFirstColor());
+    Canvas->image->calculateVisiblity();
 }
 
 void IntelliToolPlainTool::onMouseLeftReleased(int x, int y){
@@ -28,5 +27,4 @@ void IntelliToolPlainTool::onMouseRightReleased(int x, int y){
 
 void IntelliToolPlainTool::onMouseMoved(int x, int y){
     IntelliTool::onMouseMoved(x,y);
-
 }

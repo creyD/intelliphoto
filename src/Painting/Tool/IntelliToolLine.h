@@ -12,11 +12,10 @@ enum class LineStyle{
 class IntelliToolLine : public IntelliTool
 {
     QPoint start;
-    QColor color;
     int lineWidth;
     LineStyle lineStyle;
 public:
-    IntelliToolLine(PaintingArea* Area);
+    IntelliToolLine(PaintingArea* Area, IntelliColorPicker* colorPicker);
     virtual ~IntelliToolLine() override;
 
 

@@ -214,6 +214,17 @@ void IntelliPhotoGui::slotSetActiveLayer(){
     }
 };
 
+void IntelliPhotoGui::slotSetFirstColor(){
+    paintingArea->colorPickerSetFirstColor();
+}
+
+void IntelliPhotoGui::slotSetSecondColor(){
+    paintingArea->colorPickerSetSecondColor();
+}
+
+void IntelliPhotoGui::slotSwitchColor(){
+    paintingArea->colorPickerSwitchColor();
+}
 
 void IntelliPhotoGui::slotCreatePenTool(){
     paintingArea->createPenTool();
@@ -318,6 +329,17 @@ void IntelliPhotoGui::createActions()
     actionMoveLayerDown->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
     connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
 
+    //Create Color Actions here
+    actionColorPickerFirstColor = new QAction(tr("&Main"), this);
+    connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
+
+    actionColorPickerSecondColor = new QAction(tr("&Secondary"), this);
+    connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
+
+    actionColorSwitch = new QAction(tr("&Switch"), this);
+    actionColorSwitch->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
+    connect(actionColorSwitch, SIGNAL(triggered()), this, SLOT(slotSwitchColor()));
+
     //Create Tool actions down here
     actionCreatePlainTool = new QAction(tr("&Plain"), this);
     connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotCreatePlainTool()));
@@ -369,11 +391,19 @@ void IntelliPhotoGui::createMenus()
     layerMenu->addAction(actionCreateNewLayer);
     layerMenu->addAction(actionDeleteLayer);
 
+    //Attach all Color Options
+    colorMenu = new QMenu(tr("&Color"), this);
+    colorMenu->addAction(actionColorPickerFirstColor);
+    colorMenu->addAction(actionColorPickerSecondColor);
+    colorMenu->addAction(actionColorSwitch);
+
     //Attach all Tool Options
     toolMenu = new QMenu(tr("&Tools"), this);
     toolMenu->addAction(actionCreatePenTool);
     toolMenu->addAction(actionCreatePlainTool);
     toolMenu->addAction(actionCreateLineTool);
+    toolMenu->addSeparator();
+    toolMenu->addMenu(colorMenu);
 
     // Attach all actions to Help
     helpMenu = new QMenu(tr("&Help"), this);

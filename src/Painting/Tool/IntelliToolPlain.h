@@ -6,9 +6,8 @@
 
 class IntelliToolPlainTool : public IntelliTool
 {
-    QColor color;
 public:
-    IntelliToolPlainTool(PaintingArea *Area);
+    IntelliToolPlainTool(PaintingArea *Area, IntelliColorPicker* colorPicker);
 
     void onMouseLeftPressed(int x, int y) override;
     void onMouseLeftReleased(int x, int y) override;

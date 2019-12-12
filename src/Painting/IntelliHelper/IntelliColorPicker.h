@@ -1,17 +1,15 @@
 #ifndef INTELLITOOLSETCOLORTOOL_H
 #define INTELLITOOLSETCOLORTOOL_H
 
-#include"Layer/PaintingArea.h"
 #include"QColor"
 #include"QPoint"
 #include"QColorDialog"
 
 class IntelliColorPicker{
 public:
-    IntelliColorPicker(PaintingArea *Area);
+    IntelliColorPicker();
     virtual ~IntelliColorPicker();
 
-    void getColorbar(int firstOrSecondColor);
     void switchColors();
 
     QColor getFirstColor();

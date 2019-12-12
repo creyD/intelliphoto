@@ -1,8 +1,9 @@
 #include"IntelliTool.h"
 #include"Layer/PaintingArea.h"
 
-IntelliTool::IntelliTool(PaintingArea* Area){
+IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker){
     this->Area=Area;
+    this->colorPicker=colorPicker;
 }
 
 
@@ -25,7 +26,7 @@ void IntelliTool::onMouseLeftPressed(int x, int y){
     this->drawing=true;
     //create drawing layer
     this->createToolLayer();
-
+    Canvas->image->calculateVisiblity();
 }
 
 void IntelliTool::onMouseLeftReleased(int x, int y){
@@ -33,11 +34,13 @@ void IntelliTool::onMouseLeftReleased(int x, int y){
         drawing=false;
         this->mergeToolLayer();
         this->deleteToolLayer();
+        Active->image->calculateVisiblity();
     }
 }
 
 void IntelliTool::onMouseMoved(int x, int y){
-    //optional for tool
+    if(drawing)
+        Canvas->image->calculateVisiblity();
 }
 
 void IntelliTool::createToolLayer(){
@@ -65,7 +68,6 @@ void IntelliTool::mergeToolLayer(){
 
             Active->image->imageData.setPixelColor(x, y, clr_0);
         }
-        Active->image->calculateVisiblity();
     }
 }
 

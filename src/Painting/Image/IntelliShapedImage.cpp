@@ -18,8 +18,8 @@ QImage IntelliShapedImage::getDisplayable(int alpha){
 
 IntelliImage* IntelliShapedImage::getDeepCopy(){
     IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height());
-    shaped->imageData.fill(Qt::transparent);
     shaped->setPolygon(this->polygonData);
+    shaped->imageData.fill(Qt::transparent);
     return shaped;
 }
 
@@ -52,7 +52,7 @@ void IntelliShapedImage::calculateVisiblity(){
                 imageData.setPixelColor(x,y,clr);
             }else{
                 clr = imageData.pixelColor(x,y);
-                clr.setAlpha(255);
+                clr.setAlpha(std::min(255, clr.alpha()));
                 imageData.setPixelColor(x,y,clr);
             }
         }

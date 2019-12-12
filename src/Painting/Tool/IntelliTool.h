@@ -1,6 +1,7 @@
 #ifndef Intelli_Tool_H
 #define Intelli_Tool_H
 
+#include "IntelliHelper/IntelliColorPicker.h"
 #include <vector>
 
 class LayerObject;
@@ -13,12 +14,14 @@ private:
     void deleteToolLayer();
 protected:
     PaintingArea* Area;
+    IntelliColorPicker* colorPicker;
+
     LayerObject* Active;
     LayerObject* Canvas;
     bool drawing = false;
 
 public:
-    IntelliTool(PaintingArea* Area);
+    IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker);
     virtual ~IntelliTool() = 0;
 
     virtual void onMouseRightPressed(int x, int y);

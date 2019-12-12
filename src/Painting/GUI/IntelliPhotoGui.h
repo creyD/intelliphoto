@@ -29,10 +29,12 @@ protected:
     // Function used to close an event
     void closeEvent(QCloseEvent *event) override;
 
-// The events that can be triggered
 private slots:
+    //meta slots here (need further )
     void slotOpen();
     void slotSave();
+
+    //layer slots here
     void slotCreateNewLayer();
     void slotDeleteLayer();
     void slotClearActiveLayer();
@@ -45,10 +47,17 @@ private slots:
     void slotMoveLayerUp();
     void slotMoveLayerDown();
 
+    //color Picker slots here
+    void slotSetFirstColor();
+    void slotSetSecondColor();
+    void slotSwitchColor();
+
+    //tool slots here
     void slotCreatePenTool();
     void slotCreatePlainTool();
     void slotCreateLineTool();
 
+    //slots for dialogs
     void slotAboutDialog();
 
 private:
@@ -74,23 +83,33 @@ private:
     QMenu *fileMenu;
     QMenu *optionMenu;
     QMenu *layerMenu;
+    QMenu *colorMenu;
     QMenu *toolMenu;
     QMenu *helpMenu;
 
     // All the actions that can occur
+
+    //meta image actions (need further modularisation)
     QAction *actionOpen;
     QAction *actionExit;
 
-    QAction *actionCreateNewLayer;
-    QAction *actionDeleteLayer;
+    //color Picker actions
+    QAction *actionColorPickerFirstColor;
+    QAction *actionColorPickerSecondColor;
+    QAction *actionColorSwitch;
 
+    //tool actions
     QAction *actionCreatePenTool;
     QAction *actionCreatePlainTool;
     QAction *actionCreateLineTool;
 
+    //dialog actions
     QAction *actionAboutDialog;
     QAction *actionAboutQtDialog;
 
+    //layer change actions
+    QAction *actionCreateNewLayer;
+    QAction *actionDeleteLayer;
     QAction* actionSetActiveLayer;
     QAction* actionSetActiveAlpha;
     QAction* actionMovePositionUp;
