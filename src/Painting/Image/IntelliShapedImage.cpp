@@ -18,8 +18,8 @@ QImage IntelliShapedImage::getDisplayable(int alpha){
 
 IntelliImage* IntelliShapedImage::getDeepCopy(){
     IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height());
-    shaped->setPolygon(this->polygonData);
     shaped->imageData.fill(Qt::transparent);
+    shaped->setPolygon(this->polygonData);
     return shaped;
 }
 

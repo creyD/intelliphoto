@@ -11,7 +11,8 @@
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
 #include "Tool/IntelliToolPen.h"
-#include "Tool/IntelliToolFloodFillTool.h"
+#include "Tool/IntelliToolPlain.h"
+#include "Tool/IntelliToolLine.h"
 
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
@@ -32,7 +33,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     layerBundle[1].image->floodFill(QColor(0,255,0,255));
     layerBundle[1].alpha=200;
 
-    activeLayer=1;
+    activeLayer=0;
 }
 
 
@@ -165,9 +166,14 @@ void PaintingArea::createPenTool(){
     Tool = new IntelliToolPen(this);
 }
 
-void PaintingArea::createFloodFillTool(){
+void PaintingArea::createPlainTool(){
     delete this->Tool;
-    Tool = new IntelliToolFloodFillTool(this);
+    Tool = new IntelliToolPlainTool(this);
+}
+
+void PaintingArea::createLineTool(){
+    delete this->Tool;
+    Tool = new IntelliToolLine(this);
 }
 
 // If a mouse button is pressed check if it was the

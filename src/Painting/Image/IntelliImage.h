@@ -19,7 +19,6 @@ class IntelliImage{
     friend IntelliTool;
 protected:
     void resizeImage(QImage *image, const QSize &newSize);
-    virtual void calculateVisiblity()=0;
 
     QImage imageData;
 
@@ -27,6 +26,7 @@ protected:
 public:
     IntelliImage(int weight, int height);
     virtual ~IntelliImage() = 0;
+
 
     //start on top left
     virtual void drawPixel(const QPoint &p1, const QColor& color);
@@ -39,12 +39,13 @@ public:
 
     //gets a copy of the image !allocated
     virtual IntelliImage* getDeepCopy()=0;
+    virtual void calculateVisiblity()=0;
 
     //returns the filtered output
 
     //sets the data for the visible image
     virtual void setPolygon(const std::vector<QPoint>& polygonData)=0;
-
+    virtual std::vector<QPoint> getPolygonData(){ return std::vector<QPoint>();}
 
     //loads an image to the ColorBuffer
     virtual bool loadImage(const QString &fileName);

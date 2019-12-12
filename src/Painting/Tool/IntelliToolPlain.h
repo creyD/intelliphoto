@@ -4,11 +4,11 @@
 #include "IntelliTool.h"
 #include "QColor"
 
-class IntelliToolFloodFillTool : public IntelliTool
+class IntelliToolPlainTool : public IntelliTool
 {
     QColor color;
 public:
-    IntelliToolFloodFillTool(PaintingArea *Area);
+    IntelliToolPlainTool(PaintingArea *Area);
 
     void onMouseLeftPressed(int x, int y) override;
     void onMouseLeftReleased(int x, int y) override;

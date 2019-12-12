@@ -44,7 +44,8 @@ private slots:
     void slotMoveLayerDown();
 
     void slotCreatePenTool();
-    void slotCreateFloodFillTool();
+    void slotCreatePlainTool();
+    void slotCreateLineTool();
 
     void slotAboutDialog();
 
@@ -83,7 +84,8 @@ private:
     QAction *actionDeleteLayer;
 
     QAction *actionCreatePenTool;
-    QAction *actionCreateFloodFillTool;
+    QAction *actionCreatePlainTool;
+    QAction *actionCreateLineTool;
 
     QAction *actionAboutDialog;
     QAction *actionAboutQtDialog;

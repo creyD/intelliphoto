@@ -219,8 +219,12 @@ void IntelliPhotoGui::slotCreatePenTool(){
     paintingArea->createPenTool();
 }
 
-void IntelliPhotoGui::slotCreateFloodFillTool(){
-    paintingArea->createFloodFillTool();
+void IntelliPhotoGui::slotCreatePlainTool(){
+    paintingArea->createPlainTool();
+}
+
+void IntelliPhotoGui::slotCreateLineTool(){
+    paintingArea->createLineTool();
 }
 
 // Open an about dialog
@@ -315,12 +319,14 @@ void IntelliPhotoGui::createActions()
     connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
 
     //Create Tool actions down here
-    actionCreateFloodFillTool = new QAction(tr("&Flood Fill"), this);
-    connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotCreateFloodFillTool()));
+    actionCreatePlainTool = new QAction(tr("&Plain"), this);
+    connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotCreatePlainTool()));
 
     actionCreatePenTool = new QAction(tr("&Pen"),this);
     connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotCreatePenTool()));
 
+    actionCreateLineTool = new QAction(tr("&Line"), this);
+    connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotCreateLineTool()));
 
     // Create about action and tie to IntelliPhotoGui::about()
     actionAboutDialog = new QAction(tr("&About"), this);
@@ -366,7 +372,8 @@ void IntelliPhotoGui::createMenus()
     //Attach all Tool Options
     toolMenu = new QMenu(tr("&Tools"), this);
     toolMenu->addAction(actionCreatePenTool);
-    toolMenu->addAction(actionCreateFloodFillTool);
+    toolMenu->addAction(actionCreatePlainTool);
+    toolMenu->addAction(actionCreateLineTool);
 
     // Attach all actions to Help
     helpMenu = new QMenu(tr("&Help"), this);

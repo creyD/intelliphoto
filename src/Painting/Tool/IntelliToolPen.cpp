@@ -7,9 +7,7 @@
 IntelliToolPen::IntelliToolPen(PaintingArea* Area)
     :IntelliTool(Area){
     this->color = QColorDialog::getColor(Qt::blue,nullptr,"Flood Fill Color");
-
-    bool ok;
-    this->penWidth = QInputDialog::getInt(nullptr, "Pen width", "Number:", 1,0, 50, 1, &ok);
+    this->penWidth = QInputDialog::getInt(nullptr, "Pen width", "Number:", 1,0, 50, 1);
 }
 
 IntelliToolPen::~IntelliToolPen(){
@@ -18,22 +16,18 @@ IntelliToolPen::~IntelliToolPen(){
 
 void IntelliToolPen::onMouseRightPressed(int x, int y){
     IntelliTool::onMouseRightPressed(x,y);
-    //implement in here
 }
 
 void IntelliToolPen::onMouseRightReleased(int x, int y){
     IntelliTool::onMouseRightReleased(x,y);
-    //implemnt in here
 }
 
 void IntelliToolPen::onMouseLeftPressed(int x, int y){
-    //implement in here
     IntelliTool::onMouseLeftPressed(x,y);
     this->point=QPoint(x,y);
 }
 
 void IntelliToolPen::onMouseLeftReleased(int x, int y){
-    //implement in here
     IntelliTool::onMouseLeftReleased(x,y);
 }
 

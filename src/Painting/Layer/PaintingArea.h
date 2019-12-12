@@ -50,7 +50,8 @@ public:
 
     //create tools
     void createPenTool();
-    void createFloodFillTool();
+    void createPlainTool();
+    void createLineTool();
 
 public slots:
 

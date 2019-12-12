@@ -10,10 +10,6 @@ IntelliTool::~IntelliTool(){
 
 }
 
-void IntelliTool::getColorbar(int firstOrSecondColor){
-    //optional for tool
-}
-
 void IntelliTool::onMouseRightPressed(int x, int y){
     if(drawing){
         drawing=false;
@@ -69,6 +65,7 @@ void IntelliTool::mergeToolLayer(){
 
             Active->image->imageData.setPixelColor(x, y, clr_0);
         }
+        Active->image->calculateVisiblity();
     }
 }
 
