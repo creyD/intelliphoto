@@ -1,6 +1,5 @@
 # Build folders
-src/*-debug/
-src/*-release/
+src/build-*/
 
 # QT Creator Files
 *.creator.user*
@@ -16,6 +15,10 @@ CMakeLists.txt.user*
 /share/qtcreator/qmldesigner/QtProject/
 app_version.h
 phony.c
+
+# Ignore User Files except for the pro file
+IntelliPhoto.*
+!IntelliPhoto.pro
 
 # macOS Environment Files
 .DS_STORE

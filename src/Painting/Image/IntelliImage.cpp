@@ -20,7 +20,7 @@ bool IntelliImage::loadImage(const QString &fileName){
         return false;
 
     // scaled Image to size of Layer
-    // loadedImage = loadedImage.scaled(imageData.size(),Qt::IgnoreAspectRatio);
+    loadedImage = loadedImage.scaled(imageData.size(),Qt::IgnoreAspectRatio);
 
     imageData = loadedImage.convertToFormat(QImage::Format_ARGB32);
     return true;
@@ -50,9 +50,6 @@ void IntelliImage::drawPixel(const QPoint &p1, const QColor& color){
 
     // Draw a line from the last registered point to the current
     painter.drawPoint(p1);
-
-    // Call to update the rectangular space where we drew
-        //update(QRect(p1, p2));
 }
 
 void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& color, const int& penWidth){
@@ -67,15 +64,6 @@ void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& co
 
 }
 
-void IntelliImage::floodFill(const QColor& color){
+void IntelliImage::drawPlain(const QColor& color){
     imageData.fill(color);
-
-}
-
-int IntelliImage::x(){
-    return imageData.size().width();
-}
-
-int IntelliImage::y(){
-    return imageData.size().height();
 }

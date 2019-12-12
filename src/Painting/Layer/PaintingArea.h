@@ -4,18 +4,25 @@
 
 #include <QColor>
 #include <QImage>
-#include"Image/IntelliImage.h"
 #include <QPoint>
 #include <QWidget>
 #include <QList>
+#include "Image/IntelliImage.h"
+#include "Image/IntelliRasterImage.h"
+#include "Image/IntelliShapedImage.h"
+#include "Tool/IntelliTool.h"
+#include "IntelliHelper/IntelliColorPicker.h"
+
 
 struct LayerObject{
     IntelliImage* image;
     int width;
-    int height;
+    int hight;
     int widthOffset;
-    int heightOffset;
+    int hightOffset;
     int alpha=255;
+
+
 };
 
 class PaintingArea : public QWidget
@@ -24,46 +31,40 @@ class PaintingArea : public QWidget
     // for all Qt objects
     // QObjects handle events
     Q_OBJECT
-
+    friend IntelliTool;
 public:
     PaintingArea(int maxWidth=600, int maxHeight=600, QWidget *parent = nullptr);
+    ~PaintingArea();
 
     // Handles all events
-    bool openImage(const QString &fileName);
-    bool saveImage(const QString &fileName, const char *fileFormat);
+    bool open(const QString &fileName);
+    bool save(const QString &fileName, const char *fileFormat);
 
     int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image);
+    int addLayerAt(int idx, int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image);
     void deleteLayer(int index);
     void setLayerToActive(int index);
-    void setAlphaToLayer(int index, int alpha);
+    void setAlphaOfLayer(int index, int alpha);
+    void floodFill(int r, int g, int b, int a);
+    void movePositionActive(int x, int y);
+    void moveActiveLayer(int idx);
 
-    // Has the image been modified since last save
-    bool isModified() const { return modified; }
+    //change properties of colorPicker
+    void colorPickerSetFirstColor();
+    void colorPickerSetSecondColor();
+    void colorPickerSwitchColor();
 
-    void setPenColor(const QColor &newColor);
-    QColor penColor() const { return myPenColor; }
+    //create tools
+    void createPenTool();
+    void createPlainTool();
+    void createLineTool();
 
-    void setPenWidth(int newWidth);
-    int penWidth() const { return myPenWidth; }
-
-
-    QPixmap getAsPixmap();
 public slots:
 
     // Events to handle
-    void clearImage(int r, int g, int b);
-    void activate(int a);
-    void deleteActiveLayer();
+    void slotActivateLayer(int a);
+    void slotDeleteActiveLayer();
 
-    void setAlpha(int a);
-    void getMoveUp(int a);
-    void getMoveDown(int a);
-    void getMoveRight(int a);
-    void getMoveLeft(int a);
-    void getMoveLayerUp();
-    void getMoveLayerDown();
-    //void setUp helper for konstruktor
-    void setUp(int maxWidth, int maxHeight);
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -77,36 +78,28 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
+    void setUp(int maxWidth, int maxHeight);
+    void activateUpperLayer();
+    void activateLowerLayer();
 
 
     QImage* Canvas;
     int maxWidth;
     int maxHeight;
 
-    std::vector<LayerObject> layerStructure;
+    IntelliTool* Tool;
+    IntelliColorPicker colorPicker;
+
+    std::vector<LayerObject> layerBundle;
     int activeLayer=-1;
 
     void assembleLayers(bool forSaving=false);
 
-    void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image_res, const QSize &newSize);
 
-    // Will be marked true or false depending on if
-    // we have saved after a change
-    bool modified=false;
 
-    // Marked true or false depending on if the user
-    // is drawing
-    bool scribbling;
-
-    // Holds the current pen width & color
-    int myPenWidth;
-    QColor myPenColor;
-
-    // Stores the image being drawn
-
-    // Stores the location at the current mouse event
-    QPoint lastPoint;
+    //Helper for Tool
+    void createTempLayerAfter(int idx);
 };
 
 #endif

@@ -19,7 +19,7 @@ IntelliPhotoGui::IntelliPhotoGui()
     setIntelliStyle();
 
     // Size the app
-    resize(500, 500);
+    showMaximized();
 }
 
 
@@ -39,7 +39,7 @@ void IntelliPhotoGui::closeEvent(QCloseEvent *event)
 
 // Check if the current image has been changed and then
 // open a dialog to open a file
-void IntelliPhotoGui::open()
+void IntelliPhotoGui::slotOpen()
 {
     // Check if changes have been made since last save
     // maybeSave() returns true if no changes have been made
@@ -54,12 +54,12 @@ void IntelliPhotoGui::open()
         // If we have a file name load the image and place
         // it in the paintingArea
         if (!fileName.isEmpty())
-            paintingArea->openImage(fileName);
+            paintingArea->open(fileName);
     }
 }
 
 // Called when the user clicks Save As in the menu
-void IntelliPhotoGui::save()
+void IntelliPhotoGui::slotSave()
 {
     // A QAction represents the action of the user clicking
     QAction *action = qobject_cast<QAction *>(sender());
@@ -71,61 +71,31 @@ void IntelliPhotoGui::save()
     saveFile(fileFormat);
 }
 
-// Opens a dialog to change the pen color
-void IntelliPhotoGui::penColor()
-{
-    // Store the chosen color from the dialog
-    QColor newColor = QColorDialog::getColor(paintingArea->penColor());
-
-    // If a valid color set it
-    if (newColor.isValid())
-        paintingArea->setPenColor(newColor);
-}
-
-// Opens a dialog that allows the user to change the pen width
-void IntelliPhotoGui::penWidth()
-{
-    // Stores button value
-    bool ok;
-
-    // tr("Painting") is the title
-    // the next tr is the text to display
-    // Get the current pen width
-    // Define the min, max, step and ok button
-    int newWidth = QInputDialog::getInt(this, tr("Painting"),
-                                        tr("Select pen width:"),
-                                        paintingArea->penWidth(),
-                                        1, 500, 1, &ok);
-    // Change the pen width
-    if (ok)
-        paintingArea->setPenWidth(newWidth);
-}
-
 // Opens a dialog that allows the user to create a New Layer
-void IntelliPhotoGui::newLayer()
+void IntelliPhotoGui::slotCreateNewLayer()
 {
     // Stores button value
-    bool ok;
+    bool ok1, ok2;
 
     // tr("New Layer") is the title
     // the next tr is the text to display
     // Define the standard Value, min, max, step and ok button
     int width = QInputDialog::getInt(this, tr("New Layer"),
                                         tr("Width:"),
-                                        200,1, 500, 1, &ok);
+                                        200,1, 500, 1, &ok1);
     int height = QInputDialog::getInt(this, tr("New Layer"),
                                         tr("Height:"),
-                                        200,1, 500, 1, &ok);
+                                        200,1, 500, 1, &ok2);
     // Create New Layer
-    if (ok)
+    if (ok1&&ok2)
     {
-        int layer = paintingArea->addLayer(width,height,100,100);
-        paintingArea->activate(layer);
+        int layer = paintingArea->addLayer(width,height,0,0);
+        paintingArea->slotActivateLayer(layer);
     }
 }
 
 // Opens a dialog that allows the user to delete a Layer
-void IntelliPhotoGui::deleteLayer()
+void IntelliPhotoGui::slotDeleteLayer()
 {
     // Stores button value
     bool ok;
@@ -135,110 +105,151 @@ void IntelliPhotoGui::deleteLayer()
     // Define the standard Value, min, max, step and ok button
     int layerNumber = QInputDialog::getInt(this, tr("delete Layer"),
                                         tr("Number:"),
-                                        1,1, 500, 1, &ok);
+                                        1,0, 500, 1, &ok);
     // Create New Layer
     if (ok)
-        paintingArea->deleteLayer(layerNumber-1);
+        paintingArea->deleteLayer(layerNumber);
+}
+
+void slotCreatePenTool(){
+
+}
+
+void slotCreateFloodFillTool(){
+
+}
+
+
+void IntelliPhotoGui::slotSetActiveAlpha(){
+    // Stores button value
+    bool ok1, ok2;
+
+    // tr("Layer to set on") is the title
+    // the next tr is the text to display
+    // Define the standard Value, min, max, step and ok button
+    int layer = QInputDialog::getInt(this, tr("Layer to set on"),
+                                        tr("Layer:"),
+                                        -1,-1,100,1, &ok1);
+    // tr("New Alpha") is the title
+    int alpha = QInputDialog::getInt(this, tr("New Alpha"),
+                                        tr("Alpha:"),
+                                        255,0, 255, 1, &ok2);
+    if (ok1&&ok2)
+    {
+        paintingArea->setAlphaOfLayer(layer,alpha);
+    }
+}
+
+void IntelliPhotoGui::slotPositionMoveUp(){
+    paintingArea->movePositionActive(0,-20);
+    update();
+}
+
+void IntelliPhotoGui::slotPositionMoveDown(){
+    paintingArea->movePositionActive(0,20);
+    update();
+}
+
+void IntelliPhotoGui::slotPositionMoveLeft(){
+    paintingArea->movePositionActive(-20,0);
+    update();
+}
+
+void IntelliPhotoGui::slotPositionMoveRight(){
+    paintingArea->movePositionActive(20,0);
+    update();
+}
+
+void IntelliPhotoGui::slotMoveLayerUp(){
+    paintingArea->moveActiveLayer(1);
+    update();
+}
+
+void IntelliPhotoGui::slotMoveLayerDown(){
+    paintingArea->moveActiveLayer(-1);
+    update();
+}
+
+void IntelliPhotoGui::slotClearActiveLayer(){
+    // Stores button value
+    bool ok1, ok2, ok3, ok4;
+
+    // tr("Red Input") is the title
+    // the next tr is the text to display
+    // Define the standard Value, min, max, step and ok button
+    int red = QInputDialog::getInt(this, tr("Red Input"),
+                                        tr("Red:"),
+                                        255,0, 255,1, &ok1);
+    // tr("Green Input") is the title
+    int green = QInputDialog::getInt(this, tr("Green Input"),
+                                        tr("Green:"),
+                                        255,0, 255, 1, &ok2);
+    // tr("Blue Input") is the title
+    int blue = QInputDialog::getInt(this, tr("Blue Input"),
+                                        tr("Blue:"),
+                                        255,0, 255, 1, &ok3);
+    // tr("Alpha Input") is the title
+    int alpha = QInputDialog::getInt(this, tr("Alpha Input"),
+                                        tr("Alpha:"),
+                                        255,0, 255, 1, &ok4);
+    if (ok1&&ok2&&ok3&&ok4)
+    {
+        paintingArea->floodFill(red, green, blue, alpha);
+    }
+}
+
+void IntelliPhotoGui::slotSetActiveLayer(){
+    // Stores button value
+    bool ok1;
+
+    // tr("Layer to set on") is the title
+    // the next tr is the text to display
+    // Define the standard Value, min, max, step and ok button
+    int layer = QInputDialog::getInt(this, tr("Layer to set on"),
+                                        tr("Layer:"),
+                                        -1,0,255,1, &ok1);
+    if (ok1)
+    {
+        paintingArea->setLayerToActive(layer);
+    }
+};
+
+void IntelliPhotoGui::slotSetFirstColor(){
+    paintingArea->colorPickerSetFirstColor();
+}
+
+void IntelliPhotoGui::slotSetSecondColor(){
+    paintingArea->colorPickerSetSecondColor();
+}
+
+void IntelliPhotoGui::slotSwitchColor(){
+    paintingArea->colorPickerSwitchColor();
+}
+
+void IntelliPhotoGui::slotCreatePenTool(){
+    paintingArea->createPenTool();
+}
+
+void IntelliPhotoGui::slotCreatePlainTool(){
+    paintingArea->createPlainTool();
+}
+
+void IntelliPhotoGui::slotCreateLineTool(){
+    paintingArea->createLineTool();
 }
 
 // Open an about dialog
-void IntelliPhotoGui::about()
+void IntelliPhotoGui::slotAboutDialog()
 {
     // Window title and text to display
     QMessageBox::about(this, tr("About Painting"),
             tr("<p><b>IntelliPhoto</b> Some nice ass looking software</p>"));
 }
 
-void IntelliPhotoGui::onSetAlpha(){
-    int a = this->setAlphaEdit->text().toInt();
-    if (a >= 0 && a < 256)
-        emit this->sendAlpha(a);
-}
-
-void IntelliPhotoGui::onMoveUp(){
-    int a = 5;
-    emit this->moveUp(a);
-}
-
-void IntelliPhotoGui::onMoveDown(){
-    int a = 5;
-    emit this->moveDown(a);
-}
-
-void IntelliPhotoGui::onMoveLeft(){
-    int a = 5;
-    emit this->moveLeft(a);
-}
-
-void IntelliPhotoGui::onMoveRight(){
-    int a = 5;
-    emit this->moveRight(a);
-}
-
-void IntelliPhotoGui::onMoveLayerUp(){
-    emit this->moveLayerUp();
-}
-
-void IntelliPhotoGui::onMoveLayerDown(){
-    emit this->moveLayerDown();
-}
-
-void IntelliPhotoGui::onClearedPressed(){
-    int r = this->RedEdit->text().toInt();
-    int g = this->GreenEdit->text().toInt();
-    int b = this->BlueEdit->text().toInt();
-    if(r < 256 && r >= 0 && g < 256 && g >= 0 && b < 256 && b >= 0)
-        emit this->sendClearColor(r,g,b);
-}
-
-void IntelliPhotoGui::onActivePressed(){
-    int a = this->selectActiveEdit->text().toInt();
-    emit this->sendActiveLayer(a-1);
-};
-
-
-
 // Define menu actions that call functions
 void IntelliPhotoGui::createActions()
 {
-    //connect signal and slots of gui element
-    connect(this->clearButton, SIGNAL(clicked()), this, SLOT(onClearedPressed()));
-    connect(this, SIGNAL(sendClearColor(int,int,int)), paintingArea, SLOT(clearImage(int, int, int)));
 
-    connect(this->selectActiveButton, SIGNAL(clicked()), this, SLOT(onActivePressed()));
-    connect(this, SIGNAL(sendActiveLayer(int)),paintingArea, SLOT(activate(int)));
-
-    connect(this->setAlphaButton, SIGNAL(clicked()), this, SLOT(onSetAlpha()));
-    connect(this, SIGNAL(sendAlpha(int)), paintingArea, SLOT(setAlpha(int)));
-
-    connect(this->moveActiveUpButton, SIGNAL(clicked()), this, SLOT(onMoveUp()));
-    connect(this, SIGNAL(moveUp(int)), paintingArea, SLOT(getMoveUp(int)));
-
-    connect(this->moveActiveDownButton, SIGNAL(clicked()), this, SLOT(onMoveDown()));
-    connect(this, SIGNAL(moveDown(int)), paintingArea, SLOT(getMoveDown(int)));
-
-    connect(this->moveActiveLeftButton, SIGNAL(clicked()), this, SLOT(onMoveLeft()));
-    connect(this, SIGNAL(moveLeft(int)), paintingArea, SLOT(getMoveLeft(int)));
-
-    connect(this->moveActiveRightButton, SIGNAL(clicked()), this, SLOT(onMoveRight()));
-    connect(this, SIGNAL(moveRight(int)), paintingArea, SLOT(getMoveRight(int)));
-
-    connect(this->layerMoveActiveDownButton, SIGNAL(clicked()), this, SLOT(onMoveLayerDown()));
-    connect(this, SIGNAL(moveLayerDown()), paintingArea, SLOT(getMoveLayerDown()));
-
-    connect(this->layerMoveActiveUpButton, SIGNAL(clicked()), this, SLOT(onMoveLayerUp()));
-    connect(this, SIGNAL(moveLayerUp()), paintingArea, SLOT(getMoveLayerUp()));
-
-
-
-    // Create the action tied to the menu
-    openAct = new QAction(tr("&Open..."), this);
-
-    // Define the associated shortcut key
-    openAct->setShortcuts(QKeySequence::Open);
-
-    // Tie the action to IntelliPhotoGui::open()
-    connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
 
     // Get a list of the supported file formats
     // QImageWriter is used to write images to files
@@ -252,62 +263,97 @@ void IntelliPhotoGui::createActions()
         action->setData(format);
 
         // When clicked call IntelliPhotoGui::save()
-        connect(action, SIGNAL(triggered()), this, SLOT(save()));
+        connect(action, SIGNAL(triggered()), this, SLOT(slotSave()));
 
         // Attach each file format option menu item to Save As
-        saveAsActs.append(action);
+        actionSaveAs.append(action);
     }
 
-    QAction *action = new QAction("PNG-8", this);
-
-    // Set an action for each file format
-    action->setData("PNG");
-
+    //set exporter to actions
+    QAction *pngSaveAction = new QAction("PNG-8", this);
+    pngSaveAction->setData("PNG");
     // When clicked call IntelliPhotoGui::save()
-    connect(action, SIGNAL(triggered()), this, SLOT(save()));
+    connect(pngSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
+    // Attach each PNG in save Menu
+    actionSaveAs.append(pngSaveAction);
 
-    // Attach each file format option menu item to Save As
-    saveAsActs.append(action);
 
 
     // Create exit action and tie to IntelliPhotoGui::close()
-    exitAct = new QAction(tr("&Exit"), this);
-    exitAct->setShortcuts(QKeySequence::Quit);
-    connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
+    actionExit = new QAction(tr("&Exit"), this);
+    actionExit->setShortcuts(QKeySequence::Quit);
+    connect(actionExit, SIGNAL(triggered()), this, SLOT(close()));
 
-    // Create pen color action and tie to IntelliPhotoGui::penColor()
-    penColorAct = new QAction(tr("&Pen Color..."), this);
-    connect(penColorAct, SIGNAL(triggered()), this, SLOT(penColor()));
-
-    // Create pen width action and tie to IntelliPhotoGui::penWidth()
-    penWidthAct = new QAction(tr("Pen &Width..."), this);
-    connect(penWidthAct, SIGNAL(triggered()), this, SLOT(penWidth()));
-
-    // Create clear screen action and tie to IntelliPhotoGui::clearImage()
-    clearScreenAct = new QAction(tr("&Clear Screen"), this);
-    clearScreenAct->setShortcut(tr("Ctrl+L"));
-    connect(clearScreenAct, SIGNAL(triggered()),
-            this, SLOT(onClearedPressed()));
+    actionOpen = new QAction(tr("&Open"), this);
+    actionOpen->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+    connect(actionOpen, SIGNAL(triggered()), this, SLOT(slotOpen()));
 
     // Create New Layer action and tie to IntelliPhotoGui::newLayer()
-    newLayerAct = new QAction(tr("&New Layer..."), this);
-    connect(newLayerAct, SIGNAL(triggered()), this, SLOT(newLayer()));
+    actionCreateNewLayer = new QAction(tr("&New Layer..."), this);
+    connect(actionCreateNewLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewLayer()));
 
     // Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
-    deleteLayerAct = new QAction(tr("&Delete Layer..."), this);
-    connect(deleteLayerAct, SIGNAL(triggered()), this, SLOT(deleteLayer()));
+    actionDeleteLayer = new QAction(tr("&Delete Layer..."), this);
+    connect(actionDeleteLayer, SIGNAL(triggered()), this, SLOT(slotDeleteLayer()));
 
-    // Delete Active Layer action and tie to paintingArea::deleteActiveLayerLayer()
-    deleteActiveLayerAct = new QAction(tr("&Delete active Layer"), this);
-    connect(deleteActiveLayerAct, SIGNAL(triggered()), paintingArea, SLOT(deleteActiveLayer()));
+    actionSetActiveLayer = new QAction(tr("&set Active"), this);
+    connect(actionSetActiveLayer, SIGNAL(triggered()), this, SLOT(slotSetActiveLayer()));
+
+    actionSetActiveAlpha = new QAction(tr("&set Alpha"), this);
+    connect(actionSetActiveAlpha, SIGNAL(triggered()), this, SLOT(slotSetActiveAlpha()));
+
+    actionMovePositionUp = new QAction(tr("&move Up"), this);
+    actionMovePositionUp->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Up));
+    connect(actionMovePositionUp, SIGNAL(triggered()), this, SLOT(slotPositionMoveUp()));
+
+    actionMovePositionDown = new QAction(tr("&move Down"), this);
+    actionMovePositionDown->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Down));
+    connect(actionMovePositionDown, SIGNAL(triggered()), this, SLOT(slotPositionMoveDown()));
+
+    actionMovePositionLeft = new QAction(tr("&move Left"), this);
+    actionMovePositionLeft->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
+    connect(actionMovePositionLeft, SIGNAL(triggered()), this, SLOT(slotPositionMoveLeft()));
+
+    actionMovePositionRight = new QAction(tr("&move Right"), this);
+    actionMovePositionRight->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Right));
+    connect(actionMovePositionRight, SIGNAL(triggered()), this, SLOT(slotPositionMoveRight()));
+
+    actionMoveLayerUp = new QAction(tr("&move Layer Up"), this);
+    actionMoveLayerUp->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Up));
+    connect(actionMoveLayerUp, SIGNAL(triggered()), this, SLOT(slotMoveLayerUp()));
+
+    actionMoveLayerDown= new QAction(tr("&move Layer Down"), this);
+    actionMoveLayerDown->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
+    connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
+
+    //Create Color Actions here
+    actionColorPickerFirstColor = new QAction(tr("&Main"), this);
+    connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
+
+    actionColorPickerSecondColor = new QAction(tr("&Secondary"), this);
+    connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
+
+    actionColorSwitch = new QAction(tr("&Switch"), this);
+    actionColorSwitch->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
+    connect(actionColorSwitch, SIGNAL(triggered()), this, SLOT(slotSwitchColor()));
+
+    //Create Tool actions down here
+    actionCreatePlainTool = new QAction(tr("&Plain"), this);
+    connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotCreatePlainTool()));
+
+    actionCreatePenTool = new QAction(tr("&Pen"),this);
+    connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotCreatePenTool()));
+
+    actionCreateLineTool = new QAction(tr("&Line"), this);
+    connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotCreateLineTool()));
 
     // Create about action and tie to IntelliPhotoGui::about()
-    aboutAct = new QAction(tr("&About"), this);
-    connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
+    actionAboutDialog = new QAction(tr("&About"), this);
+    connect(actionAboutDialog, SIGNAL(triggered()), this, SLOT(slotAboutDialog()));
 
     // Create about Qt action and tie to IntelliPhotoGui::aboutQt()
-    aboutQtAct = new QAction(tr("About &Qt"), this);
-    connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    actionAboutQtDialog = new QAction(tr("About &Qt"), this);
+    connect(actionAboutQtDialog, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 }
 
 // Create the menubar
@@ -315,39 +361,57 @@ void IntelliPhotoGui::createMenus()
 {
     // Create Save As option and the list of file types
     saveAsMenu = new QMenu(tr("&Save As"), this);
-    foreach (QAction *action, saveAsActs)
+    foreach (QAction *action, actionSaveAs)
         saveAsMenu->addAction(action);
 
 
     // Attach all actions to File
     fileMenu = new QMenu(tr("&File"), this);
-    fileMenu->addAction(openAct);
+    fileMenu->addAction(actionOpen);
     fileMenu->addMenu(saveAsMenu);
     fileMenu->addSeparator();
-    fileMenu->addAction(exitAct);
+    fileMenu->addAction(actionExit);
 
     // Attach all actions to Options
     optionMenu = new QMenu(tr("&Options"), this);
-    optionMenu->addAction(penColorAct);
-    optionMenu->addAction(penWidthAct);
-    optionMenu->addSeparator();
-    optionMenu->addAction(clearScreenAct);
+    optionMenu->addAction(actionSetActiveLayer);
+    optionMenu->addAction(actionSetActiveAlpha);
+    optionMenu->addAction(actionMovePositionUp);
+    optionMenu->addAction(actionMovePositionDown);
+    optionMenu->addAction(actionMovePositionLeft);
+    optionMenu->addAction(actionMovePositionRight);
+    optionMenu->addAction(actionMoveLayerUp);
+    optionMenu->addAction(actionMoveLayerDown);
 
     // Attach all actions to Layer
     layerMenu = new QMenu(tr("&Layer"), this);
-    layerMenu->addAction(newLayerAct);
-    layerMenu->addAction(deleteLayerAct);
-    layerMenu->addAction(deleteActiveLayerAct);
+    layerMenu->addAction(actionCreateNewLayer);
+    layerMenu->addAction(actionDeleteLayer);
+
+    //Attach all Color Options
+    colorMenu = new QMenu(tr("&Color"), this);
+    colorMenu->addAction(actionColorPickerFirstColor);
+    colorMenu->addAction(actionColorPickerSecondColor);
+    colorMenu->addAction(actionColorSwitch);
+
+    //Attach all Tool Options
+    toolMenu = new QMenu(tr("&Tools"), this);
+    toolMenu->addAction(actionCreatePenTool);
+    toolMenu->addAction(actionCreatePlainTool);
+    toolMenu->addAction(actionCreateLineTool);
+    toolMenu->addSeparator();
+    toolMenu->addMenu(colorMenu);
 
     // Attach all actions to Help
     helpMenu = new QMenu(tr("&Help"), this);
-    helpMenu->addAction(aboutAct);
-    helpMenu->addAction(aboutQtAct);
+    helpMenu->addAction(actionAboutDialog);
+    helpMenu->addAction(actionAboutQtDialog);
 
     // Add menu items to the menubar
     menuBar()->addMenu(fileMenu);
     menuBar()->addMenu(optionMenu);
     menuBar()->addMenu(layerMenu);
+    menuBar()->addMenu(toolMenu);
     menuBar()->addMenu(helpMenu);
 }
 
@@ -361,67 +425,10 @@ void IntelliPhotoGui::createGui(){
     centralGuiWidget->setLayout(mainLayout);
 
     //create Gui elements
-    clearButton = new QPushButton("set Color");
     paintingArea = new PaintingArea();
 
-
-    RedLabel = new QLabel("Red:");
-    GreenLabel = new QLabel("Green");
-    BlueLabel = new QLabel("Blue:");
-    RedEdit = new QLineEdit("255");
-    GreenEdit = new QLineEdit("255");
-    BlueEdit = new QLineEdit("255");
-    RedEdit->setMaximumSize(150,20);
-    GreenEdit->setMaximumSize(150,20);
-    BlueEdit->setMaximumSize(150,20);
-
-    selectActiveButton = new QPushButton("select Active");
-    selectActiveLabel = new QLabel("Active:");
-    selectActiveEdit = new QLineEdit("1");
-    selectActiveLabel->setMaximumSize(150,20);
-    selectActiveEdit->setMaximumSize(150,20);
-
-    setAlphaButton = new QPushButton("set Alpha");
-    setAlphaLabel = new QLabel("Alpha:");
-    setAlphaEdit = new QLineEdit("255");
-    setAlphaEdit->setMaximumSize(150,20);
-
-    moveActiveUpButton = new QPushButton("move 5 Up");
-    moveActiveDownButton = new QPushButton("move 5 Down");
-    moveActiveLeftButton = new QPushButton("move 5 Left");
-    moveActiveRightButton = new QPushButton("move 5 Right");
-
-    layerMoveActiveDownButton = new QPushButton("Active Layer Down");
-    layerMoveActiveUpButton = new QPushButton("Active Layer Up");
-
-    //set gui elemtns position
-    mainLayout->addWidget(clearButton,0,25,1,1);
-    mainLayout->addWidget(paintingArea,0,0,25,25);
-
-    mainLayout->addWidget(RedLabel,1,25,1,1);
-    mainLayout->addWidget(RedEdit,2,25,1,1);
-    mainLayout->addWidget(GreenLabel,3,25,1,1);
-    mainLayout->addWidget(GreenEdit,4,25,1,1);
-    mainLayout->addWidget(BlueLabel,5,25,1,1);
-    mainLayout->addWidget(BlueEdit,6,25,1,1);
-
-    mainLayout->addWidget(selectActiveButton,7,25,1,1);
-    mainLayout->addWidget(selectActiveLabel,8,25,1,1);
-    mainLayout->addWidget(selectActiveEdit,9,25,1,1);
-
-    mainLayout->addWidget(setAlphaButton,10,25,1,1);
-    mainLayout->addWidget(setAlphaLabel,11,25,1,1);
-    mainLayout->addWidget(setAlphaEdit,12,25,1,1);
-
-    mainLayout->addWidget(moveActiveUpButton,13,25,1,1);
-    mainLayout->addWidget(moveActiveDownButton,14,25,1,1);
-    mainLayout->addWidget(moveActiveLeftButton,15,25,1,1);
-    mainLayout->addWidget(moveActiveRightButton,16,25,1,1);
-
-    mainLayout->addWidget(layerMoveActiveDownButton,17,25,1,1);
-    mainLayout->addWidget(layerMoveActiveUpButton,18,25,1,1);
-
-
+    //set gui elements
+    mainLayout->addWidget(paintingArea);
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
@@ -436,7 +443,9 @@ void IntelliPhotoGui::setIntelliStyle(){
 bool IntelliPhotoGui::maybeSave()
 {
     // Check for changes since last save
-    if (paintingArea->isModified()) {
+
+    //TODO insert variable for modified status here to make an save exit message
+    if (false) {
        QMessageBox::StandardButton ret;
 
        // Painting is the title
@@ -478,7 +487,7 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat)
     } else {
 
         // Call for the file to be saved
-        return paintingArea->saveImage(fileName, fileFormat.constData());
+        return paintingArea->save(fileName, fileFormat.constData());
     }
 }
 

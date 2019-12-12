@@ -1,4 +1,4 @@
-QT       += core gui
+QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,8 +20,13 @@ SOURCES += \
     Image/IntelliImage.cpp \
     Image/IntelliRasterImage.cpp \
     Image/IntelliShapedImage.cpp \
+    IntelliHelper/IntelliColorPicker.cpp \
     IntelliHelper/IntelliHelper.cpp \
     Layer/PaintingArea.cpp \
+    Tool/IntelliTool.cpp \
+    Tool/IntelliToolLine.cpp \
+    Tool/IntelliToolPen.cpp \
+    Tool/IntelliToolPlain.cpp \
     main.cpp
 
 HEADERS += \
@@ -29,18 +34,22 @@ HEADERS += \
     Image/IntelliImage.h \
     Image/IntelliRasterImage.h \
     Image/IntelliShapedImage.h \
+    IntelliHelper/IntelliColorPicker.h \
     IntelliHelper/IntelliHelper.h \
     Layer/PaintingArea.h \
-    Tool/IntelliTool.h
+    Tool/IntelliTool.h \
+    Tool/IntelliToolLine.h \
+    Tool/IntelliToolPen.h \
+    Tool/IntelliToolPlain.h
 
 FORMS += \
     widget.ui
-
 
 QMAKE_CXXFLAGS
 QMAKE_LFLAGS
 
 RC_ICONS = icon.ico
+ICON = icon.icns
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

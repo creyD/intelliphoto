@@ -5,7 +5,7 @@
 #include<QDebug>
 
 IntelliShapedImage::IntelliShapedImage(int weight, int height)
-    :IntelliImage(weight, height){
+    :IntelliRasterImage(weight, height){
 }
 
 IntelliShapedImage::~IntelliShapedImage(){
@@ -13,59 +13,73 @@ IntelliShapedImage::~IntelliShapedImage(){
 }
 
 QImage IntelliShapedImage::getDisplayable(int alpha){
-    return getDisplayable(imageData.size());
+    return getDisplayable(imageData.size(),alpha);
+}
+
+IntelliImage* IntelliShapedImage::getDeepCopy(){
+    IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height());
+    shaped->setPolygon(this->polygonData);
+    shaped->imageData.fill(Qt::transparent);
+    return shaped;
+}
+
+void IntelliShapedImage::calculateVisiblity(){
+    if(polygonData.size()<=2){
+        QColor clr;
+        for(int y=0; y<imageData.height(); y++){
+            for(int x=0; x<imageData.width(); x++){
+                clr = imageData.pixel(x,y);
+                clr.setAlpha(255);
+                imageData.setPixelColor(x,y,clr);
+            }
+        }
+        return;
+    }
+    QPoint A = polygonData[0];
+    QColor clr;
+    for(int y=0; y<imageData.height(); y++){
+        for(int x=0; x<imageData.width(); x++){
+            int cutNumeber=0;
+            for(int i=1; i<static_cast<int>(polygonData.size()-1); i++){
+                QPoint B = polygonData[static_cast<size_t>(i)];
+                QPoint C = polygonData[static_cast<size_t>(i+1)];
+                QPoint P(x,y);
+                cutNumeber+=IntelliHelper::isInTriangle(A,B,C,P);
+            }
+            if(cutNumeber%2==0){
+                clr = imageData.pixelColor(x,y);
+                clr.setAlpha(0);
+                imageData.setPixelColor(x,y,clr);
+            }else{
+                clr = imageData.pixelColor(x,y);
+                clr.setAlpha(std::min(255, clr.alpha()));
+                imageData.setPixelColor(x,y,clr);
+            }
+        }
+    }
 }
 
 QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
-    if(polygonData.size()==0){
-        QImage copy = imageData;
-        for(int y = 0; y<copy.height(); y++){
-            for(int x = 0; x<copy.width(); x++){
-                QColor clr = copy.pixelColor(x,y);
-                clr.setAlpha(alpha);
-                copy.setPixelColor(x,y, clr);
-            }
-        }
-        return copy.scaled(displaySize,Qt::IgnoreAspectRatio);
-    }
     QImage copy = imageData;
-    QPoint startPoint;
-    QPoint extrem(0,copy.width()+1);
     for(int y = 0; y<copy.height(); y++){
-        extrem.setY(y);
-        startPoint.setY(y);
-        //traverse through x dircetion
-        for(int x=0; x<copy.width(); x++){
-            startPoint.setX(x);
-            //traverse all edges
-            int cutNumberX = 0;
-            for(size_t i=0; i<polygonData.size()-1; i++){
-                QPoint& start = polygonData[i];
-                QPoint& end = polygonData[i+1];
-                cutNumberX+=IntelliHelper::hasIntersection(startPoint, extrem, start, end);
-            }
-            //check if zhe cutNumber is Even -> not in Polygon
-            if(!(cutNumberX&1)){
-                QColor tmpColor(0,0,0);
-                tmpColor.setAlpha(0);
-                copy.setPixelColor(startPoint,tmpColor);
-            }else{
-                QColor clr = copy.pixelColor(x,y);
-                clr.setAlpha(alpha);
-                copy.setPixelColor(x,y,clr);
-            }
+        for(int x = 0; x<copy.width(); x++){
+            QColor clr = copy.pixelColor(x,y);
+            clr.setAlpha(std::min(alpha,clr.alpha()));
+            copy.setPixelColor(x,y, clr);
         }
     }
-
     return copy.scaled(displaySize,Qt::IgnoreAspectRatio);
 }
 
 void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
     if(polygonData.size()<3){
-        return;
+        this->polygonData.clear();
+    }else{
+        this->polygonData.clear();
+        for(auto element:polygonData){
+            this->polygonData.push_back(QPoint(element.x(), element.y()));
+        }
     }
-    for(auto element:polygonData){
-        this->polygonData.push_back(QPoint(element.x(), element.y()));
-    }
+    calculateVisiblity();
     return;
 }

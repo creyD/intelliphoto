@@ -12,119 +12,119 @@
 // PaintingArea used to paint the image
 class PaintingArea;
 
+class IntelliTool;
+
+class IntelliColorPicker;
+
 class IntelliPhotoGui : public QMainWindow
 {
     // Declares our class as a QObject which is the base class
     // for all Qt objects
     // QObjects handle events
     Q_OBJECT
-signals:
-    void sendClearColor(int r, int g, int b);
-    void sendActiveLayer(int a);
-    void sendAlpha(int a);
-    void moveUp(int a);
-    void moveDown(int a);
-    void moveRight(int a);
-    void moveLeft(int a);
-    void moveLayerUp();
-    void moveLayerDown();
-
 public:
     IntelliPhotoGui();
+
 protected:
     // Function used to close an event
     void closeEvent(QCloseEvent *event) override;
 
-// The events that can be triggered
 private slots:
-    void open();
-    void save();
-    void penColor();
-    void penWidth();
-    void newLayer();
-    void deleteLayer();
-    void about();
+    //meta slots here (need further )
+    void slotOpen();
+    void slotSave();
 
-    void onClearedPressed();
-    void onActivePressed();
-    void onSetAlpha();
-    void onMoveUp();
-    void onMoveDown();
-    void onMoveLeft();
-    void onMoveRight();
-    void onMoveLayerUp();
-    void onMoveLayerDown();
+    //layer slots here
+    void slotCreateNewLayer();
+    void slotDeleteLayer();
+    void slotClearActiveLayer();
+    void slotSetActiveLayer();
+    void slotSetActiveAlpha();
+    void slotPositionMoveUp();
+    void slotPositionMoveDown();
+    void slotPositionMoveLeft();
+    void slotPositionMoveRight();
+    void slotMoveLayerUp();
+    void slotMoveLayerDown();
+
+    //color Picker slots here
+    void slotSetFirstColor();
+    void slotSetSecondColor();
+    void slotSwitchColor();
+
+    //tool slots here
+    void slotCreatePenTool();
+    void slotCreatePlainTool();
+    void slotCreateLineTool();
+
+    //slots for dialogs
+    void slotAboutDialog();
 
 private:
     // Will tie user actions to functions
     void createActions();
     void createMenus();
-
     //setup GUI elements
     void createGui();
-
     //set style of the GUI
     void setIntelliStyle();
 
+
     // Will check if changes have occurred since last save
     bool maybeSave();
-
     // Opens the Save dialog and saves
     bool saveFile(const QByteArray &fileFormat);
 
     // What we'll draw on
-    PaintingArea *paintingArea;
+    PaintingArea* paintingArea;
 
     // The menu widgets
     QMenu *saveAsMenu;
     QMenu *fileMenu;
     QMenu *optionMenu;
     QMenu *layerMenu;
+    QMenu *colorMenu;
+    QMenu *toolMenu;
     QMenu *helpMenu;
 
-
     // All the actions that can occur
-    QAction *openAct;
+
+    //meta image actions (need further modularisation)
+    QAction *actionOpen;
+    QAction *actionExit;
+
+    //color Picker actions
+    QAction *actionColorPickerFirstColor;
+    QAction *actionColorPickerSecondColor;
+    QAction *actionColorSwitch;
+
+    //tool actions
+    QAction *actionCreatePenTool;
+    QAction *actionCreatePlainTool;
+    QAction *actionCreateLineTool;
+
+    //dialog actions
+    QAction *actionAboutDialog;
+    QAction *actionAboutQtDialog;
+
+    //layer change actions
+    QAction *actionCreateNewLayer;
+    QAction *actionDeleteLayer;
+    QAction* actionSetActiveLayer;
+    QAction* actionSetActiveAlpha;
+    QAction* actionMovePositionUp;
+    QAction* actionMovePositionDown;
+    QAction* actionMovePositionLeft;
+    QAction* actionMovePositionRight;
+    QAction* actionMoveLayerUp;
+    QAction* actionMoveLayerDown;
 
     // Actions tied to specific file formats
-    QList<QAction *> saveAsActs;
-    QAction *exitAct;
-    QAction *penColorAct;
-    QAction *penWidthAct;
-    QAction *clearScreenAct;
-    QAction *newLayerAct;
-    QAction *deleteLayerAct;
-    QAction *deleteActiveLayerAct;
-    QAction *aboutAct;
-    QAction *aboutQtAct;
+    QList<QAction *> actionSaveAs;
 
     //main GUI elements
     QWidget* centralGuiWidget;
     QGridLayout *mainLayout;
-    QPushButton *clearButton;
-
-    QLabel *RedLabel;
-    QLabel *GreenLabel;
-    QLabel *BlueLabel;
-    QLineEdit *RedEdit;
-    QLineEdit *GreenEdit;
-    QLineEdit *BlueEdit;
-
-    QPushButton *selectActiveButton;
-    QLabel *selectActiveLabel;
-    QLineEdit *selectActiveEdit;
-
-    QPushButton *setAlphaButton;
-    QLabel *setAlphaLabel;
-    QLineEdit *setAlphaEdit;
-
-    QPushButton *moveActiveUpButton;
-    QPushButton *moveActiveDownButton;
-    QPushButton *moveActiveLeftButton;
-    QPushButton *moveActiveRightButton;
-
-    QPushButton *layerMoveActiveDownButton;
-    QPushButton *layerMoveActiveUpButton;
 
 };
 
