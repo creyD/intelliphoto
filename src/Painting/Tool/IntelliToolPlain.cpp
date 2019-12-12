@@ -8,7 +8,7 @@ IntelliToolPlainTool::IntelliToolPlainTool(PaintingArea* Area, IntelliColorPicke
 
 void IntelliToolPlainTool::onMouseLeftPressed(int x, int y){
     IntelliTool::onMouseLeftPressed(x,y);
-    this->Canvas->image->floodFill(colorPicker->getFirstColor());
+    this->Canvas->image->drawPlain(colorPicker->getFirstColor());
     Canvas->image->calculateVisiblity();
 }
 

@@ -20,7 +20,7 @@ bool IntelliImage::loadImage(const QString &fileName){
         return false;
 
     // scaled Image to size of Layer
-    // loadedImage = loadedImage.scaled(imageData.size(),Qt::IgnoreAspectRatio);
+    loadedImage = loadedImage.scaled(imageData.size(),Qt::IgnoreAspectRatio);
 
     imageData = loadedImage.convertToFormat(QImage::Format_ARGB32);
     return true;
@@ -64,6 +64,6 @@ void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& co
 
 }
 
-void IntelliImage::floodFill(const QColor& color){
+void IntelliImage::drawPlain(const QColor& color){
     imageData.fill(color);
 }

@@ -34,6 +34,7 @@ class PaintingArea : public QWidget
     friend IntelliTool;
 public:
     PaintingArea(int maxWidth=600, int maxHeight=600, QWidget *parent = nullptr);
+    ~PaintingArea();
 
     // Handles all events
     bool open(const QString &fileName);
@@ -47,9 +48,6 @@ public:
     void floodFill(int r, int g, int b, int a);
     void movePositionActive(int x, int y);
     void moveActiveLayer(int idx);
-
-    // Has the image been modified since last save
-    bool isModified() const { return modified; }
 
     //change properties of colorPicker
     void colorPickerSetFirstColor();
@@ -99,9 +97,6 @@ private:
 
     void resizeImage(QImage *image_res, const QSize &newSize);
 
-    // Will be marked true or false depending on if
-    // we have saved after a change
-    bool modified=false;
 
     //Helper for Tool
     void createTempLayerAfter(int idx);

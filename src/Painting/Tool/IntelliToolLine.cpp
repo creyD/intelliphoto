@@ -37,7 +37,7 @@ void IntelliToolLine::onMouseLeftReleased(int x, int y){
 void IntelliToolLine::onMouseMoved(int x, int y){
     IntelliTool::onMouseMoved(x,y);
     if(this->drawing){
-        this->Canvas->image->floodFill(Qt::transparent);
+        this->Canvas->image->drawPlain(Qt::transparent);
         QPoint next(x,y);
         switch(lineStyle){
             case LineStyle::SOLID_LINE :

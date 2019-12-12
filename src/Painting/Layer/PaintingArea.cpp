@@ -21,7 +21,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
-    layerBundle[0].image->floodFill(QColor(255,0,0,255));
+    layerBundle[0].image->drawPlain(QColor(255,0,0,255));
     std::vector<QPoint> polygon;
     polygon.push_back(QPoint(100,000));
     polygon.push_back(QPoint(200,100));
@@ -30,10 +30,14 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     layerBundle[0].image->setPolygon(polygon);
 
     this->addLayer(200,200,150,150);
-    layerBundle[1].image->floodFill(QColor(0,255,0,255));
+    layerBundle[1].image->drawPlain(QColor(0,255,0,255));
     layerBundle[1].alpha=200;
 
     activeLayer=0;
+}
+
+PaintingArea::~PaintingArea(){
+    delete Tool;
 }
 
 
@@ -102,6 +106,7 @@ bool PaintingArea::open(const QString &fileName)
     }
     IntelliImage* active = layerBundle[static_cast<size_t>(activeLayer)].image;
     bool open = active->loadImage(fileName);
+    active->calculateVisiblity();
     update();
     return open;
 }
@@ -138,7 +143,7 @@ void PaintingArea::floodFill(int r, int g, int b, int a){
         return;
     }
     IntelliImage* active = layerBundle[static_cast<size_t>(activeLayer)].image;
-    active->floodFill(QColor(r, g, b, a));
+    active->drawPlain(QColor(r, g, b, a));
     update();
 }
 

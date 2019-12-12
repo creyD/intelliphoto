@@ -31,7 +31,7 @@ public:
     //start on top left
     virtual void drawPixel(const QPoint &p1, const QColor& color);
     virtual void drawLine(const QPoint &p1, const QPoint& p2, const QColor& color, const int& penWidth);
-    virtual void floodFill(const QColor& color);
+    virtual void drawPlain(const QColor& color);
 
     //returns the filtered output
     virtual QImage getDisplayable(const QSize& displaySize, int alpha)=0;

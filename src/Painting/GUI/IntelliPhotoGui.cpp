@@ -249,14 +249,7 @@ void IntelliPhotoGui::slotAboutDialog()
 // Define menu actions that call functions
 void IntelliPhotoGui::createActions()
 {
-    // Create the action tied to the menu
-    actionOpen = new QAction(tr("&Open..."), this);
 
-    // Define the associated shortcut key
-    actionOpen->setShortcuts(QKeySequence::Open);
-
-    // Tie the action to IntelliPhotoGui::open()
-    connect(actionOpen, SIGNAL(triggered()), this, SLOT(slotOpen()));
 
     // Get a list of the supported file formats
     // QImageWriter is used to write images to files
@@ -287,9 +280,13 @@ void IntelliPhotoGui::createActions()
 
 
     // Create exit action and tie to IntelliPhotoGui::close()
-    actionOpen = new QAction(tr("&Exit"), this);
-    actionOpen->setShortcuts(QKeySequence::Quit);
-    connect(actionOpen, SIGNAL(triggered()), this, SLOT(close()));
+    actionExit = new QAction(tr("&Exit"), this);
+    actionExit->setShortcuts(QKeySequence::Quit);
+    connect(actionExit, SIGNAL(triggered()), this, SLOT(close()));
+
+    actionOpen = new QAction(tr("&Open"), this);
+    actionOpen->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+    connect(actionOpen, SIGNAL(triggered()), this, SLOT(slotOpen()));
 
     // Create New Layer action and tie to IntelliPhotoGui::newLayer()
     actionCreateNewLayer = new QAction(tr("&New Layer..."), this);
@@ -373,7 +370,7 @@ void IntelliPhotoGui::createMenus()
     fileMenu->addAction(actionOpen);
     fileMenu->addMenu(saveAsMenu);
     fileMenu->addSeparator();
-    fileMenu->addAction(actionOpen);
+    fileMenu->addAction(actionExit);
 
     // Attach all actions to Options
     optionMenu = new QMenu(tr("&Options"), this);
@@ -446,7 +443,9 @@ void IntelliPhotoGui::setIntelliStyle(){
 bool IntelliPhotoGui::maybeSave()
 {
     // Check for changes since last save
-    if (paintingArea->isModified()) {
+
+    //TODO insert variable for modified status here to make an save exit message
+    if (false) {
        QMessageBox::StandardButton ret;
 
        // Painting is the title
