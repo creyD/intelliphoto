@@ -8,6 +8,8 @@
 #include <QWidget>
 #include <QList>
 #include "Image/IntelliImage.h"
+#include "Image/IntelliRasterImage.h"
+#include "Image/IntelliShapedImage.h"
 #include "Tool/IntelliTool.h"
 
 
@@ -21,6 +23,8 @@ struct LayerObject{
 
 
 };
+
+class IntelliColorPicker;
 
 class PaintingArea : public QWidget
 {

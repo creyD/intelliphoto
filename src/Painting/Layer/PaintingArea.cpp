@@ -37,6 +37,22 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
 }
 
 
+void PaintingArea::switchColors(){
+    ColorTool->switchColors();
+}
+
+void PaintingArea::createPenTool(){
+    IntelliTool *temp = this->Tool;
+    this->Tool = new IntelliToolPen(this);
+    delete temp;
+}
+
+void PaintingArea::createFloodFillTool(){
+    IntelliTool *temp = this->Tool;
+    this->Tool = new IntelliToolFloodFillTool(this);
+    delete temp;
+}
+
 void PaintingArea::setUp(int maxWidth, int maxHeight){
     //set standart parameter
     this->maxWidth = maxWidth;

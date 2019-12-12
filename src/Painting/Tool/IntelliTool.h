@@ -21,7 +21,6 @@ public:
     IntelliTool(PaintingArea* Area);
     virtual ~IntelliTool() = 0;
 
-
     virtual void onMouseRightPressed(int x, int y);
     virtual void onMouseRightReleased(int x, int y);
     virtual void onMouseLeftPressed(int x, int y);

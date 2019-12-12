@@ -14,6 +14,8 @@ class PaintingArea;
 
 class IntelliTool;
 
+class IntelliColorPicker;
+
 class IntelliPhotoGui : public QMainWindow
 {
     // Declares our class as a QObject which is the base class
@@ -66,7 +68,6 @@ private:
 
     // What we'll draw on
     PaintingArea* paintingArea;
-    IntelliTool* Tool;
 
     // The menu widgets
     QMenu *saveAsMenu;
