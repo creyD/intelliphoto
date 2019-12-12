@@ -1,10 +1,9 @@
 #include "IntelliToolPen.h"
 #include "Layer/PaintingArea.h"
-#include "QDebug"
 
 IntelliToolPen::IntelliToolPen(PaintingArea* Area)
-    :IntelliToolSetColorTool(Area){
-
+    :IntelliTool(Area){
+    Tool = new IntelliColorPicker(Area);
 }
 
 IntelliToolPen::~IntelliToolPen(){
@@ -35,8 +34,7 @@ void IntelliToolPen::onMouseLeftReleased(int x, int y){
 void IntelliToolPen::onMouseMoved(int x, int y){
     if(this->drawing){
         QPoint newPoint(x,y);
-        Tool = Area->getTool();
-        qDebug() << Tool->getFirstColor();
+        Tool = Area->getColorTool();
         this->Canvas->image->drawLine(this->point, newPoint, Tool->getFirstColor(), 2);
         this->point=newPoint;
     }

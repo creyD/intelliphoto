@@ -14,6 +14,8 @@ class PaintingArea;
 
 class IntelliTool;
 
+class IntelliColorPicker;
+
 class IntelliPhotoGui : public QMainWindow
 {
     // Declares our class as a QObject which is the base class
@@ -35,6 +37,9 @@ private slots:
     void slotDeleteLayer();
 
     void slotGetColorbar();
+    void slotSwitchColors();
+    void slotCreatePenTool();
+    void slotCreateFloodFillTool();
 
     void slotAboutDialog();
 
@@ -65,7 +70,6 @@ private:
 
     // What we'll draw on
     PaintingArea* paintingArea;
-    IntelliTool* Tool;
 
     // The menu widgets
     QMenu *saveAsMenu;
@@ -83,6 +87,9 @@ private:
     QAction *actionDeleteLayer;
 
     QAction *actionGetColorbar;
+    QAction *actionSwitchColors;
+    QAction *actionCreatePenTool;
+    QAction *actionCreateFloodFillTool;
 
     QAction *actionAboutDialog;
     QAction *actionAboutQtDialog;

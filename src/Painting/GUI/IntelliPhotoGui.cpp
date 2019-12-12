@@ -119,8 +119,19 @@ void IntelliPhotoGui::slotGetColorbar(){
                                             tr("Number:"),
                                             1,1, 2, 1, &ok1);
 
-    Tool = paintingArea->getTool();
-    Tool->getColorbar(firstOrSecondColor);
+    paintingArea->getColorbar(firstOrSecondColor);
+}
+
+void IntelliPhotoGui::slotSwitchColors(){
+    paintingArea->switchColors();
+}
+
+void IntelliPhotoGui::slotCreatePenTool(){
+    paintingArea->createPenTool();
+}
+
+void IntelliPhotoGui::slotCreateFloodFillTool(){
+    paintingArea->createFloodFillTool();
 }
 
 void IntelliPhotoGui::slotSetActiveAlpha(){
@@ -280,9 +291,6 @@ void IntelliPhotoGui::createActions()
     actionDeleteLayer = new QAction(tr("&Delete Layer..."), this);
     connect(actionDeleteLayer, SIGNAL(triggered()), this, SLOT(slotDeleteLayer()));
 
-    actionGetColorbar = new QAction(tr("&Set Color"),this);
-    connect(actionGetColorbar, SIGNAL(triggered()), this, SLOT(slotGetColorbar()));
-
     actionFloodFill = new QAction(tr("&clear Image"), this);
     connect(actionFloodFill, SIGNAL(triggered()), this, SLOT(slotClearActiveLayer()));
 
@@ -315,6 +323,20 @@ void IntelliPhotoGui::createActions()
     actionMoveLayerDown= new QAction(tr("&move Layer Down"), this);
     actionMoveLayerDown->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
     connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
+
+    //Create Tool actions down here
+    actionGetColorbar = new QAction(tr("&Set Color"),this);
+    connect(actionGetColorbar, SIGNAL(triggered()), this, SLOT(slotGetColorbar()));
+
+    actionSwitchColors = new QAction(tr("&Switch Color"),this);
+    actionSwitchColors->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_C));
+    connect(actionSwitchColors, SIGNAL(triggered()),this, SLOT(slotSwitchColors()));
+
+    actionCreateFloodFillTool = new QAction(tr("&Flood Fill"), this);
+    connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotCreateFloodFillTool()));
+
+    actionCreatePenTool = new QAction(tr("&Pen"),this);
+    connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotCreatePenTool()));
 
     // Create about action and tie to IntelliPhotoGui::about()
     actionAboutDialog = new QAction(tr("&About"), this);
@@ -361,6 +383,9 @@ void IntelliPhotoGui::createMenus()
     //Attach all Tool Options
     toolMenu = new QMenu(tr("&Tools"), this);
     toolMenu->addAction(actionGetColorbar);
+    toolMenu->addAction(actionSwitchColors);
+    toolMenu->addAction(actionCreatePenTool);
+    toolMenu->addAction(actionCreateFloodFillTool);
 
     // Attach all actions to Help
     helpMenu = new QMenu(tr("&Help"), this);

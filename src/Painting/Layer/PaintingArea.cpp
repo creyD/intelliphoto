@@ -8,17 +8,11 @@
 #include <QRect>
 
 #include "PaintingArea.h"
-#include "Image/IntelliRasterImage.h"
-#include "Image/IntelliShapedImage.h"
-#include "Tool/IntelliToolPen.h"
-#include "Tool/IntelliToolSetColorTool.h"
-#include "Tool/IntelliToolFloodFillTool.h"
-
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
-    this->Tool = new IntelliToolFloodFillTool(this);
-    this->ColorTool = new IntelliToolSetColorTool(this);
+    this->Tool = new IntelliToolPen(this);
+    this->ColorTool = new IntelliColorPicker(this);
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
@@ -37,8 +31,28 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     activeLayer=1;
 }
 
-IntelliToolSetColorTool* PaintingArea::getTool(){
+void PaintingArea::getColorbar(int firstOrSecondColor){
+    ColorTool->getColorbar(firstOrSecondColor);
+}
+
+IntelliColorPicker* PaintingArea::getColorTool(){
     return ColorTool;
+}
+
+void PaintingArea::switchColors(){
+    ColorTool->switchColors();
+}
+
+void PaintingArea::createPenTool(){
+    IntelliTool *temp = this->Tool;
+    this->Tool = new IntelliToolPen(this);
+    delete temp;
+}
+
+void PaintingArea::createFloodFillTool(){
+    IntelliTool *temp = this->Tool;
+    this->Tool = new IntelliToolFloodFillTool(this);
+    delete temp;
 }
 
 void PaintingArea::setUp(int maxWidth, int maxHeight){

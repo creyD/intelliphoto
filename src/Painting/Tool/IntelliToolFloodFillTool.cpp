@@ -2,9 +2,9 @@
 #include "Layer/PaintingArea.h"
 
 IntelliToolFloodFillTool::IntelliToolFloodFillTool(PaintingArea* Area)
-    :IntelliToolSetColorTool(Area)
+    :IntelliTool(Area)
 {
-    Tool = Area->getTool();
+    Tool = Area->getColorTool();
     isPressed = false;
 }
 
@@ -12,7 +12,7 @@ void IntelliToolFloodFillTool::onMouseLeftPressed(int x, int y){
     if(!isPressed){
         isPressed = true;
         IntelliTool::onMouseLeftPressed(x,y);
-        Tool = Area->getTool();
+        Tool = Area->getColorTool();
         this->Canvas->image->floodFill(Tool->getFirstColor());
     }
 }
@@ -21,7 +21,7 @@ void IntelliToolFloodFillTool::onMouseRightPressed(int x, int y){
     if(!isPressed){
         isPressed = true;
         IntelliTool::onMouseLeftPressed(x,y);
-        Tool = Area->getTool();
+        Tool = Area->getColorTool();
         this->Canvas->image->floodFill(Tool->getSecondColor());
     }
 }

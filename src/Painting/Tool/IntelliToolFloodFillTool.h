@@ -1,21 +1,21 @@
 #ifndef INTELLITOOLFLOODFILLTOOL_H
 #define INTELLITOOLFLOODFILLTOOL_H
 
-#include "IntelliToolSetColorTool.h"
+#include "IntelliHelper/IntelliColorPicker.h"
 
-class IntelliToolFloodFillTool : public IntelliToolSetColorTool
+class IntelliToolFloodFillTool : public IntelliTool
 {
 public:
     IntelliToolFloodFillTool(PaintingArea *Area);
 
-    void IntelliToolFloodFillTool::onMouseLeftPressed(int x, int y) override;
-    void IntelliToolFloodFillTool::onMouseLeftReleased(int x, int y) override;
-    void IntelliToolFloodFillTool::onMouseRightPressed(int x, int y) override;
-    void IntelliToolFloodFillTool::onMouseRightReleased(int x, int y) override;
-    void IntelliToolFloodFillTool::onMouseMoved(int x, int y) override;
+    void onMouseLeftPressed(int x, int y) override;
+    void onMouseLeftReleased(int x, int y) override;
+    void onMouseRightPressed(int x, int y) override;
+    void onMouseRightReleased(int x, int y) override;
+    void onMouseMoved(int x, int y) override;
 
 private:
-    IntelliToolSetColorTool* Tool;
+    IntelliColorPicker* Tool;
     bool isPressed;
 };
 

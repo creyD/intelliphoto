@@ -1,17 +1,17 @@
-#include "IntelliToolSetColorTool.h"
+#include "IntelliColorPicker.h"
 #include "QDebug"
 
-IntelliToolSetColorTool::IntelliToolSetColorTool(PaintingArea* Area)
+IntelliColorPicker::IntelliColorPicker(PaintingArea* Area)
     :IntelliTool(Area){
     firstColor = {255,0,0,255};
     secondColor = {0,0,255,255};
 }
 
-IntelliToolSetColorTool::~IntelliToolSetColorTool(){
+IntelliColorPicker::~IntelliColorPicker(){
 
 }
 
-void IntelliToolSetColorTool::getColorbar(int firstOrSecondColor = 1){
+void IntelliColorPicker::getColorbar(int firstOrSecondColor = 1){
     QString Titel;
     QColor newColor;
     if(firstOrSecondColor == 1){
@@ -27,10 +27,10 @@ void IntelliToolSetColorTool::getColorbar(int firstOrSecondColor = 1){
     }
 }
 
-QColor IntelliToolSetColorTool::getFirstColor(){
+QColor IntelliColorPicker::getFirstColor(){
     return firstColor;
 }
 
-QColor IntelliToolSetColorTool::getSecondColor(){
+QColor IntelliColorPicker::getSecondColor(){
     return secondColor;
 }

@@ -20,12 +20,12 @@ SOURCES += \
     Image/IntelliImage.cpp \
     Image/IntelliRasterImage.cpp \
     Image/IntelliShapedImage.cpp \
+    IntelliHelper/IntelliColorPicker.cpp \
     IntelliHelper/IntelliHelper.cpp \
     Layer/PaintingArea.cpp \
     Tool/IntelliTool.cpp \
     Tool/IntelliToolFloodFillTool.cpp \
     Tool/IntelliToolPen.cpp \
-    Tool/IntelliToolSetColorTool.cpp \
     main.cpp
 
 HEADERS += \
@@ -33,12 +33,12 @@ HEADERS += \
     Image/IntelliImage.h \
     Image/IntelliRasterImage.h \
     Image/IntelliShapedImage.h \
+    IntelliHelper/IntelliColorPicker.h \
     IntelliHelper/IntelliHelper.h \
     Layer/PaintingArea.h \
     Tool/IntelliTool.h \
     Tool/IntelliToolFloodFillTool.h \
-    Tool/IntelliToolPen.h \
-    Tool/IntelliToolSetColorTool.h
+    Tool/IntelliToolPen.h
 
 FORMS += \
     widget.ui

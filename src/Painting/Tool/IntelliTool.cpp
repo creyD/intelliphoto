@@ -10,10 +10,6 @@ IntelliTool::~IntelliTool(){
 
 }
 
-void IntelliTool::getColorbar(int firstOrSecondColor){
-    //optional for tool
-}
-
 void IntelliTool::onMouseRightPressed(int x, int y){
     if(drawing){
         drawing=false;
