@@ -30,6 +30,7 @@ public:
 
     //start on top left
     virtual void drawPixel(const QPoint &p1, const QColor& color);
+    virtual void drawPoint(const QPoint &p1, const QColor& color, const int& penWidth);
     virtual void drawLine(const QPoint &p1, const QPoint& p2, const QColor& color, const int& penWidth);
     virtual void drawPlain(const QColor& color);
 
