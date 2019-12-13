@@ -7,8 +7,7 @@
 #include "Layer/PaintingArea.h"
 
 // IntelliPhotoGui constructor
-IntelliPhotoGui::IntelliPhotoGui()
-{   
+IntelliPhotoGui::IntelliPhotoGui(){
     //create Gui elements and lay them out
     createGui();
     // Create actions
@@ -22,10 +21,8 @@ IntelliPhotoGui::IntelliPhotoGui()
     showMaximized();
 }
 
-
 // User tried to close the app
-void IntelliPhotoGui::closeEvent(QCloseEvent *event)
-{
+void IntelliPhotoGui::closeEvent(QCloseEvent *event){
     // If they try to close maybeSave() returns true
     // if no changes have been made and the app closes
     if (maybeSave()) {
@@ -39,8 +36,7 @@ void IntelliPhotoGui::closeEvent(QCloseEvent *event)
 
 // Check if the current image has been changed and then
 // open a dialog to open a file
-void IntelliPhotoGui::slotOpen()
-{
+void IntelliPhotoGui::slotOpen(){
     // Check if changes have been made since last save
     // maybeSave() returns true if no changes have been made
     if (maybeSave()) {
@@ -59,8 +55,7 @@ void IntelliPhotoGui::slotOpen()
 }
 
 // Called when the user clicks Save As in the menu
-void IntelliPhotoGui::slotSave()
-{
+void IntelliPhotoGui::slotSave(){
     // A QAction represents the action of the user clicking
     QAction *action = qobject_cast<QAction *>(sender());
 
@@ -72,8 +67,7 @@ void IntelliPhotoGui::slotSave()
 }
 
 // Opens a dialog that allows the user to create a New Layer
-void IntelliPhotoGui::slotCreateNewLayer()
-{
+void IntelliPhotoGui::slotCreateNewLayer(){
     // Stores button value
     bool ok1, ok2;
 
@@ -95,8 +89,7 @@ void IntelliPhotoGui::slotCreateNewLayer()
 }
 
 // Opens a dialog that allows the user to delete a Layer
-void IntelliPhotoGui::slotDeleteLayer()
-{
+void IntelliPhotoGui::slotDeleteLayer(){
     // Stores button value
     bool ok;
 
@@ -118,7 +111,6 @@ void slotCreatePenTool(){
 void slotCreateFloodFillTool(){
 
 }
-
 
 void IntelliPhotoGui::slotSetActiveAlpha(){
     // Stores button value
@@ -239,18 +231,14 @@ void IntelliPhotoGui::slotCreateLineTool(){
 }
 
 // Open an about dialog
-void IntelliPhotoGui::slotAboutDialog()
-{
+void IntelliPhotoGui::slotAboutDialog(){
     // Window title and text to display
     QMessageBox::about(this, tr("About Painting"),
             tr("<p><b>IntelliPhoto</b> Some nice ass looking software</p>"));
 }
 
 // Define menu actions that call functions
-void IntelliPhotoGui::createActions()
-{
-
-
+void IntelliPhotoGui::createActions(){
     // Get a list of the supported file formats
     // QImageWriter is used to write images to files
     foreach (QByteArray format, QImageWriter::supportedImageFormats()) {
@@ -276,8 +264,6 @@ void IntelliPhotoGui::createActions()
     connect(pngSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
     // Attach each PNG in save Menu
     actionSaveAs.append(pngSaveAction);
-
-
 
     // Create exit action and tie to IntelliPhotoGui::close()
     actionExit = new QAction(tr("&Exit"), this);
@@ -357,8 +343,7 @@ void IntelliPhotoGui::createActions()
 }
 
 // Create the menubar
-void IntelliPhotoGui::createMenus()
-{
+void IntelliPhotoGui::createMenus(){
     // Create Save As option and the list of file types
     saveAsMenu = new QMenu(tr("&Save As"), this);
     foreach (QAction *action, actionSaveAs)
@@ -440,8 +425,7 @@ void IntelliPhotoGui::setIntelliStyle(){
     this->menuBar()->setStyleSheet("color:rgb(255,255,255)");
 }
 
-bool IntelliPhotoGui::maybeSave()
-{
+bool IntelliPhotoGui::maybeSave(){
     // Check for changes since last save
 
     //TODO insert variable for modified status here to make an save exit message
@@ -468,8 +452,7 @@ bool IntelliPhotoGui::maybeSave()
     return true;
 }
 
-bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat)
-{
+bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
     // Define path, name and default file type
     QString initialPath = QDir::currentPath() + "/untitled." + fileFormat;
 
@@ -485,9 +468,7 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat)
     if (fileName.isEmpty()) {
         return false;
     } else {
-
         // Call for the file to be saved
         return paintingArea->save(fileName, fileFormat.constData());
     }
 }
-

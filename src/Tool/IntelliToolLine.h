@@ -10,8 +10,7 @@ enum class LineStyle{
     DOTTED_LINE
 };
 
-class IntelliToolLine : public IntelliTool
-{
+class IntelliToolLine : public IntelliTool{
     QPoint start;
     int lineWidth;
     LineStyle lineStyle;
