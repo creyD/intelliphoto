@@ -2,8 +2,7 @@
 #include <QApplication>
 #include <QDebug>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     // The main application
     QApplication app(argc, argv);
 
@@ -14,7 +13,3 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
-
-
-
-

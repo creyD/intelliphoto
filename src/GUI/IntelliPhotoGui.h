@@ -16,8 +16,7 @@ class IntelliTool;
 
 class IntelliColorPicker;
 
-class IntelliPhotoGui : public QMainWindow
-{
+class IntelliPhotoGui : public QMainWindow{
     // Declares our class as a QObject which is the base class
     // for all Qt objects
     // QObjects handle events

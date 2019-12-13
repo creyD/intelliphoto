@@ -14,7 +14,6 @@
 #include "Tool/IntelliToolPlain.h"
 #include "Tool/IntelliToolLine.h"
 
-
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
     this->Tool = nullptr;
@@ -39,7 +38,6 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
 PaintingArea::~PaintingArea(){
     delete Tool;
 }
-
 
 void PaintingArea::setUp(int maxWidth, int maxHeight){
     //set standart parameter
@@ -85,7 +83,7 @@ void PaintingArea::slotDeleteActiveLayer(){
     }
 }
 
-void PaintingArea::setLayerToActive(int index) {
+void PaintingArea::setLayerToActive(int index){
     if(index>=0&&index<static_cast<int>(layerBundle.size())){
         this->activeLayer=index;
     }
@@ -97,10 +95,8 @@ void PaintingArea::setAlphaOfLayer(int index, int alpha){
     }
 }
 
-
 // Used to load the image and place it in the widget
-bool PaintingArea::open(const QString &fileName)
-{
+bool PaintingArea::open(const QString &fileName){
     if(this->activeLayer==-1){
         return false;
     }
@@ -112,8 +108,7 @@ bool PaintingArea::open(const QString &fileName)
 }
 
 // Save the current image
-bool PaintingArea::save(const QString &fileName, const char *fileFormat)
-{
+bool PaintingArea::save(const QString &fileName, const char *fileFormat){
     if(layerBundle.size()==0){
         return false;
     }
@@ -135,7 +130,6 @@ bool PaintingArea::save(const QString &fileName, const char *fileFormat)
         return false;
     }
 }
-
 
 // Color the image area with white
 void PaintingArea::floodFill(int r, int g, int b, int a){
@@ -198,8 +192,7 @@ void PaintingArea::createLineTool(){
 // If a mouse button is pressed check if it was the
 // left button and if so store the current position
 // Set that we are currently drawing
-void PaintingArea::mousePressEvent(QMouseEvent *event)
-{
+void PaintingArea::mousePressEvent(QMouseEvent *event){
     if(Tool == nullptr)
         return;
     int x = event->x()-layerBundle[activeLayer].widthOffset;
@@ -212,12 +205,10 @@ void PaintingArea::mousePressEvent(QMouseEvent *event)
     update();
 }
 
-
 // When the mouse moves if the left button is clicked
 // we call the drawline function which draws a line
 // from the last position to the current
-void PaintingArea::mouseMoveEvent(QMouseEvent *event)
-{
+void PaintingArea::mouseMoveEvent(QMouseEvent *event){
     if(Tool == nullptr)
         return;
     int x = event->x()-layerBundle[activeLayer].widthOffset;
@@ -227,8 +218,7 @@ void PaintingArea::mouseMoveEvent(QMouseEvent *event)
 }
 
 // If the button is released we set variables to stop drawing
-void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
-{
+void PaintingArea::mouseReleaseEvent(QMouseEvent *event){
     if(Tool == nullptr)
         return;
     int x = event->x()-layerBundle[activeLayer].widthOffset;
@@ -244,8 +234,7 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event)
 // QPainter provides functions to draw on the widget
 // The QPaintEvent is sent to widgets that need to
 // update themselves
-void PaintingArea::paintEvent(QPaintEvent *event)
-{
+void PaintingArea::paintEvent(QPaintEvent *event){
     this->assembleLayers();
 
     QPainter painter(this);
@@ -256,12 +245,10 @@ void PaintingArea::paintEvent(QPaintEvent *event)
 
 // Resize the image to slightly larger then the main window
 // to cut down on the need to resize the image
-void PaintingArea::resizeEvent(QResizeEvent *event)
-{
+void PaintingArea::resizeEvent(QResizeEvent *event){
     //TODO wait till tool works
     update();
 }
-
 
 void PaintingArea::resizeImage(QImage *image_res, const QSize &newSize){
     //TODO implement
@@ -280,7 +267,6 @@ void PaintingArea::activateLowerLayer(){
         activeLayer--;
     }
 }
-
 
 void PaintingArea::assembleLayers(bool forSaving){
     if(forSaving){

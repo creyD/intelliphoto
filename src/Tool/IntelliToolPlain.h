@@ -4,8 +4,7 @@
 #include "IntelliTool.h"
 #include "QColor"
 
-class IntelliToolPlainTool : public IntelliTool
-{
+class IntelliToolPlainTool : public IntelliTool{
 public:
     IntelliToolPlainTool(PaintingArea *Area, IntelliColorPicker* colorPicker);
 
