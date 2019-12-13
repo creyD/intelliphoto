@@ -14,6 +14,7 @@
 #include "Tool/IntelliToolPlain.h"
 #include "Tool/IntelliToolLine.h"
 #include "Tool/IntelliToolCircle.h"
+#include "Tool/IntelliToolRechteck.h"
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){

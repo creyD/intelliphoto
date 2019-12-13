@@ -28,6 +28,7 @@ SOURCES += \
     Tool/IntelliToolLine.cpp \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
+    Tool/IntelliToolRechteck.cpp \
     main.cpp
 
 HEADERS += \
@@ -43,6 +44,7 @@ HEADERS += \
     Tool/IntelliToolLine.h \
     Tool/IntelliToolPen.h \
     Tool/IntelliToolPlain.h \
+    Tool/IntelliToolRechteck.h \
     Tool/intellitoolcircle.h
 
 FORMS += \
