@@ -17,7 +17,8 @@
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
-    this->Tool = new IntelliToolCircle(this, &colorPicker);
+    //test yout tool here and reset after accomplished test
+    this->Tool = nullptr;
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
