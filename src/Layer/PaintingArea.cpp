@@ -13,9 +13,11 @@
 #include "Tool/IntelliToolPen.h"
 #include "Tool/IntelliToolPlain.h"
 #include "Tool/IntelliToolLine.h"
+#include "Tool/IntelliToolCircle.h"
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
+    //test yout tool here and reset after accomplished test
     this->Tool = nullptr;
     this->setUp(maxWidth, maxHeight);
     //tetsing
@@ -32,7 +34,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     layerBundle[1].image->drawPlain(QColor(0,255,0,255));
     layerBundle[1].alpha=200;
 
-    activeLayer=0;
+    activeLayer=1;
 }
 
 PaintingArea::~PaintingArea(){
