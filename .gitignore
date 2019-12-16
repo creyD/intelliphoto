@@ -1,5 +1,5 @@
 # Build folders
-src/build-*/
+/build-*/
 
 # QT Creator Files
 *.creator.user*
@@ -13,7 +13,6 @@ CMakeLists.txt.user*
 /share/qtcreator/fonts/
 /share/qtcreator/generic-highlighter/
 /share/qtcreator/qmldesigner/QtProject/
-/build-*/
 app_version.h
 phony.c
 
