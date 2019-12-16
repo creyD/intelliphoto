@@ -34,6 +34,14 @@ void IntelliToolLine::onMouseLeftReleased(int x, int y){
     IntelliTool::onMouseLeftReleased(x,y);
 }
 
+void IntelliToolLine::onWheelScrolled(int value){
+    IntelliTool::onWheelScrolled(value);
+    this->lineWidth+=value;
+    if(this->lineWidth<=0){
+        this->lineWidth=1;
+    }
+}
+
 void IntelliToolLine::onMouseMoved(int x, int y){
     IntelliTool::onMouseMoved(x,y);
     if(this->drawing){

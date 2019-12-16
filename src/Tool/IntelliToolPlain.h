@@ -8,11 +8,14 @@ class IntelliToolPlainTool : public IntelliTool{
 public:
     IntelliToolPlainTool(PaintingArea *Area, IntelliColorPicker* colorPicker);
 
-    void onMouseLeftPressed(int x, int y) override;
-    void onMouseLeftReleased(int x, int y) override;
-    void onMouseRightPressed(int x, int y) override;
-    void onMouseRightReleased(int x, int y) override;
-    void onMouseMoved(int x, int y) override;
+    virtual void onMouseLeftPressed(int x, int y) override;
+    virtual void onMouseLeftReleased(int x, int y) override;
+    virtual void onMouseRightPressed(int x, int y) override;
+    virtual void onMouseRightReleased(int x, int y) override;
+
+    virtual void onWheelScrolled(int value) override;
+
+    virtual void onMouseMoved(int x, int y) override;
 
 };
 

@@ -21,6 +21,8 @@ public:
     virtual void onMouseLeftPressed(int x, int y) override;
     virtual void onMouseLeftReleased(int x, int y) override;
 
+    virtual void onWheelScrolled(int value) override;
+
     virtual void onMouseMoved(int x, int y) override;
 };
 

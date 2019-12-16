@@ -27,8 +27,8 @@ void IntelliToolCircle::drawCyrcle(int radius){
         this->Canvas->image->drawLine(QPoint(xMin,i), QPoint(xMax,i),inner,1);
     }
 
-    //TODO implement circle drawing algorithm
-    radius = radius +(this->edgeWidth/2.)-0.5;
+    //TODO implement circle drawing algorithm bresenham
+    radius = radius +(this->edgeWidth/2.)-1.;
     yMin = (Middle.y()-radius);
     yMax = (Middle.y()+radius);
     for(int i=yMin; i<=yMax; i++){
@@ -66,6 +66,14 @@ void IntelliToolCircle::onMouseLeftPressed(int x, int y){
 
 void IntelliToolCircle::onMouseLeftReleased(int x, int y){
     IntelliTool::onMouseLeftReleased(x,y);
+}
+
+void IntelliToolCircle::onWheelScrolled(int value){
+    IntelliTool::onWheelScrolled(value);
+    this->edgeWidth+=value;
+    if(this->edgeWidth<=0){
+        this->edgeWidth=1;
+    }
 }
 
 void IntelliToolCircle::onMouseMoved(int x, int y){

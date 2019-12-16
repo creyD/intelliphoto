@@ -29,6 +29,8 @@ public:
     virtual void onMouseLeftPressed(int x, int y);
     virtual void onMouseLeftReleased(int x, int y);
 
+    virtual void onWheelScrolled(int value);
+
     virtual void onMouseMoved(int x, int y);
 };
 #endif

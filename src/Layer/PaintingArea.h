@@ -70,6 +70,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
 
+    void wheelEvent(QWheelEvent *event) override;
     // Updates the painting area where we are painting
     void paintEvent(QPaintEvent *event) override;
 

@@ -58,3 +58,11 @@ void IntelliToolRechteck::onMouseMoved(int x, int y){
     }
     IntelliTool::onMouseMoved(x,y);
 }
+
+void IntelliToolRechteck::onWheelScrolled(int value){
+    IntelliTool::onWheelScrolled(value);
+    this->edgeWidth+=value;
+    if(this->edgeWidth<=0){
+        this->edgeWidth=1;
+    }
+}

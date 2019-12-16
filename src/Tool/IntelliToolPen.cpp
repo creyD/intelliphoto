@@ -40,3 +40,11 @@ void IntelliToolPen::onMouseMoved(int x, int y){
     }
     IntelliTool::onMouseMoved(x,y);
 }
+
+void IntelliToolPen::onWheelScrolled(int value){
+    IntelliTool::onWheelScrolled(value);
+    this->penWidth+=value;
+    if(this->penWidth<=0){
+        this->penWidth=1;
+    }
+}

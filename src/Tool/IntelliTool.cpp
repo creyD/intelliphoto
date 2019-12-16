@@ -43,6 +43,10 @@ void IntelliTool::onMouseMoved(int x, int y){
         Canvas->image->calculateVisiblity();
 }
 
+void IntelliTool::onWheelScrolled(int value){
+    //if needed for future general tasks implement in here
+}
+
 void IntelliTool::createToolLayer(){
     Area->createTempLayerAfter(Area->activeLayer);
     this->Active=&Area->layerBundle[Area->activeLayer];

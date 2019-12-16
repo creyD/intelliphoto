@@ -19,7 +19,7 @@
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
     //test yout tool here and reset after accomplished test
-    this->Tool = nullptr;
+    this->Tool = new IntelliToolRechteck(this, &colorPicker);
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
@@ -232,6 +232,14 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event){
         Tool->onMouseRightReleased(x, y);
     }
     update();
+}
+
+void PaintingArea::wheelEvent(QWheelEvent *event){
+    QPoint numDegrees = event->angleDelta() / 8;
+    if(!numDegrees.isNull()){
+        QPoint numSteps = numDegrees / 15;
+        Tool->onWheelScrolled(numSteps.y()*-1);
+    }
 }
 
 // QPainter provides functions to draw on the widget
