@@ -34,7 +34,7 @@ class PaintingArea : public QWidget
     friend IntelliTool;
 public:
     PaintingArea(int maxWidth=600, int maxHeight=600, QWidget *parent = nullptr);
-    ~PaintingArea();
+    ~PaintingArea() override;
 
     // Handles all events
     bool open(const QString &fileName);

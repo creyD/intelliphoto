@@ -123,6 +123,7 @@ private:
 
     //main GUI elements
     QWidget* centralGuiWidget;
+    QPushButton* Toolmanager;
     QGridLayout *mainLayout;
 
 };

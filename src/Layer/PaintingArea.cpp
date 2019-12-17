@@ -15,11 +15,12 @@
 #include "Tool/IntelliToolLine.h"
 #include "Tool/IntelliToolCircle.h"
 #include "Tool/IntelliToolRechteck.h"
+#include "Tool/IntelliToolPolygon.h"
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
     //test yout tool here and reset after accomplished test
-    this->Tool = new IntelliToolRechteck(this, &colorPicker);
+    this->Tool = new IntelliToolPolygon(this, &colorPicker);
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);

@@ -28,6 +28,7 @@ SOURCES += \
     Tool/IntelliToolLine.cpp \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
+    Tool/IntelliToolPolygon.cpp \
     Tool/IntelliToolRechteck.cpp \
     main.cpp
 
@@ -44,6 +45,7 @@ HEADERS += \
     Tool/IntelliToolLine.h \
     Tool/IntelliToolPen.h \
     Tool/IntelliToolPlain.h \
+    Tool/IntelliToolPolygon.h \
     Tool/IntelliToolRechteck.h \
     Tool/intellitoolcircle.h
 

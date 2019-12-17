@@ -18,7 +18,8 @@ IntelliPhotoGui::IntelliPhotoGui(){
     setIntelliStyle();
 
     // Size the app
-    showMaximized();
+    resize(600,600);
+    //showMaximized();
 }
 
 // User tried to close the app
