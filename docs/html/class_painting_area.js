@@ -1,0 +1,28 @@
+var class_painting_area =
+[
+    [ "PaintingArea", "class_painting_area.html#a4fa0ec23e78cc59f28c823584c721460", null ],
+    [ "~PaintingArea", "class_painting_area.html#a5654e04fb8e8c5595a2aae76e9163e0e", null ],
+    [ "addLayer", "class_painting_area.html#a39ad76e1319659bfa38eee88ef33d395", null ],
+    [ "addLayerAt", "class_painting_area.html#ae756003b49aead863b49616ea7a44cc0", null ],
+    [ "colorPickerSetFirstColor", "class_painting_area.html#a4735d4cf1dc58a9096d904e74c39c4df", null ],
+    [ "colorPickerSetSecondColor", "class_painting_area.html#ae261acaaa346610dfed489dbac17e789", null ],
+    [ "colorPickerSwitchColor", "class_painting_area.html#a66115307ff4a99cd7ca16423c5c8ecfb", null ],
+    [ "createLineTool", "class_painting_area.html#a240c33a7875addac86080cdfb0db036a", null ],
+    [ "createPenTool", "class_painting_area.html#a96c6248e343e44b61cf2625cb6d21353", null ],
+    [ "createPlainTool", "class_painting_area.html#a3de83443d2d5cf460ff48d0602070938", null ],
+    [ "deleteLayer", "class_painting_area.html#a6efad6f8ea060674b157b42b431cd173", null ],
+    [ "floodFill", "class_painting_area.html#aeb5eb394b979ea90f2be9849fdda1774", null ],
+    [ "mouseMoveEvent", "class_painting_area.html#aa22e274b6094a9619f196cd7b49526b5", null ],
+    [ "mousePressEvent", "class_painting_area.html#abfe445f8d9b70ae42bfeda874127dd15", null ],
+    [ "mouseReleaseEvent", "class_painting_area.html#a35b5df914acb608cc29717659793359c", null ],
+    [ "moveActiveLayer", "class_painting_area.html#ae05f6893fb44bfcb34018573a609cd1a", null ],
+    [ "movePositionActive", "class_painting_area.html#ac6d089f4357b22d9a9906fd4771de3e7", null ],
+    [ "open", "class_painting_area.html#a1f597740b4d7b4bc2e24c51f8cb0b6eb", null ],
+    [ "paintEvent", "class_painting_area.html#a4a8138b9508ee4ec87a7fca9160368a7", null ],
+    [ "resizeEvent", "class_painting_area.html#ab57e8ccda60fff7187463a90e65c5335", null ],
+    [ "save", "class_painting_area.html#a612176cc9d629d22fd3fe1a746cce564", null ],
+    [ "setAlphaOfLayer", "class_painting_area.html#aec59be20f1c27135700754882dd6383d", null ],
+    [ "setLayerToActive", "class_painting_area.html#a1d6d86c25efdce9fe9031a9cd01c74c8", null ],
+    [ "slotActivateLayer", "class_painting_area.html#a71ac281e0de263208d4a3b9de74258ec", null ],
+    [ "slotDeleteActiveLayer", "class_painting_area.html#a1ff0b9c1227531943c9cec2c546fae5e", null ]
+];

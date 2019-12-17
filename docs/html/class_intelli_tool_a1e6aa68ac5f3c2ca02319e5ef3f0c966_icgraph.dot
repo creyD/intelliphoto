@@ -1,0 +1,16 @@
+digraph "IntelliTool::onMouseRightPressed"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="IntelliTool::onMouseRight\lPressed",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PaintingArea::mousePress\lEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#abfe445f8d9b70ae42bfeda874127dd15",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="IntelliToolPlainTool\l::onMouseRightPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_plain_tool.html#acb0c46e16d2c09370a2244a936de38b1",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="IntelliToolPen::onMouseRight\lPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html#a1751e3864a0d36ef42ca55021cae73ce",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="IntelliToolLine::onMouse\lRightPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#a6cce59f3017936214b10b47252a898a3",tooltip=" "];
+}
