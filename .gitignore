@@ -1,5 +1,5 @@
 # Build folders
-/build-*/
+build-*/
 
 # QT Creator Files
 *.creator.user*

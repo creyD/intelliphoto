@@ -16,7 +16,6 @@ IntelliPhotoGui::IntelliPhotoGui(){
     createMenus();
     //set style of the gui
     setIntelliStyle();
-
     // Size the app
     showMaximized();
 }
@@ -28,7 +27,6 @@ void IntelliPhotoGui::closeEvent(QCloseEvent *event){
     if (maybeSave()) {
         event->accept();
     } else {
-
         // If there have been changes ignore the event
         event->ignore();
     }
@@ -45,7 +43,7 @@ void IntelliPhotoGui::slotOpen(){
         // tr sets the window title to Open File
         // QDir opens the current dirctory
         QString fileName = QFileDialog::getOpenFileName(this,
-                                   tr("Open File"), QDir::currentPath());
+                                   tr("Open File"), QDir::currentPath(), nullptr, nullptr, QFileDialog::DontUseNativeDialog);
 
         // If we have a file name load the image and place
         // it in the paintingArea
@@ -234,7 +232,7 @@ void IntelliPhotoGui::slotCreateLineTool(){
 void IntelliPhotoGui::slotAboutDialog(){
     // Window title and text to display
     QMessageBox::about(this, tr("About Painting"),
-            tr("<p><b>IntelliPhoto</b> Some nice ass looking software</p>"));
+            tr("<p><b>IntelliPhoto</b>Pretty basic editor.</p>"));
 }
 
 // Define menu actions that call functions
@@ -276,6 +274,7 @@ void IntelliPhotoGui::createActions(){
 
     // Create New Layer action and tie to IntelliPhotoGui::newLayer()
     actionCreateNewLayer = new QAction(tr("&New Layer..."), this);
+    actionCreateNewLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
     connect(actionCreateNewLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewLayer()));
 
     // Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
@@ -317,7 +316,7 @@ void IntelliPhotoGui::createActions(){
     connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
 
     actionColorPickerSecondColor = new QAction(tr("&Secondary"), this);
-    connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
+    connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetSecondColor()));
 
     actionColorSwitch = new QAction(tr("&Switch"), this);
     actionColorSwitch->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
@@ -462,7 +461,7 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
                                initialPath,
                                tr("%1 Files (*.%2);;All Files (*)")
                                .arg(QString::fromLatin1(fileFormat.toUpper()))
-                               .arg(QString::fromLatin1(fileFormat)));
+                               .arg(QString::fromLatin1(fileFormat)), nullptr, QFileDialog::DontUseNativeDialog);
 
     // If no file do nothing
     if (fileName.isEmpty()) {
