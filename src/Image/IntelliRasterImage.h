@@ -3,6 +3,9 @@
 
 #include"Image/IntelliImage.h"
 
+/*!
+ * \brief The IntelliRasterImage manages a simple Rasterimage
+ */
 class IntelliRasterImage : public IntelliImage{
     friend IntelliTool;
 protected:
