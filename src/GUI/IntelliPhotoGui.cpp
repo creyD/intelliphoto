@@ -43,7 +43,7 @@ void IntelliPhotoGui::slotOpen(){
         // tr sets the window title to Open File
         // QDir opens the current dirctory
         QString fileName = QFileDialog::getOpenFileName(this,
-                                   tr("Open File"), QDir::currentPath(), nullptr, nullptr, QFileDialog::DontUseNativeDialog);
+                                   tr("Open File"), QDir::currentPath(),"", nullptr, QFileDialog::DontUseNativeDialog);
 
         // If we have a file name load the image and place
         // it in the paintingArea
@@ -274,6 +274,7 @@ void IntelliPhotoGui::createActions(){
 
     // Create New Layer action and tie to IntelliPhotoGui::newLayer()
     actionCreateNewLayer = new QAction(tr("&New Layer..."), this);
+    actionCreateNewLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
     connect(actionCreateNewLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewLayer()));
 
     // Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
@@ -315,7 +316,7 @@ void IntelliPhotoGui::createActions(){
     connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
 
     actionColorPickerSecondColor = new QAction(tr("&Secondary"), this);
-    connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
+    connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetSecondColor()));
 
     actionColorSwitch = new QAction(tr("&Switch"), this);
     actionColorSwitch->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
