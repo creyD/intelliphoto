@@ -7,13 +7,34 @@
 class LayerObject;
 class PaintingArea;
 
+/*!
+ * \brief An abstract class that manages the basic events, like mouse clicks or scrolls events.
+ */
 class IntelliTool{
 private:
+    /*!
+     * \brief A function that creates a layer to draw on.
+     */
     void createToolLayer();
+
+    /*!
+     * \brief A function that merges the drawing- and the active- layer.
+     */
     void mergeToolLayer();
+
+    /*!
+     * \brief A function that deletes the drawinglayer.
+     */
     void deleteToolLayer();
 protected:
+    /*!
+     * \brief A pointer to the general PaintingArea to interact with.
+     */
     PaintingArea* Area;
+
+    /*!
+     * \brief A pointer to the IntelliColorPicker of the PaintingArea to interact with, and get the colors.
+     */
     IntelliColorPicker* colorPicker;
 
     LayerObject* Active;
