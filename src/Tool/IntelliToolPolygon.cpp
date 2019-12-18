@@ -13,8 +13,11 @@ IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* c
 }
 
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
-    qDebug() << x << y;
-    if(!isDrawing && x > 0 && y > 0){
+    if(!isDrawing){
+        width = Area->getWidthActiveLayer();
+        height = Area->getHeightActiveLayer();
+    }
+    if(!isDrawing && x > 0 && y > 0 && x < width && y < height){
         isDrawing = true;
         drawingPoint.setX(x);
         drawingPoint.setY(y);
@@ -22,16 +25,19 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
         IntelliTool::onMouseLeftPressed(x,y);
         this->Canvas->image->drawPlain(Qt::transparent);
         this->Canvas->image->drawPoint(QPointList.back(), colorPicker->getFirstColor(), lineWidth);
+        this->Canvas->image->calculateVisiblity();
     }
     else if(isDrawing && isNearStart(x,y,QPointList.front())){
         PointIsNearStart = isNearStart(x,y,QPointList.front());
-        this->Canvas->image->drawLine(QPointList.back(), QPointList.front(), colorPicker->getFirstColor(), lineWidth);s
+        this->Canvas->image->drawLine(QPointList.back(), QPointList.front(), colorPicker->getFirstColor(), lineWidth);
+        this->Canvas->image->calculateVisiblity();
     }
     else if(isDrawing){
         drawingPoint.setX(x);
         drawingPoint.setY(y);
         QPointList.push_back(drawingPoint);
         this->Canvas->image->drawLine(QPointList.operator[](QPointList.size() - 2), QPointList.back(), colorPicker->getFirstColor(), lineWidth);
+        this->Canvas->image->calculateVisiblity();
     }
 }
 
@@ -44,8 +50,17 @@ void IntelliToolPolygon::onMouseRightPressed(int x, int y){
 
 void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
     if(PointIsNearStart && QPointList.size() > 1){
+        this->Canvas->image->calculateVisiblity();
         PointIsNearStart = false;
         isDrawing = false;
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                if(/*funktion(QPointList,i,j)*/false){
+                    this->Canvas->image->drawPixel(QPoint(i,j), colorPicker->getFirstColor());
+                    continue;
+                }
+            }
+        }
         QPointList.clear();
         IntelliTool::onMouseLeftReleased(x,y);
     }

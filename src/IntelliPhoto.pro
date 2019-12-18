@@ -46,11 +46,10 @@ HEADERS += \
     Tool/IntelliToolPen.h \
     Tool/IntelliToolPlain.h \
     Tool/IntelliToolPolygon.h \
-    Tool/IntelliToolRechteck.h \
-    Tool/intellitoolcircle.h
+    Tool/IntelliToolRechteck.h
 
 FORMS += \
-    widget.ui
+    mainwindow.ui
 
 QMAKE_CXXFLAGS
 QMAKE_LFLAGS

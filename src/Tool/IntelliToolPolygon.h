@@ -23,6 +23,8 @@ private:
     bool isNearStart(int x, int y, QPoint Startpoint);
 
     int lineWidth;
+    int width;
+    int height;
     bool isDrawing;
     bool PointIsNearStart;
     QPoint drawingPoint;

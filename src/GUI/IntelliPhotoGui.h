@@ -68,7 +68,6 @@ private:
     //set style of the GUI
     void setIntelliStyle();
 
-
     // Will check if changes have occurred since last save
     bool maybeSave();
     // Opens the Save dialog and saves
@@ -123,7 +122,6 @@ private:
 
     //main GUI elements
     QWidget* centralGuiWidget;
-    QPushButton* Toolmanager;
     QGridLayout *mainLayout;
 
 };

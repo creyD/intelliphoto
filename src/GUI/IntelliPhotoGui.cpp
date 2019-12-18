@@ -8,6 +8,7 @@
 
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
+
     //create Gui elements and lay them out
     createGui();
     // Create actions
@@ -19,7 +20,8 @@ IntelliPhotoGui::IntelliPhotoGui(){
 
     // Size the app
     resize(600,600);
-    //showMaximized();
+    showMaximized();
+
 }
 
 // User tried to close the app
@@ -103,14 +105,6 @@ void IntelliPhotoGui::slotDeleteLayer(){
     // Create New Layer
     if (ok)
         paintingArea->deleteLayer(layerNumber);
-}
-
-void slotCreatePenTool(){
-
-}
-
-void slotCreateFloodFillTool(){
-
 }
 
 void IntelliPhotoGui::slotSetActiveAlpha(){
@@ -205,7 +199,7 @@ void IntelliPhotoGui::slotSetActiveLayer(){
     {
         paintingArea->setLayerToActive(layer);
     }
-};
+}
 
 void IntelliPhotoGui::slotSetFirstColor(){
     paintingArea->colorPickerSetFirstColor();
@@ -318,7 +312,7 @@ void IntelliPhotoGui::createActions(){
     connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
 
     actionColorPickerSecondColor = new QAction(tr("&Secondary"), this);
-    connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
+    connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetSecondColor()));
 
     actionColorSwitch = new QAction(tr("&Switch"), this);
     actionColorSwitch->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
