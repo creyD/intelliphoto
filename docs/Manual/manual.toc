@@ -1,0 +1,12 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{1}% 
+\contentsline {section}{\numberline {2}User Guide}{1}% 
+\contentsline {subsection}{\numberline {2.1}Loading images}{2}% 
+\contentsline {subsection}{\numberline {2.2}Saving images}{2}% 
+\contentsline {subsection}{\numberline {2.3}Setting the active layer}{2}% 
+\contentsline {subsection}{\numberline {2.4}Setting width and color of the pen}{2}% 
+\contentsline {subsection}{\numberline {2.5}Drawing with the pen tool}{3}% 
+\contentsline {subsection}{\numberline {2.6}Fill the active layer in one color}{3}% 
+\contentsline {subsection}{\numberline {2.7}Moving layers}{3}% 
+\contentsline {subsection}{\numberline {2.8}Transparency and layers}{4}% 
+\contentsline {section}{\numberline {3}Next steps}{4}% 
