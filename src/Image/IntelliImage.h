@@ -32,7 +32,7 @@ protected:
     QImage imageData;
 public:
     /*!
-     * \brief The Construcor of the Shaped Image. Given the Image dimensions.
+     * \brief The Construcor of the IntelliImage. Given the Image dimensions.
      * \param weight    - The weight of the Image.
      * \param height    - The height of the Image.
      */
@@ -59,6 +59,14 @@ public:
      * \param penWidth  - The width of the line.
      */
     virtual void drawLine(const QPoint &p1, const QPoint& p2, const QColor& color, const int& penWidth);
+
+    /*!
+     * \brief A
+     * \param p1
+     * \param color
+     * \param penWidth
+     */
+    virtual void drawPoint(const QPoint &p1, const QColor& color, const int& penWidth);
 
     /*!
      * \brief A function that clears the whole image in a given Color.

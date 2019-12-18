@@ -43,7 +43,6 @@ void IntelliToolLine::onWheelScrolled(int value){
 }
 
 void IntelliToolLine::onMouseMoved(int x, int y){
-    IntelliTool::onMouseMoved(x,y);
     if(this->drawing){
         this->Canvas->image->drawPlain(Qt::transparent);
         QPoint next(x,y);

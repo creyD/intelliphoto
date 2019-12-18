@@ -77,7 +77,6 @@ void IntelliToolCircle::onWheelScrolled(int value){
 }
 
 void IntelliToolCircle::onMouseMoved(int x, int y){
-    IntelliTool::onMouseMoved(x,y);
     if(this->drawing){
         this->Canvas->image->drawPlain(Qt::transparent);
         QPoint next(x,y);
