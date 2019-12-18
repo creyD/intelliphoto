@@ -43,7 +43,7 @@ void IntelliPhotoGui::slotOpen(){
         // tr sets the window title to Open File
         // QDir opens the current dirctory
         QString fileName = QFileDialog::getOpenFileName(this,
-                                   tr("Open File"), QDir::currentPath(),"", nullptr, QFileDialog::DontUseNativeDialog);
+                                   tr("Open File"), QDir::currentPath(), nullptr, nullptr, QFileDialog::DontUseNativeDialog);
 
         // If we have a file name load the image and place
         // it in the paintingArea
