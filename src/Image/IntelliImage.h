@@ -121,11 +121,10 @@ public:
 
     /*!
      * \brief A function that returns the pixelcolor at a certain point
-     * \param x - The x-coordinate of the point.
-     * \param y - The y-coordintae of the point.
+     * \param point - The point from whcih to get the coordinates.
      * \return The color of the Pixel as QColor.
      */
-    virtual QColor getPixelColor(int x, int y);
+    virtual QColor getPixelColor(QPoint& point);
 };
 
 #endif

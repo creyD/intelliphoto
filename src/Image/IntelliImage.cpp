@@ -78,6 +78,6 @@ void IntelliImage::drawPlain(const QColor& color){
     imageData.fill(color);
 }
 
-QColor IntelliImage::getPixelColor(int x, int y){
-    return imageData.pixelColor(x,y);
+QColor IntelliImage::getPixelColor(QPoint& point){
+    return imageData.pixelColor(point);
 }
