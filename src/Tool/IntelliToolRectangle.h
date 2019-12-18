@@ -1,20 +1,20 @@
-#ifndef INTELLIRECHTECKTOOL_H
-#define INTELLIRECHTECKTOOL_H
+#ifndef INTELLIRECTANGLETOOL_H
+#define INTELLIRECTANGLETOOL_H
 
 #include "IntelliTool.h"
 
 #include "QColor"
 #include "QPoint"
 
-class IntelliToolRechteck : public IntelliTool{
-    void drawRechteck(QPoint otherCornor);
+class IntelliToolRectangle : public IntelliTool{
+    void drawRectangle(QPoint otherCornor);
 
     QPoint originCornor;
     int alphaInner;
     int edgeWidth;
 public:
-    IntelliToolRechteck(PaintingArea* Area, IntelliColorPicker* colorPicker);
-    virtual ~IntelliToolRechteck() override;
+    IntelliToolRectangle(PaintingArea* Area, IntelliColorPicker* colorPicker);
+    virtual ~IntelliToolRectangle() override;
 
     virtual void onMouseRightPressed(int x, int y) override;
     virtual void onMouseRightReleased(int x, int y) override;
@@ -26,4 +26,4 @@ public:
     virtual void onMouseMoved(int x, int y) override;
 };
 
-#endif // INTELLIRECHTECKTOOL_H
+#endif // INTELLIRECTANGLETOOL_H
