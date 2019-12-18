@@ -77,3 +77,7 @@ void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& co
 void IntelliImage::drawPlain(const QColor& color){
     imageData.fill(color);
 }
+
+QColor IntelliImage::getPixelColor(int x, int y){
+    return imageData.pixelColor(x,y);
+}
