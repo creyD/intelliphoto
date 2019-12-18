@@ -25,7 +25,6 @@ SOURCES += \
     Layer/PaintingArea.cpp \
     Tool/IntelliTool.cpp \
     Tool/IntelliToolCircle.cpp \
-    Tool/IntelliToolFloodFill.cpp \
     Tool/IntelliToolLine.cpp \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
@@ -42,7 +41,6 @@ HEADERS += \
     Layer/PaintingArea.h \
     Tool/IntelliTool.h \
     Tool/IntelliToolCircle.h \
-    Tool/IntelliToolFloodFill.h \
     Tool/IntelliToolLine.h \
     Tool/IntelliToolPen.h \
     Tool/IntelliToolPlain.h \

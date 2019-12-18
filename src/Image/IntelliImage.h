@@ -99,18 +99,24 @@ public:
     virtual void setPolygon(const std::vector<QPoint>& polygonData)=0;
 
     /*!
-     * \brief An function that returns the Polygondata if existent.
+     * \brief A function that returns the Polygondata if existent.
      * \return The Polygondata if existent.
      */
     virtual std::vector<QPoint> getPolygonData(){ return std::vector<QPoint>();}
 
     /*!
-     * \brief Loads and Sclaes an Image to the fitting dimensions.
+     * \brief A function that loads and sclaes an image to the fitting dimensions.
      * \param fileName  - The path+name of the image which to loaded.
      * \return True if the image could be loaded, false otherwise.
      */
     virtual bool loadImage(const QString &fileName);
 
+    /*!
+     * \brief A function that returns the pixelcolor at a certain point
+     * \param x - The x-coordinate of the point.
+     * \param y - The y-coordintae of the point.
+     * \return The color of the Pixel as QColor.
+     */
     virtual QColor getPixelColor(int x, int y);
 };
 
