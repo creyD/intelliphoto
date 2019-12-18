@@ -32,5 +32,7 @@ public:
     virtual void onWheelScrolled(int value);
 
     virtual void onMouseMoved(int x, int y);
+
+
 };
 #endif

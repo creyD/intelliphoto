@@ -110,6 +110,8 @@ public:
      * \return True if the image could be loaded, false otherwise.
      */
     virtual bool loadImage(const QString &fileName);
+
+    virtual QColor getPixelColor(int x, int y);
 };
 
 #endif

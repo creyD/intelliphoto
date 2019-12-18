@@ -1,21 +1,13 @@
-#ifndef INTELLITOOLLINE_H
-#define INTELLITOOLLINE_H
+#ifndef INTELLITOOLFLOODFILL_H
+#define INTELLITOOLFLOODFILL_H
 #include "IntelliTool.h"
 
-#include "QPoint"
+#include "QColor"
 
-enum class LineStyle{
-    SOLID_LINE,
-    DOTTED_LINE
-};
-
-class IntelliToolLine : public IntelliTool{
-    QPoint start;
-    int lineWidth;
-    LineStyle lineStyle;
+class IntelliToolFloodFill : public IntelliTool{
 public:
-    IntelliToolLine(PaintingArea* Area, IntelliColorPicker* colorPicker);
-    virtual ~IntelliToolLine() override;
+    IntelliToolFloodFill(PaintingArea* Area, IntelliColorPicker* colorPicker);
+    virtual ~IntelliToolFloodFill() override;
 
 
     virtual void onMouseRightPressed(int x, int y) override;
@@ -28,4 +20,4 @@ public:
     virtual void onMouseMoved(int x, int y) override;
 };
 
-#endif // INTELLITOOLLINE_H
+#endif // INTELLITOOLFLOODFILL_H
