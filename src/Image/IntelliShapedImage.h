@@ -2,9 +2,13 @@
 #define INTELLISHAPE_H
 
 #include"Image/IntelliRasterImage.h"
+#include<vector>
+#include"IntelliHelper/IntelliHelper.h"
 
 class IntelliShapedImage : public IntelliRasterImage{
     friend IntelliTool;
+private:
+    std::vector<Triangle> triangles;
 protected:
 
     std::vector<QPoint> polygonData;

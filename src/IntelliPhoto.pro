@@ -24,9 +24,11 @@ SOURCES += \
     IntelliHelper/IntelliHelper.cpp \
     Layer/PaintingArea.cpp \
     Tool/IntelliTool.cpp \
+    Tool/IntelliToolCircle.cpp \
     Tool/IntelliToolLine.cpp \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
+    Tool/IntelliToolRectangle.cpp \
     main.cpp
 
 HEADERS += \
@@ -38,9 +40,12 @@ HEADERS += \
     IntelliHelper/IntelliHelper.h \
     Layer/PaintingArea.h \
     Tool/IntelliTool.h \
+    Tool/IntelliToolCircle.h \
     Tool/IntelliToolLine.h \
     Tool/IntelliToolPen.h \
-    Tool/IntelliToolPlain.h
+    Tool/IntelliToolPlain.h \
+    Tool/IntelliToolRectangle.h \
+    Tool/intellitoolcircle.h
 
 FORMS += \
     widget.ui

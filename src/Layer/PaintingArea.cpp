@@ -13,10 +13,13 @@
 #include "Tool/IntelliToolPen.h"
 #include "Tool/IntelliToolPlain.h"
 #include "Tool/IntelliToolLine.h"
+#include "Tool/IntelliToolCircle.h"
+#include "Tool/IntelliToolRectangle.h"
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
-    this->Tool = nullptr;
+    //test yout tool here and reset after accomplished test
+    this->Tool = new IntelliToolRectangle(this, &colorPicker);
     this->setUp(maxWidth, maxHeight);
     //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
@@ -32,7 +35,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     layerBundle[1].image->drawPlain(QColor(0,255,0,255));
     layerBundle[1].alpha=200;
 
-    activeLayer=0;
+    activeLayer=1;
 }
 
 PaintingArea::~PaintingArea(){
@@ -161,12 +164,12 @@ void PaintingArea::slotActivateLayer(int a){
 }
 
 void PaintingArea::colorPickerSetFirstColor(){
-    QColor clr = QColorDialog::getColor(colorPicker.getFirstColor(), nullptr, "Main Color");
+    QColor clr = QColorDialog::getColor(colorPicker.getFirstColor(), nullptr, "Main Color", QColorDialog::DontUseNativeDialog);
     this->colorPicker.setFirstColor(clr);
 }
 
 void PaintingArea::colorPickerSetSecondColor(){
-    QColor clr = QColorDialog::getColor(colorPicker.getSecondColor(), nullptr, "Secondary Color");
+    QColor clr = QColorDialog::getColor(colorPicker.getSecondColor(), nullptr, "Secondary Color", QColorDialog::DontUseNativeDialog);
     this->colorPicker.setSecondColor(clr);
 }
 
@@ -229,6 +232,14 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event){
         Tool->onMouseRightReleased(x, y);
     }
     update();
+}
+
+void PaintingArea::wheelEvent(QWheelEvent *event){
+    QPoint numDegrees = event->angleDelta() / 8;
+    if(!numDegrees.isNull()){
+        QPoint numSteps = numDegrees / 15;
+        Tool->onWheelScrolled(numSteps.y()*-1);
+    }
 }
 
 // QPainter provides functions to draw on the widget

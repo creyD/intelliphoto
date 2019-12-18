@@ -1,23 +1,20 @@
-#ifndef INTELLITOOLLINE_H
-#define INTELLITOOLLINE_H
+#ifndef INTELLIRECTANGLETOOL_H
+#define INTELLIRECTANGLETOOL_H
+
 #include "IntelliTool.h"
 
 #include "QColor"
 #include "QPoint"
 
-enum class LineStyle{
-    SOLID_LINE,
-    DOTTED_LINE
-};
+class IntelliToolRectangle : public IntelliTool{
+    void drawRectangle(QPoint otherCornor);
 
-class IntelliToolLine : public IntelliTool{
-    QPoint start;
-    int lineWidth;
-    LineStyle lineStyle;
+    QPoint originCornor;
+    int alphaInner;
+    int edgeWidth;
 public:
-    IntelliToolLine(PaintingArea* Area, IntelliColorPicker* colorPicker);
-    virtual ~IntelliToolLine() override;
-
+    IntelliToolRectangle(PaintingArea* Area, IntelliColorPicker* colorPicker);
+    virtual ~IntelliToolRectangle() override;
 
     virtual void onMouseRightPressed(int x, int y) override;
     virtual void onMouseRightReleased(int x, int y) override;
@@ -29,4 +26,4 @@ public:
     virtual void onMouseMoved(int x, int y) override;
 };
 
-#endif // INTELLITOOLLINE_H
+#endif // INTELLIRECTANGLETOOL_H

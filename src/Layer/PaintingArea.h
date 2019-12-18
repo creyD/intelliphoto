@@ -21,8 +21,6 @@ struct LayerObject{
     int widthOffset;
     int hightOffset;
     int alpha=255;
-
-
 };
 
 class PaintingArea : public QWidget
@@ -70,6 +68,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
 
+    void wheelEvent(QWheelEvent *event) override;
     // Updates the painting area where we are painting
     void paintEvent(QPaintEvent *event) override;
 
@@ -81,7 +80,6 @@ private:
     void setUp(int maxWidth, int maxHeight);
     void activateUpperLayer();
     void activateLowerLayer();
-
 
     QImage* Canvas;
     int maxWidth;
@@ -103,4 +101,3 @@ private:
 };
 
 #endif
-

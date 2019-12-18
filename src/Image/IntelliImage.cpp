@@ -52,6 +52,16 @@ void IntelliImage::drawPixel(const QPoint &p1, const QColor& color){
     painter.drawPoint(p1);
 }
 
+void IntelliImage::drawPoint(const QPoint &p1, const QColor& color, const int& penWidth){
+    // Used to draw on the widget
+    QPainter painter(&imageData);
+
+    // Set the current settings for the pen
+    painter.setPen(QPen(color, penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    // Draw a line from the last registered point to the current
+    painter.drawPoint(p1);
+}
+
 void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& color, const int& penWidth){
     // Used to draw on the widget
     QPainter painter(&imageData);

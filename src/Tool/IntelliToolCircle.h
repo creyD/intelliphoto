@@ -1,23 +1,19 @@
-#ifndef INTELLITOOLLINE_H
-#define INTELLITOOLLINE_H
+#ifndef INTELLITOOLCIRCLE_H
+#define INTELLITOOLCIRCLE_H
 #include "IntelliTool.h"
 
 #include "QColor"
 #include "QPoint"
 
-enum class LineStyle{
-    SOLID_LINE,
-    DOTTED_LINE
-};
+class IntelliToolCircle : public IntelliTool{
+    void drawCyrcle(int radius);
 
-class IntelliToolLine : public IntelliTool{
-    QPoint start;
-    int lineWidth;
-    LineStyle lineStyle;
+    QPoint Middle;
+    int alphaInner;
+    int edgeWidth;
 public:
-    IntelliToolLine(PaintingArea* Area, IntelliColorPicker* colorPicker);
-    virtual ~IntelliToolLine() override;
-
+    IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker);
+    virtual ~IntelliToolCircle() override;
 
     virtual void onMouseRightPressed(int x, int y) override;
     virtual void onMouseRightReleased(int x, int y) override;
@@ -29,4 +25,4 @@ public:
     virtual void onMouseMoved(int x, int y) override;
 };
 
-#endif // INTELLITOOLLINE_H
+#endif // INTELLITOOLCIRCLE_H

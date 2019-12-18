@@ -28,3 +28,7 @@ void IntelliToolPlainTool::onMouseRightReleased(int x, int y){
 void IntelliToolPlainTool::onMouseMoved(int x, int y){
     IntelliTool::onMouseMoved(x,y);
 }
+
+void IntelliToolPlainTool::onWheelScrolled(int value){
+    IntelliTool::onWheelScrolled(value);
+}
