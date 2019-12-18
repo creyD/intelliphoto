@@ -24,58 +24,43 @@ void IntelliToolFloodFill::onMouseRightReleased(int x, int y){
 
 void IntelliToolFloodFill::onMouseLeftPressed(int x, int y){
     IntelliTool::onMouseLeftPressed(x,y);
-    QColor oldColor = this->Active->image->getPixelColor(x,y);
+
+    QPoint start(x,y);
     std::queue<QPoint> Q;
-    Q.push(QPoint(x,y));
+    Q.push(start);
+
+    QColor oldColor = this->Active->image->getPixelColor(start);
     QColor newColor = this->colorPicker->getFirstColor();
-    Canvas->image->drawPixel(QPoint(x,y),newColor);
+    Canvas->image->drawPixel(start,newColor);
+
+    QPoint left, right, top, down;
     while(!Q.empty()){
-        QPoint Front = Q.front();
+        QPoint Current = Q.front();
         Q.pop();
-        if((Front.x()+1 < Canvas->width)&&
-           (Active->image->getPixelColor(Front.x()+1,Front.y()) == oldColor)&&
-           (Canvas->image->getPixelColor(Front.x()+1,Front.y()) != newColor)){
-            Canvas->image->drawPixel(QPoint(Front.x()+1, Front.y()),newColor);
-            Q.push(QPoint(Front.x()+1,Front.y()));
+
+        left  = QPoint(Current.x()-1,Current.y()  );
+        right = QPoint(Current.x()+1,Current.y()  );
+        top   = QPoint(Current.x()  ,Current.y()-1);
+        down  = QPoint(Current.x()  ,Current.y()+1);
+        if((right.x() < Canvas->width) && (Canvas->image->getPixelColor(right) != newColor) && (Active->image->getPixelColor(right) == oldColor)){
+            Canvas->image->drawPixel(right,newColor);
+            Q.push(right);
         }
-        if((Front.x()-1 >= 0)&&
-           (Active->image->getPixelColor(Front.x()-1,Front.y()) == oldColor)&&
-           (Canvas->image->getPixelColor(Front.x()-1,Front.y()) != newColor)){
-            Canvas->image->drawPixel(QPoint(Front.x()-1, Front.y()),newColor);
-            Q.push(QPoint(Front.x()-1,Front.y()));
+        if((left.x() >= 0) && (Canvas->image->getPixelColor(left) != newColor) && (Active->image->getPixelColor(left) == oldColor)){
+            Canvas->image->drawPixel(left,newColor);
+            Q.push(left);
         }
-        if((Front.y()+1 < Canvas->hight)&&
-           (Active->image->getPixelColor(Front.x(),Front.y()+1) == oldColor)&&
-           (Canvas->image->getPixelColor(Front.x(),Front.y()+1) != newColor)){
-            Canvas->image->drawPixel(QPoint(Front.x(), Front.y()+1),newColor);
-            Q.push(QPoint(Front.x(),Front.y()+1));
+        if((top.y() < Canvas->hight) && (Canvas->image->getPixelColor(top) != newColor) && (Active->image->getPixelColor(top) == oldColor)){
+            Canvas->image->drawPixel(top,newColor);
+            Q.push(top);
         }
-        if((Front.y()-1 >= 0)&&
-           (Active->image->getPixelColor(Front.x(),Front.y()-1) == oldColor)&&
-           (Canvas->image->getPixelColor(Front.x(),Front.y()-1) != newColor)){
-            Canvas->image->drawPixel(QPoint(Front.x(), Front.y()-1),newColor);
-            Q.push(QPoint(Front.x(),Front.y()-1));
+        if((down.y() >= 0) && (Canvas->image->getPixelColor(down) != newColor) && (Active->image->getPixelColor(down) == oldColor)){
+            Canvas->image->drawPixel(down,newColor);
+            Q.push(down);
         }
     }
 
-
-    /* std::function<void(int,int, LayerObject*, LayerObject*, QColor, QColor)> depthsearch =
-        [&depthsearch](int x, int y,LayerObject* Active, LayerObject* Canvas, QColor oldColor, QColor newColor){
-            if((x >= 0) && (y >= 0) && (x < Canvas->width) && (y < Canvas->hight)){
-                if(Active->image->getPixelColor(x,y) == oldColor){
-                    Canvas->image->drawPoint(QPoint(x,y),newColor,1);
-                    depthsearch(x-1,y,Active,Canvas,oldColor,newColor);
-                    depthsearch(x,y+1,Active,Canvas,oldColor,newColor);
-                    depthsearch(x+1,y,Active,Canvas,oldColor,newColor);
-                    depthsearch(x,y-1,Active,Canvas,oldColor,newColor);
-                }
-            }
-        };
-    depthsearch(x,y,Active,Canvas,oldColor,this->colorPicker->getFirstColor());
-    */
     Canvas->image->calculateVisiblity();
-
-
 }
 
 void IntelliToolFloodFill::onMouseLeftReleased(int x, int y){

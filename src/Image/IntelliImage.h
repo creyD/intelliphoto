@@ -51,7 +51,7 @@ public:
     //loads an image to the ColorBuffer
     virtual bool loadImage(const QString &fileName);
 
-    virtual QColor getPixelColor(int x, int y);
+    virtual QColor getPixelColor(QPoint& point);
 };
 
 #endif
