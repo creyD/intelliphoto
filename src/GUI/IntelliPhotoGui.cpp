@@ -460,7 +460,7 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
                                initialPath,
                                tr("%1 Files (*.%2);;All Files (*)")
                                .arg(QString::fromLatin1(fileFormat.toUpper()))
-                               .arg(QString::fromLatin1(fileFormat)));
+                               .arg(QString::fromLatin1(fileFormat)), nullptr, QFileDialog::DontUseNativeDialog);
 
     // If no file do nothing
     if (fileName.isEmpty()) {

@@ -164,12 +164,12 @@ void PaintingArea::slotActivateLayer(int a){
 }
 
 void PaintingArea::colorPickerSetFirstColor(){
-    QColor clr = QColorDialog::getColor(colorPicker.getFirstColor(), nullptr, "Main Color");
+    QColor clr = QColorDialog::getColor(colorPicker.getFirstColor(), nullptr, "Main Color", QColorDialog::DontUseNativeDialog);
     this->colorPicker.setFirstColor(clr);
 }
 
 void PaintingArea::colorPickerSetSecondColor(){
-    QColor clr = QColorDialog::getColor(colorPicker.getSecondColor(), nullptr, "Secondary Color");
+    QColor clr = QColorDialog::getColor(colorPicker.getSecondColor(), nullptr, "Secondary Color", QColorDialog::DontUseNativeDialog);
     this->colorPicker.setSecondColor(clr);
 }
 
