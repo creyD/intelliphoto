@@ -16,7 +16,6 @@ IntelliPhotoGui::IntelliPhotoGui(){
     createMenus();
     //set style of the gui
     setIntelliStyle();
-
     // Size the app
     showMaximized();
 }
@@ -28,7 +27,6 @@ void IntelliPhotoGui::closeEvent(QCloseEvent *event){
     if (maybeSave()) {
         event->accept();
     } else {
-
         // If there have been changes ignore the event
         event->ignore();
     }
@@ -234,7 +232,7 @@ void IntelliPhotoGui::slotCreateLineTool(){
 void IntelliPhotoGui::slotAboutDialog(){
     // Window title and text to display
     QMessageBox::about(this, tr("About Painting"),
-            tr("<p><b>IntelliPhoto</b> Some nice ass looking software</p>"));
+            tr("<p><b>IntelliPhoto</b>Pretty basic editor.</p>"));
 }
 
 // Define menu actions that call functions
