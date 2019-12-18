@@ -79,3 +79,4 @@ void IntelliTool::deleteToolLayer(){
     Area->deleteLayer(Area->activeLayer+1);
     this->Canvas=nullptr;
 }
+
