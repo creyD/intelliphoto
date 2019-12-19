@@ -1,0 +1,22 @@
+digraph "IntelliTool::onWheelScrolled"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="IntelliTool::onWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A function managing the scroll event. A Positive Value means scrolling outwards. Call this in child c..."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="IntelliToolPlainTool\l::onWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_plain_tool.html#adc004ea421e2cc0ac39cc7a6b6d43d0d",tooltip="A function managing the scroll event. A Positive Value means scrolling outwards. Call this in child c..."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="IntelliToolFloodFill\l::onWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_flood_fill.html#ad58cc7c065123beb6b0270f99e99b991",tooltip="A function managing the scroll event. A Positive Value means scrolling outwards. Call this in child c..."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="IntelliToolPen::onWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html#afe3626ddff440ab125f4a2465c45427a",tooltip="A function managing the scroll event. A Positive Value means scrolling outwards. Call this in child c..."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="IntelliToolCircle::\lonWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_circle.html#ae2d9b0fb6695c184c4cb507a5fb75506",tooltip="A function managing the scroll event. A Positive Value means scrolling outwards. Call this in child c..."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="IntelliToolRectangle\l::onWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_rectangle.html#a445c53a56e859f970e59f5036e221e0c",tooltip="A function managing the scroll event. A Positive Value means scrolling outwards. Call this in child c..."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="IntelliToolLine::onWheel\lScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#aaf1d686e1ec43f41b5186ccfd806b125",tooltip="A function managing the scroll event. A Positive Value means scrolling outwards. Call this in child c..."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PaintingArea::wheelEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a632848d99f44d33d7da2618fbc6775a4",tooltip=" "];
+}

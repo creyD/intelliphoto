@@ -7,6 +7,7 @@ var class_intelli_tool =
     [ "onMouseMoved", "class_intelli_tool.html#ac10e20414cd8855a2f9b103fb6408639", null ],
     [ "onMouseRightPressed", "class_intelli_tool.html#a1e6aa68ac5f3c2ca02319e5ef3f0c966", null ],
     [ "onMouseRightReleased", "class_intelli_tool.html#a16189b00307c6d7e89f28198f54404b0", null ],
+    [ "onWheelScrolled", "class_intelli_tool.html#a4dccfd4460255ccb866f336406a33574", null ],
     [ "Active", "class_intelli_tool.html#a13512e95d21a9934ecb36d73b118c25f", null ],
     [ "Area", "class_intelli_tool.html#ab4c2698a0f9f25fb6639ec760d2d0289", null ],
     [ "Canvas", "class_intelli_tool.html#a144d469cc03584f501194529a1b53c77", null ],

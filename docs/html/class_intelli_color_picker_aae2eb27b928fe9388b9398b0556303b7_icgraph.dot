@@ -4,17 +4,19 @@ digraph "IntelliColorPicker::getFirstColor"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="RL";
-  Node1 [label="IntelliColorPicker\l::getFirstColor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 [label="IntelliColorPicker\l::getFirstColor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A function to read the primary selected color."];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="PaintingArea::colorPicker\lSetFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a4735d4cf1dc58a9096d904e74c39c4df",tooltip=" "];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="IntelliToolPlainTool\l::onMouseLeftPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_plain_tool.html#ab786dd5fa80af863246013d43c4b7ac9",tooltip=" "];
+  Node3 [label="IntelliToolPlainTool\l::onMouseLeftPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_plain_tool.html#ab786dd5fa80af863246013d43c4b7ac9",tooltip="A function managing the left click Pressed of a Mouse. Resetting the current draw...."];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="IntelliToolPen::onMouseLeft\lPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html#a8ff40aef6d38eb55af31a19322429205",tooltip=" "];
+  Node4 [label="IntelliToolFloodFill\l::onMouseLeftPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_flood_fill.html#ac85e3cb6233508ff9612833a8d9e3961",tooltip="A function managing the left click Pressed of a Mouse. Resetting the current draw...."];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="IntelliToolLine::onMouse\lLeftPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#a155d676a5f98311217eb095be4759846",tooltip=" "];
+  Node5 [label="IntelliToolPen::onMouseLeft\lPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html#a8ff40aef6d38eb55af31a19322429205",tooltip="A function managing the left click Pressed of a Mouse. Resetting the current draw...."];
   Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="IntelliToolPen::onMouseMoved",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html#a58d1d636497b630647ce0c4d652737c2",tooltip=" "];
+  Node6 [label="IntelliToolLine::onMouse\lLeftPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#a155d676a5f98311217eb095be4759846",tooltip="A function managing the left click Pressed of a Mouse. Resetting the current draw...."];
   Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node7 [label="IntelliToolLine::onMouse\lMoved",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#abc6324ef0778823fe7e35aef8ae37f9b",tooltip=" "];
+  Node7 [label="IntelliToolPen::onMouseMoved",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html#a58d1d636497b630647ce0c4d652737c2",tooltip="A function managing the mouse moved event. Call this in child classes!"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="IntelliToolLine::onMouse\lMoved",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#abc6324ef0778823fe7e35aef8ae37f9b",tooltip="A function managing the mouse moved event. Call this in child classes!"];
 }

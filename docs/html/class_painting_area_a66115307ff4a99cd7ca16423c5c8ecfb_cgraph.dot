@@ -6,5 +6,5 @@ digraph "PaintingArea::colorPickerSwitchColor"
   rankdir="LR";
   Node1 [label="PaintingArea::colorPicker\lSwitchColor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="IntelliColorPicker\l::switchColors",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#a437a6f20bf2fc0a4cbaf4c030c2a26d9",tooltip=" "];
+  Node2 [label="IntelliColorPicker\l::switchColors",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#a437a6f20bf2fc0a4cbaf4c030c2a26d9",tooltip="A function switching primary and secondary color."];
 }

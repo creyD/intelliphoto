@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['image_221',['image',['../struct_layer_object.html#af01a139bc8edfdbb338393874e89bd83',1,'LayerObject']]],
-  ['imagedata_222',['imageData',['../class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2',1,'IntelliImage']]]
+  ['hight_266',['hight',['../struct_layer_object.html#a4b1729dbf7d3490e4c2776e29ffef8b0',1,'LayerObject']]],
+  ['hightoffset_267',['hightOffset',['../struct_layer_object.html#a6256486a76c38baa3f1c664f4d190743',1,'LayerObject']]]
 ];

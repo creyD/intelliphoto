@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['width_224',['width',['../struct_layer_object.html#af261813df52ff0b0c82bfa57efeb9897',1,'LayerObject']]],
-  ['widthoffset_225',['widthOffset',['../struct_layer_object.html#a72b44d27c7bbb60dde14f04ec240ab96',1,'LayerObject']]]
+  ['polygondata_270',['polygonData',['../class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8',1,'IntelliShapedImage']]]
 ];

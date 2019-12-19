@@ -4,9 +4,9 @@ digraph "IntelliToolPlainTool::onMouseMoved"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="IntelliToolPlainTool\l::onMouseMoved",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 [label="IntelliToolPlainTool\l::onMouseMoved",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A function managing the mouse moved event. Call this in child classes!"];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="IntelliTool::onMouseMoved",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html#ac10e20414cd8855a2f9b103fb6408639",tooltip=" "];
+  Node2 [label="IntelliTool::onMouseMoved",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html#ac10e20414cd8855a2f9b103fb6408639",tooltip="A function managing the mouse moved event. Call this in child classes!"];
   Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="IntelliImage::calculateVisiblity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html#aebbced93f4744fad81b7f141b21f4ab2",tooltip=" "];
+  Node3 [label="IntelliImage::calculateVisiblity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html#aebbced93f4744fad81b7f141b21f4ab2",tooltip="An abstract function that calculates the visiblity of the Image data if needed."];
 }
