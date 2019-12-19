@@ -11,6 +11,7 @@ var annotated_dup =
     [ "IntelliToolLine", "class_intelli_tool_line.html", "class_intelli_tool_line" ],
     [ "IntelliToolPen", "class_intelli_tool_pen.html", "class_intelli_tool_pen" ],
     [ "IntelliToolPlainTool", "class_intelli_tool_plain_tool.html", "class_intelli_tool_plain_tool" ],
+    [ "IntelliToolPolygon", "class_intelli_tool_polygon.html", "class_intelli_tool_polygon" ],
     [ "IntelliToolRectangle", "class_intelli_tool_rectangle.html", "class_intelli_tool_rectangle" ],
     [ "LayerObject", "struct_layer_object.html", "struct_layer_object" ],
     [ "PaintingArea", "class_painting_area.html", "class_painting_area" ],

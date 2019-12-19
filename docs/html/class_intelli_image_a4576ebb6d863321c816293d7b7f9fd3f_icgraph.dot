@@ -6,5 +6,5 @@ digraph "IntelliImage::getPixelColor"
   rankdir="RL";
   Node1 [label="IntelliImage::getPixelColor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A function that returns the pixelcolor at a certain point."];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="IntelliToolFloodFill\l::onMouseLeftPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_flood_fill.html#ac85e3cb6233508ff9612833a8d9e3961",tooltip="A function managing the left click Pressed of a Mouse. Resetting the current draw...."];
+  Node2 [label="IntelliToolFloodFill\l::onMouseLeftPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_flood_fill.html#ac85e3cb6233508ff9612833a8d9e3961",tooltip="A function managing the left click pressed of a mouse. Sets the point to flood fill around and does t..."];
 }

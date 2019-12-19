@@ -9,7 +9,7 @@ digraph "intelliphoto/src/Tool" {
   dir_e6d96184223881d115efa44ca0dfa844 [shape=box label="Layer" URL="dir_e6d96184223881d115efa44ca0dfa844.html"];
   dir_f50aa5156fe016a259583c412dbf440c [shape=box label="IntelliHelper" URL="dir_f50aa5156fe016a259583c412dbf440c.html"];
   dir_e6d96184223881d115efa44ca0dfa844->dir_f50aa5156fe016a259583c412dbf440c [headlabel="1", labeldistance=1.5 headhref="dir_000006_000004.html"];
-  dir_e6d96184223881d115efa44ca0dfa844->dir_941490de56ac122cf77df9922cbcc750 [headlabel="7", labeldistance=1.5 headhref="dir_000006_000005.html"];
-  dir_941490de56ac122cf77df9922cbcc750->dir_e6d96184223881d115efa44ca0dfa844 [headlabel="7", labeldistance=1.5 headhref="dir_000005_000006.html"];
-  dir_941490de56ac122cf77df9922cbcc750->dir_f50aa5156fe016a259583c412dbf440c [headlabel="2", labeldistance=1.5 headhref="dir_000005_000004.html"];
+  dir_e6d96184223881d115efa44ca0dfa844->dir_941490de56ac122cf77df9922cbcc750 [headlabel="8", labeldistance=1.5 headhref="dir_000006_000005.html"];
+  dir_941490de56ac122cf77df9922cbcc750->dir_e6d96184223881d115efa44ca0dfa844 [headlabel="8", labeldistance=1.5 headhref="dir_000005_000006.html"];
+  dir_941490de56ac122cf77df9922cbcc750->dir_f50aa5156fe016a259583c412dbf440c [headlabel="3", labeldistance=1.5 headhref="dir_000005_000004.html"];
 }

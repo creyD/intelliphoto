@@ -12,6 +12,7 @@ var hierarchy =
       [ "IntelliToolLine", "class_intelli_tool_line.html", null ],
       [ "IntelliToolPen", "class_intelli_tool_pen.html", null ],
       [ "IntelliToolPlainTool", "class_intelli_tool_plain_tool.html", null ],
+      [ "IntelliToolPolygon", "class_intelli_tool_polygon.html", null ],
       [ "IntelliToolRectangle", "class_intelli_tool_rectangle.html", null ]
     ] ],
     [ "LayerObject", "struct_layer_object.html", null ],
