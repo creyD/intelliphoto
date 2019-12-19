@@ -32,7 +32,7 @@ class PaintingArea : public QWidget
     friend IntelliTool;
 public:
     PaintingArea(int maxWidth=600, int maxHeight=600, QWidget *parent = nullptr);
-    ~PaintingArea();
+    ~PaintingArea() override;
 
     // Handles all events
     bool open(const QString &fileName);
@@ -56,6 +56,10 @@ public:
     void createPenTool();
     void createPlainTool();
     void createLineTool();
+
+    //get Width and Height of active Layer
+    int getWidthActiveLayer();
+    int getHeightActiveLayer();
 
 public slots:
 

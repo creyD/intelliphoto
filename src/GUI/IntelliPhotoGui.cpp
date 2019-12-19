@@ -8,6 +8,7 @@
 
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
+
     //create Gui elements and lay them out
     createGui();
     // Create actions
@@ -17,7 +18,9 @@ IntelliPhotoGui::IntelliPhotoGui(){
     //set style of the gui
     setIntelliStyle();
     // Size the app
+    resize(600,600);
     showMaximized();
+
 }
 
 // User tried to close the app
@@ -100,14 +103,6 @@ void IntelliPhotoGui::slotDeleteLayer(){
     // Create New Layer
     if (ok)
         paintingArea->deleteLayer(layerNumber);
-}
-
-void slotCreatePenTool(){
-
-}
-
-void slotCreateFloodFillTool(){
-
 }
 
 void IntelliPhotoGui::slotSetActiveAlpha(){
@@ -202,7 +197,7 @@ void IntelliPhotoGui::slotSetActiveLayer(){
     {
         paintingArea->setLayerToActive(layer);
     }
-};
+}
 
 void IntelliPhotoGui::slotSetFirstColor(){
     paintingArea->colorPickerSetFirstColor();
