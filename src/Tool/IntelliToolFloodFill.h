@@ -17,7 +17,7 @@ public:
     IntelliToolFloodFill(PaintingArea* Area, IntelliColorPicker* colorPicker);
 
     /*!
-     * \brief An Destructor.
+     * \brief A Destructor.
      */
     virtual ~IntelliToolFloodFill() override;
 
