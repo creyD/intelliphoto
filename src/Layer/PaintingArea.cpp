@@ -20,9 +20,7 @@
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
-    // Testing Area
-    // test yout tool here and reset after accomplished test
-    this->Tool = new IntelliToolFloodFill(this, &colorPicker);
+    this->Tool = new IntelliToolPolygon(this, &colorPicker);
     this->setUp(maxWidth, maxHeight);
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
     layerBundle[0].image->drawPlain(QColor(0,0,255,255));
@@ -194,12 +192,12 @@ void PaintingArea::createLineTool(){
     Tool = new IntelliToolLine(this, &colorPicker);
 }
 
-int PaintingArea::getWidthActiveLayer(){
-    return layerBundle.operator[](activeLayer).width;
+int PaintingArea::getWidthOfActive(){
+    return this->layerBundle[activeLayer].width;
 }
 
-int PaintingArea::getHeightActiveLayer(){
-    return layerBundle.operator[](activeLayer).hight;
+int PaintingArea::getHeightOfActive(){
+    return this->layerBundle[activeLayer].hight;
 }
 
 // If a mouse button is pressed check if it was the

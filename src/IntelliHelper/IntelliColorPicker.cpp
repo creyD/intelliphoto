@@ -2,7 +2,7 @@
 
 IntelliColorPicker::IntelliColorPicker(){
     firstColor = {255,0,0,255};
-    secondColor = {0,0,255,255};
+    secondColor = {0,255,255,255};
 }
 
 IntelliColorPicker::~IntelliColorPicker(){

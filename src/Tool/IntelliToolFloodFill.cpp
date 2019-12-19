@@ -23,6 +23,9 @@ void IntelliToolFloodFill::onMouseRightReleased(int x, int y){
 }
 
 void IntelliToolFloodFill::onMouseLeftPressed(int x, int y){
+    if(!(x>=0 && x<Area->getWidthOfActive() && y>=0 && y<Area->getHeightOfActive())){
+        return;
+    }
     IntelliTool::onMouseLeftPressed(x,y);
 
     QPoint start(x,y);
@@ -50,11 +53,11 @@ void IntelliToolFloodFill::onMouseLeftPressed(int x, int y){
             Canvas->image->drawPixel(left,newColor);
             Q.push(left);
         }
-        if((top.y() < Canvas->hight) && (Canvas->image->getPixelColor(top) != newColor) && (Active->image->getPixelColor(top) == oldColor)){
+        if((top.y() >= 0) && (Canvas->image->getPixelColor(top) != newColor) && (Active->image->getPixelColor(top) == oldColor)){
             Canvas->image->drawPixel(top,newColor);
             Q.push(top);
         }
-        if((down.y() >= 0) && (Canvas->image->getPixelColor(down) != newColor) && (Active->image->getPixelColor(down) == oldColor)){
+        if((down.y() < Canvas->hight) && (Canvas->image->getPixelColor(down) != newColor) && (Active->image->getPixelColor(down) == oldColor)){
             Canvas->image->drawPixel(down,newColor);
             Q.push(down);
         }

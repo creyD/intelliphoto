@@ -10,6 +10,39 @@
  */
 class IntelliToolPolygon : public IntelliTool
 {
+    /*!
+     * \brief Checks if the given Point lies near the starting Point.
+     * \param x             - x coordinate of a point.
+     * \param y             - y coordinate of a point.
+     * \param Startpoint    - The startingpoint to check for.
+     * \return Returns true if the (x,y) point is near to the startpoint, otherwise false.
+     */
+    bool isNearStart(int x, int y, QPoint Startpoint);
+
+    /*!
+     * \brief LineWidth of the drawing polygon.
+     */
+    int lineWidth;
+
+    /*!
+     * \brief IsDrawing true while drawing, else false.
+     */
+    bool isDrawing;
+
+    /*!
+     * \brief PointIsNearStart true, when last click near startpoint, else false.
+     */
+    bool PointIsNearStart;
+
+    /*!
+     * \brief The alpha value of the inner circle.
+     */
+    int alphaInner;
+
+    /*!
+     * \brief QPointList list of all points of the polygon.
+     */
+    std::vector<QPoint> QPointList;
 public:
     /*!
      * \brief IntelliToolPolygon Constructor Define the Tool-intern Parameters
@@ -27,52 +60,7 @@ public:
 
     virtual void onMouseMoved(int x, int y) override;
 
-private:
-    /*!
-     * \brief isNearStart
-     * \param x
-     * \param y
-     * \param Startpoint
-     * \return true : Near Startpoint, else false
-     */
-    bool isNearStart(int x, int y, QPoint Startpoint);
 
-    /*!
-     * \brief lineWidth of the Drawing Polygon
-     */
-    int lineWidth;
-    /*!
-     * \brief width of the active Layer
-     */
-    int width;
-    /*!
-     * \brief height of the active Layer
-     */
-    int height;
-    /*!
-     * \brief isDrawing true while drawing, else false
-     */
-    bool isDrawing;
-    /*!
-     * \brief PointIsNearStart true, when last click near Startpoint, else false
-     */
-    bool PointIsNearStart;
-    /*!
-     * \brief drawingPoint Current Point after Left-Click
-     */
-    QPoint drawingPoint;
-    /*!
-     * \brief Point Needed to look, if Point is in Polygon
-     */
-    QPoint Point;
-    /*!
-     * \brief QPointList List of all Points of the Polygon
-     */
-    std::vector<QPoint> QPointList;
-    /*!
-     * \brief Triangles Transformed QPointList into triangulated Form of the Polygon
-     */
-    std::vector<Triangle> Triangles;
 
 };
 

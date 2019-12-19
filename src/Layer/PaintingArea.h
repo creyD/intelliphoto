@@ -56,9 +56,8 @@ public:
     void createPlainTool();
     void createLineTool();
 
-    //get Width and Height of active Layer
-    int getWidthActiveLayer();
-    int getHeightActiveLayer();
+    int getWidthOfActive();
+    int getHeightOfActive();
 
 public slots:
     // Events to handle
