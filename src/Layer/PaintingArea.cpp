@@ -20,7 +20,7 @@
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
-    this->Tool = new IntelliToolPolygon(this, &colorPicker);
+    this->Tool = nullptr;
     this->setUp(maxWidth, maxHeight);
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
     layerBundle[0].image->drawPlain(QColor(0,0,255,255));
@@ -190,6 +190,25 @@ void PaintingArea::createPlainTool(){
 void PaintingArea::createLineTool(){
     delete this->Tool;
     Tool = new IntelliToolLine(this, &colorPicker);
+}
+
+void PaintingArea::createRectangleTool(){
+    delete this->Tool;
+    Tool = new IntelliToolRectangle(this, &colorPicker);
+}
+
+void PaintingArea::createCircleTool(){
+    delete this->Tool;
+    Tool = new IntelliToolCircle(this, &colorPicker);
+}
+void PaintingArea::createPolygonTool(){
+    delete this->Tool;
+    Tool = new IntelliToolPolygon(this, &colorPicker);
+}
+
+void PaintingArea::createFloodFillTool(){
+    delete this->Tool;
+    Tool = new IntelliToolFloodFill(this, &colorPicker);
 }
 
 int PaintingArea::getWidthOfActive(){

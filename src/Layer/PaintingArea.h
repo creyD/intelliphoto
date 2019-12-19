@@ -55,6 +55,10 @@ public:
     void createPenTool();
     void createPlainTool();
     void createLineTool();
+    void createRectangleTool();
+    void createCircleTool();
+    void createPolygonTool();
+    void createFloodFillTool();
 
     int getWidthOfActive();
     int getHeightOfActive();

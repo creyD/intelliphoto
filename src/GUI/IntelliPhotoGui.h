@@ -55,6 +55,10 @@ private slots:
     void slotCreatePenTool();
     void slotCreatePlainTool();
     void slotCreateLineTool();
+    void slotCreateRectangleTool();
+    void slotCreateCircleTool();
+    void slotCreatePolygonTool();
+    void slotCreateFloodFillTool();
 
     // slots for dialogs
     void slotAboutDialog();
@@ -99,6 +103,10 @@ private:
     QAction *actionCreatePenTool;
     QAction *actionCreatePlainTool;
     QAction *actionCreateLineTool;
+    QAction *actionCreateRectangleTool;
+    QAction *actionCreateCircleTool;
+    QAction *actionCreatePolygonTool;
+    QAction *actionCreateFloodFillTool;
 
     // dialog actions
     QAction *actionAboutDialog;
