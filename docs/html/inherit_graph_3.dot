@@ -4,7 +4,17 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node3 [label="QMainWindow",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-  Node3 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node0 [label="IntelliPhotoGui",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_photo_gui.html",tooltip=" "];
+  Node0 [label="IntelliTool",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html",tooltip="An abstract class that manages the basic events, like mouse clicks or scrolls events."];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="IntelliToolCircle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_circle.html",tooltip=" "];
+  Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="IntelliToolFloodFill",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_flood_fill.html",tooltip=" "];
+  Node0 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="IntelliToolLine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html",tooltip=" "];
+  Node0 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="IntelliToolPen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html",tooltip=" "];
+  Node0 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="IntelliToolPlainTool",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_plain_tool.html",tooltip=" "];
+  Node0 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="IntelliToolRectangle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_rectangle.html",tooltip=" "];
 }

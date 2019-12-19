@@ -3,11 +3,18 @@ digraph "IntelliTool"
  // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="IntelliTool",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  rankdir="LR";
+  Node1 [label="IntelliTool",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="An abstract class that manages the basic events, like mouse clicks or scrolls events."];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="IntelliToolLine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html",tooltip=" "];
+  Node2 [label="IntelliToolCircle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_circle.html",tooltip=" "];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="IntelliToolPen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html",tooltip=" "];
+  Node3 [label="IntelliToolFloodFill",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_flood_fill.html",tooltip=" "];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="IntelliToolPlainTool",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_plain_tool.html",tooltip=" "];
+  Node4 [label="IntelliToolLine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="IntelliToolPen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="IntelliToolPlainTool",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_plain_tool.html",tooltip=" "];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="IntelliToolRectangle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_rectangle.html",tooltip=" "];
 }

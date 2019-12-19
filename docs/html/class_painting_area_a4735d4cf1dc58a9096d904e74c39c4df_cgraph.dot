@@ -6,7 +6,7 @@ digraph "PaintingArea::colorPickerSetFirstColor"
   rankdir="LR";
   Node1 [label="PaintingArea::colorPicker\lSetFirstColor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="IntelliColorPicker\l::getFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#aae2eb27b928fe9388b9398b0556303b7",tooltip=" "];
+  Node2 [label="IntelliColorPicker\l::getFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#aae2eb27b928fe9388b9398b0556303b7",tooltip="A function to read the primary selected color."];
   Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="IntelliColorPicker\l::setFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#a7e2ddbbbfbed383f06b24e5bf6b27ae8",tooltip=" "];
+  Node3 [label="IntelliColorPicker\l::setFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#a7e2ddbbbfbed383f06b24e5bf6b27ae8",tooltip="A function to set the primary color."];
 }

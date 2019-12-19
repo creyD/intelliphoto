@@ -1,7 +1,7 @@
 var class_painting_area =
 [
     [ "PaintingArea", "class_painting_area.html#a4fa0ec23e78cc59f28c823584c721460", null ],
-    [ "~PaintingArea", "class_painting_area.html#a5654e04fb8e8c5595a2aae76e9163e0e", null ],
+    [ "~PaintingArea", "class_painting_area.html#aa32adc113f77031945f73e33051931e8", null ],
     [ "addLayer", "class_painting_area.html#a39ad76e1319659bfa38eee88ef33d395", null ],
     [ "addLayerAt", "class_painting_area.html#ae756003b49aead863b49616ea7a44cc0", null ],
     [ "colorPickerSetFirstColor", "class_painting_area.html#a4735d4cf1dc58a9096d904e74c39c4df", null ],
@@ -24,5 +24,6 @@ var class_painting_area =
     [ "setAlphaOfLayer", "class_painting_area.html#aec59be20f1c27135700754882dd6383d", null ],
     [ "setLayerToActive", "class_painting_area.html#a1d6d86c25efdce9fe9031a9cd01c74c8", null ],
     [ "slotActivateLayer", "class_painting_area.html#a71ac281e0de263208d4a3b9de74258ec", null ],
-    [ "slotDeleteActiveLayer", "class_painting_area.html#a1ff0b9c1227531943c9cec2c546fae5e", null ]
+    [ "slotDeleteActiveLayer", "class_painting_area.html#a1ff0b9c1227531943c9cec2c546fae5e", null ],
+    [ "wheelEvent", "class_painting_area.html#a632848d99f44d33d7da2618fbc6775a4", null ]
 ];

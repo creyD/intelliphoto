@@ -1,9 +1,15 @@
 var searchData=
 [
-  ['deletelayer_15',['deleteLayer',['../class_painting_area.html#a6efad6f8ea060674b157b42b431cd173',1,'PaintingArea']]],
-  ['dotted_5fline_16',['DOTTED_LINE',['../_intelli_tool_line_8h.html#a86e0f5648542856159bb40775c854aa7a7660f396543c877e45d443f99d02bd0e',1,'IntelliToolLine.h']]],
-  ['drawing_17',['drawing',['../class_intelli_tool.html#af256de16e9825922d20a23d11617b51b',1,'IntelliTool']]],
-  ['drawline_18',['drawLine',['../class_intelli_image.html#af8eddbd9aa54c8d37590d1d4bf8dce31',1,'IntelliImage']]],
-  ['drawpixel_19',['drawPixel',['../class_intelli_image.html#af3c859f5c409e37051edfd9e9fbca056',1,'IntelliImage']]],
-  ['drawplain_20',['drawPlain',['../class_intelli_image.html#a6be622810dc2bc756054bb5769becb06',1,'IntelliImage']]]
+  ['c_7',['C',['../struct_triangle.html#addb8aaab314d79f3617acca01e12872a',1,'Triangle']]],
+  ['calculatetriangles_8',['calculateTriangles',['../namespace_intelli_helper.html#a214dc3624ba4562a03dc922e3dd7b617',1,'IntelliHelper']]],
+  ['calculatevisiblity_9',['calculateVisiblity',['../class_intelli_image.html#aebbced93f4744fad81b7f141b21f4ab2',1,'IntelliImage::calculateVisiblity()'],['../class_intelli_raster_image.html#a87cf2d360c129d64a5db0db85818eb60',1,'IntelliRasterImage::calculateVisiblity()']]],
+  ['canvas_10',['Canvas',['../class_intelli_tool.html#a144d469cc03584f501194529a1b53c77',1,'IntelliTool']]],
+  ['closeevent_11',['closeEvent',['../class_intelli_photo_gui.html#a2cf48070236ae8b35245e7f30482ef13',1,'IntelliPhotoGui']]],
+  ['colorpicker_12',['colorPicker',['../class_intelli_tool.html#ae2e0ac394611a361ab4ef2fe55c03fef',1,'IntelliTool']]],
+  ['colorpickersetfirstcolor_13',['colorPickerSetFirstColor',['../class_painting_area.html#a4735d4cf1dc58a9096d904e74c39c4df',1,'PaintingArea']]],
+  ['colorpickersetsecondcolor_14',['colorPickerSetSecondColor',['../class_painting_area.html#ae261acaaa346610dfed489dbac17e789',1,'PaintingArea']]],
+  ['colorpickerswitchcolor_15',['colorPickerSwitchColor',['../class_painting_area.html#a66115307ff4a99cd7ca16423c5c8ecfb',1,'PaintingArea']]],
+  ['createlinetool_16',['createLineTool',['../class_painting_area.html#a240c33a7875addac86080cdfb0db036a',1,'PaintingArea']]],
+  ['createpentool_17',['createPenTool',['../class_painting_area.html#a96c6248e343e44b61cf2625cb6d21353',1,'PaintingArea']]],
+  ['createplaintool_18',['createPlainTool',['../class_painting_area.html#a3de83443d2d5cf460ff48d0602070938',1,'PaintingArea']]]
 ];

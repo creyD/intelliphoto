@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['polygondata_223',['polygonData',['../class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8',1,'IntelliShapedImage']]]
+  ['image_268',['image',['../struct_layer_object.html#af01a139bc8edfdbb338393874e89bd83',1,'LayerObject']]],
+  ['imagedata_269',['imageData',['../class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2',1,'IntelliImage']]]
 ];

@@ -4,15 +4,11 @@ digraph "IntelliShapedImage::getDeepCopy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="IntelliShapedImage\l::getDeepCopy",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 [label="IntelliShapedImage\l::getDeepCopy",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A function that copys all that returns a [allocated] Image."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="IntelliShapedImage\l::IntelliShapedImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_shaped_image.html#a0f834c3f255baeb50c98ef335a6d0ea9",tooltip=" "];
+  Node2 [label="IntelliShapedImage\l::IntelliShapedImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_shaped_image.html#a0f834c3f255baeb50c98ef335a6d0ea9",tooltip="The Construcor of the IntelliShapedImage. Given the Image dimensions."];
   Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="IntelliShapedImage\l::setPolygon",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_shaped_image.html#a4b69d75de7a3b85032482982f249458e",tooltip=" "];
+  Node3 [label="IntelliShapedImage\l::setPolygon",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_shaped_image.html#a4b69d75de7a3b85032482982f249458e",tooltip="A function that sets the data of the visible Polygon."];
   Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="IntelliShapedImage\l::calculateVisiblity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_shaped_image.html#a0221d93c3c8990f7dab332454cc21f50",tooltip=" "];
-  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="IntelliHelper::isInTriangle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_helper.html#a04bdb4f53b89dded693ba6e896f4c63f",tooltip=" "];
-  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="IntelliHelper::sign",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_helper.html#a67fc007dda64187f6cef7fba3fcd9e40",tooltip=" "];
+  Node4 [label="IntelliHelper::calculate\lTriangles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_intelli_helper.html#a214dc3624ba4562a03dc922e3dd7b617",tooltip="A function to split a polygon in its spanning traingles by using Meisters Theorem of graph theory by ..."];
 }
