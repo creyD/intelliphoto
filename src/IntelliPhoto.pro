@@ -29,7 +29,7 @@ SOURCES += \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
     Tool/IntelliToolPolygon.cpp \
-    Tool/IntelliToolRechteck.cpp \
+    Tool/IntelliToolRectangle.cpp \
     main.cpp
 
 HEADERS += \
@@ -46,7 +46,7 @@ HEADERS += \
     Tool/IntelliToolPen.h \
     Tool/IntelliToolPlain.h \
     Tool/IntelliToolPolygon.h \
-    Tool/IntelliToolRechteck.h
+    Tool/IntelliToolRectangle.h
 
 FORMS += \
     mainwindow.ui

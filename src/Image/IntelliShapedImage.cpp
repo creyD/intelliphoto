@@ -35,26 +35,18 @@ void IntelliShapedImage::calculateVisiblity(){
         }
         return;
     }
-    QPoint A = polygonData[0];
     QColor clr;
     for(int y=0; y<imageData.height(); y++){
         for(int x=0; x<imageData.width(); x++){
-            int cutNumeber=0;
-            for(int i=1; i<static_cast<int>(polygonData.size()-1); i++){
-                QPoint B = polygonData[static_cast<size_t>(i)];
-                QPoint C = polygonData[static_cast<size_t>(i+1)];
-                QPoint P(x,y);
-                cutNumeber+=IntelliHelper::isInTriangle(A,B,C,P);
-            }
-            if(cutNumeber%2==0){
-                clr = imageData.pixelColor(x,y);
-                clr.setAlpha(0);
-                imageData.setPixelColor(x,y,clr);
-            }else{
-                clr = imageData.pixelColor(x,y);
+            QPoint ptr(x,y);
+            clr = imageData.pixelColor(x,y);
+            bool isInPolygon = IntelliHelper::isInPolygon(triangles, ptr);
+            if(isInPolygon){
                 clr.setAlpha(std::min(255, clr.alpha()));
-                imageData.setPixelColor(x,y,clr);
+            }else{
+                clr.setAlpha(0);
             }
+            imageData.setPixelColor(x,y,clr);
         }
     }
 }
@@ -79,6 +71,7 @@ void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
         for(auto element:polygonData){
             this->polygonData.push_back(QPoint(element.x(), element.y()));
         }
+        triangles = IntelliHelper::calculateTriangles(polygonData);
     }
     calculateVisiblity();
     return;

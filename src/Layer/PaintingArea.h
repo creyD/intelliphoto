@@ -21,8 +21,6 @@ struct LayerObject{
     int widthOffset;
     int hightOffset;
     int alpha=255;
-
-
 };
 
 class PaintingArea : public QWidget
@@ -87,7 +85,6 @@ private:
     void activateUpperLayer();
     void activateLowerLayer();
 
-
     QImage* Canvas;
     int maxWidth;
     int maxHeight;
@@ -108,4 +105,3 @@ private:
 };
 
 #endif
-
