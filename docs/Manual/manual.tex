@@ -10,7 +10,7 @@
 \usepackage{graphicx}
 \usepackage{svg}
 
-\title{intelliPhoto - Manual}
+\title{intelliPhoto 0.31 - Manual}
 \author{Paul Norberger \& the intelliPhoto team}
 
 \begin{document}
@@ -18,7 +18,7 @@
 \maketitle
 \thispagestyle{empty}
 \begin{center}
-\includegraphics[width=0.45\linewidth,keepaspectratio]{assets/icon}
+\includegraphics[width=0.35\linewidth,keepaspectratio]{assets/icon}
 \end{center}
 \tableofcontents
 \end{titlepage}
@@ -41,62 +41,79 @@ After startup the following window opens:
 \end{center}
 
 \subsection{Loading images}
-
-To load a preexisting image, click on "File" in the top menu bar and then on "Open..." in the appearing context menu.
+To load a preexisting image, click on \texttt{File} in the top menu bar and then on \texttt{Open...} in the appearing context menu.
 \begin{center}
 \includegraphics[width=0.3\linewidth,keepaspectratio]{assets/file-open}
 \end{center}
 
-A file explorer window opens. Navigate to the image you want to open and click on "Open" or the equivalent in your system language. The image will now be imported and displayed.
+A file explorer window opens. Navigate to the image you want to open and click on \texttt{Open} or the equivalent in your system language. The image will now be imported and displayed.
 
 \subsection{Saving images}
-To save the current canvas as an image, click on "File" in the top menu bar then hover over "Save As" and click on your preferred file format in the appearing context menu.
+To save the current canvas as an image, click on \texttt{File} in the top menu bar then hover over \texttt{Save As} and click on your preferred file format in the appearing context menu.
 \begin{center}
 \includegraphics[width=0.3\linewidth,keepaspectratio]{assets/file-save}
 \end{center}
 
-A file explorer window opens. Navigate to your preferred save location, input a file name and click on "Save" or the equivalent in your system language. The image will be saved at that location in the selected file format.
+A file explorer window opens. Navigate to your preferred save location, input a file name and click on \texttt{Save} or the equivalent in your system language. The image will be saved at that location in the selected file format.
 
 \subsection{Setting the active layer}
-The active layer is the layer you are currently editing. To change it, you currently have to specify the index of the layer under "Active:" on the righ side of the canvas and then click on "select Active". Since there is currently no way to create or delete layers the program opens with 2 layers by default: One ShapedImage (the triange) and one raster image (the square), you can switch between these at any times by doing the described steps.
-Only 0 and 1 are valid 'Active:' values because of this.
+The active layer is the layer you are currently editing. To change it, you currently have to specify the index of the layer under \texttt{Layer > select Active...}.
 
-\subsection{Setting width and color of the pen}
-To edit width and color of the drawing tool, click on "Options" in the top menu bar then select either "Pen Color..." or "Pen Width..." depending on which parameter you want to edit.
+\subsection{Setting the main and secondary color}
+The main and secondary color are a concept used by all the drawing tools. You select them independendly of other tool parameters under \texttt{Tools > Color}.
 \begin{center}
-\includegraphics[width=0.3\linewidth,keepaspectratio]{assets/file-options}
+\includegraphics[width=0.3\linewidth,keepaspectratio]{assets/change-colors}
 \end{center}
-In the appearing popup you can select a new value for the parameter.
+The appearing popup will allow you to specify a new color.
+
+\subsection{Switching main and secondary color}
+An often desired use case is to switch the main and secondary color. So that you don't have to this manually, which would be time consuming there is an easy command to do it under \texttt{Tools > Color}.
+It is also bound to the keyboard shortcut \texttt{Ctrl+Shift+S}.
 
 \subsection{Drawing with the pen tool}
-To edit the active layer with the pen tool simply click and hold the left mouse button while hovering the layer on the canvas. When you click within the boundaries of the active layer, the pixels in the radius you selected will change their color to the color which you selected under the section above.
+To activate the pen tool simply select it under \texttt{Tools > Pen}. You will be prompted to input the pen width, just put in the width you desire.
+\begin{center}
+\includegraphics[width=0.2\linewidth,keepaspectratio]{assets/tool-pen}
+\end{center}
+To edit the active layer with the pen tool simply click and hold the left mouse button while hovering the layer on the canvas. When you click within the boundaries of the active layer, the pixels in the radius you selected will change their color to the main color which you selected under the section above.
 
 \subsection{Fill the active layer in one color}
-To fill the whole layer with one specific color, you first specify the color on the right side of the picture.
+To fill the whole layer with the main color, you first specify the color on the right side of the picture.
 
-Afterwards you click on the "set Color" button above the color specification fields.
 \begin{center}
-\includegraphics[width=0.3\linewidth,keepaspectratio]{assets/fill-layer}
+\includegraphics[width=0.3\linewidth,keepaspectratio]{assets/tool-plain}
 \end{center}
 
 \subsection{Moving layers}
-The layers are flexible and can be moved to a different position on the canvas, their order can be changed at will. For this you can use the buttons on the bottom of the right side panel. Keep in mind that the changes always only effect the active layer you have chosen in the section "Setting the active layer".
+The layers are flexible and can be moved to a different position on the canvas, their order can be changed at will. For this you can use the movement options under \texttt{Layer}. Keep in mind that the changes always only effect the active layer you have chosen in the section "Setting the active layer".
 
 \begin{center}
-\includegraphics[width=0.3\linewidth,keepaspectratio]{assets/moving-layers}
+\includegraphics[width=0.3\linewidth,keepaspectratio]{assets/layer-options}
 \end{center}
+
+\subsection{Creating and deleting layers}
+Raster Layers can be created at will under \texttt{Layer > New Layer...} You will be prompted to input the width and height of the new layer. Afterwards it will be created.
+\begin{center}
+\includegraphics[width=0.3\linewidth,keepaspectratio]{assets/create-layer}
+\end{center}
+To delete the active layer you have to click on \texttt{Delete Layer} in the same submenu.
 
 \subsection{Transparency and layers}
-Layers can also be made more or less transparent by entering a value under "Alpha:" on the right side of the canvas. Values between 0 and 255 are valid. There is currently no error handling and this can lead to memory leaks, so be careful. This also only effects the active layer.
+Layers can also be made more or less transparent under \texttt{Layer > set Alpha}. Values between 0 and 255 are valid. There is currently no error handling and this can lead to memory leaks, so be careful. This also only effects the active layer.
 
+\subsection{Closing the program}
+To close the program you have to execute the exit program routine, which heavily depends on your operating system. Usually you can find a red cross symbol at the top right, though it may be different depending on your setup.
+For Windows 10, the desired symbol looks like this when hovered:
 \begin{center}
-\includegraphics[width=0.3\linewidth,keepaspectratio]{assets/layer-alpha}
+\includegraphics[width=0.9\linewidth,keepaspectratio]{assets/close-window}
 \end{center}
+Alternatively you can press \texttt{CTR+Q}.
 
 \section{Next steps}
 The following features are currently high priority and will be implimented in the near future:
 \begin{itemize}
-\item Implementing a reusable, modular tool structure that makes it easy to implement future tools and make them compatible with other features such as the UI
+\item Refactoring the code, improving readability, structure and the dev documentation
+\item Improving the UI and integrating all the tools in it
 \end{itemize}
 
 \end{document}
