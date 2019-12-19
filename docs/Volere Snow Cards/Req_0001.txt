@@ -1,0 +1,30 @@
+Req-ID:
+    0001
+Req-Type:
+    Nicht-Funktional
+Events/UCs:
+    -Speicherung eines Bildes
+    -Pixel wird mit einem Byte dargestellt
+    -Overhead für Metainformationen erlaubt
+    -Keine seperate Abhandlung von "RasterImage" und "ShapedImage"
+Description:
+    -Ein Bild wird mit maximal einem Byte pro Pixel kodiert
+    -Codierungsmöglichkeit nach folgendem Schema:
+            -Alle binären Codierung werden einer Farbe zugeordnet -> 2^(8)-1 mögliche Farben + Transparenz
+            -Die Zuordnung der Farben erfolgt automatisch und wird ebenfalls in der exportierten Datei gespeichert
+    -Die Umsetzung erfolgt mit dem Standart PNG8
+Originator:
+    Jonas Mucke
+Fit Criterion:
+    -Darstellung von mindestens 250 paarweise verschiedenen Farbstufen
+    -Darstellung einen transparenten Bits (Alpha Kanal = 1)
+    -Verarbeitungsmöglichkeit für 2^10 Pixel in unter 0.1 Sekunde beim Einlesen und Speichern
+Priority:
+    0
+Support Material:
+    Ubungsblat_01.pdf
+Conflicts:
+History:
+    -Erstellt am 30.10.2019, von Jonas Mucke
+    -Aktualisiert am 17.12.2019, von Paul Norberger
+    -Vollständig umgesetzt, Stand: 17.12.2019

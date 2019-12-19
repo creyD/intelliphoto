@@ -1,0 +1,14 @@
+digraph "PaintingArea::mousePressEvent"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PaintingArea::mousePress\lEvent",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="IntelliTool::onMouseLeft\lPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html#a34b7ef1dde96b94a0ce450a25ae1778c",tooltip="A function managing the left click Pressed of a Mouse. Resetting the current draw...."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="IntelliImage::calculateVisiblity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html#aebbced93f4744fad81b7f141b21f4ab2",tooltip="An abstract function that calculates the visiblity of the Image data if needed."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="IntelliTool::onMouseRight\lPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html#a1e6aa68ac5f3c2ca02319e5ef3f0c966",tooltip="A function managing the right click Pressed of a Mouse. Constructing the Canvas to draw on...."];
+}

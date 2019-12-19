@@ -1,25 +1,57 @@
 #ifndef INTELLIRASTER_H
 #define INTELLIRASTER_H
 
-#include"Image/IntelliImage.h"
+#include "Image/IntelliImage.h"
 
-class IntelliRasterImage : public IntelliImage{
-    friend IntelliTool;
+/*!
+ * \brief The IntelliRasterImage manages a Rasterimage.
+ */
+class IntelliRasterImage : public IntelliImage {
+friend IntelliTool;
 protected:
-    virtual void calculateVisiblity() override;
+/*!
+ * \brief A function that calculates the visibility of the image if a polygon is given. [does nothing in Rasterimage]
+ */
+virtual void calculateVisiblity() override;
 public:
-    IntelliRasterImage(int weight, int height);
-    virtual ~IntelliRasterImage() override;
+/*!
+ * \brief The Construcor of the IntelliRasterImage. Given the Image dimensions.
+ * \param weight    - The weight of the Image.
+ * \param height    - The height of the Image.
+ */
+IntelliRasterImage(int weight, int height);
 
-    //returns the filtered output
-    virtual QImage getDisplayable(const QSize& displaySize,int alpha) override;
-    virtual QImage getDisplayable(int alpha=255) override;
+/*!
+ * \brief An Destructor.
+ */
+virtual ~IntelliRasterImage() override;
 
-    //gets a copy of the image !allocated
-    virtual IntelliImage* getDeepCopy() override;
+/*!
+ * \brief A function returning the displayable ImageData in a requested transparence and size.
+ * \param displaySize   - The size, in whcih the Image should be displayed.
+ * \param alpha         - The maximum alpha value, a pixel can have.
+ * \return A QImage which is ready to be displayed.
+ */
+virtual QImage getDisplayable(const QSize& displaySize,int alpha) override;
 
-    //sets the data for the visible image
-    virtual void setPolygon(const std::vector<QPoint>& polygonData) override;
+/**
+ * @brief A function returning the displayable ImageData in a requested transparence and it's standart size.
+ * @param alpha - The maximum alpha value, a pixel can have.
+ * @return A QImage which is ready to be displayed.
+ */
+virtual QImage getDisplayable(int alpha=255) override;
+
+/*!
+ * \brief A function that copys all that returns a [allocated] Image
+ * \return A [allocated] Image with all the properties of the instance.
+ */
+virtual IntelliImage* getDeepCopy() override;
+
+/*!
+ * \brief An abstract function that sets the data of the visible Polygon, if needed.
+ * \param polygonData   - The Vertices of the Polygon. Nothing happens.
+ */
+virtual void setPolygon(const std::vector<QPoint>& polygonData) override;
 };
 
 #endif

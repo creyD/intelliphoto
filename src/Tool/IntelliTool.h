@@ -7,30 +7,105 @@
 class LayerObject;
 class PaintingArea;
 
-class IntelliTool{
+/*!
+ * \brief An abstract class that manages the basic events, like mouse clicks or scrolls events.
+ */
+class IntelliTool {
 private:
-    void createToolLayer();
-    void mergeToolLayer();
-    void deleteToolLayer();
-protected:
-    PaintingArea* Area;
-    IntelliColorPicker* colorPicker;
+/*!
+ * \brief A function that creates a layer to draw on.
+ */
+void createToolLayer();
 
-    LayerObject* Active;
-    LayerObject* Canvas;
-    bool drawing = false;
+/*!
+ * \brief A function that merges the drawing- and the active- layer.
+ */
+void mergeToolLayer();
+
+/*!
+ * \brief A function that deletes the drawinglayer.
+ */
+void deleteToolLayer();
+protected:
+/*!
+ * \brief A pointer to the general PaintingArea to interact with.
+ */
+PaintingArea* Area;
+
+/*!
+ * \brief A pointer to the IntelliColorPicker of the PaintingArea to interact with, and get the colors.
+ */
+IntelliColorPicker* colorPicker;
+
+/*!
+ * \brief A pointer to the underlying active Layer, do not work on this. This is used for data grabbing or previews.
+ */
+LayerObject* Active;
+
+/*!
+ * \brief A pointer to the drawing canvas of the tool, work on this.
+ */
+LayerObject* Canvas;
+
+/*!
+ * \brief A flag checking if the user is currently drawing or not.
+ */
+bool drawing = false;
 
 public:
-    IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker);
-    virtual ~IntelliTool() = 0;
+/*!
+ * \brief A constructor setting the general Painting Area and colorPicker.
+ * \param Area          - The general PaintingArea used by the project.
+ * \param colorPicker   - The general colorPicker used by the project.
+ */
+IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker);
 
-    virtual void onMouseRightPressed(int x, int y);
-    virtual void onMouseRightReleased(int x, int y);
-    virtual void onMouseLeftPressed(int x, int y);
-    virtual void onMouseLeftReleased(int x, int y);
+/*!
+ * \brief An abstract Destructor.
+ */
+virtual ~IntelliTool() = 0;
 
-    virtual void onWheelScrolled(int value);
+/*!
+ * \brief A function managing the right click Pressed of a Mouse. Constructing the Canvas to draw on. Call this in child classes!
+ * \param x - The x coordinate relative to the active/canvas layer.
+ * \param y - The y coordinate relative to the active/canvas layer.
+ */
+virtual void onMouseRightPressed(int x, int y);
 
-    virtual void onMouseMoved(int x, int y);
+/*!
+ * \brief A function managing the right click Released of a Mouse. Merging the Canvas to Active. Call this in child classes!
+ * \param x - The x coordinate relative to the active/canvas layer.
+ * \param y - The y coordinate relative to the active/canvas layer.
+ */
+virtual void onMouseRightReleased(int x, int y);
+
+/*!
+ * \brief A function managing the left click Pressed of a Mouse. Resetting the current draw. Call this in child classes!
+ * \param x - The x coordinate relative to the active/canvas layer.
+ * \param y - The y coordinate relative to the active/canvas layer.
+ */
+virtual void onMouseLeftPressed(int x, int y);
+
+/*!
+ * \brief A function managing the left click Released of a Mouse. Call this in child classes!
+ * \param x - The x coordinate relative to the active/canvas layer.
+ * \param y - The y coordinate relative to the active/canvas layer.
+ */
+virtual void onMouseLeftReleased(int x, int y);
+
+/*!
+ * \brief A function managing the scroll event. A positive value means scrolling outwards. Call this in child classes!
+ * \param value - The absolute the scroll has changed.
+ */
+virtual void onWheelScrolled(int value);
+
+/*!
+ * \brief A function managing the mouse moved event. Call this in child classes!
+ * \param x - The x coordinate of the new mouse position.
+ * \param y - The y coordinate of the new mouse position.
+ */
+virtual void onMouseMoved(int x, int y);
+
+
 };
 #endif

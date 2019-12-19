@@ -1,0 +1,10 @@
+digraph "PaintingArea::addLayer"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="PaintingArea::addLayer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="The addLayer adds a layer to the current project/ painting area."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PaintingArea::PaintingArea",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a4fa0ec23e78cc59f28c823584c721460",tooltip="PaintingArea is the constructor of the PaintingArea class, which initiates the working environment."];
+}
