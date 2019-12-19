@@ -24,9 +24,13 @@ SOURCES += \
     IntelliHelper/IntelliHelper.cpp \
     Layer/PaintingArea.cpp \
     Tool/IntelliTool.cpp \
+    Tool/IntelliToolCircle.cpp \
+    Tool/IntelliToolFloodFill.cpp \
     Tool/IntelliToolLine.cpp \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
+    Tool/IntelliToolPolygon.cpp \
+    Tool/IntelliToolRectangle.cpp \
     main.cpp
 
 HEADERS += \
@@ -38,12 +42,16 @@ HEADERS += \
     IntelliHelper/IntelliHelper.h \
     Layer/PaintingArea.h \
     Tool/IntelliTool.h \
+    Tool/IntelliToolCircle.h \
+    Tool/IntelliToolFloodFill.h \
     Tool/IntelliToolLine.h \
     Tool/IntelliToolPen.h \
-    Tool/IntelliToolPlain.h
+    Tool/IntelliToolPlain.h \
+    Tool/IntelliToolPolygon.h \
+    Tool/IntelliToolRectangle.h
 
 FORMS += \
-    widget.ui
+    mainwindow.ui
 
 QMAKE_CXXFLAGS
 QMAKE_LFLAGS

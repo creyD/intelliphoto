@@ -1,0 +1,10 @@
+digraph "intelliphoto" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_8db5f55022e7670536cbc9a6a1d6f01c {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_8db5f55022e7670536cbc9a6a1d6f01c.html"];
+    dir_8db5f55022e7670536cbc9a6a1d6f01c [shape=plaintext label="intelliphoto"];
+    dir_83a4347d11f2ba6343d546ab133722d2 [shape=box label="src" color="red" fillcolor="white" style="filled" URL="dir_83a4347d11f2ba6343d546ab133722d2.html"];
+  }
+}

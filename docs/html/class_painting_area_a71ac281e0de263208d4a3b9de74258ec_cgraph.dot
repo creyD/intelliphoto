@@ -1,0 +1,10 @@
+digraph "PaintingArea::slotActivateLayer"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PaintingArea::slotActivate\lLayer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="The slotActivateLayer method handles the event of selecting one layer as active."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PaintingArea::setLayerTo\lActive",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a1d6d86c25efdce9fe9031a9cd01c74c8",tooltip="The setLayerToActive method marks a specific layer as active."];
+}
