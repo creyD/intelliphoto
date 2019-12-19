@@ -6,6 +6,10 @@ IntelliToolPlainTool::IntelliToolPlainTool(PaintingArea* Area, IntelliColorPicke
     :IntelliTool(Area, colorPicker){
 }
 
+IntelliToolPlainTool::~IntelliToolPlainTool(){
+
+}
+
 void IntelliToolPlainTool::onMouseLeftPressed(int x, int y){
     IntelliTool::onMouseLeftPressed(x,y);
     this->Canvas->image->drawPlain(colorPicker->getFirstColor());

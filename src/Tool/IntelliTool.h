@@ -56,7 +56,7 @@ public:
     /*!
      * \brief A constructor setting the general Painting Area and colorPicker.
      * \param Area          - The general PaintingArea used by the project.
-     * \param colorPicker   - The general colorPicker used by the project
+     * \param colorPicker   - The general colorPicker used by the project.
      */
     IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker);
 

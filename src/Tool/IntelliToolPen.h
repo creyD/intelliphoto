@@ -23,33 +23,36 @@ public:
      * \param colorPicker   - The general colorPicker used by the project.
      */
     IntelliToolPen(PaintingArea* Area, IntelliColorPicker* colorPicker);
+    /*!
+     * \brief A Destructor.
+     */
     virtual ~IntelliToolPen() override;
 
     /*!
      * \brief A function managing the right click pressed of a mouse.Resetting the current draw.
-     * \param x - The x coordinate relative to the active/canvas Layer.
-     * \param y - The y coordinate relative to the active/canvas Layer.
+     * \param x - The x coordinate relative to the active/canvas layer.
+     * \param y - The y coordinate relative to the active/canvas layer.
      */
     virtual void onMouseRightPressed(int x, int y) override;
 
     /*!
      * \brief A function managing the right click released of a mouse.
-     * \param x - The x coordinate relative to the active/canvas Layer.
-     * \param y - The y coordinate relative to the active/canvas Layer.
+     * \param x - The x coordinate relative to the active/canvas layer.
+     * \param y - The y coordinate relative to the active/canvas layer.
      */
     virtual void onMouseRightReleased(int x, int y) override;
 
     /*!
      * \brief A function managing the left click pressed of a mouse. Starting the drawing procedure.
-     * \param x - The x coordinate relative to the active/canvas Layer.
-     * \param y - The y coordinate relative to the active/canvas Layer.
+     * \param x - The x coordinate relative to the active/canvas layer.
+     * \param y - The y coordinate relative to the active/canvas layer.
      */
     virtual void onMouseLeftPressed(int x, int y) override;
 
     /*!
-     * \brief A function managing the left click released of a mouse. Merging the drawing to the active layer..
-     * \param x - The x coordinate relative to the active/canvas Layer.
-     * \param y - The y coordinate relative to the active/canvas Layer.
+     * \brief A function managing the left click released of a mouse. Merging the drawing to the active layer.
+     * \param x - The x coordinate relative to the active/canvas layer.
+     * \param y - The y coordinate relative to the active/canvas layer.
      */
     virtual void onMouseLeftReleased(int x, int y) override;
 
