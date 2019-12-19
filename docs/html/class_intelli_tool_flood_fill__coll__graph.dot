@@ -7,13 +7,13 @@ digraph "IntelliToolFloodFill"
   Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="IntelliTool",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html",tooltip="An abstract class that manages the basic events, like mouse clicks or scrolls events."];
   Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Area" ,fontname="Helvetica"];
-  Node3 [label="PaintingArea",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html",tooltip=" "];
+  Node3 [label="PaintingArea",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html",tooltip="The PaintingArea class manages the methods and stores information about the current painting area,..."];
   Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="QWidget",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node5 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" colorPicker" ,fontname="Helvetica"];
   Node5 [label="IntelliColorPicker",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html",tooltip="The IntelliColorPicker manages the selected colors for one whole project."];
   Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Canvas\nActive" ,fontname="Helvetica"];
-  Node6 [label="LayerObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_layer_object.html",tooltip=" "];
+  Node6 [label="LayerObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_layer_object.html",tooltip="The LayerObject struct holds all the information needed to construct a layer."];
   Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" image" ,fontname="Helvetica"];
   Node7 [label="IntelliImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html",tooltip="An abstract class which manages the basic IntelliImage operations."];
 }

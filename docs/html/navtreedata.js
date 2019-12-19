@@ -54,7 +54,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_intelli_color_picker_8h.html",
-"struct_layer_object.html#a4b1729dbf7d3490e4c2776e29ffef8b0"
+"namespacemembers_func.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

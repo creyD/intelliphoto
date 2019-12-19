@@ -57,4 +57,6 @@ digraph "intelliphoto/src/Tool/IntelliToolPolygon.cpp"
   Node18 [label="QDebug",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node1 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node19 [label="QCursor",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node20 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="QInputDialog",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
 }

@@ -6,5 +6,5 @@ digraph "IntelliColorPicker::setFirstColor"
   rankdir="RL";
   Node1 [label="IntelliColorPicker\l::setFirstColor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A function to set the primary color."];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="PaintingArea::colorPicker\lSetFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a4735d4cf1dc58a9096d904e74c39c4df",tooltip=" "];
+  Node2 [label="PaintingArea::colorPicker\lSetFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a4735d4cf1dc58a9096d904e74c39c4df",tooltip="The colorPickerSetFirstColor calls the QTColorPicker to determine the primary drawing color."];
 }

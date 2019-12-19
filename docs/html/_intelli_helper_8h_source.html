@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">IntelliPhoto
-   &#160;<span id="projectnumber">0.4</span>
+   &#160;<span id="projectnumber">0.5</span>
    </div>
   </td>
  </tr>
@@ -93,20 +93,20 @@ $(document).ready(function(){initNavTree('_intelli_helper_8h_source.html','');})
 <a href="_intelli_helper_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef INTELLIHELPER_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define INTELLIHELPER_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include&lt;QPoint&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include&lt;vector&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QPoint&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="struct_triangle.html">   10</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_triangle.html">Triangle</a>{</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="struct_triangle.html#addb8aaab314d79f3617acca01e12872a">   11</a></span>&#160;    QPoint <a class="code" href="struct_triangle.html#a4fe8b39e0144ebff908b7718c2f2751b">A</a>,<a class="code" href="struct_triangle.html#a64fa6a90a6131f12a1a3054bf86647d7">B</a>,<a class="code" href="struct_triangle.html#addb8aaab314d79f3617acca01e12872a">C</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="struct_triangle.html">   10</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_triangle.html">Triangle</a> {</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="struct_triangle.html#addb8aaab314d79f3617acca01e12872a">   11</a></span>&#160;        QPoint <a class="code" href="struct_triangle.html#a4fe8b39e0144ebff908b7718c2f2751b">A</a>,<a class="code" href="struct_triangle.html#a64fa6a90a6131f12a1a3054bf86647d7">B</a>,<a class="code" href="struct_triangle.html#addb8aaab314d79f3617acca01e12872a">C</a>;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;};</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="namespace_intelli_helper.html">   14</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_intelli_helper.html">IntelliHelper</a> {</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespace_intelli_helper.html#afdd9fe78cc5d21b59642910220768149">   23</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="namespace_intelli_helper.html#afdd9fe78cc5d21b59642910220768149">sign</a>(QPoint&amp; p1, QPoint&amp; p2, QPoint&amp; p3){</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespace_intelli_helper.html#afdd9fe78cc5d21b59642910220768149">   23</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="namespace_intelli_helper.html#afdd9fe78cc5d21b59642910220768149">sign</a>(QPoint&amp; p1, QPoint&amp; p2, QPoint&amp; p3){</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">return</span> (p1.x()-p3.x())*(p2.y()-p3.y())-(p2.x()-p3.x())*(p1.y()-p3.y());</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespace_intelli_helper.html#a9fcfe72f00e870be4a8ab9f2e17483c9">   33</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespace_intelli_helper.html#a9fcfe72f00e870be4a8ab9f2e17483c9">isInTriangle</a>(<a class="code" href="struct_triangle.html">Triangle</a>&amp; tri, QPoint&amp; P){</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespace_intelli_helper.html#a9fcfe72f00e870be4a8ab9f2e17483c9">   33</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespace_intelli_helper.html#a9fcfe72f00e870be4a8ab9f2e17483c9">isInTriangle</a>(<a class="code" href="struct_triangle.html">Triangle</a>&amp; tri, QPoint&amp; P){</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordtype">float</span> val1, val2, val3;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">bool</span> neg, pos;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
@@ -118,11 +118,11 @@ $(document).ready(function(){initNavTree('_intelli_helper_8h_source.html','');})
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        pos = (val1&gt;0.f) || (val2&gt;0.f) || (val3&gt;0.f);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">return</span> !(neg &amp;&amp; pos);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::vector&lt;Triangle&gt; <a class="code" href="namespace_intelli_helper.html#a214dc3624ba4562a03dc922e3dd7b617">calculateTriangles</a>(std::vector&lt;QPoint&gt; polyPoints);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;std::vector&lt;Triangle&gt; <a class="code" href="namespace_intelli_helper.html#a214dc3624ba4562a03dc922e3dd7b617">calculateTriangles</a>(std::vector&lt;QPoint&gt; polyPoints);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespace_intelli_helper.html#a44d516b3e619e2a743e9c98dd75cf901">isInPolygon</a>(std::vector&lt;Triangle&gt; &amp;triangles, QPoint &amp;point);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespace_intelli_helper.html#a44d516b3e619e2a743e9c98dd75cf901">isInPolygon</a>(std::vector&lt;Triangle&gt; &amp;triangles, QPoint &amp;point);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -133,7 +133,7 @@ $(document).ready(function(){initNavTree('_intelli_helper_8h_source.html','');})
 <div class="ttc" id="astruct_triangle_html_addb8aaab314d79f3617acca01e12872a"><div class="ttname"><a href="struct_triangle.html#addb8aaab314d79f3617acca01e12872a">Triangle::C</a></div><div class="ttdeci">QPoint C</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_8h_source.html#l00011">IntelliHelper.h:11</a></div></div>
 <div class="ttc" id="anamespace_intelli_helper_html"><div class="ttname"><a href="namespace_intelli_helper.html">IntelliHelper</a></div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_8h_source.html#l00014">IntelliHelper.h:14</a></div></div>
 <div class="ttc" id="astruct_triangle_html"><div class="ttname"><a href="struct_triangle.html">Triangle</a></div><div class="ttdoc">The Triangle struct holds the 3 vertices of a triangle.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_8h_source.html#l00010">IntelliHelper.h:10</a></div></div>
-<div class="ttc" id="anamespace_intelli_helper_html_a44d516b3e619e2a743e9c98dd75cf901"><div class="ttname"><a href="namespace_intelli_helper.html#a44d516b3e619e2a743e9c98dd75cf901">IntelliHelper::isInPolygon</a></div><div class="ttdeci">bool isInPolygon(std::vector&lt; Triangle &gt; &amp;triangles, QPoint &amp;point)</div><div class="ttdoc">A function to check if a point lies in a polygon by checking its spanning triangles.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_8cpp_source.html#l00115">IntelliHelper.cpp:115</a></div></div>
+<div class="ttc" id="anamespace_intelli_helper_html_a44d516b3e619e2a743e9c98dd75cf901"><div class="ttname"><a href="namespace_intelli_helper.html#a44d516b3e619e2a743e9c98dd75cf901">IntelliHelper::isInPolygon</a></div><div class="ttdeci">bool isInPolygon(std::vector&lt; Triangle &gt; &amp;triangles, QPoint &amp;point)</div><div class="ttdoc">A function to check if a point lies in a polygon by checking its spanning triangles.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_8cpp_source.html#l00116">IntelliHelper.cpp:116</a></div></div>
 <div class="ttc" id="astruct_triangle_html_a4fe8b39e0144ebff908b7718c2f2751b"><div class="ttname"><a href="struct_triangle.html#a4fe8b39e0144ebff908b7718c2f2751b">Triangle::A</a></div><div class="ttdeci">QPoint A</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_8h_source.html#l00011">IntelliHelper.h:11</a></div></div>
 <div class="ttc" id="anamespace_intelli_helper_html_a214dc3624ba4562a03dc922e3dd7b617"><div class="ttname"><a href="namespace_intelli_helper.html#a214dc3624ba4562a03dc922e3dd7b617">IntelliHelper::calculateTriangles</a></div><div class="ttdeci">std::vector&lt; Triangle &gt; calculateTriangles(std::vector&lt; QPoint &gt; polyPoints)</div><div class="ttdoc">A function to split a polygon in its spanning traingles by using Meisters Theorem of graph theory by ...</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_8cpp_source.html#l00007">IntelliHelper.cpp:7</a></div></div>
 <div class="ttc" id="anamespace_intelli_helper_html_afdd9fe78cc5d21b59642910220768149"><div class="ttname"><a href="namespace_intelli_helper.html#afdd9fe78cc5d21b59642910220768149">IntelliHelper::sign</a></div><div class="ttdeci">float sign(QPoint &amp;p1, QPoint &amp;p2, QPoint &amp;p3)</div><div class="ttdoc">A function to get the 2*area of a traingle, using its determinat.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_8h_source.html#l00023">IntelliHelper.h:23</a></div></div>

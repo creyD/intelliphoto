@@ -6,5 +6,5 @@ digraph "Graphical Class Hierarchy"
   rankdir="LR";
   Node2 [label="QWidget",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node2 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node0 [label="PaintingArea",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html",tooltip=" "];
+  Node0 [label="PaintingArea",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html",tooltip="The PaintingArea class manages the methods and stores information about the current painting area,..."];
 }

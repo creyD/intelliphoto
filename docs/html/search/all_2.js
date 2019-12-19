@@ -9,7 +9,11 @@ var searchData=
   ['colorpickersetfirstcolor_13',['colorPickerSetFirstColor',['../class_painting_area.html#a4735d4cf1dc58a9096d904e74c39c4df',1,'PaintingArea']]],
   ['colorpickersetsecondcolor_14',['colorPickerSetSecondColor',['../class_painting_area.html#ae261acaaa346610dfed489dbac17e789',1,'PaintingArea']]],
   ['colorpickerswitchcolor_15',['colorPickerSwitchColor',['../class_painting_area.html#a66115307ff4a99cd7ca16423c5c8ecfb',1,'PaintingArea']]],
-  ['createlinetool_16',['createLineTool',['../class_painting_area.html#a240c33a7875addac86080cdfb0db036a',1,'PaintingArea']]],
-  ['createpentool_17',['createPenTool',['../class_painting_area.html#a96c6248e343e44b61cf2625cb6d21353',1,'PaintingArea']]],
-  ['createplaintool_18',['createPlainTool',['../class_painting_area.html#a3de83443d2d5cf460ff48d0602070938',1,'PaintingArea']]]
+  ['createcircletool_16',['createCircleTool',['../class_painting_area.html#a2d9f4b3585f7dd1acb11f432ca503466',1,'PaintingArea']]],
+  ['createfloodfilltool_17',['createFloodFillTool',['../class_painting_area.html#a0b22e18069b524f3e75857d203baf256',1,'PaintingArea']]],
+  ['createlinetool_18',['createLineTool',['../class_painting_area.html#a240c33a7875addac86080cdfb0db036a',1,'PaintingArea']]],
+  ['createpentool_19',['createPenTool',['../class_painting_area.html#a96c6248e343e44b61cf2625cb6d21353',1,'PaintingArea']]],
+  ['createplaintool_20',['createPlainTool',['../class_painting_area.html#a3de83443d2d5cf460ff48d0602070938',1,'PaintingArea']]],
+  ['createpolygontool_21',['createPolygonTool',['../class_painting_area.html#a13c2f94644bea9c2d3123d0b7898f34b',1,'PaintingArea']]],
+  ['createrectangletool_22',['createRectangleTool',['../class_painting_area.html#a5b04ce62ce024e307f54e0281f7ae4bd',1,'PaintingArea']]]
 ];

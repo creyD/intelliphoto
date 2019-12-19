@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">IntelliPhoto
-   &#160;<span id="projectnumber">0.4</span>
+   &#160;<span id="projectnumber">0.5</span>
    </div>
   </td>
  </tr>
@@ -94,9 +94,9 @@ $(document).ready(function(){initNavTree('_tool_2_intelli_color_picker_8cpp_sour
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;QDebug&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<a class="code" href="class_intelli_color_picker.html#a0d1247bdd87add1396ea5d9acaad79ae">IntelliColorPicker::IntelliColorPicker</a>(<a class="code" href="class_painting_area.html">PaintingArea</a>* Area)</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    :<a class="code" href="class_intelli_tool.html">IntelliTool</a>(Area){</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    firstColor = {255,0,0,255};</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    secondColor = {0,0,255,255};</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        : <a class="code" href="class_intelli_tool.html">IntelliTool</a>(Area){</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        firstColor = {255,0,0,255};</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        secondColor = {0,0,255,255};</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;}</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<a class="code" href="class_intelli_color_picker.html#a40b975268a1f05249e8a49dde9a862ff">IntelliColorPicker::~IntelliColorPicker</a>(){</div>
@@ -104,33 +104,33 @@ $(document).ready(function(){initNavTree('_tool_2_intelli_color_picker_8cpp_sour
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> IntelliColorPicker::getColorbar(<span class="keywordtype">int</span> firstOrSecondColor = 1){</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    QString Titel;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    QColor newColor;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">if</span>(firstOrSecondColor == 1){</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        Titel = <span class="stringliteral">&quot;Choose first Color&quot;</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        newColor = QColorDialog::getColor(this-&gt;firstColor,<span class="keyword">nullptr</span>,Titel);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        this-&gt;firstColor = newColor;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        qDebug() &lt;&lt; <span class="stringliteral">&quot;Firstcolor&quot;</span> &lt;&lt; this-&gt;firstColor;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        Titel = <span class="stringliteral">&quot;Choose second Color&quot;</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        newColor = QColorDialog::getColor(this-&gt;secondColor,<span class="keyword">nullptr</span>,Titel);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        this-&gt;secondColor = newColor;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        QString Titel;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        QColor newColor;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">if</span>(firstOrSecondColor == 1) {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                Titel = <span class="stringliteral">&quot;Choose first Color&quot;</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                newColor = QColorDialog::getColor(this-&gt;firstColor,<span class="keyword">nullptr</span>,Titel);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                this-&gt;firstColor = newColor;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                qDebug() &lt;&lt; <span class="stringliteral">&quot;Firstcolor&quot;</span> &lt;&lt; this-&gt;firstColor;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                Titel = <span class="stringliteral">&quot;Choose second Color&quot;</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                newColor = QColorDialog::getColor(this-&gt;secondColor,<span class="keyword">nullptr</span>,Titel);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                this-&gt;secondColor = newColor;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        }</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;QColor <a class="code" href="class_intelli_color_picker.html#aae2eb27b928fe9388b9398b0556303b7">IntelliColorPicker::getFirstColor</a>(){</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">return</span> firstColor;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span> firstColor;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;QColor <a class="code" href="class_intelli_color_picker.html#a55568fbf5dc783f06284b7031ffe9415">IntelliColorPicker::getSecondColor</a>(){</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">return</span> secondColor;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">return</span> secondColor;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_intelli_color_picker_html_a40b975268a1f05249e8a49dde9a862ff"><div class="ttname"><a href="class_intelli_color_picker.html#a40b975268a1f05249e8a49dde9a862ff">IntelliColorPicker::~IntelliColorPicker</a></div><div class="ttdeci">virtual ~IntelliColorPicker()</div><div class="ttdoc">IntelliColorPicker destructor clears up his used memory, if there is some.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_2_intelli_color_picker_8cpp_source.html#l00008">IntelliColorPicker.cpp:8</a></div></div>
 <div class="ttc" id="aclass_intelli_color_picker_html_a55568fbf5dc783f06284b7031ffe9415"><div class="ttname"><a href="class_intelli_color_picker.html#a55568fbf5dc783f06284b7031ffe9415">IntelliColorPicker::getSecondColor</a></div><div class="ttdeci">QColor getSecondColor()</div><div class="ttdoc">A function to read the secondary selected color.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_2_intelli_color_picker_8cpp_source.html#l00020">IntelliColorPicker.cpp:20</a></div></div>
-<div class="ttc" id="aclass_painting_area_html"><div class="ttname"><a href="class_painting_area.html">PaintingArea</a></div><div class="ttdef"><b>Definition:</b> <a href="_painting_area_8h_source.html#l00025">PaintingArea.h:25</a></div></div>
+<div class="ttc" id="aclass_painting_area_html"><div class="ttname"><a href="class_painting_area.html">PaintingArea</a></div><div class="ttdoc">The PaintingArea class manages the methods and stores information about the current painting area,...</div><div class="ttdef"><b>Definition:</b> <a href="_painting_area_8h_source.html#l00036">PaintingArea.h:36</a></div></div>
 <div class="ttc" id="a_intelli_color_picker_8h_html"><div class="ttname"><a href="_intelli_color_picker_8h.html">IntelliColorPicker.h</a></div></div>
 <div class="ttc" id="aclass_intelli_tool_html"><div class="ttname"><a href="class_intelli_tool.html">IntelliTool</a></div><div class="ttdoc">An abstract class that manages the basic events, like mouse clicks or scrolls events.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_8h_source.html#l00013">IntelliTool.h:13</a></div></div>
 <div class="ttc" id="aclass_intelli_color_picker_html_aae2eb27b928fe9388b9398b0556303b7"><div class="ttname"><a href="class_intelli_color_picker.html#aae2eb27b928fe9388b9398b0556303b7">IntelliColorPicker::getFirstColor</a></div><div class="ttdeci">QColor getFirstColor()</div><div class="ttdoc">A function to read the primary selected color.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_helper_2_intelli_color_picker_8cpp_source.html#l00016">IntelliColorPicker.cpp:16</a></div></div>

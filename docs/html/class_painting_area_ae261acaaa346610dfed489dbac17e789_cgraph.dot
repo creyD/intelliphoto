@@ -4,7 +4,7 @@ digraph "PaintingArea::colorPickerSetSecondColor"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="PaintingArea::colorPicker\lSetSecondColor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 [label="PaintingArea::colorPicker\lSetSecondColor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="The colorPickerSetSecondColor calls the QTColorPicker to determine the secondary drawing color."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="IntelliColorPicker\l::getSecondColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#a55568fbf5dc783f06284b7031ffe9415",tooltip="A function to read the secondary selected color."];
   Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">IntelliPhoto
-   &#160;<span id="projectnumber">0.4</span>
+   &#160;<span id="projectnumber">0.5</span>
    </div>
   </td>
  </tr>
@@ -93,36 +93,38 @@ $(document).ready(function(){initNavTree('_intelli_shaped_image_8h_source.html',
 <a href="_intelli_shaped_image_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef INTELLISHAPE_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define INTELLISHAPE_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include&quot;<a class="code" href="_intelli_raster_image_8h.html">Image/IntelliRasterImage.h</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include&lt;vector&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include&quot;<a class="code" href="_intelli_helper_8h.html">IntelliHelper/IntelliHelper.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_intelli_raster_image_8h.html">Image/IntelliRasterImage.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_intelli_helper_8h.html">IntelliHelper/IntelliHelper.h</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_intelli_shaped_image.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_intelli_shaped_image.html">IntelliShapedImage</a> : <span class="keyword">public</span> <a class="code" href="class_intelli_raster_image.html">IntelliRasterImage</a>{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">friend</span> <a class="code" href="class_intelli_tool.html">IntelliTool</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_intelli_shaped_image.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_intelli_shaped_image.html">IntelliShapedImage</a> : <span class="keyword">public</span> <a class="code" href="class_intelli_raster_image.html">IntelliRasterImage</a> {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">friend</span> <a class="code" href="class_intelli_tool.html">IntelliTool</a>;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::vector&lt;Triangle&gt; triangles;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;std::vector&lt;Triangle&gt; triangles;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> calculateVisiblity() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">virtual</span> <span class="keywordtype">void</span> calculateVisiblity() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8">   28</a></span>&#160;    std::vector&lt;QPoint&gt; <a class="code" href="class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8">polygonData</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8">   28</a></span>&#160;std::vector&lt;QPoint&gt; <a class="code" href="class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8">polygonData</a>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_intelli_shaped_image.html#a0f834c3f255baeb50c98ef335a6d0ea9">IntelliShapedImage</a>(<span class="keywordtype">int</span> weight, <span class="keywordtype">int</span> height);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="class_intelli_shaped_image.html#a0f834c3f255baeb50c98ef335a6d0ea9">IntelliShapedImage</a>(<span class="keywordtype">int</span> weight, <span class="keywordtype">int</span> height);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_intelli_shaped_image.html#a43d63d8a814852d377ee2030658fbab9">~IntelliShapedImage</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">virtual</span> <a class="code" href="class_intelli_shaped_image.html#a43d63d8a814852d377ee2030658fbab9">~IntelliShapedImage</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> QImage <a class="code" href="class_intelli_shaped_image.html#a68cf374247c16f07fd84d50e4cd05630">getDisplayable</a>(<span class="keyword">const</span> QSize&amp; displaySize, <span class="keywordtype">int</span> alpha=255) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">virtual</span> QImage <a class="code" href="class_intelli_shaped_image.html#a68cf374247c16f07fd84d50e4cd05630">getDisplayable</a>(<span class="keyword">const</span> QSize&amp; displaySize, <span class="keywordtype">int</span> alpha=255) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">virtual</span> QImage <a class="code" href="class_intelli_shaped_image.html#a68cf374247c16f07fd84d50e4cd05630">getDisplayable</a>(<span class="keywordtype">int</span> alpha=255) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">virtual</span> QImage <a class="code" href="class_intelli_shaped_image.html#a68cf374247c16f07fd84d50e4cd05630">getDisplayable</a>(<span class="keywordtype">int</span> alpha=255) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_intelli_image.html">IntelliImage</a>* <a class="code" href="class_intelli_shaped_image.html#aed0b31e0fa771104399d1f5ff39a0337">getDeepCopy</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">virtual</span> <a class="code" href="class_intelli_image.html">IntelliImage</a>* <a class="code" href="class_intelli_shaped_image.html#aed0b31e0fa771104399d1f5ff39a0337">getDeepCopy</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_intelli_shaped_image.html#ae4518c7f5a105cc4f33fabb60c794a93">   67</a></span>&#160;    <span class="keyword">virtual</span> std::vector&lt;QPoint&gt; <a class="code" href="class_intelli_shaped_image.html#ae4518c7f5a105cc4f33fabb60c794a93">getPolygonData</a>()<span class="keyword"> override</span>{<span class="keywordflow">return</span> <a class="code" href="class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8">polygonData</a>;}</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_intelli_shaped_image.html#a4b69d75de7a3b85032482982f249458e">setPolygon</a>(<span class="keyword">const</span> std::vector&lt;QPoint&gt;&amp; <a class="code" href="class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8">polygonData</a>) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_intelli_shaped_image.html#ae4518c7f5a105cc4f33fabb60c794a93">   67</a></span>&#160;<span class="keyword">virtual</span> std::vector&lt;QPoint&gt; <a class="code" href="class_intelli_shaped_image.html#ae4518c7f5a105cc4f33fabb60c794a93">getPolygonData</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8">polygonData</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_intelli_shaped_image.html#a4b69d75de7a3b85032482982f249458e">setPolygon</a>(<span class="keyword">const</span> std::vector&lt;QPoint&gt;&amp; <a class="code" href="class_intelli_shaped_image.html#a727d19ce314c0874be6b0633a3a603c8">polygonData</a>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_intelli_shaped_image_html_a68cf374247c16f07fd84d50e4cd05630"><div class="ttname"><a href="class_intelli_shaped_image.html#a68cf374247c16f07fd84d50e4cd05630">IntelliShapedImage::getDisplayable</a></div><div class="ttdeci">virtual QImage getDisplayable(const QSize &amp;displaySize, int alpha=255) override</div><div class="ttdoc">A function returning the displayable ImageData in a requested transparence and size.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_shaped_image_8cpp_source.html#l00054">IntelliShapedImage.cpp:54</a></div></div>
