@@ -8,13 +8,13 @@
 
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
-    //create Gui elements and lay them out
+    // create Gui elements and lay them out
     createGui();
     // Create actions
     createActions();
-    //create Menus
+    // create Menus
     createMenus();
-    //set style of the gui
+    // set style of the gui
     setIntelliStyle();
     // Size the app
     showMaximized();
@@ -69,7 +69,7 @@ void IntelliPhotoGui::slotCreateNewLayer(){
     // Stores button value
     bool ok1, ok2;
 
-    // tr("New Layer") is the title
+    // "New Layer" is the title of the window
     // the next tr is the text to display
     // Define the standard Value, min, max, step and ok button
     int width = QInputDialog::getInt(this, tr("New Layer"),
@@ -91,7 +91,7 @@ void IntelliPhotoGui::slotDeleteLayer(){
     // Stores button value
     bool ok;
 
-    // tr("delete Layer") is the title
+    // "delete Layer" is the title of the window
     // the next tr is the text to display
     // Define the standard Value, min, max, step and ok button
     int layerNumber = QInputDialog::getInt(this, tr("delete Layer"),
@@ -114,13 +114,13 @@ void IntelliPhotoGui::slotSetActiveAlpha(){
     // Stores button value
     bool ok1, ok2;
 
-    // tr("Layer to set on") is the title
+    // "Layer to set on" is the title of the window
     // the next tr is the text to display
     // Define the standard Value, min, max, step and ok button
     int layer = QInputDialog::getInt(this, tr("Layer to set on"),
                                         tr("Layer:"),
                                         -1,-1,100,1, &ok1);
-    // tr("New Alpha") is the title
+    // "New Alpha" is the title of the window
     int alpha = QInputDialog::getInt(this, tr("New Alpha"),
                                         tr("Alpha:"),
                                         255,0, 255, 1, &ok2);
@@ -164,21 +164,21 @@ void IntelliPhotoGui::slotClearActiveLayer(){
     // Stores button value
     bool ok1, ok2, ok3, ok4;
 
-    // tr("Red Input") is the title
+    // "Red Input" is the title of the window
     // the next tr is the text to display
     // Define the standard Value, min, max, step and ok button
     int red = QInputDialog::getInt(this, tr("Red Input"),
                                         tr("Red:"),
                                         255,0, 255,1, &ok1);
-    // tr("Green Input") is the title
+    // "Green Input" is the title of the window
     int green = QInputDialog::getInt(this, tr("Green Input"),
                                         tr("Green:"),
                                         255,0, 255, 1, &ok2);
-    // tr("Blue Input") is the title
+    // "Blue Input" is the title of the window
     int blue = QInputDialog::getInt(this, tr("Blue Input"),
                                         tr("Blue:"),
                                         255,0, 255, 1, &ok3);
-    // tr("Alpha Input") is the title
+    // "Alpha Input" is the title of the window
     int alpha = QInputDialog::getInt(this, tr("Alpha Input"),
                                         tr("Alpha:"),
                                         255,0, 255, 1, &ok4);
@@ -192,7 +192,7 @@ void IntelliPhotoGui::slotSetActiveLayer(){
     // Stores button value
     bool ok1;
 
-    // tr("Layer to set on") is the title
+    // "Layer to set on" is the title of the window
     // the next tr is the text to display
     // Define the standard Value, min, max, step and ok button
     int layer = QInputDialog::getInt(this, tr("Layer to set on"),
@@ -400,25 +400,25 @@ void IntelliPhotoGui::createMenus(){
 }
 
 void IntelliPhotoGui::createGui(){
-    //create a central widget to work on
+    // create a central widget to work on
     centralGuiWidget = new QWidget(this);
     setCentralWidget(centralGuiWidget);
 
-    //create the grid for the layout
+    // create the grid for the layout
     mainLayout = new QGridLayout(centralGuiWidget);
     centralGuiWidget->setLayout(mainLayout);
 
-    //create Gui elements
+    // create Gui elements
     paintingArea = new PaintingArea();
 
-    //set gui elements
+    // set gui elements
     mainLayout->addWidget(paintingArea);
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
     // Set the title
     setWindowTitle("IntelliPhoto Prototype");
-    //set style sheet
+    // Set style sheet
     this->setStyleSheet("background-color:rgb(64,64,64)");
     this->centralGuiWidget->setStyleSheet("color:rgb(255,255,255)");
     this->menuBar()->setStyleSheet("color:rgb(255,255,255)");
@@ -427,11 +427,11 @@ void IntelliPhotoGui::setIntelliStyle(){
 bool IntelliPhotoGui::maybeSave(){
     // Check for changes since last save
 
-    //TODO insert variable for modified status here to make an save exit message
+    // TODO insert variable for modified status here to make an save exit message
     if (false) {
        QMessageBox::StandardButton ret;
 
-       // Painting is the title
+       // Painting is the title of the window
        // Add text and the buttons
        ret = QMessageBox::warning(this, tr("Painting"),
                           tr("The image has been modified.\n"

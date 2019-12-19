@@ -71,7 +71,6 @@ void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& co
 
     // Draw a line from the last registered point to the current
     painter.drawLine(p1, p2);
-
 }
 
 void IntelliImage::drawPlain(const QColor& color){

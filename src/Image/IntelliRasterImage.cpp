@@ -19,7 +19,7 @@ IntelliImage* IntelliRasterImage::getDeepCopy(){
 }
 
 void IntelliRasterImage::calculateVisiblity(){
-    //not used in raster image
+    // not used in raster image
 }
 
 QImage IntelliRasterImage::getDisplayable(int alpha){

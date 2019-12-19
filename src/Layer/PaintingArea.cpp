@@ -19,10 +19,10 @@
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
-    //test yout tool here and reset after accomplished test
+    // Testing Area
+    // test yout tool here and reset after accomplished test
     this->Tool = new IntelliToolFloodFill(this, &colorPicker);
     this->setUp(maxWidth, maxHeight);
-    //tetsing
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
     layerBundle[0].image->drawPlain(QColor(255,0,0,255));
     std::vector<QPoint> polygon;

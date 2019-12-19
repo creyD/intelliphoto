@@ -13,7 +13,6 @@
 #include "Tool/IntelliTool.h"
 #include "IntelliHelper/IntelliColorPicker.h"
 
-
 struct LayerObject{
     IntelliImage* image;
     int width;
@@ -58,7 +57,6 @@ public:
     void createLineTool();
 
 public slots:
-
     // Events to handle
     void slotActivateLayer(int a);
     void slotDeleteActiveLayer();
@@ -94,7 +92,6 @@ private:
     void assembleLayers(bool forSaving=false);
 
     void resizeImage(QImage *image_res, const QSize &newSize);
-
 
     //Helper for Tool
     void createTempLayerAfter(int idx);

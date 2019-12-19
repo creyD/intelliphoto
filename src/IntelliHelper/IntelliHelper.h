@@ -11,7 +11,6 @@ struct Triangle{
     QPoint A,B,C;
 };
 
-
 namespace IntelliHelper {
 
     /*!
@@ -59,7 +58,6 @@ namespace IntelliHelper {
      * \return Returns true if the point lies in the üpolygon, otherwise false.
      */
     bool isInPolygon(std::vector<Triangle> &triangles, QPoint &point);
-
 }
 
 #endif

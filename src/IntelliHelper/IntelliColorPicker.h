@@ -11,7 +11,7 @@
 class IntelliColorPicker{
 public:
     /*!
-     * \brief IntelliColorPicker construktor, setting 2 preset colors, be careful, theese color may change in production.
+     * \brief IntelliColorPicker constructor, setting 2 preset colors, be careful, theese color may change in production.
      */
     IntelliColorPicker();
 

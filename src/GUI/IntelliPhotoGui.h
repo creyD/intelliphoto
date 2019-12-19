@@ -29,11 +29,11 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 
 private slots:
-    //meta slots here (need further )
+    // meta slots here (need further )
     void slotOpen();
     void slotSave();
 
-    //layer slots here
+    // layer slots here
     void slotCreateNewLayer();
     void slotDeleteLayer();
     void slotClearActiveLayer();
@@ -46,26 +46,26 @@ private slots:
     void slotMoveLayerUp();
     void slotMoveLayerDown();
 
-    //color Picker slots here
+    // color Picker slots here
     void slotSetFirstColor();
     void slotSetSecondColor();
     void slotSwitchColor();
 
-    //tool slots here
+    // tool slots here
     void slotCreatePenTool();
     void slotCreatePlainTool();
     void slotCreateLineTool();
 
-    //slots for dialogs
+    // slots for dialogs
     void slotAboutDialog();
 
 private:
     // Will tie user actions to functions
     void createActions();
     void createMenus();
-    //setup GUI elements
+    // setup GUI elements
     void createGui();
-    //set style of the GUI
+    // set style of the GUI
     void setIntelliStyle();
 
 
@@ -87,26 +87,25 @@ private:
     QMenu *helpMenu;
 
     // All the actions that can occur
-
-    //meta image actions (need further modularisation)
+    // meta image actions (need further modularisation)
     QAction *actionOpen;
     QAction *actionExit;
 
-    //color Picker actions
+    // color Picker actions
     QAction *actionColorPickerFirstColor;
     QAction *actionColorPickerSecondColor;
     QAction *actionColorSwitch;
 
-    //tool actions
+    // tool actions
     QAction *actionCreatePenTool;
     QAction *actionCreatePlainTool;
     QAction *actionCreateLineTool;
 
-    //dialog actions
+    // dialog actions
     QAction *actionAboutDialog;
     QAction *actionAboutQtDialog;
 
-    //layer change actions
+    // layer change actions
     QAction *actionCreateNewLayer;
     QAction *actionDeleteLayer;
     QAction* actionSetActiveLayer;
@@ -121,10 +120,9 @@ private:
     // Actions tied to specific file formats
     QList<QAction *> actionSaveAs;
 
-    //main GUI elements
+    // main GUI elements
     QWidget* centralGuiWidget;
     QGridLayout *mainLayout;
-
 };
 
 #endif
