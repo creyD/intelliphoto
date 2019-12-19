@@ -16,12 +16,18 @@ class IntelliTool;
 
 class IntelliColorPicker;
 
+/*!
+ * \brief The IntelliPhotoGui class handles the graphical user interface for the intelliPhoto program
+ */
 class IntelliPhotoGui : public QMainWindow{
     // Declares our class as a QObject which is the base class
     // for all Qt objects
     // QObjects handle events
     Q_OBJECT
 public:
+    /*!
+     * \brief The IntelliPhotoGui method is the constructor and is used to create a new instance of the main program window
+     */
     IntelliPhotoGui();
 
 protected:
