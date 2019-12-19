@@ -58,7 +58,7 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
     newLayer.width = width;
     newLayer.height = height;
     newLayer.widthOffset = widthOffset;
-    newLayer.hightOffset = heightOffset;
+    newLayer.heightOffset = heightOffset;
     if(type==ImageType::Raster_Image){
         newLayer.image = new IntelliRasterImage(width,height);
     }else if(type==ImageType::Shaped_Image){
@@ -146,7 +146,7 @@ void PaintingArea::floodFill(int r, int g, int b, int a){
 
 void PaintingArea::movePositionActive(int x, int y){
     layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
-    layerBundle[static_cast<size_t>(activeLayer)].hightOffset += y;
+    layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
 }
 
 void PaintingArea::moveActiveLayer(int idx){
@@ -226,7 +226,7 @@ void PaintingArea::mousePressEvent(QMouseEvent *event){
     if(Tool == nullptr)
         return;
     int x = event->x()-layerBundle[activeLayer].widthOffset;
-    int y = event->y()-layerBundle[activeLayer].hightOffset;
+    int y = event->y()-layerBundle[activeLayer].heightOffset;
     if(event->button() == Qt::LeftButton){
         Tool->onMouseLeftPressed(x, y);
     }else if(event->button() == Qt::RightButton){
@@ -242,7 +242,7 @@ void PaintingArea::mouseMoveEvent(QMouseEvent *event){
     if(Tool == nullptr)
         return;
     int x = event->x()-layerBundle[activeLayer].widthOffset;
-    int y = event->y()-layerBundle[activeLayer].hightOffset;
+    int y = event->y()-layerBundle[activeLayer].heightOffset;
     Tool->onMouseMoved(x, y);
     update();
 }
@@ -252,7 +252,7 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent *event){
     if(Tool == nullptr)
         return;
     int x = event->x()-layerBundle[activeLayer].widthOffset;
-    int y = event->y()-layerBundle[activeLayer].hightOffset;
+    int y = event->y()-layerBundle[activeLayer].heightOffset;
     if(event->button() == Qt::LeftButton){
         Tool->onMouseLeftReleased(x, y);
     }else if(event->button() == Qt::RightButton){
@@ -318,12 +318,12 @@ void PaintingArea::assembleLayers(bool forSaving){
         QColor clr_0;
         QColor clr_1;
         for(int y=0; y<layer.height; y++){
-            if(layer.hightOffset+y<0) continue;
-            if(layer.hightOffset+y>=maxHeight) break;
+            if(layer.heightOffset+y<0) continue;
+            if(layer.heightOffset+y>=maxHeight) break;
             for(int x=0; x<layer.width; x++){
                 if(layer.widthOffset+x<0) continue;
                 if(layer.widthOffset+x>=maxWidth) break;
-                clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.hightOffset+y);
+                clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.heightOffset+y);
                 clr_1=cpy.pixelColor(x,y);
                 float t = static_cast<float>(clr_1.alpha())/255.f;
                 int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
@@ -335,7 +335,7 @@ void PaintingArea::assembleLayers(bool forSaving){
                 clr_0.setBlue(b);
                 clr_0.setAlpha(a);
 
-                Canvas->setPixelColor(layer.widthOffset+x, layer.hightOffset+y, clr_0);
+                Canvas->setPixelColor(layer.widthOffset+x, layer.heightOffset+y, clr_0);
             }
         }
     }
@@ -347,7 +347,7 @@ void PaintingArea::createTempLayerAfter(int idx){
         newLayer.alpha = 255;
         newLayer.height = layerBundle[idx].height;
         newLayer.width = layerBundle[idx].width;
-        newLayer.hightOffset = layerBundle[idx].hightOffset;
+        newLayer.heightOffset = layerBundle[idx].heightOffset;
         newLayer.widthOffset = layerBundle[idx].widthOffset;
         newLayer.image = layerBundle[idx].image->getDeepCopy();
         layerBundle.insert(layerBundle.begin()+idx+1,newLayer);

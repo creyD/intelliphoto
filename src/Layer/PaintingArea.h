@@ -18,7 +18,7 @@ struct LayerObject{
     int width;
     int height;
     int widthOffset;
-    int hightOffset;
+    int heightOffset;
     int alpha=255;
 };
 
