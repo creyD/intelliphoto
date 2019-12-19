@@ -29,6 +29,7 @@ SOURCES += \
     Tool/IntelliToolLine.cpp \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
+    Tool/IntelliToolPolygon.cpp \
     Tool/IntelliToolRectangle.cpp \
     main.cpp
 
@@ -46,11 +47,11 @@ HEADERS += \
     Tool/IntelliToolLine.h \
     Tool/IntelliToolPen.h \
     Tool/IntelliToolPlain.h \
-    Tool/IntelliToolRectangle.h \
-    Tool/intellitoolcircle.h
+    Tool/IntelliToolPolygon.h \
+    Tool/IntelliToolRectangle.h
 
 FORMS += \
-    widget.ui
+    mainwindow.ui
 
 QMAKE_CXXFLAGS
 QMAKE_LFLAGS

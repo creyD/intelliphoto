@@ -26,7 +26,7 @@ void IntelliToolLine::onMouseRightReleased(int x, int y){
 void IntelliToolLine::onMouseLeftPressed(int x, int y){
     IntelliTool::onMouseLeftPressed(x,y);
     this->start=QPoint(x,y);
-    this->Canvas->image->drawLine(start, start, colorPicker->getFirstColor(),lineWidth);
+    this->Canvas->image->drawPoint(start, colorPicker->getFirstColor(),lineWidth);
     Canvas->image->calculateVisiblity();
 }
 

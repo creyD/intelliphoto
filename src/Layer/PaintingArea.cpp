@@ -16,6 +16,7 @@
 #include "Tool/IntelliToolCircle.h"
 #include "Tool/IntelliToolRectangle.h"
 #include "Tool/IntelliToolFloodFill.h"
+#include "Tool/IntelliToolPolygon.h"
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     :QWidget(parent){
@@ -24,7 +25,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     this->Tool = new IntelliToolFloodFill(this, &colorPicker);
     this->setUp(maxWidth, maxHeight);
     this->addLayer(200,200,0,0,ImageType::Shaped_Image);
-    layerBundle[0].image->drawPlain(QColor(255,0,0,255));
+    layerBundle[0].image->drawPlain(QColor(0,0,255,255));
     std::vector<QPoint> polygon;
     polygon.push_back(QPoint(100,000));
     polygon.push_back(QPoint(200,100));
@@ -36,7 +37,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget *parent)
     layerBundle[1].image->drawPlain(QColor(0,255,0,255));
     layerBundle[1].alpha=200;
 
-    activeLayer=1;
+    activeLayer=0;
 }
 
 PaintingArea::~PaintingArea(){
@@ -191,6 +192,14 @@ void PaintingArea::createPlainTool(){
 void PaintingArea::createLineTool(){
     delete this->Tool;
     Tool = new IntelliToolLine(this, &colorPicker);
+}
+
+int PaintingArea::getWidthActiveLayer(){
+    return layerBundle.operator[](activeLayer).width;
+}
+
+int PaintingArea::getHeightActiveLayer(){
+    return layerBundle.operator[](activeLayer).hight;
 }
 
 // If a mouse button is pressed check if it was the
