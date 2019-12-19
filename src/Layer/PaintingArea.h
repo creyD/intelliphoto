@@ -13,6 +13,14 @@
 #include "Tool/IntelliTool.h"
 #include "IntelliHelper/IntelliColorPicker.h"
 
+/*!
+ * \brief The LayerObject struct holds all the information needed to construct a layer
+ * \param width         - Stores the width of a layer in pixels
+ * \param height        - Stores the height of a layer in pixels
+ * \param alpha         - Stores the alpha value of the layer (default=255)
+ * \param widthOffset   - Stores the number of pixles from the left side of the painting area
+ * \param heightOffset  - Stores the number of pixles from the top of the painting area
+ */
 struct LayerObject{
     IntelliImage* image;
     int width;
