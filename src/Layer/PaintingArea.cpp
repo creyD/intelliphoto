@@ -56,7 +56,7 @@ void PaintingArea::setUp(int maxWidth, int maxHeight){
 int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, ImageType type){
     LayerObject newLayer;
     newLayer.width = width;
-    newLayer.hight = height;
+    newLayer.height = height;
     newLayer.widthOffset = widthOffset;
     newLayer.hightOffset = heightOffset;
     if(type==ImageType::Raster_Image){
@@ -216,7 +216,7 @@ int PaintingArea::getWidthOfActive(){
 }
 
 int PaintingArea::getHeightOfActive(){
-    return this->layerBundle[activeLayer].hight;
+    return this->layerBundle[activeLayer].height;
 }
 
 // If a mouse button is pressed check if it was the
@@ -317,7 +317,7 @@ void PaintingArea::assembleLayers(bool forSaving){
         QImage cpy = layer.image->getDisplayable(layer.alpha);
         QColor clr_0;
         QColor clr_1;
-        for(int y=0; y<layer.hight; y++){
+        for(int y=0; y<layer.height; y++){
             if(layer.hightOffset+y<0) continue;
             if(layer.hightOffset+y>=maxHeight) break;
             for(int x=0; x<layer.width; x++){
@@ -345,7 +345,7 @@ void PaintingArea::createTempLayerAfter(int idx){
     if(idx>=0){
         LayerObject newLayer;
         newLayer.alpha = 255;
-        newLayer.hight = layerBundle[idx].hight;
+        newLayer.height = layerBundle[idx].height;
         newLayer.width = layerBundle[idx].width;
         newLayer.hightOffset = layerBundle[idx].hightOffset;
         newLayer.widthOffset = layerBundle[idx].widthOffset;

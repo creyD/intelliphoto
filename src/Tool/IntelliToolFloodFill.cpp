@@ -57,7 +57,7 @@ void IntelliToolFloodFill::onMouseLeftPressed(int x, int y){
             Canvas->image->drawPixel(top,newColor);
             Q.push(top);
         }
-        if((down.y() < Canvas->hight) && (Canvas->image->getPixelColor(down) != newColor) && (Active->image->getPixelColor(down) == oldColor)){
+        if((down.y() < Canvas->height) && (Canvas->image->getPixelColor(down) != newColor) && (Active->image->getPixelColor(down) == oldColor)){
             Canvas->image->drawPixel(down,newColor);
             Q.push(down);
         }

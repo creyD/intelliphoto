@@ -56,7 +56,7 @@ void IntelliTool::createToolLayer(){
 void IntelliTool::mergeToolLayer(){
     QColor clr_0;
     QColor clr_1;
-    for(int y=0; y<Active->hight; y++){
+    for(int y=0; y<Active->height; y++){
         for(int x=0; x<Active->width; x++){
             clr_0=Active->image->imageData.pixelColor(x,y);
             clr_1=Canvas->image->imageData.pixelColor(x,y);

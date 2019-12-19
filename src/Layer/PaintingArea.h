@@ -16,7 +16,7 @@
 struct LayerObject{
     IntelliImage* image;
     int width;
-    int hight;
+    int height;
     int widthOffset;
     int hightOffset;
     int alpha=255;

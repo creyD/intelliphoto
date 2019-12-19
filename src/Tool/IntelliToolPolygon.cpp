@@ -56,7 +56,7 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
         QColor colorTwo(colorPicker->getSecondColor());
         colorTwo.setAlpha(alphaInner);
         for(int i = 0; i < Active->width; i++){
-            for(int j = 0; j < Active->hight; j++){
+            for(int j = 0; j < Active->height; j++){
                 Point = QPoint(i,j);
                 if(IntelliHelper::isInPolygon(Triangles,Point)){
                     this->Canvas->image->drawPixel(Point, colorTwo);
