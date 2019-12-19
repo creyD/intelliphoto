@@ -1,5 +1,6 @@
 #include "IntelliToolPolygon.h"
 #include "Layer/PaintingArea.h"
+#include "IntelliHelper/IntelliHelper.h"
 #include <QDebug>
 #include <QCursor>
 
@@ -53,11 +54,14 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
         this->Canvas->image->calculateVisiblity();
         PointIsNearStart = false;
         isDrawing = false;
+        std::vector<Triangle> Triangles = IntelliHelper::calculateTriangles(QPointList);
+        QPoint Point(0,0);
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
-                if(/*funktion(QPointList,i,j)*/false){
+                Point.setX(i);
+                Point.setY(j);
+                if(IntelliHelper::isInPolygon(Triangles,Point)){
                     this->Canvas->image->drawPixel(QPoint(i,j), colorPicker->getFirstColor());
-                    continue;
                 }
             }
         }
