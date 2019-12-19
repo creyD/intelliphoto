@@ -4,13 +4,13 @@
 #include "IntelliHelper/IntelliHelper.h"
 #include <vector>
 
-int main(int argc, char *argv[]){
-    // The main application
-    QApplication app(argc, argv);
+int main(int argc, char*argv[]){
+		// The main application
+		QApplication app(argc, argv);
 
-    // Create and open the main window
-    IntelliPhotoGui window;
-    window.show();
+		// Create and open the main window
+		IntelliPhotoGui window;
+		window.show();
 
-    return app.exec();
+		return app.exec();
 }
