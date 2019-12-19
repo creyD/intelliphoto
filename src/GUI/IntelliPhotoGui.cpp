@@ -195,7 +195,7 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 		if (ok1)
 		{
 				paintingArea->setLayerToActive(layer);
-        }
+		}
 }
 
 void IntelliPhotoGui::slotSetFirstColor(){
@@ -203,7 +203,7 @@ void IntelliPhotoGui::slotSetFirstColor(){
 }
 
 void IntelliPhotoGui::slotSetSecondColor(){
-        paintingArea->colorPickerSetSecondColor();
+		paintingArea->colorPickerSetSecondColor();
 }
 
 void IntelliPhotoGui::slotSwitchColor(){
@@ -223,19 +223,19 @@ void IntelliPhotoGui::slotCreateLineTool(){
 }
 
 void IntelliPhotoGui::slotCreateRectangleTool(){
-        paintingArea->createRectangleTool();
+		paintingArea->createRectangleTool();
 }
 
 void IntelliPhotoGui::slotCreateCircleTool(){
-        paintingArea->createCircleTool();
+		paintingArea->createCircleTool();
 }
 
 void IntelliPhotoGui::slotCreatePolygonTool(){
-        paintingArea->createPolygonTool();
+		paintingArea->createPolygonTool();
 }
 
 void IntelliPhotoGui::slotCreateFloodFillTool(){
-        paintingArea->createFloodFillTool();
+		paintingArea->createFloodFillTool();
 }
 
 // Open an about dialog
@@ -342,17 +342,17 @@ void IntelliPhotoGui::createActions(){
 		actionCreateLineTool = new QAction(tr("&Line"), this);
 		connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotCreateLineTool()));
 
-        actionCreateCircleTool = new QAction(tr("&Circle"), this);
-        connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotCreateCircleTool()));
+		actionCreateCircleTool = new QAction(tr("&Circle"), this);
+		connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotCreateCircleTool()));
 
-        actionCreateRectangleTool = new QAction(tr("&Rectangle"), this);
-        connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotCreateRectangleTool()));
+		actionCreateRectangleTool = new QAction(tr("&Rectangle"), this);
+		connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotCreateRectangleTool()));
 
-        actionCreatePolygonTool = new QAction(tr("&Polygon"), this);
-        connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotCreatePolygonTool()));
+		actionCreatePolygonTool = new QAction(tr("&Polygon"), this);
+		connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotCreatePolygonTool()));
 
-        actionCreateFloodFillTool = new QAction(tr("&FloodFill"), this);
-        connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotCreateFloodFillTool()));
+		actionCreateFloodFillTool = new QAction(tr("&FloodFill"), this);
+		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotCreateFloodFillTool()));
 
 		// Create about action and tie to IntelliPhotoGui::about()
 		actionAboutDialog = new QAction(tr("&About"), this);
@@ -405,10 +405,10 @@ void IntelliPhotoGui::createMenus(){
 		toolMenu->addAction(actionCreatePenTool);
 		toolMenu->addAction(actionCreatePlainTool);
 		toolMenu->addAction(actionCreateLineTool);
-        toolMenu->addAction(actionCreateRectangleTool);
-        toolMenu->addAction(actionCreateCircleTool);
-        toolMenu->addAction(actionCreatePolygonTool);
-        toolMenu->addAction(actionCreateFloodFillTool);
+		toolMenu->addAction(actionCreateRectangleTool);
+		toolMenu->addAction(actionCreateCircleTool);
+		toolMenu->addAction(actionCreatePolygonTool);
+		toolMenu->addAction(actionCreateFloodFillTool);
 		toolMenu->addSeparator();
 		toolMenu->addMenu(colorMenu);
 

@@ -3,7 +3,7 @@
 #include "QColorDialog"
 
 IntelliToolPlainTool::IntelliToolPlainTool(PaintingArea* Area, IntelliColorPicker* colorPicker)
-    :IntelliTool(Area, colorPicker){
+		: IntelliTool(Area, colorPicker){
 }
 
 IntelliToolPlainTool::~IntelliToolPlainTool(){
@@ -11,28 +11,27 @@ IntelliToolPlainTool::~IntelliToolPlainTool(){
 }
 
 void IntelliToolPlainTool::onMouseLeftPressed(int x, int y){
-    IntelliTool::onMouseLeftPressed(x,y);
-    this->Canvas->image->drawPlain(colorPicker->getFirstColor());
-    Canvas->image->calculateVisiblity();
+		IntelliTool::onMouseLeftPressed(x,y);
+		this->Canvas->image->drawPlain(colorPicker->getFirstColor());
+		Canvas->image->calculateVisiblity();
 }
 
 void IntelliToolPlainTool::onMouseLeftReleased(int x, int y){
-     IntelliTool::onMouseLeftReleased(x,y);
+		IntelliTool::onMouseLeftReleased(x,y);
 }
 
 void IntelliToolPlainTool::onMouseRightPressed(int x, int y){
-    IntelliTool::onMouseRightPressed(x,y);
+		IntelliTool::onMouseRightPressed(x,y);
 }
 
 void IntelliToolPlainTool::onMouseRightReleased(int x, int y){
-     IntelliTool::onMouseRightReleased(x,y);
+		IntelliTool::onMouseRightReleased(x,y);
 }
 
-
 void IntelliToolPlainTool::onMouseMoved(int x, int y){
-    IntelliTool::onMouseMoved(x,y);
+		IntelliTool::onMouseMoved(x,y);
 }
 
 void IntelliToolPlainTool::onWheelScrolled(int value){
-    IntelliTool::onWheelScrolled(value);
+		IntelliTool::onWheelScrolled(value);
 }
