@@ -37,7 +37,7 @@ public:
     IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker);
 
     /*!
-     * \brief An Destructor.
+     * \brief A Destructor.
      */
     virtual ~IntelliToolCircle() override;
 
