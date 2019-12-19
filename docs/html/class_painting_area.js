@@ -12,6 +12,8 @@ var class_painting_area =
     [ "createPlainTool", "class_painting_area.html#a3de83443d2d5cf460ff48d0602070938", null ],
     [ "deleteLayer", "class_painting_area.html#a6efad6f8ea060674b157b42b431cd173", null ],
     [ "floodFill", "class_painting_area.html#aeb5eb394b979ea90f2be9849fdda1774", null ],
+    [ "getHeightActiveLayer", "class_painting_area.html#a1511a534e206089fff1d325e7ec7a8eb", null ],
+    [ "getWidthActiveLayer", "class_painting_area.html#a427c5fc26480c7ae80b3480e85510bda", null ],
     [ "mouseMoveEvent", "class_painting_area.html#aa22e274b6094a9619f196cd7b49526b5", null ],
     [ "mousePressEvent", "class_painting_area.html#abfe445f8d9b70ae42bfeda874127dd15", null ],
     [ "mouseReleaseEvent", "class_painting_area.html#a35b5df914acb608cc29717659793359c", null ],

@@ -121,11 +121,11 @@ $(document).ready(function(){initNavTree('_intelli_photo_gui_8h_source.html','')
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_intelli_photo_gui.html#a2cf48070236ae8b35245e7f30482ef13">closeEvent</a>(QCloseEvent *event) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">private</span> slots:</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">//meta slots here (need further )</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// meta slots here (need further )</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> slotOpen();</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> slotSave();</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//layer slots here</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// layer slots here</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> slotCreateNewLayer();</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> slotDeleteLayer();</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> slotClearActiveLayer();</div>
@@ -138,95 +138,92 @@ $(document).ready(function(){initNavTree('_intelli_photo_gui_8h_source.html','')
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> slotMoveLayerUp();</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> slotMoveLayerDown();</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">//color Picker slots here</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// color Picker slots here</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> slotSetFirstColor();</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> slotSetSecondColor();</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> slotSwitchColor();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">//tool slots here</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// tool slots here</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> slotCreatePenTool();</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> slotCreatePlainTool();</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> slotCreateLineTool();</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">//slots for dialogs</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// slots for dialogs</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> slotAboutDialog();</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Will tie user actions to functions</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> createActions();</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> createMenus();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">//setup GUI elements</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// setup GUI elements</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> createGui();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">//set style of the GUI</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// set style of the GUI</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> setIntelliStyle();</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// Will check if changes have occurred since last save</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">bool</span> maybeSave();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// Opens the Save dialog and saves</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">bool</span> saveFile(<span class="keyword">const</span> QByteArray &amp;fileFormat);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// What we&#39;ll draw on</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="class_painting_area.html">PaintingArea</a>* paintingArea;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// The menu widgets</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    QMenu *saveAsMenu;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    QMenu *fileMenu;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    QMenu *optionMenu;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    QMenu *layerMenu;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    QMenu *colorMenu;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    QMenu *toolMenu;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    QMenu *helpMenu;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// All the actions that can occur</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">//meta image actions (need further modularisation)</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    QAction *actionOpen;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    QAction *actionExit;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">//color Picker actions</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    QAction *actionColorPickerFirstColor;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    QAction *actionColorPickerSecondColor;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    QAction *actionColorSwitch;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">//tool actions</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    QAction *actionCreatePenTool;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    QAction *actionCreatePlainTool;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    QAction *actionCreateLineTool;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">//dialog actions</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    QAction *actionAboutDialog;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    QAction *actionAboutQtDialog;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">//layer change actions</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    QAction *actionCreateNewLayer;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    QAction *actionDeleteLayer;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    QAction* actionSetActiveLayer;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    QAction* actionSetActiveAlpha;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    QAction* actionMovePositionUp;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    QAction* actionMovePositionDown;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    QAction* actionMovePositionLeft;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    QAction* actionMovePositionRight;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    QAction* actionMoveLayerUp;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    QAction* actionMoveLayerDown;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="comment">// Actions tied to specific file formats</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    QList&lt;QAction *&gt; actionSaveAs;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="comment">//main GUI elements</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    QWidget* centralGuiWidget;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    QGridLayout *mainLayout;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;};</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// Will check if changes have occurred since last save</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">bool</span> maybeSave();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// Opens the Save dialog and saves</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">bool</span> saveFile(<span class="keyword">const</span> QByteArray &amp;fileFormat);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// What we&#39;ll draw on</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="class_painting_area.html">PaintingArea</a>* paintingArea;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// The menu widgets</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    QMenu *saveAsMenu;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    QMenu *fileMenu;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    QMenu *optionMenu;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    QMenu *layerMenu;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    QMenu *colorMenu;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    QMenu *toolMenu;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    QMenu *helpMenu;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// All the actions that can occur</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">// meta image actions (need further modularisation)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    QAction *actionOpen;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    QAction *actionExit;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// color Picker actions</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    QAction *actionColorPickerFirstColor;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    QAction *actionColorPickerSecondColor;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    QAction *actionColorSwitch;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">// tool actions</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    QAction *actionCreatePenTool;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    QAction *actionCreatePlainTool;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    QAction *actionCreateLineTool;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">// dialog actions</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    QAction *actionAboutDialog;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    QAction *actionAboutQtDialog;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">// layer change actions</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    QAction *actionCreateNewLayer;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    QAction *actionDeleteLayer;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    QAction* actionSetActiveLayer;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    QAction* actionSetActiveAlpha;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    QAction* actionMovePositionUp;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    QAction* actionMovePositionDown;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    QAction* actionMovePositionLeft;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    QAction* actionMovePositionRight;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    QAction* actionMoveLayerUp;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    QAction* actionMoveLayerDown;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="comment">// Actions tied to specific file formats</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    QList&lt;QAction *&gt; actionSaveAs;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">// main GUI elements</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    QWidget* centralGuiWidget;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    QGridLayout *mainLayout;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_intelli_photo_gui_html"><div class="ttname"><a href="class_intelli_photo_gui.html">IntelliPhotoGui</a></div><div class="ttdef"><b>Definition:</b> <a href="_intelli_photo_gui_8h_source.html#l00019">IntelliPhotoGui.h:19</a></div></div>
 <div class="ttc" id="aclass_intelli_photo_gui_html_ad2aaec3c1517a9aaa461b54e341b97e0"><div class="ttname"><a href="class_intelli_photo_gui.html#ad2aaec3c1517a9aaa461b54e341b97e0">IntelliPhotoGui::IntelliPhotoGui</a></div><div class="ttdeci">IntelliPhotoGui()</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_photo_gui_8cpp_source.html#l00010">IntelliPhotoGui.cpp:10</a></div></div>
-<div class="ttc" id="aclass_painting_area_html"><div class="ttname"><a href="class_painting_area.html">PaintingArea</a></div><div class="ttdef"><b>Definition:</b> <a href="_painting_area_8h_source.html#l00026">PaintingArea.h:26</a></div></div>
+<div class="ttc" id="aclass_painting_area_html"><div class="ttname"><a href="class_painting_area.html">PaintingArea</a></div><div class="ttdef"><b>Definition:</b> <a href="_painting_area_8h_source.html#l00025">PaintingArea.h:25</a></div></div>
 <div class="ttc" id="aclass_intelli_tool_html"><div class="ttname"><a href="class_intelli_tool.html">IntelliTool</a></div><div class="ttdoc">An abstract class that manages the basic events, like mouse clicks or scrolls events.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_8h_source.html#l00013">IntelliTool.h:13</a></div></div>
-<div class="ttc" id="aclass_intelli_photo_gui_html_a2cf48070236ae8b35245e7f30482ef13"><div class="ttname"><a href="class_intelli_photo_gui.html#a2cf48070236ae8b35245e7f30482ef13">IntelliPhotoGui::closeEvent</a></div><div class="ttdeci">void closeEvent(QCloseEvent *event) override</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_photo_gui_8cpp_source.html#l00024">IntelliPhotoGui.cpp:24</a></div></div>
+<div class="ttc" id="aclass_intelli_photo_gui_html_a2cf48070236ae8b35245e7f30482ef13"><div class="ttname"><a href="class_intelli_photo_gui.html#a2cf48070236ae8b35245e7f30482ef13">IntelliPhotoGui::closeEvent</a></div><div class="ttdeci">void closeEvent(QCloseEvent *event) override</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_photo_gui_8cpp_source.html#l00026">IntelliPhotoGui.cpp:26</a></div></div>
 <div class="ttc" id="aclass_intelli_color_picker_html"><div class="ttname"><a href="class_intelli_color_picker.html">IntelliColorPicker</a></div><div class="ttdoc">The IntelliColorPicker manages the selected colors for one whole project.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_color_picker_8h_source.html#l00011">IntelliColorPicker.h:11</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
