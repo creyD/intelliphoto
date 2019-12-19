@@ -9,7 +9,7 @@ For the user manual see `docs/manual.pdf`
 - `Examples` - Temporary folder for example pictures
 - `Abgabe` - Files that were submitted prior to the development start
 
-## Pesentations
+## Presentations
 
 - since `0.3`: https://prezi.com/view/M593VBJhmfwQzuqt3t6f/
 
