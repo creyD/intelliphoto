@@ -115,7 +115,7 @@ std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> poly
 
 bool IntelliHelper::isInPolygon(std::vector<Triangle> &triangles, QPoint &point){
     for(auto triangle : triangles){
-        if(IntelliHelper::isInTriangle(triangle.A ,triangle.B, triangle.C, point)){
+        if(IntelliHelper::isInTriangle(triangle, point)){
             return true;
         }
     }
