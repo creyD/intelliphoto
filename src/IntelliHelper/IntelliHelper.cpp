@@ -25,17 +25,18 @@ std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> poly
 
     // gets the first element of vec for which element.isTip == true holds
     auto getTip= [](const std::vector<TriangleHelper>& vec){
-        for(auto element:vec){
-            if(element.isTip){
-                return element;
+        size_t min = 0;
+        for(size_t i=0; i<vec.size(); i++){
+            if(vec[i].interiorAngle<vec[min].interiorAngle){
+                min = i;
             }
         }
-        return vec[0];
+        return vec[min];
     };
 
     // get the vertex Index bevor index in relation to the container length
     auto getPrev = [](int index, int length){
-        return (index-1)>0?(index-1):(length-1);
+        return (index-1)>=0?(index-1):(length-1);
     };
 
     // get the vertex Index after index in relation to the container lenght
@@ -45,7 +46,7 @@ std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> poly
 
     // return if the vertex is a tip
     auto isTip = [](float angle){
-        return angle<180.f;
+        return static_cast<double>(angle)<(M_PI/2.);
     };
 
     std::vector<TriangleHelper>  Vertices;
