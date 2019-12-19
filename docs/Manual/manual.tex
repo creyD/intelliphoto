@@ -28,16 +28,14 @@ Currently the following features are implemented, which will be described in fur
 \begin{itemize}
 \item A barebones user interface
 \item Loading and Saving images from and to standardized formats (such as .png, .bmp or .jpg)
-\item Drawing with a pen tool with adjustable width and color
-\item A layer structure, that allows for moving layers and changing the order of them as well as multiple layer types:
-\item Shaped Layers, described with a polygon that allow for transparency
-\item Raster Layers, that fill the whole canvas and do not use transparecy.
+\item Drawing with a pen with adjustable width and color, clearing the whole canvas with one color and drawing lines, rectangles, circles and polygons as well as flood filling adjacent pixels
+\item A layer structure, that allows for creating, deleting, moving and changing the order of layers
 \end{itemize}
 
 \section{User Guide}
 After startup the following window opens:
 \begin{center}
-\includegraphics[width=0.5\linewidth,keepaspectratio]{assets/startup}
+\includegraphics[width=0.55\linewidth,keepaspectratio]{assets/startup}
 \end{center}
 
 \subsection{Loading images}
@@ -77,6 +75,12 @@ To activate the pen tool simply select it under \texttt{Tools > Pen}. You will b
 \end{center}
 To edit the active layer with the pen tool simply click and hold the left mouse button while hovering the layer on the canvas. When you click within the boundaries of the active layer, the pixels in the radius you selected will change their color to the main color which you selected under the section above.
 
+\subsection{Drawing straight lines}
+To activate the line tool select it under \texttt{Tools > Line}. You will be prompted to input the line width.
+To draw a line you now have to left click on the starting point on the canvas, hold it pressed and move to the end point and release the mouse button.
+
+You can cancel this operation at any time by clicking the right mouse button while holding the left and then releasing both.
+
 \subsection{Fill the active layer in one color}
 To fill the whole layer with the main color, you first specify the color on the right side of the picture.
 
@@ -96,7 +100,7 @@ Raster Layers can be created at will under \texttt{Layer > New Layer...} You wil
 \begin{center}
 \includegraphics[width=0.3\linewidth,keepaspectratio]{assets/create-layer}
 \end{center}
-To delete the active layer you have to click on \texttt{Delete Layer} in the same submenu.
+To delete the active layer you have to click on \texttt{Delete Layer...} in the same submenu.
 
 \subsection{Transparency and layers}
 Layers can also be made more or less transparent under \texttt{Layer > set Alpha}. Values between 0 and 255 are valid. There is currently no error handling and this can lead to memory leaks, so be careful. This also only effects the active layer.
