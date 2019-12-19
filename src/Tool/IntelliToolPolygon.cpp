@@ -12,6 +12,10 @@ IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* c
     isDrawing = false;
 }
 
+IntelliToolPolygon::~IntelliToolPolygon(){
+
+}
+
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
     if(!isDrawing && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()){
         IntelliTool::onMouseLeftPressed(x,y);

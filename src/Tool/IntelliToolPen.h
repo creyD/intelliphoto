@@ -29,7 +29,7 @@ public:
     virtual ~IntelliToolPen() override;
 
     /*!
-     * \brief A function managing the right click pressed of a mouse.Resetting the current draw.
+     * \brief A function managing the right click pressed of a mouse. Resetting the current draw.
      * \param x - The x coordinate relative to the active/canvas layer.
      * \param y - The y coordinate relative to the active/canvas layer.
      */
