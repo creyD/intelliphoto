@@ -4,7 +4,7 @@
 #include "IntelliHelper/IntelliColorPicker.h"
 #include <vector>
 
-class LayerObject;
+struct LayerObject;
 class PaintingArea;
 
 /*!

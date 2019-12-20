@@ -7,7 +7,7 @@
 IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker)
 		: IntelliTool(Area, colorPicker){
 		this->alphaInner = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 0,0,255,1);
-		lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",1,1,50,1);;
+        lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",1,1,50,1);
 		PointIsNearStart = false;
 		isDrawing = false;
 }
@@ -63,9 +63,9 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
 								}
 						}
 				}
-				for(int i=0; i<QPointList.size(); i++) {
-						int next = (i+1)%QPointList.size();
-						this->Canvas->image->drawLine(QPointList[i], QPointList[next], colorPicker->getFirstColor(), lineWidth);
+                for(int i=0; i<static_cast<int>(QPointList.size()); i++) {
+                        int next = static_cast<int>((i+static_cast<int>(1))%static_cast<int>(QPointList.size()));
+                        this->Canvas->image->drawLine(QPointList[static_cast<unsigned long long>(i)], QPointList[static_cast<unsigned long long>(next)], colorPicker->getFirstColor(), lineWidth);
 				}
 				QPointList.clear();
 				IntelliTool::onMouseLeftReleased(x,y);
