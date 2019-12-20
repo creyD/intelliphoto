@@ -3,6 +3,8 @@
 #include <queue>
 #include <cmath>
 
+#define pi 3.14159265359
+
 
 std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> polyPoints){
 		// helper for managing the triangle vertices and their state
@@ -46,7 +48,7 @@ std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> poly
 
 		// return if the vertex is a tip
 		auto isTip = [](float angle){
-							 return static_cast<double>(angle)<(M_PI/2.);
+                             return static_cast<double>(angle)<(pi/2.);
 					 };
 
 		std::vector<TriangleHelper>  Vertices;
@@ -88,7 +90,7 @@ std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> poly
 				}
 
 				// update post und prev index
-				post = post-1;
+                post = getPrev(post, Vertices.size());
 				prev = prev<smallest.index ? prev : (prev-1);
 
 				// calcultae neighboors of prev and post to calculate new interior angles
