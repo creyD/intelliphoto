@@ -48,7 +48,7 @@ void IntelliTool::onWheelScrolled(int value){
 }
 
 void IntelliTool::createToolLayer(){
-		Area->createTempLayerAfter(Area->activeLayer);
+		Area->createTempTopLayer(Area->activeLayer);
 		this->Active=&Area->layerBundle[Area->activeLayer];
 		this->Canvas=&Area->layerBundle[Area->activeLayer+1];
 }

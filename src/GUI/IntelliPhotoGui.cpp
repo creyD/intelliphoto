@@ -206,8 +206,8 @@ void IntelliPhotoGui::slotSetSecondColor(){
 		paintingArea->colorPickerSetSecondColor();
 }
 
-void IntelliPhotoGui::slotSwitchColor(){
-		paintingArea->colorPickerSwitchColor();
+void IntelliPhotoGui::slotSwapColor(){
+		paintingArea->colorPickerSwapColors();
 }
 
 void IntelliPhotoGui::slotCreatePenTool(){
@@ -328,9 +328,9 @@ void IntelliPhotoGui::createActions(){
 		actionColorPickerSecondColor = new QAction(tr("&Secondary"), this);
 		connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetSecondColor()));
 
-		actionColorSwitch = new QAction(tr("&Switch"), this);
-		actionColorSwitch->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
-		connect(actionColorSwitch, SIGNAL(triggered()), this, SLOT(slotSwitchColor()));
+		actionColorSwap = new QAction(tr("&Switch"), this);
+		actionColorSwap->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
+		connect(actionColorSwap, SIGNAL(triggered()), this, SLOT(slotSwapColor()));
 
 		//Create Tool actions down here
 		actionCreatePlainTool = new QAction(tr("&Plain"), this);
@@ -398,7 +398,7 @@ void IntelliPhotoGui::createMenus(){
 		colorMenu = new QMenu(tr("&Color"), this);
 		colorMenu->addAction(actionColorPickerFirstColor);
 		colorMenu->addAction(actionColorPickerSecondColor);
-		colorMenu->addAction(actionColorSwitch);
+		colorMenu->addAction(actionColorSwap);
 
 		//Attach all Tool Options
 		toolMenu = new QMenu(tr("&Tools"), this);

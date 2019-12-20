@@ -55,7 +55,7 @@ void slotMoveLayerDown();
 // color Picker slots here
 void slotSetFirstColor();
 void slotSetSecondColor();
-void slotSwitchColor();
+void slotSwapColor();
 
 // tool slots here
 void slotCreatePenTool();
@@ -103,7 +103,7 @@ QAction*actionExit;
 // color Picker actions
 QAction*actionColorPickerFirstColor;
 QAction*actionColorPickerSecondColor;
-QAction*actionColorSwitch;
+QAction*actionColorSwap;
 
 // tool actions
 QAction*actionCreatePenTool;

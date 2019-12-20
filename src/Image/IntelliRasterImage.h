@@ -16,10 +16,10 @@ virtual void calculateVisiblity() override;
 public:
 /*!
  * \brief The Construcor of the IntelliRasterImage. Given the Image dimensions.
- * \param weight    - The weight of the Image.
+ * \param width    - The width of the Image.
  * \param height    - The height of the Image.
  */
-IntelliRasterImage(int weight, int height);
+IntelliRasterImage(int width, int height);
 
 /*!
  * \brief An Destructor.
