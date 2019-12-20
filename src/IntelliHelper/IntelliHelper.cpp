@@ -2,9 +2,7 @@
 #include <algorithm>
 #include <queue>
 #include <cmath>
-
-#define pi 3.14159265359
-
+#define pi 3.1415926535897932384626433832795
 
 std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> polyPoints){
 		// helper for managing the triangle vertices and their state
