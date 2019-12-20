@@ -116,10 +116,10 @@ virtual std::vector<QPoint> getPolygonData(){
 
 /*!
  * \brief A function that loads and sclaes an image to the fitting dimensions.
- * \param fileName  - The path+name of the image which to loaded.
+ * \param filePath  - The path+name of the image which to loaded.
  * \return True if the image could be loaded, false otherwise.
  */
-virtual bool loadImage(const QString &fileName);
+virtual bool loadImage(const QString &filePath);
 
 /*!
  * \brief A function that returns the pixelcolor at a certain point
