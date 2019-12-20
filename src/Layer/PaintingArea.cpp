@@ -212,11 +212,11 @@ void PaintingArea::createFloodFillTool(){
 }
 
 int PaintingArea::getWidthOfActive(){
-		return this->layerBundle[activeLayer].width;
+        return this->layerBundle[static_cast<unsigned long long>(activeLayer)].width;
 }
 
 int PaintingArea::getHeightOfActive(){
-		return this->layerBundle[activeLayer].height;
+        return this->layerBundle[static_cast<unsigned long long>(activeLayer)].height;
 }
 
 // If a mouse button is pressed check if it was the
@@ -225,8 +225,8 @@ int PaintingArea::getHeightOfActive(){
 void PaintingArea::mousePressEvent(QMouseEvent*event){
 		if(Tool == nullptr)
 				return;
-		int x = event->x()-layerBundle[activeLayer].widthOffset;
-		int y = event->y()-layerBundle[activeLayer].heightOffset;
+        int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+        int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftPressed(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -241,8 +241,8 @@ void PaintingArea::mousePressEvent(QMouseEvent*event){
 void PaintingArea::mouseMoveEvent(QMouseEvent*event){
 		if(Tool == nullptr)
 				return;
-		int x = event->x()-layerBundle[activeLayer].widthOffset;
-		int y = event->y()-layerBundle[activeLayer].heightOffset;
+        int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+        int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		Tool->onMouseMoved(x, y);
 		update();
 }
@@ -251,8 +251,8 @@ void PaintingArea::mouseMoveEvent(QMouseEvent*event){
 void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 		if(Tool == nullptr)
 				return;
-		int x = event->x()-layerBundle[activeLayer].widthOffset;
-		int y = event->y()-layerBundle[activeLayer].heightOffset;
+        int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+        int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftReleased(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -293,15 +293,15 @@ void PaintingArea::resizeImage(QImage*image_res, const QSize &newSize){
 }
 
 void PaintingArea::activateUpperLayer(){
-		if(activeLayer!=-1 && activeLayer<layerBundle.size()-1) {
-				std::swap(layerBundle[activeLayer], layerBundle[activeLayer+1]);
+        if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size()-1) {
+                std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer+1)]);
 				activeLayer++;
 		}
 }
 
 void PaintingArea::activateLowerLayer(){
 		if(activeLayer!=-1 && activeLayer>0) {
-				std::swap(layerBundle[activeLayer], layerBundle[activeLayer-1]);
+                std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer-1)]);
 				activeLayer--;
 		}
 }
@@ -345,11 +345,11 @@ void PaintingArea::createTempLayerAfter(int idx){
 		if(idx>=0) {
 				LayerObject newLayer;
 				newLayer.alpha = 255;
-				newLayer.height = layerBundle[idx].height;
-				newLayer.width = layerBundle[idx].width;
-				newLayer.heightOffset = layerBundle[idx].heightOffset;
-				newLayer.widthOffset = layerBundle[idx].widthOffset;
-				newLayer.image = layerBundle[idx].image->getDeepCopy();
+                newLayer.height = layerBundle[static_cast<unsigned long long>(idx)].height;
+                newLayer.width = layerBundle[static_cast<unsigned long long>(idx)].width;
+                newLayer.heightOffset = layerBundle[static_cast<unsigned long long>(idx)].heightOffset;
+                newLayer.widthOffset = layerBundle[static_cast<unsigned long long>(idx)].widthOffset;
+                newLayer.image = layerBundle[static_cast<unsigned long long>(idx)].image->getDeepCopy();
 				layerBundle.insert(layerBundle.begin()+idx+1,newLayer);
 		}
 }

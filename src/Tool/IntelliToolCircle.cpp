@@ -22,18 +22,18 @@ void IntelliToolCircle::drawCyrcle(int radius){
 		yMax = Middle.y()+radius;
 		// x = x0+-sqrt(r2-(y-y0)2)
 		for(int i=yMin; i<=yMax; i++) {
-				xMin = Middle.x()-sqrt(pow(radius,2)-pow(i-Middle.y(),2));
-				xMax = Middle.x()+sqrt(pow(radius,2)-pow(i-Middle.y(),2));
+                xMin = static_cast<int>(Middle.x()-sqrt(pow(radius,2)-pow(i-Middle.y(),2)));
+                xMax = static_cast<int>(Middle.x()+sqrt(pow(radius,2)-pow(i-Middle.y(),2)));
 				this->Canvas->image->drawLine(QPoint(xMin,i), QPoint(xMax,i),inner,1);
 		}
 
 		//TODO implement circle drawing algorithm bresenham
-		radius = radius +(this->edgeWidth/2.)-1.;
+        radius = static_cast<int>(radius +(this->edgeWidth/2.)-1.);
 		yMin = (Middle.y()-radius);
 		yMax = (Middle.y()+radius);
 		for(int i=yMin; i<=yMax; i++) {
-				xMin = Middle.x()-sqrt(pow(radius,2)-pow(i-Middle.y(),2));
-				xMax = Middle.x()+sqrt(pow(radius,2)-pow(i-Middle.y(),2));
+                xMin = static_cast<int>(Middle.x()-sqrt(pow(radius,2)-pow(i-Middle.y(),2)));
+                xMax = static_cast<int>(Middle.x()+sqrt(pow(radius,2)-pow(i-Middle.y(),2)));
 				this->Canvas->image->drawPoint(QPoint(xMin,i), colorPicker->getFirstColor(),edgeWidth);
 				this->Canvas->image->drawPoint(QPoint(xMax,i), colorPicker->getFirstColor(),edgeWidth);
 		}
@@ -41,8 +41,8 @@ void IntelliToolCircle::drawCyrcle(int radius){
 		xMin = (Middle.x()-radius);
 		xMax = (Middle.x()+radius);
 		for(int i=xMin; i<=xMax; i++) {
-				int yMin = Middle.y()-sqrt(pow(radius,2)-pow(i-Middle.x(),2));
-				int yMax = Middle.y()+sqrt(pow(radius,2)-pow(i-Middle.x(),2));
+                int yMin = static_cast<int>(Middle.y()-sqrt(pow(radius,2)-pow(i-Middle.x(),2)));
+                int yMax = static_cast<int>(Middle.y()+sqrt(pow(radius,2)-pow(i-Middle.x(),2)));
 				this->Canvas->image->drawPoint(QPoint(i, yMin), colorPicker->getFirstColor(),edgeWidth);
 				this->Canvas->image->drawPoint(QPoint(i, yMax), colorPicker->getFirstColor(),edgeWidth);
 		}

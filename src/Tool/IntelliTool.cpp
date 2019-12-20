@@ -49,8 +49,8 @@ void IntelliTool::onWheelScrolled(int value){
 
 void IntelliTool::createToolLayer(){
 		Area->createTempLayerAfter(Area->activeLayer);
-		this->Active=&Area->layerBundle[Area->activeLayer];
-		this->Canvas=&Area->layerBundle[Area->activeLayer+1];
+        this->Active=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer)];
+        this->Canvas=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer+1)];
 }
 
 void IntelliTool::mergeToolLayer(){

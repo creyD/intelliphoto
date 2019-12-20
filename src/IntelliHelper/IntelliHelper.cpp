@@ -19,7 +19,7 @@ std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> poly
 									  QPoint BP(point.x()-post.x(), point.y()-post.y());
 
 									  float topSclar = AP.x()*BP.x()+AP.y()*BP.y();
-									  float absolute = sqrt(pow(AP.x(),2.)+pow(AP.y(),2.))*sqrt(pow(BP.x(),2.)+pow(BP.y(),2.));
+                                      float absolute = static_cast<float>(sqrt(pow(AP.x(),2.)+pow(AP.y(),2.))*sqrt(pow(BP.x(),2.)+pow(BP.y(),2.)));
 									  return acos(topSclar/absolute);
 							  };
 
