@@ -86,13 +86,13 @@ void PaintingArea::slotDeleteActiveLayer(){
 		}
 }
 
-void PaintingArea::setLayerToActive(int index){
+void PaintingArea::setLayerActive(int index){
 		if(index>=0&&index<static_cast<int>(layerBundle.size())) {
 				this->activeLayer=index;
 		}
 }
 
-void PaintingArea::setAlphaOfLayer(int index, int alpha){
+void PaintingArea::setLayerAlpha(int index, int alpha){
 		if(index>=0&&index<static_cast<int>(layerBundle.size())) {
 				layerBundle[static_cast<size_t>(index)].alpha=alpha;
 		}
@@ -159,7 +159,7 @@ void PaintingArea::moveActiveLayer(int idx){
 
 void PaintingArea::slotActivateLayer(int a){
 		if(a>=0 && a < static_cast<int>(layerBundle.size())) {
-				this->setLayerToActive(a);
+				this->setLayerActive(a);
 		}
 }
 

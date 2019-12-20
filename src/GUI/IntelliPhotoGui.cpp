@@ -120,7 +120,7 @@ void IntelliPhotoGui::slotSetActiveAlpha(){
 		                                 255,0, 255, 1, &ok2);
 		if (ok1&&ok2)
 		{
-				paintingArea->setAlphaOfLayer(layer,alpha);
+				paintingArea->setLayerAlpha(layer,alpha);
 		}
 }
 
@@ -194,7 +194,7 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 		                                 -1,0,255,1, &ok1);
 		if (ok1)
 		{
-				paintingArea->setLayerToActive(layer);
+				paintingArea->setLayerActive(layer);
 		}
 }
 

@@ -100,13 +100,13 @@ public:
      * \brief The setLayerToActive method marks a specific layer as active
      * \param index - Index of the layer to be active
      */
-    void setLayerToActive(int index);
+    void setLayerActive(int index);
     /*!
      * \brief The setAlphaOfLayer method sets the alpha value of a specific layer
      * \param index     - Index of the layer where the change should be applied
      * \param alpha     - New alpha value of the layer
      */
-    void setAlphaOfLayer(int index, int alpha);
+    void setLayerAlpha(int index, int alpha);
     /*!
      * \brief The floodFill method fills a the active layer with a given color
      * \param r     - Red value of the color the layer should be filled with
