@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <queue>
 #include <cmath>
+#define PI_HALF		1.57079632679489661923
 
 
 std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> polyPoints){
@@ -46,7 +47,7 @@ std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> poly
 
 		// return if the vertex is a tip
 		auto isTip = [](float angle){
-							 return static_cast<double>(angle)<(M_PI/2.);
+                             return static_cast<double>(angle)<(PI_HALF);
 					 };
 
 		std::vector<TriangleHelper>  Vertices;
