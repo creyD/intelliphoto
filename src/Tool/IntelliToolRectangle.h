@@ -22,11 +22,11 @@ QPoint originCorner;
 /*!
  * \brief alphaInner- Represents the alpha value of the inside.
  */
-int alphaInner;
+int innerAlpha;
 /*!
  * \brief edgeWidth - The width of the rectangle edges.
  */
-int edgeWidth;
+int borderWidth;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker. And reading in the alphaInner and edgeWidth.

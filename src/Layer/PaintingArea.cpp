@@ -341,7 +341,7 @@ void PaintingArea::drawLayers(bool forSaving){
 		}
 }
 
-void PaintingArea::createTempLayerAfter(int idx){
+void PaintingArea::createTempTopLayer(int idx){
 		if(idx>=0) {
 				LayerObject newLayer;
 				newLayer.alpha = 255;

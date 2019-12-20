@@ -15,7 +15,7 @@ int penWidth;
 /*!
  * \brief point - Represents the previous point to help drawing a line.
  */
-QPoint point;
+QPoint previousPoint;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker. Reading the penWidth.

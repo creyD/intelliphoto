@@ -40,7 +40,7 @@ IntelliColorPicker* colorPicker;
 /*!
  * \brief A pointer to the underlying active Layer, do not work on this. This is used for data grabbing or previews.
  */
-LayerObject* Active;
+LayerObject* activeLayer;
 
 /*!
  * \brief A pointer to the drawing canvas of the tool, work on this.
@@ -50,7 +50,7 @@ LayerObject* Canvas;
 /*!
  * \brief A flag checking if the user is currently drawing or not.
  */
-bool drawing = false;
+bool isDrawing = false;
 
 public:
 /*!

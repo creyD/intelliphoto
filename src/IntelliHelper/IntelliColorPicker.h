@@ -23,7 +23,7 @@ virtual ~IntelliColorPicker();
 /*!
  * \brief A function switching primary and secondary color.
  */
-void switchColors();
+void swapColors();
 
 /*!
  * \brief A function to read the primary selected color.

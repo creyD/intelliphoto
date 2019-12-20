@@ -90,7 +90,7 @@ public:
      * \param type          - Defining the ImageType of the new layer
      * \return  Returns the id of the layer position
      */
-    int addLayerAt(int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image, int idx);
+    int addLayerAt(int idx, int width, int height, int widthOffset=0, int heightOffset=0, ImageType type = ImageType::Raster_Image);
     /*!
      * \brief The deleteLayer method removes a layer at a given index
      * \param index - The index of the layer to be removed
