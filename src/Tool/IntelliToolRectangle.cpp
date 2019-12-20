@@ -12,12 +12,12 @@ IntelliToolRectangle::~IntelliToolRectangle(){
 
 }
 
-void IntelliToolRectangle::drawRectangle(QPoint otherCornor){
-		int xMin = std::min(originCornor.x(), otherCornor.x());
-		int xMax = std::max(originCornor.x(), otherCornor.x());
+void IntelliToolRectangle::drawRectangle(QPoint otherCorner){
+        int xMin = std::min(originCorner.x(), otherCorner.x());
+        int xMax = std::max(originCorner.x(), otherCorner.x());
 
-		int yMin = std::min(originCornor.y(), otherCornor.y());
-		int yMax = std::max(originCornor.y(), otherCornor.y());
+        int yMin = std::min(originCorner.y(), otherCorner.y());
+        int yMax = std::max(originCorner.y(), otherCorner.y());
 
 		QColor clr = colorPicker->getSecondColor();
 		clr.setAlpha(alphaInner);
@@ -40,8 +40,8 @@ void IntelliToolRectangle::onMouseRightReleased(int x, int y){
 
 void IntelliToolRectangle::onMouseLeftPressed(int x, int y){
 		IntelliTool::onMouseLeftPressed(x,y);
-		this->originCornor=QPoint(x,y);
-		drawRectangle(originCornor);
+		this->originCorner=QPoint(x,y);
+		drawRectangle(originCorner);
 		Canvas->image->calculateVisiblity();
 }
 
