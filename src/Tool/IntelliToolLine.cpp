@@ -24,8 +24,8 @@ void IntelliToolLine::onMouseRightReleased(int x, int y){
 
 void IntelliToolLine::onMouseLeftPressed(int x, int y){
 		IntelliTool::onMouseLeftPressed(x,y);
-		this->start=QPoint(x,y);
-		this->Canvas->image->drawPoint(start, colorPicker->getFirstColor(),lineWidth);
+		this->lineStartingPoint=QPoint(x,y);
+		this->Canvas->image->drawPoint(lineStartingPoint, colorPicker->getFirstColor(),lineWidth);
 		Canvas->image->calculateVisiblity();
 }
 
@@ -42,18 +42,18 @@ void IntelliToolLine::onWheelScrolled(int value){
 }
 
 void IntelliToolLine::onMouseMoved(int x, int y){
-		if(this->drawing) {
+		if(this->isDrawing) {
 				this->Canvas->image->drawPlain(Qt::transparent);
 				QPoint next(x,y);
 				switch(lineStyle) {
 				case LineStyle::SOLID_LINE:
-						this->Canvas->image->drawLine(start,next,colorPicker->getFirstColor(),lineWidth);
+						this->Canvas->image->drawLine(lineStartingPoint,next,colorPicker->getFirstColor(),lineWidth);
 						break;
 				case LineStyle::DOTTED_LINE:
-						QPoint p1 =start.x() <= next.x() ? start : next;
-						QPoint p2 =start.x() < next.x() ? next : start;
-                        int m = static_cast<int>((p2.y()-p1.y())/(p2.x()-p1.x())+0.5f);
-						int c = start.y()-start.x()*m;
+						QPoint p1 =lineStartingPoint.x() <= next.x() ? lineStartingPoint : next;
+						QPoint p2 =lineStartingPoint.x() < next.x() ? next : lineStartingPoint;
+            int m = static_cast<int>(static_cast<float>(p2.y()-p1.y())/static_cast<float>(p2.x()-p1.x())+0.5f);
+						int c = lineStartingPoint.y()-lineStartingPoint.x()*m;
 
 						break;
 				}

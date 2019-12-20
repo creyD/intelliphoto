@@ -32,12 +32,12 @@ bool isDrawing;
 /*!
  * \brief PointIsNearStart true, when last click near startpoint, else false.
  */
-bool PointIsNearStart;
+bool isPointNearStart;
 
 /*!
  * \brief The alpha value of the inner circle.
  */
-int alphaInner;
+int innerAlpha;
 
 /*!
  * \brief QPointList list of all points of the polygon.

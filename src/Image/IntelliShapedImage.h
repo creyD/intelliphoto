@@ -29,10 +29,10 @@ std::vector<QPoint> polygonData;
 public:
 /*!
  * \brief The Construcor of the IntelliShapedImage. Given the Image dimensions.
- * \param weight    - The weight of the Image.
+ * \param width    - The width of the Image.
  * \param height    - The height of the Image.
  */
-IntelliShapedImage(int weight, int height);
+IntelliShapedImage(int width, int height);
 
 /*!
  * \brief An Destructor.

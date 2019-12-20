@@ -19,7 +19,7 @@ class IntelliToolLine : public IntelliTool {
 /*!
  * \brief The starting point of the line.
  */
-QPoint start;
+QPoint lineStartingPoint;
 
 /*!
  * \brief The width of the line to draw.

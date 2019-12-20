@@ -61,14 +61,14 @@ public:
      * \param fileName  - Path and filename which are used to determine where the to-be-opened file is stored
      * \return Returns a boolean variable whether the file was successfully opened or not
      */
-    bool open(const QString &fileName);
+    bool open(const QString &filePath);
     /*!
      * \brief The save method is used for exporting the current project as one picture
      * \param fileName
      * \param fileFormat
      * \return Returns a boolean variable, true if the file was saved successfully, false if not
      */
-    bool save(const QString &fileName, const char *fileFormat);
+    bool save(const QString &filePath, const char *fileFormat);
 
     /*!
      * \brief The addLayer adds a layer to the current project/ painting area
@@ -139,7 +139,7 @@ public:
     /*!
      * \brief The colorPickerSwitchColor swaps the primary color with the secondary drawing color
      */
-    void colorPickerSwitchColor();
+    void colorPickerSwapColors();
 
     // Create tools
     void createPenTool();
@@ -187,9 +187,9 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-    void setUp(int maxWidth, int maxHeight);
-    void activateUpperLayer();
-    void activateLowerLayer();
+    void setLayerDimensions(int maxWidth, int maxHeight);
+    void selectLayerUp();
+    void selectLayerDown();
 
     QImage* Canvas;
     int maxWidth;
@@ -201,12 +201,13 @@ private:
     std::vector<LayerObject> layerBundle;
     int activeLayer=-1;
 
-    void assembleLayers(bool forSaving=false);
+    void drawLayers(bool forSaving=false);
 
-    void resizeImage(QImage *image_res, const QSize &newSize);
+    void resizeLayer(QImage *image_res, const QSize &newSize);
 
     // Helper for Tool
-    void createTempLayerAfter(int idx);
+    // TODO: Always create this layer on top and return the id here!
+    void createTempTopLayer(int idx);
 };
 
 #endif

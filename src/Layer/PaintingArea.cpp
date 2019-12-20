@@ -21,7 +21,7 @@
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QWidget(parent){
 		this->Tool = nullptr;
-		this->setUp(maxWidth, maxHeight);
+        this->setLayerDimensions(maxWidth, maxHeight);
 		this->addLayer(200,200,0,0,ImageType::Shaped_Image);
 		layerBundle[0].image->drawPlain(QColor(0,0,255,255));
 		std::vector<QPoint> polygon;
@@ -42,7 +42,7 @@ PaintingArea::~PaintingArea(){
 		delete Tool;
 }
 
-void PaintingArea::setUp(int maxWidth, int maxHeight){
+void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 		//set standart parameter
 		this->maxWidth = maxWidth;
 		this->maxHeight = maxHeight;
@@ -99,35 +99,35 @@ void PaintingArea::setAlphaOfLayer(int index, int alpha){
 }
 
 // Used to load the image and place it in the widget
-bool PaintingArea::open(const QString &fileName){
+bool PaintingArea::open(const QString &filePath){
 		if(this->activeLayer==-1) {
 				return false;
 		}
 		IntelliImage* active = layerBundle[static_cast<size_t>(activeLayer)].image;
-		bool open = active->loadImage(fileName);
+        bool open = active->loadImage(filePath);
 		active->calculateVisiblity();
 		update();
 		return open;
 }
 
 // Save the current image
-bool PaintingArea::save(const QString &fileName, const char*fileFormat){
+bool PaintingArea::save(const QString &filePath, const char*fileFormat){
 		if(layerBundle.size()==0) {
 				return false;
 		}
-		this->assembleLayers(true);
+        this->drawLayers(true);
 
 		if(!strcmp(fileFormat,"PNG")) {
 				QImage visibleImage = Canvas->convertToFormat(QImage::Format_Indexed8);
 				fileFormat = "png";
-				if (visibleImage.save(fileName, fileFormat)) {
+                if (visibleImage.save(filePath, fileFormat)) {
 						return true;
 				} else {
 						return false;
 				}
 		}
 
-		if (Canvas->save(fileName, fileFormat)) {
+        if (Canvas->save(filePath, fileFormat)) {
 				return true;
 		} else {
 				return false;
@@ -151,9 +151,9 @@ void PaintingArea::movePositionActive(int x, int y){
 
 void PaintingArea::moveActiveLayer(int idx){
 		if(idx==1) {
-				this->activateUpperLayer();
+				this->selectLayerUp();
 		}else if(idx==-1) {
-				this->activateLowerLayer();
+				this->selectLayerDown();
 		}
 }
 
@@ -173,8 +173,8 @@ void PaintingArea::colorPickerSetSecondColor(){
 		this->colorPicker.setSecondColor(clr);
 }
 
-void PaintingArea::colorPickerSwitchColor(){
-		this->colorPicker.switchColors();
+void PaintingArea::colorPickerSwapColors(){
+		this->colorPicker.swapColors();
 }
 
 void PaintingArea::createPenTool(){
@@ -273,7 +273,7 @@ void PaintingArea::wheelEvent(QWheelEvent*event){
 // The QPaintEvent is sent to widgets that need to
 // update themselves
 void PaintingArea::paintEvent(QPaintEvent*event){
-		this->assembleLayers();
+        this->drawLayers();
 
 		QPainter painter(this);
 		QRect dirtyRec = event->rect();
@@ -288,25 +288,25 @@ void PaintingArea::resizeEvent(QResizeEvent*event){
 		update();
 }
 
-void PaintingArea::resizeImage(QImage*image_res, const QSize &newSize){
+void PaintingArea::resizeLayer(QImage*image_res, const QSize &newSize){
 		//TODO implement
 }
 
-void PaintingArea::activateUpperLayer(){
+void PaintingArea::selectLayerUp(){
         if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size()-1) {
                 std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer+1)]);
 				activeLayer++;
 		}
 }
 
-void PaintingArea::activateLowerLayer(){
+void PaintingArea::selectLayerDown(){
 		if(activeLayer!=-1 && activeLayer>0) {
                 std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer-1)]);
 				activeLayer--;
 		}
 }
 
-void PaintingArea::assembleLayers(bool forSaving){
+void PaintingArea::drawLayers(bool forSaving){
 		if(forSaving) {
 				Canvas->fill(Qt::GlobalColor::transparent);
 		}else{
@@ -341,7 +341,7 @@ void PaintingArea::assembleLayers(bool forSaving){
 		}
 }
 
-void PaintingArea::createTempLayerAfter(int idx){
+void PaintingArea::createTempTopLayer(int idx){
 		if(idx>=0) {
 				LayerObject newLayer;
 				newLayer.alpha = 255;

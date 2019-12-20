@@ -11,12 +11,12 @@ IntelliImage::~IntelliImage(){
 
 }
 
-bool IntelliImage::loadImage(const QString &fileName){
+bool IntelliImage::loadImage(const QString &filePath){
 		// Holds the image
 		QImage loadedImage;
 
 		// If the image wasn't loaded leave this function
-		if (!loadedImage.load(fileName))
+        if (!loadedImage.load(filePath))
 				return false;
 
 		// scaled Image to size of Layer
