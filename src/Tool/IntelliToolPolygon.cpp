@@ -6,8 +6,8 @@
 
 IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker)
 		: IntelliTool(Area, colorPicker){
-		this->innerAlpha = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 0,0,255,1);
-        lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",1,1,50,1);
+        this->innerAlpha = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 255,0,255,1);
+        lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",5,1,10,1);
 		isPointNearStart = false;
 		isDrawing = false;
         this->ActiveType = Tooltype::POLYGON;
