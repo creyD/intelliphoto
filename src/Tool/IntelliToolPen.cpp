@@ -7,10 +7,11 @@
 IntelliToolPen::IntelliToolPen(PaintingArea* Area, IntelliColorPicker* colorPicker)
 		: IntelliTool(Area, colorPicker){
 		this->penWidth = QInputDialog::getInt(nullptr, "Pen width", "Width:", 1,0, 50, 1);
+        this->ActiveType = Tooltype::PEN;
 }
 
 IntelliToolPen::~IntelliToolPen(){
-
+        IntelliTool::onMouseRightPressed(0,0);
 }
 
 void IntelliToolPen::onMouseRightPressed(int x, int y){

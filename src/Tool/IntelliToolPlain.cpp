@@ -4,10 +4,11 @@
 
 IntelliToolPlainTool::IntelliToolPlainTool(PaintingArea* Area, IntelliColorPicker* colorPicker)
 		: IntelliTool(Area, colorPicker){
+        this->ActiveType = Tooltype::PLAIN;
 }
 
 IntelliToolPlainTool::~IntelliToolPlainTool(){
-
+        IntelliTool::onMouseRightPressed(0,0);
 }
 
 void IntelliToolPlainTool::onMouseLeftPressed(int x, int y){

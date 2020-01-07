@@ -7,10 +7,11 @@ IntelliToolCircle::IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* col
 		: IntelliTool(Area, colorPicker){
 		this->innerAlpha = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 0,0,255,1);
 		this->borderWidth = QInputDialog::getInt(nullptr,"Outer edge width", "Value:", 0,1,255,1);
+        this->ActiveType = Tooltype::CIRCLE;
 }
 
 IntelliToolCircle::~IntelliToolCircle(){
-
+           IntelliTool::onMouseRightPressed(0,0);
 }
 
 void IntelliToolCircle::drawCircle(int radius){

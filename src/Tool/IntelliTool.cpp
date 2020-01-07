@@ -79,3 +79,11 @@ void IntelliTool::deleteToolLayer(){
 		Area->deleteLayer(Area->activeLayer+1);
 		this->Canvas=nullptr;
 }
+
+IntelliTool::Tooltype IntelliTool::getTooltype(){
+    return ActiveType;
+}
+
+bool IntelliTool::getIsDrawing(){
+    return isDrawing;
+}

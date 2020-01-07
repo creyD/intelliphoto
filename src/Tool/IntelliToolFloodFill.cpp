@@ -7,10 +7,11 @@
 
 IntelliToolFloodFill::IntelliToolFloodFill(PaintingArea* Area, IntelliColorPicker* colorPicker)
 		: IntelliTool(Area, colorPicker){
+        this->ActiveType = Tooltype::FLOODFILL;
 }
 
 IntelliToolFloodFill::~IntelliToolFloodFill(){
-
+        IntelliTool::onMouseRightPressed(0,0);
 }
 
 void IntelliToolFloodFill::onMouseRightPressed(int x, int y){

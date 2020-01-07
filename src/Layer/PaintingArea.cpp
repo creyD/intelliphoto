@@ -20,7 +20,7 @@
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QWidget(parent){
-		this->Tool = nullptr;
+        this->Tool = nullptr;
         this->setLayerDimensions(maxWidth, maxHeight);
 		this->addLayer(200,200,0,0,ImageType::Shaped_Image);
 		layerBundle[0].image->drawPlain(QColor(0,0,255,255));
@@ -145,11 +145,21 @@ void PaintingArea::floodFill(int r, int g, int b, int a){
 }
 
 void PaintingArea::movePositionActive(int x, int y){
-		layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
+        if(Tool->getIsDrawing()){
+            IntelliTool* temp = copyActiveTool();
+            delete this->Tool;
+            this->Tool = temp;
+        }
+        layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
 }
 
 void PaintingArea::moveActiveLayer(int idx){
+        if(Tool->getIsDrawing()){
+            IntelliTool* temp = copyActiveTool();
+            delete this->Tool;
+            this->Tool = temp;
+        }
 		if(idx==1) {
 				this->selectLayerUp();
 		}else if(idx==-1) {
@@ -158,6 +168,11 @@ void PaintingArea::moveActiveLayer(int idx){
 }
 
 void PaintingArea::slotActivateLayer(int a){
+        if(Tool->getIsDrawing()){
+            IntelliTool* temp = copyActiveTool();
+            delete this->Tool;
+            this->Tool = temp;
+        }
 		if(a>=0 && a < static_cast<int>(layerBundle.size())) {
 				this->setLayerActive(a);
 		}
@@ -352,4 +367,17 @@ void PaintingArea::createTempTopLayer(int idx){
                 newLayer.image = layerBundle[static_cast<unsigned long long>(idx)].image->getDeepCopy();
 				layerBundle.insert(layerBundle.begin()+idx+1,newLayer);
 		}
+}
+
+IntelliTool* PaintingArea::copyActiveTool(){
+    switch(Tool->getTooltype()){
+        case IntelliTool::Tooltype::CIRCLE: return new IntelliToolCircle(this,&colorPicker);
+        case IntelliTool::Tooltype::FLOODFILL: return new IntelliToolFloodFill(this,&colorPicker);
+        case IntelliTool::Tooltype::LINE: return new IntelliToolLine(this,&colorPicker);
+        case IntelliTool::Tooltype::PEN: return new IntelliToolPen(this,&colorPicker);
+        case IntelliTool::Tooltype::PLAIN: return new IntelliToolPlainTool(this,&colorPicker);
+        case IntelliTool::Tooltype::POLYGON: return new IntelliToolPolygon(this,&colorPicker);
+        case IntelliTool::Tooltype::RECTANGLE: return new IntelliToolRectangle(this,&colorPicker);
+        default: return nullptr;
+    }
 }

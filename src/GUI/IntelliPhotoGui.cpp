@@ -402,13 +402,13 @@ void IntelliPhotoGui::createMenus(){
 
 		//Attach all Tool Options
 		toolMenu = new QMenu(tr("&Tools"), this);
+        toolMenu->addAction(actionCreateCircleTool);
+        toolMenu->addAction(actionCreateFloodFillTool);
+        toolMenu->addAction(actionCreateLineTool);
 		toolMenu->addAction(actionCreatePenTool);
 		toolMenu->addAction(actionCreatePlainTool);
-		toolMenu->addAction(actionCreateLineTool);
+        toolMenu->addAction(actionCreatePolygonTool);
 		toolMenu->addAction(actionCreateRectangleTool);
-		toolMenu->addAction(actionCreateCircleTool);
-		toolMenu->addAction(actionCreatePolygonTool);
-		toolMenu->addAction(actionCreateFloodFillTool);
 		toolMenu->addSeparator();
 		toolMenu->addMenu(colorMenu);
 
