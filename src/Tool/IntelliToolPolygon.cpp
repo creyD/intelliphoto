@@ -5,7 +5,7 @@
 #include <QInputDialog>
 
 IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker)
-		: IntelliTool(Area, colorPicker){
+        : IntelliTool(Area, colorPicker){
         this->innerAlpha = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 255,0,255,1);
         lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",5,1,10,1);
 		isPointNearStart = false;
@@ -107,7 +107,7 @@ bool IntelliToolPolygon::isNearStart(int x, int y, QPoint Startpoint){
 		bool isNear = false;
 		int StartX = Startpoint.x();
 		int StartY = Startpoint.y();
-		int valueToNear = 10;
+        int valueToNear = 5;
 
 		for(int i = StartX - valueToNear; i < StartX + valueToNear; i++) {
 				for(int j = StartY - valueToNear; j < StartY + valueToNear; j++) {

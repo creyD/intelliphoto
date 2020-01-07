@@ -277,11 +277,13 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 }
 
 void PaintingArea::wheelEvent(QWheelEvent*event){
-		QPoint numDegrees = event->angleDelta() / 8;
-		if(!numDegrees.isNull()) {
-				QPoint numSteps = numDegrees / 15;
-				Tool->onWheelScrolled(numSteps.y()* -1);
-		}
+        if(this->Tool != nullptr){
+            QPoint numDegrees = event->angleDelta() / 8;
+            if(!numDegrees.isNull()) {
+                    QPoint numSteps = numDegrees / 15;
+                    Tool->onWheelScrolled(numSteps.y()* -1);
+            }
+        }
 }
 
 // QPainter provides functions to draw on the widget
