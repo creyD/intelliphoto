@@ -8,13 +8,7 @@
 #include <QWidget>
 #include <vector>
 
-/*!
- * \brief The Types, which an Image can be.
- */
-enum class ImageType {
-		Raster_Image,
-		Shaped_Image
-};
+#include "IntelliHelper/IntelliHelper.h"
 
 class IntelliTool;
 
@@ -23,6 +17,16 @@ class IntelliTool;
  */
 class IntelliImage {
 friend IntelliTool;
+public:
+
+/*!
+ * \brief The Types, which an Image can be.
+ */
+enum class ImageType {
+        Raster_Image,
+        Shaped_Image
+};
+
 protected:
 void resizeImage(QImage*image, const QSize &newSize);
 
@@ -30,6 +34,11 @@ void resizeImage(QImage*image, const QSize &newSize);
  * \brief The underlying image data.
  */
 QImage imageData;
+
+/*!
+ * \brief The Type, an Image is.
+ */
+ImageType TypeOfImage;
 public:
 /*!
  * \brief The Construcor of the IntelliImage. Given the Image dimensions.
@@ -112,6 +121,10 @@ virtual void setPolygon(const std::vector<QPoint>& polygonData) = 0;
  */
 virtual std::vector<QPoint> getPolygonData(){
 		return std::vector<QPoint>();
+}
+
+virtual ImageType getTypeOfImage(){
+    return TypeOfImage;
 }
 
 /*!

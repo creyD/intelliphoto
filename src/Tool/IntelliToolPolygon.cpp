@@ -1,8 +1,8 @@
 #include "IntelliToolPolygon.h"
 #include "Layer/PaintingArea.h"
-#include <QDebug>
 #include <QCursor>
 #include <QInputDialog>
+#include <QDebug>
 
 IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker)
         : IntelliTool(Area, colorPicker){
@@ -10,6 +10,7 @@ IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* c
         lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",5,1,10,1);
 		isPointNearStart = false;
 		isDrawing = false;
+        isInside = false;
         this->ActiveType = Tooltype::POLYGON;
 }
 
@@ -20,7 +21,16 @@ IntelliToolPolygon::~IntelliToolPolygon(){
 }
 
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
-		if(!isDrawing && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
+        if(!isDrawing && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::Shaped_Image && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()){
+            std::vector<Triangle> Triangles = IntelliHelper::calculateTriangles(Area->getPolygonDataOfRealLayer());
+            QPoint Point(x,y);
+            isInside = IntelliHelper::isInPolygon(Triangles,Point);
+        }
+        else if(!isDrawing && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::Raster_Image && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()){
+            isInside = true;
+        }
+
+        if(isInside && !isDrawing) {
 				IntelliTool::onMouseLeftPressed(x,y);
 				QPoint drawingPoint = QPoint(x,y);
 
@@ -37,6 +47,7 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
                     this->Canvas->image->calculateVisiblity();
                 }
                 else{
+                    isInside = false;
                     isDrawing = false;
                     QPointList.clear();
                     IntelliTool::onMouseRightPressed(x,y);
@@ -52,6 +63,7 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 }
 
 void IntelliToolPolygon::onMouseRightPressed(int x, int y){
+        isInside = false;
 		isDrawing = false;
 		isPointNearStart = false;
 		QPointList.clear();
@@ -60,6 +72,7 @@ void IntelliToolPolygon::onMouseRightPressed(int x, int y){
 
 void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
         if(isPointNearStart) {
+                isInside = false;
 				isPointNearStart = false;
 				isDrawing = false;
 				std::vector<Triangle> Triangles = IntelliHelper::calculateTriangles(QPointList);

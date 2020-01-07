@@ -30,6 +30,11 @@ int lineWidth;
 bool isDrawing;
 
 /*!
+ * \brief isInside Checks if Point is inside Image
+ */
+bool isInside;
+
+/*!
  * \brief PointIsNearStart true, when last click near startpoint, else false.
  */
 bool isPointNearStart;

@@ -25,7 +25,7 @@ void IntelliToolPen::onMouseRightReleased(int x, int y){
 void IntelliToolPen::onMouseLeftPressed(int x, int y){
 		IntelliTool::onMouseLeftPressed(x,y);
 		this->previousPoint=QPoint(x,y);
-		this->Canvas->image->drawPixel(previousPoint, colorPicker->getFirstColor());
+        this->Canvas->image->drawPoint(previousPoint, colorPicker->getFirstColor(), penWidth);
 		Canvas->image->calculateVisiblity();
 }
 
