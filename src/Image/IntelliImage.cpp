@@ -5,6 +5,7 @@
 IntelliImage::IntelliImage(int weight, int height)
 		: imageData(QSize(weight, height), QImage::Format_ARGB32){
 		imageData.fill(QColor(255,255,255,255));
+
 }
 
 IntelliImage::~IntelliImage(){

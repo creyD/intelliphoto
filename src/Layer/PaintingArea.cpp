@@ -22,7 +22,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QWidget(parent){
         this->Tool = nullptr;
         this->setLayerDimensions(maxWidth, maxHeight);
-		this->addLayer(200,200,0,0,ImageType::Shaped_Image);
+        this->addLayer(200,200,0,0,IntelliImage::ImageType::Shaped_Image);
 		layerBundle[0].image->drawPlain(QColor(0,0,255,255));
 		std::vector<QPoint> polygon;
 		polygon.push_back(QPoint(100,000));
@@ -31,7 +31,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		polygon.push_back(QPoint(000,100));
 		layerBundle[0].image->setPolygon(polygon);
 
-		this->addLayer(200,200,150,150);
+        this->addLayer(200,200,150,150,IntelliImage::ImageType::Raster_Image);
 		layerBundle[1].image->drawPlain(QColor(0,255,0,255));
 		layerBundle[1].alpha=200;
 
@@ -53,15 +53,15 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 
 }
 
-int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, ImageType type){
+int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, IntelliImage::ImageType type){
 		LayerObject newLayer;
 		newLayer.width = width;
 		newLayer.height = height;
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
-		if(type==ImageType::Raster_Image) {
+        if(type==IntelliImage::ImageType::Raster_Image) {
 				newLayer.image = new IntelliRasterImage(width,height);
-		}else if(type==ImageType::Shaped_Image) {
+        }else if(type==IntelliImage::ImageType::Shaped_Image) {
 				newLayer.image = new IntelliShapedImage(width, height);
 		}
 		newLayer.alpha = 255;
@@ -232,6 +232,14 @@ int PaintingArea::getWidthOfActive(){
 
 int PaintingArea::getHeightOfActive(){
         return this->layerBundle[static_cast<unsigned long long>(activeLayer)].height;
+}
+
+IntelliImage::ImageType PaintingArea::getTypeOfImageRealLayer(){
+        return this->layerBundle[static_cast<unsigned long long>(activeLayer)].image->getTypeOfImage();
+}
+
+std::vector<QPoint> PaintingArea::getPolygonDataOfRealLayer(){
+        return this->layerBundle[static_cast<unsigned long long>(activeLayer)].image->getPolygonData();
 }
 
 // If a mouse button is pressed check if it was the

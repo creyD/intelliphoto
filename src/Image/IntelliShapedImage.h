@@ -3,7 +3,6 @@
 
 #include "Image/IntelliRasterImage.h"
 #include <vector>
-#include "IntelliHelper/IntelliHelper.h"
 
 /*!
  * \brief The IntelliShapedImage manages a Shapedimage.
