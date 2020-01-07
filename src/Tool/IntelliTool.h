@@ -11,6 +11,16 @@ class PaintingArea;
  * \brief An abstract class that manages the basic events, like mouse clicks or scrolls events.
  */
 class IntelliTool {
+public:
+    enum class Tooltype{
+        CIRCLE,
+        FLOODFILL,
+        LINE,
+        PEN,
+        PLAIN,
+        POLYGON,
+        RECTANGLE
+    };
 private:
 /*!
  * \brief A function that creates a layer to draw on.
@@ -31,6 +41,8 @@ protected:
  * \brief A pointer to the general PaintingArea to interact with.
  */
 PaintingArea* Area;
+
+Tooltype ActiveType;
 
 /*!
  * \brief A pointer to the IntelliColorPicker of the PaintingArea to interact with, and get the colors.
@@ -106,6 +118,9 @@ virtual void onWheelScrolled(int value);
  */
 virtual void onMouseMoved(int x, int y);
 
+Tooltype getTooltype();
+
+bool getIsDrawing();
 
 };
 #endif

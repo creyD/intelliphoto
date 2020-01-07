@@ -6,12 +6,13 @@
 IntelliToolLine::IntelliToolLine(PaintingArea* Area, IntelliColorPicker* colorPicker)
 		: IntelliTool(Area, colorPicker){
 		this->lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",1,1,50,1);
+        this->ActiveType = Tooltype::LINE;
 		//create checkbox or scroll dialog to get line style
 		this->lineStyle = LineStyle::SOLID_LINE;
 }
 
 IntelliToolLine::~IntelliToolLine(){
-
+        IntelliTool::onMouseRightPressed(0,0);
 }
 
 void IntelliToolLine::onMouseRightPressed(int x, int y){

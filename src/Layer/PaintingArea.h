@@ -190,6 +190,7 @@ private:
     void setLayerDimensions(int maxWidth, int maxHeight);
     void selectLayerUp();
     void selectLayerDown();
+    IntelliTool* copyActiveTool();
 
     QImage* Canvas;
     int maxWidth;

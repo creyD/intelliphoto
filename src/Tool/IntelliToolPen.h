@@ -4,6 +4,7 @@
 #include "IntelliTool.h"
 #include "QColor"
 #include "QPoint"
+
 /*!
  * \brief The IntelliToolPen class represents a tool to draw a line.
  */

@@ -6,10 +6,11 @@ IntelliToolRectangle::IntelliToolRectangle(PaintingArea* Area, IntelliColorPicke
 		: IntelliTool(Area, colorPicker){
 		this->innerAlpha = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 0,0,255,1);
 		this->borderWidth = QInputDialog::getInt(nullptr,"Outer edge width", "Value:", 0,1,255,1);
+        this->ActiveType = Tooltype::RECTANGLE;
 }
 
 IntelliToolRectangle::~IntelliToolRectangle(){
-
+        IntelliTool::onMouseRightPressed(0,0);
 }
 
 void IntelliToolRectangle::drawRectangle(QPoint otherCorner){
