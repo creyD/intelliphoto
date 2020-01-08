@@ -14,7 +14,7 @@ public:
     bool getFastRenderer();
 
 private:
-    bool fastRenderer = false;
+    bool fastRenderer = true;
 };
 
 #endif // INTELLIRENDERSETTINGS_H

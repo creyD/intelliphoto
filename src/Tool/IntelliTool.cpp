@@ -57,7 +57,7 @@ void IntelliTool::mergeToolLayer(){
 		QColor clr_0;
 		QColor clr_1;
         if(Area->renderSettings.getFastRenderer()){
-            activeLayer->image->imageData.convertToFormat(QImage::Format_ARGB32);
+             activeLayer->image->imageData = activeLayer->image->imageData.convertToFormat(QImage::Format_ARGB32);
         }
 		for(int y=0; y<activeLayer->height; y++) {
 				for(int x=0; x<activeLayer->width; x++) {
@@ -77,7 +77,7 @@ void IntelliTool::mergeToolLayer(){
 				}
 		}
         if(Area->renderSettings.getFastRenderer()){
-            activeLayer->image->imageData.convertToFormat(QImage::Format_Indexed8);
+            activeLayer->image->imageData = activeLayer->image->imageData.convertToFormat(QImage::Format_Indexed8);
         }
 }
 

@@ -41,7 +41,9 @@ void IntelliImage::resizeImage(QImage*image, const QSize &newSize){
 		QPainter painter(&newImage);
 		painter.drawImage(QPoint(0, 0), *image);
 		*image = newImage;
-        updateRendererSetting(fastRenderer);
+        if(fastRenderer){
+               this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
+        }
 }
 
 void IntelliImage::drawPixel(const QPoint &p1, const QColor& color){
@@ -56,7 +58,9 @@ void IntelliImage::drawPixel(const QPoint &p1, const QColor& color){
 
 		// Draw a line from the last registered point to the current
 		painter.drawPoint(p1);
-        updateRendererSetting(fastRenderer);
+        if(fastRenderer){
+               this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
+        }
 }
 
 void IntelliImage::drawPoint(const QPoint &p1, const QColor& color, const int& penWidth){
@@ -70,7 +74,9 @@ void IntelliImage::drawPoint(const QPoint &p1, const QColor& color, const int& p
 		painter.setPen(QPen(color, penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 		// Draw a line from the last registered point to the current
 		painter.drawPoint(p1);
-        updateRendererSetting(fastRenderer);
+        if(fastRenderer){
+               this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
+        }
 }
 
 void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& color, const int& penWidth){
@@ -85,7 +91,9 @@ void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& co
 
 		// Draw a line from the last registered point to the current
 		painter.drawLine(p1, p2);
-        updateRendererSetting(fastRenderer);
+        if(fastRenderer){
+               this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
+        }
 }
 
 void IntelliImage::drawPlain(const QColor& color){
@@ -93,11 +101,17 @@ void IntelliImage::drawPlain(const QColor& color){
                this->imageData = this->imageData.convertToFormat(QImage::Format_ARGB32);
         }
         imageData.fill(color);
-        updateRendererSetting(fastRenderer);
+        if(fastRenderer){
+               this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
+        }
 }
 
 QColor IntelliImage::getPixelColor(QPoint& point){
-		return imageData.pixelColor(point);
+    if(fastRenderer){
+           QImage copy = this->imageData.convertToFormat(QImage::Format_ARGB32);
+           return copy.pixelColor(point);
+    }
+    return imageData.pixelColor(point);
 }
 
 void IntelliImage::updateRendererSetting(bool fastRendererOn){

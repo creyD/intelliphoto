@@ -147,21 +147,25 @@ void PaintingArea::floodFill(int r, int g, int b, int a){
 }
 
 void PaintingArea::movePositionActive(int x, int y){
-        if(Tool->getIsDrawing()){
-            IntelliTool* temp = copyActiveTool();
-            delete this->Tool;
-            this->Tool = temp;
+        if(Tool!=nullptr){
+            if(Tool->getIsDrawing()){
+                IntelliTool* temp = copyActiveTool();
+                delete this->Tool;
+                this->Tool = temp;
+            }
         }
         layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
 }
 
 void PaintingArea::moveActiveLayer(int idx){
-        if(Tool->getIsDrawing()){
-            IntelliTool* temp = copyActiveTool();
-            delete this->Tool;
-            this->Tool = temp;
-        }
+          if(Tool!=nullptr){
+              if(Tool->getIsDrawing()){
+                  IntelliTool* temp = copyActiveTool();
+                  delete this->Tool;
+                  this->Tool = temp;
+              }
+          }
 		if(idx==1) {
 				this->selectLayerUp();
 		}else if(idx==-1) {
@@ -170,11 +174,13 @@ void PaintingArea::moveActiveLayer(int idx){
 }
 
 void PaintingArea::slotActivateLayer(int a){
+    if(Tool!=nullptr){
         if(Tool->getIsDrawing()){
             IntelliTool* temp = copyActiveTool();
             delete this->Tool;
             this->Tool = temp;
         }
+    }
 		if(a>=0 && a < static_cast<int>(layerBundle.size())) {
 				this->setLayerActive(a);
 		}
