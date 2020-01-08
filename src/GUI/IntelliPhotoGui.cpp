@@ -1,8 +1,5 @@
 // ---------- IntelliPhotoGui.cpp ----------
 
-#include <QtWidgets>
-#include <QPixmap>
-
 #include "IntelliPhotoGui.h"
 #include "Layer/PaintingArea.h"
 
@@ -19,7 +16,7 @@ IntelliPhotoGui::IntelliPhotoGui(){
 		// Size the app
 		resize(600,600);
 		showMaximized();
-
+        setDefaultToolValue();
 }
 
 // User tried to close the app
@@ -245,6 +242,11 @@ void IntelliPhotoGui::slotAboutDialog(){
 		                   tr("<p><b>IntelliPhoto</b>Pretty basic editor.</p>"));
 }
 
+void IntelliPhotoGui::slotEnterPressed(){
+    QString string = EditLineWidth->text();
+    paintingArea->Toolsettings.setLineWidth(string.toInt());
+}
+
 // Define menu actions that call functions
 void IntelliPhotoGui::createActions(){
 		// Get a list of the supported file formats
@@ -361,6 +363,9 @@ void IntelliPhotoGui::createActions(){
 		// Create about Qt action and tie to IntelliPhotoGui::aboutQt()
 		actionAboutQtDialog = new QAction(tr("About &Qt"), this);
 		connect(actionAboutQtDialog, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+
+        actionPressEnter = new QAction();
+        connect(EditLineWidth, SIGNAL(returnPressed()), this, SLOT(slotEnterPressed()));
 }
 
 // Create the menubar
@@ -436,11 +441,81 @@ void IntelliPhotoGui::createGui(){
 
 		// create Gui elements
 		paintingArea = new PaintingArea();
-        Push
+
+        QPixmap p(":/Icons/Buttons/icons/icon.png");
+
+        CircleButton = new QPushButton();
+        CircleButton->setFixedSize(Buttonsize);
+        CircleButton->setIcon(p);
+        CircleButton->setIconSize(Buttonsize);
+
+        FloodFillButton = new QPushButton();
+        FloodFillButton->setFixedSize(Buttonsize);
+        FloodFillButton->setIcon(p);
+        FloodFillButton->setIconSize(Buttonsize);
+
+        LineButton = new QPushButton();
+        LineButton->setFixedSize(Buttonsize);
+        LineButton->setIcon(p);
+        LineButton->setIconSize(Buttonsize);
+
+        PenButton = new QPushButton();
+        PenButton->setFixedSize(Buttonsize);
+        PenButton->setIcon(p);
+        PenButton->setIconSize(Buttonsize);
+
+        PlainButton = new QPushButton();
+        PlainButton->setFixedSize(Buttonsize);
+        PlainButton->setIcon(p);
+        PlainButton->setIconSize(Buttonsize);
+
+        PolygonButton = new QPushButton();
+        PolygonButton->setFixedSize(Buttonsize);
+        PolygonButton->setIcon(p);
+        PolygonButton->setIconSize(Buttonsize);
+
+        RectangleButton = new QPushButton();
+        RectangleButton->setFixedSize(Buttonsize);
+        RectangleButton->setIcon(p);
+        RectangleButton->setIconSize(Buttonsize);
+
+        WidthLine = new QLabel();
+        WidthLine->setText("Width");
+        WidthLine->setFixedSize(QSize(100,20));
+
+        EditLineWidth = new QLineEdit();
+        EditLineWidth->setFixedSize(QSize(50,20));
+        EditLineWidth->setText("5");
+        ValidatorLineWidth = new QIntValidator();
+        ValidatorLineWidth->setTop(50);
+        ValidatorLineWidth->setBottom(1);
+        EditLineWidth->setValidator(ValidatorLineWidth);
+
+        innerAlphaLine = new QLabel();
+        innerAlphaLine->setText("Inner Alpha");
+        innerAlphaLine->setFixedSize(QSize(100,20));
+
+        EditLineInnerAlpha = new QLineEdit();
+        EditLineInnerAlpha->setFixedSize(QSize(50,20));
+        EditLineInnerAlpha->setText("255");
+        ValidatorInnerAlpha = new QIntValidator();
+        ValidatorInnerAlpha->setTop(255);
+        ValidatorInnerAlpha->setBottom(0);
+        EditLineInnerAlpha->setValidator(ValidatorInnerAlpha);
 
 		// set gui elements
-        mainLayout->addWidget(paintingArea,1,1,10,10);
-        mainLayout->addWiget();
+        mainLayout->addWidget(paintingArea,1,1,20,1);
+        mainLayout->addWidget(CircleButton,1,2,1,1);
+        mainLayout->addWidget(FloodFillButton,2,2,1,1);
+        mainLayout->addWidget(LineButton,3,2,1,1);
+        mainLayout->addWidget(PenButton,4,2,1,1);
+        mainLayout->addWidget(PlainButton,5,2,1,1);
+        mainLayout->addWidget(PolygonButton,6,2,1,1);
+        mainLayout->addWidget(RectangleButton,7,2,1,1);
+        mainLayout->addWidget(WidthLine,8,2,1,1);
+        mainLayout->addWidget(EditLineWidth,9,2,1,1);
+        mainLayout->addWidget(innerAlphaLine,10,2,1,1);
+        mainLayout->addWidget(EditLineInnerAlpha,11,2,1,1);
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
@@ -498,4 +573,8 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
 				// Call for the file to be saved
 				return paintingArea->save(fileName, fileFormat.constData());
 		}
+}
+
+void IntelliPhotoGui::setDefaultToolValue(){
+    slotEnterPressed();
 }

@@ -1,6 +1,8 @@
 #ifndef IntelliPhotoGui_H
 #define IntelliPhotoGui_H
 
+#include <QtWidgets>
+#include <QPixmap>
 #include <QList>
 #include <QMainWindow>
 #include <QGridLayout>
@@ -69,6 +71,8 @@ void slotCreateFloodFillTool();
 // slots for dialogs
 void slotAboutDialog();
 
+void slotEnterPressed();
+
 private:
 // Will tie user actions to functions
 void createActions();
@@ -83,10 +87,25 @@ bool maybeSave();
 // Opens the Save dialog and saves
 bool saveFile(const QByteArray &fileFormat);
 
+void setDefaultToolValue();
+
 // What we'll draw on
 PaintingArea* paintingArea;
 
-QPushButton* PushButton;
+const QSize Buttonsize = QSize(50,50);
+QPushButton* CircleButton;
+QPushButton* FloodFillButton;
+QPushButton* LineButton;
+QPushButton* PenButton;
+QPushButton* PlainButton;
+QPushButton* PolygonButton;
+QPushButton* RectangleButton;
+QLabel* WidthLine;
+QLabel* innerAlphaLine;
+QLineEdit* EditLineWidth;
+QLineEdit* EditLineInnerAlpha;
+QIntValidator* ValidatorLineWidth;
+QIntValidator* ValidatorInnerAlpha;
 
 // The menu widgets
 QMenu*saveAsMenu;
@@ -115,6 +134,8 @@ QAction*actionCreateRectangleTool;
 QAction*actionCreateCircleTool;
 QAction*actionCreatePolygonTool;
 QAction*actionCreateFloodFillTool;
+
+QAction*actionPressEnter;
 
 // dialog actions
 QAction*actionAboutDialog;
