@@ -4,8 +4,8 @@
 #include <QInputDialog>
 #include <QDebug>
 
-IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker)
-        : IntelliTool(Area, colorPicker){
+IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
+        : IntelliTool(Area, colorPicker, Toolsettings){
         this->innerAlpha = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 255,0,255,1);
         lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",5,1,10,1);
 		isPointNearStart = false;
@@ -22,9 +22,9 @@ IntelliToolPolygon::~IntelliToolPolygon(){
 
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
         if(!isDrawing && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::Shaped_Image && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()){
-            std::vector<Triangle> Triangles = IntelliHelper::calculateTriangles(Area->getPolygonDataOfRealLayer());
+            std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(Area->getPolygonDataOfRealLayer());
             QPoint Point(x,y);
-            isInside = IntelliHelper::isInPolygon(Triangles,Point);
+            isInside = IntelliTriangulation::isInPolygon(Triangles,Point);
         }
         else if(!isDrawing && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::Raster_Image && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()){
             isInside = true;
@@ -75,14 +75,14 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
                 isInside = false;
 				isPointNearStart = false;
 				isDrawing = false;
-				std::vector<Triangle> Triangles = IntelliHelper::calculateTriangles(QPointList);
+				std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(QPointList);
 				QPoint Point;
 				QColor colorTwo(colorPicker->getSecondColor());
 				colorTwo.setAlpha(innerAlpha);
 				for(int i = 0; i < activeLayer->width; i++) {
 						for(int j = 0; j < activeLayer->height; j++) {
 								Point = QPoint(i,j);
-								if(IntelliHelper::isInPolygon(Triangles,Point)) {
+								if(IntelliTriangulation::isInPolygon(Triangles,Point)) {
 										this->Canvas->image->drawPixel(Point, colorTwo);
 								}
 						}

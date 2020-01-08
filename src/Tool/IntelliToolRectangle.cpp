@@ -2,8 +2,8 @@
 #include "Layer/PaintingArea.h"
 #include "QInputDialog"
 
-IntelliToolRectangle::IntelliToolRectangle(PaintingArea* Area, IntelliColorPicker* colorPicker)
-		: IntelliTool(Area, colorPicker){
+IntelliToolRectangle::IntelliToolRectangle(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
+        : IntelliTool(Area, colorPicker, Toolsettings){
 		this->innerAlpha = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 0,0,255,1);
 		this->borderWidth = QInputDialog::getInt(nullptr,"Outer edge width", "Value:", 0,1,255,1);
         this->ActiveType = Tooltype::RECTANGLE;

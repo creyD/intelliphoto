@@ -5,14 +5,6 @@
 #include "QPoint"
 
 /*!
- * \brief The LineStyle enum classifing all ways of drawing a line.
- */
-enum class LineStyle {
-		SOLID_LINE,
-		DOTTED_LINE
-};
-
-/*!
  * \brief The IntelliToolFloodFill class represents a tool to draw a line.
  */
 class IntelliToolLine : public IntelliTool {
@@ -25,11 +17,6 @@ QPoint lineStartingPoint;
  * \brief The width of the line to draw.
  */
 int lineWidth;
-
-/*!
- * \brief The style of the line. Apropriate to LineStyle.
- */
-LineStyle lineStyle;
 public:
 
 /*!
@@ -37,7 +24,7 @@ public:
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolLine(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolLine(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 
 /*!
  * \brief An abstract Destructor.

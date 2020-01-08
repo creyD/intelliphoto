@@ -2,7 +2,7 @@
 #define INTELLITOOLPOLYGON_H
 
 #include "IntelliTool.h"
-#include "IntelliHelper/IntelliHelper.h"
+#include "IntelliHelper/IntelliTriangulation.h"
 #include <vector>
 #include <QPoint>
 /*!
@@ -54,7 +54,7 @@ public:
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 /*!
  * \brief A Destructor.
  */

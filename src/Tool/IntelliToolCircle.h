@@ -34,7 +34,7 @@ public:
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 
 /*!
  * \brief A Destructor.

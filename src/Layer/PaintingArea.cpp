@@ -194,36 +194,36 @@ void PaintingArea::colorPickerSwapColors(){
 
 void PaintingArea::createPenTool(){
 		delete this->Tool;
-		Tool = new IntelliToolPen(this, &colorPicker);
+        Tool = new IntelliToolPen(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createPlainTool(){
 		delete this->Tool;
-		Tool = new IntelliToolPlainTool(this, &colorPicker);
+        Tool = new IntelliToolPlainTool(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createLineTool(){
 		delete this->Tool;
-		Tool = new IntelliToolLine(this, &colorPicker);
+        Tool = new IntelliToolLine(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createRectangleTool(){
 		delete this->Tool;
-		Tool = new IntelliToolRectangle(this, &colorPicker);
+        Tool = new IntelliToolRectangle(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createCircleTool(){
 		delete this->Tool;
-		Tool = new IntelliToolCircle(this, &colorPicker);
+        Tool = new IntelliToolCircle(this, &colorPicker, &Toolsettings);
 }
 void PaintingArea::createPolygonTool(){
 		delete this->Tool;
-		Tool = new IntelliToolPolygon(this, &colorPicker);
+        Tool = new IntelliToolPolygon(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createFloodFillTool(){
 		delete this->Tool;
-		Tool = new IntelliToolFloodFill(this, &colorPicker);
+        Tool = new IntelliToolFloodFill(this, &colorPicker, &Toolsettings);
 }
 
 int PaintingArea::getWidthOfActive(){
@@ -381,13 +381,13 @@ void PaintingArea::createTempTopLayer(int idx){
 
 IntelliTool* PaintingArea::copyActiveTool(){
     switch(Tool->getTooltype()){
-        case IntelliTool::Tooltype::CIRCLE: return new IntelliToolCircle(this,&colorPicker);
-        case IntelliTool::Tooltype::FLOODFILL: return new IntelliToolFloodFill(this,&colorPicker);
-        case IntelliTool::Tooltype::LINE: return new IntelliToolLine(this,&colorPicker);
-        case IntelliTool::Tooltype::PEN: return new IntelliToolPen(this,&colorPicker);
-        case IntelliTool::Tooltype::PLAIN: return new IntelliToolPlainTool(this,&colorPicker);
-        case IntelliTool::Tooltype::POLYGON: return new IntelliToolPolygon(this,&colorPicker);
-        case IntelliTool::Tooltype::RECTANGLE: return new IntelliToolRectangle(this,&colorPicker);
+        case IntelliTool::Tooltype::CIRCLE: return new IntelliToolCircle(this,&colorPicker, &Toolsettings);
+        case IntelliTool::Tooltype::FLOODFILL: return new IntelliToolFloodFill(this,&colorPicker, &Toolsettings);
+        case IntelliTool::Tooltype::LINE: return new IntelliToolLine(this,&colorPicker, &Toolsettings);
+        case IntelliTool::Tooltype::PEN: return new IntelliToolPen(this,&colorPicker, &Toolsettings);
+        case IntelliTool::Tooltype::PLAIN: return new IntelliToolPlainTool(this,&colorPicker, &Toolsettings);
+        case IntelliTool::Tooltype::POLYGON: return new IntelliToolPolygon(this,&colorPicker, &Toolsettings);
+        case IntelliTool::Tooltype::RECTANGLE: return new IntelliToolRectangle(this,&colorPicker, &Toolsettings);
         default: return nullptr;
     }
 }

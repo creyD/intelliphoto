@@ -202,6 +202,7 @@ private:
 
     IntelliTool* Tool;
     IntelliColorPicker colorPicker;
+    IntelliToolsettings Toolsettings;
 
     std::vector<LayerObject> layerBundle;
     int activeLayer=-1;
