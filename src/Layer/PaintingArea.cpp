@@ -21,6 +21,7 @@
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QWidget(parent){
         this->Tool = nullptr;
+        this->renderSettings = IntelliRenderSettings();
         this->setLayerDimensions(maxWidth, maxHeight);
         this->addLayer(200,200,0,0,IntelliImage::ImageType::Shaped_Image);
 		layerBundle[0].image->drawPlain(QColor(0,0,255,255));
@@ -36,6 +37,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		layerBundle[1].alpha=200;
 
 		activeLayer=0;
+
 }
 
 PaintingArea::~PaintingArea(){
@@ -46,7 +48,8 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 		//set standart parameter
 		this->maxWidth = maxWidth;
 		this->maxHeight = maxHeight;
-		Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
+        if(renderSettings.getFastRenderer()) Canvas = new QImage(maxWidth,maxHeight, QImage::Format_Indexed8);
+        else Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
 
 		// Roots the widget to the top left even if resized
 		setAttribute(Qt::WA_StaticContents);
@@ -60,11 +63,14 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
         if(type==IntelliImage::ImageType::Raster_Image) {
-				newLayer.image = new IntelliRasterImage(width,height);
+                newLayer.image = new IntelliRasterImage(width,height,renderSettings.getFastRenderer());
         }else if(type==IntelliImage::ImageType::Shaped_Image) {
-				newLayer.image = new IntelliShapedImage(width, height);
+                newLayer.image = new IntelliShapedImage(width, height, renderSettings.getFastRenderer());
 		}
-		newLayer.alpha = 255;
+
+        newLayer.alpha = 255;
+
+
 		this->layerBundle.push_back(newLayer);
 		return static_cast<int>(layerBundle.size())-1;
 }
@@ -118,7 +124,7 @@ bool PaintingArea::save(const QString &filePath, const char*fileFormat){
         this->drawLayers(true);
 
 		if(!strcmp(fileFormat,"PNG")) {
-				QImage visibleImage = Canvas->convertToFormat(QImage::Format_Indexed8);
+                QImage visibleImage = Canvas->convertToFormat(QImage::Format_Indexed8);
 				fileFormat = "png";
                 if (visibleImage.save(filePath, fileFormat)) {
 						return true;
@@ -145,21 +151,25 @@ void PaintingArea::floodFill(int r, int g, int b, int a){
 }
 
 void PaintingArea::movePositionActive(int x, int y){
-        if(Tool->getIsDrawing()){
-            IntelliTool* temp = copyActiveTool();
-            delete this->Tool;
-            this->Tool = temp;
+        if(Tool!=nullptr){
+            if(Tool->getIsDrawing()){
+                IntelliTool* temp = copyActiveTool();
+                delete this->Tool;
+                this->Tool = temp;
+            }
         }
         layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
 }
 
 void PaintingArea::moveActiveLayer(int idx){
-        if(Tool->getIsDrawing()){
-            IntelliTool* temp = copyActiveTool();
-            delete this->Tool;
-            this->Tool = temp;
-        }
+          if(Tool!=nullptr){
+              if(Tool->getIsDrawing()){
+                  IntelliTool* temp = copyActiveTool();
+                  delete this->Tool;
+                  this->Tool = temp;
+              }
+          }
 		if(idx==1) {
 				this->selectLayerUp();
 		}else if(idx==-1) {
@@ -168,11 +178,13 @@ void PaintingArea::moveActiveLayer(int idx){
 }
 
 void PaintingArea::slotActivateLayer(int a){
+    if(Tool!=nullptr){
         if(Tool->getIsDrawing()){
             IntelliTool* temp = copyActiveTool();
             delete this->Tool;
             this->Tool = temp;
         }
+    }
 		if(a>=0 && a < static_cast<int>(layerBundle.size())) {
 				this->setLayerActive(a);
 		}
@@ -302,7 +314,7 @@ void PaintingArea::paintEvent(QPaintEvent*event){
 
 		QPainter painter(this);
 		QRect dirtyRec = event->rect();
-		painter.drawImage(dirtyRec, *Canvas, dirtyRec);
+        painter.drawImage(dirtyRec, *Canvas, dirtyRec);
 		update();
 }
 
@@ -333,13 +345,17 @@ void PaintingArea::selectLayerDown(){
 
 void PaintingArea::drawLayers(bool forSaving){
 		if(forSaving) {
-				Canvas->fill(Qt::GlobalColor::transparent);
+                Canvas->fill(Qt::GlobalColor::transparent);
 		}else{
-				Canvas->fill(Qt::GlobalColor::black);
+                Canvas->fill(Qt::GlobalColor::black);
 		}
 		for(size_t i=0; i<layerBundle.size(); i++) {
 				LayerObject layer = layerBundle[i];
 				QImage cpy = layer.image->getDisplayable(layer.alpha);
+                if(renderSettings.getFastRenderer()){
+                    cpy = cpy.convertToFormat(QImage::Format_ARGB32);
+                    *Canvas = Canvas->convertToFormat(QImage::Format_ARGB32);
+                }
 				QColor clr_0;
 				QColor clr_1;
 				for(int y=0; y<layer.height; y++) {
@@ -348,7 +364,7 @@ void PaintingArea::drawLayers(bool forSaving){
 						for(int x=0; x<layer.width; x++) {
 								if(layer.widthOffset+x<0) continue;
 								if(layer.widthOffset+x>=maxWidth) break;
-								clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.heightOffset+y);
+                                clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.heightOffset+y);
 								clr_1=cpy.pixelColor(x,y);
 								float t = static_cast<float>(clr_1.alpha())/255.f;
 								int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
@@ -364,6 +380,9 @@ void PaintingArea::drawLayers(bool forSaving){
 						}
 				}
 		}
+        if(renderSettings.getFastRenderer()){
+            *Canvas = Canvas->convertToFormat(QImage::Format_Indexed8);
+        }
 }
 
 void PaintingArea::createTempTopLayer(int idx){

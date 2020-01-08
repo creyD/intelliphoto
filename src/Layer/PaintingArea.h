@@ -12,6 +12,7 @@
 #include "Image/IntelliShapedImage.h"
 #include "Tool/IntelliTool.h"
 #include "IntelliHelper/IntelliColorPicker.h"
+#include "IntelliHelper/IntelliRenderSettings.h"
 
 /*!
  * \brief The LayerObject struct holds all the information needed to construct a layer
@@ -203,6 +204,10 @@ private:
     int maxWidth;
     int maxHeight;
 
+<<<<<<< src/Layer/PaintingArea.h
+    IntelliRenderSettings renderSettings;
+=======
+>>>>>>> src/Layer/PaintingArea.h
     IntelliTool* Tool;
 
     std::vector<LayerObject> layerBundle;

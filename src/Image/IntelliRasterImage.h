@@ -18,8 +18,9 @@ public:
  * \brief The Construcor of the IntelliRasterImage. Given the Image dimensions.
  * \param width    - The width of the Image.
  * \param height    - The height of the Image.
+ * \param fastRendererOn    - Represents the flag for 8bit picture handelling.
  */
-IntelliRasterImage(int width, int height);
+IntelliRasterImage(int width, int height, bool fastRendererOn);
 
 /*!
  * \brief An Destructor.

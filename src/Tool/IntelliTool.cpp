@@ -57,6 +57,9 @@ void IntelliTool::createToolLayer(){
 void IntelliTool::mergeToolLayer(){
 		QColor clr_0;
 		QColor clr_1;
+        if(Area->renderSettings.getFastRenderer()){
+             activeLayer->image->imageData = activeLayer->image->imageData.convertToFormat(QImage::Format_ARGB32);
+        }
 		for(int y=0; y<activeLayer->height; y++) {
 				for(int x=0; x<activeLayer->width; x++) {
 						clr_0=activeLayer->image->imageData.pixelColor(x,y);
@@ -74,6 +77,9 @@ void IntelliTool::mergeToolLayer(){
 						activeLayer->image->imageData.setPixelColor(x, y, clr_0);
 				}
 		}
+        if(Area->renderSettings.getFastRenderer()){
+            activeLayer->image->imageData = activeLayer->image->imageData.convertToFormat(QImage::Format_Indexed8);
+        }
 }
 
 void IntelliTool::deleteToolLayer(){
