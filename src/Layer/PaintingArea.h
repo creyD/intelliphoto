@@ -204,10 +204,7 @@ private:
     int maxWidth;
     int maxHeight;
 
-<<<<<<< src/Layer/PaintingArea.h
     IntelliRenderSettings renderSettings;
-=======
->>>>>>> src/Layer/PaintingArea.h
     IntelliTool* Tool;
 
     std::vector<LayerObject> layerBundle;
