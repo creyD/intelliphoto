@@ -21,6 +21,7 @@
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QWidget(parent){
         this->Tool = nullptr;
+        this->renderSettings = IntelliRenderSettings();
         this->setLayerDimensions(maxWidth, maxHeight);
         this->addLayer(200,200,0,0,IntelliImage::ImageType::Shaped_Image);
 		layerBundle[0].image->drawPlain(QColor(0,0,255,255));
@@ -36,6 +37,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		layerBundle[1].alpha=200;
 
 		activeLayer=0;
+
 }
 
 PaintingArea::~PaintingArea(){
@@ -46,7 +48,7 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 		//set standart parameter
 		this->maxWidth = maxWidth;
 		this->maxHeight = maxHeight;
-		Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
+        Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
 
 		// Roots the widget to the top left even if resized
 		setAttribute(Qt::WA_StaticContents);
@@ -60,9 +62,9 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
         if(type==IntelliImage::ImageType::Raster_Image) {
-				newLayer.image = new IntelliRasterImage(width,height);
+                newLayer.image = new IntelliRasterImage(width,height,renderSettings.getFastRenderer());
         }else if(type==IntelliImage::ImageType::Shaped_Image) {
-				newLayer.image = new IntelliShapedImage(width, height);
+                newLayer.image = new IntelliShapedImage(width, height, renderSettings.getFastRenderer());
 		}
 		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
@@ -340,6 +342,9 @@ void PaintingArea::drawLayers(bool forSaving){
 		for(size_t i=0; i<layerBundle.size(); i++) {
 				LayerObject layer = layerBundle[i];
 				QImage cpy = layer.image->getDisplayable(layer.alpha);
+                if(renderSettings.getFastRenderer()){
+                    cpy = cpy.convertToFormat(QImage::Format_ARGB32);
+                }
 				QColor clr_0;
 				QColor clr_1;
 				for(int y=0; y<layer.height; y++) {

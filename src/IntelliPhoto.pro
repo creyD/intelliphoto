@@ -22,6 +22,7 @@ SOURCES += \
     Image/IntelliShapedImage.cpp \
     IntelliHelper/IntelliColorPicker.cpp \
     IntelliHelper/IntelliHelper.cpp \
+    IntelliHelper/IntelliRenderSettings.cpp \
     Layer/PaintingArea.cpp \
     Tool/IntelliTool.cpp \
     Tool/IntelliToolCircle.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     Image/IntelliShapedImage.h \
     IntelliHelper/IntelliColorPicker.h \
     IntelliHelper/IntelliHelper.h \
+    IntelliHelper/IntelliRenderSettings.h \
     Layer/PaintingArea.h \
     Tool/IntelliTool.h \
     Tool/IntelliToolCircle.h \
