@@ -21,7 +21,6 @@ SOURCES += \
     Image/IntelliRasterImage.cpp \
     Image/IntelliShapedImage.cpp \
     IntelliHelper/IntelliColorPicker.cpp \
-    IntelliHelper/IntelliRenderSettings.cpp \
     IntelliHelper/IntelliToolsettings.cpp \
     IntelliHelper/IntelliTriangulation.cpp \
     Layer/PaintingArea.cpp \
@@ -41,7 +40,6 @@ HEADERS += \
     Image/IntelliRasterImage.h \
     Image/IntelliShapedImage.h \
     IntelliHelper/IntelliColorPicker.h \
-    IntelliHelper/IntelliRenderSettings.h \
     IntelliHelper/IntelliToolsettings.h \
     IntelliHelper/IntelliTriangulation.h \
     Layer/PaintingArea.h \

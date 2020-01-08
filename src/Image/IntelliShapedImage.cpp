@@ -4,10 +4,9 @@
 #include <QRect>
 #include <QDebug>
 
-IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererOn)
-        : IntelliRasterImage(width, height, fastRendererOn){
+IntelliShapedImage::IntelliShapedImage(int weight, int height)
+		: IntelliRasterImage(weight, height){
         TypeOfImage = IntelliImage::ImageType::Shaped_Image;
-        this->fastRenderer = fastRendererOn;
 }
 
 IntelliShapedImage::~IntelliShapedImage(){
@@ -19,7 +18,7 @@ QImage IntelliShapedImage::getDisplayable(int alpha){
 }
 
 IntelliImage* IntelliShapedImage::getDeepCopy(){
-        IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), false);
+		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height());
 		shaped->setPolygon(this->polygonData);
 		shaped->imageData.fill(Qt::transparent);
         shaped->TypeOfImage = IntelliImage::ImageType::Shaped_Image;
@@ -27,11 +26,7 @@ IntelliImage* IntelliShapedImage::getDeepCopy(){
 }
 
 void IntelliShapedImage::calculateVisiblity(){
-        if(fastRenderer){
-            this->imageData = imageData.convertToFormat(QImage::Format_ARGB32);
-        }
-
-        if(polygonData.size()<=2) {
+		if(polygonData.size()<=2) {
 				QColor clr;
 				for(int y=0; y<imageData.height(); y++) {
 						for(int x=0; x<imageData.width(); x++) {
@@ -40,9 +35,6 @@ void IntelliShapedImage::calculateVisiblity(){
 								imageData.setPixelColor(x,y,clr);
 						}
 				}
-                if(fastRenderer){
-                     this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
-                }
 				return;
 		}
 		QColor clr;
@@ -59,16 +51,10 @@ void IntelliShapedImage::calculateVisiblity(){
 						imageData.setPixelColor(x,y,clr);
 				}
 		}
-        if(fastRenderer){
-             this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
-        }
 }
 
 QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
 		QImage copy = imageData;
-        if(fastRenderer){
-             copy = copy.convertToFormat(QImage::Format_ARGB32);
-        }
 		for(int y = 0; y<copy.height(); y++) {
 				for(int x = 0; x<copy.width(); x++) {
 						QColor clr = copy.pixelColor(x,y);
@@ -76,9 +62,6 @@ QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
 						copy.setPixelColor(x,y, clr);
 				}
 		}
-        if(fastRenderer){
-             copy = copy.convertToFormat(QImage::Format_Indexed8);
-        }
 		return copy.scaled(displaySize,Qt::IgnoreAspectRatio);
 }
 

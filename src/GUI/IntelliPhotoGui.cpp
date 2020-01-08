@@ -97,8 +97,11 @@ void IntelliPhotoGui::slotDeleteLayer(){
 		                                       tr("Number:"),
 		                                       1,0, 500, 1, &ok);
 		// Create New Layer
-		if (ok)
+        if (ok){
 				paintingArea->deleteLayer(layerNumber);
+                QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
+                ActiveLayerLine->setText(string);
+        }
 }
 
 void IntelliPhotoGui::slotSetActiveAlpha(){
@@ -192,19 +195,29 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 		if (ok1)
 		{
 				paintingArea->setLayerActive(layer);
+                QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
+                ActiveLayerLine->setText(string);
 		}
 }
 
 void IntelliPhotoGui::slotSetFirstColor(){
 		paintingArea->colorPickerSetFirstColor();
+        QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
+        FirstColorButton->setStyleSheet(string);
 }
 
 void IntelliPhotoGui::slotSetSecondColor(){
 		paintingArea->colorPickerSetSecondColor();
+        QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
+        SecondColorButton->setStyleSheet(string);
 }
 
 void IntelliPhotoGui::slotSwapColor(){
 		paintingArea->colorPickerSwapColors();
+        QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
+        FirstColorButton->setStyleSheet(string);
+        string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
+        SecondColorButton->setStyleSheet(string);
 }
 
 void IntelliPhotoGui::slotCreatePenTool(){
@@ -351,13 +364,16 @@ void IntelliPhotoGui::createActions(){
 		//Create Color Actions here
 		actionColorPickerFirstColor = new QAction(tr("&Main"), this);
 		connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
+        connect(FirstColorButton, SIGNAL(clicked()), this, SLOT(slotSetFirstColor()));
 
 		actionColorPickerSecondColor = new QAction(tr("&Secondary"), this);
 		connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetSecondColor()));
+        connect(SecondColorButton, SIGNAL(clicked()), this, SLOT(slotSetSecondColor()));
 
 		actionColorSwap = new QAction(tr("&Switch"), this);
 		actionColorSwap->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
 		connect(actionColorSwap, SIGNAL(triggered()), this, SLOT(slotSwapColor()));
+        connect(SwitchColorButton, SIGNAL(clicked()), this, SLOT(slotSwapColor()));
 
 		//Create Tool actions down here
 		actionCreatePlainTool = new QAction(tr("&Plain"), this);
@@ -547,10 +563,10 @@ void IntelliPhotoGui::createGui(){
 
         WidthLine = new QLabel();
         WidthLine->setText("Width");
-        WidthLine->setFixedSize(QSize(55,20));
+        WidthLine->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
 
         EditLineWidth = new QLineEdit();
-        EditLineWidth->setFixedSize(QSize(50,20));
+        EditLineWidth->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
         EditLineWidth->setText("5");
         ValidatorLineWidth = new QIntValidator();
         ValidatorLineWidth->setTop(99);
@@ -559,46 +575,64 @@ void IntelliPhotoGui::createGui(){
 
         innerAlphaLine = new QLabel();
         innerAlphaLine->setText("Inner Alpha");
-        innerAlphaLine->setFixedSize(QSize(55,20));
+        innerAlphaLine->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
 
         EditLineInnerAlpha = new QLineEdit();
-        EditLineInnerAlpha->setFixedSize(QSize(50,20));
+        EditLineInnerAlpha->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
         EditLineInnerAlpha->setText("255");
         ValidatorInnerAlpha = new QIntValidator();
         ValidatorInnerAlpha->setTop(999);
         ValidatorInnerAlpha->setBottom(0);
         EditLineInnerAlpha->setValidator(ValidatorInnerAlpha);
 
-        Farbe1 = new QLabel();
-        Farbe1->setText("");
-        QPalette Palette;
-        Palette.setColor(QPalette::Background,QColor(0,0,0));//paintingArea->colorPicker.getFirstColor());
-        Farbe1->setPalette(Palette);
-        Farbe1->setFixedSize(QSize(20,20));
+        FirstColorButton = new QPushButton();
+        FirstColorButton->setFixedSize(Buttonsize/2);
+
+        SecondColorButton = new QPushButton();
+        SecondColorButton->setFixedSize(Buttonsize/2);
+
+        p = QPixmap(":/Icons/Buttons/icons/Wechselpfeile.png");
+        SwitchColorButton = new QPushButton();
+        SwitchColorButton->setFixedSize(Buttonsize.width(),Buttonsize.height()/2);
+        SwitchColorButton->setIcon(p);
+        SwitchColorButton->setIconSize(QSize(Buttonsize.width(),Buttonsize.height()/2));
+
+        ActiveLayerLine = new QLabel();
+        QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
+        ActiveLayerLine->setText(string);
+        ActiveLayerLine->setFixedSize(Buttonsize.width()+10,Buttonsize.height()/3);
 
 		// set gui elements
+
         mainLayout->addWidget(paintingArea,1,1,20,1);
-        mainLayout->addWidget(CircleButton,1,2,1,1);
-        mainLayout->addWidget(FloodFillButton,2,2,1,1);
-        mainLayout->addWidget(LineButton,3,2,1,1);
-        mainLayout->addWidget(PenButton,4,2,1,1);
-        mainLayout->addWidget(PlainButton,5,2,1,1);
-        mainLayout->addWidget(PolygonButton,6,2,1,1);
-        mainLayout->addWidget(RectangleButton,7,2,1,1);
-        mainLayout->addWidget(WidthLine,8,2,1,1);
-        mainLayout->addWidget(EditLineWidth,9,2,1,1);
-        mainLayout->addWidget(innerAlphaLine,10,2,1,1);
-        mainLayout->addWidget(EditLineInnerAlpha,11,2,1,1);
-        mainLayout->addWidget(Farbe1,12,2,1,1);
+        mainLayout->addWidget(CircleButton,1,2,1,2);
+        mainLayout->addWidget(FloodFillButton,2,2,1,2);
+        mainLayout->addWidget(LineButton,3,2,1,2);
+        mainLayout->addWidget(PenButton,4,2,1,2);
+        mainLayout->addWidget(PlainButton,5,2,1,2);
+        mainLayout->addWidget(PolygonButton,6,2,1,2);
+        mainLayout->addWidget(RectangleButton,7,2,1,2);
+        mainLayout->addWidget(WidthLine,8,2,1,2);
+        mainLayout->addWidget(EditLineWidth,9,2,1,2);
+        mainLayout->addWidget(innerAlphaLine,10,2,1,2);
+        mainLayout->addWidget(EditLineInnerAlpha,11,2,1,2);
+        mainLayout->addWidget(FirstColorButton,12,2,1,1);
+        mainLayout->addWidget(SecondColorButton,12,3,1,1);
+        mainLayout->addWidget(SwitchColorButton,13,2,1,2);
+        mainLayout->addWidget(ActiveLayerLine,14,2,1,2);
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
 		// Set the title
 		setWindowTitle("IntelliPhoto Prototype");
 		// Set style sheet
-		this->setStyleSheet("background-color:rgb(64,64,64)");
-		this->centralGuiWidget->setStyleSheet("color:rgb(255,255,255)");
+        this->setStyleSheet("background-color:rgb(64,64,64)");
+        this->centralGuiWidget->setStyleSheet("color:rgb(255,255,255)");
 		this->menuBar()->setStyleSheet("color:rgb(255,255,255)");
+        QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
+        FirstColorButton->setStyleSheet(string);
+        string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
+        SecondColorButton->setStyleSheet(string);
 }
 
 bool IntelliPhotoGui::maybeSave(){

@@ -8,5 +8,6 @@
         <file>icons/pen-tool.svg</file>
         <file>icons/polygon-tool.svg</file>
         <file>icons/rectangle-tool.svg</file>
+        <file>icons/Wechselpfeile.png</file>
     </qresource>
 </RCC>
