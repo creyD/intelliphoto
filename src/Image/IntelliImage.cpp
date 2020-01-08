@@ -4,7 +4,13 @@
 
 IntelliImage::IntelliImage(int width, int height, bool fastRendererOn)
         : imageData(QSize(width, height), fastRendererOn ? QImage::Format_Indexed8 : QImage::Format_ARGB32){
-		imageData.fill(QColor(255,255,255,255));
+        if(fastRendererOn){
+            imageData = imageData.convertToFormat(QImage::Format_ARGB32);
+        }
+        imageData.fill(QColor(255,255,255,255));
+        if(fastRendererOn){
+            imageData = imageData.convertToFormat(QImage::Format_Indexed8);
+        }
         this->fastRenderer = fastRendererOn;
 
 }
