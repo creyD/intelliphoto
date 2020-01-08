@@ -166,6 +166,7 @@ public:
     std::vector<QPoint> getPolygonDataOfRealLayer();
 
     IntelliToolsettings Toolsettings;
+    IntelliColorPicker colorPicker;
 
 public slots:
     // Events to handle
@@ -203,7 +204,6 @@ private:
     int maxHeight;
 
     IntelliTool* Tool;
-    IntelliColorPicker colorPicker;
 
     std::vector<LayerObject> layerBundle;
     int activeLayer=-1;

@@ -73,6 +73,8 @@ void slotAboutDialog();
 
 void slotEnterPressed();
 
+void slotResetTools();
+
 private:
 // Will tie user actions to functions
 void createActions();
@@ -93,6 +95,7 @@ void setDefaultToolValue();
 PaintingArea* paintingArea;
 
 const QSize Buttonsize = QSize(50,50);
+QPixmap p;
 QPushButton* CircleButton;
 QPushButton* FloodFillButton;
 QPushButton* LineButton;
@@ -106,6 +109,8 @@ QLineEdit* EditLineWidth;
 QLineEdit* EditLineInnerAlpha;
 QIntValidator* ValidatorLineWidth;
 QIntValidator* ValidatorInnerAlpha;
+
+QLabel* Farbe1;
 
 // The menu widgets
 QMenu*saveAsMenu;
@@ -134,8 +139,6 @@ QAction*actionCreateRectangleTool;
 QAction*actionCreateCircleTool;
 QAction*actionCreatePolygonTool;
 QAction*actionCreateFloodFillTool;
-
-QAction*actionPressEnter;
 
 // dialog actions
 QAction*actionAboutDialog;
