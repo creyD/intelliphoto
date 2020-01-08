@@ -11,6 +11,7 @@ public:
             DOTTED_LINE
     };
     IntelliToolsettings();
+    virtual ~IntelliToolsettings();
     int getLineWidth();
     int getInnerAlpha();
     LineStyle getLinestyle();

@@ -4,6 +4,11 @@ IntelliToolsettings::IntelliToolsettings()
 {
     lineWidth = 1;
     innerAlpha = 255;
+    Linestyle = LineStyle::SOLID_LINE;
+}
+
+IntelliToolsettings::~IntelliToolsettings(){
+
 }
 
 int IntelliToolsettings::getLineWidth(){
