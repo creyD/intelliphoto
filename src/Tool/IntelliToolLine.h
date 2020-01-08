@@ -13,10 +13,6 @@ class IntelliToolLine : public IntelliTool {
  */
 QPoint lineStartingPoint;
 
-/*!
- * \brief The width of the line to draw.
- */
-int lineWidth;
 public:
 
 /*!

@@ -10,10 +10,6 @@
  */
 class IntelliToolPen : public IntelliTool {
 /*!
- * \brief penWidth - The width of the Pen while drawing.
- */
-int penWidth;
-/*!
  * \brief point - Represents the previous point to help drawing a line.
  */
 QPoint previousPoint;

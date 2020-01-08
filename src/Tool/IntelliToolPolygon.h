@@ -20,11 +20,6 @@ class IntelliToolPolygon : public IntelliTool
 bool isNearStart(int x, int y, QPoint Startpoint);
 
 /*!
- * \brief LineWidth of the drawing polygon.
- */
-int lineWidth;
-
-/*!
  * \brief IsDrawing true while drawing, else false.
  */
 bool isDrawing;
@@ -38,11 +33,6 @@ bool isInside;
  * \brief PointIsNearStart true, when last click near startpoint, else false.
  */
 bool isPointNearStart;
-
-/*!
- * \brief The alpha value of the inner circle.
- */
-int innerAlpha;
 
 /*!
  * \brief QPointList list of all points of the polygon.

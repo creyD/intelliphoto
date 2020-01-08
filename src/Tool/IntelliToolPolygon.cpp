@@ -6,8 +6,6 @@
 
 IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
         : IntelliTool(Area, colorPicker, Toolsettings){
-        this->innerAlpha = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 255,0,255,1);
-        lineWidth = QInputDialog::getInt(nullptr,"Line Width Input", "Width",5,1,10,1);
 		isPointNearStart = false;
 		isDrawing = false;
         isInside = false;
@@ -37,13 +35,13 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 				isDrawing = true;
 				QPointList.push_back(drawingPoint);
 
-				this->Canvas->image->drawPoint(QPointList.back(), colorPicker->getFirstColor(), lineWidth);
+                this->Canvas->image->drawPoint(QPointList.back(), colorPicker->getFirstColor(), Toolsettings->getLineWidth());
 				this->Canvas->image->calculateVisiblity();
 		}
 		else if(isDrawing && isNearStart(x,y,QPointList.front())) {
                 if(QPointList.size() > 2){
                     isPointNearStart = true;
-                    this->Canvas->image->drawLine(QPointList.back(), QPointList.front(), colorPicker->getFirstColor(), lineWidth);
+                    this->Canvas->image->drawLine(QPointList.back(), QPointList.front(), colorPicker->getFirstColor(), Toolsettings->getLineWidth());
                     this->Canvas->image->calculateVisiblity();
                 }
                 else{
@@ -57,7 +55,7 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 		else if(isDrawing) {
 				QPoint drawingPoint(x,y);
 				QPointList.push_back(drawingPoint);
-				this->Canvas->image->drawLine(QPointList[QPointList.size() - 2], QPointList[QPointList.size() - 1], colorPicker->getFirstColor(), lineWidth);
+                this->Canvas->image->drawLine(QPointList[QPointList.size() - 2], QPointList[QPointList.size() - 1], colorPicker->getFirstColor(), Toolsettings->getLineWidth());
 				this->Canvas->image->calculateVisiblity();
 		}
 }
@@ -78,7 +76,7 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
 				std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(QPointList);
 				QPoint Point;
 				QColor colorTwo(colorPicker->getSecondColor());
-				colorTwo.setAlpha(innerAlpha);
+                colorTwo.setAlpha(Toolsettings->getInnerAlpha());
 				for(int i = 0; i < activeLayer->width; i++) {
 						for(int j = 0; j < activeLayer->height; j++) {
 								Point = QPoint(i,j);
@@ -89,7 +87,7 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
 				}
                 for(int i=0; i<static_cast<int>(QPointList.size()); i++) {
                         int next = static_cast<int>((i+static_cast<int>(1))%static_cast<int>(QPointList.size()));
-                        this->Canvas->image->drawLine(QPointList[static_cast<unsigned long long>(i)], QPointList[static_cast<unsigned long long>(next)], colorPicker->getFirstColor(), lineWidth);
+                        this->Canvas->image->drawLine(QPointList[static_cast<unsigned long long>(i)], QPointList[static_cast<unsigned long long>(next)], colorPicker->getFirstColor(), Toolsettings->getLineWidth());
 				}
 				QPointList.clear();
 				IntelliTool::onMouseLeftReleased(x,y);
@@ -103,12 +101,7 @@ void IntelliToolPolygon::onMouseRightReleased(int x, int y){
 void IntelliToolPolygon::onWheelScrolled(int value){
 		IntelliTool::onWheelScrolled(value);
 		if(!isDrawing) {
-				if(lineWidth + value < 10) {
-						lineWidth += value;
-				}
-				if(lineWidth < 1) {
-						lineWidth = 1;
-				}
+            Toolsettings->setLineWidth(Toolsettings->getLineWidth() + value);
 		}
 }
 

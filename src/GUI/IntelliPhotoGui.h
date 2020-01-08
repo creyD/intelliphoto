@@ -86,6 +86,8 @@ bool saveFile(const QByteArray &fileFormat);
 // What we'll draw on
 PaintingArea* paintingArea;
 
+QPushButton* PushButton;
+
 // The menu widgets
 QMenu*saveAsMenu;
 QMenu*fileMenu;
@@ -135,7 +137,7 @@ QList<QAction*> actionSaveAs;
 
 // main GUI elements
 QWidget* centralGuiWidget;
-QGridLayout*mainLayout;
+QGridLayout* mainLayout;
 };
 
 #endif

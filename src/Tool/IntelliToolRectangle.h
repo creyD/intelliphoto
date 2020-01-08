@@ -19,14 +19,6 @@ void drawRectangle(QPoint otherCorner);
  * \brief origincorner - The first corner point of the rectangle.
  */
 QPoint originCorner;
-/*!
- * \brief alphaInner- Represents the alpha value of the inside.
- */
-int innerAlpha;
-/*!
- * \brief edgeWidth - The width of the rectangle edges.
- */
-int borderWidth;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker. And reading in the alphaInner and edgeWidth.

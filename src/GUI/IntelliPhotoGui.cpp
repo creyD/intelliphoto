@@ -436,9 +436,11 @@ void IntelliPhotoGui::createGui(){
 
 		// create Gui elements
 		paintingArea = new PaintingArea();
+        Push
 
 		// set gui elements
-		mainLayout->addWidget(paintingArea);
+        mainLayout->addWidget(paintingArea,1,1,10,10);
+        mainLayout->addWiget();
 }
 
 void IntelliPhotoGui::setIntelliStyle(){

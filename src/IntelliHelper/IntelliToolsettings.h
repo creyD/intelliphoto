@@ -13,7 +13,11 @@ public:
     IntelliToolsettings();
     virtual ~IntelliToolsettings();
     int getLineWidth();
+    void setLineWidth();
+    void setLineWidth(int LineWidth);
     int getInnerAlpha();
+    void setInnerAlpha();
+    void setInnerAlpha(int innerAlpha);
     LineStyle getLinestyle();
 
 private:
