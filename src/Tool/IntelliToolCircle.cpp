@@ -3,10 +3,8 @@
 #include "QInputDialog"
 #include <cmath>
 
-IntelliToolCircle::IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker)
-		: IntelliTool(Area, colorPicker){
-		this->innerAlpha = QInputDialog::getInt(nullptr,"Inner Alpha Value", "Value:", 0,0,255,1);
-		this->borderWidth = QInputDialog::getInt(nullptr,"Outer edge width", "Value:", 0,1,255,1);
+IntelliToolCircle::IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
+        : IntelliTool(Area, colorPicker, Toolsettings){
         this->ActiveType = Tooltype::CIRCLE;
 }
 
@@ -17,7 +15,7 @@ IntelliToolCircle::~IntelliToolCircle(){
 void IntelliToolCircle::drawCircle(int radius){
 		int outer = radius+20;
 		QColor inner = this->colorPicker->getSecondColor();
-		inner.setAlpha(innerAlpha);
+        inner.setAlpha(Toolsettings->getInnerAlpha());
 		int yMin, yMax, xMin, xMax;
 		yMin = centerPoint.y()-radius;
 		yMax = centerPoint.y()+radius;
@@ -29,14 +27,14 @@ void IntelliToolCircle::drawCircle(int radius){
 		}
 
 		//TODO implement circle drawing algorithm bresenham
-    radius = static_cast<int>(radius +(this->borderWidth/2.)-1.);
+    radius = static_cast<int>(radius +(Toolsettings->getLineWidth()/2.)-1.);
 		yMin = (centerPoint.y()-radius);
 		yMax = (centerPoint.y()+radius);
 		for(int i=yMin; i<=yMax; i++) {
         xMin = static_cast<int>(centerPoint.x()-sqrt(pow(radius,2)-pow(i-centerPoint.y(),2)));
         xMax = static_cast<int>(centerPoint.x()+sqrt(pow(radius,2)-pow(i-centerPoint.y(),2)));
-				this->Canvas->image->drawPoint(QPoint(xMin,i), colorPicker->getFirstColor(),borderWidth);
-				this->Canvas->image->drawPoint(QPoint(xMax,i), colorPicker->getFirstColor(),borderWidth);
+                this->Canvas->image->drawPoint(QPoint(xMin,i), colorPicker->getFirstColor(),Toolsettings->getLineWidth());
+                this->Canvas->image->drawPoint(QPoint(xMax,i), colorPicker->getFirstColor(),Toolsettings->getLineWidth());
 		}
 
 		xMin = (centerPoint.x()-radius);
@@ -44,8 +42,8 @@ void IntelliToolCircle::drawCircle(int radius){
 		for(int i=xMin; i<=xMax; i++) {
         int yMin = static_cast<int>(centerPoint.y()-sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
         int yMax = static_cast<int>(centerPoint.y()+sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
-				this->Canvas->image->drawPoint(QPoint(i, yMin), colorPicker->getFirstColor(),borderWidth);
-				this->Canvas->image->drawPoint(QPoint(i, yMax), colorPicker->getFirstColor(),borderWidth);
+                this->Canvas->image->drawPoint(QPoint(i, yMin), colorPicker->getFirstColor(),Toolsettings->getLineWidth());
+                this->Canvas->image->drawPoint(QPoint(i, yMax), colorPicker->getFirstColor(),Toolsettings->getLineWidth());
 		}
 }
 
@@ -71,10 +69,7 @@ void IntelliToolCircle::onMouseLeftReleased(int x, int y){
 
 void IntelliToolCircle::onWheelScrolled(int value){
 		IntelliTool::onWheelScrolled(value);
-		this->borderWidth+=value;
-		if(this->borderWidth<=0) {
-				this->borderWidth=1;
-		}
+        Toolsettings->setLineWidth(Toolsettings->getLineWidth()+value);
 }
 
 void IntelliToolCircle::onMouseMoved(int x, int y){

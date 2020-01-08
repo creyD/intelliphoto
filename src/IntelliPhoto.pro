@@ -21,8 +21,12 @@ SOURCES += \
     Image/IntelliRasterImage.cpp \
     Image/IntelliShapedImage.cpp \
     IntelliHelper/IntelliColorPicker.cpp \
-    IntelliHelper/IntelliHelper.cpp \
+<<<<<<< src/IntelliPhoto.pro
     IntelliHelper/IntelliRenderSettings.cpp \
+=======
+    IntelliHelper/IntelliToolsettings.cpp \
+    IntelliHelper/IntelliTriangulation.cpp \
+>>>>>>> src/IntelliPhoto.pro
     Layer/PaintingArea.cpp \
     Tool/IntelliTool.cpp \
     Tool/IntelliToolCircle.cpp \
@@ -40,8 +44,13 @@ HEADERS += \
     Image/IntelliRasterImage.h \
     Image/IntelliShapedImage.h \
     IntelliHelper/IntelliColorPicker.h \
+<<<<<<< src/IntelliPhoto.pro
     IntelliHelper/IntelliHelper.h \
     IntelliHelper/IntelliRenderSettings.h \
+=======
+    IntelliHelper/IntelliToolsettings.h \
+    IntelliHelper/IntelliTriangulation.h \
+>>>>>>> src/IntelliPhoto.pro
     Layer/PaintingArea.h \
     Tool/IntelliTool.h \
     Tool/IntelliToolCircle.h \
@@ -65,3 +74,6 @@ ICON = icon.icns
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Bilder.qrc

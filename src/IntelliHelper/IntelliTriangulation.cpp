@@ -1,10 +1,10 @@
-#include "IntelliHelper.h"
+#include "IntelliTriangulation.h"
 #include <algorithm>
 #include <queue>
 #include <cmath>
 #define pi 3.1415926535897932384626433832795
 
-std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> polyPoints){
+std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoint> polyPoints){
 		// helper for managing the triangle vertices and their state
 		struct TriangleHelper {
 				QPoint vertex;
@@ -113,9 +113,9 @@ std::vector<Triangle> IntelliHelper::calculateTriangles(std::vector<QPoint> poly
 		return Triangles;
 }
 
-bool IntelliHelper::isInPolygon(std::vector<Triangle> &triangles, QPoint &point){
+bool IntelliTriangulation::isInPolygon(std::vector<Triangle> &triangles, QPoint &point){
 		for(auto triangle : triangles) {
-				if(IntelliHelper::isInTriangle(triangle, point)) {
+                if(IntelliTriangulation::isInTriangle(triangle, point)) {
 						return true;
 				}
 		}

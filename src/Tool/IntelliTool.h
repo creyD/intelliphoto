@@ -2,6 +2,7 @@
 #define Intelli_Tool_H
 
 #include "IntelliHelper/IntelliColorPicker.h"
+#include "IntelliHelper/IntelliToolsettings.h"
 #include <vector>
 
 struct LayerObject;
@@ -49,6 +50,8 @@ Tooltype ActiveType;
  */
 IntelliColorPicker* colorPicker;
 
+IntelliToolsettings* Toolsettings;
+
 /*!
  * \brief A pointer to the underlying active Layer, do not work on this. This is used for data grabbing or previews.
  */
@@ -70,7 +73,7 @@ public:
  * \param Area          - The general PaintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 
 /*!
  * \brief An abstract Destructor.

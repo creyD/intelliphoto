@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/Icons/Buttons">
+        <file>icons/icon.png</file>
+        <file>icons/circle-tool.svg</file>
+        <file>icons/eraser-tool.svg</file>
+        <file>icons/flood-fill-tool.svg</file>
+        <file>icons/magic-wand-tool.svg</file>
+        <file>icons/pen-tool.svg</file>
+        <file>icons/polygon-tool.svg</file>
+        <file>icons/rectangle-tool.svg</file>
+    </qresource>
+</RCC>
