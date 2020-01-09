@@ -265,8 +265,9 @@ std::vector<QPoint> PaintingArea::getPolygonDataOfRealLayer(){
 // left button and if so store the current position
 // Set that we are currently drawing
 void PaintingArea::mousePressEvent(QMouseEvent*event){
-        if(this->activeLayer < 0)
+        if(this->activeLayer < 0){
                 return;
+        }
 		if(Tool == nullptr)
 				return;
 		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
@@ -283,8 +284,9 @@ void PaintingArea::mousePressEvent(QMouseEvent*event){
 // we call the drawline function which draws a line
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent*event){
-        if(this->activeLayer < 0)
+        if(this->activeLayer < 0){
                 return;
+        }
 		if(Tool == nullptr)
 				return;
 		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;

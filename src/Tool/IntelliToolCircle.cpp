@@ -13,7 +13,6 @@ IntelliToolCircle::~IntelliToolCircle(){
 }
 
 void IntelliToolCircle::drawCircle(int radius){
-		int outer = radius+20;
 		QColor inner = this->colorPicker->getSecondColor();
 		inner.setAlpha(Toolsettings->getInnerAlpha());
 		int yMin, yMax, xMin, xMax;
@@ -27,7 +26,7 @@ void IntelliToolCircle::drawCircle(int radius){
 		}
 
 		//TODO implement circle drawing algorithm bresenham
-		radius = static_cast<int>(radius +(Toolsettings->getLineWidth()/2.)-1.);
+        radius = static_cast<int>(radius +(Toolsettings->getLineWidth()/2.));
 		yMin = (centerPoint.y()-radius);
 		yMax = (centerPoint.y()+radius);
 		for(int i=yMin; i<=yMax; i++) {
