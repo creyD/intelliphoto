@@ -1,0 +1,14 @@
+digraph "IntelliTool::getIsDrawing"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="IntelliTool::getIsDrawing",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PaintingArea::moveActive\lLayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#ae05f6893fb44bfcb34018573a609cd1a",tooltip="The moveActiveLayer moves the active layer to a specific position in the layer stack."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PaintingArea::movePosition\lActive",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#ac6d089f4357b22d9a9906fd4771de3e7",tooltip="The movePositionActive method moves the active layer to certain position."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PaintingArea::slotActivate\lLayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a71ac281e0de263208d4a3b9de74258ec",tooltip="The slotActivateLayer method handles the event of selecting one layer as active."];
+}

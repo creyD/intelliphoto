@@ -3,7 +3,6 @@
 
 #include "Image/IntelliRasterImage.h"
 #include <vector>
-#include "IntelliHelper/IntelliHelper.h"
 
 /*!
  * \brief The IntelliShapedImage manages a Shapedimage.
@@ -29,10 +28,11 @@ std::vector<QPoint> polygonData;
 public:
 /*!
  * \brief The Construcor of the IntelliShapedImage. Given the Image dimensions.
- * \param weight    - The weight of the Image.
+ * \param width    - The width of the Image.
  * \param height    - The height of the Image.
+ * \param fastRendererOn    - Represents the flag for 8bit picture handelling.
  */
-IntelliShapedImage(int weight, int height);
+IntelliShapedImage(int width, int height, bool fastRendererOn);
 
 /*!
  * \brief An Destructor.

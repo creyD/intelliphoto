@@ -9,4 +9,6 @@ digraph "IntelliColorPicker::getSecondColor"
   Node2 [label="PaintingArea::colorPicker\lSetSecondColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#ae261acaaa346610dfed489dbac17e789",tooltip="The colorPickerSetSecondColor calls the QTColorPicker to determine the secondary drawing color."];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="IntelliToolPolygon\l::onMouseLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_polygon.html#a4e1473ff408ae2e11cf6a43f6f575f21",tooltip="A function managing the left click released of a mouse. Merging the fill to the active layer."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="IntelliPhotoGui::UpdateGui",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_photo_gui.html#a1dbef8d4688227aa9455aea52db00bf4",tooltip=" "];
 }

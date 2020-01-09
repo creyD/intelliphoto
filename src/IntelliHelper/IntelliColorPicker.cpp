@@ -9,7 +9,7 @@ IntelliColorPicker::~IntelliColorPicker(){
 
 }
 
-void IntelliColorPicker::switchColors(){
+void IntelliColorPicker::swapColors(){
 		std::swap(firstColor, secondColor);
 }
 

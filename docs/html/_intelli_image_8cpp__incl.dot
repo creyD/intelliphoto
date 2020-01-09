@@ -18,7 +18,13 @@ digraph "intelliphoto/src/Image/IntelliImage.cpp"
   Node7 [label="QWidget",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node8 [label="vector",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node2 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="IntelliHelper/IntelliTriangulation.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_intelli_triangulation_8h.html",tooltip=" "];
+  Node9 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="IntelliHelper/IntelliRender\lSettings.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_intelli_render_settings_8h.html",tooltip=" "];
   Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node9 [label="QPainter",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="QPainter",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
 }

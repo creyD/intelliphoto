@@ -4,22 +4,23 @@
 #include "Image/IntelliImage.h"
 
 /*!
- * \brief The IntelliRasterImage manages a Rasterimage.
+ * \brief The IntelliRasterImage manages a RASTERIMAGE.
  */
 class IntelliRasterImage : public IntelliImage {
 friend IntelliTool;
 protected:
 /*!
- * \brief A function that calculates the visibility of the image if a polygon is given. [does nothing in Rasterimage]
+ * \brief A function that calculates the visibility of the image if a polygon is given. [does nothing in RASTERIMAGE]
  */
 virtual void calculateVisiblity() override;
 public:
 /*!
  * \brief The Construcor of the IntelliRasterImage. Given the Image dimensions.
- * \param weight    - The weight of the Image.
+ * \param width    - The width of the Image.
  * \param height    - The height of the Image.
+ * \param fastRendererOn    - Represents the flag for 8bit picture handelling.
  */
-IntelliRasterImage(int weight, int height);
+IntelliRasterImage(int width, int height, bool fastRendererOn);
 
 /*!
  * \brief An Destructor.

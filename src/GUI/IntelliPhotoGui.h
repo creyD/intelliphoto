@@ -1,6 +1,8 @@
 #ifndef IntelliPhotoGui_H
 #define IntelliPhotoGui_H
 
+#include <QtWidgets>
+#include <QPixmap>
 #include <QList>
 #include <QMainWindow>
 #include <QGridLayout>
@@ -30,6 +32,8 @@ public:
  */
 IntelliPhotoGui();
 
+void UpdateGui();
+
 protected:
 // Function used to close an event
 void closeEvent(QCloseEvent*event) override;
@@ -52,10 +56,14 @@ void slotPositionMoveRight();
 void slotMoveLayerUp();
 void slotMoveLayerDown();
 
+//Rendersetting slots here
+void slotUpdateRenderSettingsOn();
+void slotUpdateRenderSettingsOff();
+
 // color Picker slots here
 void slotSetFirstColor();
 void slotSetSecondColor();
-void slotSwitchColor();
+void slotSwapColor();
 
 // tool slots here
 void slotCreatePenTool();
@@ -68,6 +76,13 @@ void slotCreateFloodFillTool();
 
 // slots for dialogs
 void slotAboutDialog();
+
+void slotEnterPressed();
+
+void slotSetWidth();
+void slotSetInnerAlpha();
+
+void slotResetTools();
 
 private:
 // Will tie user actions to functions
@@ -83,15 +98,43 @@ bool maybeSave();
 // Opens the Save dialog and saves
 bool saveFile(const QByteArray &fileFormat);
 
+void setDefaultToolValue();
+
 // What we'll draw on
 PaintingArea* paintingArea;
+
+const QSize Buttonsize = QSize(70,70);
+QPixmap preview;
+QPushButton* CircleButton;
+QPushButton* FloodFillButton;
+QPushButton* LineButton;
+QPushButton* PenButton;
+QPushButton* PlainButton;
+QPushButton* PolygonButton;
+QPushButton* RectangleButton;
+QLabel* WidthLine;
+QLabel* innerAlphaLine;
+QLineEdit* EditLineWidth;
+QLineEdit* EditLineInnerAlpha;
+QIntValidator* ValidatorLineWidth;
+QIntValidator* ValidatorInnerAlpha;
+
+QPushButton* FirstColorButton;
+QPushButton* SecondColorButton;
+QPushButton* SwitchColorButton;
+
+QLabel* ActiveLayerLine;
+QPushButton* ActiveLayerImageButton;
 
 // The menu widgets
 QMenu*saveAsMenu;
 QMenu*fileMenu;
+QMenu*renderMenu;
 QMenu*optionMenu;
 QMenu*layerMenu;
 QMenu*colorMenu;
+QMenu*toolCreationMenu;
+QMenu*toolSettingsMenu;
 QMenu*toolMenu;
 QMenu*helpMenu;
 
@@ -100,10 +143,14 @@ QMenu*helpMenu;
 QAction*actionOpen;
 QAction*actionExit;
 
+//Rendersetting actions
+QAction*actionUpdateRenderSettingsOn;
+QAction*actionUpdateRenderSettingsOff;
+
 // color Picker actions
 QAction*actionColorPickerFirstColor;
 QAction*actionColorPickerSecondColor;
-QAction*actionColorSwitch;
+QAction*actionColorSwap;
 
 // tool actions
 QAction*actionCreatePenTool;
@@ -133,9 +180,12 @@ QAction* actionMoveLayerDown;
 // Actions tied to specific file formats
 QList<QAction*> actionSaveAs;
 
+QAction* actionSetWidth;
+QAction* actionSetInnerAlpha;
+
 // main GUI elements
 QWidget* centralGuiWidget;
-QGridLayout*mainLayout;
+QGridLayout* mainLayout;
 };
 
 #endif

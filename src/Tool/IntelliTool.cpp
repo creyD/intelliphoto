@@ -1,9 +1,10 @@
 #include "IntelliTool.h"
 #include "Layer/PaintingArea.h"
 
-IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker){
+IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings){
 		this->Area=Area;
 		this->colorPicker=colorPicker;
+		this->Toolsettings=Toolsettings;
 }
 
 
@@ -12,8 +13,8 @@ IntelliTool::~IntelliTool(){
 }
 
 void IntelliTool::onMouseRightPressed(int x, int y){
-		if(drawing) {
-				drawing=false;
+		if(isDrawing) {
+				isDrawing=false;
 				this->deleteToolLayer();
 		}
 }
@@ -23,23 +24,23 @@ void IntelliTool::onMouseRightReleased(int x, int y){
 }
 
 void IntelliTool::onMouseLeftPressed(int x, int y){
-		this->drawing=true;
-		//create drawing layer
-		this->createToolLayer();
-		Canvas->image->calculateVisiblity();
+        this->isDrawing=this->createToolLayer();
+        if(isDrawing){
+            Canvas->image->calculateVisiblity();
+        }
 }
 
 void IntelliTool::onMouseLeftReleased(int x, int y){
-		if(drawing) {
-				drawing=false;
+		if(isDrawing) {
+				isDrawing=false;
 				this->mergeToolLayer();
 				this->deleteToolLayer();
-				Active->image->calculateVisiblity();
+				activeLayer->image->calculateVisiblity();
 		}
 }
 
 void IntelliTool::onMouseMoved(int x, int y){
-		if(drawing)
+		if(isDrawing)
 				Canvas->image->calculateVisiblity();
 }
 
@@ -47,18 +48,23 @@ void IntelliTool::onWheelScrolled(int value){
 		//if needed for future general tasks implement in here
 }
 
-void IntelliTool::createToolLayer(){
-		Area->createTempLayerAfter(Area->activeLayer);
-		this->Active=&Area->layerBundle[Area->activeLayer];
-		this->Canvas=&Area->layerBundle[Area->activeLayer+1];
+bool IntelliTool::createToolLayer(){
+        if(Area->createTempTopLayer(Area->activeLayer)){
+            this->activeLayer=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer)];
+            this->Canvas=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer+1)];
+            return true;
+        }
+        return false;
 }
 
 void IntelliTool::mergeToolLayer(){
 		QColor clr_0;
 		QColor clr_1;
-		for(int y=0; y<Active->height; y++) {
-				for(int x=0; x<Active->width; x++) {
-						clr_0=Active->image->imageData.pixelColor(x,y);
+        QImage updatedImage = activeLayer->image->getImageData();
+
+		for(int y=0; y<activeLayer->height; y++) {
+                for(int x=0; x<activeLayer->width; x++) {
+                        clr_0=updatedImage.pixelColor(x,y);
 						clr_1=Canvas->image->imageData.pixelColor(x,y);
 						float t = static_cast<float>(clr_1.alpha())/255.f;
 						int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
@@ -70,12 +76,22 @@ void IntelliTool::mergeToolLayer(){
 						clr_0.setBlue(b);
 						clr_0.setAlpha(a);
 
-						Active->image->imageData.setPixelColor(x, y, clr_0);
+                        updatedImage.setPixelColor(x, y, clr_0);
 				}
 		}
+        activeLayer->image->setImageData(updatedImage);
+        Area->DummyGui->UpdateGui();
 }
 
 void IntelliTool::deleteToolLayer(){
 		Area->deleteLayer(Area->activeLayer+1);
 		this->Canvas=nullptr;
+}
+
+IntelliTool::Tooltype IntelliTool::getTooltype(){
+		return ActiveType;
+}
+
+bool IntelliTool::getIsDrawing(){
+		return isDrawing;
 }

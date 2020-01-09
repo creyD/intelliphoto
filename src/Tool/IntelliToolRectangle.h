@@ -11,29 +11,21 @@
 class IntelliToolRectangle : public IntelliTool {
 /*!
  * \brief A function that implements a rectagle drawing algorithm.
- * \param otherCornor - The second corner point of the rectangle.
+ * \param othercorner - The second corner point of the rectangle.
  */
-void drawRectangle(QPoint otherCornor);
+void drawRectangle(QPoint otherCorner);
 
 /*!
- * \brief originCornor - The first corner point of the rectangle.
+ * \brief origincorner - The first corner point of the rectangle.
  */
-QPoint originCornor;
-/*!
- * \brief alphaInner- Represents the alpha value of the inside.
- */
-int alphaInner;
-/*!
- * \brief edgeWidth - The width of the rectangle edges.
- */
-int edgeWidth;
+QPoint originCorner;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker. And reading in the alphaInner and edgeWidth.
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolRectangle(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolRectangle(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 /*!
  * \brief A Destructor.
  */

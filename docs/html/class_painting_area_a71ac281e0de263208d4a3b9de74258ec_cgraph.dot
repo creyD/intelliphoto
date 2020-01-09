@@ -6,5 +6,7 @@ digraph "PaintingArea::slotActivateLayer"
   rankdir="LR";
   Node1 [label="PaintingArea::slotActivate\lLayer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="The slotActivateLayer method handles the event of selecting one layer as active."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="PaintingArea::setLayerTo\lActive",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a1d6d86c25efdce9fe9031a9cd01c74c8",tooltip="The setLayerToActive method marks a specific layer as active."];
+  Node2 [label="IntelliTool::getIsDrawing",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html#a0020fad2e26315d5c4d96dbc95d1dceb",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PaintingArea::setLayerActive",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a79eb059829f27e8cdb3a54c5cd3d12c9",tooltip="The setLayerToActive method marks a specific layer as active."];
 }

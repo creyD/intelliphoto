@@ -12,7 +12,11 @@ digraph "IntelliToolLine::onMouseMoved"
   Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="IntelliColorPicker\l::getFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#aae2eb27b928fe9388b9398b0556303b7",tooltip="A function to read the primary selected color."];
   Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="IntelliTool::onMouseMoved",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html#ac10e20414cd8855a2f9b103fb6408639",tooltip="A function managing the mouse moved event. Call this in child classes!"];
-  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="IntelliImage::calculateVisiblity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html#aebbced93f4744fad81b7f141b21f4ab2",tooltip="An abstract function that calculates the visiblity of the Image data if needed."];
+  Node5 [label="IntelliToolsettings\l::getLinestyle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_toolsettings.html#a5beb193b25e0665516244c61c5e65aa6",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="IntelliToolsettings\l::getLineWidth",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_toolsettings.html#a68528dd3bad8f39ba19fa6b12a4e415a",tooltip=" "];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="IntelliTool::onMouseMoved",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html#ac10e20414cd8855a2f9b103fb6408639",tooltip="A function managing the mouse moved event. Call this in child classes!"];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="IntelliImage::calculateVisiblity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html#aebbced93f4744fad81b7f141b21f4ab2",tooltip="An abstract function that calculates the visiblity of the Image data if needed."];
 }

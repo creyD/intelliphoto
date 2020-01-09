@@ -6,5 +6,7 @@ digraph "PaintingArea::PaintingArea"
   rankdir="LR";
   Node1 [label="PaintingArea::PaintingArea",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="PaintingArea is the constructor of the PaintingArea class, which initiates the working environment."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="PaintingArea::addLayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a39ad76e1319659bfa38eee88ef33d395",tooltip="The addLayer adds a layer to the current project/ painting area."];
+  Node2 [label="PaintingArea::addLayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a6e9207612cef104d39013564696fe989",tooltip="The addLayer adds a layer to the current project/ painting area."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="IntelliRenderSettings\l::getFastRenderer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_render_settings.html#a5a74e7d7ed3a2e944883dddbe8bbf5e8",tooltip="The getfastRenderer gets the value of the flag for the fastRenderer setting."];
 }

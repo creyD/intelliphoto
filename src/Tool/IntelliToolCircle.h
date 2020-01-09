@@ -12,29 +12,20 @@ class IntelliToolCircle : public IntelliTool {
  * \brief A function that implements a circle drawing algorithm.
  * \param radius    - The radius of the circle.
  */
-void drawCyrcle(int radius);
+void drawCircle(int radius);
 
 /*!
  * \brief The center of the circle.
  */
-QPoint Middle;
+QPoint centerPoint;
 
-/*!
- * \brief The alpha value of the inner circle.
- */
-int alphaInner;
-
-/*!
- * \brief The width of the outer circle edge.
- */
-int edgeWidth;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker. And reading in the inner alpha and edgeWidth.
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 
 /*!
  * \brief A Destructor.

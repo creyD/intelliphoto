@@ -1,0 +1,123 @@
+#+TITLE: Todo-Liste für Intelliphoto
+#+AUTHOR: Paul Norberger
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+OPTIONS: toc:nil
+* TODO Dokumentation [2/8]
+** TODO CRC-Karten
+- 8/10 CRC-Karten sind fertig.
+- 2 CRC-Karten werden noch benötigt. [Zuständig: Paul]
+** DONE UML-Diagramm
+   CLOSED: [2020-01-08 Mi 21:50]
+** TODO User-Manual
+- Usermanual für Version 0.31 liegt vor.
+- Nach Userinterfaceupdate: Usermanual muss aktualisiert werden.
+** TODO Use-Case-Diagramme
+- 1/2 Use-Case-Diagramme sind vorhanden.
+- 1 Use-Case-Diagramm wird noch benötigt.
+- 1 Use-Case-Diagramm muss evtl. aktualisiert werden.
+** TODO Sequenzdiagramme
+- 1/2 Sequenzdiagramme sind vorhanden.
+- 1 Sequenzdiagramm wird noch benötigt. [Zuständig: Seb]
+- 1 Sequenzdiagramm muss aktualisiert werden. [Zuständig: Seb]
+** TODO Zustandsdiagramme
+- 1/2 Zustandsdiagramme sind vorhanden.
+- 1 Sequenzdiagramm wird noch benötigt. [Zuständig: Seb]
+- 1 Sequenzdiagramm muss aktualisiert werden. [Zuständig: Seb]
+** DONE Selbstgenierende Dokumentation
+   CLOSED: [2020-01-08 Mi 21:57]
+** TODO Volere Snow Cards [0/2]
+*** Nicht-funktionale Anforderungen
+- 1/2 Volere Snow Cards sind vorhanden.
+- 1 Volere Snow Card wird noch benötigt. [Zuständig: Paul]
+- 1 Volere Snow Card muss evtl. aktualisiert werden. [Zuständig: Paul]
+*** Funktionale Anforderungen
+- 1/2 Volere Snow Cards sind vorhanden.
+- 1 Volere Snow Card wird noch benötigt. [Zuständig: Paul]
+- 1 Volere Snow Card muss evtl. aktualisiert werden. [Zuständig: Paul]
+** TODO Referenzmaschine(n) bestimmen und Specs dokumentieren
+* TODO Allgemeine Features [0/1]
+** TODO Das Polygon fürs ShapedImage setzbar machen
+* TODO User Interface [0/4]
+** TODO Icons für alle Tools
+** TODO Interfacegrundstruktur erstellen
+** TODO Verknüpfung der Tools im Code mit den Buttons
+** TODO Eigenschaften der Tools im Fenster statt im Popup einstellbar machen
+* TODO Refactoring [2/2]
+** DONE Alle öffentlichen Klassen durchkommentieren
+   CLOSED: [2020-01-08 Mi 21:47]
+** DONE Toolklassenstruktur verbessern
+   CLOSED: [2020-01-08 Mi 21:58]
+* TODO Tools [0/8]
+** TODO PenTool [2/5]
+*** DONE Icon
+    CLOSED: [2020-01-08 Mi 19:54]
+*** DONE Funktionalität
+    CLOSED: [2020-01-08 Mi 19:54]
+*** TODO Implementierung in Interface
+*** TODO Zeitbestimmung auf Referenzmaschine
+*** TODO Unittests
+- [Zuständig: Mucke]
+** TODO EraserTool [2/5]
+*** DONE Icon
+    CLOSED: [2020-01-08 Mi 19:54]
+*** DONE Funktionalität
+    CLOSED: [2020-01-08 Mi 19:54]
+*** TODO Implementierung in Interface
+*** TODO Zeitbestimmung auf Referenzmaschine
+*** TODO Unittests
+- [Zuständig: Mucke]
+** TODO FloodFillTool [2/5]
+*** DONE Icon
+    CLOSED: [2020-01-08 Mi 19:54]
+*** DONE Funktionalität
+    CLOSED: [2020-01-08 Mi 19:54]
+*** TODO Implementierung in Interface
+*** TODO Zeitbestimmung auf Referenzmaschine
+*** TODO Unittests
+- [Zuständig: Mucke]
+** TODO PolygonTool [2/5] 
+*** DONE Icon
+    CLOSED: [2020-01-08 Mi 19:54]
+*** DONE Funktionalität
+    CLOSED: [2020-01-08 Mi 19:54]
+*** TODO Implementierung in Interface
+*** TODO Zeitbestimmung auf Referenzmaschine
+*** TODO Unittests
+- [Zuständig: Mucke]
+** TODO CircleTool [2/5]
+*** DONE Icon
+    CLOSED: [2020-01-08 Mi 19:54]
+*** DONE Funktionalität
+    CLOSED: [2020-01-08 Mi 19:54]
+*** TODO Implementierung in Interface
+*** TODO Zeitbestimmung auf Referenzmaschine
+*** TODO Unittests
+- [Zuständig: Mucke]
+** TODO RectangleTool [2/5]
+*** DONE Icon
+    CLOSED: [2020-01-08 Mi 19:54]
+*** DONE Funktionalität
+    CLOSED: [2020-01-08 Mi 19:54]
+*** TODO Implementierung in Interface
+*** TODO Zeitbestimmung auf Referenzmaschine
+*** TODO Unittests
+- [Zuständig: Mucke]
+** TODO PlainTool [2/5]
+*** DONE Icon
+    CLOSED: [2020-01-08 Mi 19:54]
+*** DONE Funktionalität
+    CLOSED: [2020-01-08 Mi 19:54]
+*** TODO Implementierung in Interface
+*** TODO Zeitbestimmung auf Referenzmaschine
+*** TODO Unittests
+- [Zuständig: Mucke]
+** TODO LineTool [1/5]
+*** TODO Icon
+*** DONE Funktionalität
+    CLOSED: [2020-01-08 Mi 19:54]
+*** TODO Implementierung in Interface
+*** TODO Zeitbestimmung auf Referenzmaschine
+*** TODO Unittests
+- [Zuständig: Mucke]
+* TODO Extras [0/1]
+** TODO 3D-Modelle laden und anzeigen / Tools implementieren

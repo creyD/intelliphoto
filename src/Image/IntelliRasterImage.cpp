@@ -3,9 +3,10 @@
 #include <QRect>
 #include <QDebug>
 
-IntelliRasterImage::IntelliRasterImage(int weight, int height)
-		: IntelliImage(weight, height){
-
+IntelliRasterImage::IntelliRasterImage(int width, int height, bool fastRendererOn)
+        : IntelliImage(width, height, fastRendererOn){
+        TypeOfImage = IntelliImage::ImageType::RASTERIMAGE;
+        this->fastRenderering = fastRendererOn;
 }
 
 IntelliRasterImage::~IntelliRasterImage(){
@@ -13,8 +14,9 @@ IntelliRasterImage::~IntelliRasterImage(){
 }
 
 IntelliImage* IntelliRasterImage::getDeepCopy(){
-		IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height());
+		IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height(), false);
 		raster->imageData.fill(Qt::transparent);
+		raster->TypeOfImage = IntelliImage::ImageType::RASTERIMAGE;
 		return raster;
 }
 
@@ -28,6 +30,9 @@ QImage IntelliRasterImage::getDisplayable(int alpha){
 
 QImage IntelliRasterImage::getDisplayable(const QSize& displaySize, int alpha){
 		QImage copy = imageData;
+        if(fastRenderering){
+            copy = copy.convertToFormat(QImage::Format_ARGB32);
+        }
 		for(int y = 0; y<copy.height(); y++) {
 				for(int x = 0; x<copy.width(); x++) {
 						QColor clr = copy.pixelColor(x,y);
@@ -35,6 +40,9 @@ QImage IntelliRasterImage::getDisplayable(const QSize& displaySize, int alpha){
 						copy.setPixelColor(x,y, clr);
 				}
 		}
+        if(fastRenderering){
+            copy = copy.convertToFormat(QImage::Format_Indexed8);
+        }
 		return copy.scaled(displaySize,Qt::IgnoreAspectRatio);
 }
 

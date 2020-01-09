@@ -4,25 +4,22 @@
 #include "IntelliTool.h"
 #include "QColor"
 #include "QPoint"
+
 /*!
  * \brief The IntelliToolPen class represents a tool to draw a line.
  */
 class IntelliToolPen : public IntelliTool {
 /*!
- * \brief penWidth - The width of the Pen while drawing.
- */
-int penWidth;
-/*!
  * \brief point - Represents the previous point to help drawing a line.
  */
-QPoint point;
+QPoint previousPoint;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker. Reading the penWidth.
  * \param Area          - The general PaintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolPen(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolPen(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 /*!
  * \brief A Destructor.
  */
