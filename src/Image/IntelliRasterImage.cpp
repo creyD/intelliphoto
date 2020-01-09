@@ -5,7 +5,7 @@
 
 IntelliRasterImage::IntelliRasterImage(int width, int height, bool fastRendererOn)
         : IntelliImage(width, height, fastRendererOn){
-        TypeOfImage = IntelliImage::ImageType::Raster_Image;
+        TypeOfImage = IntelliImage::ImageType::RASTERIMAGE;
         this->fastRenderer = fastRendererOn;
 }
 

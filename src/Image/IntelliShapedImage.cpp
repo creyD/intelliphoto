@@ -6,7 +6,7 @@
 
 IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererOn)
         : IntelliRasterImage(width, height, fastRendererOn){
-        TypeOfImage = IntelliImage::ImageType::Shaped_Image;
+        TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
         this->fastRenderer = fastRendererOn;
 }
 

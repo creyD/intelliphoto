@@ -4,13 +4,13 @@
 #include "Image/IntelliImage.h"
 
 /*!
- * \brief The IntelliRasterImage manages a Rasterimage.
+ * \brief The IntelliRasterImage manages a RASTERIMAGE.
  */
 class IntelliRasterImage : public IntelliImage {
 friend IntelliTool;
 protected:
 /*!
- * \brief A function that calculates the visibility of the image if a polygon is given. [does nothing in Rasterimage]
+ * \brief A function that calculates the visibility of the image if a polygon is given. [does nothing in RASTERIMAGE]
  */
 virtual void calculateVisiblity() override;
 public:
