@@ -8,8 +8,8 @@
 #include <QWidget>
 #include <vector>
 
-#include "IntelliHelper/IntelliRenderSettings.h"
 #include "IntelliHelper/IntelliTriangulation.h"
+#include "IntelliHelper/IntelliRenderSettings.h"
 
 class IntelliTool;
 
@@ -40,13 +40,20 @@ QImage imageData;
  * \brief The Type, an Image is.
  */
 ImageType TypeOfImage;
+
+/*!
+ * \brief fastRenderer is the flag that represents the usage of 8bit pictures.
+ */
+bool fastRenderer;
+
 public:
 /*!
  * \brief The Construcor of the IntelliImage. Given the Image dimensions.
  * \param width    - The width of the Image.
  * \param height    - The height of the Image.
+ * \param fastRendererOn    - Represents the flag for 8bit picture handelling.
  */
-IntelliImage(int width, int height);
+IntelliImage(int width, int height, bool fastRendererOn);
 
 /*!
  * \brief An Abstract Destructor.
@@ -142,7 +149,17 @@ virtual bool loadImage(const QString &filePath);
  */
 virtual QColor getPixelColor(QPoint& point);
 
-QImage getImageData();
+/*!
+ * \brief updateRendererSetting updates the existing image format to the new format.
+ * \param fastRendererOn flag for the 8bit image handeling.
+ */
+virtual void updateRendererSetting(bool fastRendererOn);
+
+/*!
+ * \brief getImageData returns the data of the current image.
+ */
+virtual QImage getImageData();
+
 };
 
 #endif

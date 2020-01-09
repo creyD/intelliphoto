@@ -60,9 +60,9 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
         if(type==IntelliImage::ImageType::Raster_Image) {
-				newLayer.image = new IntelliRasterImage(width,height);
+                newLayer.image = new IntelliRasterImage(width,height,renderSettings.getFastRenderer());
         }else if(type==IntelliImage::ImageType::Shaped_Image) {
-				newLayer.image = new IntelliShapedImage(width, height);
+                newLayer.image = new IntelliShapedImage(width, height, renderSettings.getFastRenderer());
 		}
 		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
@@ -158,10 +158,12 @@ void PaintingArea::movePositionActive(int x, int y){
 }
 
 void PaintingArea::moveActiveLayer(int idx){
-        if(Tool->getIsDrawing()){
-            IntelliTool* temp = copyActiveTool();
-            delete this->Tool;
-            this->Tool = temp;
+        if(Tool != nullptr){
+            if(Tool->getIsDrawing()){
+                IntelliTool* temp = copyActiveTool();
+                delete this->Tool;
+                this->Tool = temp;
+        }
         }
 		if(idx==1) {
 				this->selectLayerUp();
