@@ -10,7 +10,7 @@ src/IntelliHelper/IntelliColorPicker.cpp:5:3: performance: Variable 'secondColor
 src/IntelliHelper/IntelliTriangulation.cpp:116:63: style: Parameter 'triangles' can be declared with const [constParameter]
 bool IntelliTriangulation::isInPolygon(std::vector<Triangle> &triangles, QPoint &point){
                                                               ^
-src/Layer/PaintingArea.cpp:333:22: style: Redundant condition: If 'activeLayer > 0', the comparison 'activeLayer != -1' is always true. [redundantCondition]
+src/Layer/PaintingArea.cpp:335:22: style: Redundant condition: If 'activeLayer > 0', the comparison 'activeLayer != -1' is always true. [redundantCondition]
   if(activeLayer!=-1 && activeLayer>0) {
                      ^
 src/Tool/IntelliTool.cpp:4:14: warning: Member variable 'IntelliTool::ActiveType' is not initialized in the constructor. [uninitMemberVar]
@@ -58,28 +58,25 @@ bool isDrawing;
 src/GUI/IntelliPhotoGui.cpp:23:0: style: The function 'closeEvent' is never used. [unusedFunction]
 
 ^
-src/IntelliHelper/IntelliRenderSettings.cpp:8:0: style: The function 'getFastRenderer' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:271:0: style: The function 'mouseMoveEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:269:0: style: The function 'mouseMoveEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:255:0: style: The function 'mousePressEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:253:0: style: The function 'mousePressEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:281:0: style: The function 'mouseReleaseEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:279:0: style: The function 'mouseReleaseEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:307:0: style: The function 'paintEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:305:0: style: The function 'paintEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:318:0: style: The function 'resizeEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:316:0: style: The function 'resizeEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:323:0: style: The function 'resizeLayer' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:321:0: style: The function 'resizeLayer' is never used. [unusedFunction]
-
-^
-src/Layer/PaintingArea.cpp:173:0: style: The function 'slotActivateLayer' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:175:0: style: The function 'slotActivateLayer' is never used. [unusedFunction]
 
 ^
 src/GUI/IntelliPhotoGui.cpp:157:0: style: The function 'slotClearActiveLayer' is never used. [unusedFunction]
@@ -88,7 +85,7 @@ src/GUI/IntelliPhotoGui.cpp:157:0: style: The function 'slotClearActiveLayer' is
 src/Layer/PaintingArea.cpp:83:0: style: The function 'slotDeleteActiveLayer' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:292:0: style: The function 'wheelEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:294:0: style: The function 'wheelEvent' is never used. [unusedFunction]
 
 ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]

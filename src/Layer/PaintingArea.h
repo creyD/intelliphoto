@@ -22,13 +22,13 @@
  * \param widthOffset   - Stores the number of pixles from the left side of the painting area
  * \param heightOffset  - Stores the number of pixles from the top of the painting area
  */
-struct LayerObject{
-    IntelliImage* image;
-    int width;
-    int height;
-    int widthOffset;
-    int heightOffset;
-    int alpha=255;
+struct LayerObject {
+		IntelliImage* image;
+		int width;
+		int height;
+		int widthOffset;
+		int heightOffset;
+		int alpha=255;
 };
 
 /*!
@@ -36,12 +36,12 @@ struct LayerObject{
  */
 class PaintingArea : public QWidget
 {
-    // Declares our class as a QObject which is the base class
-    // for all Qt objects
-    // QObjects handle events
-    Q_OBJECT
-    friend IntelliTool;
-    friend IntelliPhotoGui;
+// Declares our class as a QObject which is the base class
+// for all Qt objects
+// QObjects handle events
+Q_OBJECT
+friend IntelliTool;
+friend IntelliPhotoGui;
 public:
     /*!
      * \brief PaintingArea is the constructor of the PaintingArea class, which initiates the working environment
@@ -181,50 +181,50 @@ public:
     IntelliColorPicker colorPicker;
 
 public slots:
-    // Events to handle
-    /*!
-     * \brief The slotActivateLayer method handles the event of selecting one layer as active
-     * \param a - idx of the layer to be active
-     */
-    void slotActivateLayer(int a);
-    /*!
-     * \brief The slotDeleteActiveLayer method handles the deletion of the active layer
-     */
-    void slotDeleteActiveLayer();
+// Events to handle
+/*!
+ * \brief The slotActivateLayer method handles the event of selecting one layer as active
+ * \param a - idx of the layer to be active
+ */
+void slotActivateLayer(int a);
+/*!
+ * \brief The slotDeleteActiveLayer method handles the deletion of the active layer
+ */
+void slotDeleteActiveLayer();
 
 protected:
-    void mousePressEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    void mouseReleaseEvent(QMouseEvent *event) override;
+void mousePressEvent(QMouseEvent*event) override;
+void mouseMoveEvent(QMouseEvent*event) override;
+void mouseReleaseEvent(QMouseEvent*event) override;
 
-    void wheelEvent(QWheelEvent *event) override;
-    // Updates the painting area where we are painting
-    void paintEvent(QPaintEvent *event) override;
+void wheelEvent(QWheelEvent*event) override;
+// Updates the painting area where we are painting
+void paintEvent(QPaintEvent*event) override;
 
-    // Makes sure the area we are drawing on remains
-    // as large as the widget
-    void resizeEvent(QResizeEvent *event) override;
+// Makes sure the area we are drawing on remains
+// as large as the widget
+void resizeEvent(QResizeEvent*event) override;
 
 private:
-    void setLayerDimensions(int maxWidth, int maxHeight);
-    void selectLayerUp();
-    void selectLayerDown();
-    IntelliTool* copyActiveTool();
+void setLayerDimensions(int maxWidth, int maxHeight);
+void selectLayerUp();
+void selectLayerDown();
+IntelliTool* copyActiveTool();
 
-    QImage* Canvas;
-    int maxWidth;
-    int maxHeight;
+QImage* Canvas;
+int maxWidth;
+int maxHeight;
 
     IntelliRenderSettings renderSettings;
     IntelliTool* Tool;
     IntelliPhotoGui* DummyGui;
 
-    std::vector<LayerObject> layerBundle;
-    int activeLayer=-1;
+std::vector<LayerObject> layerBundle;
+int activeLayer=-1;
 
-    void drawLayers(bool forSaving=false);
+void drawLayers(bool forSaving=false);
 
-    void resizeLayer(QImage *image_res, const QSize &newSize);
+void resizeLayer(QImage*image_res, const QSize &newSize);
 
     // Helper for Tool
     bool createTempTopLayer(int idx);

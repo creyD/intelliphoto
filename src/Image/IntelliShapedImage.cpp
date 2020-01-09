@@ -19,7 +19,7 @@ QImage IntelliShapedImage::getDisplayable(int alpha){
 }
 
 IntelliImage* IntelliShapedImage::getDeepCopy(){
-        IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), false);
+		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), false);
 		shaped->setPolygon(this->polygonData);
 		shaped->imageData.fill(Qt::transparent);
 		shaped->TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
@@ -31,7 +31,7 @@ void IntelliShapedImage::calculateVisiblity(){
             this->imageData = imageData.convertToFormat(QImage::Format_ARGB32);
         }
 
-        if(polygonData.size()<=2) {
+		if(polygonData.size()<=2) {
 				QColor clr;
 				for(int y=0; y<imageData.height(); y++) {
 						for(int x=0; x<imageData.width(); x++) {
@@ -50,7 +50,7 @@ void IntelliShapedImage::calculateVisiblity(){
 				for(int x=0; x<imageData.width(); x++) {
 						QPoint ptr(x,y);
 						clr = imageData.pixelColor(x,y);
-                        bool isInPolygon = IntelliTriangulation::isInPolygon(triangles, ptr);
+						bool isInPolygon = IntelliTriangulation::isInPolygon(triangles, ptr);
 						if(isInPolygon) {
 								clr.setAlpha(std::min(255, clr.alpha()));
 						}else{
@@ -90,7 +90,7 @@ void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
 				for(auto element:polygonData) {
 						this->polygonData.push_back(QPoint(element.x(), element.y()));
 				}
-                triangles = IntelliTriangulation::calculateTriangles(polygonData);
+				triangles = IntelliTriangulation::calculateTriangles(polygonData);
 		}
 		calculateVisiblity();
 		return;

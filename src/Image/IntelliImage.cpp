@@ -40,7 +40,7 @@ void IntelliImage::resizeImage(QImage*image, const QSize &newSize){
 				return;
 
 		// Create a new image to display and fill it with white
-        QImage newImage(newSize, QImage::Format_ARGB32);
+		QImage newImage(newSize, QImage::Format_ARGB32);
 		newImage.fill(qRgb(255, 255, 255));
 
 		// Draw the image
