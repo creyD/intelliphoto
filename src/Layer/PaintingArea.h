@@ -81,10 +81,10 @@ public:
      * \param type          - Defining the ImageType of the new layer
      * \return  Returns the number of layers in the project
      */
-    int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::Raster_Image);
+    int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
     /*!
      * \brief The addLayerAt adds a layer to the current project/ painting area at a specific position in the layer stack
-     * \param idx           - ID of the position the new layer should be added
+     * \param idx           - Index of the position the new layer should be added
      * \param width         - Width of the layer in pixles
      * \param height        - Height of the layer in pixles
      * \param widthOffset   - Offset of the layer measured to the left border of the painting area in pixles
@@ -92,23 +92,23 @@ public:
      * \param type          - Defining the ImageType of the new layer
      * \return  Returns the id of the layer position
      */
-    int addLayerAt(int idx, int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::Raster_Image);
+    int addLayerAt(int idx, int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
     /*!
-     * \brief The deleteLayer method removes a layer at a given index
-     * \param index - The index of the layer to be removed
+     * \brief The deleteLayer method removes a layer at a given idx
+     * \param idx - The index of the layer to be removed
      */
-    void deleteLayer(int index);
+    void deleteLayer(int idx);
     /*!
      * \brief The setLayerToActive method marks a specific layer as active
-     * \param index - Index of the layer to be active
+     * \param idx - The index of the layer to be active
      */
-    void setLayerActive(int index);
+    void setLayerActive(int idx);
     /*!
      * \brief The setAlphaOfLayer method sets the alpha value of a specific layer
-     * \param index     - Index of the layer where the change should be applied
+     * \param idx     - The index of the layer where the change should be applied
      * \param alpha     - New alpha value of the layer
      */
-    void setLayerAlpha(int index, int alpha);
+    void setLayerAlpha(int idx, int alpha);
     /*!
      * \brief The floodFill method fills a the active layer with a given color
      * \param r     - Red value of the color the layer should be filled with
@@ -125,7 +125,7 @@ public:
     void movePositionActive(int x, int y);
     /*!
      * \brief The moveActiveLayer moves the active layer to a specific position in the layer stack
-     * \param idx   - The id of the new position the layer should be in
+     * \param idx   - The index of the new position the layer should be in
      */
     void moveActiveLayer(int idx);
 
@@ -178,7 +178,7 @@ public slots:
     // Events to handle
     /*!
      * \brief The slotActivateLayer method handles the event of selecting one layer as active
-     * \param a - Index of the layer to be active
+     * \param a - idx of the layer to be active
      */
     void slotActivateLayer(int a);
     /*!

@@ -34,9 +34,9 @@ inline bool isInTriangle(Triangle& tri, QPoint& P){
 		float val1, val2, val3;
 		bool neg, pos;
 
-        val1 = IntelliTriangulation::sign(P,tri.A,tri.B);
-        val2 = IntelliTriangulation::sign(P,tri.B,tri.C);
-        val3 = IntelliTriangulation::sign(P,tri.C,tri.A);
+		val1 = IntelliTriangulation::sign(P,tri.A,tri.B);
+		val2 = IntelliTriangulation::sign(P,tri.B,tri.C);
+		val3 = IntelliTriangulation::sign(P,tri.C,tri.A);
 
 		neg = (val1<0.f) || (val2<0.f) || (val3<0.f);
 		pos = (val1>0.f) || (val2>0.f) || (val3>0.f);

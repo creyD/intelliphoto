@@ -6,7 +6,7 @@
 
 IntelliShapedImage::IntelliShapedImage(int weight, int height)
 		: IntelliRasterImage(weight, height){
-        TypeOfImage = IntelliImage::ImageType::Shaped_Image;
+		TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
 }
 
 IntelliShapedImage::~IntelliShapedImage(){
@@ -21,7 +21,7 @@ IntelliImage* IntelliShapedImage::getDeepCopy(){
 		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height());
 		shaped->setPolygon(this->polygonData);
 		shaped->imageData.fill(Qt::transparent);
-        shaped->TypeOfImage = IntelliImage::ImageType::Shaped_Image;
+		shaped->TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
 		return shaped;
 }
 

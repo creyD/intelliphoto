@@ -3,12 +3,12 @@
 #include "QColorDialog"
 
 IntelliToolPlainTool::IntelliToolPlainTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
-        : IntelliTool(Area, colorPicker, Toolsettings){
-        this->ActiveType = Tooltype::PLAIN;
+		: IntelliTool(Area, colorPicker, Toolsettings){
+		this->ActiveType = Tooltype::PLAIN;
 }
 
 IntelliToolPlainTool::~IntelliToolPlainTool(){
-        IntelliTool::onMouseRightPressed(0,0);
+		IntelliTool::onMouseRightPressed(0,0);
 }
 
 void IntelliToolPlainTool::onMouseLeftPressed(int x, int y){
