@@ -215,9 +215,9 @@ QImage* Canvas;
 int maxWidth;
 int maxHeight;
 
-    IntelliRenderSettings renderSettings;
-    IntelliTool* Tool;
-    IntelliPhotoGui* DummyGui;
+IntelliRenderSettings renderSettings;
+IntelliTool* Tool;
+IntelliPhotoGui* DummyGui;
 
 std::vector<LayerObject> layerBundle;
 int activeLayer=-1;
