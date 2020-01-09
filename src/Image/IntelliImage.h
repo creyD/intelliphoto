@@ -24,8 +24,8 @@ public:
  * \brief The Types, which an Image can be.
  */
 enum class ImageType {
-        Raster_Image,
-        Shaped_Image
+        RASTERIMAGE,
+        SHAPEDIMAGE
 };
 
 protected:

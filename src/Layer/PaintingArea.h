@@ -81,7 +81,7 @@ public:
      * \param type          - Defining the ImageType of the new layer
      * \return  Returns the number of layers in the project
      */
-    int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::Raster_Image);
+    int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
     /*!
      * \brief The addLayerAt adds a layer to the current project/ painting area at a specific position in the layer stack
      * \param idx           - Index of the position the new layer should be added
@@ -92,7 +92,7 @@ public:
      * \param type          - Defining the ImageType of the new layer
      * \return  Returns the id of the layer position
      */
-    int addLayerAt(int idx, int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::Raster_Image);
+    int addLayerAt(int idx, int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
     /*!
      * \brief The deleteLayer method removes a layer at a given idx
      * \param idx - The index of the layer to be removed
