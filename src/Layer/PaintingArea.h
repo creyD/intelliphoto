@@ -12,7 +12,6 @@
 #include "Image/IntelliShapedImage.h"
 #include "Tool/IntelliTool.h"
 #include "IntelliHelper/IntelliColorPicker.h"
-#include "IntelliHelper/IntelliRenderSettings.h"
 
 /*!
  * \brief The LayerObject struct holds all the information needed to construct a layer
@@ -165,6 +164,8 @@ public:
     IntelliImage::ImageType getTypeOfImageRealLayer();
 
     std::vector<QPoint> getPolygonDataOfRealLayer();
+
+    int getNumberOfActiveLayer();
 
     IntelliToolsettings Toolsettings;
     IntelliColorPicker colorPicker;

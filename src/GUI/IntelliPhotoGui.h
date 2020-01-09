@@ -94,7 +94,7 @@ void setDefaultToolValue();
 // What we'll draw on
 PaintingArea* paintingArea;
 
-const QSize Buttonsize = QSize(50,50);
+const QSize Buttonsize = QSize(70,70);
 QPixmap p;
 QPushButton* CircleButton;
 QPushButton* FloodFillButton;
@@ -110,7 +110,11 @@ QLineEdit* EditLineInnerAlpha;
 QIntValidator* ValidatorLineWidth;
 QIntValidator* ValidatorInnerAlpha;
 
-QLabel* Farbe1;
+QPushButton* FirstColorButton;
+QPushButton* SecondColorButton;
+QPushButton* SwitchColorButton;
+
+QLabel* ActiveLayerLine;
 
 // The menu widgets
 QMenu*saveAsMenu;
