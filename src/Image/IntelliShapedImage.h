@@ -30,9 +30,8 @@ public:
  * \brief The Construcor of the IntelliShapedImage. Given the Image dimensions.
  * \param width    - The width of the Image.
  * \param height    - The height of the Image.
- * \param fastRendererOn    - Represents the flag for 8bit picture handelling.
  */
-IntelliShapedImage(int width, int height, bool fastRendererOn);
+IntelliShapedImage(int width, int height);
 
 /*!
  * \brief An Destructor.
