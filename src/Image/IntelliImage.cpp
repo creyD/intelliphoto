@@ -24,7 +24,7 @@ bool IntelliImage::loadImage(const QString &filePath){
 		QImage loadedImage;
 
 		// If the image wasn't loaded leave this function
-        if (!loadedImage.load(filePath))
+		if (!loadedImage.load(filePath))
 				return false;
 
 		// scaled Image to size of Layer

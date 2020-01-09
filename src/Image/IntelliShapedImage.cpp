@@ -22,7 +22,7 @@ IntelliImage* IntelliShapedImage::getDeepCopy(){
         IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), false);
 		shaped->setPolygon(this->polygonData);
 		shaped->imageData.fill(Qt::transparent);
-        shaped->TypeOfImage = IntelliImage::ImageType::Shaped_Image;
+		shaped->TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
 		return shaped;
 }
 
