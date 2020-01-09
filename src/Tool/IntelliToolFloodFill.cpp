@@ -5,8 +5,8 @@
 #include <functional>
 #include <queue>
 
-IntelliToolFloodFill::IntelliToolFloodFill(PaintingArea* Area, IntelliColorPicker* colorPicker)
-		: IntelliTool(Area, colorPicker){
+IntelliToolFloodFill::IntelliToolFloodFill(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
+        : IntelliTool(Area, colorPicker, Toolsettings){
         this->ActiveType = Tooltype::FLOODFILL;
 }
 

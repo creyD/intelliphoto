@@ -19,22 +19,13 @@ void drawCircle(int radius);
  */
 QPoint centerPoint;
 
-/*!
- * \brief The alpha value of the inner circle.
- */
-int innerAlpha;
-
-/*!
- * \brief The width of the outer circle edge.
- */
-int borderWidth;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker. And reading in the inner alpha and edgeWidth.
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolCircle(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 
 /*!
  * \brief A Destructor.

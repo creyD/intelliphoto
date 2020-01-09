@@ -10,10 +10,6 @@
  */
 class IntelliToolPen : public IntelliTool {
 /*!
- * \brief penWidth - The width of the Pen while drawing.
- */
-int penWidth;
-/*!
  * \brief point - Represents the previous point to help drawing a line.
  */
 QPoint previousPoint;
@@ -23,7 +19,7 @@ public:
  * \param Area          - The general PaintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolPen(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolPen(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 /*!
  * \brief A Destructor.
  */

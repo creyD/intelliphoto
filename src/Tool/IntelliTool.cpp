@@ -1,9 +1,10 @@
 #include "IntelliTool.h"
 #include "Layer/PaintingArea.h"
 
-IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker){
+IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings){
 		this->Area=Area;
 		this->colorPicker=colorPicker;
+        this->Toolsettings=Toolsettings;
 }
 
 
@@ -73,6 +74,7 @@ void IntelliTool::mergeToolLayer(){
 						activeLayer->image->imageData.setPixelColor(x, y, clr_0);
 				}
 		}
+        Area->DumpyGui->UpdateGui();
 }
 
 void IntelliTool::deleteToolLayer(){

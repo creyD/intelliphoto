@@ -8,7 +8,8 @@
 #include <QWidget>
 #include <vector>
 
-#include "IntelliHelper/IntelliHelper.h"
+#include "IntelliHelper/IntelliRenderSettings.h"
+#include "IntelliHelper/IntelliTriangulation.h"
 
 class IntelliTool;
 
@@ -140,6 +141,8 @@ virtual bool loadImage(const QString &filePath);
  * \return The color of the Pixel as QColor.
  */
 virtual QColor getPixelColor(QPoint& point);
+
+QImage getImageData();
 };
 
 #endif

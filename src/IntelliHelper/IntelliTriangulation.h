@@ -1,5 +1,5 @@
-#ifndef INTELLIHELPER_H
-#define INTELLIHELPER_H
+#ifndef INTELLITRIANGULATION_H
+#define INTELLITRIANGULATION_H
 
 #include <QPoint>
 #include <vector>
@@ -11,7 +11,7 @@ struct Triangle {
 		QPoint A,B,C;
 };
 
-namespace IntelliHelper {
+namespace IntelliTriangulation {
 
 /*!
  * \brief A function to get the 2*area of a traingle, using its determinat.
@@ -34,9 +34,9 @@ inline bool isInTriangle(Triangle& tri, QPoint& P){
 		float val1, val2, val3;
 		bool neg, pos;
 
-		val1 = IntelliHelper::sign(P,tri.A,tri.B);
-		val2 = IntelliHelper::sign(P,tri.B,tri.C);
-		val3 = IntelliHelper::sign(P,tri.C,tri.A);
+        val1 = IntelliTriangulation::sign(P,tri.A,tri.B);
+        val2 = IntelliTriangulation::sign(P,tri.B,tri.C);
+        val3 = IntelliTriangulation::sign(P,tri.C,tri.A);
 
 		neg = (val1<0.f) || (val2<0.f) || (val3<0.f);
 		pos = (val1>0.f) || (val2>0.f) || (val3>0.f);

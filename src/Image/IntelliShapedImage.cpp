@@ -1,5 +1,5 @@
 #include "Image/IntelliShapedImage.h"
-#include "IntelliHelper/IntelliHelper.h"
+#include "IntelliHelper/IntelliTriangulation.h"
 #include <QPainter>
 #include <QRect>
 #include <QDebug>
@@ -42,7 +42,7 @@ void IntelliShapedImage::calculateVisiblity(){
 				for(int x=0; x<imageData.width(); x++) {
 						QPoint ptr(x,y);
 						clr = imageData.pixelColor(x,y);
-						bool isInPolygon = IntelliHelper::isInPolygon(triangles, ptr);
+						bool isInPolygon = IntelliTriangulation::isInPolygon(triangles, ptr);
 						if(isInPolygon) {
 								clr.setAlpha(std::min(255, clr.alpha()));
 						}else{
@@ -73,7 +73,7 @@ void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
 				for(auto element:polygonData) {
 						this->polygonData.push_back(QPoint(element.x(), element.y()));
 				}
-				triangles = IntelliHelper::calculateTriangles(polygonData);
+				triangles = IntelliTriangulation::calculateTriangles(polygonData);
 		}
 		calculateVisiblity();
 		return;

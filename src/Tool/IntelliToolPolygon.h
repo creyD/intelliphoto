@@ -2,7 +2,7 @@
 #define INTELLITOOLPOLYGON_H
 
 #include "IntelliTool.h"
-#include "IntelliHelper/IntelliHelper.h"
+#include "IntelliHelper/IntelliTriangulation.h"
 #include <vector>
 #include <QPoint>
 /*!
@@ -20,11 +20,6 @@ class IntelliToolPolygon : public IntelliTool
 bool isNearStart(int x, int y, QPoint Startpoint);
 
 /*!
- * \brief LineWidth of the drawing polygon.
- */
-int lineWidth;
-
-/*!
  * \brief IsDrawing true while drawing, else false.
  */
 bool isDrawing;
@@ -40,11 +35,6 @@ bool isInside;
 bool isPointNearStart;
 
 /*!
- * \brief The alpha value of the inner circle.
- */
-int innerAlpha;
-
-/*!
  * \brief QPointList list of all points of the polygon.
  */
 std::vector<QPoint> QPointList;
@@ -54,7 +44,7 @@ public:
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 /*!
  * \brief A Destructor.
  */

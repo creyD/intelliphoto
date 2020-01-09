@@ -1,6 +1,8 @@
 #ifndef IntelliPhotoGui_H
 #define IntelliPhotoGui_H
 
+#include <QtWidgets>
+#include <QPixmap>
 #include <QList>
 #include <QMainWindow>
 #include <QGridLayout>
@@ -29,6 +31,8 @@ public:
  * \brief The IntelliPhotoGui method is the constructor and is used to create a new instance of the main program window
  */
 IntelliPhotoGui();
+
+void UpdateGui();
 
 protected:
 // Function used to close an event
@@ -69,6 +73,10 @@ void slotCreateFloodFillTool();
 // slots for dialogs
 void slotAboutDialog();
 
+void slotEnterPressed();
+
+void slotResetTools();
+
 private:
 // Will tie user actions to functions
 void createActions();
@@ -83,8 +91,33 @@ bool maybeSave();
 // Opens the Save dialog and saves
 bool saveFile(const QByteArray &fileFormat);
 
+void setDefaultToolValue();
+
 // What we'll draw on
 PaintingArea* paintingArea;
+
+const QSize Buttonsize = QSize(70,70);
+QPixmap p;
+QPushButton* CircleButton;
+QPushButton* FloodFillButton;
+QPushButton* LineButton;
+QPushButton* PenButton;
+QPushButton* PlainButton;
+QPushButton* PolygonButton;
+QPushButton* RectangleButton;
+QLabel* WidthLine;
+QLabel* innerAlphaLine;
+QLineEdit* EditLineWidth;
+QLineEdit* EditLineInnerAlpha;
+QIntValidator* ValidatorLineWidth;
+QIntValidator* ValidatorInnerAlpha;
+
+QPushButton* FirstColorButton;
+QPushButton* SecondColorButton;
+QPushButton* SwitchColorButton;
+
+QLabel* ActiveLayerLine;
+QPushButton* ActiveLayerImageButton;
 
 // The menu widgets
 QMenu*saveAsMenu;
@@ -135,7 +168,7 @@ QList<QAction*> actionSaveAs;
 
 // main GUI elements
 QWidget* centralGuiWidget;
-QGridLayout*mainLayout;
+QGridLayout* mainLayout;
 };
 
 #endif

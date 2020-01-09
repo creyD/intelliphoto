@@ -2,8 +2,8 @@
 #include "Layer/PaintingArea.h"
 #include "QColorDialog"
 
-IntelliToolPlainTool::IntelliToolPlainTool(PaintingArea* Area, IntelliColorPicker* colorPicker)
-		: IntelliTool(Area, colorPicker){
+IntelliToolPlainTool::IntelliToolPlainTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
+        : IntelliTool(Area, colorPicker, Toolsettings){
         this->ActiveType = Tooltype::PLAIN;
 }
 
