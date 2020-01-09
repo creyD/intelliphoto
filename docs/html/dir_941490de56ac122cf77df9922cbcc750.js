@@ -14,7 +14,9 @@ var dir_941490de56ac122cf77df9922cbcc750 =
       [ "IntelliToolFloodFill", "class_intelli_tool_flood_fill.html", "class_intelli_tool_flood_fill" ]
     ] ],
     [ "IntelliToolLine.cpp", "_intelli_tool_line_8cpp.html", null ],
-    [ "IntelliToolLine.h", "_intelli_tool_line_8h.html", "_intelli_tool_line_8h" ],
+    [ "IntelliToolLine.h", "_intelli_tool_line_8h.html", [
+      [ "IntelliToolLine", "class_intelli_tool_line.html", "class_intelli_tool_line" ]
+    ] ],
     [ "IntelliToolPen.cpp", "_intelli_tool_pen_8cpp.html", null ],
     [ "IntelliToolPen.h", "_intelli_tool_pen_8h.html", [
       [ "IntelliToolPen", "class_intelli_tool_pen.html", "class_intelli_tool_pen" ]

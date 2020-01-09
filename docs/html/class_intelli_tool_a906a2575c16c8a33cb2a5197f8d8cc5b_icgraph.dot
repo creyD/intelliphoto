@@ -14,11 +14,11 @@ digraph "IntelliTool::onMouseLeftReleased"
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node5 [label="IntelliToolPen::onMouseLeft\lReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html#abda7a22b9766fa4ad254324a53cab94d",tooltip="A function managing the left click released of a mouse. Merging the drawing to the active layer."];
   Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="IntelliToolRectangle\l::onMouseLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_rectangle.html#a94460e3ff1c19e80bde922c55f53cc43",tooltip="A function managing the left click released of a mouse. Merging the draw to the active layer."];
+  Node6 [label="IntelliToolLine::onMouse\lLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#ac93f76ff20a1c111a403b298bab02482",tooltip="A function managing the left click released of a mouse."];
   Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node7 [label="IntelliToolCircle::\lonMouseLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_circle.html#ad8e438ec997c57262b5efc2db4cee1a3",tooltip="A function managing the left click released of a mouse."];
+  Node7 [label="IntelliToolRectangle\l::onMouseLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_rectangle.html#a94460e3ff1c19e80bde922c55f53cc43",tooltip="A function managing the left click released of a mouse. Merging the draw to the active layer."];
   Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node8 [label="IntelliToolPolygon\l::onMouseLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_polygon.html#a4e1473ff408ae2e11cf6a43f6f575f21",tooltip="A function managing the left click released of a mouse. Merging the fill to the active layer."];
+  Node8 [label="IntelliToolCircle::\lonMouseLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_circle.html#ad8e438ec997c57262b5efc2db4cee1a3",tooltip="A function managing the left click released of a mouse."];
   Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node9 [label="IntelliToolLine::onMouse\lLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#ac93f76ff20a1c111a403b298bab02482",tooltip="A function managing the left click released of a mouse."];
+  Node9 [label="IntelliToolPolygon\l::onMouseLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_polygon.html#a4e1473ff408ae2e11cf6a43f6f575f21",tooltip="A function managing the left click released of a mouse. Merging the fill to the active layer."];
 }

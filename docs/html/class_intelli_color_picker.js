@@ -6,5 +6,5 @@ var class_intelli_color_picker =
     [ "getSecondColor", "class_intelli_color_picker.html#a55568fbf5dc783f06284b7031ffe9415", null ],
     [ "setFirstColor", "class_intelli_color_picker.html#a7e2ddbbbfbed383f06b24e5bf6b27ae8", null ],
     [ "setSecondColor", "class_intelli_color_picker.html#a86bf4a940e4a0e465e30cbdf28748931", null ],
-    [ "switchColors", "class_intelli_color_picker.html#a437a6f20bf2fc0a4cbaf4c030c2a26d9", null ]
+    [ "swapColors", "class_intelli_color_picker.html#aec499265ae28ce1b54be88222e74292e", null ]
 ];

@@ -7,5 +7,6 @@ digraph "intelliphoto/src/GUI" {
   dir_5dabb14988a75c922e285f444641a133 [shape=box, label="GUI", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_5dabb14988a75c922e285f444641a133.html"];
   }
   dir_e6d96184223881d115efa44ca0dfa844 [shape=box label="Layer" URL="dir_e6d96184223881d115efa44ca0dfa844.html"];
+  dir_e6d96184223881d115efa44ca0dfa844->dir_5dabb14988a75c922e285f444641a133 [headlabel="1", labeldistance=1.5 headhref="dir_000006_000002.html"];
   dir_5dabb14988a75c922e285f444641a133->dir_e6d96184223881d115efa44ca0dfa844 [headlabel="1", labeldistance=1.5 headhref="dir_000002_000006.html"];
 }

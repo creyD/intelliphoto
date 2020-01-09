@@ -1,0 +1,18 @@
+digraph "IntelliPhotoGui::UpdateGui"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="IntelliPhotoGui::UpdateGui",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="IntelliColorPicker\l::getFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#aae2eb27b928fe9388b9398b0556303b7",tooltip="A function to read the primary selected color."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="IntelliImage::getImageData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html#ad66fbe380ffe0e073a8cd760f8285fe3",tooltip="getImageData returns the data of the current image."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PaintingArea::getImageOf\lActiveLayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#acab11ad35d07e9081203d8217d2c0855",tooltip=" "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PaintingArea::getNumberOf\lActiveLayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_painting_area.html#a24280454ebb80db7feba2fd621513353",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="IntelliColorPicker\l::getSecondColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#a55568fbf5dc783f06284b7031ffe9415",tooltip="A function to read the secondary selected color."];
+}

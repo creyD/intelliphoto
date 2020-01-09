@@ -5,7 +5,7 @@ digraph "IntelliImage"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="IntelliImage",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="An abstract class which manages the basic IntelliImage operations."];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="IntelliRasterImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_raster_image.html",tooltip="The IntelliRasterImage manages a Rasterimage."];
+  Node2 [label="IntelliRasterImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_raster_image.html",tooltip="The IntelliRasterImage manages a RASTERIMAGE."];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="IntelliShapedImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_shaped_image.html",tooltip="The IntelliShapedImage manages a Shapedimage."];
 }

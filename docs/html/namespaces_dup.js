@@ -1,4 +1,4 @@
 var namespaces_dup =
 [
-    [ "IntelliHelper", "namespace_intelli_helper.html", null ]
+    [ "IntelliTriangulation", "namespace_intelli_triangulation.html", null ]
 ];

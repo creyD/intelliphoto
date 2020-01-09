@@ -1,0 +1,14 @@
+digraph "IntelliTriangulation::isInTriangle"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="IntelliTriangulation\l::isInTriangle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A function to check if a given point is in a triangle."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="IntelliTriangulation\l::isInPolygon",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$namespace_intelli_triangulation.html#a00621e2d8708fe2e8966d7d79b64e186",tooltip="A function to check if a point lies in a polygon by checking its spanning triangles."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="IntelliToolPolygon\l::onMouseLeftPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_polygon.html#ad5d3b741be6d0647a9cdc9da2cb8bc3d",tooltip="A function managing the left click pressed of a mouse. Setting polygon points."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="IntelliToolPolygon\l::onMouseLeftReleased",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_polygon.html#a4e1473ff408ae2e11cf6a43f6f575f21",tooltip="A function managing the left click released of a mouse. Merging the fill to the active layer."];
+}

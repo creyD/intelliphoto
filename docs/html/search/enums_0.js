@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['imagetype_292',['ImageType',['../_intelli_image_8h.html#a3154c405c975616503bac23f51b78fc0',1,'IntelliImage.h']]]
+  ['imagetype_356',['ImageType',['../class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e',1,'IntelliImage']]]
 ];
