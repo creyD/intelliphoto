@@ -1,7 +1,6 @@
 #include "GUI/IntelliPhotoGui.h"
 #include <QApplication>
 #include <QDebug>
-#include "IntelliHelper/IntelliHelper.h"
 #include <vector>
 
 int main(int argc, char*argv[]){

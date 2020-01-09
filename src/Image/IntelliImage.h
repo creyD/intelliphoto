@@ -8,13 +8,8 @@
 #include <QWidget>
 #include <vector>
 
-/*!
- * \brief The Types, which an Image can be.
- */
-enum class ImageType {
-		Raster_Image,
-		Shaped_Image
-};
+#include "IntelliHelper/IntelliTriangulation.h"
+#include "IntelliHelper/IntelliRenderSettings.h"
 
 class IntelliTool;
 
@@ -23,6 +18,16 @@ class IntelliTool;
  */
 class IntelliImage {
 friend IntelliTool;
+public:
+
+/*!
+ * \brief The Types, which an Image can be.
+ */
+enum class ImageType {
+		RASTERIMAGE,
+		SHAPEDIMAGE
+};
+
 protected:
 void resizeImage(QImage*image, const QSize &newSize);
 
@@ -30,13 +35,25 @@ void resizeImage(QImage*image, const QSize &newSize);
  * \brief The underlying image data.
  */
 QImage imageData;
+
+/*!
+ * \brief The Type, an Image is.
+ */
+ImageType TypeOfImage;
+
+/*!
+ * \brief fastRenderer is the flag that represents the usage of 8bit pictures.
+ */
+bool fastRenderer;
+
 public:
 /*!
  * \brief The Construcor of the IntelliImage. Given the Image dimensions.
  * \param width    - The width of the Image.
  * \param height    - The height of the Image.
+ * \param fastRendererOn    - Represents the flag for 8bit picture handelling.
  */
-IntelliImage(int width, int height);
+IntelliImage(int width, int height, bool fastRendererOn);
 
 /*!
  * \brief An Abstract Destructor.
@@ -114,6 +131,10 @@ virtual std::vector<QPoint> getPolygonData(){
 		return std::vector<QPoint>();
 }
 
+virtual ImageType getTypeOfImage(){
+		return TypeOfImage;
+}
+
 /*!
  * \brief A function that loads and sclaes an image to the fitting dimensions.
  * \param filePath  - The path+name of the image which to loaded.
@@ -127,6 +148,18 @@ virtual bool loadImage(const QString &filePath);
  * \return The color of the Pixel as QColor.
  */
 virtual QColor getPixelColor(QPoint& point);
+
+/*!
+ * \brief updateRendererSetting updates the existing image format to the new format.
+ * \param fastRendererOn flag for the 8bit image handeling.
+ */
+virtual void updateRendererSetting(bool fastRendererOn);
+
+/*!
+ * \brief getImageData returns the data of the current image.
+ */
+virtual QImage getImageData();
+
 };
 
 #endif

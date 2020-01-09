@@ -2,6 +2,7 @@
 #define Intelli_Tool_H
 
 #include "IntelliHelper/IntelliColorPicker.h"
+#include "IntelliHelper/IntelliToolsettings.h"
 #include <vector>
 
 struct LayerObject;
@@ -11,6 +12,16 @@ class PaintingArea;
  * \brief An abstract class that manages the basic events, like mouse clicks or scrolls events.
  */
 class IntelliTool {
+public:
+enum class Tooltype {
+		CIRCLE,
+		FLOODFILL,
+		LINE,
+		PEN,
+		PLAIN,
+		POLYGON,
+		RECTANGLE
+};
 private:
 /*!
  * \brief A function that creates a layer to draw on.
@@ -32,10 +43,14 @@ protected:
  */
 PaintingArea* Area;
 
+Tooltype ActiveType;
+
 /*!
  * \brief A pointer to the IntelliColorPicker of the PaintingArea to interact with, and get the colors.
  */
 IntelliColorPicker* colorPicker;
+
+IntelliToolsettings* Toolsettings;
 
 /*!
  * \brief A pointer to the underlying active Layer, do not work on this. This is used for data grabbing or previews.
@@ -58,7 +73,7 @@ public:
  * \param Area          - The general PaintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 
 /*!
  * \brief An abstract Destructor.
@@ -106,6 +121,9 @@ virtual void onWheelScrolled(int value);
  */
 virtual void onMouseMoved(int x, int y);
 
+Tooltype getTooltype();
+
+bool getIsDrawing();
 
 };
 #endif

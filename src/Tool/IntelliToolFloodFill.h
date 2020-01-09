@@ -14,7 +14,7 @@ public:
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
-IntelliToolFloodFill(PaintingArea* Area, IntelliColorPicker* colorPicker);
+IntelliToolFloodFill(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 
 /*!
  * \brief A Destructor.

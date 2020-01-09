@@ -1,8 +1,5 @@
 // ---------- IntelliPhotoGui.cpp ----------
 
-#include <QtWidgets>
-#include <QPixmap>
-
 #include "IntelliPhotoGui.h"
 #include "Layer/PaintingArea.h"
 
@@ -19,7 +16,7 @@ IntelliPhotoGui::IntelliPhotoGui(){
 		// Size the app
 		resize(600,600);
 		showMaximized();
-
+		setDefaultToolValue();
 }
 
 // User tried to close the app
@@ -84,7 +81,7 @@ void IntelliPhotoGui::slotCreateNewLayer(){
 		if (ok1&&ok2)
 		{
 				int layer = paintingArea->addLayer(width,height,0,0);
-				paintingArea->slotActivateLayer(layer);
+				UpdateGui();
 		}
 }
 
@@ -98,10 +95,12 @@ void IntelliPhotoGui::slotDeleteLayer(){
 		// Define the standard Value, min, max, step and ok button
 		int layerNumber = QInputDialog::getInt(this, tr("delete Layer"),
 		                                       tr("Number:"),
-		                                       1,0, 500, 1, &ok);
+		                                       paintingArea->getNumberOfActiveLayer(),0, 500, 1, &ok);
 		// Create New Layer
-		if (ok)
+		if (ok) {
 				paintingArea->deleteLayer(layerNumber);
+				UpdateGui();
+		}
 }
 
 void IntelliPhotoGui::slotSetActiveAlpha(){
@@ -121,6 +120,7 @@ void IntelliPhotoGui::slotSetActiveAlpha(){
 		if (ok1&&ok2)
 		{
 				paintingArea->setLayerAlpha(layer,alpha);
+				UpdateGui();
 		}
 }
 
@@ -179,6 +179,7 @@ void IntelliPhotoGui::slotClearActiveLayer(){
 		if (ok1&&ok2&&ok3&&ok4)
 		{
 				paintingArea->floodFill(red, green, blue, alpha);
+				UpdateGui();
 		}
 }
 
@@ -195,46 +196,57 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 		if (ok1)
 		{
 				paintingArea->setLayerActive(layer);
+				UpdateGui();
 		}
 }
 
 void IntelliPhotoGui::slotSetFirstColor(){
 		paintingArea->colorPickerSetFirstColor();
+		UpdateGui();
 }
 
 void IntelliPhotoGui::slotSetSecondColor(){
 		paintingArea->colorPickerSetSecondColor();
+		UpdateGui();
 }
 
 void IntelliPhotoGui::slotSwapColor(){
 		paintingArea->colorPickerSwapColors();
+		UpdateGui();
 }
 
 void IntelliPhotoGui::slotCreatePenTool(){
+		PenButton->setChecked(true);
 		paintingArea->createPenTool();
 }
 
 void IntelliPhotoGui::slotCreatePlainTool(){
+		PlainButton->setChecked(true);
 		paintingArea->createPlainTool();
 }
 
 void IntelliPhotoGui::slotCreateLineTool(){
+		LineButton->setChecked(true);
 		paintingArea->createLineTool();
 }
 
 void IntelliPhotoGui::slotCreateRectangleTool(){
+		RectangleButton->setChecked(true);
 		paintingArea->createRectangleTool();
 }
 
 void IntelliPhotoGui::slotCreateCircleTool(){
+		CircleButton->setChecked(true);
 		paintingArea->createCircleTool();
 }
 
 void IntelliPhotoGui::slotCreatePolygonTool(){
+		PolygonButton->setChecked(true);
 		paintingArea->createPolygonTool();
 }
 
 void IntelliPhotoGui::slotCreateFloodFillTool(){
+		FloodFillButton->setChecked(true);
 		paintingArea->createFloodFillTool();
 }
 
@@ -243,6 +255,29 @@ void IntelliPhotoGui::slotAboutDialog(){
 		// Window title and text to display
 		QMessageBox::about(this, tr("About Painting"),
 		                   tr("<p><b>IntelliPhoto</b>Pretty basic editor.</p>"));
+}
+
+void IntelliPhotoGui::slotEnterPressed(){
+		QString string = EditLineWidth->text();
+		if(string.toInt() > 50) {
+				EditLineWidth->setText("50");
+		}
+		paintingArea->Toolsettings.setLineWidth(string.toInt());
+		string = EditLineInnerAlpha->text();
+		if(string.toInt() > 255) {
+				EditLineInnerAlpha->setText("255");
+		}
+		paintingArea->Toolsettings.setInnerAlpha(string.toInt());
+}
+
+void IntelliPhotoGui::slotResetTools(){
+		CircleButton->setChecked(false);
+		FloodFillButton->setChecked(false);
+		LineButton->setChecked(false);
+		PenButton->setChecked(false);
+		PlainButton->setChecked(false);
+		PolygonButton->setChecked(false);
+		RectangleButton->setChecked(false);
 }
 
 // Define menu actions that call functions
@@ -324,34 +359,45 @@ void IntelliPhotoGui::createActions(){
 		//Create Color Actions here
 		actionColorPickerFirstColor = new QAction(tr("&Main"), this);
 		connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
+		connect(FirstColorButton, SIGNAL(clicked()), this, SLOT(slotSetFirstColor()));
 
 		actionColorPickerSecondColor = new QAction(tr("&Secondary"), this);
 		connect(actionColorPickerSecondColor, SIGNAL(triggered()), this, SLOT(slotSetSecondColor()));
+		connect(SecondColorButton, SIGNAL(clicked()), this, SLOT(slotSetSecondColor()));
 
 		actionColorSwap = new QAction(tr("&Switch"), this);
 		actionColorSwap->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
 		connect(actionColorSwap, SIGNAL(triggered()), this, SLOT(slotSwapColor()));
+		connect(SwitchColorButton, SIGNAL(clicked()), this, SLOT(slotSwapColor()));
 
 		//Create Tool actions down here
 		actionCreatePlainTool = new QAction(tr("&Plain"), this);
+		connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
 		connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotCreatePlainTool()));
 
+
 		actionCreatePenTool = new QAction(tr("&Pen"),this);
+		connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
 		connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotCreatePenTool()));
 
 		actionCreateLineTool = new QAction(tr("&Line"), this);
+		connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
 		connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotCreateLineTool()));
 
 		actionCreateCircleTool = new QAction(tr("&Circle"), this);
+		connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
 		connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotCreateCircleTool()));
 
 		actionCreateRectangleTool = new QAction(tr("&Rectangle"), this);
+		connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
 		connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotCreateRectangleTool()));
 
 		actionCreatePolygonTool = new QAction(tr("&Polygon"), this);
+		connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
 		connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotCreatePolygonTool()));
 
 		actionCreateFloodFillTool = new QAction(tr("&FloodFill"), this);
+		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
 		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotCreateFloodFillTool()));
 
 		// Create about action and tie to IntelliPhotoGui::about()
@@ -361,6 +407,30 @@ void IntelliPhotoGui::createActions(){
 		// Create about Qt action and tie to IntelliPhotoGui::aboutQt()
 		actionAboutQtDialog = new QAction(tr("About &Qt"), this);
 		connect(actionAboutQtDialog, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+
+		connect(EditLineWidth, SIGNAL(returnPressed()), this, SLOT(slotEnterPressed()));
+		connect(EditLineInnerAlpha, SIGNAL(returnPressed()), this, SLOT(slotEnterPressed()));
+
+		connect(CircleButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+		connect(CircleButton, SIGNAL(clicked()), this, SLOT(slotCreateCircleTool()));
+
+		connect(FloodFillButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+		connect(FloodFillButton, SIGNAL(clicked()), this, SLOT(slotCreateFloodFillTool()));
+
+		connect(LineButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+		connect(LineButton, SIGNAL(clicked()), this, SLOT(slotCreateLineTool()));
+
+		connect(PenButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+		connect(PenButton, SIGNAL(clicked()), this, SLOT(slotCreatePenTool()));
+
+		connect(PlainButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+		connect(PlainButton, SIGNAL(clicked()), this, SLOT(slotCreatePlainTool()));
+
+		connect(PolygonButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+		connect(PolygonButton, SIGNAL(clicked()), this, SLOT(slotCreatePolygonTool()));
+
+		connect(RectangleButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+		connect(RectangleButton, SIGNAL(clicked()), this, SLOT(slotCreateRectangleTool()));
 }
 
 // Create the menubar
@@ -402,13 +472,13 @@ void IntelliPhotoGui::createMenus(){
 
 		//Attach all Tool Options
 		toolMenu = new QMenu(tr("&Tools"), this);
+		toolMenu->addAction(actionCreateCircleTool);
+		toolMenu->addAction(actionCreateFloodFillTool);
+		toolMenu->addAction(actionCreateLineTool);
 		toolMenu->addAction(actionCreatePenTool);
 		toolMenu->addAction(actionCreatePlainTool);
-		toolMenu->addAction(actionCreateLineTool);
-		toolMenu->addAction(actionCreateRectangleTool);
-		toolMenu->addAction(actionCreateCircleTool);
 		toolMenu->addAction(actionCreatePolygonTool);
-		toolMenu->addAction(actionCreateFloodFillTool);
+		toolMenu->addAction(actionCreateRectangleTool);
 		toolMenu->addSeparator();
 		toolMenu->addMenu(colorMenu);
 
@@ -436,9 +506,124 @@ void IntelliPhotoGui::createGui(){
 
 		// create Gui elements
 		paintingArea = new PaintingArea();
+		paintingArea->DumpyGui = this;
+
+		p = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
+		CircleButton = new QPushButton();
+		CircleButton->setFixedSize(Buttonsize);
+		CircleButton->setIcon(p);
+		CircleButton->setIconSize(Buttonsize);
+		CircleButton->setCheckable(true);
+
+		p = QPixmap(":/Icons/Buttons/icons/flood-fill-tool.svg");
+		FloodFillButton = new QPushButton();
+		FloodFillButton->setFixedSize(Buttonsize);
+		FloodFillButton->setIcon(p);
+		FloodFillButton->setIconSize(Buttonsize);
+		FloodFillButton->setCheckable(true);
+
+		p = QPixmap(":/Icons/Buttons/icons/icon.png");
+		LineButton = new QPushButton();
+		LineButton->setFixedSize(Buttonsize);
+		LineButton->setIcon(p);
+		LineButton->setIconSize(Buttonsize);
+		LineButton->setCheckable(true);
+
+		p = QPixmap(":/Icons/Buttons/icons/pen-tool.svg");
+		PenButton = new QPushButton();
+		PenButton->setFixedSize(Buttonsize);
+		PenButton->setIcon(p);
+		PenButton->setIconSize(Buttonsize);
+		PenButton->setCheckable(true);
+
+		p = QPixmap(":/Icons/Buttons/icons/icon.png");
+		PlainButton = new QPushButton();
+		PlainButton->setFixedSize(Buttonsize);
+		PlainButton->setIcon(p);
+		PlainButton->setIconSize(Buttonsize);
+		PlainButton->setCheckable(true);
+
+		p = QPixmap(":/Icons/Buttons/icons/polygon-tool.svg");
+		PolygonButton = new QPushButton();
+		PolygonButton->setFixedSize(Buttonsize);
+		PolygonButton->setIcon(p);
+		PolygonButton->setIconSize(Buttonsize);
+		PolygonButton->setCheckable(true);
+
+		p = QPixmap(":/Icons/Buttons/icons/rectangle-tool.svg");
+		RectangleButton = new QPushButton();
+		RectangleButton->setFixedSize(Buttonsize);
+		RectangleButton->setIcon(p);
+		RectangleButton->setIconSize(Buttonsize);
+		RectangleButton->setCheckable(true);
+
+		WidthLine = new QLabel();
+		WidthLine->setText("Width");
+		WidthLine->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
+
+		EditLineWidth = new QLineEdit();
+		EditLineWidth->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
+		EditLineWidth->setText("5");
+		ValidatorLineWidth = new QIntValidator();
+		ValidatorLineWidth->setTop(99);
+		ValidatorLineWidth->setBottom(1);
+		EditLineWidth->setValidator(ValidatorLineWidth);
+
+		innerAlphaLine = new QLabel();
+		innerAlphaLine->setText("Inner Alpha");
+		innerAlphaLine->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
+
+		EditLineInnerAlpha = new QLineEdit();
+		EditLineInnerAlpha->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
+		EditLineInnerAlpha->setText("255");
+		ValidatorInnerAlpha = new QIntValidator();
+		ValidatorInnerAlpha->setTop(999);
+		ValidatorInnerAlpha->setBottom(0);
+		EditLineInnerAlpha->setValidator(ValidatorInnerAlpha);
+
+		FirstColorButton = new QPushButton();
+		FirstColorButton->setFixedSize(Buttonsize/2);
+
+		SecondColorButton = new QPushButton();
+		SecondColorButton->setFixedSize(Buttonsize/2);
+
+		p = QPixmap(":/Icons/Buttons/icons/Wechselpfeile.png");
+		SwitchColorButton = new QPushButton();
+		SwitchColorButton->setFixedSize(Buttonsize.width(),Buttonsize.height()/2);
+		SwitchColorButton->setIcon(p);
+		SwitchColorButton->setIconSize(QSize(Buttonsize.width(),Buttonsize.height()/2));
+
+		ActiveLayerLine = new QLabel();
+		QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
+		ActiveLayerLine->setText(string);
+		ActiveLayerLine->setFixedSize(Buttonsize.width()+10,Buttonsize.height()/3);
+
+		p = p.fromImage(paintingArea->getImageOfActiveLayer()->getImageData());
+
+		ActiveLayerImageButton = new QPushButton();
+		ActiveLayerImageButton->setFixedSize(Buttonsize);
+		ActiveLayerImageButton->setIcon(p);
+		ActiveLayerImageButton->setIconSize(Buttonsize);
 
 		// set gui elements
-		mainLayout->addWidget(paintingArea);
+
+		mainLayout->addWidget(paintingArea,1,1,20,1);
+		mainLayout->addWidget(CircleButton,1,2,1,2);
+		mainLayout->addWidget(FloodFillButton,2,2,1,2);
+		mainLayout->addWidget(LineButton,3,2,1,2);
+		mainLayout->addWidget(PenButton,4,2,1,2);
+		mainLayout->addWidget(PlainButton,5,2,1,2);
+		mainLayout->addWidget(PolygonButton,6,2,1,2);
+		mainLayout->addWidget(RectangleButton,7,2,1,2);
+		mainLayout->addWidget(WidthLine,8,2,1,2);
+		mainLayout->addWidget(EditLineWidth,9,2,1,2);
+		mainLayout->addWidget(innerAlphaLine,10,2,1,2);
+		mainLayout->addWidget(EditLineInnerAlpha,11,2,1,2);
+		mainLayout->addWidget(FirstColorButton,12,2,1,1);
+		mainLayout->addWidget(SecondColorButton,12,3,1,1);
+		mainLayout->addWidget(SwitchColorButton,13,2,1,2);
+		mainLayout->addWidget(ActiveLayerLine,14,2,1,2);
+		mainLayout->addWidget(ActiveLayerImageButton,15,2,1,2);
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
@@ -448,6 +633,10 @@ void IntelliPhotoGui::setIntelliStyle(){
 		this->setStyleSheet("background-color:rgb(64,64,64)");
 		this->centralGuiWidget->setStyleSheet("color:rgb(255,255,255)");
 		this->menuBar()->setStyleSheet("color:rgb(255,255,255)");
+		QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
+		FirstColorButton->setStyleSheet(string);
+		string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
+		SecondColorButton->setStyleSheet(string);
 }
 
 bool IntelliPhotoGui::maybeSave(){
@@ -496,4 +685,21 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
 				// Call for the file to be saved
 				return paintingArea->save(fileName, fileFormat.constData());
 		}
+}
+
+void IntelliPhotoGui::setDefaultToolValue(){
+		slotEnterPressed();
+}
+
+void IntelliPhotoGui::UpdateGui(){
+		QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
+		ActiveLayerLine->setText(string);
+		p = p.fromImage(paintingArea->getImageOfActiveLayer()->getImageData());
+		ActiveLayerImageButton->setIcon(p);
+		ActiveLayerImageButton->setIconSize(Buttonsize);
+
+		string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
+		FirstColorButton->setStyleSheet(string);
+		string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
+		SecondColorButton->setStyleSheet(string);
 }
