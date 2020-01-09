@@ -290,6 +290,16 @@ void IntelliPhotoGui::slotResetTools(){
 		RectangleButton->setChecked(false);
 }
 
+void IntelliPhotoGui::slotSetWidth(){
+    paintingArea->Toolsettings.setLineWidth();
+    EditLineWidth->setText(QString("%1").arg(paintingArea->Toolsettings.getLineWidth()));
+}
+
+void IntelliPhotoGui::slotSetInnerAlpha(){
+    paintingArea->Toolsettings.setInnerAlpha();
+    EditLineInnerAlpha->setText(QString("%1").arg(paintingArea->Toolsettings.getInnerAlpha()));
+}
+
 // Define menu actions that call functions
 void IntelliPhotoGui::createActions(){
 		// Get a list of the supported file formats
@@ -448,6 +458,12 @@ void IntelliPhotoGui::createActions(){
 
 		connect(RectangleButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
 		connect(RectangleButton, SIGNAL(clicked()), this, SLOT(slotCreateRectangleTool()));
+
+        actionSetWidth = new QAction(tr("&Set Width"),this);
+        connect(actionSetWidth, SIGNAL(triggered()), this, SLOT(slotSetWidth()));
+
+        actionSetInnerAlpha = new QAction(tr("&Set Inner Alpha"),this);
+        connect(actionSetInnerAlpha, SIGNAL(triggered()), this, SLOT(slotSetInnerAlpha()));
 }
 
 // Create the menubar
@@ -470,41 +486,56 @@ void IntelliPhotoGui::createMenus(){
         renderMenu->addAction(actionUpdateRenderSettingsOn);
         renderMenu->addAction(actionUpdateRenderSettingsOff);
 
+        // Attach all actions to Layer
+        layerMenu = new QMenu(tr("&Layer"), this);
+        layerMenu->addAction(actionCreateNewLayer);
+        layerMenu->addSeparator();
+        layerMenu->addAction(actionSetActiveAlpha);
+        layerMenu->addAction(actionSetActiveLayer);
+        layerMenu->addSeparator();
+        layerMenu->addAction(actionMovePositionUp);
+        layerMenu->addAction(actionMovePositionDown);
+        layerMenu->addAction(actionMovePositionLeft);
+        layerMenu->addAction(actionMovePositionRight);
+        layerMenu->addAction(actionMoveLayerUp);
+        layerMenu->addAction(actionMoveLayerDown);
+        layerMenu->addSeparator();
+        layerMenu->addAction(actionDeleteLayer);
+
+        //Attach all Color Options
+        colorMenu = new QMenu(tr("&Color"), this);
+        colorMenu->addAction(actionColorPickerFirstColor);
+        colorMenu->addAction(actionColorPickerSecondColor);
+        colorMenu->addAction(actionColorSwap);
+
+        //Attach all Tool Creation Actions
+        toolCreationMenu = new QMenu(tr("&Drawingtools"), this);
+        toolCreationMenu->addAction(actionCreateCircleTool);
+        toolCreationMenu->addAction(actionCreateFloodFillTool);
+        toolCreationMenu->addAction(actionCreateLineTool);
+        toolCreationMenu->addAction(actionCreatePenTool);
+        toolCreationMenu->addAction(actionCreatePlainTool);
+        toolCreationMenu->addAction(actionCreatePolygonTool);
+        toolCreationMenu->addAction(actionCreateRectangleTool);
+
+        //Attach all Tool Setting Actions
+        toolSettingsMenu = new QMenu(tr("&Toolsettings"), this);
+        toolSettingsMenu->addAction(actionSetWidth);
+        toolSettingsMenu->addAction(actionSetInnerAlpha);
+
+        //Attach all Tool Options
+        toolMenu = new QMenu(tr("&Tools"), this);
+        toolMenu->addMenu(toolCreationMenu);
+        toolMenu->addMenu(toolSettingsMenu);
+        toolMenu->addSeparator();
+        toolMenu->addMenu(colorMenu);
+
 		// Attach all actions to Options
 		optionMenu = new QMenu(tr("&Options"), this);
-		optionMenu->addAction(actionSetActiveLayer);
-		optionMenu->addAction(actionSetActiveAlpha);
-		optionMenu->addAction(actionMovePositionUp);
-		optionMenu->addAction(actionMovePositionDown);
-		optionMenu->addAction(actionMovePositionLeft);
-		optionMenu->addAction(actionMovePositionRight);
-		optionMenu->addAction(actionMoveLayerUp);
-		optionMenu->addAction(actionMoveLayerDown);
+        optionMenu->addMenu(layerMenu);
+        optionMenu->addMenu(toolMenu);
         optionMenu->addSeparator();
         optionMenu->addMenu(renderMenu);
-
-		// Attach all actions to Layer
-		layerMenu = new QMenu(tr("&Layer"), this);
-		layerMenu->addAction(actionCreateNewLayer);
-		layerMenu->addAction(actionDeleteLayer);
-
-		//Attach all Color Options
-		colorMenu = new QMenu(tr("&Color"), this);
-		colorMenu->addAction(actionColorPickerFirstColor);
-		colorMenu->addAction(actionColorPickerSecondColor);
-		colorMenu->addAction(actionColorSwap);
-
-		//Attach all Tool Options
-		toolMenu = new QMenu(tr("&Tools"), this);
-		toolMenu->addAction(actionCreateCircleTool);
-		toolMenu->addAction(actionCreateFloodFillTool);
-		toolMenu->addAction(actionCreateLineTool);
-		toolMenu->addAction(actionCreatePenTool);
-		toolMenu->addAction(actionCreatePlainTool);
-		toolMenu->addAction(actionCreatePolygonTool);
-		toolMenu->addAction(actionCreateRectangleTool);
-		toolMenu->addSeparator();
-		toolMenu->addMenu(colorMenu);
 
 		// Attach all actions to Help
 		helpMenu = new QMenu(tr("&Help"), this);
@@ -514,8 +545,6 @@ void IntelliPhotoGui::createMenus(){
 		// Add menu items to the menubar
 		menuBar()->addMenu(fileMenu);
 		menuBar()->addMenu(optionMenu);
-		menuBar()->addMenu(layerMenu);
-		menuBar()->addMenu(toolMenu);
 		menuBar()->addMenu(helpMenu);
 }
 
@@ -661,10 +690,14 @@ void IntelliPhotoGui::createGui(){
 void IntelliPhotoGui::setIntelliStyle(){
 		// Set the title
 		setWindowTitle("IntelliPhoto Prototype");
+        QStyle* Style = new QProxyStyle();
 		// Set style sheet
-		this->setStyleSheet("background-color:rgb(64,64,64)");
-		this->centralGuiWidget->setStyleSheet("color:rgb(255,255,255)");
-		this->menuBar()->setStyleSheet("color:rgb(255,255,255)");
+        this->setStyleSheet("background-color:rgb(64,64,64)");
+        this->centralGuiWidget->setStyleSheet("color:rgb(255,255,255)");
+        this->menuBar()->setStyleSheet("color:rgb(255,255,255)");
+        this->fileMenu->setStyle(Style);
+        this->optionMenu->setStyle(Style);
+        this->helpMenu->setStyle(Style);
 		QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
 		FirstColorButton->setStyleSheet(string);
 		string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());

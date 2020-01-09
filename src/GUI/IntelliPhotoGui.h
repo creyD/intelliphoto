@@ -79,6 +79,9 @@ void slotAboutDialog();
 
 void slotEnterPressed();
 
+void slotSetWidth();
+void slotSetInnerAlpha();
+
 void slotResetTools();
 
 private:
@@ -130,6 +133,8 @@ QMenu*renderMenu;
 QMenu*optionMenu;
 QMenu*layerMenu;
 QMenu*colorMenu;
+QMenu*toolCreationMenu;
+QMenu*toolSettingsMenu;
 QMenu*toolMenu;
 QMenu*helpMenu;
 
@@ -174,6 +179,9 @@ QAction* actionMoveLayerDown;
 
 // Actions tied to specific file formats
 QList<QAction*> actionSaveAs;
+
+QAction* actionSetWidth;
+QAction* actionSetInnerAlpha;
 
 // main GUI elements
 QWidget* centralGuiWidget;
