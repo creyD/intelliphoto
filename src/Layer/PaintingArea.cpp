@@ -71,10 +71,10 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 }
 
 
-void PaintingArea::deleteLayer(int index){
-		if(index<static_cast<int>(layerBundle.size())) {
-				this->layerBundle.erase(layerBundle.begin()+index);
-                if(activeLayer>=index && activeLayer != 0) {
+void PaintingArea::deleteLayer(int idx){
+		if(idx<static_cast<int>(layerBundle.size())) {
+				this->layerBundle.erase(layerBundle.begin()+idx);
+                if(activeLayer>=idx && activeLayer != 0) {
 						activeLayer--;
 				}
 		}
@@ -87,15 +87,15 @@ void PaintingArea::slotDeleteActiveLayer(){
 		}
 }
 
-void PaintingArea::setLayerActive(int index){
-		if(index>=0&&index<static_cast<int>(layerBundle.size())) {
-				this->activeLayer=index;
+void PaintingArea::setLayerActive(int idx){
+		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
+				this->activeLayer=idx;
 		}
 }
 
-void PaintingArea::setLayerAlpha(int index, int alpha){
-		if(index>=0&&index<static_cast<int>(layerBundle.size())) {
-				layerBundle[static_cast<size_t>(index)].alpha=alpha;
+void PaintingArea::setLayerAlpha(int idx, int alpha){
+		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
+				layerBundle[static_cast<size_t>(idx)].alpha=alpha;
 		}
 }
 
@@ -119,7 +119,7 @@ bool PaintingArea::save(const QString &filePath, const char*fileFormat){
         this->drawLayers(true);
 
 		if(!strcmp(fileFormat,"PNG")) {
-				QImage visibleImage = Canvas->convertToFormat(QImage::Format_Indexed8);
+				QImage visibleImage = Canvas->convertToFormat(QImage::Format_idxed8);
 				fileFormat = "png";
                 if (visibleImage.save(filePath, fileFormat)) {
 						return true;

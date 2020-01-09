@@ -9,7 +9,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 		struct TriangleHelper {
 				QPoint vertex;
 				float interiorAngle;
-				int index;
+				int idx;
 				bool isTip;
 		};
 
@@ -34,14 +34,14 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 							 return vec[min];
 					 };
 
-		// get the vertex Index bevor index in relation to the container length
-		auto getPrev = [](int index, int length){
-							   return (index-1)>=0 ? (index-1) : (length-1);
+		// get the vertex idx bevor idx in relation to the container length
+		auto getPrev = [](int idx, int length){
+							   return (idx-1)>=0 ? (idx-1) : (length-1);
 					   };
 
-		// get the vertex Index after index in relation to the container lenght
-		auto getPost = [](int index, int length){
-							   return (index+1)%length;
+		// get the vertex idx after idx in relation to the container lenght
+		auto getPost = [](int idx, int length){
+							   return (idx+1)%length;
 					   };
 
 		// return if the vertex is a tip
@@ -59,7 +59,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 				int post = getPost(i, static_cast<int>(polyPoints.size()));
 
 				helper.vertex = polyPoints[static_cast<size_t>(i)];
-				helper.index = i;
+				helper.idx = i;
 
 				helper.interiorAngle = calculateInner(polyPoints[static_cast<size_t>(i)],
 				                                      polyPoints[static_cast<size_t>(prev)],
@@ -72,24 +72,24 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 		while(Triangles.size() != polyPoints.size()-2) {
 				Triangle tri;
 				TriangleHelper smallest = getTip(Vertices);
-				int prev = getPrev(smallest.index, static_cast<int>(Vertices.size()));
-				int post = getPost(smallest.index, static_cast<int>(Vertices.size()));
+				int prev = getPrev(smallest.idx, static_cast<int>(Vertices.size()));
+				int post = getPost(smallest.idx, static_cast<int>(Vertices.size()));
 
 				// set triangle and push it
 				tri.A = Vertices[static_cast<size_t>(prev)].vertex;
-				tri.B = Vertices[static_cast<size_t>(smallest.index)].vertex;
+				tri.B = Vertices[static_cast<size_t>(smallest.idx)].vertex;
 				tri.C = Vertices[static_cast<size_t>(post)].vertex;
 				Triangles.push_back(tri);
 
 				// update Vertice array
-				Vertices.erase(Vertices.begin()+smallest.index);
-				for(size_t i=static_cast<size_t>(smallest.index); i<Vertices.size(); i++) {
-						Vertices[i].index-=1;
+				Vertices.erase(Vertices.begin()+smallest.idx);
+				for(size_t i=static_cast<size_t>(smallest.idx); i<Vertices.size(); i++) {
+						Vertices[i].idx-=1;
 				}
 
-				// update post und prev index
+				// update post und prev idx
                 post = getPrev(post, Vertices.size());
-				prev = prev<smallest.index ? prev : (prev-1);
+				prev = prev<smallest.idx ? prev : (prev-1);
 
 				// calcultae neighboors of prev and post to calculate new interior angles
 				int prevOfPrev = getPrev(prev, static_cast<int>(Vertices.size()));
