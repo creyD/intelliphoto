@@ -7,5 +7,5 @@ digraph "intelliphoto/src/Image" {
   dir_544f9dcb748f922e4bb3be2540380bf2 [shape=box, label="Image", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_544f9dcb748f922e4bb3be2540380bf2.html"];
   }
   dir_f50aa5156fe016a259583c412dbf440c [shape=box label="IntelliHelper" URL="dir_f50aa5156fe016a259583c412dbf440c.html"];
-  dir_544f9dcb748f922e4bb3be2540380bf2->dir_f50aa5156fe016a259583c412dbf440c [headlabel="2", labeldistance=1.5 headhref="dir_000003_000004.html"];
+  dir_544f9dcb748f922e4bb3be2540380bf2->dir_f50aa5156fe016a259583c412dbf440c [headlabel="3", labeldistance=1.5 headhref="dir_000003_000004.html"];
 }

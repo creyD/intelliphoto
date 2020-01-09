@@ -8,10 +8,12 @@ digraph "IntelliToolPen::onMouseLeftPressed"
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="IntelliImage::calculateVisiblity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html#aebbced93f4744fad81b7f141b21f4ab2",tooltip="An abstract function that calculates the visiblity of the Image data if needed."];
   Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="IntelliImage::drawPixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html#af3c859f5c409e37051edfd9e9fbca056",tooltip="A funtcion used to draw a pixel on the Image with the given Color."];
+  Node3 [label="IntelliImage::drawPoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_image.html#a2e787f1b333b59401643936ebb3dcfe1",tooltip="A."];
   Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="IntelliColorPicker\l::getFirstColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_color_picker.html#aae2eb27b928fe9388b9398b0556303b7",tooltip="A function to read the primary selected color."];
   Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="IntelliTool::onMouseLeft\lPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html#a34b7ef1dde96b94a0ce450a25ae1778c",tooltip="A function managing the left click Pressed of a Mouse. Resetting the current draw...."];
-  Node5 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="IntelliToolsettings\l::getLineWidth",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_toolsettings.html#a68528dd3bad8f39ba19fa6b12a4e415a",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="IntelliTool::onMouseLeft\lPressed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool.html#a34b7ef1dde96b94a0ce450a25ae1778c",tooltip="A function managing the left click Pressed of a Mouse. Resetting the current draw...."];
+  Node6 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

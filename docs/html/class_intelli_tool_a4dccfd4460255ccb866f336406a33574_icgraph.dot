@@ -12,11 +12,11 @@ digraph "IntelliTool::onWheelScrolled"
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="IntelliToolPen::onWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_pen.html#afe3626ddff440ab125f4a2465c45427a",tooltip="A function managing the scroll event. Changing penWidth relativ to value."];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="IntelliToolRectangle\l::onWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_rectangle.html#a445c53a56e859f970e59f5036e221e0c",tooltip="A function managing the scroll event.Changing edgeWidth relativ to value."];
+  Node5 [label="IntelliToolLine::onWheel\lScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#aaf1d686e1ec43f41b5186ccfd806b125",tooltip="A function managing the scroll event. Changing the lineWidth relative to value."];
   Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="IntelliToolCircle::\lonWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_circle.html#ae2d9b0fb6695c184c4cb507a5fb75506",tooltip="A function managing the scroll event. Changing the edge Width relative to value."];
+  Node6 [label="IntelliToolRectangle\l::onWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_rectangle.html#a445c53a56e859f970e59f5036e221e0c",tooltip="A function managing the scroll event.Changing edgeWidth relativ to value."];
   Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node7 [label="IntelliToolLine::onWheel\lScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_line.html#aaf1d686e1ec43f41b5186ccfd806b125",tooltip="A function managing the scroll event. Changing the lineWidth relative to value."];
+  Node7 [label="IntelliToolCircle::\lonWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_circle.html#ae2d9b0fb6695c184c4cb507a5fb75506",tooltip="A function managing the scroll event. Changing the edge Width relative to value."];
   Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node8 [label="IntelliToolPolygon\l::onWheelScrolled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_intelli_tool_polygon.html#a713103300c9f023d64d9eec5ac05dd17",tooltip="A function managing the scroll event. CHanging the lineWidth relative to value."];
   Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

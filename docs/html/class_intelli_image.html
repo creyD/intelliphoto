@@ -87,6 +87,7 @@ $(document).ready(function(){initNavTree('class_intelli_image.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
@@ -103,14 +104,27 @@ $(document).ready(function(){initNavTree('class_intelli_image.html','');});
 <div class="dynheader">
 Inheritance diagram for IntelliImage:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_intelli_image__inherit__graph.png" border="0" usemap="#_intelli_image_inherit__map" alt="Inheritance graph"/></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="class_intelli_image.png" usemap="#IntelliImage_map" alt=""/>
+  <map id="IntelliImage_map" name="IntelliImage_map">
+<area href="class_intelli_raster_image.html" title="The IntelliRasterImage manages a RASTERIMAGE." alt="IntelliRasterImage" shape="rect" coords="0,56,117,80"/>
+<area href="class_intelli_shaped_image.html" title="The IntelliShapedImage manages a Shapedimage." alt="IntelliShapedImage" shape="rect" coords="0,112,117,136"/>
+  </map>
+</div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a5274ce9fcdcb2659c148e7ff916b680e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e">ImageType</a> { <a class="el" href="class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680eadd5823fd73c42c0154fa2abbd70283b9">ImageType::RASTERIMAGE</a>, 
+<a class="el" href="class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680eac065b60ec4cf443808263527bdc0df37">ImageType::SHAPEDIMAGE</a>
+ }</td></tr>
+<tr class="memdesc:a5274ce9fcdcb2659c148e7ff916b680e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Types, which an Image can be.  <a href="class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e">More...</a><br /></td></tr>
+<tr class="separator:a5274ce9fcdcb2659c148e7ff916b680e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a47084f1cb668ea0242ab95162cf9e902"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#a47084f1cb668ea0242ab95162cf9e902">IntelliImage</a> (int weight, int height)</td></tr>
-<tr class="memdesc:a47084f1cb668ea0242ab95162cf9e902"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Construcor of the <a class="el" href="class_intelli_image.html" title="An abstract class which manages the basic IntelliImage operations.">IntelliImage</a>. Given the Image dimensions.  <a href="class_intelli_image.html#a47084f1cb668ea0242ab95162cf9e902">More...</a><br /></td></tr>
-<tr class="separator:a47084f1cb668ea0242ab95162cf9e902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c6632ff35ee0a7094a8a289eb3a8652"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#a2c6632ff35ee0a7094a8a289eb3a8652">IntelliImage</a> (int width, int height, bool fastRendererOn)</td></tr>
+<tr class="memdesc:a2c6632ff35ee0a7094a8a289eb3a8652"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Construcor of the <a class="el" href="class_intelli_image.html" title="An abstract class which manages the basic IntelliImage operations.">IntelliImage</a>. Given the Image dimensions.  <a href="class_intelli_image.html#a2c6632ff35ee0a7094a8a289eb3a8652">More...</a><br /></td></tr>
+<tr class="separator:a2c6632ff35ee0a7094a8a289eb3a8652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac398bfa9ddd3185508a1e36ee15d80cc"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#ac398bfa9ddd3185508a1e36ee15d80cc">~IntelliImage</a> ()=0</td></tr>
 <tr class="memdesc:ac398bfa9ddd3185508a1e36ee15d80cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">An Abstract Destructor.  <a href="class_intelli_image.html#ac398bfa9ddd3185508a1e36ee15d80cc">More...</a><br /></td></tr>
 <tr class="separator:ac398bfa9ddd3185508a1e36ee15d80cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,12 +158,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaf9f3e8db8666850024bee9aad9966ba"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; QPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#aaf9f3e8db8666850024bee9aad9966ba">getPolygonData</a> ()</td></tr>
 <tr class="memdesc:aaf9f3e8db8666850024bee9aad9966ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function that returns the Polygondata if existent.  <a href="class_intelli_image.html#aaf9f3e8db8666850024bee9aad9966ba">More...</a><br /></td></tr>
 <tr class="separator:aaf9f3e8db8666850024bee9aad9966ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec0e9c8184d89dee33fd9adefbd2f8aa"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#aec0e9c8184d89dee33fd9adefbd2f8aa">loadImage</a> (const QString &amp;fileName)</td></tr>
-<tr class="memdesc:aec0e9c8184d89dee33fd9adefbd2f8aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function that loads and sclaes an image to the fitting dimensions.  <a href="class_intelli_image.html#aec0e9c8184d89dee33fd9adefbd2f8aa">More...</a><br /></td></tr>
-<tr class="separator:aec0e9c8184d89dee33fd9adefbd2f8aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6b09c8d1d6b54a7e8a4e7286f3e503f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e">ImageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#af6b09c8d1d6b54a7e8a4e7286f3e503f">getTypeOfImage</a> ()</td></tr>
+<tr class="separator:af6b09c8d1d6b54a7e8a4e7286f3e503f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae231800aba38c96074bbe9bb6e341d4e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#ae231800aba38c96074bbe9bb6e341d4e">loadImage</a> (const QString &amp;filePath)</td></tr>
+<tr class="memdesc:ae231800aba38c96074bbe9bb6e341d4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function that loads and sclaes an image to the fitting dimensions.  <a href="class_intelli_image.html#ae231800aba38c96074bbe9bb6e341d4e">More...</a><br /></td></tr>
+<tr class="separator:ae231800aba38c96074bbe9bb6e341d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4576ebb6d863321c816293d7b7f9fd3f"><td class="memItemLeft" align="right" valign="top">virtual QColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#a4576ebb6d863321c816293d7b7f9fd3f">getPixelColor</a> (QPoint &amp;point)</td></tr>
 <tr class="memdesc:a4576ebb6d863321c816293d7b7f9fd3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function that returns the pixelcolor at a certain point.  <a href="class_intelli_image.html#a4576ebb6d863321c816293d7b7f9fd3f">More...</a><br /></td></tr>
 <tr class="separator:a4576ebb6d863321c816293d7b7f9fd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4dbaefabce4ec5bec37f5b95e2f62e2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#ae4dbaefabce4ec5bec37f5b95e2f62e2">updateRendererSetting</a> (bool fastRendererOn)</td></tr>
+<tr class="memdesc:ae4dbaefabce4ec5bec37f5b95e2f62e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">updateRendererSetting updates the existing image format to the new format.  <a href="class_intelli_image.html#ae4dbaefabce4ec5bec37f5b95e2f62e2">More...</a><br /></td></tr>
+<tr class="separator:ae4dbaefabce4ec5bec37f5b95e2f62e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad66fbe380ffe0e073a8cd760f8285fe3"><td class="memItemLeft" align="right" valign="top">virtual QImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#ad66fbe380ffe0e073a8cd760f8285fe3">getImageData</a> ()</td></tr>
+<tr class="memdesc:ad66fbe380ffe0e073a8cd760f8285fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">getImageData returns the data of the current image.  <a href="class_intelli_image.html#ad66fbe380ffe0e073a8cd760f8285fe3">More...</a><br /></td></tr>
+<tr class="separator:ad66fbe380ffe0e073a8cd760f8285fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -161,14 +183,51 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a2431be82e9e85dd34b62a7f7cba053c2"><td class="memItemLeft" align="right" valign="top">QImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2">imageData</a></td></tr>
 <tr class="memdesc:a2431be82e9e85dd34b62a7f7cba053c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The underlying image data.  <a href="class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2">More...</a><br /></td></tr>
 <tr class="separator:a2431be82e9e85dd34b62a7f7cba053c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac460f75e1fa7e44b00a65e7fddac5b80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e">ImageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#ac460f75e1fa7e44b00a65e7fddac5b80">TypeOfImage</a></td></tr>
+<tr class="memdesc:ac460f75e1fa7e44b00a65e7fddac5b80"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Type, an Image is.  <a href="class_intelli_image.html#ac460f75e1fa7e44b00a65e7fddac5b80">More...</a><br /></td></tr>
+<tr class="separator:ac460f75e1fa7e44b00a65e7fddac5b80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adade0f6990152f09d953067a51511b9c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_image.html#adade0f6990152f09d953067a51511b9c">fastRenderer</a></td></tr>
+<tr class="memdesc:adade0f6990152f09d953067a51511b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">fastRenderer is the flag that represents the usage of 8bit pictures.  <a href="class_intelli_image.html#adade0f6990152f09d953067a51511b9c">More...</a><br /></td></tr>
+<tr class="separator:adade0f6990152f09d953067a51511b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An abstract class which manages the basic <a class="el" href="class_intelli_image.html" title="An abstract class which manages the basic IntelliImage operations.">IntelliImage</a> operations. </p>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00024">24</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a47084f1cb668ea0242ab95162cf9e902"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47084f1cb668ea0242ab95162cf9e902">&#9670;&nbsp;</a></span>IntelliImage()</h2>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00019">19</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a5274ce9fcdcb2659c148e7ff916b680e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5274ce9fcdcb2659c148e7ff916b680e">&#9670;&nbsp;</a></span>ImageType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e">IntelliImage::ImageType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Types, which an Image can be. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5274ce9fcdcb2659c148e7ff916b680eadd5823fd73c42c0154fa2abbd70283b9"></a>RASTERIMAGE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5274ce9fcdcb2659c148e7ff916b680eac065b60ec4cf443808263527bdc0df37"></a>SHAPEDIMAGE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00026">26</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2c6632ff35ee0a7094a8a289eb3a8652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c6632ff35ee0a7094a8a289eb3a8652">&#9670;&nbsp;</a></span>IntelliImage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,13 +236,19 @@ Protected Attributes</h2></td></tr>
           <td class="memname">IntelliImage::IntelliImage </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>weight</em>, </td>
+          <td class="paramname"><em>width</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>fastRendererOn</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -196,8 +261,9 @@ Protected Attributes</h2></td></tr>
 <p>The Construcor of the <a class="el" href="class_intelli_image.html" title="An abstract class which manages the basic IntelliImage operations.">IntelliImage</a>. Given the Image dimensions. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">weight</td><td>- The weight of the Image. </td></tr>
+    <tr><td class="paramname">width</td><td>- The width of the Image. </td></tr>
     <tr><td class="paramname">height</td><td>- The height of the Image. </td></tr>
+    <tr><td class="paramname">fastRendererOn</td><td>- Represents the flag for 8bit picture handelling. </td></tr>
   </table>
   </dd>
 </dl>
@@ -231,7 +297,7 @@ Protected Attributes</h2></td></tr>
 
 <p>An Abstract Destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00010">10</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00018">18</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
 
 </div>
 </div>
@@ -262,11 +328,6 @@ Protected Attributes</h2></td></tr>
 <p>An abstract function that calculates the visiblity of the Image data if needed. </p>
 
 <p>Implemented in <a class="el" href="class_intelli_raster_image.html#a87cf2d360c129d64a5db0db85818eb60">IntelliRasterImage</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_intelli_image_aebbced93f4744fad81b7f141b21f4ab2_icgraph.png" border="0" usemap="#class_intelli_image_aebbced93f4744fad81b7f141b21f4ab2_icgraph" alt=""/></div>
-</div>
 
 </div>
 </div>
@@ -327,12 +388,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00065">65</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_intelli_image_af8eddbd9aa54c8d37590d1d4bf8dce31_icgraph.png" border="0" usemap="#class_intelli_image_af8eddbd9aa54c8d37590d1d4bf8dce31_icgraph" alt=""/></div>
-</div>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00088">88</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
 
 </div>
 </div>
@@ -379,12 +435,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00044">44</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_intelli_image_af3c859f5c409e37051edfd9e9fbca056_icgraph.png" border="0" usemap="#class_intelli_image_af3c859f5c409e37051edfd9e9fbca056_icgraph" alt=""/></div>
-</div>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00055">55</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
 
 </div>
 </div>
@@ -420,12 +471,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00076">76</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_intelli_image_a6be622810dc2bc756054bb5769becb06_icgraph.png" border="0" usemap="#class_intelli_image_a6be622810dc2bc756054bb5769becb06_icgraph" alt=""/></div>
-</div>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00105">105</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
 
 </div>
 </div>
@@ -479,12 +525,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00055">55</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_intelli_image_a2e787f1b333b59401643936ebb3dcfe1_icgraph.png" border="0" usemap="#class_intelli_image_a2e787f1b333b59401643936ebb3dcfe1_icgraph" alt=""/></div>
-</div>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00072">72</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
 
 </div>
 </div>
@@ -512,7 +553,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>A function that copys all that returns a [allocated] Image. </p>
-<dl class="section return"><dt>Returns</dt><dd>A [allocated] Image with all the properties of the instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An [allocated] image with all the properties of the instance. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_intelli_shaped_image.html#aed0b31e0fa771104399d1f5ff39a0337">IntelliShapedImage</a>, and <a class="el" href="class_intelli_raster_image.html#a8f901301b106504de3c27308ade897dc">IntelliRasterImage</a>.</p>
 
@@ -603,6 +644,35 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="ad66fbe380ffe0e073a8cd760f8285fe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad66fbe380ffe0e073a8cd760f8285fe3">&#9670;&nbsp;</a></span>getImageData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QImage IntelliImage::getImageData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>getImageData returns the data of the current image. </p>
+
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00123">123</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a4576ebb6d863321c816293d7b7f9fd3f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4576ebb6d863321c816293d7b7f9fd3f">&#9670;&nbsp;</a></span>getPixelColor()</h2>
 
@@ -636,12 +706,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The color of the Pixel as QColor. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00080">80</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_intelli_image_a4576ebb6d863321c816293d7b7f9fd3f_icgraph.png" border="0" usemap="#class_intelli_image_a4576ebb6d863321c816293d7b7f9fd3f_icgraph" alt=""/></div>
-</div>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00115">115</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
 
 </div>
 </div>
@@ -673,12 +738,39 @@ Here is the caller graph for this function:</div>
 
 <p>Reimplemented in <a class="el" href="class_intelli_shaped_image.html#ae4518c7f5a105cc4f33fabb60c794a93">IntelliShapedImage</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00113">113</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00130">130</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
 
 </div>
 </div>
-<a id="aec0e9c8184d89dee33fd9adefbd2f8aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec0e9c8184d89dee33fd9adefbd2f8aa">&#9670;&nbsp;</a></span>loadImage()</h2>
+<a id="af6b09c8d1d6b54a7e8a4e7286f3e503f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6b09c8d1d6b54a7e8a4e7286f3e503f">&#9670;&nbsp;</a></span>getTypeOfImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e">ImageType</a> IntelliImage::getTypeOfImage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00134">134</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
+
+</div>
+</div>
+<a id="ae231800aba38c96074bbe9bb6e341d4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae231800aba38c96074bbe9bb6e341d4e">&#9670;&nbsp;</a></span>loadImage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -690,7 +782,7 @@ Here is the caller graph for this function:</div>
           <td class="memname">bool IntelliImage::loadImage </td>
           <td>(</td>
           <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td class="paramname"><em>filePath</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -704,18 +796,13 @@ Here is the caller graph for this function:</div>
 <p>A function that loads and sclaes an image to the fitting dimensions. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fileName</td><td>- The path+name of the image which to loaded. </td></tr>
+    <tr><td class="paramname">filePath</td><td>- The path+name of the image which to loaded. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the image could be loaded, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00014">14</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_intelli_image_aec0e9c8184d89dee33fd9adefbd2f8aa_icgraph.png" border="0" usemap="#class_intelli_image_aec0e9c8184d89dee33fd9adefbd2f8aa_icgraph" alt=""/></div>
-</div>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00022">22</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
 
 </div>
 </div>
@@ -753,7 +840,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00029">29</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00037">37</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
 
 </div>
 </div>
@@ -793,7 +880,69 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="ae4dbaefabce4ec5bec37f5b95e2f62e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4dbaefabce4ec5bec37f5b95e2f62e2">&#9670;&nbsp;</a></span>updateRendererSetting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IntelliImage::updateRendererSetting </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>fastRendererOn</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>updateRendererSetting updates the existing image format to the new format. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fastRendererOn</td><td>flag for the 8bit image handeling. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8cpp_source.html#l00127">127</a> of file <a class="el" href="_intelli_image_8cpp_source.html">IntelliImage.cpp</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="adade0f6990152f09d953067a51511b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adade0f6990152f09d953067a51511b9c">&#9670;&nbsp;</a></span>fastRenderer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IntelliImage::fastRenderer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>fastRenderer is the flag that represents the usage of 8bit pictures. </p>
+
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00047">47</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
+
+</div>
+</div>
 <a id="a2431be82e9e85dd34b62a7f7cba053c2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2431be82e9e85dd34b62a7f7cba053c2">&#9670;&nbsp;</a></span>imageData</h2>
 
@@ -816,7 +965,33 @@ Here is the caller graph for this function:</div>
 
 <p>The underlying image data. </p>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00032">32</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00037">37</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
+
+</div>
+</div>
+<a id="ac460f75e1fa7e44b00a65e7fddac5b80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac460f75e1fa7e44b00a65e7fddac5b80">&#9670;&nbsp;</a></span>TypeOfImage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e">ImageType</a> IntelliImage::TypeOfImage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Type, an Image is. </p>
+
+<p class="definition">Definition at line <a class="el" href="_intelli_image_8h_source.html#l00042">42</a> of file <a class="el" href="_intelli_image_8h_source.html">IntelliImage.h</a>.</p>
 
 </div>
 </div>

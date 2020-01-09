@@ -4,5 +4,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="Triangle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_triangle.html",tooltip="The Triangle struct holds the 3 vertices of a triangle."];
+  Node0 [label="LayerObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_layer_object.html",tooltip="The LayerObject struct holds all the information needed to construct a layer."];
 }

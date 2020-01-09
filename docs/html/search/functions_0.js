@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['addlayer_190',['addLayer',['../class_painting_area.html#a39ad76e1319659bfa38eee88ef33d395',1,'PaintingArea']]],
-  ['addlayerat_191',['addLayerAt',['../class_painting_area.html#ae756003b49aead863b49616ea7a44cc0',1,'PaintingArea']]]
+  ['addlayer_231',['addLayer',['../class_painting_area.html#a6e9207612cef104d39013564696fe989',1,'PaintingArea']]],
+  ['addlayerat_232',['addLayerAt',['../class_painting_area.html#ab4a0b3a497ea8821a045ad12c34bd980',1,'PaintingArea']]]
 ];

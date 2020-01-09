@@ -6,6 +6,7 @@ var hierarchy =
         [ "IntelliShapedImage", "class_intelli_shaped_image.html", null ]
       ] ]
     ] ],
+    [ "IntelliRenderSettings", "class_intelli_render_settings.html", null ],
     [ "IntelliTool", "class_intelli_tool.html", [
       [ "IntelliToolCircle", "class_intelli_tool_circle.html", null ],
       [ "IntelliToolFloodFill", "class_intelli_tool_flood_fill.html", null ],
@@ -15,6 +16,7 @@ var hierarchy =
       [ "IntelliToolPolygon", "class_intelli_tool_polygon.html", null ],
       [ "IntelliToolRectangle", "class_intelli_tool_rectangle.html", null ]
     ] ],
+    [ "IntelliToolsettings", "class_intelli_toolsettings.html", null ],
     [ "LayerObject", "struct_layer_object.html", null ],
     [ "QMainWindow", null, [
       [ "IntelliPhotoGui", "class_intelli_photo_gui.html", null ]
