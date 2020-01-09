@@ -5,16 +5,16 @@
 class IntelliRenderSettings
 {
 public:
-    IntelliRenderSettings();
+IntelliRenderSettings();
 
-    /*!
-     * \brief The getfastRenderer gets the value of the flag for the fastRenderer setting.
-     * \return Returns true if fastRenderer is active else false
-     */
-    bool getFastRenderer();
+/*!
+ * \brief The getfastRenderer gets the value of the flag for the fastRenderer setting.
+ * \return Returns true if fastRenderer is active else false
+ */
+bool getFastRenderer();
 
 private:
-    bool fastRenderer = true;
+bool fastRenderer = true;
 };
 
 #endif // INTELLIRENDERSETTINGS_H

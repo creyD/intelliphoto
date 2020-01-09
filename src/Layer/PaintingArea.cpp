@@ -20,9 +20,9 @@
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QWidget(parent){
-        this->Tool = nullptr;
-        this->setLayerDimensions(maxWidth, maxHeight);
-        this->addLayer(200,200,0,0,IntelliImage::ImageType::SHAPEDIMAGE);
+		this->Tool = nullptr;
+		this->setLayerDimensions(maxWidth, maxHeight);
+		this->addLayer(200,200,0,0,IntelliImage::ImageType::SHAPEDIMAGE);
 		layerBundle[0].image->drawPlain(QColor(0,0,255,255));
 		std::vector<QPoint> polygon;
 		polygon.push_back(QPoint(100,000));
@@ -31,7 +31,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		polygon.push_back(QPoint(000,100));
 		layerBundle[0].image->setPolygon(polygon);
 
-        this->addLayer(200,200,150,150,IntelliImage::ImageType::RASTERIMAGE);
+		this->addLayer(200,200,150,150,IntelliImage::ImageType::RASTERIMAGE);
 		layerBundle[1].image->drawPlain(QColor(0,255,0,255));
 		layerBundle[1].alpha=200;
 
@@ -59,22 +59,22 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		newLayer.height = height;
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
-        if(type==IntelliImage::ImageType::RASTERIMAGE) {
+		if(type==IntelliImage::ImageType::RASTERIMAGE) {
 				newLayer.image = new IntelliRasterImage(width,height);
-        }else if(type==IntelliImage::ImageType::SHAPEDIMAGE) {
+		}else if(type==IntelliImage::ImageType::SHAPEDIMAGE) {
 				newLayer.image = new IntelliShapedImage(width, height);
 		}
 		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
-        activeLayer = static_cast<int>(layerBundle.size())-1;
-        return activeLayer;
+		activeLayer = static_cast<int>(layerBundle.size())-1;
+		return activeLayer;
 }
 
 
 void PaintingArea::deleteLayer(int idx){
 		if(idx<static_cast<int>(layerBundle.size())) {
 				this->layerBundle.erase(layerBundle.begin()+idx);
-                if(activeLayer>=idx && activeLayer != 0) {
+				if(activeLayer>=idx && activeLayer != 0) {
 						activeLayer--;
 				}
 		}
@@ -105,7 +105,7 @@ bool PaintingArea::open(const QString &filePath){
 				return false;
 		}
 		IntelliImage* active = layerBundle[static_cast<size_t>(activeLayer)].image;
-        bool open = active->loadImage(filePath);
+		bool open = active->loadImage(filePath);
 		active->calculateVisiblity();
 		update();
 		return open;
@@ -116,19 +116,19 @@ bool PaintingArea::save(const QString &filePath, const char*fileFormat){
 		if(layerBundle.size()==0) {
 				return false;
 		}
-        this->drawLayers(true);
+		this->drawLayers(true);
 
 		if(!strcmp(fileFormat,"PNG")) {
-                QImage visibleImage = Canvas->convertToFormat(QImage::Format_Indexed8);
+				QImage visibleImage = Canvas->convertToFormat(QImage::Format_Indexed8);
 				fileFormat = "png";
-                if (visibleImage.save(filePath, fileFormat)) {
+				if (visibleImage.save(filePath, fileFormat)) {
 						return true;
 				} else {
 						return false;
 				}
 		}
 
-        if (Canvas->save(filePath, fileFormat)) {
+		if (Canvas->save(filePath, fileFormat)) {
 				return true;
 		} else {
 				return false;
@@ -146,23 +146,23 @@ void PaintingArea::floodFill(int r, int g, int b, int a){
 }
 
 void PaintingArea::movePositionActive(int x, int y){
-        if(Tool!=nullptr){
-            if(Tool->getIsDrawing()){
-                IntelliTool* temp = copyActiveTool();
-                delete this->Tool;
-                this->Tool = temp;
-            }
-        }
-        layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
+		if(Tool!=nullptr) {
+				if(Tool->getIsDrawing()) {
+						IntelliTool* temp = copyActiveTool();
+						delete this->Tool;
+						this->Tool = temp;
+				}
+		}
+		layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
 }
 
 void PaintingArea::moveActiveLayer(int idx){
-        if(Tool->getIsDrawing()){
-            IntelliTool* temp = copyActiveTool();
-            delete this->Tool;
-            this->Tool = temp;
-        }
+		if(Tool->getIsDrawing()) {
+				IntelliTool* temp = copyActiveTool();
+				delete this->Tool;
+				this->Tool = temp;
+		}
 		if(idx==1) {
 				this->selectLayerUp();
 		}else if(idx==-1) {
@@ -171,13 +171,13 @@ void PaintingArea::moveActiveLayer(int idx){
 }
 
 void PaintingArea::slotActivateLayer(int a){
-        if(Tool != nullptr){
-            if(Tool->getIsDrawing()){
-                IntelliTool* temp = copyActiveTool();
-                delete this->Tool;
-                this->Tool = temp;
-            }
-        }
+		if(Tool != nullptr) {
+				if(Tool->getIsDrawing()) {
+						IntelliTool* temp = copyActiveTool();
+						delete this->Tool;
+						this->Tool = temp;
+				}
+		}
 		if(a>=0 && a < static_cast<int>(layerBundle.size())) {
 				this->setLayerActive(a);
 		}
@@ -199,52 +199,52 @@ void PaintingArea::colorPickerSwapColors(){
 
 void PaintingArea::createPenTool(){
 		delete this->Tool;
-        Tool = new IntelliToolPen(this, &colorPicker, &Toolsettings);
+		Tool = new IntelliToolPen(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createPlainTool(){
 		delete this->Tool;
-        Tool = new IntelliToolPlainTool(this, &colorPicker, &Toolsettings);
+		Tool = new IntelliToolPlainTool(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createLineTool(){
 		delete this->Tool;
-        Tool = new IntelliToolLine(this, &colorPicker, &Toolsettings);
+		Tool = new IntelliToolLine(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createRectangleTool(){
 		delete this->Tool;
-        Tool = new IntelliToolRectangle(this, &colorPicker, &Toolsettings);
+		Tool = new IntelliToolRectangle(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createCircleTool(){
 		delete this->Tool;
-        Tool = new IntelliToolCircle(this, &colorPicker, &Toolsettings);
+		Tool = new IntelliToolCircle(this, &colorPicker, &Toolsettings);
 }
 void PaintingArea::createPolygonTool(){
 		delete this->Tool;
-        Tool = new IntelliToolPolygon(this, &colorPicker, &Toolsettings);
+		Tool = new IntelliToolPolygon(this, &colorPicker, &Toolsettings);
 }
 
 void PaintingArea::createFloodFillTool(){
 		delete this->Tool;
-        Tool = new IntelliToolFloodFill(this, &colorPicker, &Toolsettings);
+		Tool = new IntelliToolFloodFill(this, &colorPicker, &Toolsettings);
 }
 
 int PaintingArea::getWidthOfActive(){
-        return this->layerBundle[static_cast<unsigned long long>(activeLayer)].width;
+		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].width;
 }
 
 int PaintingArea::getHeightOfActive(){
-        return this->layerBundle[static_cast<unsigned long long>(activeLayer)].height;
+		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].height;
 }
 
 IntelliImage::ImageType PaintingArea::getTypeOfImageRealLayer(){
-        return this->layerBundle[static_cast<unsigned long long>(activeLayer)].image->getTypeOfImage();
+		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].image->getTypeOfImage();
 }
 
 std::vector<QPoint> PaintingArea::getPolygonDataOfRealLayer(){
-        return this->layerBundle[static_cast<unsigned long long>(activeLayer)].image->getPolygonData();
+		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].image->getPolygonData();
 }
 
 // If a mouse button is pressed check if it was the
@@ -253,8 +253,8 @@ std::vector<QPoint> PaintingArea::getPolygonDataOfRealLayer(){
 void PaintingArea::mousePressEvent(QMouseEvent*event){
 		if(Tool == nullptr)
 				return;
-        int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-        int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftPressed(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -269,8 +269,8 @@ void PaintingArea::mousePressEvent(QMouseEvent*event){
 void PaintingArea::mouseMoveEvent(QMouseEvent*event){
 		if(Tool == nullptr)
 				return;
-        int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-        int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		Tool->onMouseMoved(x, y);
 		update();
 }
@@ -279,8 +279,8 @@ void PaintingArea::mouseMoveEvent(QMouseEvent*event){
 void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 		if(Tool == nullptr)
 				return;
-        int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-        int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftReleased(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -290,20 +290,20 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 }
 
 void PaintingArea::wheelEvent(QWheelEvent*event){
-        if(this->Tool != nullptr){
-            QPoint numDegrees = event->angleDelta() / 8;
-            if(!numDegrees.isNull()) {
-                    QPoint numSteps = numDegrees / 15;
-                    Tool->onWheelScrolled(numSteps.y()* -1);
-            }
-        }
+		if(this->Tool != nullptr) {
+				QPoint numDegrees = event->angleDelta() / 8;
+				if(!numDegrees.isNull()) {
+						QPoint numSteps = numDegrees / 15;
+						Tool->onWheelScrolled(numSteps.y()* -1);
+				}
+		}
 }
 
 // QPainter provides functions to draw on the widget
 // The QPaintEvent is sent to widgets that need to
 // update themselves
 void PaintingArea::paintEvent(QPaintEvent*event){
-        this->drawLayers();
+		this->drawLayers();
 
 		QPainter painter(this);
 		QRect dirtyRec = event->rect();
@@ -323,15 +323,15 @@ void PaintingArea::resizeLayer(QImage*image_res, const QSize &newSize){
 }
 
 void PaintingArea::selectLayerUp(){
-        if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size()-1) {
-                std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer+1)]);
+		if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size()-1) {
+				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer+1)]);
 				activeLayer++;
 		}
 }
 
 void PaintingArea::selectLayerDown(){
 		if(activeLayer!=-1 && activeLayer>0) {
-                std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer-1)]);
+				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer-1)]);
 				activeLayer--;
 		}
 }
@@ -375,32 +375,32 @@ void PaintingArea::createTempTopLayer(int idx){
 		if(idx>=0) {
 				LayerObject newLayer;
 				newLayer.alpha = 255;
-                newLayer.height = layerBundle[static_cast<unsigned long long>(idx)].height;
-                newLayer.width = layerBundle[static_cast<unsigned long long>(idx)].width;
-                newLayer.heightOffset = layerBundle[static_cast<unsigned long long>(idx)].heightOffset;
-                newLayer.widthOffset = layerBundle[static_cast<unsigned long long>(idx)].widthOffset;
-                newLayer.image = layerBundle[static_cast<unsigned long long>(idx)].image->getDeepCopy();
+				newLayer.height = layerBundle[static_cast<unsigned long long>(idx)].height;
+				newLayer.width = layerBundle[static_cast<unsigned long long>(idx)].width;
+				newLayer.heightOffset = layerBundle[static_cast<unsigned long long>(idx)].heightOffset;
+				newLayer.widthOffset = layerBundle[static_cast<unsigned long long>(idx)].widthOffset;
+				newLayer.image = layerBundle[static_cast<unsigned long long>(idx)].image->getDeepCopy();
 				layerBundle.insert(layerBundle.begin()+idx+1,newLayer);
 		}
 }
 
 IntelliTool* PaintingArea::copyActiveTool(){
-    switch(Tool->getTooltype()){
-        case IntelliTool::Tooltype::CIRCLE: return new IntelliToolCircle(this,&colorPicker, &Toolsettings);
-        case IntelliTool::Tooltype::FLOODFILL: return new IntelliToolFloodFill(this,&colorPicker, &Toolsettings);
-        case IntelliTool::Tooltype::LINE: return new IntelliToolLine(this,&colorPicker, &Toolsettings);
-        case IntelliTool::Tooltype::PEN: return new IntelliToolPen(this,&colorPicker, &Toolsettings);
-        case IntelliTool::Tooltype::PLAIN: return new IntelliToolPlainTool(this,&colorPicker, &Toolsettings);
-        case IntelliTool::Tooltype::POLYGON: return new IntelliToolPolygon(this,&colorPicker, &Toolsettings);
-        case IntelliTool::Tooltype::RECTANGLE: return new IntelliToolRectangle(this,&colorPicker, &Toolsettings);
-        default: return nullptr;
-    }
+		switch(Tool->getTooltype()) {
+		case IntelliTool::Tooltype::CIRCLE: return new IntelliToolCircle(this,&colorPicker, &Toolsettings);
+		case IntelliTool::Tooltype::FLOODFILL: return new IntelliToolFloodFill(this,&colorPicker, &Toolsettings);
+		case IntelliTool::Tooltype::LINE: return new IntelliToolLine(this,&colorPicker, &Toolsettings);
+		case IntelliTool::Tooltype::PEN: return new IntelliToolPen(this,&colorPicker, &Toolsettings);
+		case IntelliTool::Tooltype::PLAIN: return new IntelliToolPlainTool(this,&colorPicker, &Toolsettings);
+		case IntelliTool::Tooltype::POLYGON: return new IntelliToolPolygon(this,&colorPicker, &Toolsettings);
+		case IntelliTool::Tooltype::RECTANGLE: return new IntelliToolRectangle(this,&colorPicker, &Toolsettings);
+		default: return nullptr;
+		}
 }
 
 int PaintingArea::getNumberOfActiveLayer(){
-    return activeLayer;
+		return activeLayer;
 }
 
 IntelliImage* PaintingArea::getImageOfActiveLayer(){
-    return layerBundle[activeLayer].image;
+		return layerBundle[activeLayer].image;
 }

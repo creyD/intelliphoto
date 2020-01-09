@@ -13,15 +13,15 @@ class PaintingArea;
  */
 class IntelliTool {
 public:
-    enum class Tooltype{
-        CIRCLE,
-        FLOODFILL,
-        LINE,
-        PEN,
-        PLAIN,
-        POLYGON,
-        RECTANGLE
-    };
+enum class Tooltype {
+		CIRCLE,
+		FLOODFILL,
+		LINE,
+		PEN,
+		PLAIN,
+		POLYGON,
+		RECTANGLE
+};
 private:
 /*!
  * \brief A function that creates a layer to draw on.

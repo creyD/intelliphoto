@@ -6,12 +6,12 @@
 #include <queue>
 
 IntelliToolFloodFill::IntelliToolFloodFill(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
-        : IntelliTool(Area, colorPicker, Toolsettings){
-        this->ActiveType = Tooltype::FLOODFILL;
+		: IntelliTool(Area, colorPicker, Toolsettings){
+		this->ActiveType = Tooltype::FLOODFILL;
 }
 
 IntelliToolFloodFill::~IntelliToolFloodFill(){
-        IntelliTool::onMouseRightPressed(0,0);
+		IntelliTool::onMouseRightPressed(0,0);
 }
 
 void IntelliToolFloodFill::onMouseRightPressed(int x, int y){

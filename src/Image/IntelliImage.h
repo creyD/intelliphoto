@@ -24,8 +24,8 @@ public:
  * \brief The Types, which an Image can be.
  */
 enum class ImageType {
-        RASTERIMAGE,
-        SHAPEDIMAGE
+		RASTERIMAGE,
+		SHAPEDIMAGE
 };
 
 protected:
@@ -125,7 +125,7 @@ virtual std::vector<QPoint> getPolygonData(){
 }
 
 virtual ImageType getTypeOfImage(){
-    return TypeOfImage;
+		return TypeOfImage;
 }
 
 /*!

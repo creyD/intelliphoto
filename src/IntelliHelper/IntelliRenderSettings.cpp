@@ -6,5 +6,5 @@ IntelliRenderSettings::IntelliRenderSettings()
 }
 
 bool IntelliRenderSettings::getFastRenderer(){
-    return fastRenderer;
+		return fastRenderer;
 }

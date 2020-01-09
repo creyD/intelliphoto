@@ -4,7 +4,7 @@
 IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings){
 		this->Area=Area;
 		this->colorPicker=colorPicker;
-        this->Toolsettings=Toolsettings;
+		this->Toolsettings=Toolsettings;
 }
 
 
@@ -50,8 +50,8 @@ void IntelliTool::onWheelScrolled(int value){
 
 void IntelliTool::createToolLayer(){
 		Area->createTempTopLayer(Area->activeLayer);
-        this->activeLayer=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer)];
-        this->Canvas=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer+1)];
+		this->activeLayer=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer)];
+		this->Canvas=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer+1)];
 }
 
 void IntelliTool::mergeToolLayer(){
@@ -74,7 +74,7 @@ void IntelliTool::mergeToolLayer(){
 						activeLayer->image->imageData.setPixelColor(x, y, clr_0);
 				}
 		}
-        Area->DumpyGui->UpdateGui();
+		Area->DumpyGui->UpdateGui();
 }
 
 void IntelliTool::deleteToolLayer(){
@@ -83,9 +83,9 @@ void IntelliTool::deleteToolLayer(){
 }
 
 IntelliTool::Tooltype IntelliTool::getTooltype(){
-    return ActiveType;
+		return ActiveType;
 }
 
 bool IntelliTool::getIsDrawing(){
-    return isDrawing;
+		return isDrawing;
 }

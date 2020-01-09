@@ -19,7 +19,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 									  QPoint BP(point.x()-post.x(), point.y()-post.y());
 
 									  float topSclar = AP.x()*BP.x()+AP.y()*BP.y();
-                                      float absolute = static_cast<float>(sqrt(pow(AP.x(),2.)+pow(AP.y(),2.))*sqrt(pow(BP.x(),2.)+pow(BP.y(),2.)));
+									  float absolute = static_cast<float>(sqrt(pow(AP.x(),2.)+pow(AP.y(),2.))*sqrt(pow(BP.x(),2.)+pow(BP.y(),2.)));
 									  return acos(topSclar/absolute);
 							  };
 
@@ -46,7 +46,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 
 		// return if the vertex is a tip
 		auto isTip = [](float angle){
-                             return static_cast<double>(angle)<(pi/2.);
+							 return static_cast<double>(angle)<(pi/2.);
 					 };
 
 		std::vector<TriangleHelper>  Vertices;
@@ -88,7 +88,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 				}
 
 				// update post und prev idx
-                post = getPrev(post, Vertices.size());
+				post = getPrev(post, Vertices.size());
 				prev = prev<smallest.idx ? prev : (prev-1);
 
 				// calcultae neighboors of prev and post to calculate new interior angles
@@ -115,7 +115,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 
 bool IntelliTriangulation::isInPolygon(std::vector<Triangle> &triangles, QPoint &point){
 		for(auto triangle : triangles) {
-                if(IntelliTriangulation::isInTriangle(triangle, point)) {
+				if(IntelliTriangulation::isInTriangle(triangle, point)) {
 						return true;
 				}
 		}
