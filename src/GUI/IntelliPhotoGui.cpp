@@ -660,11 +660,11 @@ void IntelliPhotoGui::createGui(){
             preview = preview.fromImage(tmp);
         }
 
-
 		ActiveLayerImageButton = new QPushButton();
 		ActiveLayerImageButton->setFixedSize(Buttonsize);
         ActiveLayerImageButton->setIcon(preview);
 		ActiveLayerImageButton->setIconSize(Buttonsize);
+        ActiveLayerImageButton->setEnabled(false);
 
 		// set gui elements
 
@@ -690,14 +690,24 @@ void IntelliPhotoGui::createGui(){
 void IntelliPhotoGui::setIntelliStyle(){
 		// Set the title
 		setWindowTitle("IntelliPhoto Prototype");
-        QStyle* Style = new QProxyStyle();
+        QPalette Palette;
+        Palette.setBrush(QPalette::HighlightedText, QColor(200, 10, 10));
+        Palette.setBrush(QPalette::ButtonText, QColor(255, 255, 255));
 		// Set style sheet
         this->setStyleSheet("background-color:rgb(64,64,64)");
         this->centralGuiWidget->setStyleSheet("color:rgb(255,255,255)");
-        this->menuBar()->setStyleSheet("color:rgb(255,255,255)");
-        this->fileMenu->setStyle(Style);
-        this->optionMenu->setStyle(Style);
-        this->helpMenu->setStyle(Style);
+        this->menuBar()->setPalette(Palette);
+        this->fileMenu->setPalette(Palette);
+        this->saveAsMenu->setPalette(Palette);
+        this->optionMenu->setPalette(Palette);
+        this->helpMenu->setPalette(Palette);
+        this->renderMenu->setPalette(Palette);
+        this->toolMenu->setPalette(Palette);
+        this->layerMenu->setPalette(Palette);
+        this->colorMenu->setPalette(Palette);
+        this->toolCreationMenu->setPalette(Palette);
+        this->toolSettingsMenu->setPalette(Palette);
+
 		QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
 		FirstColorButton->setStyleSheet(string);
 		string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
