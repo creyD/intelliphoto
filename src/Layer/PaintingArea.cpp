@@ -31,7 +31,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		polygon.push_back(QPoint(000,100));
 		layerBundle[0].image->setPolygon(polygon);
 
-        this->addLayer(200,200,150,150,IntelliImage::ImageType::RASTERIMAGE);
+		this->addLayer(200,200,150,150,IntelliImage::ImageType::RASTERIMAGE);
 		layerBundle[1].image->drawPlain(QColor(0,255,0,255));
 		layerBundle[1].alpha=200;
 
@@ -59,10 +59,10 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		newLayer.height = height;
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
-        if(type==IntelliImage::ImageType::RASTERIMAGE) {
-                newLayer.image = new IntelliRasterImage(width,height,renderSettings.getFastRenderer());
-        }else if(type==IntelliImage::ImageType::SHAPEDIMAGE) {
-                newLayer.image = new IntelliShapedImage(width, height, renderSettings.getFastRenderer());
+		if(type==IntelliImage::ImageType::RASTERIMAGE) {
+				newLayer.image = new IntelliRasterImage(width,height,renderSettings.getFastRenderer());
+		}else if(type==IntelliImage::ImageType::SHAPEDIMAGE) {
+				newLayer.image = new IntelliShapedImage(width, height, renderSettings.getFastRenderer());
 		}
 		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
@@ -158,13 +158,13 @@ void PaintingArea::movePositionActive(int x, int y){
 }
 
 void PaintingArea::moveActiveLayer(int idx){
-        if(Tool != nullptr){
-            if(Tool->getIsDrawing()){
-                IntelliTool* temp = copyActiveTool();
-                delete this->Tool;
-                this->Tool = temp;
-        }
-        }
+		if(Tool != nullptr) {
+				if(Tool->getIsDrawing()) {
+						IntelliTool* temp = copyActiveTool();
+						delete this->Tool;
+						this->Tool = temp;
+				}
+		}
 		if(idx==1) {
 				this->selectLayerUp();
 		}else if(idx==-1) {
