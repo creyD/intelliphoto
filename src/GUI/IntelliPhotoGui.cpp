@@ -81,7 +81,7 @@ void IntelliPhotoGui::slotCreateNewLayer(){
 		if (ok1&&ok2)
 		{
 				int layer = paintingArea->addLayer(width,height,0,0);
-				paintingArea->slotActivateLayer(layer);
+                UpdateGui();
 		}
 }
 
@@ -95,12 +95,11 @@ void IntelliPhotoGui::slotDeleteLayer(){
 		// Define the standard Value, min, max, step and ok button
 		int layerNumber = QInputDialog::getInt(this, tr("delete Layer"),
 		                                       tr("Number:"),
-		                                       1,0, 500, 1, &ok);
+                                               paintingArea->getNumberOfActiveLayer(),0, 500, 1, &ok);
 		// Create New Layer
         if (ok){
 				paintingArea->deleteLayer(layerNumber);
-                QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
-                ActiveLayerLine->setText(string);
+                UpdateGui();
         }
 }
 
@@ -121,6 +120,7 @@ void IntelliPhotoGui::slotSetActiveAlpha(){
 		if (ok1&&ok2)
 		{
 				paintingArea->setLayerAlpha(layer,alpha);
+                UpdateGui();
 		}
 }
 
@@ -179,6 +179,7 @@ void IntelliPhotoGui::slotClearActiveLayer(){
 		if (ok1&&ok2&&ok3&&ok4)
 		{
 				paintingArea->floodFill(red, green, blue, alpha);
+                UpdateGui();
 		}
 }
 
@@ -195,29 +196,23 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 		if (ok1)
 		{
 				paintingArea->setLayerActive(layer);
-                QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
-                ActiveLayerLine->setText(string);
+                UpdateGui();
 		}
 }
 
 void IntelliPhotoGui::slotSetFirstColor(){
 		paintingArea->colorPickerSetFirstColor();
-        QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
-        FirstColorButton->setStyleSheet(string);
+        UpdateGui();
 }
 
 void IntelliPhotoGui::slotSetSecondColor(){
 		paintingArea->colorPickerSetSecondColor();
-        QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
-        SecondColorButton->setStyleSheet(string);
+        UpdateGui();
 }
 
 void IntelliPhotoGui::slotSwapColor(){
 		paintingArea->colorPickerSwapColors();
-        QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
-        FirstColorButton->setStyleSheet(string);
-        string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
-        SecondColorButton->setStyleSheet(string);
+        UpdateGui();
 }
 
 void IntelliPhotoGui::slotCreatePenTool(){
@@ -511,6 +506,7 @@ void IntelliPhotoGui::createGui(){
 
 		// create Gui elements
 		paintingArea = new PaintingArea();
+        paintingArea->DumpyGui = this;
 
         p = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
         CircleButton = new QPushButton();
@@ -602,6 +598,13 @@ void IntelliPhotoGui::createGui(){
         ActiveLayerLine->setText(string);
         ActiveLayerLine->setFixedSize(Buttonsize.width()+10,Buttonsize.height()/3);
 
+        p = p.fromImage(paintingArea->getImageOfActiveLayer()->getImageData());
+
+        ActiveLayerImageButton = new QPushButton();
+        ActiveLayerImageButton->setFixedSize(Buttonsize);
+        ActiveLayerImageButton->setIcon(p);
+        ActiveLayerImageButton->setIconSize(Buttonsize);
+
 		// set gui elements
 
         mainLayout->addWidget(paintingArea,1,1,20,1);
@@ -620,6 +623,7 @@ void IntelliPhotoGui::createGui(){
         mainLayout->addWidget(SecondColorButton,12,3,1,1);
         mainLayout->addWidget(SwitchColorButton,13,2,1,2);
         mainLayout->addWidget(ActiveLayerLine,14,2,1,2);
+        mainLayout->addWidget(ActiveLayerImageButton,15,2,1,2);
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
@@ -685,4 +689,17 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
 
 void IntelliPhotoGui::setDefaultToolValue(){
     slotEnterPressed();
+}
+
+void IntelliPhotoGui::UpdateGui(){
+    QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
+    ActiveLayerLine->setText(string);
+    p = p.fromImage(paintingArea->getImageOfActiveLayer()->getImageData());
+    ActiveLayerImageButton->setIcon(p);
+    ActiveLayerImageButton->setIconSize(Buttonsize);
+
+    string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
+    FirstColorButton->setStyleSheet(string);
+    string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
+    SecondColorButton->setStyleSheet(string);
 }

@@ -74,6 +74,7 @@ void IntelliTool::mergeToolLayer(){
 						activeLayer->image->imageData.setPixelColor(x, y, clr_0);
 				}
 		}
+        Area->DumpyGui->UpdateGui();
 }
 
 void IntelliTool::deleteToolLayer(){

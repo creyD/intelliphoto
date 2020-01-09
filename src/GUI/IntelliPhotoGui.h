@@ -32,6 +32,8 @@ public:
  */
 IntelliPhotoGui();
 
+void UpdateGui();
+
 protected:
 // Function used to close an event
 void closeEvent(QCloseEvent*event) override;
@@ -115,6 +117,7 @@ QPushButton* SecondColorButton;
 QPushButton* SwitchColorButton;
 
 QLabel* ActiveLayerLine;
+QPushButton* ActiveLayerImageButton;
 
 // The menu widgets
 QMenu*saveAsMenu;

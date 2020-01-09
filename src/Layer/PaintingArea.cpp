@@ -66,14 +66,15 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		}
 		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
-		return static_cast<int>(layerBundle.size())-1;
+        activeLayer = static_cast<int>(layerBundle.size())-1;
+        return activeLayer;
 }
 
 
 void PaintingArea::deleteLayer(int index){
 		if(index<static_cast<int>(layerBundle.size())) {
 				this->layerBundle.erase(layerBundle.begin()+index);
-				if(activeLayer>=index) {
+                if(activeLayer>=index && activeLayer != 0) {
 						activeLayer--;
 				}
 		}
@@ -145,10 +146,12 @@ void PaintingArea::floodFill(int r, int g, int b, int a){
 }
 
 void PaintingArea::movePositionActive(int x, int y){
-        if(Tool->getIsDrawing()){
-            IntelliTool* temp = copyActiveTool();
-            delete this->Tool;
-            this->Tool = temp;
+        if(Tool!=nullptr){
+            if(Tool->getIsDrawing()){
+                IntelliTool* temp = copyActiveTool();
+                delete this->Tool;
+                this->Tool = temp;
+            }
         }
         layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
@@ -168,10 +171,12 @@ void PaintingArea::moveActiveLayer(int idx){
 }
 
 void PaintingArea::slotActivateLayer(int a){
-        if(Tool->getIsDrawing()){
-            IntelliTool* temp = copyActiveTool();
-            delete this->Tool;
-            this->Tool = temp;
+        if(Tool != nullptr){
+            if(Tool->getIsDrawing()){
+                IntelliTool* temp = copyActiveTool();
+                delete this->Tool;
+                this->Tool = temp;
+            }
         }
 		if(a>=0 && a < static_cast<int>(layerBundle.size())) {
 				this->setLayerActive(a);
@@ -394,4 +399,8 @@ IntelliTool* PaintingArea::copyActiveTool(){
 
 int PaintingArea::getNumberOfActiveLayer(){
     return activeLayer;
+}
+
+IntelliImage* PaintingArea::getImageOfActiveLayer(){
+    return layerBundle[activeLayer].image;
 }

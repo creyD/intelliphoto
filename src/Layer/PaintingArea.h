@@ -7,6 +7,7 @@
 #include <QPoint>
 #include <QWidget>
 #include <QList>
+#include "GUI/IntelliPhotoGui.h"
 #include "Image/IntelliImage.h"
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
@@ -40,6 +41,7 @@ class PaintingArea : public QWidget
     // QObjects handle events
     Q_OBJECT
     friend IntelliTool;
+    friend IntelliPhotoGui;
 public:
     /*!
      * \brief PaintingArea is the constructor of the PaintingArea class, which initiates the working environment
@@ -167,6 +169,8 @@ public:
 
     int getNumberOfActiveLayer();
 
+    IntelliImage* getImageOfActiveLayer();
+
     IntelliToolsettings Toolsettings;
     IntelliColorPicker colorPicker;
 
@@ -207,6 +211,7 @@ private:
 
     IntelliRenderSettings renderSettings;
     IntelliTool* Tool;
+    IntelliPhotoGui* DumpyGui;
 
     std::vector<LayerObject> layerBundle;
     int activeLayer=-1;
