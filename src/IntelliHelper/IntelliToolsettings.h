@@ -10,14 +10,18 @@ enum class LineStyle {
 		SOLID_LINE,
 		DOTTED_LINE
 };
+
 IntelliToolsettings();
 virtual ~IntelliToolsettings();
+
 int getLineWidth();
 void setLineWidth();
 void setLineWidth(int LineWidth);
+
 int getInnerAlpha();
 void setInnerAlpha();
 void setInnerAlpha(int innerAlpha);
+
 LineStyle getLinestyle();
 
 private:
