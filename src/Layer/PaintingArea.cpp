@@ -119,7 +119,7 @@ bool PaintingArea::save(const QString &filePath, const char*fileFormat){
         this->drawLayers(true);
 
 		if(!strcmp(fileFormat,"PNG")) {
-				QImage visibleImage = Canvas->convertToFormat(QImage::Format_idxed8);
+                QImage visibleImage = Canvas->convertToFormat(QImage::Format_Indexed8);
 				fileFormat = "png";
                 if (visibleImage.save(filePath, fileFormat)) {
 						return true;
