@@ -8,6 +8,7 @@
 #include <QWidget>
 #include <vector>
 
+#include "IntelliHelper/IntelliRenderSettings.h"
 #include "IntelliHelper/IntelliTriangulation.h"
 
 class IntelliTool;

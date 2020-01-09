@@ -205,6 +205,7 @@ private:
     int maxWidth;
     int maxHeight;
 
+    IntelliRenderSettings renderSettings;
     IntelliTool* Tool;
 
     std::vector<LayerObject> layerBundle;
