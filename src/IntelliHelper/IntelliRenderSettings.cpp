@@ -5,6 +5,10 @@ IntelliRenderSettings::IntelliRenderSettings()
 
 }
 
-bool IntelliRenderSettings::getFastRenderer(){
-		return fastRenderer;
+void IntelliRenderSettings::setFastRendering(bool Updatedsetting){
+        this->fastRenderering = Updatedsetting;
+}
+
+bool IntelliRenderSettings::isFastRenderering(){
+        return fastRenderering;
 }

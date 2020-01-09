@@ -57,10 +57,12 @@ void IntelliToolCircle::onMouseRightReleased(int x, int y){
 
 void IntelliToolCircle::onMouseLeftPressed(int x, int y){
 		IntelliTool::onMouseLeftPressed(x,y);
-		this->centerPoint=QPoint(x,y);
-		int radius = 1;
-		drawCircle(radius);
-		Canvas->image->calculateVisiblity();
+        if(this->isDrawing){
+            this->centerPoint=QPoint(x,y);
+            int radius = 1;
+            drawCircle(radius);
+            Canvas->image->calculateVisiblity();
+        }
 }
 
 void IntelliToolCircle::onMouseLeftReleased(int x, int y){

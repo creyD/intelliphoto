@@ -21,25 +21,34 @@
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QWidget(parent){
 		this->Tool = nullptr;
-		this->setLayerDimensions(maxWidth, maxHeight);
-		this->addLayer(200,200,0,0,IntelliImage::ImageType::SHAPEDIMAGE);
-		layerBundle[0].image->drawPlain(QColor(0,0,255,255));
-		std::vector<QPoint> polygon;
-		polygon.push_back(QPoint(100,000));
-		polygon.push_back(QPoint(200,100));
-		polygon.push_back(QPoint(100,200));
-		polygon.push_back(QPoint(000,100));
-		layerBundle[0].image->setPolygon(polygon);
+        this->setLayerDimensions(maxWidth, maxHeight);
+        //this->addLayer(200,200,0,0,IntelliImage::ImageType::SHAPEDIMAGE);
+        //layerBundle[0].image->drawPlain(QColor(0,0,255,255));
+        //std::vector<QPoint> polygon;
+        //polygon.push_back(QPoint(100,000));
+        //polygon.push_back(QPoint(200,100));
+        //polygon.push_back(QPoint(100,200));
+        //polygon.push_back(QPoint(000,100));
+        //layerBundle[0].image->setPolygon(polygon);
+        //
+        //this->addLayer(200,200,150,150,IntelliImage::ImageType::RASTERIMAGE);
+        //layerBundle[1].image->drawPlain(QColor(0,255,0,255));
+        //layerBundle[1].alpha=200;
 
-        this->addLayer(200,200,150,150,IntelliImage::ImageType::RASTERIMAGE);
-		layerBundle[1].image->drawPlain(QColor(0,255,0,255));
-		layerBundle[1].alpha=200;
-
-		activeLayer=0;
+        activeLayer=-1;
 }
 
 PaintingArea::~PaintingArea(){
 		delete Tool;
+}
+
+void PaintingArea::setRenderSettings(bool isFastRenderingOn){
+        if(isFastRenderingOn != renderSettings.isFastRenderering()){
+            renderSettings.setFastRendering(isFastRenderingOn);
+            for(auto& layer : layerBundle){
+                layer.image->updateRendererSetting(isFastRenderingOn);
+            }
+        }
 }
 
 void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
@@ -60,9 +69,9 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
         if(type==IntelliImage::ImageType::RASTERIMAGE) {
-                newLayer.image = new IntelliRasterImage(width,height,renderSettings.getFastRenderer());
+                newLayer.image = new IntelliRasterImage(width,height,renderSettings.isFastRenderering());
         }else if(type==IntelliImage::ImageType::SHAPEDIMAGE) {
-                newLayer.image = new IntelliShapedImage(width, height, renderSettings.getFastRenderer());
+                newLayer.image = new IntelliShapedImage(width, height, renderSettings.isFastRenderering());
 		}
 		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
@@ -74,9 +83,12 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 void PaintingArea::deleteLayer(int idx){
 		if(idx<static_cast<int>(layerBundle.size())) {
 				this->layerBundle.erase(layerBundle.begin()+idx);
-				if(activeLayer>=idx && activeLayer != 0) {
+                if(activeLayer>=idx) {
 						activeLayer--;
 				}
+                if(activeLayer < 0 && layerBundle.size()){
+                    activeLayer=0;
+                }
 		}
 }
 
@@ -253,6 +265,8 @@ std::vector<QPoint> PaintingArea::getPolygonDataOfRealLayer(){
 // left button and if so store the current position
 // Set that we are currently drawing
 void PaintingArea::mousePressEvent(QMouseEvent*event){
+        if(this->activeLayer < 0)
+                return;
 		if(Tool == nullptr)
 				return;
 		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
@@ -269,6 +283,8 @@ void PaintingArea::mousePressEvent(QMouseEvent*event){
 // we call the drawline function which draws a line
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent*event){
+        if(this->activeLayer < 0)
+                return;
 		if(Tool == nullptr)
 				return;
 		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
@@ -279,7 +295,9 @@ void PaintingArea::mouseMoveEvent(QMouseEvent*event){
 
 // If the button is released we set variables to stop drawing
 void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
-		if(Tool == nullptr)
+        if(this->activeLayer < 0)
+                return;
+        if(Tool == nullptr)
 				return;
 		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
 		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
@@ -292,7 +310,9 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 }
 
 void PaintingArea::wheelEvent(QWheelEvent*event){
-		if(this->Tool != nullptr) {
+        if(this->activeLayer < 0)
+                return;
+        if(this->Tool != nullptr) {
 				QPoint numDegrees = event->angleDelta() / 8;
 				if(!numDegrees.isNull()) {
 						QPoint numSteps = numDegrees / 15;
@@ -373,7 +393,7 @@ void PaintingArea::drawLayers(bool forSaving){
 		}
 }
 
-void PaintingArea::createTempTopLayer(int idx){
+bool PaintingArea::createTempTopLayer(int idx){
 		if(idx>=0) {
 				LayerObject newLayer;
 				newLayer.alpha = 255;
@@ -383,7 +403,9 @@ void PaintingArea::createTempTopLayer(int idx){
 				newLayer.widthOffset = layerBundle[static_cast<unsigned long long>(idx)].widthOffset;
 				newLayer.image = layerBundle[static_cast<unsigned long long>(idx)].image->getDeepCopy();
 				layerBundle.insert(layerBundle.begin()+idx+1,newLayer);
+                return true;
 		}
+        return false;
 }
 
 IntelliTool* PaintingArea::copyActiveTool(){
@@ -404,5 +426,8 @@ int PaintingArea::getNumberOfActiveLayer(){
 }
 
 IntelliImage* PaintingArea::getImageOfActiveLayer(){
+        if(activeLayer<0){
+            return nullptr;
+        }
 		return layerBundle[activeLayer].image;
 }

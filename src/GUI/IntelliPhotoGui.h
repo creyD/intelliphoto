@@ -56,6 +56,10 @@ void slotPositionMoveRight();
 void slotMoveLayerUp();
 void slotMoveLayerDown();
 
+//Rendersetting slots here
+void slotUpdateRenderSettingsOn();
+void slotUpdateRenderSettingsOff();
+
 // color Picker slots here
 void slotSetFirstColor();
 void slotSetSecondColor();
@@ -97,7 +101,7 @@ void setDefaultToolValue();
 PaintingArea* paintingArea;
 
 const QSize Buttonsize = QSize(70,70);
-QPixmap p;
+QPixmap preview;
 QPushButton* CircleButton;
 QPushButton* FloodFillButton;
 QPushButton* LineButton;
@@ -122,6 +126,7 @@ QPushButton* ActiveLayerImageButton;
 // The menu widgets
 QMenu*saveAsMenu;
 QMenu*fileMenu;
+QMenu*renderMenu;
 QMenu*optionMenu;
 QMenu*layerMenu;
 QMenu*colorMenu;
@@ -132,6 +137,10 @@ QMenu*helpMenu;
 // meta image actions (need further modularisation)
 QAction*actionOpen;
 QAction*actionExit;
+
+//Rendersetting actions
+QAction*actionUpdateRenderSettingsOn;
+QAction*actionUpdateRenderSettingsOff;
 
 // color Picker actions
 QAction*actionColorPickerFirstColor;

@@ -7,7 +7,7 @@
 IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererOn)
         : IntelliRasterImage(width, height, fastRendererOn){
         TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
-        this->fastRenderer = fastRendererOn;
+        this->fastRenderering = fastRendererOn;
 }
 
 IntelliShapedImage::~IntelliShapedImage(){
@@ -27,7 +27,7 @@ IntelliImage* IntelliShapedImage::getDeepCopy(){
 }
 
 void IntelliShapedImage::calculateVisiblity(){
-        if(fastRenderer){
+        if(fastRenderering){
             this->imageData = imageData.convertToFormat(QImage::Format_ARGB32);
         }
 
@@ -40,7 +40,7 @@ void IntelliShapedImage::calculateVisiblity(){
 								imageData.setPixelColor(x,y,clr);
 						}
 				}
-                if(fastRenderer){
+                if(fastRenderering){
                      this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
                 }
 				return;
@@ -59,14 +59,14 @@ void IntelliShapedImage::calculateVisiblity(){
 						imageData.setPixelColor(x,y,clr);
 				}
 		}
-        if(fastRenderer){
+        if(fastRenderering){
              this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
         }
 }
 
 QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
 		QImage copy = imageData;
-        if(fastRenderer){
+        if(fastRenderering){
              copy = copy.convertToFormat(QImage::Format_ARGB32);
         }
 		for(int y = 0; y<copy.height(); y++) {
@@ -76,7 +76,7 @@ QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
 						copy.setPixelColor(x,y, clr);
 				}
 		}
-        if(fastRenderer){
+        if(fastRenderering){
              copy = copy.convertToFormat(QImage::Format_Indexed8);
         }
 		return copy.scaled(displaySize,Qt::IgnoreAspectRatio);

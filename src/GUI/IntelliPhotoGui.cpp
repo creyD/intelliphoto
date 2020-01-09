@@ -95,10 +95,10 @@ void IntelliPhotoGui::slotDeleteLayer(){
 		// Define the standard Value, min, max, step and ok button
 		int layerNumber = QInputDialog::getInt(this, tr("delete Layer"),
 		                                       tr("Number:"),
-		                                       paintingArea->getNumberOfActiveLayer(),0, 500, 1, &ok);
+                                               paintingArea->getNumberOfActiveLayer()+1,1, 501, 1, &ok);
 		// Create New Layer
 		if (ok) {
-				paintingArea->deleteLayer(layerNumber);
+                paintingArea->deleteLayer(layerNumber-1);
 				UpdateGui();
 		}
 }
@@ -198,6 +198,16 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 				paintingArea->setLayerActive(layer);
 				UpdateGui();
 		}
+}
+
+void IntelliPhotoGui::slotUpdateRenderSettingsOn(){
+        paintingArea->setRenderSettings(true);
+        UpdateGui();
+}
+
+void IntelliPhotoGui::slotUpdateRenderSettingsOff(){
+        paintingArea->setRenderSettings(false);
+        UpdateGui();
 }
 
 void IntelliPhotoGui::slotSetFirstColor(){
@@ -356,6 +366,13 @@ void IntelliPhotoGui::createActions(){
 		actionMoveLayerDown->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
 		connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
 
+        //Create Update RenderSettings Actions here
+        actionUpdateRenderSettingsOn = new QAction(tr("&On"), this);
+        connect(actionUpdateRenderSettingsOn, SIGNAL(triggered()),this, SLOT(slotUpdateRenderSettingsOn()));
+
+        actionUpdateRenderSettingsOff = new QAction(tr("&Off"), this);
+        connect(actionUpdateRenderSettingsOff, SIGNAL(triggered()),this, SLOT(slotUpdateRenderSettingsOff()));
+
 		//Create Color Actions here
 		actionColorPickerFirstColor = new QAction(tr("&Main"), this);
 		connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
@@ -448,6 +465,11 @@ void IntelliPhotoGui::createMenus(){
 		fileMenu->addSeparator();
 		fileMenu->addAction(actionExit);
 
+        //Attach all actions to Render Settings
+        renderMenu = new QMenu(tr("&Fast Renderer"), this);
+        renderMenu->addAction(actionUpdateRenderSettingsOn);
+        renderMenu->addAction(actionUpdateRenderSettingsOff);
+
 		// Attach all actions to Options
 		optionMenu = new QMenu(tr("&Options"), this);
 		optionMenu->addAction(actionSetActiveLayer);
@@ -458,6 +480,8 @@ void IntelliPhotoGui::createMenus(){
 		optionMenu->addAction(actionMovePositionRight);
 		optionMenu->addAction(actionMoveLayerUp);
 		optionMenu->addAction(actionMoveLayerDown);
+        optionMenu->addSeparator();
+        optionMenu->addMenu(renderMenu);
 
 		// Attach all actions to Layer
 		layerMenu = new QMenu(tr("&Layer"), this);
@@ -506,54 +530,54 @@ void IntelliPhotoGui::createGui(){
 
 		// create Gui elements
 		paintingArea = new PaintingArea();
-		paintingArea->DumpyGui = this;
+        paintingArea->DummyGui = this;
 
-		p = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
+        preview = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
 		CircleButton = new QPushButton();
 		CircleButton->setFixedSize(Buttonsize);
-		CircleButton->setIcon(p);
+        CircleButton->setIcon(preview);
 		CircleButton->setIconSize(Buttonsize);
 		CircleButton->setCheckable(true);
 
-		p = QPixmap(":/Icons/Buttons/icons/flood-fill-tool.svg");
+        preview = QPixmap(":/Icons/Buttons/icons/flood-fill-tool.svg");
 		FloodFillButton = new QPushButton();
 		FloodFillButton->setFixedSize(Buttonsize);
-		FloodFillButton->setIcon(p);
+        FloodFillButton->setIcon(preview);
 		FloodFillButton->setIconSize(Buttonsize);
 		FloodFillButton->setCheckable(true);
 
-		p = QPixmap(":/Icons/Buttons/icons/icon.png");
+        preview = QPixmap(":/Icons/Buttons/icons/line-tool.svg");
 		LineButton = new QPushButton();
 		LineButton->setFixedSize(Buttonsize);
-		LineButton->setIcon(p);
+        LineButton->setIcon(preview);
 		LineButton->setIconSize(Buttonsize);
 		LineButton->setCheckable(true);
 
-		p = QPixmap(":/Icons/Buttons/icons/pen-tool.svg");
+        preview = QPixmap(":/Icons/Buttons/icons/pen-tool.svg");
 		PenButton = new QPushButton();
 		PenButton->setFixedSize(Buttonsize);
-		PenButton->setIcon(p);
+        PenButton->setIcon(preview);
 		PenButton->setIconSize(Buttonsize);
 		PenButton->setCheckable(true);
 
-		p = QPixmap(":/Icons/Buttons/icons/icon.png");
+        preview = QPixmap(":/Icons/Buttons/icons/plain-tool.svg");
 		PlainButton = new QPushButton();
 		PlainButton->setFixedSize(Buttonsize);
-		PlainButton->setIcon(p);
+        PlainButton->setIcon(preview);
 		PlainButton->setIconSize(Buttonsize);
 		PlainButton->setCheckable(true);
 
-		p = QPixmap(":/Icons/Buttons/icons/polygon-tool.svg");
+        preview = QPixmap(":/Icons/Buttons/icons/polygon-tool.svg");
 		PolygonButton = new QPushButton();
 		PolygonButton->setFixedSize(Buttonsize);
-		PolygonButton->setIcon(p);
+        PolygonButton->setIcon(preview);
 		PolygonButton->setIconSize(Buttonsize);
 		PolygonButton->setCheckable(true);
 
-		p = QPixmap(":/Icons/Buttons/icons/rectangle-tool.svg");
+        preview = QPixmap(":/Icons/Buttons/icons/rectangle-tool.svg");
 		RectangleButton = new QPushButton();
 		RectangleButton->setFixedSize(Buttonsize);
-		RectangleButton->setIcon(p);
+        RectangleButton->setIcon(preview);
 		RectangleButton->setIconSize(Buttonsize);
 		RectangleButton->setCheckable(true);
 
@@ -587,22 +611,30 @@ void IntelliPhotoGui::createGui(){
 		SecondColorButton = new QPushButton();
 		SecondColorButton->setFixedSize(Buttonsize/2);
 
-		p = QPixmap(":/Icons/Buttons/icons/Wechselpfeile.png");
+        preview = QPixmap(":/Icons/Buttons/icons/Wechselpfeile.png");
 		SwitchColorButton = new QPushButton();
 		SwitchColorButton->setFixedSize(Buttonsize.width(),Buttonsize.height()/2);
-		SwitchColorButton->setIcon(p);
+        SwitchColorButton->setIcon(preview);
 		SwitchColorButton->setIconSize(QSize(Buttonsize.width(),Buttonsize.height()/2));
 
 		ActiveLayerLine = new QLabel();
-		QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
+        QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer() + 1);
 		ActiveLayerLine->setText(string);
 		ActiveLayerLine->setFixedSize(Buttonsize.width()+10,Buttonsize.height()/3);
 
-		p = p.fromImage(paintingArea->getImageOfActiveLayer()->getImageData());
+        IntelliImage* activePicture = paintingArea->getImageOfActiveLayer();
+        if(activePicture){
+            preview = preview.fromImage(activePicture->getImageData());
+        }else{
+            QImage tmp(1,1,QImage::Format_ARGB32);
+            tmp.fill(Qt::transparent);
+            preview = preview.fromImage(tmp);
+        }
+
 
 		ActiveLayerImageButton = new QPushButton();
 		ActiveLayerImageButton->setFixedSize(Buttonsize);
-		ActiveLayerImageButton->setIcon(p);
+        ActiveLayerImageButton->setIcon(preview);
 		ActiveLayerImageButton->setIconSize(Buttonsize);
 
 		// set gui elements
@@ -692,10 +724,18 @@ void IntelliPhotoGui::setDefaultToolValue(){
 }
 
 void IntelliPhotoGui::UpdateGui(){
-		QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer());
+        QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer() + 1);
 		ActiveLayerLine->setText(string);
-		p = p.fromImage(paintingArea->getImageOfActiveLayer()->getImageData());
-		ActiveLayerImageButton->setIcon(p);
+
+        IntelliImage* activePicture = paintingArea->getImageOfActiveLayer();
+        if(activePicture){
+            preview = preview.fromImage(activePicture->getImageData());
+        }else{
+            QImage tmp(1,1,QImage::Format_ARGB32);
+            tmp.fill(Qt::transparent);
+            preview = preview.fromImage(tmp);
+        }
+        ActiveLayerImageButton->setIcon(preview);
 		ActiveLayerImageButton->setIconSize(Buttonsize);
 
 		string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());

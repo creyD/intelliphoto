@@ -25,8 +25,9 @@ enum class Tooltype {
 private:
 /*!
  * \brief A function that creates a layer to draw on.
+ * \return Returns if a layer could be created
  */
-void createToolLayer();
+bool createToolLayer();
 
 /*!
  * \brief A function that merges the drawing- and the active- layer.

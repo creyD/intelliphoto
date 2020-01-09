@@ -42,9 +42,9 @@ QImage imageData;
 ImageType TypeOfImage;
 
 /*!
- * \brief fastRenderer is the flag that represents the usage of 8bit pictures.
+ * \brief fastRendering is the flag that represents the usage of 8bit pictures.
  */
-bool fastRenderer;
+bool fastRenderering;
 
 public:
 /*!
@@ -156,9 +156,15 @@ virtual QColor getPixelColor(QPoint& point);
 virtual void updateRendererSetting(bool fastRendererOn);
 
 /*!
- * \brief getImageData returns the data of the current image.
+ * \brief getImageData returns the data of the current image (Note: It will allways return a ARGB32bit QImage!).
  */
 virtual QImage getImageData();
+
+/*!
+ * \brief setImageData overwrites the old imageData the new imageData.
+ * \param newData - represents the new imageData
+ */
+virtual void setImageData(const QImage& newData);
 
 };
 

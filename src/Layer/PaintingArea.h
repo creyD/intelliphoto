@@ -59,6 +59,12 @@ public:
     // Handles all events
 
     /*!
+     * \brief setRenderSettings updates all Images to the new Rendersetting.
+     * \param isFastRenderingOn is the new given flag for the FastRenderer.
+     */
+    void setRenderSettings(bool isFastRenderingOn);
+
+    /*!
      * \brief The open method is used for loading a picture into the current layer
      * \param fileName  - Path and filename which are used to determine where the to-be-opened file is stored
      * \return Returns a boolean variable whether the file was successfully opened or not
@@ -211,7 +217,7 @@ private:
 
     IntelliRenderSettings renderSettings;
     IntelliTool* Tool;
-    IntelliPhotoGui* DumpyGui;
+    IntelliPhotoGui* DummyGui;
 
     std::vector<LayerObject> layerBundle;
     int activeLayer=-1;
@@ -221,8 +227,7 @@ private:
     void resizeLayer(QImage *image_res, const QSize &newSize);
 
     // Helper for Tool
-    // TODO: Always create this layer on top and return the id here!
-    void createTempTopLayer(int idx);
+    bool createTempTopLayer(int idx);
 };
 
 #endif
