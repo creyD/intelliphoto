@@ -73,10 +73,9 @@ void IntelliPhotoGui::slotCreateNewLayer(){
 		// "New Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-        QInputDialog Input;
-        Input.setPalette(Palette);
 
-        int width = Input.getInt(this, tr("New Layer"),
+
+        /*int width = QInputDialog::getInt(this, tr("New Layer"),
 		                                 tr("Width:"),
 		                                 200,1, 500, 1, &ok1);
 
@@ -87,7 +86,7 @@ void IntelliPhotoGui::slotCreateNewLayer(){
 		if (ok1&&ok2){
                 paintingArea->addLayer(width,height,0,0);
 				UpdateGui();
-		}
+        }*/
 }
 
 // Opens a dialog that allows the user to delete a Layer
@@ -689,7 +688,6 @@ void IntelliPhotoGui::createGui(){
         ActiveLayerImageLabel->setPixmap(preview.scaled(Buttonsize*2));
 
 		// set gui elements
-
 		mainLayout->addWidget(paintingArea,1,1,20,1);
         mainLayout->addWidget(CircleButton,1,2,1,1);
         mainLayout->addWidget(FloodFillButton,1,3,1,1);
@@ -717,7 +715,7 @@ void IntelliPhotoGui::setIntelliStyle(){
         Palette.setBrush(QPalette::Highlight, QColor(100, 5, 5));
         Palette.setBrush(QPalette::ButtonText, QColor(255, 255, 255));
         Palette.setBrush(QPalette::Button, QColor(64, 64, 64));
-        Palette.setBrush(QPalette::Window, QColor(0, 0, 0));
+        Palette.setBrush(QPalette::Window, QColor(64, 64, 64));
         Palette.setBrush(QPalette::WindowText, QColor(255, 255, 255));
         Palette.setBrush(QPalette::PlaceholderText, QColor(255, 255, 255));
         Palette.setBrush(QPalette::ToolTipText, QColor(255, 255, 255));
