@@ -45,7 +45,8 @@ void IntelliTool::onMouseMoved(int x, int y){
 }
 
 void IntelliTool::onWheelScrolled(int value){
-		//if needed for future general tasks implement in here
+        //if needed for future general tasks implement in here
+        Area->DummyGui->setToolWidth(value+Toolsettings->getLineWidth());
 }
 
 bool IntelliTool::createToolLayer(){
