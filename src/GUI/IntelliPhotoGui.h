@@ -34,6 +34,9 @@ IntelliPhotoGui();
 
 void UpdateGui();
 
+void setToolWidth(int value);
+int getToolWidth();
+
 protected:
 // Function used to close an event
 void closeEvent(QCloseEvent*event) override;
@@ -103,7 +106,7 @@ void setDefaultToolValue();
 // What we'll draw on
 PaintingArea* paintingArea;
 
-const QSize Buttonsize = QSize(70,70);
+const QSize Buttonsize = QSize(35,35);
 QPixmap preview;
 QPushButton* CircleButton;
 QPushButton* FloodFillButton;

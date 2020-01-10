@@ -12,11 +12,11 @@ IntelliPhotoGui::IntelliPhotoGui(){
 		// create Menus
 		createMenus();
 		// set style of the gui
-		setIntelliStyle();
-		// Size the app
-		resize(600,600);
-		showMaximized();
-		setDefaultToolValue();
+        setIntelliStyle();
+        // Size the app
+        resize(600,600);
+        showMaximized();
+        setDefaultToolValue();
 }
 
 // User tried to close the app
@@ -46,7 +46,7 @@ void IntelliPhotoGui::slotOpen(){
 
 				// If we have a file name load the image and place
 				// it in the paintingArea
-                if (!fileName.isEmpty()){
+				if (!fileName.isEmpty())
 						paintingArea->open(fileName);
                         UpdateGui();
                 }
@@ -194,11 +194,11 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 
 		// "Layer to set on" is the title of the window
 		// the next tr is the text to display
-        // Define the standard Value, min, max, step and ok button
-        int layer = QInputDialog::getInt(this, tr("Layer to set on"),
-                                         tr("Layer:"),
+		// Define the standard Value, min, max, step and ok button
+		int layer = QInputDialog::getInt(this, tr("Layer to set on"),
+		                                 tr("Layer:"),
                                          1,1,500,1, &ok1);
-        if (ok1)
+		if (ok1)
 		{
                 paintingArea->setLayerActive(layer-1);
 				UpdateGui();
@@ -587,9 +587,9 @@ void IntelliPhotoGui::createGui(){
 
         preview = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
 		CircleButton = new QPushButton();
-		CircleButton->setFixedSize(Buttonsize);
+        CircleButton->setFixedSize(Buttonsize);
         CircleButton->setIcon(preview);
-		CircleButton->setIconSize(Buttonsize);
+        CircleButton->setIconSize(Buttonsize);
 		CircleButton->setCheckable(true);
 
         preview = QPixmap(":/Icons/Buttons/icons/flood-fill-tool.svg");
@@ -636,10 +636,10 @@ void IntelliPhotoGui::createGui(){
 
 		WidthLine = new QLabel();
 		WidthLine->setText("Width");
-		WidthLine->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
+        WidthLine->setFixedSize(Buttonsize.width()*2,(Buttonsize.height()*2)/3);
 
 		EditLineWidth = new QLineEdit();
-		EditLineWidth->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
+        EditLineWidth->setFixedSize(Buttonsize.width()*2,(Buttonsize.height()*2)/3);
 		EditLineWidth->setText("5");
 		ValidatorLineWidth = new QIntValidator();
 		ValidatorLineWidth->setTop(99);
@@ -648,10 +648,10 @@ void IntelliPhotoGui::createGui(){
 
 		innerAlphaLine = new QLabel();
 		innerAlphaLine->setText("Inner Alpha");
-		innerAlphaLine->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
+        innerAlphaLine->setFixedSize(Buttonsize.width()*2,(Buttonsize.height()*2)/3);
 
 		EditLineInnerAlpha = new QLineEdit();
-		EditLineInnerAlpha->setFixedSize(Buttonsize.width(),Buttonsize.height()/3);
+        EditLineInnerAlpha->setFixedSize(Buttonsize.width()*2,(Buttonsize.height()*2)/3);
 		EditLineInnerAlpha->setText("255");
 		ValidatorInnerAlpha = new QIntValidator();
 		ValidatorInnerAlpha->setTop(999);
@@ -659,21 +659,21 @@ void IntelliPhotoGui::createGui(){
 		EditLineInnerAlpha->setValidator(ValidatorInnerAlpha);
 
 		FirstColorButton = new QPushButton();
-		FirstColorButton->setFixedSize(Buttonsize/2);
+        FirstColorButton->setFixedSize(Buttonsize);
 
 		SecondColorButton = new QPushButton();
-		SecondColorButton->setFixedSize(Buttonsize/2);
+        SecondColorButton->setFixedSize(Buttonsize);
 
         preview = QPixmap(":/Icons/Buttons/icons/Wechselpfeile.png");
 		SwitchColorButton = new QPushButton();
-		SwitchColorButton->setFixedSize(Buttonsize.width(),Buttonsize.height()/2);
+        SwitchColorButton->setFixedSize(Buttonsize.width()*2,Buttonsize.height());
         SwitchColorButton->setIcon(preview);
-		SwitchColorButton->setIconSize(QSize(Buttonsize.width(),Buttonsize.height()/2));
+        SwitchColorButton->setIconSize(QSize(Buttonsize.width()*2,Buttonsize.height()));
 
 		ActiveLayerLine = new QLabel();
         QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer() + 1);
 		ActiveLayerLine->setText(string);
-		ActiveLayerLine->setFixedSize(Buttonsize.width()+10,Buttonsize.height()/3);
+        ActiveLayerLine->setFixedSize(Buttonsize.width()*2+10,(Buttonsize.height()*2)/3);
 
         IntelliImage* activePicture = paintingArea->getImageOfActiveLayer();
         if(activePicture){
@@ -707,6 +707,7 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(SwitchColorButton,13,2,1,2);
 		mainLayout->addWidget(ActiveLayerLine,14,2,1,2);
         mainLayout->addWidget(ActiveLayerImageLine,15,2,1,2);
+        mainLayout->setHorizontalSpacing(0);
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
@@ -797,6 +798,19 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
 
 void IntelliPhotoGui::setDefaultToolValue(){
 		slotEnterPressed();
+}
+
+void IntelliPhotoGui::setToolWidth(int value){
+    if(value < 1){
+        value = 1;
+    }else if(value > 50){
+        value = 50;
+    }
+    EditLineWidth->setText(QString("%1").arg(value));
+}
+
+int IntelliPhotoGui::getToolWidth(){
+        return EditLineWidth->text().toInt();
 }
 
 void IntelliPhotoGui::UpdateGui(){
