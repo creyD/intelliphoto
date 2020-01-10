@@ -11,6 +11,9 @@
 #include <QLabel>
 #include <QLineEdit>
 
+#include "IntelliInputDialog.h"
+
+
 // PaintingArea used to paint the image
 class PaintingArea;
 
@@ -30,11 +33,12 @@ public:
 /*!
  * \brief The IntelliPhotoGui method is the constructor and is used to create a new instance of the main program window
  */
-IntelliPhotoGui();
+IntelliPhotoGui(IntelliInputDialog* InputDialog);
 
 void UpdateGui();
 
 void setToolWidth(int value);
+int returnValueOfInputDialog = 5;
 
 protected:
 // Function used to close an event
@@ -104,6 +108,8 @@ void setDefaultToolValue();
 
 // What we'll draw on
 PaintingArea* paintingArea;
+IntelliInputDialog* InputDialog;
+QEventLoop Loop;
 
 const QSize Buttonsize = QSize(35,35);
 QPixmap preview;

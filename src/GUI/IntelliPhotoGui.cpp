@@ -4,7 +4,8 @@
 #include "Layer/PaintingArea.h"
 
 // IntelliPhotoGui constructor
-IntelliPhotoGui::IntelliPhotoGui(){
+IntelliPhotoGui::IntelliPhotoGui(IntelliInputDialog* InputDialog){
+        //this->InputDialog = InputDialog;
 		// create Gui elements and lay them out
 		createGui();
 		// Create actions
@@ -15,7 +16,7 @@ IntelliPhotoGui::IntelliPhotoGui(){
         setIntelliStyle();
         // Size the app
         resize(600,600);
-        showMaximized();
+        //showMaximized();
         setDefaultToolValue();
 }
 
@@ -68,25 +69,22 @@ void IntelliPhotoGui::slotSave(){
 // Opens a dialog that allows the user to create a New Layer
 void IntelliPhotoGui::slotCreateNewLayer(){
 		// Stores button value
-		bool ok1, ok2;
 
 		// "New Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
+        Speichereinheit Speicher;
+        this->InputDialog->getIntInput(Speicher, &Loop, this->InputDialog, "New Layer", "Width:", 5, 0, 5000, 1);
 
+        int width = returnValueOfInputDialog;
 
-        /*int width = QInputDialog::getInt(this, tr("New Layer"),
-		                                 tr("Width:"),
-		                                 200,1, 500, 1, &ok1);
+        qDebug() << width;
 
-		int height = QInputDialog::getInt(this, tr("New Layer"),
-		                                  tr("Height:"),
-		                                  200,1, 500, 1, &ok2);
+        int height = 25;//QInputDialog::getInt(this, tr("New Layer"),tr("Height:"),200,1, 500, 1, &ok2);
+
 		// Create New Layer
-		if (ok1&&ok2){
-                paintingArea->addLayer(width,height,0,0);
-				UpdateGui();
-        }*/
+        paintingArea->addLayer(width,height,0,0);
+        UpdateGui();
 }
 
 // Opens a dialog that allows the user to delete a Layer
@@ -495,7 +493,6 @@ void IntelliPhotoGui::createMenus(){
 		saveAsMenu = new QMenu(tr("&Save As"), this);
 		foreach (QAction *action, actionSaveAs)
 		saveAsMenu->addAction(action);
-
 
 		// Attach all actions to File
 		fileMenu = new QMenu(tr("&File"), this);

@@ -1,35 +1,71 @@
 #include "IntelliInputDialog.h"
 
-IntelliInputDialog::IntelliInputDialog()
+IntelliInputDialog::IntelliInputDialog(Speichereinheit &Speicher, QEventLoop* Loop, IntelliInputDialog* Dialog, QString Title, QString Label, int value, int minValue, int maxValue, int step)
 {
+    this->Dialog = Dialog;
+    createInputBox(Title, Label, value, minValue, maxValue, step);
+    createConnections(Loop);
     setValuesOfPalette();
+    setInputBoxStyle();
 }
 
-void IntelliInputDialog::Input(){
-    QDialog* Dialog = new QDialog();
-    QGridLayout* Layout = new QGridLayout();
-    QDialogButtonBox* ButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+void IntelliInputDialog::createInputBox(QString Title, QString Label, int value, int minValue, int maxValue, int step){
+    this->Dialog = new QDialog();
+    Dialog->setWindowFlags(Dialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    if(Title == nullptr){
+        Dialog->setWindowTitle("Input Box");
+    }
+    else{
+        Dialog->setWindowTitle(Title);
+    }
+    Layout = new QGridLayout();
+    ButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
-    QPushButton* Button = new QPushButton();
-    Button->setFixedSize(Buttonsize);
+    InputLabel = new QLabel();
+    if(Label == nullptr){
+        InputLabel->setText("Width:");
+    }
+    else{
+        InputLabel->setText(Label);
+    }
+    InputLabel->setFixedSize(Linesize);
 
-    QPushButton* okButton = ButtonBox->button(QDialogButtonBox::Ok);
+    Input = new QSpinBox();
+    Input->setFixedSize(Linesize);
+    Input->setRange(minValue,maxValue);
+    Input->setValue(value);
+
+    okButton = ButtonBox->button(QDialogButtonBox::Ok);
+    okButton->setFixedSize(Buttonsize);
     okButton->setAutoDefault(false);
     okButton->setDefault(false);
 
-    QPushButton* cancelButton = ButtonBox->button(QDialogButtonBox::Cancel);
+    cancelButton = ButtonBox->button(QDialogButtonBox::Cancel);
+    cancelButton->setFixedSize(Buttonsize);
     cancelButton->setAutoDefault(false);
     cancelButton->setDefault(false);
 
-    Button->setPalette(Palette);
+    Layout->addWidget(InputLabel,1,1,1,1);
+    Layout->addWidget(Input,2,1,1,1);
+    Layout->addWidget(ButtonBox,3,1,1,1);
+    Dialog->setLayout(Layout);
+    Dialog->resize(172,94);
+    Dialog->show();
+}
+
+void IntelliInputDialog::createConnections(QEventLoop* Loop){
+    connect(okButton, SIGNAL(clicked()), this, SLOT(slotEingabe(Speicher)));
+    connect(okButton, SIGNAL(clicked()), Loop, SLOT(quit()));
+    connect(cancelButton, SIGNAL(clicked()), this, SLOT(slotCloseEvent()));
+    connect(cancelButton, SIGNAL(clicked()), Loop, SLOT(quit()));
+}
+
+void IntelliInputDialog::setInputBoxStyle(){
+    InputLabel->setPalette(Palette);
+    Input->setPalette(Palette);
     okButton->setPalette(Palette);
     cancelButton->setPalette(Palette);
-
-    Layout->addWidget(Button);
-    Layout->addWidget(ButtonBox);
-    Dialog->setLayout(Layout);
     Dialog->setStyleSheet("background-color:rgb(64,64,64)");
-    connect(okButton, SIGNAL(clicked()),Dialog,SLOT(slotCloseEvent()));
 }
 
 void IntelliInputDialog::setValuesOfPalette(){
@@ -42,4 +78,22 @@ void IntelliInputDialog::setValuesOfPalette(){
     Palette.setBrush(QPalette::PlaceholderText, QColor(255, 255, 255));
     Palette.setBrush(QPalette::ToolTipText, QColor(255, 255, 255));
     Palette.setBrush(QPalette::Text, QColor(255, 255, 255));
+}
+
+void IntelliInputDialog::slotCloseEvent(){
+    Dialog->close();
+}
+
+void IntelliInputDialog::slotEingabe(Speichereinheit &Speicher){
+    qDebug() << Input->value();
+    SetValueToGUI();
+    Dialog->close();
+}
+
+void IntelliInputDialog::SetValueToGUI(){
+     Input->value();
+}
+
+void IntelliInputDialog::getIntInput(Speichereinheit &Speicher, QEventLoop* Loop, IntelliInputDialog* Dialog, QString Title, QString Label, int value, int minValue, int maxValue, int step){
+    this->Dialog = new IntelliInputDialog(Speicher, Loop, Dialog, Title, Label, value, minValue, maxValue, step);
 }
