@@ -46,7 +46,7 @@ void IntelliPhotoGui::slotOpen(){
 
 				// If we have a file name load the image and place
 				// it in the paintingArea
-				if (!fileName.isEmpty())
+                if (!fileName.isEmpty()){
 						paintingArea->open(fileName);
                         UpdateGui();
                 }
@@ -684,29 +684,29 @@ void IntelliPhotoGui::createGui(){
             preview = preview.fromImage(tmp);
         }
 
-        ActiveLayerImageLine = new QLabel();
-        ActiveLayerImageLine->setFixedSize(Buttonsize);
-        ActiveLayerImageLine->setPixmap(preview.scaled(Buttonsize));
+        ActiveLayerImageLabel = new QLabel();
+        ActiveLayerImageLabel->setFixedSize(Buttonsize*2);
+        ActiveLayerImageLabel->setPixmap(preview.scaled(Buttonsize*2));
 
 		// set gui elements
 
 		mainLayout->addWidget(paintingArea,1,1,20,1);
-		mainLayout->addWidget(CircleButton,1,2,1,2);
-		mainLayout->addWidget(FloodFillButton,2,2,1,2);
-		mainLayout->addWidget(LineButton,3,2,1,2);
-		mainLayout->addWidget(PenButton,4,2,1,2);
-		mainLayout->addWidget(PlainButton,5,2,1,2);
-		mainLayout->addWidget(PolygonButton,6,2,1,2);
-		mainLayout->addWidget(RectangleButton,7,2,1,2);
-		mainLayout->addWidget(WidthLine,8,2,1,2);
-		mainLayout->addWidget(EditLineWidth,9,2,1,2);
-		mainLayout->addWidget(innerAlphaLine,10,2,1,2);
-		mainLayout->addWidget(EditLineInnerAlpha,11,2,1,2);
-		mainLayout->addWidget(FirstColorButton,12,2,1,1);
-		mainLayout->addWidget(SecondColorButton,12,3,1,1);
-		mainLayout->addWidget(SwitchColorButton,13,2,1,2);
-		mainLayout->addWidget(ActiveLayerLine,14,2,1,2);
-        mainLayout->addWidget(ActiveLayerImageLine,15,2,1,2);
+        mainLayout->addWidget(CircleButton,1,2,1,1);
+        mainLayout->addWidget(FloodFillButton,1,3,1,1);
+        mainLayout->addWidget(LineButton,2,2,1,1);
+        mainLayout->addWidget(PenButton,2,3,1,1);
+        mainLayout->addWidget(PlainButton,3,2,1,1);
+        mainLayout->addWidget(PolygonButton,3,3,1,1);
+        mainLayout->addWidget(RectangleButton,4,2,1,1);
+        mainLayout->addWidget(WidthLine,5,2,1,2);
+        mainLayout->addWidget(EditLineWidth,6,2,1,2);
+        mainLayout->addWidget(innerAlphaLine,7,2,1,2);
+        mainLayout->addWidget(EditLineInnerAlpha,8,2,1,2);
+        mainLayout->addWidget(FirstColorButton,9,2,1,1);
+        mainLayout->addWidget(SecondColorButton,9,3,1,1);
+        mainLayout->addWidget(SwitchColorButton,10,2,1,2);
+        mainLayout->addWidget(ActiveLayerLine,11,2,1,2);
+        mainLayout->addWidget(ActiveLayerImageLabel,12,2,1,2);
         mainLayout->setHorizontalSpacing(0);
 }
 
@@ -809,10 +809,6 @@ void IntelliPhotoGui::setToolWidth(int value){
     EditLineWidth->setText(QString("%1").arg(value));
 }
 
-int IntelliPhotoGui::getToolWidth(){
-        return EditLineWidth->text().toInt();
-}
-
 void IntelliPhotoGui::UpdateGui(){
         QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer() + 1);
 		ActiveLayerLine->setText(string);
@@ -825,7 +821,7 @@ void IntelliPhotoGui::UpdateGui(){
             tmp.fill(Qt::transparent);
             preview = preview.fromImage(tmp);
         }
-        ActiveLayerImageLine->setPixmap(preview.scaled(Buttonsize));
+        ActiveLayerImageLabel->setPixmap(preview.scaled(Buttonsize*2));
 
 		string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
 		FirstColorButton->setStyleSheet(string);

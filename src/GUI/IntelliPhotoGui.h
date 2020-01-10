@@ -35,7 +35,6 @@ IntelliPhotoGui();
 void UpdateGui();
 
 void setToolWidth(int value);
-int getToolWidth();
 
 protected:
 // Function used to close an event
@@ -127,7 +126,7 @@ QPushButton* SecondColorButton;
 QPushButton* SwitchColorButton;
 
 QLabel* ActiveLayerLine;
-QLabel* ActiveLayerImageLine;
+QLabel* ActiveLayerImageLabel;
 
 QPalette Palette;
 
