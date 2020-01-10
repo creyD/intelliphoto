@@ -46,8 +46,10 @@ void IntelliPhotoGui::slotOpen(){
 
 				// If we have a file name load the image and place
 				// it in the paintingArea
-				if (!fileName.isEmpty())
+                if (!fileName.isEmpty()){
 						paintingArea->open(fileName);
+                        UpdateGui();
+                }
 		}
 }
 
@@ -71,9 +73,13 @@ void IntelliPhotoGui::slotCreateNewLayer(){
 		// "New Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-		int width = QInputDialog::getInt(this, tr("New Layer"),
+        QInputDialog Input;
+        Input.setPalette(Palette);
+
+        int width = Input.getInt(this, tr("New Layer"),
 		                                 tr("Width:"),
 		                                 200,1, 500, 1, &ok1);
+
 		int height = QInputDialog::getInt(this, tr("New Layer"),
 		                                  tr("Height:"),
 		                                  200,1, 500, 1, &ok2);
@@ -188,11 +194,11 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 
 		// "Layer to set on" is the title of the window
 		// the next tr is the text to display
-		// Define the standard Value, min, max, step and ok button
-		int layer = QInputDialog::getInt(this, tr("Layer to set on"),
-		                                 tr("Layer:"),
+        // Define the standard Value, min, max, step and ok button
+        int layer = QInputDialog::getInt(this, tr("Layer to set on"),
+                                         tr("Layer:"),
                                          1,1,500,1, &ok1);
-		if (ok1)
+        if (ok1)
 		{
                 paintingArea->setLayerActive(layer-1);
 				UpdateGui();
@@ -678,10 +684,9 @@ void IntelliPhotoGui::createGui(){
             preview = preview.fromImage(tmp);
         }
 
-		ActiveLayerImageButton = new QPushButton();
-		ActiveLayerImageButton->setFixedSize(Buttonsize);
-        ActiveLayerImageButton->setIcon(preview);
-		ActiveLayerImageButton->setIconSize(Buttonsize);
+        ActiveLayerImageLine = new QLabel();
+        ActiveLayerImageLine->setFixedSize(Buttonsize);
+        ActiveLayerImageLine->setPixmap(preview.scaled(Buttonsize));
 
 		// set gui elements
 
@@ -701,18 +706,23 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(SecondColorButton,12,3,1,1);
 		mainLayout->addWidget(SwitchColorButton,13,2,1,2);
 		mainLayout->addWidget(ActiveLayerLine,14,2,1,2);
-		mainLayout->addWidget(ActiveLayerImageButton,15,2,1,2);
+        mainLayout->addWidget(ActiveLayerImageLine,15,2,1,2);
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
 		// Set the title
 		setWindowTitle("IntelliPhoto Prototype");
-        QPalette Palette;
         Palette.setBrush(QPalette::HighlightedText, QColor(200, 10, 10));
+        Palette.setBrush(QPalette::Highlight, QColor(100, 5, 5));
         Palette.setBrush(QPalette::ButtonText, QColor(255, 255, 255));
+        Palette.setBrush(QPalette::Button, QColor(64, 64, 64));
+        Palette.setBrush(QPalette::Window, QColor(0, 0, 0));
+        Palette.setBrush(QPalette::WindowText, QColor(255, 255, 255));
+        Palette.setBrush(QPalette::PlaceholderText, QColor(255, 255, 255));
+        Palette.setBrush(QPalette::ToolTipText, QColor(255, 255, 255));
+        Palette.setBrush(QPalette::Text, QColor(255, 255, 255));
 		// Set style sheet
         this->setStyleSheet("background-color:rgb(64,64,64)");
-        this->centralGuiWidget->setStyleSheet("color:rgb(255,255,255)");
         this->menuBar()->setPalette(Palette);
         this->fileMenu->setPalette(Palette);
         this->saveAsMenu->setPalette(Palette);
@@ -724,6 +734,12 @@ void IntelliPhotoGui::setIntelliStyle(){
         this->colorMenu->setPalette(Palette);
         this->toolCreationMenu->setPalette(Palette);
         this->toolSettingsMenu->setPalette(Palette);
+
+        this->WidthLine->setPalette(Palette);
+        this->EditLineWidth->setPalette(Palette);
+        this->innerAlphaLine->setPalette(Palette);
+        this->EditLineInnerAlpha->setPalette(Palette);
+        this->ActiveLayerLine->setPalette(Palette);
 
 		QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
 		FirstColorButton->setStyleSheet(string);
@@ -795,8 +811,7 @@ void IntelliPhotoGui::UpdateGui(){
             tmp.fill(Qt::transparent);
             preview = preview.fromImage(tmp);
         }
-        ActiveLayerImageButton->setIcon(preview);
-		ActiveLayerImageButton->setIconSize(Buttonsize);
+        ActiveLayerImageLine->setPixmap(preview.scaled(Buttonsize));
 
 		string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
 		FirstColorButton->setStyleSheet(string);
