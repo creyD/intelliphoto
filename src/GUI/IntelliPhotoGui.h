@@ -124,7 +124,9 @@ QPushButton* SecondColorButton;
 QPushButton* SwitchColorButton;
 
 QLabel* ActiveLayerLine;
-QPushButton* ActiveLayerImageButton;
+QLabel* ActiveLayerImageLine;
+
+QPalette Palette;
 
 // The menu widgets
 QMenu*saveAsMenu;
