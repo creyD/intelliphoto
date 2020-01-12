@@ -1,7 +1,11 @@
 #ifndef INTELLITOOLSETTINGS_H
 #define INTELLITOOLSETTINGS_H
 
+//for unit testing
+class UnitTest;
+
 class IntelliToolsettings {
+    friend UnitTest;
 public:
 /*!
  * \brief The LineStyle enum classifing all ways of drawing a line.

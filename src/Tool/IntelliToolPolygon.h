@@ -5,11 +5,16 @@
 #include "IntelliHelper/IntelliTriangulation.h"
 #include <vector>
 #include <QPoint>
+
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliToolPolygon managed the Drawing of Polygonforms
  */
 class IntelliToolPolygon : public IntelliTool
 {
+    friend UnitTest;
 /*!
  * \brief Checks if the given Point lies near the starting Point.
  * \param x             - x coordinate of a point.

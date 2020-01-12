@@ -11,6 +11,9 @@
 #include <QLabel>
 #include <QLineEdit>
 
+//for unit testing
+class UnitTest;
+
 // PaintingArea used to paint the image
 class PaintingArea;
 
@@ -22,6 +25,7 @@ class IntelliColorPicker;
  * \brief The IntelliPhotoGui class handles the graphical user interface for the intelliPhoto program
  */
 class IntelliPhotoGui : public QMainWindow {
+    friend UnitTest;
 // Declares our class as a QObject which is the base class
 // for all Qt objects
 // QObjects handle events
@@ -129,47 +133,47 @@ QLabel* ActiveLayerImageLine;
 QPalette Palette;
 
 // The menu widgets
-QMenu*saveAsMenu;
-QMenu*fileMenu;
-QMenu*renderMenu;
-QMenu*optionMenu;
-QMenu*layerMenu;
-QMenu*colorMenu;
-QMenu*toolCreationMenu;
-QMenu*toolSettingsMenu;
-QMenu*toolMenu;
-QMenu*helpMenu;
+QMenu* saveAsMenu;
+QMenu* fileMenu;
+QMenu* renderMenu;
+QMenu* optionMenu;
+QMenu* layerMenu;
+QMenu* colorMenu;
+QMenu* toolCreationMenu;
+QMenu* toolSettingsMenu;
+QMenu* toolMenu;
+QMenu* helpMenu;
 
 // All the actions that can occur
 // meta image actions (need further modularisation)
-QAction*actionOpen;
-QAction*actionExit;
+QAction* actionOpen;
+QAction* actionExit;
 
 //Rendersetting actions
 QAction*actionUpdateRenderSettingsOn;
 QAction*actionUpdateRenderSettingsOff;
 
 // color Picker actions
-QAction*actionColorPickerFirstColor;
-QAction*actionColorPickerSecondColor;
-QAction*actionColorSwap;
+QAction* actionColorPickerFirstColor;
+QAction* actionColorPickerSecondColor;
+QAction* actionColorSwap;
 
 // tool actions
-QAction*actionCreatePenTool;
-QAction*actionCreatePlainTool;
-QAction*actionCreateLineTool;
-QAction*actionCreateRectangleTool;
-QAction*actionCreateCircleTool;
-QAction*actionCreatePolygonTool;
-QAction*actionCreateFloodFillTool;
+QAction* actionCreatePenTool;
+QAction* actionCreatePlainTool;
+QAction* actionCreateLineTool;
+QAction* actionCreateRectangleTool;
+QAction* actionCreateCircleTool;
+QAction* actionCreatePolygonTool;
+QAction* actionCreateFloodFillTool;
 
 // dialog actions
-QAction*actionAboutDialog;
-QAction*actionAboutQtDialog;
+QAction* actionAboutDialog;
+QAction* actionAboutQtDialog;
 
 // layer change actions
-QAction*actionCreateNewLayer;
-QAction*actionDeleteLayer;
+QAction* actionCreateNewLayer;
+QAction* actionDeleteLayer;
 QAction* actionSetActiveLayer;
 QAction* actionSetActiveAlpha;
 QAction* actionMovePositionUp;

@@ -3,10 +3,14 @@
 
 #include "Image/IntelliImage.h"
 
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliRasterImage manages a RASTERIMAGE.
  */
 class IntelliRasterImage : public IntelliImage {
+    friend UnitTest;
 friend IntelliTool;
 protected:
 /*!

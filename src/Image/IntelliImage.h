@@ -11,12 +11,16 @@
 #include "IntelliHelper/IntelliTriangulation.h"
 #include "IntelliHelper/IntelliRenderSettings.h"
 
+//for unit testing
+class UnitTest;
+
 class IntelliTool;
 
 /*!
  * \brief An abstract class which manages the basic IntelliImage operations.
  */
 class IntelliImage {
+    friend UnitTest;
 friend IntelliTool;
 public:
 
