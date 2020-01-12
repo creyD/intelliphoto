@@ -1,9 +1,7 @@
-#include <QtTest> 
+#include <QtTest>
+#include <QCoreApplication>
 // add necessary includes here
-#include<string>
-
 #include "GUI/IntelliPhotoGui.h"
-
 
 class UnitTest : public QObject
 {
@@ -11,7 +9,6 @@ class UnitTest : public QObject
 private:
     IntelliPhotoGui* gui;
     PaintingArea* area;
-    QApplication* app;
 
 public:
     UnitTest();
@@ -94,13 +91,6 @@ private slots:
 
 UnitTest::UnitTest()
 {
-    char arg0[] = "programName";
-    char arg1[] = "arg1";
-    char arg2[] = "arg2";
-    char *argv[] = {arg0, arg1, arg2, nullptr};
-    int argc = sizeof(argv) / sizeof(char*) - 1;
-
-    app = new QApplication(argc,argv);
     gui = new IntelliPhotoGui();
     area = gui->paintingArea;
 }
@@ -118,7 +108,6 @@ void UnitTest::initTestCase()
 void UnitTest::cleanupTestCase()
 {
     delete gui;
-    delete app;
 }
 
 //void UnitTest::test_case1()
@@ -197,6 +186,6 @@ void UnitTest::test_Rectangle_interruptedDraw(){}
 //test Triangulation
 void UnitTest::test_Triangulation_Coverage(){}
 
-QTEST_APPLESS_MAIN(UnitTest)
+QTEST_MAIN(UnitTest)
 
 #include "tst_unittest.moc"

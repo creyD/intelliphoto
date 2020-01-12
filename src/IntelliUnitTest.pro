@@ -1,12 +1,15 @@
 QT += testlib
-QT += gui
-CONFIG += qt warn_on depend_includepath testcase
+QT -= gui
+
+CONFIG += qt console warn_on depend_includepath testcase
+CONFIG -= app_bundle
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+
 TEMPLATE = app
 
-SOURCES +=  \
+SOURCES +=  tst_unittest.cpp \
     GUI/IntelliPhotoGui.cpp \
     Image/IntelliImage.cpp \
     Image/IntelliRasterImage.cpp \
@@ -23,8 +26,7 @@ SOURCES +=  \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
     Tool/IntelliToolPolygon.cpp \
-    Tool/IntelliToolRectangle.cpp \
-    mainUnitTest.cpp
+    Tool/IntelliToolRectangle.cpp
 
 DISTFILES += \
     icons/Wechselpfeile.png \
