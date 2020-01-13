@@ -24,10 +24,10 @@ void IntelliTool::onMouseRightReleased(int x, int y){
 }
 
 void IntelliTool::onMouseLeftPressed(int x, int y){
-        this->isDrawing=this->createToolLayer();
-        if(isDrawing){
-            Canvas->image->calculateVisiblity();
-        }
+		this->isDrawing=this->createToolLayer();
+		if(isDrawing) {
+				Canvas->image->calculateVisiblity();
+		}
 }
 
 void IntelliTool::onMouseLeftReleased(int x, int y){
@@ -49,22 +49,22 @@ void IntelliTool::onWheelScrolled(int value){
 }
 
 bool IntelliTool::createToolLayer(){
-        if(Area->createTempTopLayer(Area->activeLayer)){
-            this->activeLayer=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer)];
-            this->Canvas=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer+1)];
-            return true;
-        }
-        return false;
+		if(Area->createTempTopLayer(Area->activeLayer)) {
+				this->activeLayer=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer)];
+				this->Canvas=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer+1)];
+				return true;
+		}
+		return false;
 }
 
 void IntelliTool::mergeToolLayer(){
 		QColor clr_0;
 		QColor clr_1;
-        QImage updatedImage = activeLayer->image->getImageData();
+		QImage updatedImage = activeLayer->image->getImageData();
 
 		for(int y=0; y<activeLayer->height; y++) {
-                for(int x=0; x<activeLayer->width; x++) {
-                        clr_0=updatedImage.pixelColor(x,y);
+				for(int x=0; x<activeLayer->width; x++) {
+						clr_0=updatedImage.pixelColor(x,y);
 						clr_1=Canvas->image->imageData.pixelColor(x,y);
 						float t = static_cast<float>(clr_1.alpha())/255.f;
 						int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
@@ -76,11 +76,11 @@ void IntelliTool::mergeToolLayer(){
 						clr_0.setBlue(b);
 						clr_0.setAlpha(a);
 
-                        updatedImage.setPixelColor(x, y, clr_0);
+						updatedImage.setPixelColor(x, y, clr_0);
 				}
 		}
-        activeLayer->image->setImageData(updatedImage);
-        Area->DummyGui->UpdateGui();
+		activeLayer->image->setImageData(updatedImage);
+		Area->DummyGui->UpdateGui();
 }
 
 void IntelliTool::deleteToolLayer(){
