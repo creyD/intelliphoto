@@ -58,6 +58,6 @@ void IntelliToolRectangle::onMouseMoved(int x, int y){
 }
 
 void IntelliToolRectangle::onWheelScrolled(int value){
-        IntelliTool::onWheelScrolled(value);
-        Toolsettings->setLineWidth(Toolsettings->getLineWidth()+value);
+		IntelliTool::onWheelScrolled(value);
+		Toolsettings->setLineWidth(Toolsettings->getLineWidth()+value);
 }
