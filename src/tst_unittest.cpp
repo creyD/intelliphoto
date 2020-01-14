@@ -859,93 +859,94 @@ void UnitTest::test_Polygon_fullDraw(){
 
     area->colorPicker.setFirstColor(QColor(255,255,255,255));
     area->colorPicker.setSecondColor(QColor(0,0,0,255));
-    area->createPlainTool();
+    area->createPolygonTool();
     area->floodFill(255,0,0,255);
 
-    area->Tool->onMouseLeftPressed(points[0].x(), points[0].x());
-    area->Tool->onMouseLeftReleased(points[0].x(), points[0].x());
-    area->Tool->onMouseMoved(points[1].x(), points[1].x());
+    area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
+    area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
+    area->Tool->onMouseMoved(points[1].x(), points[1].y());
 
-    area->Tool->onMouseLeftPressed(points[1].x(), points[1].x());
-    area->Tool->onMouseLeftReleased(points[1].x(), points[1].x());
-    area->Tool->onMouseMoved(points[2].x(), points[2].x());
+    area->Tool->onMouseLeftPressed(points[1].x(), points[1].y());
+    area->Tool->onMouseLeftReleased(points[1].x(), points[1].y());
+    area->Tool->onMouseMoved(points[2].x(), points[2].y());
 
-    area->Tool->onMouseLeftPressed(points[2].x(), points[2].x());
-    area->Tool->onMouseLeftReleased(points[2].x(), points[2].x());
-    area->Tool->onMouseMoved(points[3].x(), points[3].x());
+    area->Tool->onMouseLeftPressed(points[2].x(), points[2].y());
+    area->Tool->onMouseLeftReleased(points[2].x(), points[2].y());
+    area->Tool->onMouseMoved(points[3].x(), points[3].y());
 
-    area->Tool->onMouseLeftPressed(points[3].x(), points[3].x());
-    area->Tool->onMouseLeftReleased(points[3].x(), points[3].x());
-    area->Tool->onMouseMoved(points[0].x(), points[0].x());
+    area->Tool->onMouseLeftPressed(points[3].x(), points[3].y());
+    area->Tool->onMouseLeftReleased(points[3].x(), points[3].y());
+    area->Tool->onMouseMoved(points[0].x(), points[0].y());
 
-    area->Tool->onMouseLeftPressed(points[0].x(), points[0].x());
-    area->Tool->onMouseLeftReleased(points[0].x(), points[0].x());
+    area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
+    area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
 
     QVERIFY(area->layerBundle[0].image->getPixelColor(points[0])==area->colorPicker.getFirstColor());
     QVERIFY(area->layerBundle[0].image->getPixelColor(points[1])==area->colorPicker.getFirstColor());
     QVERIFY(area->layerBundle[0].image->getPixelColor(points[2])==area->colorPicker.getFirstColor());
     QVERIFY(area->layerBundle[0].image->getPixelColor(points[3])==area->colorPicker.getFirstColor());
 
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[4])==area->colorPicker.getSecondColor());
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[0])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[1])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[2])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[3])==QColor(255,0,0,255));
+
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[4])==area->colorPicker.getSecondColor());
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[0])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[1])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[2])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[3])==QColor(255,0,0,255));
 
     area->deleteLayer(0);
 }
 
 void UnitTest::test_Polygon_interruptedDraw(){
-    area->addLayer(21,21,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->addLayer(201,201,10,20,IntelliImage::ImageType::RASTERIMAGE);
     std::vector<QPoint> points{
-        QPoint(10,00),
-        QPoint(00,10),
-        QPoint(10,20),
-        QPoint(20,10)
+        QPoint(100,000),
+        QPoint(000,100),
+        QPoint(100,200),
+        QPoint(200,100)
     };
 
     std::vector<QPoint> test{
-        QPoint(00,00),
-        QPoint(00,20),
-        QPoint(20,00),
-        QPoint(20,20),
-        QPoint(10,10)
+        QPoint(000,000),
+        QPoint(000,200),
+        QPoint(200,000),
+        QPoint(200,200),
+        QPoint(100,100)
     };
 
     area->colorPicker.setFirstColor(QColor(255,255,255,255));
     area->colorPicker.setSecondColor(QColor(0,0,0,255));
-    area->createPlainTool();
+    area->createPolygonTool();
     area->floodFill(255,0,0,255);
 
-    area->Tool->onMouseLeftPressed(points[0].x(), points[0].x());
-    area->Tool->onMouseLeftReleased(points[0].x(), points[0].x());
-    area->Tool->onMouseMoved(points[1].x(), points[1].x());
+    area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
+    area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
+    area->Tool->onMouseMoved(points[1].x(), points[1].y());
 
-    area->Tool->onMouseLeftPressed(points[1].x(), points[1].x());
-    area->Tool->onMouseLeftReleased(points[1].x(), points[1].x());
-    area->Tool->onMouseMoved(points[2].x(), points[2].x());
+    area->Tool->onMouseLeftPressed(points[1].x(), points[1].y());
+    area->Tool->onMouseLeftReleased(points[1].x(), points[1].y());
+    area->Tool->onMouseMoved(points[2].x(), points[2].y());
 
-    area->Tool->onMouseLeftPressed(points[2].x(), points[2].x());
-    area->Tool->onMouseLeftReleased(points[2].x(), points[2].x());
-    area->Tool->onMouseMoved(points[3].x(), points[3].x());
+    area->Tool->onMouseLeftPressed(points[2].x(), points[2].y());
+    area->Tool->onMouseLeftReleased(points[2].x(), points[2].y());
+    area->Tool->onMouseMoved(points[3].x(), points[3].y());
 
-    area->Tool->onMouseLeftPressed(points[3].x(), points[3].x());
-    area->Tool->onMouseLeftReleased(points[3].x(), points[3].x());
-    area->Tool->onMouseMoved(points[0].x(), points[0].x());
+    area->Tool->onMouseLeftPressed(points[3].x(), points[3].y());
+    area->Tool->onMouseLeftReleased(points[3].x(), points[3].y());
 
-    area->Tool->onMouseRightPressed(points[0].x(), points[0].x());
-    area->Tool->onMouseRightReleased(points[0].x(), points[0].x());
+    area->Tool->onMouseRightPressed(points[0].x(), points[0].y());
+    area->Tool->onMouseRightReleased(points[0].x(), points[0].y());
 
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(points[0])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(points[1])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(points[2])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(points[3])==QColor(255,0,0,255));
 
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[4])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[0])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[1])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[2])==QColor(255,0,0,255));
-    //QVERIFY(area->layerBundle[0].image->getPixelColor(test[3])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(points[0])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(points[1])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(points[2])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(points[3])==QColor(255,0,0,255));
+
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[4])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[0])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[1])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[2])==QColor(255,0,0,255));
+    QVERIFY(area->layerBundle[0].image->getPixelColor(test[3])==QColor(255,0,0,255));
 
     area->deleteLayer(0);
 }
@@ -976,7 +977,7 @@ void UnitTest::test_Rectangle_interruptedDraw(){
     area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
     area->colorPicker.setFirstColor(QColor(255,255,255,255));
     area->colorPicker.setSecondColor(QColor(0,0,0,255));
-    area->createPenTool();
+    area->createRectangleTool();
     area->floodFill(255,0,0,255);
 
     QPoint point1(100,100);
