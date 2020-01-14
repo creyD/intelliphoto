@@ -116,6 +116,11 @@ void setLayerActive(int idx);
  */
 void setLayerAlpha(int idx, int alpha);
 /*!
+ * \brief setPolygon is used for setting polygondata, it only works on RASTER images
+ * \param idx - represents the number of the layer with should be transformed
+ */
+void setPolygon(int idx);
+/*!
  * \brief The floodFill method fills a the active layer with a given color
  * \param r     - Red value of the color the layer should be filled with
  * \param g     - Green value of the color the layer should be filled with

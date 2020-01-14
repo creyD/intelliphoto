@@ -110,6 +110,13 @@ void PaintingArea::setLayerAlpha(int idx, int alpha){
 				layerBundle[static_cast<size_t>(idx)].alpha=alpha;
 		}
 }
+void PaintingArea::setPolygon(int idx){
+        if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
+                 if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==IntelliImage::ImageType::SHAPEDIMAGE){
+                        qDebug() << "Todo Implement here set Polygon";
+                 }
+        }
+}
 
 // Used to load the image and place it in the widget
 bool PaintingArea::open(const QString &filePath){
