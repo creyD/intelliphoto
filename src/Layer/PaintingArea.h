@@ -135,7 +135,7 @@ public:
     void movePositionActive(int x, int y);
     /*!
      * \brief The moveActiveLayer moves the active layer to a specific position in the layer stack
-     * \param idx   - The index of the new position the layer should be in
+     * \param idx   - The direction the layer should move
      */
     void moveActiveLayer(int idx);
 

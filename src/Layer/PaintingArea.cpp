@@ -67,7 +67,7 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 
 
 void PaintingArea::deleteLayer(int idx){
-		if(idx<static_cast<int>(layerBundle.size())) {
+        if(idx < static_cast<int>(layerBundle.size())&&idx>=0) {
 				this->layerBundle.erase(layerBundle.begin()+idx);
                 if(activeLayer>=idx) {
 						activeLayer--;
@@ -93,7 +93,9 @@ void PaintingArea::setLayerActive(int idx){
 
 void PaintingArea::setLayerAlpha(int idx, int alpha){
 		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-				layerBundle[static_cast<size_t>(idx)].alpha=alpha;
+                if(alpha>=0 && alpha<=255) {
+                        layerBundle[static_cast<size_t>(idx)].alpha=alpha;
+                }
 		}
 }
 
@@ -138,6 +140,12 @@ void PaintingArea::floodFill(int r, int g, int b, int a){
 		if(this->activeLayer==-1) {
 				return;
 		}
+        if(r >255 || g>255|| b>255 || a>255){
+            return;
+        }
+        if(r < 0 || g < 0|| b < 0 || a < 0){
+            return;
+        }
 		IntelliImage* active = layerBundle[static_cast<size_t>(activeLayer)].image;
 		active->drawPlain(QColor(r, g, b, a));
 		update();
