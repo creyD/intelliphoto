@@ -38,7 +38,6 @@ IntelliPhotoGui(IntelliInputDialog* InputDialog);
 void UpdateGui();
 
 void setToolWidth(int value);
-int returnValueOfInputDialog = 5;
 
 protected:
 // Function used to close an event
@@ -105,6 +104,8 @@ bool maybeSave();
 bool saveFile(const QByteArray &fileFormat);
 
 void setDefaultToolValue();
+
+int getReturnValueOfDialog();
 
 // What we'll draw on
 PaintingArea* paintingArea;

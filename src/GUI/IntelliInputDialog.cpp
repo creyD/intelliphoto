@@ -1,8 +1,8 @@
 #include "IntelliInputDialog.h"
-
-IntelliInputDialog::IntelliInputDialog(Speichereinheit &Speicher, QEventLoop* Loop, IntelliInputDialog* Dialog, QString Title, QString Label, int value, int minValue, int maxValue, int step)
+#include <QFile>
+IntelliInputDialog::IntelliInputDialog(QEventLoop* Loop, IntelliInputDialog* Dialog, QString Title, QString Label, int value, int minValue, int maxValue, int step)
 {
-		this->Dialog = Dialog;
+        this->Dialog = Dialog;
 		createInputBox(Title, Label, value, minValue, maxValue, step);
 		createConnections(Loop);
 		setValuesOfPalette();
@@ -54,7 +54,7 @@ void IntelliInputDialog::createInputBox(QString Title, QString Label, int value,
 }
 
 void IntelliInputDialog::createConnections(QEventLoop* Loop){
-		connect(okButton, SIGNAL(clicked()), this, SLOT(slotEingabe(Speicher)));
+        connect(okButton, SIGNAL(clicked()), this, SLOT(slotEingabe()));
 		connect(okButton, SIGNAL(clicked()), Loop, SLOT(quit()));
 		connect(cancelButton, SIGNAL(clicked()), this, SLOT(slotCloseEvent()));
 		connect(cancelButton, SIGNAL(clicked()), Loop, SLOT(quit()));
@@ -84,16 +84,21 @@ void IntelliInputDialog::slotCloseEvent(){
 		Dialog->close();
 }
 
-void IntelliInputDialog::slotEingabe(Speichereinheit &Speicher){
-		qDebug() << Input->value();
-		SetValueToGUI();
+void IntelliInputDialog::slotEingabe(){
+        QFile File("test.txt");
+
+        if(!File.open(QIODevice::WriteOnly | QIODevice::Text)){
+            qDebug() << "Error Write to File";
+        }
+        std::string test = QString("%1").arg(Input->value()).toStdString();
+        const char* p = test.c_str();
+        File.write(p);
+        File.close();
+
 		Dialog->close();
 }
 
-void IntelliInputDialog::SetValueToGUI(){
-		Input->value();
-}
-
-void IntelliInputDialog::getIntInput(Speichereinheit &Speicher, QEventLoop* Loop, IntelliInputDialog* Dialog, QString Title, QString Label, int value, int minValue, int maxValue, int step){
-		this->Dialog = new IntelliInputDialog(Speicher, Loop, Dialog, Title, Label, value, minValue, maxValue, step);
+void IntelliInputDialog::getIntInput(QEventLoop* Loop, IntelliInputDialog* Dialog, QString Title, QString Label, int value, int minValue, int maxValue, int step){
+        this->Dialog = new IntelliInputDialog(Loop, Dialog, Title, Label, value, minValue, maxValue, step);
+        Loop->exec();
 }
