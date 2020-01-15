@@ -101,16 +101,12 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 		QInputDialog Input;
 		Input.setPalette(Palette);
 
-		int width = Input.getInt(this, tr("New Layer"),
-		                         tr("Width:"),
-		                         200,1, 500, 1, &ok1);
+		int width = Input.getInt(this, tr("New Layer"), tr("Width:"), 200, 1, 500, 1, &ok1);
 
-		int height = QInputDialog::getInt(this, tr("New Layer"),
-		                                  tr("Height:"),
-		                                  200,1, 500, 1, &ok2);
+		int height = QInputDialog::getInt(this, tr("New Layer"), tr("Height:"), 200, 1, 500, 1, &ok2);
 		// Create New Layer
 		if (ok1&&ok2) {
-				paintingArea->addLayer(width,height,0,0,IntelliImage::ImageType::SHAPEDIMAGE);
+				paintingArea->addLayer(width, height, 0, 0, IntelliImage::ImageType::SHAPEDIMAGE);
 				UpdateGui();
 		}
 }
@@ -211,7 +207,7 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 		// Define the standard Value, min, max, step and ok button
 		int layer = QInputDialog::getInt(this, tr("Layer to set on"),
 		                                 tr("Layer:"),
-		                                 1,1,500,1, &ok1);
+		                                 1, 1, 500, 1, &ok1);
 		if (ok1)
 		{
 				paintingArea->setLayerActive(layer-1);
