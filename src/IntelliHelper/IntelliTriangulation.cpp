@@ -14,7 +14,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 		};
 
 		// calculates the inner angle of 'point'
-		auto calculateInner = [](QPoint& point, QPoint& prev, QPoint& post){
+		auto calculateInner = [] (QPoint& point, QPoint& prev, QPoint& post) {
 									  QPoint AP(point.x() - prev.x(), point.y() - prev.y());
 									  QPoint BP(point.x() - post.x(), point.y() - post.y());
 
@@ -24,7 +24,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 							  };
 
 		// gets the first element of vec for which element.isTip == true holds
-		auto getTip = [](const std::vector<TriangleHelper>& vec){
+		auto getTip = [] (const std::vector<TriangleHelper>& vec) {
 							  size_t min = 0;
 							  for(size_t i = 0; i<vec.size(); i++) {
 									  if(vec[i].interiorAngle<vec[min].interiorAngle) {
@@ -35,17 +35,17 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 					  };
 
 		// get the vertex idx bevor idx in relation to the container length
-		auto getPrev = [](int idx, int length){
+		auto getPrev = [] (int idx, int length) {
 							   return (idx - 1)>=0 ? (idx - 1) : (length - 1);
 					   };
 
 		// get the vertex idx after idx in relation to the container lenght
-		auto getPost = [](int idx, int length){
+		auto getPost = [] (int idx, int length) {
 							   return (idx + 1) % length;
 					   };
 
 		// return if the vertex is a tip
-		auto isTip = [](float angle){
+		auto isTip = [] (float angle) {
 							 return static_cast<double>(angle)<(pi / 2.);
 					 };
 
