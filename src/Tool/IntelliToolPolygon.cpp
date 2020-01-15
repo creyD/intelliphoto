@@ -73,24 +73,30 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
 				isInside = false;
 				isPointNearStart = false;
 				isDrawing = false;
-				std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(QPointList);
-				QPoint Point;
-				QColor colorTwo(colorPicker->getSecondColor());
-				colorTwo.setAlpha(Toolsettings->getInnerAlpha());
-				for(int i = 0; i < activeLayer->width; i++) {
-						for(int j = 0; j < activeLayer->height; j++) {
-								Point = QPoint(i,j);
-								if(IntelliTriangulation::isInPolygon(Triangles,Point)) {
-										this->Canvas->image->drawPixel(Point, colorTwo);
-								}
-						}
-				}
-				for(int i=0; i<static_cast<int>(QPointList.size()); i++) {
-						int next = static_cast<int>((i+static_cast<int>(1))%static_cast<int>(QPointList.size()));
-						this->Canvas->image->drawLine(QPointList[static_cast<unsigned long long>(i)], QPointList[static_cast<unsigned long long>(next)], colorPicker->getFirstColor(), Toolsettings->getLineWidth());
-				}
-				QPointList.clear();
-				IntelliTool::onMouseLeftReleased(x,y);
+                if(false){
+                    std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(QPointList);
+                    QPoint Point;
+                    QColor colorTwo(colorPicker->getSecondColor());
+                    colorTwo.setAlpha(Toolsettings->getInnerAlpha());
+                    for(int i = 0; i < activeLayer->width; i++) {
+                            for(int j = 0; j < activeLayer->height; j++) {
+                                    Point = QPoint(i,j);
+                                    if(IntelliTriangulation::isInPolygon(Triangles,Point)) {
+                                            this->Canvas->image->drawPixel(Point, colorTwo);
+                                    }
+                            }
+                    }
+                    for(int i=0; i<static_cast<int>(QPointList.size()); i++) {
+                            int next = static_cast<int>((i+static_cast<int>(1))%static_cast<int>(QPointList.size()));
+                            this->Canvas->image->drawLine(QPointList[static_cast<unsigned long long>(i)], QPointList[static_cast<unsigned long long>(next)], colorPicker->getFirstColor(), Toolsettings->getLineWidth());
+                    }
+
+                }
+                else{
+                    Canvas->image->setPolygon(QPointList);
+                }
+                IntelliTool::onMouseLeftReleased(x,y);
+                QPointList.clear();
 		}
 }
 

@@ -79,7 +79,10 @@ void IntelliTool::mergeToolLayer(){
 						updatedImage.setPixelColor(x, y, clr_0);
 				}
 		}
-		activeLayer->image->setImageData(updatedImage);
+        activeLayer->image->setImageData(updatedImage);
+        if(Canvas->image->getPolygonData().size() != 0){
+           activeLayer->image->setPolygon(Canvas->image->getPolygonData());
+        }
 		Area->DummyGui->UpdateGui();
 }
 
