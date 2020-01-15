@@ -26,3 +26,9 @@ echo "Directory cleaned."
 echo "Running Doxygen..."
 doxygen conf/intelliphoto_dox
 echo "Doxygen finished."
+# Adding changes to git
+echo "Committing Changes to Git..."
+git add *
+git commit -m "Automated Release Preparation"
+echo "Committed."
+echo "Finished."
