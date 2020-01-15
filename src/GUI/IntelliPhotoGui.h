@@ -47,7 +47,6 @@ void slotSave();
 void slotCreateNewRasterLayer();
 void slotCreateNewShapedLayer();
 void slotDeleteLayer();
-void slotClearActiveLayer();
 void slotSetActiveLayer();
 void slotSetActiveAlpha();
 void slotSetPolygon();

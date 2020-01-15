@@ -202,35 +202,6 @@ void IntelliPhotoGui::slotMoveLayerDown(){
 		update();
 }
 
-void IntelliPhotoGui::slotClearActiveLayer(){
-		// Stores button value
-		bool ok1, ok2, ok3, ok4;
-
-		// "Red Input" is the title of the window
-		// the next tr is the text to display
-		// Define the standard Value, min, max, step and ok button
-		int red = QInputDialog::getInt(this, tr("Red Input"),
-		                               tr("Red:"),
-		                               255,0, 255,1, &ok1);
-		// "Green Input" is the title of the window
-		int green = QInputDialog::getInt(this, tr("Green Input"),
-		                                 tr("Green:"),
-		                                 255,0, 255, 1, &ok2);
-		// "Blue Input" is the title of the window
-		int blue = QInputDialog::getInt(this, tr("Blue Input"),
-		                                tr("Blue:"),
-		                                255,0, 255, 1, &ok3);
-		// "Alpha Input" is the title of the window
-		int alpha = QInputDialog::getInt(this, tr("Alpha Input"),
-		                                 tr("Alpha:"),
-		                                 255,0, 255, 1, &ok4);
-		if (ok1&&ok2&&ok3&&ok4)
-		{
-				paintingArea->floodFill(red, green, blue, alpha);
-				UpdateGui();
-		}
-}
-
 void IntelliPhotoGui::slotSetActiveLayer(){
 		// Stores button value
 		bool ok1;
@@ -788,6 +759,7 @@ void IntelliPhotoGui::setIntelliStyle(){
 		this->helpMenu->setPalette(Palette);
 		this->renderMenu->setPalette(Palette);
 		this->toolMenu->setPalette(Palette);
+        this->layerCreationMenu->setPalette(Palette);
 		this->layerMenu->setPalette(Palette);
 		this->colorMenu->setPalette(Palette);
 		this->toolCreationMenu->setPalette(Palette);

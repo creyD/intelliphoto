@@ -32,10 +32,11 @@ void IntelliTool::onMouseLeftPressed(int x, int y){
 
 void IntelliTool::onMouseLeftReleased(int x, int y){
 		if(isDrawing) {
-				isDrawing=false;
+                isDrawing=false;
                 this->mergeToolLayer();
 				this->deleteToolLayer();
 				activeLayer->image->calculateVisiblity();
+
 		}
 }
 
@@ -87,7 +88,7 @@ void IntelliTool::mergeToolLayer(){
 }
 
 void IntelliTool::deleteToolLayer(){
-		Area->deleteLayer(Area->activeLayer+1);
+        Area->deleteLayer(Area->activeLayer+1, true);
 		this->Canvas=nullptr;
 }
 

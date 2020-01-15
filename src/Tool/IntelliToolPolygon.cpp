@@ -21,9 +21,14 @@ IntelliToolPolygon::~IntelliToolPolygon(){
 
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
         if(!isDrawing && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
-				std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(Area->getPolygonDataOfRealLayer());
-				QPoint Point(x,y);
-				isInside = IntelliTriangulation::isInPolygon(Triangles,Point);
+                if(Area->getPolygonDataOfRealLayer().size()>2){
+                    std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(Area->getPolygonDataOfRealLayer());
+                    QPoint Point(x,y);
+                    isInside = IntelliTriangulation::isInPolygon(Triangles,Point);
+                }
+                else{
+                    isInside = true;
+                }
                 if(isSettingPolygon){
                     isInside = true;
                 }
