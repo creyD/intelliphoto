@@ -35,6 +35,8 @@ private slots:
     void cleanupTestCase();
     //void test_case1();
 
+    ///Test  here
+
     //test painting area
     void test_addLayer();
     void test_deleteLayer();
@@ -90,6 +92,65 @@ private slots:
 
     //test Triangulation
     void test_Triangulation_Coverage();
+
+
+    ///Benchmark here
+
+    //bench painting area
+    void bench_addLayer();
+    void bench_deleteLayer();
+    void bench_setActive();
+    void bench_setAlpha();
+    void bench_floodFill();
+    void bench_moveActive();
+    void bench_setPolygon();
+    void bench_setLayerUp();
+    void bench_setLayerDown();
+
+    void bench_createTools();
+
+    //bench Raster-Image operations
+    void bench_RasterImage_drawPixel();
+    void bench_RasterImage_drawLine();
+    void bench_RasterImage_drawPoint();
+    void bench_RasterImage_getDisplayable();
+    void bench_RasterImage_getPixelColor();
+    void bench_RasterImage_getImageData();
+    void bench_RasterImage_setImageData();
+
+    //bench Shaped-Image operations
+    void bench_ShapedImage_drawPixel();
+    void bench_ShapedImage_drawLine();
+    void bench_ShapedImage_drawPoint();
+    void bench_ShapedImage_getDisplayable();
+    void bench_ShapedImage_getPixelColor();
+    void bench_ShapedImage_getImageData();
+    void bench_ShapedImage_setImageData();
+
+    //bench tools
+    void bench_Circle_fullDraw();
+    void bench_Circle_interruptedDraw();
+
+    void bench_FloodFill_fullDraw();
+    void bench_FloodFill_interruptedDraw();
+
+    void bench_Line_fullDraw();
+    void bench_Line_interruptedDraw();
+
+    void bench_Pen_fullDraw();
+    void bench_Pen_interruptedDraw();
+
+    void bench_Plain_fullDraw();
+    void bench_Plain_interruptedDraw();
+
+    void bench_Polygon_fullDraw();
+    //void bench_Polygon_interruptedDraw();
+
+    void bench_Rectangle_fullDraw();
+    void bench_Rectangle_interruptedDraw();
+
+    //bench Triangulation
+    void bench_Triangulation_Coverage();
 };
 
 UnitTest::UnitTest()
@@ -672,6 +733,7 @@ void UnitTest::test_Circle_interruptedDraw(){
 
 }
 
+
 void UnitTest::test_FloodFill_fullDraw(){
     area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
     area->colorPicker.setFirstColor(QColor(255,255,255,255));
@@ -713,6 +775,7 @@ void UnitTest::test_FloodFill_interruptedDraw(){
 
     area->deleteLayer(0);
 }
+
 
 void UnitTest::test_Line_fullDraw(){
     area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
@@ -896,6 +959,7 @@ void UnitTest::test_Polygon_fullDraw(){
     area->deleteLayer(0);
 }
 
+
 void UnitTest::test_Polygon_interruptedDraw(){
     area->addLayer(201,201,10,20,IntelliImage::ImageType::RASTERIMAGE);
     std::vector<QPoint> points{
@@ -951,6 +1015,7 @@ void UnitTest::test_Polygon_interruptedDraw(){
     area->deleteLayer(0);
 }
 
+
 void UnitTest::test_Rectangle_fullDraw(){
     area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
     area->colorPicker.setFirstColor(QColor(255,255,255,255));
@@ -996,6 +1061,7 @@ void UnitTest::test_Rectangle_interruptedDraw(){
     area->deleteLayer(0);
 }
 
+
 //test Triangulation
 void UnitTest::test_Triangulation_Coverage(){
     std::vector<QPoint> points{
@@ -1023,6 +1089,659 @@ void UnitTest::test_Triangulation_Coverage(){
     QCOMPARE(IntelliTriangulation::isInPolygon(tria, test[2]), false);
     QCOMPARE(IntelliTriangulation::isInPolygon(tria, test[3]), false);
 }
+
+
+
+///Benchmarks here
+
+void UnitTest::bench_addLayer(){
+    QBENCHMARK{
+        area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+    }
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_deleteLayer(){
+    area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+    QBENCHMARK{
+        area->deleteLayer(0);
+    }
+}
+
+void UnitTest::bench_setActive(){
+    area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+    area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+
+    QBENCHMARK{
+        area->setLayerActive(0);
+    }
+
+    area->deleteLayer(1);
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_setAlpha(){
+    area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+
+    QBENCHMARK{
+        area->setLayerAlpha(0,0);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_floodFill(){
+    area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+
+    QBENCHMARK{
+        area->floodFill(255,255,255,255);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_moveActive(){
+    area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+    area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+
+    area->setLayerActive(0);
+    QBENCHMARK{
+        area->moveActiveLayer(1);
+    }
+
+    area->deleteLayer(1);
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_setPolygon(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+
+    std::vector<QPoint> polygon{
+        QPoint(10,00),
+        QPoint(00,10),
+        QPoint(10,10),
+        QPoint(00,10)
+    };
+
+    QBENCHMARK{
+        area->layerBundle[1].image->setPolygon(polygon);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_setLayerUp(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+
+    area->setLayerActive(0);
+    QBENCHMARK{
+        area->selectLayerUp();
+    }
+
+    area->deleteLayer(1);
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_setLayerDown(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+
+    QBENCHMARK{
+        area->selectLayerDown();
+    }
+
+    area->deleteLayer(1);
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_createTools(){
+    QBENCHMARK{
+        area->createPenTool();
+    }
+
+    QBENCHMARK{
+        area->createLineTool();
+    }
+
+    QBENCHMARK{
+        area->createPlainTool();
+    }
+
+    QBENCHMARK{
+        area->createCircleTool();
+    }
+
+    QBENCHMARK{
+        area->createPolygonTool();
+    }
+
+    QBENCHMARK{
+        area->createFloodFillTool();
+    }
+
+    QBENCHMARK{
+        area->createRectangleTool();
+    }
+}
+
+void UnitTest::bench_RasterImage_drawPixel(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+
+    QPoint point(0,0);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->drawPixel(point, QColor(0,0,0,255));
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_RasterImage_drawLine(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+
+    QPoint point1(000,000);
+    QPoint point2(200,200);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->drawLine(point1, point2, QColor(0,0,0,255), 1);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_RasterImage_drawPoint(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+
+    QPoint point(000,000);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->drawPoint(point, QColor(0,0,0,255), 1);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_RasterImage_getDisplayable(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->getDisplayable(QSize(200,200),255);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_RasterImage_getPixelColor(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+
+    QPoint point(000,000);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->getPixelColor(point);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_RasterImage_getImageData(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->getImageData();
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_RasterImage_setImageData(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+
+    QImage img = area->layerBundle[0].image->getImageData();
+    QBENCHMARK{
+        area->layerBundle[0].image->setImageData(img);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_ShapedImage_drawPixel(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+
+    QPoint point(0,0);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->drawPixel(point, QColor(0,0,0,255));
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_ShapedImage_drawLine(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+
+    QPoint point1(000,000);
+    QPoint point2(200,200);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->drawLine(point1, point2, QColor(0,0,0,255), 1);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_ShapedImage_drawPoint(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+
+    QPoint point(000,000);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->drawPoint(point, QColor(0,0,0,255), 1);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_ShapedImage_getDisplayable(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->getDisplayable(QSize(200,200),255);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_ShapedImage_getPixelColor(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+
+    QPoint point(000,000);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->getPixelColor(point);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_ShapedImage_getImageData(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+
+    QBENCHMARK{
+        area->layerBundle[0].image->getImageData();
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_ShapedImage_setImageData(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+
+    QImage img = area->layerBundle[0].image->getImageData();
+    QBENCHMARK{
+        area->layerBundle[0].image->setImageData(img);
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_Circle_fullDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createCircleTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_Circle_interruptedDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createCircleTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseRightPressed(point2.x(), point2.y());
+        area->Tool->onMouseRightReleased(point2.x(),point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+
+void UnitTest::bench_FloodFill_fullDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createFloodFillTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_FloodFill_interruptedDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createFloodFillTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseRightPressed(point2.x(), point2.y());
+        area->Tool->onMouseRightReleased(point2.x(),point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+
+void UnitTest::bench_Line_fullDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createLineTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_Line_interruptedDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createLineTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseRightPressed(point2.x(), point2.y());
+        area->Tool->onMouseRightReleased(point2.x(),point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_Pen_fullDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createPenTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_Pen_interruptedDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createPenTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseRightPressed(point2.x(), point2.y());
+        area->Tool->onMouseRightReleased(point2.x(),point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_Plain_fullDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createPlainTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_Plain_interruptedDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createPlainTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,100);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseRightPressed(point2.x(), point2.y());
+        area->Tool->onMouseRightReleased(point2.x(),point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_Polygon_fullDraw(){
+    area->addLayer(21,21,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    std::vector<QPoint> points{
+        QPoint(10,00),
+        QPoint(00,10),
+        QPoint(10,20),
+        QPoint(20,10)
+    };
+
+    std::vector<QPoint> test{
+        QPoint(00,00),
+        QPoint(00,20),
+        QPoint(20,00),
+        QPoint(20,20),
+        QPoint(10,10)
+    };
+
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createPolygonTool();
+    area->floodFill(255,0,0,255);
+
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
+        area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
+        area->Tool->onMouseMoved(points[1].x(), points[1].y());
+
+        area->Tool->onMouseLeftPressed(points[1].x(), points[1].y());
+        area->Tool->onMouseLeftReleased(points[1].x(), points[1].y());
+        area->Tool->onMouseMoved(points[2].x(), points[2].y());
+
+        area->Tool->onMouseLeftPressed(points[2].x(), points[2].y());
+        area->Tool->onMouseLeftReleased(points[2].x(), points[2].y());
+        area->Tool->onMouseMoved(points[3].x(), points[3].y());
+
+        area->Tool->onMouseLeftPressed(points[3].x(), points[3].y());
+        area->Tool->onMouseLeftReleased(points[3].x(), points[3].y());
+        area->Tool->onMouseMoved(points[0].x(), points[0].y());
+
+        area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
+        area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
+    }
+
+    area->deleteLayer(0);
+}
+
+/*
+void UnitTest::bench_Polygon_interruptedDraw(){
+    area->addLayer(201,201,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    std::vector<QPoint> points{
+        QPoint(100,000),
+        QPoint(000,100),
+        QPoint(100,200),
+        QPoint(200,100)
+    };
+
+    std::vector<QPoint> test{
+        QPoint(000,000),
+        QPoint(000,200),
+        QPoint(200,000),
+        QPoint(200,200),
+        QPoint(100,100)
+    };
+
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createPolygonTool();
+    area->floodFill(255,0,0,255);
+
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
+        area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
+        area->Tool->onMouseMoved(points[1].x(), points[1].y());
+
+        area->Tool->onMouseLeftPressed(points[1].x(), points[1].y());
+        area->Tool->onMouseLeftReleased(points[1].x(), points[1].y());
+        area->Tool->onMouseMoved(points[2].x(), points[2].y());
+
+        area->Tool->onMouseLeftPressed(points[2].x(), points[2].y());
+        area->Tool->onMouseLeftReleased(points[2].x(), points[2].y());
+        area->Tool->onMouseMoved(points[3].x(), points[3].y());
+
+        area->Tool->onMouseLeftPressed(points[3].x(), points[3].y());
+        area->Tool->onMouseLeftReleased(points[3].x(), points[3].y());
+
+        area->Tool->onMouseRightPressed(points[0].x(), points[0].y());
+        area->Tool->onMouseRightReleased(points[0].x(), points[0].y());
+    }
+
+    area->deleteLayer(0);
+}
+*/
+
+void UnitTest::bench_Rectangle_fullDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createRectangleTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,150);
+
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+void UnitTest::bench_Rectangle_interruptedDraw(){
+    area->addLayer(200,400,10,20,IntelliImage::ImageType::RASTERIMAGE);
+    area->colorPicker.setFirstColor(QColor(255,255,255,255));
+    area->colorPicker.setSecondColor(QColor(0,0,0,255));
+    area->createRectangleTool();
+    area->floodFill(255,0,0,255);
+
+    QPoint point1(100,100);
+    QPoint point2(150,150);
+    QBENCHMARK{
+        area->Tool->onMouseLeftPressed(point1.x(), point1.y());
+        area->Tool->onMouseMoved(point2.x(), point2.y());
+        area->Tool->onMouseRightPressed(point2.x(), point2.y());
+        area->Tool->onMouseRightReleased(point2.x(),point2.y());
+        area->Tool->onMouseLeftReleased(point2.x(), point2.y());
+    }
+
+    area->deleteLayer(0);
+}
+
+
+void UnitTest::bench_Triangulation_Coverage(){
+    std::vector<QPoint> points{
+        QPoint(10,00),
+        QPoint(00,10),
+        QPoint(10,20),
+        QPoint(20,10)
+    };
+    std::vector<QPoint> test{
+        QPoint(00,00),
+        QPoint(00,20),
+        QPoint(20,00),
+        QPoint(20,20),
+        QPoint(10,10)
+    };
+
+    QBENCHMARK{
+        std::vector<Triangle> tria = IntelliTriangulation::calculateTriangles(points);
+        QPoint point;
+        for(int i=0; i<200; i++){
+            point.setX(i);
+            for(int j=0; j<200; j++){
+                point.setY(j);
+                IntelliTriangulation::isInPolygon(tria, point);
+            }
+        }
+    }
+}
+
+
+
+
 
 QTEST_MAIN(UnitTest)
 

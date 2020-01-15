@@ -25,9 +25,9 @@ class IntelliToolPolygon : public IntelliTool
 bool isNearStart(int x, int y, QPoint Startpoint);
 
 /*!
- * \brief IsDrawing true while drawing, else false.
+ * \brief drawingOfPolygon true while drawing, else false.
  */
-bool isDrawing;
+bool drawingOfPolygon;
 
 /*!
  * \brief isInside Checks if Point is inside Image
