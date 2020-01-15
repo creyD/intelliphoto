@@ -9,7 +9,7 @@ cppcheck --check-config --output-file=cppcheck_config.txt src/
 echo "CPPCheck finished"
 # Uncrustify Files
 echo "Running Uncrustify..."
-find . \( -name "*.cpp" -o -name "*.c" -o -name "*.h" \) -exec uncrustify -c conf/uncrustify.cfg --no-backup {}
+find . \( -name "*.cpp" -o -name "*.c" -o -name "*.h" \) -exec uncrustify -c conf/uncrustify.cfg --no-backup {} +
 echo "Uncrustify finished."
 # Run Unit Tests
 echo "Running unit tests..."
