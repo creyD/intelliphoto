@@ -182,6 +182,12 @@ int getNumberOfActiveLayer();
 
 IntelliImage* getImageOfActiveLayer();
 
+/*!
+ * \brief getImageDataOfActiveLayer used to get the currents active imageData (if there isn't any active layer it return a 10*10 white picture)
+ * \return return the image as an rgba32bit qImage
+ */
+QImage getImageDataOfActiveLayer();
+
 IntelliToolsettings Toolsettings;
 IntelliColorPicker colorPicker;
 

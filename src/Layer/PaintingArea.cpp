@@ -113,7 +113,8 @@ void PaintingArea::setLayerAlpha(int idx, int alpha){
 void PaintingArea::setPolygon(int idx){
         if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
                  if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==IntelliImage::ImageType::SHAPEDIMAGE){
-                        qDebug() << "Todo Implement here set Polygon";
+                     delete this->Tool;
+                     this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
                  }
         }
 }
@@ -438,5 +439,20 @@ IntelliImage* PaintingArea::getImageOfActiveLayer(){
 		if(activeLayer<0) {
 				return nullptr;
 		}
-		return layerBundle[activeLayer].image;
+        return layerBundle[static_cast<size_t>(activeLayer)].image;
+}
+
+QImage PaintingArea::getImageDataOfActiveLayer(){
+        QImage returnImage;
+        if(activeLayer<0) {
+                returnImage = QImage(QSize(10,10),QImage::Format_ARGB32);
+                returnImage.fill(QColor(255,255,255,255));
+        }
+        else{
+                returnImage = layerBundle[static_cast<size_t>(activeLayer)].image->getImageData();
+                if(renderSettings.isFastRenderering()){
+                    returnImage = returnImage.convertToFormat(QImage::Format_ARGB32);
+                }
+        }
+        return returnImage;
 }
