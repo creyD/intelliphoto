@@ -32,8 +32,8 @@ void UpdateGui();
 
 protected:
 /*!
-  * \brief The closeEvent function handles closing events
-*/
+ * \brief The closeEvent function handles closing events
+ */
 void closeEvent(QCloseEvent*event) override;
 
 private slots:

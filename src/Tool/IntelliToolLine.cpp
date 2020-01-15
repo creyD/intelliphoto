@@ -40,7 +40,7 @@ void IntelliToolLine::onMouseMoved(int x, int y){
 		if(this->isDrawing) {
 				this->Canvas->image->drawPlain(Qt::transparent);
 				QPoint next(x,y);
-                this->Canvas->image->drawLine(lineStartingPoint,next,colorPicker->getFirstColor(),Toolsettings->getLineWidth());
+				this->Canvas->image->drawLine(lineStartingPoint,next,colorPicker->getFirstColor(),Toolsettings->getLineWidth());
 		}
 		IntelliTool::onMouseMoved(x,y);
 }

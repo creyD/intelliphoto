@@ -4,7 +4,7 @@
 IntelliToolsettings::IntelliToolsettings()
 {
 		lineWidth = 1;
-        innerAlpha = 255;
+		innerAlpha = 255;
 }
 
 IntelliToolsettings::~IntelliToolsettings(){
