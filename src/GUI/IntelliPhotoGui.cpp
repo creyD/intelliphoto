@@ -67,41 +67,54 @@ void IntelliPhotoGui::slotSave(){
 
 // Opens a dialog that allows the user to create a New Layer
 void IntelliPhotoGui::slotCreateNewLayer(){
+
+        bool ok1, ok2;
 		// "New Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-        int width = IntelliInputDialog::getInt(&Loop, "New Layer", "Width:", 200, 0, 5000, 1);
+        int width = IntelliInputDialog::getInt("New Layer", "Width:", 200, 1, paintingArea->getMaxWidth(), 1, &ok1);
 
-        int height = IntelliInputDialog::getInt(&Loop, "New Layer", "Height:", 200, 0, 5000, 1);
+        int height = IntelliInputDialog::getInt("New Layer", "Height:", 200, 1, paintingArea->getMaxHeight(), 1, &ok2);
 
 		// Create New Layer
-		paintingArea->addLayer(width,height,0,0);
-		UpdateGui();
+        if(ok1&&ok2){
+                paintingArea->addLayer(width,height,0,0);
+                UpdateGui();
+        }
 }
 
 // Opens a dialog that allows the user to delete a Layer
 void IntelliPhotoGui::slotDeleteLayer(){
+
+        bool ok1;
 		// "delete Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-        int layerNumber = IntelliInputDialog::getInt(&Loop, "Delete Layer", "Number:", paintingArea->getNumberOfActiveLayer()+1, 1, 501, 1);
+        int layerNumber = IntelliInputDialog::getInt("Delete Layer", "Number:", paintingArea->getNumberOfActiveLayer()+1, 1, static_cast<int>(paintingArea->layerBundle.size()), 1, &ok1);
 
 		// Create New Layer
-        paintingArea->deleteLayer(layerNumber-1);
-        UpdateGui();
+        if(ok1){
+                paintingArea->deleteLayer(layerNumber-1);
+                UpdateGui();
+        }
 }
 
 void IntelliPhotoGui::slotSetActiveAlpha(){
+
+        bool ok1, ok2;
 		// "Layer to set on" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
 
-        int layer = IntelliInputDialog::getInt(&Loop, "Layer to set on", "Layer:", paintingArea->getNumberOfActiveLayer()+1, 1, 501, 1);
+        int layer = IntelliInputDialog::getInt("Layer to set on", "Layer:", paintingArea->getNumberOfActiveLayer()+1, 1, static_cast<int>(paintingArea->layerBundle.size()), 1, &ok1);
 
 		// "New Alpha" is the title of the window
-        int alpha = IntelliInputDialog::getInt(&Loop, "Layer to set on", "Layer:", paintingArea->getNumberOfActiveLayer()+1, 1, 501, 1);
-        paintingArea->setLayerAlpha(layer-1,alpha);
-        UpdateGui();
+        int alpha = IntelliInputDialog::getInt("Layer to set on", "Alpha:", 255, 0, 255, 1, &ok2);
+
+        if(ok1&&ok2){
+                paintingArea->setLayerAlpha(layer-1,alpha);
+                UpdateGui();
+        }
 }
 
 void IntelliPhotoGui::slotPositionMoveUp(){
@@ -140,28 +153,31 @@ void IntelliPhotoGui::slotClearActiveLayer(){
 		// Define the standard Value, min, max, step and ok button
 
         // "Red Input" is the title of the window
-        int red = IntelliInputDialog::getInt(&Loop, "Green Input", "Green:", 255, 0, 255, 1);
+        int red = IntelliInputDialog::getInt("Green Input", "Green:", 255, 0, 255, 1);
 
 		// "Green Input" is the title of the window
-        int green = IntelliInputDialog::getInt(&Loop, "Green Input", "Green:", 255, 0, 255, 1);
+        int green = IntelliInputDialog::getInt("Green Input", "Green:", 255, 0, 255, 1);
 
 		// "Blue Input" is the title of the window
-        int blue = IntelliInputDialog::getInt(&Loop, "Blue Input", "Blue:", 255, 0, 255, 1);
+        int blue = IntelliInputDialog::getInt("Blue Input", "Blue:", 255, 0, 255, 1);
 
         // "Alpha Input" is the title of the window
-        int alpha = IntelliInputDialog::getInt(&Loop, "Alpha Input", "Alpha:", 255, 0, 255, 1);
+        int alpha = IntelliInputDialog::getInt("Alpha Input", "Alpha:", 255, 0, 255, 1);
 
         paintingArea->floodFill(red, green, blue, alpha);
         UpdateGui();
 }
 
 void IntelliPhotoGui::slotSetActiveLayer(){
+        bool ok1;
 		// "Layer to set on" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-        int layer = IntelliInputDialog::getInt(&Loop, "Layer to set on", "Layer:", 1, 1, 501, 1);
-        paintingArea->setLayerActive(layer-1);
-        UpdateGui();
+        int layer = IntelliInputDialog::getInt("Layer to set on", "Layer:", 1, 1, static_cast<int>(paintingArea->layerBundle.size()), 1, &ok1);
+        if(ok1){
+                paintingArea->setLayerActive(layer-1);
+                UpdateGui();
+        }
 }
 
 void IntelliPhotoGui::slotUpdateRenderSettingsOn(){
@@ -255,13 +271,21 @@ void IntelliPhotoGui::slotResetTools(){
 }
 
 void IntelliPhotoGui::slotSetWidth(){
-        paintingArea->Toolsettings.setLineWidth(IntelliInputDialog::getInt(&Loop, "Toolsettings", "Width:", 5, 1, 50, 1));
-		EditLineWidth->setText(QString("%1").arg(paintingArea->Toolsettings.getLineWidth()));
+        bool ok1;
+        int temp = IntelliInputDialog::getInt("Toolsettings", "Width:", 5, 1, 50, 1, &ok1);
+        if(ok1){
+                paintingArea->Toolsettings.setLineWidth(temp);
+                EditLineWidth->setText(QString("%1").arg(temp));
+        }
 }
 
 void IntelliPhotoGui::slotSetInnerAlpha(){
-        paintingArea->Toolsettings.setInnerAlpha(IntelliInputDialog::getInt(&Loop, "Toolsettings", "Width:", 5, 1, 50, 1));
-		EditLineInnerAlpha->setText(QString("%1").arg(paintingArea->Toolsettings.getInnerAlpha()));
+        bool ok1;
+        int temp = IntelliInputDialog::getInt("Toolsettings", "Width:", 5, 1, 50, 1, &ok1);
+        if(ok1){
+                paintingArea->Toolsettings.setInnerAlpha(temp);
+                EditLineInnerAlpha->setText(QString("%1").arg(temp));
+        }
 }
 
 // Define menu actions that call functions
@@ -670,34 +694,8 @@ void IntelliPhotoGui::createGui(){
 void IntelliPhotoGui::setIntelliStyle(){
 		// Set the title
 		setWindowTitle("IntelliPhoto Prototype");
-		Palette.setBrush(QPalette::HighlightedText, QColor(200, 10, 10));
-		Palette.setBrush(QPalette::Highlight, QColor(100, 5, 5));
-		Palette.setBrush(QPalette::ButtonText, QColor(255, 255, 255));
-		Palette.setBrush(QPalette::Button, QColor(64, 64, 64));
-		Palette.setBrush(QPalette::Window, QColor(64, 64, 64));
-		Palette.setBrush(QPalette::WindowText, QColor(255, 255, 255));
-		Palette.setBrush(QPalette::PlaceholderText, QColor(255, 255, 255));
-		Palette.setBrush(QPalette::ToolTipText, QColor(255, 255, 255));
-		Palette.setBrush(QPalette::Text, QColor(255, 255, 255));
 		// Set style sheet
-		this->setStyleSheet("background-color:rgb(64,64,64)");
-		this->menuBar()->setPalette(Palette);
-		this->fileMenu->setPalette(Palette);
-		this->saveAsMenu->setPalette(Palette);
-		this->optionMenu->setPalette(Palette);
-		this->helpMenu->setPalette(Palette);
-		this->renderMenu->setPalette(Palette);
-		this->toolMenu->setPalette(Palette);
-		this->layerMenu->setPalette(Palette);
-		this->colorMenu->setPalette(Palette);
-		this->toolCreationMenu->setPalette(Palette);
-		this->toolSettingsMenu->setPalette(Palette);
-
-		this->WidthLine->setPalette(Palette);
-		this->EditLineWidth->setPalette(Palette);
-		this->innerAlphaLine->setPalette(Palette);
-		this->EditLineInnerAlpha->setPalette(Palette);
-		this->ActiveLayerLine->setPalette(Palette);
+        this->setStyleSheet("color: white;" "background-color: rgb(64, 64, 64);" "selection-color: rgb(200, 10, 10);" "selection-background-color: rgb(64, 64, 64);");
 
 		QString string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
 		FirstColorButton->setStyleSheet(string);

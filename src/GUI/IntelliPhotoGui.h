@@ -107,7 +107,6 @@ void setDefaultToolValue();
 
 // What we'll draw on
 PaintingArea* paintingArea;
-QEventLoop Loop;
 
 const QSize Buttonsize = QSize(35,35);
 QPixmap preview;
@@ -131,8 +130,6 @@ QPushButton* SwitchColorButton;
 
 QLabel* ActiveLayerLine;
 QLabel* ActiveLayerImageLabel;
-
-QPalette Palette;
 
 // The menu widgets
 QMenu*saveAsMenu;

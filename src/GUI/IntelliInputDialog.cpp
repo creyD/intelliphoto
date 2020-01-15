@@ -2,18 +2,21 @@
 #include <QFile>
 
 
-IntelliInputDialog::IntelliInputDialog(QEventLoop* Loop, QString Title, QString Label, int value, int minValue, int maxValue, int step)
+IntelliInputDialog::IntelliInputDialog(QString Title, QString Label, int value, int minValue, int maxValue, int step, bool* ok)
 {
         this->valueInt = value;
+        this->notClosed = ok;
+        if(notClosed != nullptr){
+            *notClosed = false;
+        }
 		createInputBox(Title, Label, value, minValue, maxValue, step);
-		createConnections(Loop);
-		setValuesOfPalette();
+        createConnections();
 		setInputBoxStyle();
-        Loop->exec();
+        this->exec();
 }
 
-int IntelliInputDialog::getInt(QEventLoop* Loop, QString Title, QString Label, int value, int minValue, int maxValue, int step){
-    IntelliInputDialog dialog(Loop, Title, Label, value, minValue, maxValue, step);
+int IntelliInputDialog::getInt(QString Title, QString Label, int value, int minValue, int maxValue, int step, bool* ok){
+    IntelliInputDialog dialog(Title, Label, value, minValue, maxValue, step, ok);
     return dialog.valueInt;
 }
 
@@ -40,6 +43,7 @@ void IntelliInputDialog::createInputBox(QString Title, QString Label, int value,
         this->Input = new QSpinBox();
         this->Input->setFixedSize(Linesize);
         this->Input->setRange(minValue,maxValue);
+        this->Input->setSingleStep(step);
         this->Input->setValue(value);
 
         this->okButton = ButtonBox->button(QDialogButtonBox::Ok);
@@ -60,31 +64,13 @@ void IntelliInputDialog::createInputBox(QString Title, QString Label, int value,
         this->show();
 }
 
-void IntelliInputDialog::createConnections(QEventLoop* Loop){
+void IntelliInputDialog::createConnections(){
         connect(okButton, SIGNAL(clicked()), this, SLOT(slotEingabe()));
-		connect(okButton, SIGNAL(clicked()), Loop, SLOT(quit()));
 		connect(cancelButton, SIGNAL(clicked()), this, SLOT(slotCloseEvent()));
-		connect(cancelButton, SIGNAL(clicked()), Loop, SLOT(quit()));
 }
 
 void IntelliInputDialog::setInputBoxStyle(){
-		InputLabel->setPalette(Palette);
-		Input->setPalette(Palette);
-		okButton->setPalette(Palette);
-		cancelButton->setPalette(Palette);
-        this->setStyleSheet("background-color:rgb(64,64,64)");
-}
-
-void IntelliInputDialog::setValuesOfPalette(){
-		Palette.setBrush(QPalette::HighlightedText, QColor(200, 10, 10));
-		Palette.setBrush(QPalette::Highlight, QColor(100, 5, 5));
-		Palette.setBrush(QPalette::ButtonText, QColor(255, 255, 255));
-		Palette.setBrush(QPalette::Button, QColor(64, 64, 64));
-		Palette.setBrush(QPalette::Window, QColor(64, 64, 64));
-		Palette.setBrush(QPalette::WindowText, QColor(255, 255, 255));
-		Palette.setBrush(QPalette::PlaceholderText, QColor(255, 255, 255));
-		Palette.setBrush(QPalette::ToolTipText, QColor(255, 255, 255));
-		Palette.setBrush(QPalette::Text, QColor(255, 255, 255));
+        this->setStyleSheet("color: white;" "background-color: rgb(64, 64, 64);" "selection-color: rgb(200, 10, 10);" "selection-background-color: rgb(64, 64, 64);");
 }
 
 void IntelliInputDialog::slotCloseEvent(){
@@ -93,4 +79,8 @@ void IntelliInputDialog::slotCloseEvent(){
 
 void IntelliInputDialog::slotEingabe(){
         valueInt = QString("%1").arg(Input->value()).toInt();
+        if(notClosed != nullptr){
+            *notClosed = true;
+        }
+        this->close();
 }

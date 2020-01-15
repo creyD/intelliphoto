@@ -182,6 +182,7 @@ void PaintingArea::moveActiveLayer(int idx){
 		}else if(idx==-1) {
 				this->selectLayerDown();
 		}
+        DummyGui->UpdateGui();
 }
 
 void PaintingArea::slotActivateLayer(int a){
@@ -251,6 +252,14 @@ int PaintingArea::getWidthOfActive(){
 
 int PaintingArea::getHeightOfActive(){
 		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].height;
+}
+
+int PaintingArea::getMaxWidth(){
+        return this->maxWidth;
+}
+
+int PaintingArea::getMaxHeight(){
+        return this->maxHeight;
 }
 
 IntelliImage::ImageType PaintingArea::getTypeOfImageRealLayer(){
