@@ -89,7 +89,6 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 		// Stores button value
 		bool ok1, ok2;
 
-        bool ok1, ok2;
 		// "New Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button

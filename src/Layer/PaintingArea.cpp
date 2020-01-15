@@ -32,7 +32,7 @@ PaintingArea::~PaintingArea(){
 }
 
 void PaintingArea::setRenderSettings(bool isFastRenderingOn){
-		if(isFastRenderingOn != renderSettings.isFastRenderering()) {
+        if(isFastRenderingOn != renderSettings.isFastRenderering() && !Tool->getIsDrawing()) {
 				renderSettings.setFastRendering(isFastRenderingOn);
 				for(auto& layer : layerBundle) {
 						layer.image->updateRendererSetting(isFastRenderingOn);
@@ -110,6 +110,7 @@ void PaintingArea::setPolygon(int idx){
 						delete this->Tool;
 						this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
 						isSettingPolygon = true;
+                        this->DummyGui->setToolWidth(5);
 				}
 		}
 }
