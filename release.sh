@@ -19,7 +19,7 @@ echo "Cleaning directory..."
 rm -r src/build-*
 rm -r build-*/
 rm -r Examples/
-rm src/IntelliPhoto.pro.user
+rm src/*.pro.user
 echo "Directory cleaned."
 # Run Doxygen
 echo "Running Doxygen..."
