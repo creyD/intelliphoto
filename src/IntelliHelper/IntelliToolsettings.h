@@ -26,4 +26,4 @@ int innerAlpha;
 LineStyle Linestyle;
 };
 
-#endif // INTELLITOOLSETTINGS_H
+#endif
