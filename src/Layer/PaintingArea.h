@@ -53,8 +53,6 @@ PaintingArea(int maxWidth=600, int maxHeight=600, QWidget*parent = nullptr);
  */
 ~PaintingArea() override;
 
-// Handles all events
-
 /*!
  * \brief setRenderSettings updates all Images to the new Rendersetting.
  * \param isFastRenderingOn is the new given flag for the FastRenderer.
@@ -130,7 +128,6 @@ void movePositionActive(int x, int y);
  */
 void moveActiveLayer(int idx);
 
-//change properties of colorPicker
 /*!
  * \brief The colorPickerSetFirstColor calls the QTColorPicker to determine the primary drawing color
  */
@@ -144,7 +141,6 @@ void colorPickerSetSecondColor();
  */
 void colorPickerSwapColors();
 
-// Create tools
 void createPenTool();
 void createPlainTool();
 void createLineTool();
@@ -228,7 +224,6 @@ void resizeLayer(QImage*image_res, const QSize &newSize);
 
 bool createTempTopLayer(int idx);
 
-//this function is needed to avoid errors in inputhandeling if a layer has changed
 void updateTools();
 };
 
