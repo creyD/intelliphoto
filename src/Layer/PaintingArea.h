@@ -102,8 +102,9 @@ int addLayerAt(int idx, int width, int height, int widthOffset=0, int heightOffs
 /*!
  * \brief The deleteLayer method removes a layer at a given idx
  * \param idx - The index of the layer to be removed
+ * \param isTool - Is the flag for when a tool uses this function.
  */
-void deleteLayer(int idx);
+void deleteLayer(int idx, bool isTool = false);
 /*!
  * \brief The setLayerToActive method marks a specific layer as active
  * \param idx - The index of the layer to be active
@@ -116,13 +117,10 @@ void setLayerActive(int idx);
  */
 void setLayerAlpha(int idx, int alpha);
 /*!
- * \brief The floodFill method fills a the active layer with a given color
- * \param r     - Red value of the color the layer should be filled with
- * \param g     - Green value of the color the layer should be filled with
- * \param b     - Blue value of the color the layer should be filled with
- * \param a     - Alpha value of the color the layer should be filled with
+ * \brief setPolygon is used for setting polygondata, it only works on RASTER images
+ * \param idx - represents the number of the layer with should be transformed
  */
-void floodFill(int r, int g, int b, int a);
+void setPolygon(int idx);
 /*!
  * \brief The movePositionActive method moves the active layer to certain position
  * \param x     - The x value the new center of the layer should be at
@@ -177,6 +175,12 @@ int getNumberOfActiveLayer();
 
 IntelliImage* getImageOfActiveLayer();
 
+/*!
+ * \brief getImageDataOfActiveLayer used to get the currents active imageData (if there isn't any active layer it return a 10*10 white picture)
+ * \return return the image as an rgba32bit qImage
+ */
+QImage getImageDataOfActiveLayer();
+
 IntelliToolsettings Toolsettings;
 IntelliColorPicker colorPicker;
 
@@ -215,6 +219,8 @@ QImage* Canvas;
 int maxWidth;
 int maxHeight;
 
+bool isSettingPolygon = false;
+
 IntelliRenderSettings renderSettings;
 IntelliTool* Tool;
 IntelliPhotoGui* DummyGui;
@@ -228,6 +234,9 @@ void resizeLayer(QImage*image_res, const QSize &newSize);
 
 // Helper for Tool
 bool createTempTopLayer(int idx);
+
+//this function is needed to avoid errors in inputhandeling if a layer has changed
+void updateTools();
 };
 
 #endif
