@@ -2,7 +2,6 @@
 #define INTELLIINPUTDIALOG_H
 
 #include <QtWidgets>
-#include <QDebug>
 
 class IntelliInputDialog : public QDialog
 {
