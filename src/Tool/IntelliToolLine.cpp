@@ -22,7 +22,7 @@ void IntelliToolLine::onMouseRightReleased(int x, int y){
 
 void IntelliToolLine::onMouseLeftPressed(int x, int y){
 		IntelliTool::onMouseLeftPressed(x,y);
-		this->lineStartingPoint=QPoint(x,y);
+		this->lineStartingPoint = QPoint(x,y);
 		this->Canvas->image->drawPoint(lineStartingPoint, colorPicker->getFirstColor(),Toolsettings->getLineWidth());
 		Canvas->image->calculateVisiblity();
 }
@@ -33,7 +33,7 @@ void IntelliToolLine::onMouseLeftReleased(int x, int y){
 
 void IntelliToolLine::onWheelScrolled(int value){
 		IntelliTool::onWheelScrolled(value);
-		Toolsettings->setLineWidth(Toolsettings->getLineWidth()+value);
+		Toolsettings->setLineWidth(Toolsettings->getLineWidth() + value);
 }
 
 void IntelliToolLine::onMouseMoved(int x, int y){

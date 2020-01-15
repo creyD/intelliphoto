@@ -28,7 +28,7 @@ struct LayerObject {
 		int height;
 		int widthOffset;
 		int heightOffset;
-		int alpha=255;
+		int alpha = 255;
 };
 
 /*!
@@ -46,7 +46,7 @@ public:
  * \param maxHeight     - The maximum amount of pixles that are inside painting area from top to bottom (default=600px)
  * \param parent        - The parent window of the main window (default=nullptr)
  */
-PaintingArea(int maxWidth=600, int maxHeight=600, QWidget*parent = nullptr);
+PaintingArea(int maxWidth = 600, int maxHeight = 600, QWidget*parent = nullptr);
 
 /*!
  * \brief This deconstructor is used to clear up the memory and remove the currently active window
@@ -82,7 +82,7 @@ bool save(const QString &filePath, const char*fileFormat);
  * \param type          - Defining the ImageType of the new layer
  * \return  Returns the number of layers in the project
  */
-int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
+int addLayer(int width, int height, int widthOffset = 0, int heightOffset = 0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
 /*!
  * \brief The addLayerAt adds a layer to the current project/ painting area at a specific position in the layer stack
  * \param idx           - Index of the position the new layer should be added
@@ -93,7 +93,7 @@ int addLayer(int width, int height, int widthOffset=0, int heightOffset=0, Intel
  * \param type          - Defining the ImageType of the new layer
  * \return  Returns the id of the layer position
  */
-int addLayerAt(int idx, int width, int height, int widthOffset=0, int heightOffset=0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
+int addLayerAt(int idx, int width, int height, int widthOffset = 0, int heightOffset = 0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
 /*!
  * \brief The deleteLayer method removes a layer at a given idx
  * \param idx - The index of the layer to be removed
@@ -216,9 +216,9 @@ IntelliTool* Tool;
 IntelliPhotoGui* DummyGui;
 
 std::vector<LayerObject> layerBundle;
-int activeLayer=-1;
+int activeLayer = -1;
 
-void drawLayers(bool forSaving=false);
+void drawLayers(bool forSaving = false);
 
 void resizeLayer(QImage*image_res, const QSize &newSize);
 

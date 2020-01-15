@@ -41,10 +41,10 @@ void IntelliToolFloodFill::onMouseLeftPressed(int x, int y){
 				QPoint Current = Q.front();
 				Q.pop();
 
-				left  = QPoint(Current.x()-1,Current.y()  );
-				right = QPoint(Current.x()+1,Current.y()  );
-				top   = QPoint(Current.x(),Current.y()-1);
-				down  = QPoint(Current.x(),Current.y()+1);
+				left  = QPoint(Current.x() - 1,Current.y()  );
+				right = QPoint(Current.x() + 1,Current.y()  );
+				top   = QPoint(Current.x(),Current.y() - 1);
+				down  = QPoint(Current.x(),Current.y() + 1);
 				if((right.x() < Canvas->width) && (Canvas->image->getPixelColor(right) != newColor) && (activeLayer->image->getPixelColor(right) == oldColor)) {
 						Canvas->image->drawPixel(right,newColor);
 						Q.push(right);

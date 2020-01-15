@@ -24,7 +24,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		this->Tool = nullptr;
 		this->setLayerDimensions(maxWidth, maxHeight);
 
-		activeLayer=-1;
+		activeLayer = -1;
 }
 
 PaintingArea::~PaintingArea(){
@@ -65,7 +65,7 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		}
 		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
-		activeLayer = static_cast<int>(layerBundle.size())-1;
+		activeLayer = static_cast<int>(layerBundle.size()) - 1;
 		return activeLayer;
 }
 
@@ -75,19 +75,19 @@ void PaintingArea::deleteLayer(int idx, bool isTool){
 				updateTools();
 		}
 		if(idx<static_cast<int>(layerBundle.size())) {
-				this->layerBundle.erase(layerBundle.begin()+idx);
+				this->layerBundle.erase(layerBundle.begin() + idx);
 				if(activeLayer>=idx) {
 						activeLayer--;
 				}
 				if(activeLayer < 0 && layerBundle.size()) {
-						activeLayer=0;
+						activeLayer = 0;
 				}
 		}
 }
 
 void PaintingArea::slotDeleteActiveLayer(){
 		if(activeLayer>=0 && activeLayer < static_cast<int>(layerBundle.size())) {
-				this->layerBundle.erase(layerBundle.begin()+activeLayer);
+				this->layerBundle.erase(layerBundle.begin() + activeLayer);
 				activeLayer--;
 		}
 }
@@ -95,13 +95,13 @@ void PaintingArea::slotDeleteActiveLayer(){
 void PaintingArea::setLayerActive(int idx){
 		updateTools();
 		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-				this->activeLayer=idx;
+				this->activeLayer = idx;
 		}
 }
 
 void PaintingArea::setLayerAlpha(int idx, int alpha){
 		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-				layerBundle[static_cast<size_t>(idx)].alpha=alpha;
+				layerBundle[static_cast<size_t>(idx)].alpha = alpha;
 		}
 }
 void PaintingArea::setPolygon(int idx){
@@ -245,8 +245,8 @@ void PaintingArea::mousePressEvent(QMouseEvent*event){
 		}
 		if(Tool == nullptr)
 				return;
-		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+		int x = event->x() - layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+		int y = event->y() - layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftPressed(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -264,8 +264,8 @@ void PaintingArea::mouseMoveEvent(QMouseEvent*event){
 		}
 		if(Tool == nullptr)
 				return;
-		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+		int x = event->x() - layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+		int y = event->y() - layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		Tool->onMouseMoved(x, y);
 		update();
 }
@@ -276,8 +276,8 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 				return;
 		if(Tool == nullptr)
 				return;
-		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+		int x = event->x() - layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+		int y = event->y() - layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftReleased(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -293,7 +293,7 @@ void PaintingArea::wheelEvent(QWheelEvent*event){
 				QPoint numDegrees = event->angleDelta() / 8;
 				if(!numDegrees.isNull()) {
 						QPoint numSteps = numDegrees / 15;
-						Tool->onWheelScrolled(numSteps.y()* -1);
+						Tool->onWheelScrolled(numSteps.y() * -1);
 				}
 		}
 }
@@ -323,8 +323,8 @@ void PaintingArea::resizeLayer(QImage*image_res, const QSize &newSize){
 
 void PaintingArea::selectLayerUp(){
 		updateTools();
-		if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size()-1) {
-				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer+1)]);
+		if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size() - 1) {
+				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer + 1)]);
 				activeLayer++;
 		}
 }
@@ -332,7 +332,7 @@ void PaintingArea::selectLayerUp(){
 void PaintingArea::selectLayerDown(){
 		updateTools();
 		if(activeLayer!=-1 && activeLayer>0) {
-				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer-1)]);
+				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer - 1)]);
 				activeLayer--;
 		}
 }
@@ -343,30 +343,30 @@ void PaintingArea::drawLayers(bool forSaving){
 		}else{
 				Canvas->fill(Qt::GlobalColor::black);
 		}
-		for(size_t i=0; i<layerBundle.size(); i++) {
+		for(size_t i = 0; i<layerBundle.size(); i++) {
 				LayerObject layer = layerBundle[i];
 				QImage cpy = layer.image->getDisplayable(layer.alpha);
 				QColor clr_0;
 				QColor clr_1;
-				for(int y=0; y<layer.height; y++) {
-						if(layer.heightOffset+y<0) continue;
-						if(layer.heightOffset+y>=maxHeight) break;
-						for(int x=0; x<layer.width; x++) {
-								if(layer.widthOffset+x<0) continue;
-								if(layer.widthOffset+x>=maxWidth) break;
-								clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.heightOffset+y);
-								clr_1=cpy.pixelColor(x,y);
-								float t = static_cast<float>(clr_1.alpha())/255.f;
-								int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
-								int g =static_cast<int>(static_cast<float>(clr_1.green())*(t)+static_cast<float>(clr_0.green())*(1.f-t)+0.5f);
-								int b =static_cast<int>(static_cast<float>(clr_1.blue())*(t)+static_cast<float>(clr_0.blue()*(1.f-t))+0.5f);
-								int a =std::min(clr_0.alpha()+clr_1.alpha(), 255);
+				for(int y = 0; y<layer.height; y++) {
+						if(layer.heightOffset + y<0) continue;
+						if(layer.heightOffset + y>=maxHeight) break;
+						for(int x = 0; x<layer.width; x++) {
+								if(layer.widthOffset + x<0) continue;
+								if(layer.widthOffset + x>=maxWidth) break;
+								clr_0 = Canvas->pixelColor(layer.widthOffset + x, layer.heightOffset + y);
+								clr_1 = cpy.pixelColor(x,y);
+								float t = static_cast<float>(clr_1.alpha()) / 255.f;
+								int r = static_cast<int>(static_cast<float>(clr_1.red()) * (t) + static_cast<float>(clr_0.red()) * (1.f - t) + 0.5f);
+								int g = static_cast<int>(static_cast<float>(clr_1.green()) * (t) + static_cast<float>(clr_0.green()) * (1.f - t) + 0.5f);
+								int b = static_cast<int>(static_cast<float>(clr_1.blue()) * (t) + static_cast<float>(clr_0.blue() * (1.f - t)) + 0.5f);
+								int a = std::min(clr_0.alpha() + clr_1.alpha(), 255);
 								clr_0.setRed(r);
 								clr_0.setGreen(g);
 								clr_0.setBlue(b);
 								clr_0.setAlpha(a);
 
-								Canvas->setPixelColor(layer.widthOffset+x, layer.heightOffset+y, clr_0);
+								Canvas->setPixelColor(layer.widthOffset + x, layer.heightOffset + y, clr_0);
 						}
 				}
 		}
@@ -381,7 +381,7 @@ bool PaintingArea::createTempTopLayer(int idx){
 				newLayer.heightOffset = layerBundle[static_cast<unsigned long long>(idx)].heightOffset;
 				newLayer.widthOffset = layerBundle[static_cast<unsigned long long>(idx)].widthOffset;
 				newLayer.image = layerBundle[static_cast<unsigned long long>(idx)].image->getDeepCopy();
-				layerBundle.insert(layerBundle.begin()+idx+1,newLayer);
+				layerBundle.insert(layerBundle.begin() + idx + 1,newLayer);
 				return true;
 		}
 		return false;
