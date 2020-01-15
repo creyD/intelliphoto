@@ -4,6 +4,7 @@
 
 IntelliInputDialog::IntelliInputDialog(QEventLoop* Loop, QString Title, QString Label, int value, int minValue, int maxValue, int step)
 {
+        this->valueInt = value;
 		createInputBox(Title, Label, value, minValue, maxValue, step);
 		createConnections(Loop);
 		setValuesOfPalette();
@@ -91,5 +92,5 @@ void IntelliInputDialog::slotCloseEvent(){
 }
 
 void IntelliInputDialog::slotEingabe(){
-        valueInt= QString("%1").arg(Input->value()).toInt();
+        valueInt = QString("%1").arg(Input->value()).toInt();
 }
