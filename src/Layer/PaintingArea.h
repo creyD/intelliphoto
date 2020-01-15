@@ -36,9 +36,6 @@ struct LayerObject {
  */
 class PaintingArea : public QWidget
 {
-// Declares our class as a QObject which is the base class
-// for all Qt objects
-// QObjects handle events
 Q_OBJECT
 friend IntelliTool;
 friend IntelliPhotoGui;
@@ -181,7 +178,6 @@ IntelliToolsettings Toolsettings;
 IntelliColorPicker colorPicker;
 
 public slots:
-// Events to handle
 /*!
  * \brief The slotActivateLayer method handles the event of selecting one layer as active
  * \param a - idx of the layer to be active
@@ -198,11 +194,9 @@ void mouseMoveEvent(QMouseEvent*event) override;
 void mouseReleaseEvent(QMouseEvent*event) override;
 
 void wheelEvent(QWheelEvent*event) override;
-// Updates the painting area where we are painting
+
 void paintEvent(QPaintEvent*event) override;
 
-// Makes sure the area we are drawing on remains
-// as large as the widget
 void resizeEvent(QResizeEvent*event) override;
 
 private:
@@ -226,7 +220,6 @@ void drawLayers(bool forSaving=false);
 
 void resizeLayer(QImage*image_res, const QSize &newSize);
 
-// Helper for Tool
 bool createTempTopLayer(int idx);
 };
 
