@@ -1,0 +1,8 @@
+# Run CPP Check
+echo "Running CPPCheck..."
+cppcheck --enable=all --output-file=cppcheck_errors.txt src/
+echo "CPPCheck finished"
+# Uncrustify Files
+echo "Running Uncrustify..."
+find . \( -name "*.cpp" -o -name "*.c" -o -name "*.h" \) -exec uncrustify -c conf/uncrustify.cfg --no-backup {}
+echo "Uncrustify finished."
