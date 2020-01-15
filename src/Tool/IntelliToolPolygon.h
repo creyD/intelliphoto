@@ -30,6 +30,11 @@ bool isDrawing;
 bool isInside;
 
 /*!
+ * \brief isSettingPolygon is the flag for calling the setPolygon method.
+ */
+bool isSettingPolygon;
+
+/*!
  * \brief PointIsNearStart true, when last click near startpoint, else false.
  */
 bool isPointNearStart;
@@ -43,8 +48,9 @@ public:
  * \brief A constructor setting the general paintingArea and colorPicker.
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
+ * \param isSettingPolygon - The flag for the set polygon method, standart is false
  */
-IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
+IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings, bool isSettingPolygon = false);
 /*!
  * \brief A Destructor.
  */
@@ -90,7 +96,6 @@ virtual void onWheelScrolled(int value) override;
  * \param y - The y coordinate of the new mouse position.
  */
 virtual void onMouseMoved(int x, int y) override;
-
 
 };
 
