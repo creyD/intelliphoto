@@ -1,4 +1,6 @@
 # Discarding local changes
+echo "This will discard all your uncommited changes and restore the last commit. Continue?"
+read
 git reset --hard
 # Run CPP Check
 echo "Running CPPCheck..."
@@ -23,7 +25,3 @@ echo "Directory cleaned."
 echo "Running Doxygen..."
 doxygen conf/intelliphoto_dox
 echo "Doxygen finished."
-# Building
-qmake src/IntelliPhoto.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug && make qmake_all
-make -j4 build-IntelliPhoto-Desktop_Qt_5_14_0_clang_64bit-Debug
-make clean -j4 build-IntelliPhoto-Desktop_Qt_5_14_0_clang_64bit-Debug
