@@ -1,6 +1,3 @@
-src/GUI/IntelliPhotoGui.cpp:83:15: style: Variable 'layer' is assigned a value that is never used. [unreadVariable]
-    int layer = paintingArea->addLayer(width,height,0,0);
-              ^
 src/IntelliHelper/IntelliColorPicker.cpp:4:3: performance: Variable 'firstColor' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
   firstColor = {255,0,0,255};
   ^
@@ -10,7 +7,7 @@ src/IntelliHelper/IntelliColorPicker.cpp:5:3: performance: Variable 'secondColor
 src/IntelliHelper/IntelliTriangulation.cpp:116:63: style: Parameter 'triangles' can be declared with const [constParameter]
 bool IntelliTriangulation::isInPolygon(std::vector<Triangle> &triangles, QPoint &point){
                                                               ^
-src/Layer/PaintingArea.cpp:335:22: style: Redundant condition: If 'activeLayer > 0', the comparison 'activeLayer != -1' is always true. [redundantCondition]
+src/Layer/PaintingArea.cpp:357:22: style: Redundant condition: If 'activeLayer > 0', the comparison 'activeLayer != -1' is always true. [redundantCondition]
   if(activeLayer!=-1 && activeLayer>0) {
                      ^
 src/Tool/IntelliTool.cpp:4:14: warning: Member variable 'IntelliTool::ActiveType' is not initialized in the constructor. [uninitMemberVar]
@@ -22,34 +19,28 @@ IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, In
 src/Tool/IntelliTool.cpp:4:14: warning: Member variable 'IntelliTool::Canvas' is not initialized in the constructor. [uninitMemberVar]
 IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings){
              ^
-src/Tool/IntelliToolCircle.cpp:43:9: style: Local variable 'yMin' shadows outer variable [shadowVariable]
+src/Tool/IntelliToolCircle.cpp:42:9: style: Local variable 'yMin' shadows outer variable [shadowVariable]
     int yMin = static_cast<int>(centerPoint.y()-sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
         ^
-src/Tool/IntelliToolCircle.cpp:19:7: note: Shadowed declaration
+src/Tool/IntelliToolCircle.cpp:18:7: note: Shadowed declaration
   int yMin, yMax, xMin, xMax;
       ^
-src/Tool/IntelliToolCircle.cpp:43:9: note: Shadow variable
+src/Tool/IntelliToolCircle.cpp:42:9: note: Shadow variable
     int yMin = static_cast<int>(centerPoint.y()-sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
         ^
-src/Tool/IntelliToolCircle.cpp:44:9: style: Local variable 'yMax' shadows outer variable [shadowVariable]
+src/Tool/IntelliToolCircle.cpp:43:9: style: Local variable 'yMax' shadows outer variable [shadowVariable]
     int yMax = static_cast<int>(centerPoint.y()+sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
         ^
-src/Tool/IntelliToolCircle.cpp:19:13: note: Shadowed declaration
+src/Tool/IntelliToolCircle.cpp:18:13: note: Shadowed declaration
   int yMin, yMax, xMin, xMax;
             ^
-src/Tool/IntelliToolCircle.cpp:44:9: note: Shadow variable
+src/Tool/IntelliToolCircle.cpp:43:9: note: Shadow variable
     int yMax = static_cast<int>(centerPoint.y()+sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
         ^
-src/Tool/IntelliToolCircle.cpp:16:13: style: Variable 'outer' is assigned a value that is never used. [unreadVariable]
-  int outer = radius+20;
-            ^
-src/Tool/IntelliToolLine.cpp:51:13: style: Variable 'c' is assigned a value that is never used. [unreadVariable]
-      int c = lineStartingPoint.y()-lineStartingPoint.x()*m;
-            ^
 src/Tool/IntelliToolPolygon.h:25:6: warning: The class 'IntelliToolPolygon' defines member variable with name 'isDrawing' also defined in its parent class 'IntelliTool'. [duplInheritedMember]
 bool isDrawing;
      ^
-src/Tool/IntelliTool.h:68:6: note: Parent variable 'IntelliTool::isDrawing'
+src/Tool/IntelliTool.h:69:6: note: Parent variable 'IntelliTool::isDrawing'
 bool isDrawing = false;
      ^
 src/Tool/IntelliToolPolygon.h:25:6: note: Derived variable 'IntelliToolPolygon::isDrawing'
@@ -58,34 +49,34 @@ bool isDrawing;
 src/GUI/IntelliPhotoGui.cpp:23:0: style: The function 'closeEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:271:0: style: The function 'mouseMoveEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:286:0: style: The function 'mouseMoveEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:255:0: style: The function 'mousePressEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:267:0: style: The function 'mousePressEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:281:0: style: The function 'mouseReleaseEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:299:0: style: The function 'mouseReleaseEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:307:0: style: The function 'paintEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:329:0: style: The function 'paintEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:318:0: style: The function 'resizeEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:340:0: style: The function 'resizeEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:323:0: style: The function 'resizeLayer' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:345:0: style: The function 'resizeLayer' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:175:0: style: The function 'slotActivateLayer' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:187:0: style: The function 'slotActivateLayer' is never used. [unusedFunction]
 
 ^
-src/GUI/IntelliPhotoGui.cpp:157:0: style: The function 'slotClearActiveLayer' is never used. [unusedFunction]
+src/GUI/IntelliPhotoGui.cpp:162:0: style: The function 'slotClearActiveLayer' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:83:0: style: The function 'slotDeleteActiveLayer' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:95:0: style: The function 'slotDeleteActiveLayer' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:294:0: style: The function 'wheelEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:314:0: style: The function 'wheelEvent' is never used. [unusedFunction]
 
 ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
