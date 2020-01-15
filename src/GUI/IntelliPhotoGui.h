@@ -105,8 +105,6 @@ bool saveFile(const QByteArray &fileFormat);
 
 void setDefaultToolValue();
 
-int getReturnValueOfDialog();
-
 // What we'll draw on
 PaintingArea* paintingArea;
 QEventLoop Loop;

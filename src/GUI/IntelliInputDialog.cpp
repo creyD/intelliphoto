@@ -11,6 +11,11 @@ IntelliInputDialog::IntelliInputDialog(QEventLoop* Loop, QString Title, QString 
         Loop->exec();
 }
 
+int IntelliInputDialog::getInt(QEventLoop* Loop, QString Title, QString Label, int value, int minValue, int maxValue, int step){
+    IntelliInputDialog dialog(Loop, Title, Label, value, minValue, maxValue, step);
+    return dialog.valueInt;
+}
+
 void IntelliInputDialog::createInputBox(QString Title, QString Label, int value, int minValue, int maxValue, int step){
         this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 		if(Title == nullptr) {
@@ -86,15 +91,5 @@ void IntelliInputDialog::slotCloseEvent(){
 }
 
 void IntelliInputDialog::slotEingabe(){
-        QFile File("test.txt");
-
-        if(!File.open(QIODevice::WriteOnly | QIODevice::Text)){
-            qDebug() << "Error Write to File";
-        }
-        std::string test = QString("%1").arg(Input->value()).toStdString();
-        const char* p = test.c_str();
-        File.write(p);
-        File.close();
-
-        this->close();
+        valueInt= QString("%1").arg(Input->value()).toInt();
 }
