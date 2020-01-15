@@ -1,56 +1,57 @@
 #include "IntelliInputDialog.h"
 #include <QFile>
-IntelliInputDialog::IntelliInputDialog(QEventLoop* Loop, IntelliInputDialog* Dialog, QString Title, QString Label, int value, int minValue, int maxValue, int step)
+
+
+IntelliInputDialog::IntelliInputDialog(QEventLoop* Loop, QString Title, QString Label, int value, int minValue, int maxValue, int step)
 {
-        this->Dialog = Dialog;
 		createInputBox(Title, Label, value, minValue, maxValue, step);
 		createConnections(Loop);
 		setValuesOfPalette();
 		setInputBoxStyle();
+        Loop->exec();
 }
 
 void IntelliInputDialog::createInputBox(QString Title, QString Label, int value, int minValue, int maxValue, int step){
-		this->Dialog = new QDialog();
-		Dialog->setWindowFlags(Dialog->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+        this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 		if(Title == nullptr) {
-				Dialog->setWindowTitle("Input Box");
+                this->setWindowTitle("Input Box");
 		}
 		else{
-				Dialog->setWindowTitle(Title);
+                this->setWindowTitle(Title);
 		}
-		Layout = new QGridLayout();
-		ButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+        this->Layout = new QGridLayout();
+        this->ButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
-		InputLabel = new QLabel();
+        this->InputLabel = new QLabel();
 		if(Label == nullptr) {
-				InputLabel->setText("Width:");
+                this->InputLabel->setText("Width:");
 		}
 		else{
-				InputLabel->setText(Label);
+                this->InputLabel->setText(Label);
 		}
-		InputLabel->setFixedSize(Linesize);
+        this->InputLabel->setFixedSize(Linesize);
 
-		Input = new QSpinBox();
-		Input->setFixedSize(Linesize);
-		Input->setRange(minValue,maxValue);
-		Input->setValue(value);
+        this->Input = new QSpinBox();
+        this->Input->setFixedSize(Linesize);
+        this->Input->setRange(minValue,maxValue);
+        this->Input->setValue(value);
 
-		okButton = ButtonBox->button(QDialogButtonBox::Ok);
-		okButton->setFixedSize(Buttonsize);
-		okButton->setAutoDefault(false);
-		okButton->setDefault(false);
+        this->okButton = ButtonBox->button(QDialogButtonBox::Ok);
+        this->okButton->setFixedSize(Buttonsize);
+        this->okButton->setAutoDefault(false);
+        this->okButton->setDefault(false);
 
-		cancelButton = ButtonBox->button(QDialogButtonBox::Cancel);
-		cancelButton->setFixedSize(Buttonsize);
-		cancelButton->setAutoDefault(false);
-		cancelButton->setDefault(false);
+        this->cancelButton = ButtonBox->button(QDialogButtonBox::Cancel);
+        this->cancelButton->setFixedSize(Buttonsize);
+        this->cancelButton->setAutoDefault(false);
+        this->cancelButton->setDefault(false);
 
 		Layout->addWidget(InputLabel,1,1,1,1);
 		Layout->addWidget(Input,2,1,1,1);
 		Layout->addWidget(ButtonBox,3,1,1,1);
-		Dialog->setLayout(Layout);
-		Dialog->resize(172,94);
-		Dialog->show();
+        this->setLayout(Layout);
+        this->resize(172,94);
+        this->show();
 }
 
 void IntelliInputDialog::createConnections(QEventLoop* Loop){
@@ -65,7 +66,7 @@ void IntelliInputDialog::setInputBoxStyle(){
 		Input->setPalette(Palette);
 		okButton->setPalette(Palette);
 		cancelButton->setPalette(Palette);
-		Dialog->setStyleSheet("background-color:rgb(64,64,64)");
+        this->setStyleSheet("background-color:rgb(64,64,64)");
 }
 
 void IntelliInputDialog::setValuesOfPalette(){
@@ -81,7 +82,7 @@ void IntelliInputDialog::setValuesOfPalette(){
 }
 
 void IntelliInputDialog::slotCloseEvent(){
-		Dialog->close();
+        this->close();
 }
 
 void IntelliInputDialog::slotEingabe(){
@@ -95,10 +96,5 @@ void IntelliInputDialog::slotEingabe(){
         File.write(p);
         File.close();
 
-		Dialog->close();
-}
-
-void IntelliInputDialog::getIntInput(QEventLoop* Loop, IntelliInputDialog* Dialog, QString Title, QString Label, int value, int minValue, int maxValue, int step){
-        this->Dialog = new IntelliInputDialog(Loop, Dialog, Title, Label, value, minValue, maxValue, step);
-        Loop->exec();
+        this->close();
 }

@@ -33,7 +33,7 @@ public:
 /*!
  * \brief The IntelliPhotoGui method is the constructor and is used to create a new instance of the main program window
  */
-IntelliPhotoGui(IntelliInputDialog* InputDialog);
+IntelliPhotoGui();
 
 void UpdateGui();
 
@@ -109,7 +109,6 @@ int getReturnValueOfDialog();
 
 // What we'll draw on
 PaintingArea* paintingArea;
-IntelliInputDialog* InputDialog;
 QEventLoop Loop;
 
 const QSize Buttonsize = QSize(35,35);

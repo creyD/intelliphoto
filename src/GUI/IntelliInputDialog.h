@@ -7,9 +7,8 @@ class IntelliInputDialog : public QDialog
 {
 Q_OBJECT
 public:
-IntelliInputDialog(QEventLoop* Loop = nullptr, IntelliInputDialog* Dialog = nullptr, QString Title = nullptr, QString Label = nullptr, int value = 5, int minValue = -2147483647, int maxValue = 2147483647, int step = 1);
+IntelliInputDialog(QEventLoop* Loop = nullptr, QString Title = nullptr, QString Label = nullptr, int value = 5, int minValue = -2147483647, int maxValue = 2147483647, int step = 1);
 
-void getIntInput(QEventLoop* Loop = nullptr, IntelliInputDialog* Dialog = nullptr, QString Title = "InputBox", QString Label = "Weight:", int value = 0, int minValue = -2147483647, int maxValue = 2147483647, int step = 1);
 
 public slots:
 void slotCloseEvent();
@@ -20,8 +19,6 @@ void createInputBox(QString Title = nullptr, QString Label = nullptr, int value 
 void createConnections(QEventLoop* Loop = nullptr);
 void setValuesOfPalette();
 void setInputBoxStyle();
-
-QDialog* Dialog;
 
 QGridLayout* Layout;
 QDialogButtonBox* ButtonBox;
