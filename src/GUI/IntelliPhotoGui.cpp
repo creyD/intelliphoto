@@ -85,34 +85,34 @@ void IntelliPhotoGui::slotCreateNewRasterLayer(){
 		                                  200,1, 500, 1, &ok2);
 		// Create New Layer
 		if (ok1&&ok2) {
-                paintingArea->addLayer(width,height,0,0,IntelliImage::ImageType::RASTERIMAGE);
+				paintingArea->addLayer(width,height,0,0,IntelliImage::ImageType::RASTERIMAGE);
 				UpdateGui();
 		}
 }
 
 // Opens a dialog that allows the user to create a New SHAPED Layer
 void IntelliPhotoGui::slotCreateNewShapedLayer(){
-        // Stores button value
-        bool ok1, ok2;
+		// Stores button value
+		bool ok1, ok2;
 
-        // "New Layer" is the title of the window
-        // the next tr is the text to display
-        // Define the standard Value, min, max, step and ok button
-        QInputDialog Input;
-        Input.setPalette(Palette);
+		// "New Layer" is the title of the window
+		// the next tr is the text to display
+		// Define the standard Value, min, max, step and ok button
+		QInputDialog Input;
+		Input.setPalette(Palette);
 
-        int width = Input.getInt(this, tr("New Layer"),
-                                 tr("Width:"),
-                                 200,1, 500, 1, &ok1);
+		int width = Input.getInt(this, tr("New Layer"),
+		                         tr("Width:"),
+		                         200,1, 500, 1, &ok1);
 
-        int height = QInputDialog::getInt(this, tr("New Layer"),
-                                          tr("Height:"),
-                                          200,1, 500, 1, &ok2);
-        // Create New Layer
-        if (ok1&&ok2) {
-                paintingArea->addLayer(width,height,0,0,IntelliImage::ImageType::SHAPEDIMAGE);
-                UpdateGui();
-        }
+		int height = QInputDialog::getInt(this, tr("New Layer"),
+		                                  tr("Height:"),
+		                                  200,1, 500, 1, &ok2);
+		// Create New Layer
+		if (ok1&&ok2) {
+				paintingArea->addLayer(width,height,0,0,IntelliImage::ImageType::SHAPEDIMAGE);
+				UpdateGui();
+		}
 }
 
 // Opens a dialog that allows the user to delete a Layer
@@ -155,21 +155,21 @@ void IntelliPhotoGui::slotSetActiveAlpha(){
 }
 
 void IntelliPhotoGui::slotSetPolygon(){
-        // Stores button value
-        bool ok1;
+		// Stores button value
+		bool ok1;
 
-        // "Layer to set on" is the title of the window
-        // the next tr is the text to display
-        // Define the standard Value, min, max, step and ok button
-        int layer = QInputDialog::getInt(this, tr("Layer to set on"),
-                                         tr("Layer:"),
-                                         1,1,500,1, &ok1);
+		// "Layer to set on" is the title of the window
+		// the next tr is the text to display
+		// Define the standard Value, min, max, step and ok button
+		int layer = QInputDialog::getInt(this, tr("Layer to set on"),
+		                                 tr("Layer:"),
+		                                 1,1,500,1, &ok1);
 
-        if (ok1)
-        {
-                paintingArea->setPolygon(layer-1);
-                UpdateGui();
-        }
+		if (ok1)
+		{
+				paintingArea->setPolygon(layer-1);
+				UpdateGui();
+		}
 }
 
 void IntelliPhotoGui::slotPositionMoveUp(){
@@ -357,16 +357,16 @@ void IntelliPhotoGui::createActions(){
 		actionOpen->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
 		connect(actionOpen, SIGNAL(triggered()), this, SLOT(slotOpen()));
 
-        // Create New RASTER Layer action and tie to IntelliPhotoGui::newLayer()
-        actionCreateNewRasterLayer = new QAction(tr("&Raster Image"), this);
-        actionCreateNewRasterLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
-        connect(actionCreateNewRasterLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewRasterLayer()));
+		// Create New RASTER Layer action and tie to IntelliPhotoGui::newLayer()
+		actionCreateNewRasterLayer = new QAction(tr("&Raster Image"), this);
+		actionCreateNewRasterLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
+		connect(actionCreateNewRasterLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewRasterLayer()));
 
 
-        // Create New SHAPED Layer action and tie to IntelliPhotoGui::newLayer()
-        actionCreateNewShapedLayer = new QAction(tr("&Shaped Image"), this);
-        actionCreateNewShapedLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N + Qt::ALT));
-        connect(actionCreateNewShapedLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewShapedLayer()));
+		// Create New SHAPED Layer action and tie to IntelliPhotoGui::newLayer()
+		actionCreateNewShapedLayer = new QAction(tr("&Shaped Image"), this);
+		actionCreateNewShapedLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N + Qt::ALT));
+		connect(actionCreateNewShapedLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewShapedLayer()));
 
 		// Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
 		actionDeleteLayer = new QAction(tr("&Delete Layer..."), this);
@@ -381,9 +381,9 @@ void IntelliPhotoGui::createActions(){
 		actionSetActiveAlpha->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_A));
 		connect(actionSetActiveAlpha, SIGNAL(triggered()), this, SLOT(slotSetActiveAlpha()));
 
-        actionSetPolygon = new QAction(tr("&set new Polygondata"), this);
-        actionSetPolygon->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_P));
-        connect(actionSetPolygon, SIGNAL(triggered()), this, SLOT(slotSetPolygon()));
+		actionSetPolygon = new QAction(tr("&set new Polygondata"), this);
+		actionSetPolygon->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_P));
+		connect(actionSetPolygon, SIGNAL(triggered()), this, SLOT(slotSetPolygon()));
 
 		actionMovePositionUp = new QAction(tr("&move Up"), this);
 		actionMovePositionUp->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Up));
@@ -534,17 +534,17 @@ void IntelliPhotoGui::createMenus(){
 		renderMenu->addAction(actionUpdateRenderSettingsOn);
 		renderMenu->addAction(actionUpdateRenderSettingsOff);
 
-        //Attach all Layer Creations to Menu
-        layerCreationMenu = new QMenu(tr("&Create new Layer"), this);
-        layerCreationMenu->addAction(actionCreateNewRasterLayer);
-        layerCreationMenu->addAction(actionCreateNewShapedLayer);
+		//Attach all Layer Creations to Menu
+		layerCreationMenu = new QMenu(tr("&Create new Layer"), this);
+		layerCreationMenu->addAction(actionCreateNewRasterLayer);
+		layerCreationMenu->addAction(actionCreateNewShapedLayer);
 		// Attach all actions to Layer
 		layerMenu = new QMenu(tr("&Layer"), this);
-        layerMenu->addMenu(layerCreationMenu);
+		layerMenu->addMenu(layerCreationMenu);
 		layerMenu->addSeparator();
 		layerMenu->addAction(actionSetActiveAlpha);
 		layerMenu->addAction(actionSetActiveLayer);
-        layerMenu->addAction(actionSetPolygon);
+		layerMenu->addAction(actionSetPolygon);
 		layerMenu->addSeparator();
 		layerMenu->addAction(actionMovePositionUp);
 		layerMenu->addAction(actionMovePositionDown);
@@ -759,7 +759,7 @@ void IntelliPhotoGui::setIntelliStyle(){
 		this->helpMenu->setPalette(Palette);
 		this->renderMenu->setPalette(Palette);
 		this->toolMenu->setPalette(Palette);
-        this->layerCreationMenu->setPalette(Palette);
+		this->layerCreationMenu->setPalette(Palette);
 		this->layerMenu->setPalette(Palette);
 		this->colorMenu->setPalette(Palette);
 		this->toolCreationMenu->setPalette(Palette);

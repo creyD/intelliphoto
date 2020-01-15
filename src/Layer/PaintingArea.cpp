@@ -24,7 +24,7 @@ PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		this->Tool = nullptr;
 		this->setLayerDimensions(maxWidth, maxHeight);
 
-        activeLayer=-1;
+		activeLayer=-1;
 }
 
 PaintingArea::~PaintingArea(){
@@ -53,7 +53,7 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 
 int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, IntelliImage::ImageType type){
 		LayerObject newLayer;
-        updateTools();
+		updateTools();
 		newLayer.width = width;
 		newLayer.height = height;
 		newLayer.widthOffset = widthOffset;
@@ -71,9 +71,9 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 
 
 void PaintingArea::deleteLayer(int idx, bool isTool){
-        if(!isTool){
-                updateTools();
-        }
+		if(!isTool) {
+				updateTools();
+		}
 		if(idx<static_cast<int>(layerBundle.size())) {
 				this->layerBundle.erase(layerBundle.begin()+idx);
 				if(activeLayer>=idx) {
@@ -93,8 +93,8 @@ void PaintingArea::slotDeleteActiveLayer(){
 }
 
 void PaintingArea::setLayerActive(int idx){
-        updateTools();
-        if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
+		updateTools();
+		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
 				this->activeLayer=idx;
 		}
 }
@@ -105,13 +105,13 @@ void PaintingArea::setLayerAlpha(int idx, int alpha){
 		}
 }
 void PaintingArea::setPolygon(int idx){
-        if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-                 if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==IntelliImage::ImageType::SHAPEDIMAGE){
-                     delete this->Tool;
-                     this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
-                     isSettingPolygon = true;
-                 }
-        }
+		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
+				if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==IntelliImage::ImageType::SHAPEDIMAGE) {
+						delete this->Tool;
+						this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
+						isSettingPolygon = true;
+				}
+		}
 }
 
 // Used to load the image and place it in the widget
@@ -151,13 +151,13 @@ bool PaintingArea::save(const QString &filePath, const char*fileFormat){
 }
 
 void PaintingArea::movePositionActive(int x, int y){
-        updateTools();
+		updateTools();
 		layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
 }
 
 void PaintingArea::moveActiveLayer(int idx){
-        updateTools();
+		updateTools();
 		if(idx==1) {
 				this->selectLayerUp();
 		}else if(idx==-1) {
@@ -166,8 +166,8 @@ void PaintingArea::moveActiveLayer(int idx){
 }
 
 void PaintingArea::slotActivateLayer(int a){
-        updateTools();
-        if(a>=0 && a < static_cast<int>(layerBundle.size())) {
+		updateTools();
+		if(a>=0 && a < static_cast<int>(layerBundle.size())) {
 				this->setLayerActive(a);
 		}
 }
@@ -322,16 +322,16 @@ void PaintingArea::resizeLayer(QImage*image_res, const QSize &newSize){
 }
 
 void PaintingArea::selectLayerUp(){
-        updateTools();
-        if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size()-1) {
+		updateTools();
+		if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size()-1) {
 				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer+1)]);
 				activeLayer++;
 		}
 }
 
 void PaintingArea::selectLayerDown(){
-        updateTools();
-        if(activeLayer!=-1 && activeLayer>0) {
+		updateTools();
+		if(activeLayer!=-1 && activeLayer>0) {
 				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer-1)]);
 				activeLayer--;
 		}
@@ -408,35 +408,35 @@ IntelliImage* PaintingArea::getImageOfActiveLayer(){
 		if(activeLayer<0) {
 				return nullptr;
 		}
-        return layerBundle[static_cast<size_t>(activeLayer)].image;
+		return layerBundle[static_cast<size_t>(activeLayer)].image;
 }
 
 QImage PaintingArea::getImageDataOfActiveLayer(){
-        QImage returnImage;
-        if(activeLayer<0) {
-                returnImage = QImage(QSize(10,10),QImage::Format_ARGB32);
-                returnImage.fill(QColor(255,255,255,255));
-        }
-        else{
-                returnImage = layerBundle[static_cast<size_t>(activeLayer)].image->getImageData();
-                if(renderSettings.isFastRenderering()){
-                    returnImage = returnImage.convertToFormat(QImage::Format_ARGB32);
-                }
-        }
-        return returnImage;
+		QImage returnImage;
+		if(activeLayer<0) {
+				returnImage = QImage(QSize(10,10),QImage::Format_ARGB32);
+				returnImage.fill(QColor(255,255,255,255));
+		}
+		else{
+				returnImage = layerBundle[static_cast<size_t>(activeLayer)].image->getImageData();
+				if(renderSettings.isFastRenderering()) {
+						returnImage = returnImage.convertToFormat(QImage::Format_ARGB32);
+				}
+		}
+		return returnImage;
 }
 
 void PaintingArea::updateTools(){
-    if(Tool!=nullptr) {
-            if(Tool->getIsDrawing()){
-                IntelliTool* temp = copyActiveTool();
-                delete this->Tool;
-                this->Tool = temp;
-            }
-            if(isSettingPolygon){
-                delete this->Tool;
-                this->Tool = nullptr;
-                isSettingPolygon = false;
-            }
-    }
+		if(Tool!=nullptr) {
+				if(Tool->getIsDrawing()) {
+						IntelliTool* temp = copyActiveTool();
+						delete this->Tool;
+						this->Tool = temp;
+				}
+				if(isSettingPolygon) {
+						delete this->Tool;
+						this->Tool = nullptr;
+						isSettingPolygon = false;
+				}
+		}
 }

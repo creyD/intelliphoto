@@ -32,8 +32,8 @@ void IntelliTool::onMouseLeftPressed(int x, int y){
 
 void IntelliTool::onMouseLeftReleased(int x, int y){
 		if(isDrawing) {
-                isDrawing=false;
-                this->mergeToolLayer();
+				isDrawing=false;
+				this->mergeToolLayer();
 				this->deleteToolLayer();
 				activeLayer->image->calculateVisiblity();
 
@@ -63,32 +63,32 @@ void IntelliTool::mergeToolLayer(){
 		QColor clr_1;
 		QImage updatedImage = activeLayer->image->getImageData();
 
-        for(int y=0; y<activeLayer->height; y++) {
-                for(int x=0; x<activeLayer->width; x++) {
-                        clr_0=updatedImage.pixelColor(x,y);
-                        clr_1=Canvas->image->imageData.pixelColor(x,y);
-                        float t = static_cast<float>(clr_1.alpha())/255.f;
-                        int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
-                        int g =static_cast<int>(static_cast<float>(clr_1.green())*(t)+static_cast<float>(clr_0.green())*(1.f-t)+0.5f);
-                        int b =static_cast<int>(static_cast<float>(clr_1.blue())*(t)+static_cast<float>(clr_0.blue()*(1.f-t))+0.5f);
-                        int a =std::min(clr_0.alpha()+clr_1.alpha(), 255);
-                        clr_0.setRed(r);
-                        clr_0.setGreen(g);
-                        clr_0.setBlue(b);
-                        clr_0.setAlpha(a);
+		for(int y=0; y<activeLayer->height; y++) {
+				for(int x=0; x<activeLayer->width; x++) {
+						clr_0=updatedImage.pixelColor(x,y);
+						clr_1=Canvas->image->imageData.pixelColor(x,y);
+						float t = static_cast<float>(clr_1.alpha())/255.f;
+						int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
+						int g =static_cast<int>(static_cast<float>(clr_1.green())*(t)+static_cast<float>(clr_0.green())*(1.f-t)+0.5f);
+						int b =static_cast<int>(static_cast<float>(clr_1.blue())*(t)+static_cast<float>(clr_0.blue()*(1.f-t))+0.5f);
+						int a =std::min(clr_0.alpha()+clr_1.alpha(), 255);
+						clr_0.setRed(r);
+						clr_0.setGreen(g);
+						clr_0.setBlue(b);
+						clr_0.setAlpha(a);
 
-                        updatedImage.setPixelColor(x, y, clr_0);
-                }
-        }
-        activeLayer->image->setImageData(updatedImage);
-        if(Canvas->image->getPolygonData().size() > 0){
-           activeLayer->image->setPolygon(Canvas->image->getPolygonData());
-        }
+						updatedImage.setPixelColor(x, y, clr_0);
+				}
+		}
+		activeLayer->image->setImageData(updatedImage);
+		if(Canvas->image->getPolygonData().size() > 0) {
+				activeLayer->image->setPolygon(Canvas->image->getPolygonData());
+		}
 		Area->DummyGui->UpdateGui();
 }
 
 void IntelliTool::deleteToolLayer(){
-        Area->deleteLayer(Area->activeLayer+1, true);
+		Area->deleteLayer(Area->activeLayer+1, true);
 		this->Canvas=nullptr;
 }
 
