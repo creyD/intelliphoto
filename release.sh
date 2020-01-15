@@ -1,3 +1,5 @@
+# Discarding local changes
+git reset --hard
 # Run CPP Check
 echo "Running CPPCheck..."
 cppcheck --enable=all --output-file=cppcheck_errors.txt src/
@@ -22,5 +24,6 @@ echo "Running Doxygen..."
 doxygen conf/intelliphoto_dox
 echo "Doxygen finished."
 # Building
-qmake src/IntelliPhoto.pro -spec macx-clang CONFIG+=x86_64 CONFIG+=qtquickcompiler && make qmake_all
-make clean -j4 build-IntelliPhoto-Desktop_Qt_5_14_0_clang_64bit-Release
+qmake src/IntelliPhoto.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug && make qmake_all
+make -j4 build-IntelliPhoto-Desktop_Qt_5_14_0_clang_64bit-Debug
+make clean -j4 build-IntelliPhoto-Desktop_Qt_5_14_0_clang_64bit-Debug
