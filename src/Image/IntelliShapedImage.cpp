@@ -27,6 +27,9 @@ IntelliImage* IntelliShapedImage::getDeepCopy(){
 }
 
 void IntelliShapedImage::calculateVisiblity(){
+		if(polygonData.size()<2) {
+				return;
+		}
 		if(fastRenderering) {
 				this->imageData = imageData.convertToFormat(QImage::Format_ARGB32);
 		}
@@ -91,6 +94,19 @@ void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
 						this->polygonData.push_back(QPoint(element.x(), element.y()));
 				}
 				triangles = IntelliTriangulation::calculateTriangles(polygonData);
+				if(fastRenderering) {
+						imageData = imageData.convertToFormat(QImage::Format_ARGB32);
+				}
+				for(int y = 0; y<imageData.height(); y++) {
+						for(int x = 0; x<imageData.width(); x++) {
+								QColor clr = imageData.pixelColor(x,y);
+								clr.setAlpha(255);
+								imageData.setPixelColor(x,y,clr);
+						}
+				}
+				if(fastRenderering) {
+						imageData = imageData.convertToFormat(QImage::Format_Indexed8);
+				}
 		}
 		calculateVisiblity();
 		return;

@@ -36,6 +36,7 @@ void IntelliTool::onMouseLeftReleased(int x, int y){
 				this->mergeToolLayer();
 				this->deleteToolLayer();
 				activeLayer->image->calculateVisiblity();
+
 		}
 }
 
@@ -81,11 +82,14 @@ void IntelliTool::mergeToolLayer(){
 				}
 		}
 		activeLayer->image->setImageData(updatedImage);
+		if(Canvas->image->getPolygonData().size() > 0) {
+				activeLayer->image->setPolygon(Canvas->image->getPolygonData());
+		}
 		Area->DummyGui->UpdateGui();
 }
 
 void IntelliTool::deleteToolLayer(){
-		Area->deleteLayer(Area->activeLayer+1);
+		Area->deleteLayer(Area->activeLayer+1, true);
 		this->Canvas=nullptr;
 }
 
