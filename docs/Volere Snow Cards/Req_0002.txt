@@ -3,25 +3,25 @@ Req-ID:
 Req-Type:
     Funktional
 Events/UCs:
-    -Bearbeitung des Bildes mit einer Betriebssystem unterstützen Eingabemöglichkeit, zum Beispiel Maus oder Stift
-    -Bearbeitung mittels verschiedener Zeichen-Tools
-    -Freiwählbare Farbe aus dem möglichen Farbbereich
+    - Bearbeitung des Bildes mit einer Betriebssystem unterstützen Eingabemöglichkeit, zum Beispiel Maus oder Stift
+    - Bearbeitung mittels verschiedener Zeichen-Tools
+    - Freiwählbare Farbe aus dem möglichen Farbbereich
 Description:
-    -Ein Farbwert, auch Transparent, welcher durch die genutzte Codierung (siehe Req_0001) darstellbar sein. Dies soll mittels Tools
-     gesetzt werden können, wobei diese spezifizieren was "gesetzt" bedeutet.
-    -Tools:
+    - Ein Farbwert, auch Transparent, welcher durch die genutzte Codierung (siehe Req_0001) darstellbar sein. Dies soll mittels Tools
+      gesetzt werden können, wobei diese spezifizieren was "gesetzt" bedeutet.
+    - Tools:
         Pinsel:
-            -Der Pinsel ist ein Tool, welches um seinen Mittelpunkt alles in einem gewissen Pixelradius einfärbt.
-             Der Pixelradius geht dabei von 1-Pixel bis zu 10-Pixel.
+            - Der Pinsel ist ein Tool, welches um seinen Mittelpunkt alles in einem gewissen Pixelradius einfärbt.
+              Der Pixelradius geht dabei von 1-Pixel bis zu 10-Pixel.
         Forms:
-            -Kreis:
+            - Kreis:
                 Das Tool Kreis, soll es ermöglichen einen Kreis in einer gewählten Farbe aufzuspannen.
                 Dabei wird am Mittelpunkt angesetzt und dann zu einem beliebigen Punkt auf dem Kreis gezogen, die restlichen Punkte werden dann
                 mit dem selben Radius gefunden.
                 Das Rechteck besitzt 2 Farbattribute, den Rand und die Füllung. Der Rand kann im Bezug auf Breite und Farbe eingestellt werden.
                 Die Füllung ist innerhalb der Fläche, welche vom Rand aufgespannt wird, und kann im Bezug auf die Farbe und die Transparenz
                 eingestellt werden.
-            -Linie:
+            - Linie:
                 Das Tool Formen (Linie), soll es einem ermöglichen eine Linie in der gewählten Farbe zwischen 2 Punkten zu
                 ziehen. Dabei wird am ersten Punkt angesetzt und zum Zielpunkt gezogen, dabei verändert sich die Linie live.
                 Sobald das Eingabegerät getogglet wird, so wird die aktuelle Stelle als Endpunkt angenommen. Zwischen 
@@ -31,7 +31,7 @@ Description:
                     -gestrichelte Linie (auf der Linie werden nur Striche in regelmäßigen Abständen gezeichnet)
                     -gepunktete Linie (auf der Linie wird punktweise zwischen Farbig und Transparent alterniert)
                 Die Linie kann mittels dem Breite-Attribut verändert werden (Breite zwischen 1 und 10 Pixel)
-            -Rechteck:
+            - Rechteck:
                 Das Tool Formen (Rechteck), soll es einem ermöglichen ein Rechteck in ein einer gewählten Farbe aufzuspannen.
                 Dabei wird am ersten Punkt angesetzt und zum Zielpunkt gezogen. Dabei verändert sich das Rechteck live.
                 Sobald das Eingabegerät getogglet wird, so wird die aktuelle Stelle als Endpunkt angenommen. Zwischen Start und Endpunkt
@@ -40,26 +40,10 @@ Description:
                 im Bezug auf Breite und Farbe eingestellt werden. Die Füllung ist innerhalb der Fläche, welche vom Rand aufgespannt wird,
                 und kann im Bezug auf die Farbe und die Transparenz eingestellt werden.
         FloodFill:
-            -Das Floodfill Tool, bei diesem wird ein Pixel ausgewählt. Alle Pixel die mit diesem Pixel in einer Äquivalenzklasse
+            - Das Floodfill Tool, bei diesem wird ein Pixel ausgewählt. Alle Pixel die mit diesem Pixel in einer Äquivalenzklasse
             im Bezug auf Farbe und Nachbarschafts-Relation stehen, werden in die gewählte Farbe eingefärbt.
         Einfarbig:
-            -Das Einfarbig Tool färbt das gesamte Bild in die gewählte Farbe ein.
-        Korrektur:
-            -Die Korrektur Tool ermöglicht das Anpassen verschiedener Bildwerte
-            -Helligkeit:
-                Das Tool Korrektur (Helligkeit), soll es ermöglichen die Helligkeit des Bildes anzupassen
-            -Farbton:
-                Das Tool Korrektur (Farbton), soll es ermöglichen den Farbton des Bildes anzupassen
-        Gradiation:
-            -Das Gradiations Tool soll es ermöglichen Farbverläufe mit einer Anfangs- und Endfarbe zu erstellen, zwischen welchen linear interpoliert wird.
-        Selektion:
-            -Das Selektionstool soll es ermöglichen ein Rechteck an Pixeln auszuwählen welche für die Bearbeitung durch andere Tools
-             berücksichtigt werden sollen.
-             Dabei wird am ersten Punkt angesetzt und zum Zielpunkt gezogen. Dabei verändert sich das Rechteck live.
-             Sobald das Eingabegerät getogglet wird, so wird die aktuelle Stelle als Endpunkt angenommen. Zwischen Start und Endpunkt
-             wird das Rechteck aufgespannt.
-        Cut:
-            -Das Cut Tool ermöglicht das Ausschneiden der selektierten Pixel
+            - Das Einfarbig Tool färbt das gesamte Bild in die gewählte Farbe ein.
 Originator:
     Jonas Mucke
 Fit Criterion:
@@ -72,7 +56,9 @@ Priority:
 Support Material:
     Ubungsblat_01.pdf
 Conflicts:
-    - Keine bekannten Konflikte, Stand: 17.12.2019
+    - Keine bekannten Konflikte, Stand: 16.01.2019
 History:
     - Erstellt am 30.10.2019 um 22:10, von Jonas Mucke
     - Aktualisiert am 17.12.2019, von Paul Norberger
+    - Aktualisiert am 16.01.2019, von Paul Norberger, Gradiations-Tool, Cuttool, Selektionstool, Korrekturtool
+      wurde gestrichen
