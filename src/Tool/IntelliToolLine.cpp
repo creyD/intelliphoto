@@ -49,7 +49,7 @@ void IntelliToolLine::onMouseMoved(int x, int y){
 						QPoint p2 =lineStartingPoint.x() < next.x() ? next : lineStartingPoint;
 						int m = static_cast<int>(static_cast<float>(p2.y()-p1.y())/static_cast<float>(p2.x()-p1.x())+0.5f);
 						int c = lineStartingPoint.y()-lineStartingPoint.x()*m;
-                        //TODO implement dotted algorithm
+						//TODO implement dotted algorithm
 						break;
 				}
 		}

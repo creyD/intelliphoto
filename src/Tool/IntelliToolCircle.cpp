@@ -26,7 +26,7 @@ void IntelliToolCircle::drawCircle(int radius){
 		}
 
 		//TODO implement circle drawing algorithm bresenham
-        radius = static_cast<int>(radius +(Toolsettings->getLineWidth()/2.));
+		radius = static_cast<int>(radius +(Toolsettings->getLineWidth()/2.));
 		yMin = (centerPoint.y()-radius);
 		yMax = (centerPoint.y()+radius);
 		for(int i=yMin; i<=yMax; i++) {
@@ -56,12 +56,12 @@ void IntelliToolCircle::onMouseRightReleased(int x, int y){
 
 void IntelliToolCircle::onMouseLeftPressed(int x, int y){
 		IntelliTool::onMouseLeftPressed(x,y);
-        if(this->isDrawing){
-            this->centerPoint=QPoint(x,y);
-            int radius = 1;
-            drawCircle(radius);
-            Canvas->image->calculateVisiblity();
-        }
+		if(this->isDrawing) {
+				this->centerPoint=QPoint(x,y);
+				int radius = 1;
+				drawCircle(radius);
+				Canvas->image->calculateVisiblity();
+		}
 }
 
 void IntelliToolCircle::onMouseLeftReleased(int x, int y){

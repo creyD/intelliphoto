@@ -25,7 +25,7 @@ class IntelliColorPicker;
  * \brief The IntelliPhotoGui class handles the graphical user interface for the intelliPhoto program
  */
 class IntelliPhotoGui : public QMainWindow {
-    friend UnitTest;
+friend UnitTest;
 // Declares our class as a QObject which is the base class
 // for all Qt objects
 // QObjects handle events
@@ -48,11 +48,12 @@ void slotOpen();
 void slotSave();
 
 // layer slots here
-void slotCreateNewLayer();
+void slotCreateNewRasterLayer();
+void slotCreateNewShapedLayer();
 void slotDeleteLayer();
-void slotClearActiveLayer();
 void slotSetActiveLayer();
 void slotSetActiveAlpha();
+void slotSetPolygon();
 void slotPositionMoveUp();
 void slotPositionMoveDown();
 void slotPositionMoveLeft();
@@ -133,16 +134,17 @@ QLabel* ActiveLayerImageLine;
 QPalette Palette;
 
 // The menu widgets
-QMenu* saveAsMenu;
-QMenu* fileMenu;
-QMenu* renderMenu;
-QMenu* optionMenu;
-QMenu* layerMenu;
-QMenu* colorMenu;
-QMenu* toolCreationMenu;
-QMenu* toolSettingsMenu;
-QMenu* toolMenu;
-QMenu* helpMenu;
+QMenu*saveAsMenu;
+QMenu*fileMenu;
+QMenu*renderMenu;
+QMenu*optionMenu;
+QMenu*layerCreationMenu;
+QMenu*layerMenu;
+QMenu*colorMenu;
+QMenu*toolCreationMenu;
+QMenu*toolSettingsMenu;
+QMenu*toolMenu;
+QMenu*helpMenu;
 
 // All the actions that can occur
 // meta image actions (need further modularisation)
@@ -172,10 +174,12 @@ QAction* actionAboutDialog;
 QAction* actionAboutQtDialog;
 
 // layer change actions
-QAction* actionCreateNewLayer;
+QAction* actionCreateNewRasterLayer;
+QAction* actionCreateNewShapedLayer;
 QAction* actionDeleteLayer;
 QAction* actionSetActiveLayer;
 QAction* actionSetActiveAlpha;
+QAction* actionSetPolygon;
 QAction* actionMovePositionUp;
 QAction* actionMovePositionDown;
 QAction* actionMovePositionLeft;
