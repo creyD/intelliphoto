@@ -4,10 +4,15 @@
 
 #include "QColor"
 
+//for unit testing
+class UnitTest;
+
+
 /*!
  * \brief The IntelliToolFloodFill class represents a tool to flood FIll a certian area.
  */
 class IntelliToolFloodFill : public IntelliTool {
+    friend UnitTest;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker.

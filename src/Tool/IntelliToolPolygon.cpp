@@ -7,7 +7,7 @@
 IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings, bool isSettingPolygon)
 		: IntelliTool(Area, colorPicker, Toolsettings){
 		isPointNearStart = false;
-		isDrawing = false;
+		drawingOfPolygon = false;
 		isInside = false;
 		this->isSettingPolygon = isSettingPolygon;
 		if(isSettingPolygon) {
@@ -17,13 +17,13 @@ IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* c
 }
 
 IntelliToolPolygon::~IntelliToolPolygon(){
-		if(isDrawing) {
+		if(drawingOfPolygon) {
 				IntelliTool::onMouseRightPressed(0,0);
 		}
 }
 
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
-		if(!isDrawing && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
+        if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
 				if(Area->getPolygonDataOfRealLayer().size()>2) {
 						std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(Area->getPolygonDataOfRealLayer());
 						QPoint Point(x,y);
@@ -36,15 +36,15 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 						isInside = true;
 				}
 		}
-		else if(!isDrawing && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::RASTERIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
+		else if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::RASTERIMAGE && x >= 0 && y >= 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
 				isInside = true;
 		}
 
-		if(isInside && !isDrawing) {
+		if(isInside && !drawingOfPolygon) {
 				IntelliTool::onMouseLeftPressed(x,y);
 				QPoint drawingPoint = QPoint(x,y);
 
-				isDrawing = true;
+				drawingOfPolygon = true;
 				QPointList.push_back(drawingPoint);
 
 				this->Canvas->image->drawPoint(QPointList.back(), colorPicker->getFirstColor(), Toolsettings->getLineWidth());
@@ -52,7 +52,7 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 						this->Canvas->image->calculateVisiblity();
 				}
 		}
-		else if(isDrawing && isNearStart(x,y,QPointList.front())) {
+        else if(drawingOfPolygon && QPointList.size() > 0 && isNearStart(x,y,QPointList.front())) {
 				if(QPointList.size() > 2) {
 						isPointNearStart = true;
 						this->Canvas->image->drawLine(QPointList.back(), QPointList.front(), colorPicker->getFirstColor(), Toolsettings->getLineWidth());
@@ -62,13 +62,14 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 				}
 				else{
 						isInside = false;
-						isDrawing = false;
+						drawingOfPolygon = false;
 						QPointList.clear();
 						IntelliTool::onMouseRightPressed(x,y);
+						IntelliTool::onMouseRightReleased(x,y);
 				}
 
 		}
-		else if(isDrawing) {
+		else if(drawingOfPolygon) {
 				QPoint drawingPoint(x,y);
 				QPointList.push_back(drawingPoint);
 				this->Canvas->image->drawLine(QPointList[QPointList.size() - 2], QPointList[QPointList.size() - 1], colorPicker->getFirstColor(), Toolsettings->getLineWidth());
@@ -79,8 +80,8 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 }
 
 void IntelliToolPolygon::onMouseRightPressed(int x, int y){
+        drawingOfPolygon = false;
 		isInside = false;
-		isDrawing = false;
 		isPointNearStart = false;
 		QPointList.clear();
 		IntelliTool::onMouseRightPressed(x,y);
@@ -90,7 +91,7 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
 		if(isPointNearStart) {
 				isInside = false;
 				isPointNearStart = false;
-				isDrawing = false;
+                drawingOfPolygon = false;
 				if(!isSettingPolygon) {
 						std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(QPointList);
 						QPoint Point;
@@ -139,17 +140,11 @@ void IntelliToolPolygon::onMouseMoved(int x, int y){
 }
 
 bool IntelliToolPolygon::isNearStart(int x, int y, QPoint Startpoint){
-		bool isNear = false;
 		int StartX = Startpoint.x();
 		int StartY = Startpoint.y();
 		int valueToNear = 5;
 
-		for(int i = StartX - valueToNear; i < StartX + valueToNear; i++) {
-				for(int j = StartY - valueToNear; j < StartY + valueToNear; j++) {
-						if((i == x) && (j == y)) {
-								isNear = true;
-						}
-				}
-		}
-		return isNear;
+        float euklid = sqrt(pow(static_cast<float>(StartX-x),2.f)+pow(static_cast<float>(StartY-y),2.f));
+
+        return static_cast<int>(euklid)<valueToNear;
 }

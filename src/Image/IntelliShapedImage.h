@@ -4,10 +4,14 @@
 #include "Image/IntelliRasterImage.h"
 #include <vector>
 
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliShapedImage manages a Shapedimage.
  */
 class IntelliShapedImage : public IntelliRasterImage {
+    friend UnitTest;
 friend IntelliTool;
 private:
 /*!

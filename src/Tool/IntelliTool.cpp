@@ -5,8 +5,8 @@ IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, In
 		this->Area = Area;
 		this->colorPicker = colorPicker;
 		this->Toolsettings = Toolsettings;
+		this->isDrawing = false;
 }
-
 
 IntelliTool::~IntelliTool(){
 

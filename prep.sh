@@ -1,3 +1,5 @@
+QMAKE_PATH = "/Users/$USER/Qt5.14.0/5.14.0/clang_64/bin/qmake"
+
 printLine(){
   echo "$2$1 \033[0m"
 }
@@ -37,6 +39,16 @@ runDoxygen(){
   printLine "Doxygen finished." "\033[0;32m"
 }
 
+runUnitTests(){
+  printLine "Running Unit Tests..."
+  $QMAKE_PATH src/IntelliUnitTest.pro || { printLine "ERROR: qmake not found!" "\033[0;33m"; return; }
+  cd src
+  make || { printLine "ERROR: make not found!" "\033[0;33m"; return; }
+  ./IntelliUnitTest
+  cd ..
+  printLine "Doxygen finished." "\033[0;32m"
+}
+
 gitCommit(){
   printLine "Committing Changes to Git..."
   git add '*' || { printLine "ERROR: git not found!" "\033[0;33m"; return; }
@@ -48,6 +60,7 @@ prepareMerge(){
   printLine "Merge Preparation started..."
   runUncrustify
   runCPPCheck
+  #runUnitTests
   runDoxygen
   gitCommit
   printLine "Finished." "\033[0;32m"
@@ -60,6 +73,7 @@ prepareRelease(){
   cleanDir
   runUncrustify
   runCPPCheck
+  #runUnitTests
   runDoxygen
   gitCommit
   printLine "Finished." "\033[0;32m"
@@ -72,6 +86,6 @@ while true; do
     case $yn in
         [Mm]* ) prepareMerge;;
         [Rr]* ) prepareRelease;;
-        * ) echo "Please answer (m)erge or (r)elease.";;
+        * ) printLine "Please answer (m)erge or (r)elease.";;
     esac
 done

@@ -10,9 +10,10 @@
 #include <QTextEdit>
 #include <QLabel>
 #include <QLineEdit>
-
 #include "IntelliInputDialog.h"
 
+//for unit testing
+class UnitTest;
 
 // PaintingArea used to paint the image
 class PaintingArea;
@@ -25,6 +26,10 @@ class IntelliColorPicker;
  * \brief The IntelliPhotoGui base class handles the graphical user interface and events for the intelliPhoto program
  */
 class IntelliPhotoGui : public QMainWindow {
+friend UnitTest;
+// Declares our class as a QObject which is the base class
+// for all Qt objects
+// QObjects handle events
 Q_OBJECT
 public:
 /*!
@@ -142,34 +147,34 @@ QMenu*helpMenu;
 
 // All the actions that can occur
 // meta image actions (need further modularisation)
-QAction*actionOpen;
-QAction*actionExit;
+QAction* actionOpen;
+QAction* actionExit;
 
 //Rendersetting actions
 QAction*actionUpdateRenderSettingsOn;
 QAction*actionUpdateRenderSettingsOff;
 
 // color Picker actions
-QAction*actionColorPickerFirstColor;
-QAction*actionColorPickerSecondColor;
-QAction*actionColorSwap;
+QAction* actionColorPickerFirstColor;
+QAction* actionColorPickerSecondColor;
+QAction* actionColorSwap;
 
 // tool actions
-QAction*actionCreatePenTool;
-QAction*actionCreatePlainTool;
-QAction*actionCreateLineTool;
-QAction*actionCreateRectangleTool;
-QAction*actionCreateCircleTool;
-QAction*actionCreatePolygonTool;
-QAction*actionCreateFloodFillTool;
+QAction* actionCreatePenTool;
+QAction* actionCreatePlainTool;
+QAction* actionCreateLineTool;
+QAction* actionCreateRectangleTool;
+QAction* actionCreateCircleTool;
+QAction* actionCreatePolygonTool;
+QAction* actionCreateFloodFillTool;
 
 // dimension actions
 QAction*actionChangeDim;
 QAction*actionGetDim;
 
 // dialog actions
-QAction*actionAboutDialog;
-QAction*actionAboutQtDialog;
+QAction* actionAboutDialog;
+QAction* actionAboutQtDialog;
 
 // layer change actions
 QAction* actionCreateNewRasterLayer;
