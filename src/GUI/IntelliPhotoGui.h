@@ -1,8 +1,12 @@
 #ifndef IntelliPhotoGui_H
 #define IntelliPhotoGui_H
 
-#include <QtWidgets>
-#include <QPixmap>
+#include <QAction>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QImageWriter>
+#include <QMenu>
+#include <QMenuBar>
 #include <QList>
 #include <QMainWindow>
 #include <QGridLayout>

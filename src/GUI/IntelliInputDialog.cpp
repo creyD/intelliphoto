@@ -1,6 +1,4 @@
 #include "IntelliInputDialog.h"
-#include <QFile>
-
 
 IntelliInputDialog::IntelliInputDialog(QString Title, QString Label, int value, int minValue, int maxValue, int step, bool* ok)
 {

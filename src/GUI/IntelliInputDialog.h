@@ -1,7 +1,13 @@
 #ifndef INTELLIINPUTDIALOG_H
 #define INTELLIINPUTDIALOG_H
 
-#include <QtWidgets>
+#include <QSize>
+#include <QDialog>
+#include <QLabel>
+#include <QGridLayout>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QSpinBox>
 
 class IntelliInputDialog : public QDialog
 {
@@ -25,7 +31,6 @@ int valueInt;
 
 QGridLayout* Layout;
 QDialogButtonBox* ButtonBox;
-QEventLoop loop;
 bool* notClosed;
 
 const QSize Linesize = QSize(150,20);
