@@ -73,7 +73,7 @@ void IntelliPhotoGui::slotCreateNewRasterLayer(){
 		// "New Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-		int width = IntelliInputDialog::getInt("New Layer", "Width:", 200, 1, paintingArea->getMaxWidth(), 1, &ok1);
+        int width = IntelliInputDialog::getInt("New Layer", "Width:", 200, 1, paintingArea->getMaxWidth(), 1, &ok1);
 
 		int height = IntelliInputDialog::getInt("New Layer", "Height:", 200, 1, paintingArea->getMaxHeight(), 1, &ok2);
 
@@ -111,9 +111,9 @@ void IntelliPhotoGui::slotChangeDim(){
         // "change Dimension" is the title of the window
         // the next tr is the text to display
         // Define the standard Value, min, step and ok button
-        int width = IntelliInputDialog::getInt("New Layer", "Width:", 600, 1, 50000 , 1, &ok1);
+        int width = IntelliInputDialog::getInt("New Canvas Size", "Width:", 600, 1, 50000 , 1, &ok1);
 
-        int height = IntelliInputDialog::getInt("New Layer", "Height:", 600, 1, 50000, 1, &ok2);
+        int height = IntelliInputDialog::getInt("New Canvas Size", "Height:", 600, 1, 50000, 1, &ok2);
 
         // Change dimension
         if (ok1&&ok2) {
