@@ -37,6 +37,7 @@ void cleanupTestCase();
 
 ///Test  here
 
+
 //test painting area
 void test_addLayer();
 void test_deleteLayer();
@@ -171,7 +172,7 @@ void UnitTest::initTestCase()
 
 void UnitTest::cleanupTestCase()
 {
-		delete gui;
+
 }
 
 //test painting area

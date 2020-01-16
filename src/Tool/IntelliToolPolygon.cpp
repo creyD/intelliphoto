@@ -23,7 +23,7 @@ IntelliToolPolygon::~IntelliToolPolygon(){
 }
 
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
-		if(!isDrawing && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
+        if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
 				if(Area->getPolygonDataOfRealLayer().size()>2) {
 						std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(Area->getPolygonDataOfRealLayer());
 						QPoint Point(x,y);
@@ -80,6 +80,7 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 }
 
 void IntelliToolPolygon::onMouseRightPressed(int x, int y){
+        drawingOfPolygon = false;
 		isInside = false;
 		isPointNearStart = false;
 		QPointList.clear();
@@ -90,6 +91,7 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
 		if(isPointNearStart) {
 				isInside = false;
 				isPointNearStart = false;
+                drawingOfPolygon = false;
 				if(!isSettingPolygon) {
 						std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(QPointList);
 						QPoint Point;
