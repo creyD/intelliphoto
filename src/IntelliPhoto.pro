@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    GUI/IntelliInputDialog.cpp \
     GUI/IntelliPhotoGui.cpp \
     Image/IntelliImage.cpp \
     Image/IntelliRasterImage.cpp \
@@ -36,6 +37,7 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
+    GUI/IntelliInputDialog.h \
     GUI/IntelliPhotoGui.h \
     Image/IntelliImage.h \
     Image/IntelliRasterImage.h \
@@ -70,3 +72,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Bilder.qrc
+
+DISTFILES +=

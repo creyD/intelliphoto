@@ -7,7 +7,8 @@ var class_intelli_tool =
       [ "PEN", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fad3fa1aa45b9fe56e1fc1b558d8ed6678", null ],
       [ "PLAIN", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8faf62eb0bf5e5c72e80983fbbac1cb70e5", null ],
       [ "POLYGON", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8faecdc92bf56d960b73b02ee40125758bc", null ],
-      [ "RECTANGLE", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa8e8e58fe94ab307a826e087028a7c01a", null ]
+      [ "RECTANGLE", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa8e8e58fe94ab307a826e087028a7c01a", null ],
+      [ "NONE", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fab50339a10e1de285ac99d4c3990b8693", null ]
     ] ],
     [ "IntelliTool", "class_intelli_tool.html#a08ef094271ce6248b42f888472463526", null ],
     [ "~IntelliTool", "class_intelli_tool.html#a57fb1b27d364c9e3696eb928b75fa9f2", null ],

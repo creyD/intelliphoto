@@ -4,10 +4,15 @@
 
 #include "QColor"
 #include "QPoint"
+
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliToolCircle class represents a tool to draw a circle.
  */
 class IntelliToolCircle : public IntelliTool {
+    friend UnitTest;
 /*!
  * \brief A function that implements a circle drawing algorithm.
  * \param radius    - The radius of the circle.
@@ -74,4 +79,4 @@ virtual void onWheelScrolled(int value) override;
 virtual void onMouseMoved(int x, int y) override;
 };
 
-#endif // INTELLITOOLCIRCLE_H
+#endif

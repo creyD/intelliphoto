@@ -5,6 +5,9 @@
 #include "IntelliHelper/IntelliToolsettings.h"
 #include <vector>
 
+//for unit testing
+class UnitTest;
+
 struct LayerObject;
 class PaintingArea;
 
@@ -12,6 +15,7 @@ class PaintingArea;
  * \brief An abstract class that manages the basic events, like mouse clicks or scrolls events.
  */
 class IntelliTool {
+    friend UnitTest;
 public:
 enum class Tooltype {
 		CIRCLE,
@@ -20,7 +24,8 @@ enum class Tooltype {
 		PEN,
 		PLAIN,
 		POLYGON,
-		RECTANGLE
+        RECTANGLE,
+        NONE
 };
 private:
 /*!

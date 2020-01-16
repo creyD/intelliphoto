@@ -4,10 +4,14 @@
 
 #include "QPoint"
 
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliToolFloodFill class represents a tool to draw a line.
  */
 class IntelliToolLine : public IntelliTool {
+    friend UnitTest;
 /*!
  * \brief The starting point of the line.
  */
@@ -16,7 +20,7 @@ QPoint lineStartingPoint;
 public:
 
 /*!
- * \brief A constructor setting the general paintingArea and colorPicker. And reading in the lineWidth and lineStyle.
+ * \brief A constructor setting the general paintingArea and colorPicker.
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
  */
@@ -69,4 +73,4 @@ virtual void onWheelScrolled(int value) override;
 virtual void onMouseMoved(int x, int y) override;
 };
 
-#endif // INTELLITOOLLINE_H
+#endif
