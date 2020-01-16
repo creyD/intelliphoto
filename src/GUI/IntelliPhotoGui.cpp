@@ -283,15 +283,6 @@ void IntelliPhotoGui::slotAboutDialog(){
 		                   tr("<p><b>IntelliPhoto - </b>A Pretty basic editor.</p> <br>Developed by Team 7."));
 }
 
-// Open an dialog about the dimensions
-void IntelliPhotoGui::slotGetDim(){
-
-        // Window dimesnion display
-        QMessageBox::about(this, tr("Dimension"),
-                           tr("Width: %1\nHeight: %2").arg(paintingArea->getMaxWidth()).arg(paintingArea->getMaxHeight()));
-}
-
-
 void IntelliPhotoGui::slotEnterPressed(){
 		QString string = EditLineWidth->text();
 		if(string.toInt() > 50) {
@@ -390,10 +381,6 @@ void IntelliPhotoGui::createActions(){
         actionChangeDim = new QAction(tr("&Change Dimension"), this);
         actionChangeDim->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_X));
         connect(actionChangeDim, SIGNAL(triggered()), this, SLOT(slotChangeDim()));
-
-        actionGetDim = new QAction(tr("&Get Dimension"), this);
-        actionGetDim->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Y));
-        connect(actionGetDim, SIGNAL(triggered()), this, SLOT(slotGetDim()));
 
 		actionSetActiveLayer = new QAction(tr("&set Active"), this);
 		actionSetActiveLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_A));
@@ -743,6 +730,15 @@ void IntelliPhotoGui::createGui(){
 		ActiveLayerImageLabel->setFixedSize(Buttonsize * 2);
 		ActiveLayerImageLabel->setPixmap(preview.scaled(Buttonsize * 2));
 
+        dimActive = new QPushButton();
+        dimActive->setFixedSize(Buttonsize.width()*2,Buttonsize.height()/2);
+        dimActive->setText("0x0");
+
+        dimCanvas = new QPushButton();
+        dimCanvas->setFixedSize(Buttonsize.width()*2,Buttonsize.height()/2);
+        QString String = QString("%1x%2").arg(maxWidth).arg(maxHeight);
+        dimCanvas->setText(String);
+
 		// set gui elements
 		mainLayout->addWidget(paintingArea,1,1,20,1);
 		mainLayout->addWidget(CircleButton,1,2,1,1);
@@ -761,6 +757,8 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(SwitchColorButton,10,2,1,2);
 		mainLayout->addWidget(ActiveLayerLine,11,2,1,2);
 		mainLayout->addWidget(ActiveLayerImageLabel,12,2,1,2);
+        mainLayout->addWidget(dimActive,13,2,1,2);
+        mainLayout->addWidget(dimCanvas,14,2,1,2);
 		mainLayout->setHorizontalSpacing(0);
 }
 

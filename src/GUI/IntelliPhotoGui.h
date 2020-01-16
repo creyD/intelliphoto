@@ -136,6 +136,9 @@ QPushButton* SwitchColorButton;
 QLabel* ActiveLayerLine;
 QLabel* ActiveLayerImageLabel;
 
+QPushButton* dimActive;
+QPushButton* dimCanvas;
+
 // The menu widgets
 QMenu*saveAsMenu;
 QMenu*fileMenu;
