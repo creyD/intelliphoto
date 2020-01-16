@@ -4,10 +4,14 @@
 
 #include "QPoint"
 
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliToolFloodFill class represents a tool to draw a line.
  */
 class IntelliToolLine : public IntelliTool {
+    friend UnitTest;
 /*!
  * \brief The starting point of the line.
  */

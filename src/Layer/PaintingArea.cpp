@@ -82,7 +82,7 @@ void PaintingArea::deleteLayer(int idx, bool isTool){
 		if(!isTool) {
 				updateTools();
 		}
-		if(idx<static_cast<int>(layerBundle.size())) {
+		if(idx<static_cast<int>(layerBundle.size())&&idx>=0) {
 				this->layerBundle.erase(layerBundle.begin() + idx);
 				if(activeLayer>=idx) {
 						activeLayer--;
@@ -109,7 +109,9 @@ void PaintingArea::setLayerActive(int idx){
 
 void PaintingArea::setLayerAlpha(int idx, int alpha){
 		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-				layerBundle[static_cast<size_t>(idx)].alpha = alpha;
+				if(alpha>=0 && alpha<=255) {
+						layerBundle[static_cast<size_t>(idx)].alpha = alpha;
+				}
 		}
 }
 void PaintingArea::setPolygon(int idx){

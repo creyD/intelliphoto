@@ -5,11 +5,16 @@
 #include "IntelliHelper/IntelliTriangulation.h"
 #include <vector>
 #include <QPoint>
+
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliToolPolygon managed the Drawing of Polygonforms
  */
 class IntelliToolPolygon : public IntelliTool
 {
+    friend UnitTest;
 /*!
  * \brief Checks if the given Point lies near the starting Point.
  * \param x             - x coordinate of a point.
@@ -20,9 +25,9 @@ class IntelliToolPolygon : public IntelliTool
 bool isNearStart(int x, int y, QPoint Startpoint);
 
 /*!
- * \brief IsDrawing true while drawing, else false.
+ * \brief drawingOfPolygon true while drawing, else false.
  */
-bool isDrawing;
+bool drawingOfPolygon;
 
 /*!
  * \brief isInside Checks if Point is inside Image
