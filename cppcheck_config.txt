@@ -1,3 +1,9 @@
+src/GUI/IntelliInputDialog.h:4:0: information: Include file: <QtWidgets> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/GUI/IntelliInputDialog.cpp:2:0: information: Include file: <QFile> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
 src/GUI/IntelliPhotoGui.h:4:0: information: Include file: <QtWidgets> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
 
 ^

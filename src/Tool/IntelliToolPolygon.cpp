@@ -10,9 +10,9 @@ IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* c
 		isDrawing = false;
 		isInside = false;
 		this->isSettingPolygon = isSettingPolygon;
-        if(isSettingPolygon){
-            Toolsettings->setLineWidth(5);
-        }
+		if(isSettingPolygon) {
+				Toolsettings->setLineWidth(5);
+		}
 		this->ActiveType = Tooltype::POLYGON;
 }
 
@@ -124,18 +124,18 @@ void IntelliToolPolygon::onMouseRightReleased(int x, int y){
 }
 
 void IntelliToolPolygon::onWheelScrolled(int value){
-        if(!isSettingPolygon){
-            IntelliTool::onWheelScrolled(value);
-            if(!isDrawing) {
-                    Toolsettings->setLineWidth(Toolsettings->getLineWidth() + value);
-            }
-        }
+		if(!isSettingPolygon) {
+				IntelliTool::onWheelScrolled(value);
+				if(!isDrawing) {
+						Toolsettings->setLineWidth(Toolsettings->getLineWidth() + value);
+				}
+		}
 }
 
 void IntelliToolPolygon::onMouseMoved(int x, int y){
-        if(!isSettingPolygon){
-            IntelliTool::onMouseMoved(x,y);
-        }
+		if(!isSettingPolygon) {
+				IntelliTool::onMouseMoved(x,y);
+		}
 }
 
 bool IntelliToolPolygon::isNearStart(int x, int y, QPoint Startpoint){

@@ -20,9 +20,10 @@ var class_intelli_image =
     [ "getTypeOfImage", "class_intelli_image.html#af6b09c8d1d6b54a7e8a4e7286f3e503f", null ],
     [ "loadImage", "class_intelli_image.html#ae231800aba38c96074bbe9bb6e341d4e", null ],
     [ "resizeImage", "class_intelli_image.html#a177403ab9585d4ba31984a644c54d310", null ],
+    [ "setImageData", "class_intelli_image.html#ab09c64e7559f3db32ca3b20ba6339268", null ],
     [ "setPolygon", "class_intelli_image.html#aa4b3f4631bd972456917275afb9fd309", null ],
     [ "updateRendererSetting", "class_intelli_image.html#ae4dbaefabce4ec5bec37f5b95e2f62e2", null ],
-    [ "fastRenderer", "class_intelli_image.html#adade0f6990152f09d953067a51511b9c", null ],
+    [ "fastRenderering", "class_intelli_image.html#aa63d34c7932113d021653980ee018671", null ],
     [ "imageData", "class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2", null ],
     [ "TypeOfImage", "class_intelli_image.html#ac460f75e1fa7e44b00a65e7fddac5b80", null ]
 ];

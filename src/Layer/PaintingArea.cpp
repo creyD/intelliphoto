@@ -32,15 +32,15 @@ PaintingArea::~PaintingArea(){
 }
 
 void PaintingArea::setRenderSettings(bool isFastRenderingOn){
-        bool ToolIsActive;
+		bool ToolIsActive;
 
-        if(Tool!=nullptr){
-                ToolIsActive = Tool->getIsDrawing();
-        }
-        else{
-                ToolIsActive = false;
-        }
-        if(isFastRenderingOn != renderSettings.isFastRenderering() && !ToolIsActive) {
+		if(Tool!=nullptr) {
+				ToolIsActive = Tool->getIsDrawing();
+		}
+		else{
+				ToolIsActive = false;
+		}
+		if(isFastRenderingOn != renderSettings.isFastRenderering() && !ToolIsActive) {
 				renderSettings.setFastRendering(isFastRenderingOn);
 				for(auto& layer : layerBundle) {
 						layer.image->updateRendererSetting(isFastRenderingOn);
@@ -118,7 +118,7 @@ void PaintingArea::setPolygon(int idx){
 						delete this->Tool;
 						this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
 						isSettingPolygon = true;
-                        this->DummyGui->setToolWidth(5);
+						this->DummyGui->setToolWidth(5);
 				}
 		}
 }
@@ -172,7 +172,7 @@ void PaintingArea::moveActiveLayer(int idx){
 		}else if(idx==-1) {
 				this->selectLayerDown();
 		}
-        DummyGui->UpdateGui();
+		DummyGui->UpdateGui();
 }
 
 void PaintingArea::slotActivateLayer(int a){
@@ -239,11 +239,11 @@ int PaintingArea::getHeightOfActive(){
 }
 
 int PaintingArea::getMaxWidth(){
-        return this->maxWidth;
+		return this->maxWidth;
 }
 
 int PaintingArea::getMaxHeight(){
-        return this->maxHeight;
+		return this->maxHeight;
 }
 
 IntelliImage::ImageType PaintingArea::getTypeOfImageRealLayer(){

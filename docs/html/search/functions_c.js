@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['updategui_319',['UpdateGui',['../class_intelli_photo_gui.html#a1dbef8d4688227aa9455aea52db00bf4',1,'IntelliPhotoGui']]],
-  ['updaterenderersetting_320',['updateRendererSetting',['../class_intelli_image.html#ae4dbaefabce4ec5bec37f5b95e2f62e2',1,'IntelliImage']]]
+  ['wheelevent_342',['wheelEvent',['../class_painting_area.html#a632848d99f44d33d7da2618fbc6775a4',1,'PaintingArea']]]
 ];

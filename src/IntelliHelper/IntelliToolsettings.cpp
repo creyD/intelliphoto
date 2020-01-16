@@ -16,13 +16,13 @@ int IntelliToolsettings::getLineWidth(){
 }
 
 void IntelliToolsettings::setLineWidth(int LineWidth){
-        if(LineWidth < 1){
-            LineWidth = 1;
-        }
-        else if(LineWidth > 50){
-            LineWidth = 50;
-        }
-        lineWidth = LineWidth;
+		if(LineWidth < 1) {
+				LineWidth = 1;
+		}
+		else if(LineWidth > 50) {
+				LineWidth = 50;
+		}
+		lineWidth = LineWidth;
 }
 
 int IntelliToolsettings::getInnerAlpha(){
@@ -30,11 +30,11 @@ int IntelliToolsettings::getInnerAlpha(){
 }
 
 void IntelliToolsettings::setInnerAlpha(int innerAlpha){
-        if(innerAlpha < 0){
-            innerAlpha = 0;
-        }
-        else if(innerAlpha > 255){
-            innerAlpha = 255;
-        }
-        this->innerAlpha = innerAlpha;
+		if(innerAlpha < 0) {
+				innerAlpha = 0;
+		}
+		else if(innerAlpha > 255) {
+				innerAlpha = 255;
+		}
+		this->innerAlpha = innerAlpha;
 }

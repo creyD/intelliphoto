@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['paintevent_303',['paintEvent',['../class_painting_area.html#a4a8138b9508ee4ec87a7fca9160368a7',1,'PaintingArea']]],
-  ['paintingarea_304',['PaintingArea',['../class_painting_area.html#a4fa0ec23e78cc59f28c823584c721460',1,'PaintingArea']]]
+  ['resizeevent_320',['resizeEvent',['../class_painting_area.html#ab57e8ccda60fff7187463a90e65c5335',1,'PaintingArea']]],
+  ['resizeimage_321',['resizeImage',['../class_intelli_image.html#a177403ab9585d4ba31984a644c54d310',1,'IntelliImage']]]
 ];
