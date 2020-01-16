@@ -72,6 +72,6 @@ while true; do
     case $yn in
         [Mm]* ) prepareMerge;;
         [Rr]* ) prepareRelease;;
-        * ) echo "Please answer (m)erge or (r)elease.";;
+        * ) printLine "Please answer (m)erge or (r)elease.";;
     esac
 done
