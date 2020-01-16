@@ -82,6 +82,9 @@ void slotCreateFloodFillTool();
 
 void slotAboutDialog();
 
+void slotChangeDim();
+void slotGetDim();
+
 void slotEnterPressed();
 
 void slotSetWidth();
@@ -164,6 +167,10 @@ QAction* actionCreateRectangleTool;
 QAction* actionCreateCircleTool;
 QAction* actionCreatePolygonTool;
 QAction* actionCreateFloodFillTool;
+
+// dimension actions
+QAction*actionChangeDim;
+QAction*actionGetDim;
 
 // dialog actions
 QAction* actionAboutDialog;
