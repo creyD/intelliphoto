@@ -17,6 +17,10 @@ CMakeLists.txt.user*
 app_version.h
 phony.c
 
+# Testing Files
+*.o
+*.qmake.stash
+
 # Ignore User Files except for the pro file
 IntelliPhoto.*
 !IntelliPhoto.pro
