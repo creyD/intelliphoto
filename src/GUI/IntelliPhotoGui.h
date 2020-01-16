@@ -87,7 +87,6 @@ void slotCreateFloodFillTool();
 void slotAboutDialog();
 
 void slotChangeDim();
-void slotGetDim();
 
 void slotEnterPressed();
 
@@ -136,6 +135,9 @@ QPushButton* SwitchColorButton;
 QLabel* ActiveLayerLine;
 QLabel* ActiveLayerImageLabel;
 
+QPushButton* dimActive;
+QPushButton* dimCanvas;
+
 // The menu widgets
 QMenu*saveAsMenu;
 QMenu*fileMenu;
@@ -174,7 +176,6 @@ QAction* actionCreateFloodFillTool;
 
 // dimension actions
 QAction*actionChangeDim;
-QAction*actionGetDim;
 
 // dialog actions
 QAction* actionAboutDialog;
