@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 
 SOURCES +=  tst_unittest.cpp \
+    GUI/IntelliInputDialog.cpp \
     GUI/IntelliPhotoGui.cpp \
     Image/IntelliImage.cpp \
     Image/IntelliRasterImage.cpp \
@@ -41,6 +42,7 @@ DISTFILES += \
     icons/rectangle-tool.svg
 
 HEADERS += \
+    GUI/IntelliInputDialog.h \
     GUI/IntelliPhotoGui.h \
     Image/IntelliImage.h \
     Image/IntelliRasterImage.h \
