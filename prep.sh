@@ -60,7 +60,7 @@ prepareMerge(){
   printLine "Merge Preparation started..."
   runUncrustify
   runCPPCheck
-  runUnitTests
+  #runUnitTests
   runDoxygen
   gitCommit
   printLine "Finished." "\033[0;32m"
@@ -73,7 +73,7 @@ prepareRelease(){
   cleanDir
   runUncrustify
   runCPPCheck
-  runUnitTests
+  #runUnitTests
   runDoxygen
   gitCommit
   printLine "Finished." "\033[0;32m"
