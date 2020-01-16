@@ -2,7 +2,7 @@ printLine(){
   echo "$2$1 \033[0m"
 }
 
-resetGit(){
+gitReset(){
   printLine "This will discard all your uncommited changes and restore the last commit. Continue?" "\033[0;33m"
   read
   git reset --hard
@@ -11,14 +11,14 @@ resetGit(){
 
 runCPPCheck(){
   printLine "Running CPPCheck..."
-  cppcheck --enable=all --output-file=cppcheck_errors.txt src/
-  cppcheck --check-config --output-file=cppcheck_config.txt src/
+  cppcheck -q --enable=all --output-file=cppcheck_errors.txt src/ || { printLine "ERROR: cppcheck not found!" "\033[0;33m"; return; }
+  cppcheck -q --check-config --output-file=cppcheck_config.txt src/ || { printLine "ERROR: cppcheck not found!" "\033[0;33m"; return; }
   printLine "CPPCheck finished" "\033[0;32m"
 }
 
 runUncrustify(){
   printLine "Running Uncrustify..."
-  find . \( -name "*.cpp" -o -name "*.c" -o -name "*.h" \) -exec uncrustify -c conf/uncrustify.cfg --no-backup {} +
+  find . \( -name "*.cpp" -o -name "*.c" -o -name "*.h" \) -exec uncrustify -q -c conf/uncrustify.cfg --no-backup {} + || { printLine "ERROR: uncrusify not found!" "\033[0;33m"; return; }
   printLine "Uncrustify finished." "\033[0;32m"
 }
 
@@ -33,25 +33,35 @@ cleanDir(){
 
 runDoxygen(){
   printLine "Running Doxygen..."
-  doxygen conf/intelliphoto_dox
+  doxygen conf/intelliphoto_dox || { printLine "ERROR: doxygen not found!" "\033[0;33m"; return; }
   printLine "Doxygen finished." "\033[0;32m"
 }
 
 gitCommit(){
   printLine "Committing Changes to Git..."
-  git add '*'
+  git add '*' || { printLine "ERROR: git not found!" "\033[0;33m"; return; }
   git commit -m "Automated Release Preparation"
   printLine "Committed." "\033[0;32m"
 }
 
 prepareMerge(){
   printLine "Merge Preparation started..."
+  runUncrustify
+  runCPPCheck
+  runDoxygen
+  gitCommit
   printLine "Finished." "\033[0;32m"
   exit
 }
 
 prepareRelease(){
   printLine "Release Preparation started..."
+  gitReset
+  cleanDir
+  runUncrustify
+  runCPPCheck
+  runDoxygen
+  gitCommit
   printLine "Finished." "\033[0;32m"
   exit
 }
