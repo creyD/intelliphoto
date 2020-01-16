@@ -5,10 +5,15 @@
 
 #include "QColor"
 #include "QPoint"
+
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliToolRectangle class represents a tool to draw a rectangle.
  */
 class IntelliToolRectangle : public IntelliTool {
+    friend UnitTest;
 /*!
  * \brief A function that implements a rectagle drawing algorithm.
  * \param othercorner - The second corner point of the rectangle.
@@ -73,4 +78,4 @@ virtual void onWheelScrolled(int value) override;
 virtual void onMouseMoved(int x, int y) override;
 };
 
-#endif // INTELLIRECTANGLETOOL_H
+#endif

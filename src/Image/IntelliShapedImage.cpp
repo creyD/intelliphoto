@@ -5,9 +5,9 @@
 #include <QDebug>
 
 IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererOn)
-        : IntelliRasterImage(width, height, fastRendererOn){
-        TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
-        this->fastRenderering = fastRendererOn;
+		: IntelliRasterImage(width, height, fastRendererOn){
+		TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
+		this->fastRenderering = fastRendererOn;
 }
 
 IntelliShapedImage::~IntelliShapedImage(){
@@ -27,27 +27,30 @@ IntelliImage* IntelliShapedImage::getDeepCopy(){
 }
 
 void IntelliShapedImage::calculateVisiblity(){
-        if(fastRenderering){
-            this->imageData = imageData.convertToFormat(QImage::Format_ARGB32);
-        }
+		if(polygonData.size()<2) {
+				return;
+		}
+		if(fastRenderering) {
+				this->imageData = imageData.convertToFormat(QImage::Format_ARGB32);
+		}
 
 		if(polygonData.size()<=2) {
 				QColor clr;
-				for(int y=0; y<imageData.height(); y++) {
-						for(int x=0; x<imageData.width(); x++) {
+				for(int y = 0; y<imageData.height(); y++) {
+						for(int x = 0; x<imageData.width(); x++) {
 								clr = imageData.pixel(x,y);
 								clr.setAlpha(255);
 								imageData.setPixelColor(x,y,clr);
 						}
 				}
-                if(fastRenderering){
-                     this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
-                }
+				if(fastRenderering) {
+						this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
+				}
 				return;
 		}
 		QColor clr;
-		for(int y=0; y<imageData.height(); y++) {
-				for(int x=0; x<imageData.width(); x++) {
+		for(int y = 0; y<imageData.height(); y++) {
+				for(int x = 0; x<imageData.width(); x++) {
 						QPoint ptr(x,y);
 						clr = imageData.pixelColor(x,y);
 						bool isInPolygon = IntelliTriangulation::isInPolygon(triangles, ptr);
@@ -59,16 +62,16 @@ void IntelliShapedImage::calculateVisiblity(){
 						imageData.setPixelColor(x,y,clr);
 				}
 		}
-        if(fastRenderering){
-             this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
-        }
+		if(fastRenderering) {
+				this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
+		}
 }
 
 QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
 		QImage copy = imageData;
-        if(fastRenderering){
-             copy = copy.convertToFormat(QImage::Format_ARGB32);
-        }
+		if(fastRenderering) {
+				copy = copy.convertToFormat(QImage::Format_ARGB32);
+		}
 		for(int y = 0; y<copy.height(); y++) {
 				for(int x = 0; x<copy.width(); x++) {
 						QColor clr = copy.pixelColor(x,y);
@@ -76,9 +79,9 @@ QImage IntelliShapedImage::getDisplayable(const QSize& displaySize, int alpha){
 						copy.setPixelColor(x,y, clr);
 				}
 		}
-        if(fastRenderering){
-             copy = copy.convertToFormat(QImage::Format_Indexed8);
-        }
+		if(fastRenderering) {
+				copy = copy.convertToFormat(QImage::Format_Indexed8);
+		}
 		return copy.scaled(displaySize,Qt::IgnoreAspectRatio);
 }
 
@@ -91,6 +94,19 @@ void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
 						this->polygonData.push_back(QPoint(element.x(), element.y()));
 				}
 				triangles = IntelliTriangulation::calculateTriangles(polygonData);
+				if(fastRenderering) {
+						imageData = imageData.convertToFormat(QImage::Format_ARGB32);
+				}
+				for(int y = 0; y<imageData.height(); y++) {
+						for(int x = 0; x<imageData.width(); x++) {
+								QColor clr = imageData.pixelColor(x,y);
+								clr.setAlpha(255);
+								imageData.setPixelColor(x,y,clr);
+						}
+				}
+				if(fastRenderering) {
+						imageData = imageData.convertToFormat(QImage::Format_Indexed8);
+				}
 		}
 		calculateVisiblity();
 		return;

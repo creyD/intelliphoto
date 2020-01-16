@@ -1,8 +1,12 @@
 #ifndef IntelliPhotoGui_H
 #define IntelliPhotoGui_H
 
-#include <QtWidgets>
-#include <QPixmap>
+#include <QAction>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QImageWriter>
+#include <QMenu>
+#include <QMenuBar>
 #include <QList>
 #include <QMainWindow>
 #include <QGridLayout>
@@ -10,6 +14,10 @@
 #include <QTextEdit>
 #include <QLabel>
 #include <QLineEdit>
+#include "IntelliInputDialog.h"
+
+//for unit testing
+class UnitTest;
 
 // PaintingArea used to paint the image
 class PaintingArea;
@@ -19,9 +27,10 @@ class IntelliTool;
 class IntelliColorPicker;
 
 /*!
- * \brief The IntelliPhotoGui class handles the graphical user interface for the intelliPhoto program
+ * \brief The IntelliPhotoGui base class handles the graphical user interface and events for the intelliPhoto program
  */
 class IntelliPhotoGui : public QMainWindow {
+friend UnitTest;
 // Declares our class as a QObject which is the base class
 // for all Qt objects
 // QObjects handle events
@@ -34,21 +43,25 @@ IntelliPhotoGui();
 
 void UpdateGui();
 
+void setToolWidth(int value);
+
 protected:
-// Function used to close an event
+/*!
+ * \brief The closeEvent function handles closing events
+ */
 void closeEvent(QCloseEvent*event) override;
 
 private slots:
-// meta slots here (need further )
 void slotOpen();
 void slotSave();
 
 // layer slots here
-void slotCreateNewLayer();
+void slotCreateNewRasterLayer();
+void slotCreateNewShapedLayer();
 void slotDeleteLayer();
-void slotClearActiveLayer();
 void slotSetActiveLayer();
 void slotSetActiveAlpha();
+void slotSetPolygon();
 void slotPositionMoveUp();
 void slotPositionMoveDown();
 void slotPositionMoveLeft();
@@ -56,16 +69,13 @@ void slotPositionMoveRight();
 void slotMoveLayerUp();
 void slotMoveLayerDown();
 
-//Rendersetting slots here
 void slotUpdateRenderSettingsOn();
 void slotUpdateRenderSettingsOff();
 
-// color Picker slots here
 void slotSetFirstColor();
 void slotSetSecondColor();
 void slotSwapColor();
 
-// tool slots here
 void slotCreatePenTool();
 void slotCreatePlainTool();
 void slotCreateLineTool();
@@ -74,8 +84,10 @@ void slotCreateCircleTool();
 void slotCreatePolygonTool();
 void slotCreateFloodFillTool();
 
-// slots for dialogs
 void slotAboutDialog();
+
+void slotChangeDim();
+void slotGetDim();
 
 void slotEnterPressed();
 
@@ -85,12 +97,10 @@ void slotSetInnerAlpha();
 void slotResetTools();
 
 private:
-// Will tie user actions to functions
 void createActions();
 void createMenus();
-// setup GUI elements
 void createGui();
-// set style of the GUI
+// Set the style of the GUI
 void setIntelliStyle();
 
 // Will check if changes have occurred since last save
@@ -103,7 +113,7 @@ void setDefaultToolValue();
 // What we'll draw on
 PaintingArea* paintingArea;
 
-const QSize Buttonsize = QSize(70,70);
+const QSize Buttonsize = QSize(35,35);
 QPixmap preview;
 QPushButton* CircleButton;
 QPushButton* FloodFillButton;
@@ -124,13 +134,14 @@ QPushButton* SecondColorButton;
 QPushButton* SwitchColorButton;
 
 QLabel* ActiveLayerLine;
-QPushButton* ActiveLayerImageButton;
+QLabel* ActiveLayerImageLabel;
 
 // The menu widgets
 QMenu*saveAsMenu;
 QMenu*fileMenu;
 QMenu*renderMenu;
 QMenu*optionMenu;
+QMenu*layerCreationMenu;
 QMenu*layerMenu;
 QMenu*colorMenu;
 QMenu*toolCreationMenu;
@@ -140,36 +151,42 @@ QMenu*helpMenu;
 
 // All the actions that can occur
 // meta image actions (need further modularisation)
-QAction*actionOpen;
-QAction*actionExit;
+QAction* actionOpen;
+QAction* actionExit;
 
 //Rendersetting actions
 QAction*actionUpdateRenderSettingsOn;
 QAction*actionUpdateRenderSettingsOff;
 
 // color Picker actions
-QAction*actionColorPickerFirstColor;
-QAction*actionColorPickerSecondColor;
-QAction*actionColorSwap;
+QAction* actionColorPickerFirstColor;
+QAction* actionColorPickerSecondColor;
+QAction* actionColorSwap;
 
 // tool actions
-QAction*actionCreatePenTool;
-QAction*actionCreatePlainTool;
-QAction*actionCreateLineTool;
-QAction*actionCreateRectangleTool;
-QAction*actionCreateCircleTool;
-QAction*actionCreatePolygonTool;
-QAction*actionCreateFloodFillTool;
+QAction* actionCreatePenTool;
+QAction* actionCreatePlainTool;
+QAction* actionCreateLineTool;
+QAction* actionCreateRectangleTool;
+QAction* actionCreateCircleTool;
+QAction* actionCreatePolygonTool;
+QAction* actionCreateFloodFillTool;
+
+// dimension actions
+QAction*actionChangeDim;
+QAction*actionGetDim;
 
 // dialog actions
-QAction*actionAboutDialog;
-QAction*actionAboutQtDialog;
+QAction* actionAboutDialog;
+QAction* actionAboutQtDialog;
 
 // layer change actions
-QAction*actionCreateNewLayer;
-QAction*actionDeleteLayer;
+QAction* actionCreateNewRasterLayer;
+QAction* actionCreateNewShapedLayer;
+QAction* actionDeleteLayer;
 QAction* actionSetActiveLayer;
 QAction* actionSetActiveAlpha;
+QAction* actionSetPolygon;
 QAction* actionMovePositionUp;
 QAction* actionMovePositionDown;
 QAction* actionMovePositionLeft;

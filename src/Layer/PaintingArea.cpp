@@ -18,24 +18,13 @@
 #include "Tool/IntelliToolFloodFill.h"
 #include "Tool/IntelliToolPolygon.h"
 
+
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QWidget(parent){
 		this->Tool = nullptr;
 		this->setLayerDimensions(maxWidth, maxHeight);
-		this->addLayer(200,200,0,0,IntelliImage::ImageType::SHAPEDIMAGE);
-		layerBundle[0].image->drawPlain(QColor(0,0,255,255));
-		std::vector<QPoint> polygon;
-		polygon.push_back(QPoint(100,000));
-		polygon.push_back(QPoint(200,100));
-		polygon.push_back(QPoint(100,200));
-		polygon.push_back(QPoint(000,100));
-		layerBundle[0].image->setPolygon(polygon);
 
-		this->addLayer(200,200,150,150,IntelliImage::ImageType::RASTERIMAGE);
-		layerBundle[1].image->drawPlain(QColor(0,255,0,255));
-		layerBundle[1].alpha=200;
-
-		activeLayer=0;
+		activeLayer = -1;
 }
 
 PaintingArea::~PaintingArea(){
@@ -43,12 +32,20 @@ PaintingArea::~PaintingArea(){
 }
 
 void PaintingArea::setRenderSettings(bool isFastRenderingOn){
-        if(isFastRenderingOn != renderSettings.isFastRenderering()){
-            renderSettings.setFastRendering(isFastRenderingOn);
-            for(auto& layer : layerBundle){
-                layer.image->updateRendererSetting(isFastRenderingOn);
-            }
-        }
+		bool ToolIsActive;
+
+		if(Tool!=nullptr) {
+				ToolIsActive = Tool->getIsDrawing();
+		}
+		else{
+				ToolIsActive = false;
+		}
+		if(isFastRenderingOn != renderSettings.isFastRenderering() && !ToolIsActive) {
+				renderSettings.setFastRendering(isFastRenderingOn);
+				for(auto& layer : layerBundle) {
+						layer.image->updateRendererSetting(isFastRenderingOn);
+				}
+		}
 }
 
 void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
@@ -64,50 +61,67 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 
 int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, IntelliImage::ImageType type){
 		LayerObject newLayer;
+		updateTools();
 		newLayer.width = width;
 		newLayer.height = height;
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
-        if(type==IntelliImage::ImageType::RASTERIMAGE) {
-                newLayer.image = new IntelliRasterImage(width,height,renderSettings.isFastRenderering());
-        }else if(type==IntelliImage::ImageType::SHAPEDIMAGE) {
-                newLayer.image = new IntelliShapedImage(width, height, renderSettings.isFastRenderering());
+		if(type==IntelliImage::ImageType::RASTERIMAGE) {
+				newLayer.image = new IntelliRasterImage(width,height,renderSettings.isFastRenderering());
+		}else if(type==IntelliImage::ImageType::SHAPEDIMAGE) {
+				newLayer.image = new IntelliShapedImage(width, height, renderSettings.isFastRenderering());
 		}
 		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
-		activeLayer = static_cast<int>(layerBundle.size())-1;
+		activeLayer = static_cast<int>(layerBundle.size()) - 1;
 		return activeLayer;
 }
 
 
-void PaintingArea::deleteLayer(int idx){
-		if(idx<static_cast<int>(layerBundle.size())) {
-				this->layerBundle.erase(layerBundle.begin()+idx);
-                if(activeLayer>=idx) {
+void PaintingArea::deleteLayer(int idx, bool isTool){
+		if(!isTool) {
+				updateTools();
+		}
+		if(idx<static_cast<int>(layerBundle.size())&&idx>=0) {
+				this->layerBundle.erase(layerBundle.begin() + idx);
+				if(activeLayer>=idx) {
 						activeLayer--;
 				}
-                if(activeLayer < 0 && layerBundle.size()){
-                    activeLayer=0;
-                }
+				if(activeLayer < 0 && layerBundle.size()) {
+						activeLayer = 0;
+				}
 		}
 }
 
 void PaintingArea::slotDeleteActiveLayer(){
 		if(activeLayer>=0 && activeLayer < static_cast<int>(layerBundle.size())) {
-				this->layerBundle.erase(layerBundle.begin()+activeLayer);
+				this->layerBundle.erase(layerBundle.begin() + activeLayer);
 				activeLayer--;
 		}
 }
 
 void PaintingArea::setLayerActive(int idx){
+		updateTools();
 		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-				this->activeLayer=idx;
+				this->activeLayer = idx;
 		}
 }
 
 void PaintingArea::setLayerAlpha(int idx, int alpha){
 		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-				layerBundle[static_cast<size_t>(idx)].alpha=alpha;
+				if(alpha>=0 && alpha<=255) {
+						layerBundle[static_cast<size_t>(idx)].alpha = alpha;
+				}
+		}
+}
+void PaintingArea::setPolygon(int idx){
+		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
+				if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==IntelliImage::ImageType::SHAPEDIMAGE) {
+						delete this->Tool;
+						this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
+						isSettingPolygon = true;
+						this->DummyGui->setToolWidth(5);
+				}
 		}
 }
 
@@ -147,51 +161,24 @@ bool PaintingArea::save(const QString &filePath, const char*fileFormat){
 		}
 }
 
-// Color the image area with white
-void PaintingArea::floodFill(int r, int g, int b, int a){
-		if(this->activeLayer==-1) {
-				return;
-		}
-		IntelliImage* active = layerBundle[static_cast<size_t>(activeLayer)].image;
-		active->drawPlain(QColor(r, g, b, a));
-		update();
-}
-
 void PaintingArea::movePositionActive(int x, int y){
-		if(Tool!=nullptr) {
-				if(Tool->getIsDrawing()) {
-						IntelliTool* temp = copyActiveTool();
-						delete this->Tool;
-						this->Tool = temp;
-				}
-		}
+		updateTools();
 		layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
 }
 
 void PaintingArea::moveActiveLayer(int idx){
-		if(Tool != nullptr) {
-				if(Tool->getIsDrawing()) {
-						IntelliTool* temp = copyActiveTool();
-						delete this->Tool;
-						this->Tool = temp;
-				}
-		}
+		updateTools();
 		if(idx==1) {
 				this->selectLayerUp();
 		}else if(idx==-1) {
 				this->selectLayerDown();
 		}
+		DummyGui->UpdateGui();
 }
 
 void PaintingArea::slotActivateLayer(int a){
-		if(Tool != nullptr) {
-				if(Tool->getIsDrawing()) {
-						IntelliTool* temp = copyActiveTool();
-						delete this->Tool;
-						this->Tool = temp;
-				}
-		}
+		updateTools();
 		if(a>=0 && a < static_cast<int>(layerBundle.size())) {
 				this->setLayerActive(a);
 		}
@@ -253,6 +240,14 @@ int PaintingArea::getHeightOfActive(){
 		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].height;
 }
 
+int PaintingArea::getMaxWidth(){
+		return this->maxWidth;
+}
+
+int PaintingArea::getMaxHeight(){
+		return this->maxHeight;
+}
+
 IntelliImage::ImageType PaintingArea::getTypeOfImageRealLayer(){
 		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].image->getTypeOfImage();
 }
@@ -265,13 +260,13 @@ std::vector<QPoint> PaintingArea::getPolygonDataOfRealLayer(){
 // left button and if so store the current position
 // Set that we are currently drawing
 void PaintingArea::mousePressEvent(QMouseEvent*event){
-        if(this->activeLayer < 0){
-                return;
-        }
+		if(this->activeLayer < 0) {
+				return;
+		}
 		if(Tool == nullptr)
 				return;
-		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+		int x = event->x() - layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+		int y = event->y() - layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftPressed(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -284,25 +279,25 @@ void PaintingArea::mousePressEvent(QMouseEvent*event){
 // we call the drawline function which draws a line
 // from the last position to the current
 void PaintingArea::mouseMoveEvent(QMouseEvent*event){
-        if(this->activeLayer < 0){
-                return;
-        }
+		if(this->activeLayer < 0) {
+				return;
+		}
 		if(Tool == nullptr)
 				return;
-		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+		int x = event->x() - layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+		int y = event->y() - layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		Tool->onMouseMoved(x, y);
 		update();
 }
 
 // If the button is released we set variables to stop drawing
 void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
-        if(this->activeLayer < 0)
-                return;
-        if(Tool == nullptr)
+		if(this->activeLayer < 0)
 				return;
-		int x = event->x()-layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-		int y = event->y()-layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+		if(Tool == nullptr)
+				return;
+		int x = event->x() - layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
+		int y = event->y() - layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftReleased(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -312,13 +307,13 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 }
 
 void PaintingArea::wheelEvent(QWheelEvent*event){
-        if(this->activeLayer < 0)
-                return;
-        if(this->Tool != nullptr) {
+		if(this->activeLayer < 0)
+				return;
+		if(this->Tool != nullptr) {
 				QPoint numDegrees = event->angleDelta() / 8;
 				if(!numDegrees.isNull()) {
 						QPoint numSteps = numDegrees / 15;
-						Tool->onWheelScrolled(numSteps.y()* -1);
+						Tool->onWheelScrolled(numSteps.y() * -1);
 				}
 		}
 }
@@ -335,27 +330,18 @@ void PaintingArea::paintEvent(QPaintEvent*event){
 		update();
 }
 
-// Resize the image to slightly larger then the main window
-// to cut down on the need to resize the image
-void PaintingArea::resizeEvent(QResizeEvent*event){
-		//TODO wait till tool works
-		update();
-}
-
-void PaintingArea::resizeLayer(QImage*image_res, const QSize &newSize){
-		//TODO implement
-}
-
 void PaintingArea::selectLayerUp(){
-		if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size()-1) {
-				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer+1)]);
+		updateTools();
+        if(activeLayer != -1 && static_cast<size_t>(activeLayer)<layerBundle.size() - 1) {
+                std::swap(layerBundle[static_cast<size_t>(activeLayer)], layerBundle[static_cast<size_t>(activeLayer + 1)]);
 				activeLayer++;
 		}
 }
 
 void PaintingArea::selectLayerDown(){
-		if(activeLayer!=-1 && activeLayer>0) {
-				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer-1)]);
+		updateTools();
+        if(activeLayer>0) {
+				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer - 1)]);
 				activeLayer--;
 		}
 }
@@ -366,30 +352,30 @@ void PaintingArea::drawLayers(bool forSaving){
 		}else{
 				Canvas->fill(Qt::GlobalColor::black);
 		}
-		for(size_t i=0; i<layerBundle.size(); i++) {
+		for(size_t i = 0; i<layerBundle.size(); i++) {
 				LayerObject layer = layerBundle[i];
 				QImage cpy = layer.image->getDisplayable(layer.alpha);
 				QColor clr_0;
 				QColor clr_1;
-				for(int y=0; y<layer.height; y++) {
-						if(layer.heightOffset+y<0) continue;
-						if(layer.heightOffset+y>=maxHeight) break;
-						for(int x=0; x<layer.width; x++) {
-								if(layer.widthOffset+x<0) continue;
-								if(layer.widthOffset+x>=maxWidth) break;
-								clr_0=Canvas->pixelColor(layer.widthOffset+x, layer.heightOffset+y);
-								clr_1=cpy.pixelColor(x,y);
-								float t = static_cast<float>(clr_1.alpha())/255.f;
-								int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
-								int g =static_cast<int>(static_cast<float>(clr_1.green())*(t)+static_cast<float>(clr_0.green())*(1.f-t)+0.5f);
-								int b =static_cast<int>(static_cast<float>(clr_1.blue())*(t)+static_cast<float>(clr_0.blue()*(1.f-t))+0.5f);
-								int a =std::min(clr_0.alpha()+clr_1.alpha(), 255);
+				for(int y = 0; y<layer.height; y++) {
+						if(layer.heightOffset + y<0) continue;
+						if(layer.heightOffset + y>=maxHeight) break;
+						for(int x = 0; x<layer.width; x++) {
+								if(layer.widthOffset + x<0) continue;
+								if(layer.widthOffset + x>=maxWidth) break;
+								clr_0 = Canvas->pixelColor(layer.widthOffset + x, layer.heightOffset + y);
+								clr_1 = cpy.pixelColor(x,y);
+								float t = static_cast<float>(clr_1.alpha()) / 255.f;
+								int r = static_cast<int>(static_cast<float>(clr_1.red()) * (t) + static_cast<float>(clr_0.red()) * (1.f - t) + 0.5f);
+								int g = static_cast<int>(static_cast<float>(clr_1.green()) * (t) + static_cast<float>(clr_0.green()) * (1.f - t) + 0.5f);
+								int b = static_cast<int>(static_cast<float>(clr_1.blue()) * (t) + static_cast<float>(clr_0.blue() * (1.f - t)) + 0.5f);
+								int a = std::min(clr_0.alpha() + clr_1.alpha(), 255);
 								clr_0.setRed(r);
 								clr_0.setGreen(g);
 								clr_0.setBlue(b);
 								clr_0.setAlpha(a);
 
-								Canvas->setPixelColor(layer.widthOffset+x, layer.heightOffset+y, clr_0);
+								Canvas->setPixelColor(layer.widthOffset + x, layer.heightOffset + y, clr_0);
 						}
 				}
 		}
@@ -404,10 +390,10 @@ bool PaintingArea::createTempTopLayer(int idx){
 				newLayer.heightOffset = layerBundle[static_cast<unsigned long long>(idx)].heightOffset;
 				newLayer.widthOffset = layerBundle[static_cast<unsigned long long>(idx)].widthOffset;
 				newLayer.image = layerBundle[static_cast<unsigned long long>(idx)].image->getDeepCopy();
-				layerBundle.insert(layerBundle.begin()+idx+1,newLayer);
-                return true;
+				layerBundle.insert(layerBundle.begin() + idx + 1,newLayer);
+				return true;
 		}
-        return false;
+		return false;
 }
 
 IntelliTool* PaintingArea::copyActiveTool(){
@@ -428,8 +414,38 @@ int PaintingArea::getNumberOfActiveLayer(){
 }
 
 IntelliImage* PaintingArea::getImageOfActiveLayer(){
-        if(activeLayer<0){
-            return nullptr;
-        }
-		return layerBundle[activeLayer].image;
+		if(activeLayer<0) {
+				return nullptr;
+		}
+		return layerBundle[static_cast<size_t>(activeLayer)].image;
+}
+
+QImage PaintingArea::getImageDataOfActiveLayer(){
+		QImage returnImage;
+		if(activeLayer<0) {
+				returnImage = QImage(QSize(10,10),QImage::Format_ARGB32);
+				returnImage.fill(QColor(255,255,255,255));
+		}
+		else{
+				returnImage = layerBundle[static_cast<size_t>(activeLayer)].image->getImageData();
+				if(renderSettings.isFastRenderering()) {
+						returnImage = returnImage.convertToFormat(QImage::Format_ARGB32);
+				}
+		}
+		return returnImage;
+}
+
+void PaintingArea::updateTools(){
+		if(Tool!=nullptr) {
+				if(Tool->getIsDrawing()) {
+						IntelliTool* temp = copyActiveTool();
+						delete this->Tool;
+						this->Tool = temp;
+				}
+				if(isSettingPolygon) {
+						delete this->Tool;
+						this->Tool = nullptr;
+						isSettingPolygon = false;
+				}
+		}
 }

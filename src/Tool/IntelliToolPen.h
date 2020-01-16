@@ -5,10 +5,14 @@
 #include "QColor"
 #include "QPoint"
 
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliToolPen class represents a tool to draw a line.
  */
 class IntelliToolPen : public IntelliTool {
+    friend UnitTest;
 /*!
  * \brief point - Represents the previous point to help drawing a line.
  */
@@ -67,4 +71,4 @@ virtual void onWheelScrolled(int value) override;
 virtual void onMouseMoved(int x, int y) override;
 };
 
-#endif // INTELLITOOLPEN_H
+#endif

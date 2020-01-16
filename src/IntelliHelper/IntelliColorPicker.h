@@ -5,10 +5,14 @@
 #include "QPoint"
 #include "QColorDialog"
 
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliColorPicker manages the selected colors for one whole project.
  */
 class IntelliColorPicker {
+    friend UnitTest;
 public:
 /*!
  * \brief IntelliColorPicker constructor, setting 2 preset colors, be careful, theese color may change in production.
@@ -59,6 +63,11 @@ QColor firstColor;
  * \brief The secondary color.
  */
 QColor secondColor;
+
+/*!
+ * \brief initializeColors initializes the first and second color.
+ */
+void initializeColors();
 };
 
-#endif // INTELLITOOLSETCOLORTOOL_H
+#endif

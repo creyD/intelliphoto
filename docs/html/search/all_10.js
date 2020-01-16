@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['wheelevent_160',['wheelEvent',['../class_painting_area.html#a632848d99f44d33d7da2618fbc6775a4',1,'PaintingArea']]],
-  ['width_161',['width',['../struct_layer_object.html#af261813df52ff0b0c82bfa57efeb9897',1,'LayerObject']]],
-  ['widthoffset_162',['widthOffset',['../struct_layer_object.html#a72b44d27c7bbb60dde14f04ec240ab96',1,'LayerObject']]]
+  ['unittest_169',['UnitTest',['../class_unit_test.html',1,'UnitTest'],['../class_unit_test.html#a67ddaff817b55a624741d32550052f4b',1,'UnitTest::UnitTest()'],['../class_unit_test.html#a67ddaff817b55a624741d32550052f4b',1,'UnitTest::UnitTest()']]],
+  ['updategui_170',['UpdateGui',['../class_intelli_photo_gui.html#a1dbef8d4688227aa9455aea52db00bf4',1,'IntelliPhotoGui']]],
+  ['updaterenderersetting_171',['updateRendererSetting',['../class_intelli_image.html#ae4dbaefabce4ec5bec37f5b95e2f62e2',1,'IntelliImage']]]
 ];

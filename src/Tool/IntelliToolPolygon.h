@@ -5,11 +5,16 @@
 #include "IntelliHelper/IntelliTriangulation.h"
 #include <vector>
 #include <QPoint>
+
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliToolPolygon managed the Drawing of Polygonforms
  */
 class IntelliToolPolygon : public IntelliTool
 {
+    friend UnitTest;
 /*!
  * \brief Checks if the given Point lies near the starting Point.
  * \param x             - x coordinate of a point.
@@ -20,14 +25,19 @@ class IntelliToolPolygon : public IntelliTool
 bool isNearStart(int x, int y, QPoint Startpoint);
 
 /*!
- * \brief IsDrawing true while drawing, else false.
+ * \brief drawingOfPolygon true while drawing, else false.
  */
-bool isDrawing;
+bool drawingOfPolygon;
 
 /*!
  * \brief isInside Checks if Point is inside Image
  */
 bool isInside;
+
+/*!
+ * \brief isSettingPolygon is the flag for calling the setPolygon method.
+ */
+bool isSettingPolygon;
 
 /*!
  * \brief PointIsNearStart true, when last click near startpoint, else false.
@@ -43,8 +53,9 @@ public:
  * \brief A constructor setting the general paintingArea and colorPicker.
  * \param Area          - The general paintingArea used by the project.
  * \param colorPicker   - The general colorPicker used by the project.
+ * \param isSettingPolygon - The flag for the set polygon method, standart is false
  */
-IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
+IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings, bool isSettingPolygon = false);
 /*!
  * \brief A Destructor.
  */
@@ -91,7 +102,6 @@ virtual void onWheelScrolled(int value) override;
  */
 virtual void onMouseMoved(int x, int y) override;
 
-
 };
 
-#endif // INTELLITOOLPOLYGON_H
+#endif

@@ -2,6 +2,7 @@ var annotated_dup =
 [
     [ "IntelliColorPicker", "class_intelli_color_picker.html", "class_intelli_color_picker" ],
     [ "IntelliImage", "class_intelli_image.html", "class_intelli_image" ],
+    [ "IntelliInputDialog", "class_intelli_input_dialog.html", "class_intelli_input_dialog" ],
     [ "IntelliPhotoGui", "class_intelli_photo_gui.html", "class_intelli_photo_gui" ],
     [ "IntelliRasterImage", "class_intelli_raster_image.html", "class_intelli_raster_image" ],
     [ "IntelliRenderSettings", "class_intelli_render_settings.html", "class_intelli_render_settings" ],
@@ -17,5 +18,6 @@ var annotated_dup =
     [ "IntelliToolsettings", "class_intelli_toolsettings.html", "class_intelli_toolsettings" ],
     [ "LayerObject", "struct_layer_object.html", "struct_layer_object" ],
     [ "PaintingArea", "class_painting_area.html", "class_painting_area" ],
-    [ "Triangle", "struct_triangle.html", "struct_triangle" ]
+    [ "Triangle", "struct_triangle.html", "struct_triangle" ],
+    [ "UnitTest", "class_unit_test.html", "class_unit_test" ]
 ];
