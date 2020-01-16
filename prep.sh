@@ -52,7 +52,7 @@ runUnitTests(){
 gitCommit(){
   printLine "Committing Changes to Git..."
   git add '*' || { printLine "ERROR: git not found!" "\033[0;33m"; return; }
-  git commit -m "Automated Release Preparation"
+  git commit -m "$1"
   printLine "Committed." "\033[0;32m"
 }
 
@@ -62,7 +62,7 @@ prepareMerge(){
   runCPPCheck
   #runUnitTests
   runDoxygen
-  gitCommit
+  gitCommit "Automated Merge Preparation"
   printLine "Finished." "\033[0;32m"
   exit
 }
@@ -75,7 +75,7 @@ prepareRelease(){
   runCPPCheck
   #runUnitTests
   runDoxygen
-  gitCommit
+  gitCommit "Automated Release Preparation"
   printLine "Finished." "\033[0;32m"
   exit
 }
