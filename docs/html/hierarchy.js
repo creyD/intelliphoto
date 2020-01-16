@@ -18,6 +18,9 @@ var hierarchy =
     ] ],
     [ "IntelliToolsettings", "class_intelli_toolsettings.html", null ],
     [ "LayerObject", "struct_layer_object.html", null ],
+    [ "QDialog", null, [
+      [ "IntelliInputDialog", "class_intelli_input_dialog.html", null ]
+    ] ],
     [ "QMainWindow", null, [
       [ "IntelliPhotoGui", "class_intelli_photo_gui.html", null ]
     ] ],

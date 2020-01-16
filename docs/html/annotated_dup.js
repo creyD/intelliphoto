@@ -2,6 +2,7 @@ var annotated_dup =
 [
     [ "IntelliColorPicker", "class_intelli_color_picker.html", "class_intelli_color_picker" ],
     [ "IntelliImage", "class_intelli_image.html", "class_intelli_image" ],
+    [ "IntelliInputDialog", "class_intelli_input_dialog.html", "class_intelli_input_dialog" ],
     [ "IntelliPhotoGui", "class_intelli_photo_gui.html", "class_intelli_photo_gui" ],
     [ "IntelliRasterImage", "class_intelli_raster_image.html", "class_intelli_raster_image" ],
     [ "IntelliRenderSettings", "class_intelli_render_settings.html", "class_intelli_render_settings" ],
