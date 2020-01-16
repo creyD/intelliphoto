@@ -1,13 +1,13 @@
 #+TITLE: Todo-Liste für Intelliphoto
 #+AUTHOR: Paul Norberger
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
-#+OPTIONS: toc:nil
-* TODO Dokumentation [2/8]
+#+COPTIONS: toc:nil
+* TODO Dokumentation [4/9]
 ** TODO CRC-Karten
 - 8/10 CRC-Karten sind fertig.
 - 2 CRC-Karten werden noch benötigt. [Zuständig: Paul]
-** DONE UML-Diagramm
-   CLOSED: [2020-01-08 Mi 21:50]
+** TODO UML-Diagramm
+- 1 UML-Diagramm muss geupdatet werden.
 ** TODO User-Manual
 - Usermanual für Version 0.31 liegt vor.
 - Nach Userinterfaceupdate: Usermanual muss aktualisiert werden.
@@ -15,45 +15,73 @@
 - 1/2 Use-Case-Diagramme sind vorhanden.
 - 1 Use-Case-Diagramm wird noch benötigt.
 - 1 Use-Case-Diagramm muss evtl. aktualisiert werden.
-** TODO Sequenzdiagramme
-- 1/2 Sequenzdiagramme sind vorhanden.
-- 1 Sequenzdiagramm wird noch benötigt. [Zuständig: Seb]
-- 1 Sequenzdiagramm muss aktualisiert werden. [Zuständig: Seb]
-** TODO Zustandsdiagramme
-- 1/2 Zustandsdiagramme sind vorhanden.
-- 1 Sequenzdiagramm wird noch benötigt. [Zuständig: Seb]
-- 1 Sequenzdiagramm muss aktualisiert werden. [Zuständig: Seb]
+** DONE Sequenzdiagramme
+   CLOSED: [2020-01-13 Mo 19:22]
+- 2/2 Sequenzdiagramme sind vorhanden.
+** DONE Zustandsdiagramme
+   CLOSED: [2020-01-13 Mo 19:22]
+- 2/2 Zustandsdiagramme sind vorhanden.
 ** DONE Selbstgenierende Dokumentation
    CLOSED: [2020-01-08 Mi 21:57]
 ** TODO Volere Snow Cards [0/2]
-*** Nicht-funktionale Anforderungen
+*** TODO Nicht-funktionale Anforderungen
 - 1/2 Volere Snow Cards sind vorhanden.
 - 1 Volere Snow Card wird noch benötigt. [Zuständig: Paul]
 - 1 Volere Snow Card muss evtl. aktualisiert werden. [Zuständig: Paul]
-*** Funktionale Anforderungen
+*** TODO Funktionale Anforderungen
 - 1/2 Volere Snow Cards sind vorhanden.
 - 1 Volere Snow Card wird noch benötigt. [Zuständig: Paul]
 - 1 Volere Snow Card muss evtl. aktualisiert werden. [Zuständig: Paul]
 ** TODO Referenzmaschine(n) bestimmen und Specs dokumentieren
-* TODO Allgemeine Features [0/1]
-** TODO Das Polygon fürs ShapedImage setzbar machen
-* TODO User Interface [0/4]
-** TODO Icons für alle Tools
-** TODO Interfacegrundstruktur erstellen
-** TODO Verknüpfung der Tools im Code mit den Buttons
-** TODO Eigenschaften der Tools im Fenster statt im Popup einstellbar machen
+- Specs von Muckes Standrechner
+- Müssen noch an Zuständigen geschickt werden. [Zuständig: Mucke, Paul]
+* TODO User Interface [4/9]
+** DONE Icons für alle Tools
+   CLOSED: [2020-01-13 Mo 19:28]
+** DONE Interfacegrundstruktur erstellen
+   CLOSED: [2020-01-13 Mo 19:28]
+** DONE Verknüpfung der Tools im Code mit den Buttons
+   CLOSED: [2020-01-13 Mo 19:28]
+** DONE Eigenschaften der Tools im Fenster statt im Popup einstellbar machen
+   CLOSED: [2020-01-13 Mo 19:29]
+** TODO Input Dialog
+- [Zuständig: Basti]
+** TODO Create Canvas
+- [Zuständig: Seb]
+** TODO Change Canvas Size
+- [Zuständig: Seb]
+** TODO ShapedImage kreieren 
+- [Zuständig: Jan]
+** TODO Polygon setzen
+- [Zuständig: Jan]
 * TODO Refactoring [2/2]
 ** DONE Alle öffentlichen Klassen durchkommentieren
    CLOSED: [2020-01-08 Mi 21:47]
 ** DONE Toolklassenstruktur verbessern
    CLOSED: [2020-01-08 Mi 21:58]
+** TODO Leere geerbte Funktionen in den Tools entfernen
+** TODO Variablen beschreiben
+** TODO Dokumentieren Header
+- [Zuständig: Conrad]
+** TODO Toter Code Bereinigung / LineTool.dotted entfernen
+- [Zuständig: Conrad]
+** TODO In *.cpp auslagern
+- [Zuständig: Jan, Conrad, Mucke, Seb]
+** TODO Variablennamen verbessern und ggf. kommentieren
+- [Zuständig: Conrad, Seb]
+* TODO Testing
+** TODO Tests
+- [Zuständig: Mucke]
+** TODO Benchmarking
+- [Zuständig: Mucke]
 * TODO Tools [0/8]
-** TODO PenTool [2/5]
+** TODO PenTool [3/5]
 *** DONE Icon
     CLOSED: [2020-01-08 Mi 19:54]
 *** DONE Funktionalität
     CLOSED: [2020-01-08 Mi 19:54]
-*** TODO Implementierung in Interface
+*** DONE Implementierung in Interface
+    CLOSED: [2020-01-13 Mo 19:33]
 *** TODO Zeitbestimmung auf Referenzmaschine
 *** TODO Unittests
 - [Zuständig: Mucke]
@@ -85,8 +113,8 @@
 *** TODO Unittests
 - [Zuständig: Mucke]
 ** TODO CircleTool [2/5]
-*** DONE Icon
-    CLOSED: [2020-01-08 Mi 19:54]
+*** TODO Icon
+- Icon Update: Nur 1 roter Punkt im Icon, weil nur 1 Punkt per Klick bestimmt wird
 *** DONE Funktionalität
     CLOSED: [2020-01-08 Mi 19:54]
 *** TODO Implementierung in Interface
@@ -113,11 +141,13 @@
 - [Zuständig: Mucke]
 ** TODO LineTool [1/5]
 *** TODO Icon
+- Icon Update: Nur 1 roter Punkt im Icon, weil nur 1 Punkt per Klick bestimmt wird
 *** DONE Funktionalität
     CLOSED: [2020-01-08 Mi 19:54]
 *** TODO Implementierung in Interface
 *** TODO Zeitbestimmung auf Referenzmaschine
 *** TODO Unittests
 - [Zuständig: Mucke]
-* TODO Extras [0/1]
-** TODO 3D-Modelle laden und anzeigen / Tools implementieren
+* TODO Abschlusspräsentation
+** Eröffnungsvideo erstellen
+- [Zuständig: Jan]
