@@ -87,7 +87,6 @@ void slotCreateFloodFillTool();
 void slotAboutDialog();
 
 void slotChangeDim();
-void slotGetDim();
 
 void slotEnterPressed();
 
@@ -112,6 +111,8 @@ void setDefaultToolValue();
 
 // What we'll draw on
 PaintingArea* paintingArea;
+int maxHeight;
+int maxWidth;
 
 const QSize Buttonsize = QSize(35,35);
 QPixmap preview;
@@ -177,7 +178,6 @@ QAction* actionCreateFloodFillTool;
 
 // dimension actions
 QAction*actionChangeDim;
-QAction*actionGetDim;
 
 // dialog actions
 QAction* actionAboutDialog;

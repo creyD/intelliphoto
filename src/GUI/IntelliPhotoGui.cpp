@@ -112,12 +112,14 @@ void IntelliPhotoGui::slotChangeDim(){
         // the next tr is the text to display
         // Define the standard Value, min, step and ok button
         int width = IntelliInputDialog::getInt("New Canvas Size", "Width:", 600, 1, 50000 , 1, &ok1);
+        maxWidth = width;
 
         int height = IntelliInputDialog::getInt("New Canvas Size", "Height:", 600, 1, 50000, 1, &ok2);
+        maxHeight = height;
 
         // Change dimension
         if (ok1&&ok2) {
-                paintingArea->setLayerDimensions(height,width);
+                paintingArea->setLayerDimensions(width,height);
                 UpdateGui();
         }
 }
@@ -381,6 +383,7 @@ void IntelliPhotoGui::createActions(){
         actionChangeDim = new QAction(tr("&Change Dimension"), this);
         actionChangeDim->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_X));
         connect(actionChangeDim, SIGNAL(triggered()), this, SLOT(slotChangeDim()));
+        connect(dimCanvas, SIGNAL(clicked()), this, SLOT(slotChangeDim()));
 
 		actionSetActiveLayer = new QAction(tr("&set Active"), this);
 		actionSetActiveLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_A));
@@ -598,7 +601,6 @@ void IntelliPhotoGui::createMenus(){
 		optionMenu->addSeparator();
 		optionMenu->addMenu(renderMenu);
         optionMenu->addAction(actionChangeDim);
-        optionMenu->addAction(actionGetDim);
 
 		// Attach all actions to Help
 		helpMenu = new QMenu(tr("&Help"), this);
@@ -622,8 +624,8 @@ void IntelliPhotoGui::createGui(){
 
 		// create Gui elements
         // get and set max width and height
-        int maxHeight = IntelliInputDialog::getInt("New Layer", "Height:", 600, 1);
-        int maxWidth = IntelliInputDialog::getInt("New Layer", "Width:", 600, 1);
+        maxHeight = IntelliInputDialog::getInt("New Layer", "Height:", 600, 1);
+        maxWidth = IntelliInputDialog::getInt("New Layer", "Width:", 600, 1);
         paintingArea = new PaintingArea(maxWidth, maxHeight);
 		paintingArea->DummyGui = this;
 
@@ -853,4 +855,7 @@ void IntelliPhotoGui::UpdateGui(){
 		FirstColorButton->setStyleSheet(string);
 		string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
 		SecondColorButton->setStyleSheet(string);
+
+        string = QString("%1x%2").arg(maxWidth).arg(maxHeight);
+        dimCanvas->setText(string);
 }
