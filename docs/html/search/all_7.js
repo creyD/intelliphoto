@@ -4,7 +4,7 @@ var searchData=
   ['imagedata_57',['imageData',['../class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2',1,'IntelliImage']]],
   ['imagetype_58',['ImageType',['../class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e',1,'IntelliImage']]],
   ['intellicolorpicker_59',['IntelliColorPicker',['../class_intelli_color_picker.html',1,'IntelliColorPicker'],['../class_intelli_color_picker.html#a0d1247bdd87add1396ea5d9acaad79ae',1,'IntelliColorPicker::IntelliColorPicker()']]],
-  ['intellicolorpicker_2ecpp_60',['IntelliColorPicker.cpp',['../_intelli_helper_2_intelli_color_picker_8cpp.html',1,'(Global Namespace)'],['../_tool_2_intelli_color_picker_8cpp.html',1,'(Global Namespace)']]],
+  ['intellicolorpicker_2ecpp_60',['IntelliColorPicker.cpp',['../_intelli_color_picker_8cpp.html',1,'']]],
   ['intellicolorpicker_2eh_61',['IntelliColorPicker.h',['../_intelli_color_picker_8h.html',1,'']]],
   ['intelliimage_62',['IntelliImage',['../class_intelli_image.html',1,'IntelliImage'],['../class_intelli_image.html#a2c6632ff35ee0a7094a8a289eb3a8652',1,'IntelliImage::IntelliImage()']]],
   ['intelliimage_2ecpp_63',['IntelliImage.cpp',['../_intelli_image_8cpp.html',1,'']]],

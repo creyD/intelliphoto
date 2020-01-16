@@ -18,5 +18,6 @@ var annotated_dup =
     [ "IntelliToolsettings", "class_intelli_toolsettings.html", "class_intelli_toolsettings" ],
     [ "LayerObject", "struct_layer_object.html", "struct_layer_object" ],
     [ "PaintingArea", "class_painting_area.html", "class_painting_area" ],
-    [ "Triangle", "struct_triangle.html", "struct_triangle" ]
+    [ "Triangle", "struct_triangle.html", "struct_triangle" ],
+    [ "UnitTest", "class_unit_test.html", "class_unit_test" ]
 ];

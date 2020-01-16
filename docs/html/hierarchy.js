@@ -24,6 +24,9 @@ var hierarchy =
     [ "QMainWindow", null, [
       [ "IntelliPhotoGui", "class_intelli_photo_gui.html", null ]
     ] ],
+    [ "QObject", null, [
+      [ "UnitTest", "class_unit_test.html", null ]
+    ] ],
     [ "QWidget", null, [
       [ "PaintingArea", "class_painting_area.html", null ]
     ] ],

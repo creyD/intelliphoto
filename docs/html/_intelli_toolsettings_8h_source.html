@@ -89,30 +89,37 @@ $(document).ready(function(){initNavTree('_intelli_toolsettings_8h_source.html',
 <a href="_intelli_toolsettings_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef INTELLITOOLSETTINGS_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define INTELLITOOLSETTINGS_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="class_intelli_toolsettings.html">    4</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_intelli_toolsettings.html">IntelliToolsettings</a> {</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<a class="code" href="class_intelli_toolsettings.html#a5560602964ab95380967d63ab7ec6e69">IntelliToolsettings</a>();</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">virtual</span> <a class="code" href="class_intelli_toolsettings.html#a927e50594a459c952d06acd34c0eff56">~IntelliToolsettings</a>();</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_intelli_toolsettings.html#a68528dd3bad8f39ba19fa6b12a4e415a">getLineWidth</a>();</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_intelli_toolsettings.html#a73fa94c85c6c2fdc1a33975a33304a6f">setLineWidth</a>(<span class="keywordtype">int</span> LineWidth);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_intelli_toolsettings.html#a7d6ce2054ec4bcba7629dc2b514b6b5c">getInnerAlpha</a>();</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_intelli_toolsettings.html#a9a61f3de61efeba2287f8b32941f4271">setInnerAlpha</a>(<span class="keywordtype">int</span> innerAlpha);</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//for unit testing</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">class </span><a class="code" href="class_unit_test.html">UnitTest</a>;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_intelli_toolsettings.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_intelli_toolsettings.html">IntelliToolsettings</a> {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">friend</span> <a class="code" href="class_unit_test.html">UnitTest</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<a class="code" href="class_intelli_toolsettings.html#a5560602964ab95380967d63ab7ec6e69">IntelliToolsettings</a>();</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">virtual</span> <a class="code" href="class_intelli_toolsettings.html#a927e50594a459c952d06acd34c0eff56">~IntelliToolsettings</a>();</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">int</span> lineWidth;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">int</span> innerAlpha;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_intelli_toolsettings.html#a68528dd3bad8f39ba19fa6b12a4e415a">getLineWidth</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_intelli_toolsettings.html#a73fa94c85c6c2fdc1a33975a33304a6f">setLineWidth</a>(<span class="keywordtype">int</span> LineWidth);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_intelli_toolsettings.html#a7d6ce2054ec4bcba7629dc2b514b6b5c">getInnerAlpha</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_intelli_toolsettings.html#a9a61f3de61efeba2287f8b32941f4271">setInnerAlpha</a>(<span class="keywordtype">int</span> innerAlpha);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">int</span> lineWidth;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">int</span> innerAlpha;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_intelli_toolsettings_html_a927e50594a459c952d06acd34c0eff56"><div class="ttname"><a href="class_intelli_toolsettings.html#a927e50594a459c952d06acd34c0eff56">IntelliToolsettings::~IntelliToolsettings</a></div><div class="ttdeci">virtual ~IntelliToolsettings()</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_toolsettings_8cpp_source.html#l00010">IntelliToolsettings.cpp:10</a></div></div>
 <div class="ttc" id="aclass_intelli_toolsettings_html_a7d6ce2054ec4bcba7629dc2b514b6b5c"><div class="ttname"><a href="class_intelli_toolsettings.html#a7d6ce2054ec4bcba7629dc2b514b6b5c">IntelliToolsettings::getInnerAlpha</a></div><div class="ttdeci">int getInnerAlpha()</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_toolsettings_8cpp_source.html#l00028">IntelliToolsettings.cpp:28</a></div></div>
 <div class="ttc" id="aclass_intelli_toolsettings_html_a9a61f3de61efeba2287f8b32941f4271"><div class="ttname"><a href="class_intelli_toolsettings.html#a9a61f3de61efeba2287f8b32941f4271">IntelliToolsettings::setInnerAlpha</a></div><div class="ttdeci">void setInnerAlpha(int innerAlpha)</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_toolsettings_8cpp_source.html#l00032">IntelliToolsettings.cpp:32</a></div></div>
+<div class="ttc" id="aclass_unit_test_html"><div class="ttname"><a href="class_unit_test.html">UnitTest</a></div><div class="ttdef"><b>Definition:</b> <a href="main_unit_test_8cpp_source.html#l00008">mainUnitTest.cpp:8</a></div></div>
 <div class="ttc" id="aclass_intelli_toolsettings_html_a73fa94c85c6c2fdc1a33975a33304a6f"><div class="ttname"><a href="class_intelli_toolsettings.html#a73fa94c85c6c2fdc1a33975a33304a6f">IntelliToolsettings::setLineWidth</a></div><div class="ttdeci">void setLineWidth(int LineWidth)</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_toolsettings_8cpp_source.html#l00018">IntelliToolsettings.cpp:18</a></div></div>
 <div class="ttc" id="aclass_intelli_toolsettings_html_a68528dd3bad8f39ba19fa6b12a4e415a"><div class="ttname"><a href="class_intelli_toolsettings.html#a68528dd3bad8f39ba19fa6b12a4e415a">IntelliToolsettings::getLineWidth</a></div><div class="ttdeci">int getLineWidth()</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_toolsettings_8cpp_source.html#l00014">IntelliToolsettings.cpp:14</a></div></div>
 <div class="ttc" id="aclass_intelli_toolsettings_html_a5560602964ab95380967d63ab7ec6e69"><div class="ttname"><a href="class_intelli_toolsettings.html#a5560602964ab95380967d63ab7ec6e69">IntelliToolsettings::IntelliToolsettings</a></div><div class="ttdeci">IntelliToolsettings()</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_toolsettings_8cpp_source.html#l00004">IntelliToolsettings.cpp:4</a></div></div>
-<div class="ttc" id="aclass_intelli_toolsettings_html"><div class="ttname"><a href="class_intelli_toolsettings.html">IntelliToolsettings</a></div><div class="ttdef"><b>Definition:</b> <a href="_intelli_toolsettings_8h_source.html#l00004">IntelliToolsettings.h:4</a></div></div>
+<div class="ttc" id="aclass_intelli_toolsettings_html"><div class="ttname"><a href="class_intelli_toolsettings.html">IntelliToolsettings</a></div><div class="ttdef"><b>Definition:</b> <a href="_intelli_toolsettings_8h_source.html#l00007">IntelliToolsettings.h:7</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
