@@ -59,13 +59,16 @@ void IntelliImage::drawPixel(const QPoint &p1, const QColor& color){
 				this->imageData = this->imageData.convertToFormat(QImage::Format_ARGB32);
 		}
 		// Used to draw on the widget
-		QPainter painter(&imageData);
+		QPainter* painter = new QPainter(&imageData);
 
 		// Set the current settings for the pen
-		painter.setPen(QPen(color, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+		painter->setPen(QPen(color, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
 		// Draw a line from the last registered point to the current
-		painter.drawPoint(p1);
+		painter->drawPoint(p1);
+		delete painter;
+		painter = nullptr;
+
 		if(fastRenderering) {
 				this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
 		}
@@ -76,12 +79,15 @@ void IntelliImage::drawPoint(const QPoint &p1, const QColor& color, const int& p
 				this->imageData = this->imageData.convertToFormat(QImage::Format_ARGB32);
 		}
 		// Used to draw on the widget
-		QPainter painter(&imageData);
+		QPainter* painter = new QPainter(&imageData);
 
 		// Set the current settings for the pen
-		painter.setPen(QPen(color, penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+		painter->setPen(QPen(color, penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 		// Draw a line from the last registered point to the current
-		painter.drawPoint(p1);
+		painter->drawPoint(p1);
+		delete painter;
+
+		painter = nullptr;
 		if(fastRenderering) {
 				this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
 		}
@@ -92,13 +98,16 @@ void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& co
 				this->imageData =  this->imageData.convertToFormat(QImage::Format_ARGB32);
 		}
 		// Used to draw on the widget
-		QPainter painter(&imageData);
+		QPainter* painter = new QPainter(&imageData);
 
 		// Set the current settings for the pen
-		painter.setPen(QPen(color, penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+		painter->setPen(QPen(color, penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
 		// Draw a line from the last registered point to the current
-		painter.drawLine(p1, p2);
+		painter->drawLine(p1, p2);
+		delete painter;
+		painter = nullptr;
+
 		if(fastRenderering) {
 				this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
 		}

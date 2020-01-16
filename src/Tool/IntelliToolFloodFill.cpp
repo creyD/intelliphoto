@@ -34,6 +34,9 @@ void IntelliToolFloodFill::onMouseLeftPressed(int x, int y){
 
 		QColor oldColor = this->activeLayer->image->getPixelColor(start);
 		QColor newColor = this->colorPicker->getFirstColor();
+		if(newColor == oldColor) {
+				return;
+		}
 		Canvas->image->drawPixel(start,newColor);
 
 		QPoint left, right, top, down;

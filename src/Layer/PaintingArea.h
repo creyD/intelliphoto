@@ -14,6 +14,9 @@
 #include "Tool/IntelliTool.h"
 #include "IntelliHelper/IntelliColorPicker.h"
 
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The LayerObject struct holds all the information needed to construct a layer
  * \param width         - Stores the width of a layer in pixels
@@ -36,6 +39,10 @@ struct LayerObject {
  */
 class PaintingArea : public QWidget
 {
+friend UnitTest;
+// Declares our class as a QObject which is the base class
+// for all Qt objects
+// QObjects handle events
 Q_OBJECT
 friend IntelliTool;
 friend IntelliPhotoGui;

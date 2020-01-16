@@ -3,10 +3,15 @@
 
 #include "IntelliTool.h"
 #include "QColor"
+
+//for unit testing
+class UnitTest;
+
 /*!
  * \brief The IntelliToolPlainTool class represents a tool to fill the whole canvas with one color.
  */
 class IntelliToolPlainTool : public IntelliTool {
+    friend UnitTest;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker.

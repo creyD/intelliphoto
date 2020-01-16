@@ -1,6 +1,9 @@
 #ifndef INTELLITRIANGULATION_H
 #define INTELLITRIANGULATION_H
 
+//for unit testing
+class UnitTest;
+
 #include <QPoint>
 #include <vector>
 

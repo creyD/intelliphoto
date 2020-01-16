@@ -1,9 +1,13 @@
 #ifndef INTELLIRENDERSETTINGS_H
 #define INTELLIRENDERSETTINGS_H
 
+//for unit testing
+class UnitTest;
+
 
 class IntelliRenderSettings
 {
+    friend UnitTest;
 public:
 IntelliRenderSettings();
 

@@ -47,6 +47,5 @@ QImage IntelliRasterImage::getDisplayable(const QSize& displaySize, int alpha){
 }
 
 void IntelliRasterImage::setPolygon(const std::vector<QPoint>& polygonData){
-		qDebug() << "Raster Image has no polygon data " << polygonData.size() << "\n";
 		return;
 }
