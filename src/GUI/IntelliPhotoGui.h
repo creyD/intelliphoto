@@ -11,6 +11,10 @@
 #include <QLabel>
 #include <QLineEdit>
 
+#include "IntelliInputDialog.h"
+
+
+// PaintingArea used to paint the image
 class PaintingArea;
 
 class IntelliTool;
@@ -29,6 +33,8 @@ public:
 IntelliPhotoGui();
 
 void UpdateGui();
+
+void setToolWidth(int value);
 
 protected:
 /*!
@@ -95,7 +101,7 @@ void setDefaultToolValue();
 // What we'll draw on
 PaintingArea* paintingArea;
 
-const QSize Buttonsize = QSize(70,70);
+const QSize Buttonsize = QSize(35,35);
 QPixmap preview;
 QPushButton* CircleButton;
 QPushButton* FloodFillButton;
@@ -116,9 +122,7 @@ QPushButton* SecondColorButton;
 QPushButton* SwitchColorButton;
 
 QLabel* ActiveLayerLine;
-QLabel* ActiveLayerImageLine;
-
-QPalette Palette;
+QLabel* ActiveLayerImageLabel;
 
 // The menu widgets
 QMenu*saveAsMenu;

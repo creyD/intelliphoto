@@ -160,6 +160,10 @@ int getWidthOfActive();
  */
 int getHeightOfActive();
 
+int getMaxWidth();
+
+int getMaxHeight();
+
 IntelliImage::ImageType getTypeOfImageRealLayer();
 
 std::vector<QPoint> getPolygonDataOfRealLayer();
