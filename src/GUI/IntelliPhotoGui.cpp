@@ -14,8 +14,8 @@ IntelliPhotoGui::IntelliPhotoGui(){
 		// set style of the gui
 		setIntelliStyle();
 		// Size the app
-        resize(600,600);
-        showMaximized();
+		resize(600,600);
+		showMaximized();
 		setDefaultToolValue();
 }
 
@@ -73,9 +73,9 @@ void IntelliPhotoGui::slotCreateNewRasterLayer(){
 		// "New Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-        int width = IntelliInputDialog::getInt("New Raster Layer", "Width:", 200, 1, paintingArea->getMaxWidth(), 1, &ok1);
+		int width = IntelliInputDialog::getInt("New Raster Layer", "Width:", 200, 1, paintingArea->getMaxWidth(), 1, &ok1);
 
-        int height = IntelliInputDialog::getInt("New Raster Layer", "Height:", 200, 1, paintingArea->getMaxHeight(), 1, &ok2);
+		int height = IntelliInputDialog::getInt("New Raster Layer", "Height:", 200, 1, paintingArea->getMaxHeight(), 1, &ok2);
 
 		// Create New Layer
 		if (ok1&&ok2) {
@@ -92,9 +92,9 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 		// "New Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-        int width = IntelliInputDialog::getInt("New Shaped Layer", "Width:", 200, 1, paintingArea->getMaxWidth(), 1, &ok1);
+		int width = IntelliInputDialog::getInt("New Shaped Layer", "Width:", 200, 1, paintingArea->getMaxWidth(), 1, &ok1);
 
-        int height = IntelliInputDialog::getInt("New Shaped Layer", "Height:", 200, 1, paintingArea->getMaxHeight(), 1, &ok2);
+		int height = IntelliInputDialog::getInt("New Shaped Layer", "Height:", 200, 1, paintingArea->getMaxHeight(), 1, &ok2);
 
 		// Create New Layer
 		if (ok1&&ok2) {
@@ -105,21 +105,21 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 
 // Opens a dialog that allows the user to change Dimension
 void IntelliPhotoGui::slotChangeDim(){
-        // Stores button value
-        bool ok1, ok2;
+		// Stores button value
+		bool ok1, ok2;
 
-        // "change Dimension" is the title of the window
-        // the next tr is the text to display
-        // Define the standard Value, min, step and ok button
-        int width = IntelliInputDialog::getInt("New Canvas Size", "Width:", 600, 1, 50000 , 1, &ok1);
+		// "change Dimension" is the title of the window
+		// the next tr is the text to display
+		// Define the standard Value, min, step and ok button
+		int width = IntelliInputDialog::getInt("New Canvas Size", "Width:", 600, 1, 50000, 1, &ok1);
 
-        int height = IntelliInputDialog::getInt("New Canvas Size", "Height:", 600, 1, 50000, 1, &ok2);
+		int height = IntelliInputDialog::getInt("New Canvas Size", "Height:", 600, 1, 50000, 1, &ok2);
 
-        // Change dimension
-        if (ok1&&ok2) {
-                paintingArea->setLayerDimensions(width,height);
-                UpdateGui();
-        }
+		// Change dimension
+		if (ok1&&ok2) {
+				paintingArea->setLayerDimensions(width,height);
+				UpdateGui();
+		}
 }
 
 // Opens a dialog that allows the user to delete a Layer
@@ -317,7 +317,7 @@ void IntelliPhotoGui::slotSetWidth(){
 
 void IntelliPhotoGui::slotSetInnerAlpha(){
 		bool ok1;
-        int temp = IntelliInputDialog::getInt("Toolsettings", "Alpha:", 5, 1, 50, 1, &ok1);
+		int temp = IntelliInputDialog::getInt("Toolsettings", "Alpha:", 5, 1, 50, 1, &ok1);
 		if(ok1) {
 				paintingArea->Toolsettings.setInnerAlpha(temp);
 				EditLineInnerAlpha->setText(QString("%1").arg(temp));
@@ -378,10 +378,10 @@ void IntelliPhotoGui::createActions(){
 		actionDeleteLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_D));
 		connect(actionDeleteLayer, SIGNAL(triggered()), this, SLOT(slotDeleteLayer()));
 
-        actionChangeDim = new QAction(tr("&Change Dimension"), this);
-        actionChangeDim->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_X));
-        connect(actionChangeDim, SIGNAL(triggered()), this, SLOT(slotChangeDim()));
-        connect(dimCanvas, SIGNAL(clicked()), this, SLOT(slotChangeDim()));
+		actionChangeDim = new QAction(tr("&Change Dimension"), this);
+		actionChangeDim->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_X));
+		connect(actionChangeDim, SIGNAL(triggered()), this, SLOT(slotChangeDim()));
+		connect(dimCanvas, SIGNAL(clicked()), this, SLOT(slotChangeDim()));
 
 		actionSetActiveLayer = new QAction(tr("&set Active"), this);
 		actionSetActiveLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_A));
@@ -539,9 +539,9 @@ void IntelliPhotoGui::createMenus(){
 		fileMenu->addAction(actionExit);
 
 		//Attach all actions to Render Settings
-        renderMenu = new QMenu(tr("&Fast Renderer"), this);
-        renderMenu->addAction(actionUpdateRenderSettingsOn);
-        renderMenu->addAction(actionUpdateRenderSettingsOff);
+		renderMenu = new QMenu(tr("&Fast Renderer"), this);
+		renderMenu->addAction(actionUpdateRenderSettingsOn);
+		renderMenu->addAction(actionUpdateRenderSettingsOff);
 
 		//Attach all Layer Creations to Menu
 		layerCreationMenu = new QMenu(tr("&Create new Layer"), this);
@@ -598,7 +598,7 @@ void IntelliPhotoGui::createMenus(){
 		optionMenu->addMenu(toolMenu);
 		optionMenu->addSeparator();
 		optionMenu->addMenu(renderMenu);
-        optionMenu->addAction(actionChangeDim);
+		optionMenu->addAction(actionChangeDim);
 
 		// Attach all actions to Help
 		helpMenu = new QMenu(tr("&Help"), this);
@@ -621,8 +621,8 @@ void IntelliPhotoGui::createGui(){
 		centralGuiWidget->setLayout(mainLayout);
 
 		// create Gui elements
-        // get and set max width and height
-        paintingArea = new PaintingArea(1280, 720);
+		// get and set max width and height
+		paintingArea = new PaintingArea(1280, 720);
 		paintingArea->DummyGui = this;
 
 		preview = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
@@ -728,14 +728,14 @@ void IntelliPhotoGui::createGui(){
 		ActiveLayerImageLabel->setFixedSize(Buttonsize * 2);
 		ActiveLayerImageLabel->setPixmap(preview.scaled(Buttonsize * 2));
 
-        dimActive = new QPushButton();
-        dimActive->setFixedSize(Buttonsize.width()*2,Buttonsize.height()/2);
-        dimActive->setText("0x0");
+		dimActive = new QPushButton();
+		dimActive->setFixedSize(Buttonsize.width() * 2,Buttonsize.height() / 2);
+		dimActive->setText("0x0");
 
-        dimCanvas = new QPushButton();
-        dimCanvas->setFixedSize(Buttonsize.width()*2,Buttonsize.height()/2);
-        QString String = QString("%1x%2").arg(paintingArea->Canvas->width()).arg(paintingArea->Canvas->height());
-        dimCanvas->setText(String);
+		dimCanvas = new QPushButton();
+		dimCanvas->setFixedSize(Buttonsize.width() * 2,Buttonsize.height() / 2);
+		QString String = QString("%1x%2").arg(paintingArea->Canvas->width()).arg(paintingArea->Canvas->height());
+		dimCanvas->setText(String);
 
 		// set gui elements
 		mainLayout->addWidget(paintingArea,1,1,20,1);
@@ -755,8 +755,8 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(SwitchColorButton,10,2,1,2);
 		mainLayout->addWidget(ActiveLayerLine,11,2,1,2);
 		mainLayout->addWidget(ActiveLayerImageLabel,12,2,1,2);
-        mainLayout->addWidget(dimActive,13,2,1,2);
-        mainLayout->addWidget(dimCanvas,14,2,1,2);
+		mainLayout->addWidget(dimActive,13,2,1,2);
+		mainLayout->addWidget(dimCanvas,14,2,1,2);
 		mainLayout->setHorizontalSpacing(0);
 }
 
@@ -852,14 +852,14 @@ void IntelliPhotoGui::UpdateGui(){
 		string = QString("background-color: %1").arg(paintingArea->colorPicker.getSecondColor().name());
 		SecondColorButton->setStyleSheet(string);
 
-        string = QString("%1x%2").arg(paintingArea->Canvas->width()).arg(paintingArea->Canvas->height());
-        dimCanvas->setText(string);
+		string = QString("%1x%2").arg(paintingArea->Canvas->width()).arg(paintingArea->Canvas->height());
+		dimCanvas->setText(string);
 
-        if(paintingArea->layerBundle.size() != 0){
-            string = QString("%1x%2").arg(paintingArea->layerBundle[static_cast<unsigned long long>(paintingArea->getNumberOfActiveLayer())].width).arg(paintingArea->layerBundle[static_cast<unsigned long long>(paintingArea->getNumberOfActiveLayer())].height);
-            dimActive->setText(string);
-        }
-        else{
-            dimActive->setText("0x0");
-        }
+		if(paintingArea->layerBundle.size() != 0) {
+				string = QString("%1x%2").arg(paintingArea->layerBundle[static_cast<unsigned long long>(paintingArea->getNumberOfActiveLayer())].width).arg(paintingArea->layerBundle[static_cast<unsigned long long>(paintingArea->getNumberOfActiveLayer())].height);
+				dimActive->setText(string);
+		}
+		else{
+				dimActive->setText("0x0");
+		}
 }

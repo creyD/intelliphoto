@@ -21,29 +21,29 @@ class UnitTest;
  * \brief The LayerObject struct holds all the information needed to construct a layer
  */
 struct LayerObject {
-        /*!
-         * \brief image -   Stores the imageData of the current LayerObject.
-         */
+		/*!
+		 * \brief image -   Stores the imageData of the current LayerObject.
+		 */
 		IntelliImage* image;
-        /*!
-         * \brief width - Stores the width of a layer in pixels.
-         */
+		/*!
+		 * \brief width - Stores the width of a layer in pixels.
+		 */
 		int width;
-        /*!
-         * \brief height - Stores the height of a layer in pixels.
-         */
+		/*!
+		 * \brief height - Stores the height of a layer in pixels.
+		 */
 		int height;
-        /*!
-         * \brief  widthOffset - Stores the number of pixles from the left side of the painting area.
-         */
+		/*!
+		 * \brief  widthOffset - Stores the number of pixles from the left side of the painting area.
+		 */
 		int widthOffset;
-        /*!
-         * \brief heightOffset - Stores the number of pixles from the top of the painting area.
-         */
+		/*!
+		 * \brief heightOffset - Stores the number of pixles from the top of the painting area.
+		 */
 		int heightOffset;
-        /*!
-         * \brief alpha - Stores the alpha value of the layer (default=255).
-         */
+		/*!
+		 * \brief alpha - Stores the alpha value of the layer (default=255).
+		 */
 		int alpha = 255;
 };
 

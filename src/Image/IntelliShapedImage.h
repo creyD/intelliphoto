@@ -11,7 +11,7 @@ class UnitTest;
  * \brief The IntelliShapedImage manages a Shapedimage.
  */
 class IntelliShapedImage : public IntelliRasterImage {
-    friend UnitTest;
+friend UnitTest;
 friend IntelliTool;
 private:
 /*!

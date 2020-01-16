@@ -12,7 +12,7 @@ class UnitTest;
  * \brief The IntelliColorPicker manages the selected colors for one whole project.
  */
 class IntelliColorPicker {
-    friend UnitTest;
+friend UnitTest;
 public:
 /*!
  * \brief IntelliColorPicker constructor, setting 2 preset colors, be careful, theese color may change in production.

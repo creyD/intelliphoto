@@ -12,7 +12,7 @@ class UnitTest;
  * \brief The IntelliToolFloodFill class represents a tool to flood FIll a certian area.
  */
 class IntelliToolFloodFill : public IntelliTool {
-    friend UnitTest;
+friend UnitTest;
 public:
 /*!
  * \brief A constructor setting the general paintingArea and colorPicker.
