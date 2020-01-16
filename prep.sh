@@ -37,6 +37,16 @@ runDoxygen(){
   printLine "Doxygen finished." "\033[0;32m"
 }
 
+runUnitTests(){
+  printLine "Running Unit Tests..."
+  qmake src/IntelliUnitTest.pro || { printLine "ERROR: qmake not found!" "\033[0;33m"; return; }
+  cd src
+  make || { printLine "ERROR: make not found!" "\033[0;33m"; return; }
+  ./IntelliUnitTest
+  cd ..
+  printLine "Doxygen finished." "\033[0;32m"
+}
+
 gitCommit(){
   printLine "Committing Changes to Git..."
   git add '*' || { printLine "ERROR: git not found!" "\033[0;33m"; return; }
