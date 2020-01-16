@@ -3,6 +3,7 @@
 #include <QCursor>
 #include <QInputDialog>
 #include <QDebug>
+#include <cmath>
 
 IntelliToolPolygon::IntelliToolPolygon(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings, bool isSettingPolygon)
 		: IntelliTool(Area, colorPicker, Toolsettings){
