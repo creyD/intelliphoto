@@ -31,7 +31,6 @@ var class_painting_area =
     [ "movePositionActive", "class_painting_area.html#ac6d089f4357b22d9a9906fd4771de3e7", null ],
     [ "open", "class_painting_area.html#a88c7e759aa8375a56129791645f46ea5", null ],
     [ "paintEvent", "class_painting_area.html#a4a8138b9508ee4ec87a7fca9160368a7", null ],
-    [ "resizeEvent", "class_painting_area.html#ab57e8ccda60fff7187463a90e65c5335", null ],
     [ "save", "class_painting_area.html#aa2463d4f403224086acab02903ae407e", null ],
     [ "setLayerActive", "class_painting_area.html#a79eb059829f27e8cdb3a54c5cd3d12c9", null ],
     [ "setLayerAlpha", "class_painting_area.html#a6c7e0865e684ae1089ee283b4399d055", null ],

@@ -221,8 +221,6 @@ void wheelEvent(QWheelEvent*event) override;
 
 void paintEvent(QPaintEvent*event) override;
 
-void resizeEvent(QResizeEvent*event) override;
-
 private:
 void setLayerDimensions(int maxWidth, int maxHeight);
 void selectLayerUp();
@@ -243,8 +241,6 @@ std::vector<LayerObject> layerBundle;
 int activeLayer = -1;
 
 void drawLayers(bool forSaving = false);
-
-void resizeLayer(QImage*image_res, const QSize &newSize);
 
 bool createTempTopLayer(int idx);
 

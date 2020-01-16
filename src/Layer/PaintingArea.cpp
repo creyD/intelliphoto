@@ -330,28 +330,17 @@ void PaintingArea::paintEvent(QPaintEvent*event){
 		update();
 }
 
-//TODOJ Resize the image to slightly larger then the main window
-// to cut down on the need to resize the image
-void PaintingArea::resizeEvent(QResizeEvent*event){
-		//TODO wait till tool works
-		update();
-}
-
-void PaintingArea::resizeLayer(QImage*image_res, const QSize &newSize){
-		//TODO implement
-}
-
 void PaintingArea::selectLayerUp(){
 		updateTools();
-		if(activeLayer!=-1 && static_cast<unsigned long long>(activeLayer)<layerBundle.size() - 1) {
-				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer + 1)]);
+        if(activeLayer != -1 && static_cast<size_t>(activeLayer)<layerBundle.size() - 1) {
+                std::swap(layerBundle[static_cast<size_t>(activeLayer)], layerBundle[static_cast<size_t>(activeLayer + 1)]);
 				activeLayer++;
 		}
 }
 
 void PaintingArea::selectLayerDown(){
 		updateTools();
-		if(activeLayer!=-1 && activeLayer>0) {
+        if(activeLayer>0) {
 				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer - 1)]);
 				activeLayer--;
 		}

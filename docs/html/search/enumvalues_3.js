@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['pen_391',['PEN',['../class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fad3fa1aa45b9fe56e1fc1b558d8ed6678',1,'IntelliTool']]],
-  ['plain_392',['PLAIN',['../class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8faf62eb0bf5e5c72e80983fbbac1cb70e5',1,'IntelliTool']]],
-  ['polygon_393',['POLYGON',['../class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8faecdc92bf56d960b73b02ee40125758bc',1,'IntelliTool']]]
+  ['none_390',['NONE',['../class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fab50339a10e1de285ac99d4c3990b8693',1,'IntelliTool']]]
 ];

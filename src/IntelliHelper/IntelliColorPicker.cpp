@@ -1,8 +1,8 @@
 #include "IntelliColorPicker.h"
 
 IntelliColorPicker::IntelliColorPicker(){
-		firstColor = {255,0,0,255};
-		secondColor = {0,255,255,255};
+        firstColor = QColor(255,0,0,255);
+        secondColor = QColor(0,255,255,255);
 }
 
 IntelliColorPicker::~IntelliColorPicker(){
