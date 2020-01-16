@@ -32,7 +32,15 @@ PaintingArea::~PaintingArea(){
 }
 
 void PaintingArea::setRenderSettings(bool isFastRenderingOn){
-        if(isFastRenderingOn != renderSettings.isFastRenderering() && !Tool->getIsDrawing()) {
+        bool ToolIsActive;
+
+        if(Tool!=nullptr){
+                ToolIsActive = Tool->getIsDrawing();
+        }
+        else{
+                ToolIsActive = false;
+        }
+        if(isFastRenderingOn != renderSettings.isFastRenderering() && !ToolIsActive) {
 				renderSettings.setFastRendering(isFastRenderingOn);
 				for(auto& layer : layerBundle) {
 						layer.image->updateRendererSetting(isFastRenderingOn);
