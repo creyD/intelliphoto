@@ -5,7 +5,6 @@ IntelliToolsettings::IntelliToolsettings()
 {
 		lineWidth = 1;
 		innerAlpha = 255;
-		Linestyle = LineStyle::SOLID_LINE;
 }
 
 IntelliToolsettings::~IntelliToolsettings(){
@@ -46,8 +45,4 @@ void IntelliToolsettings::setInnerAlpha(int innerAlpha){
 				innerAlpha = 255;
 		}
 		this->innerAlpha = innerAlpha;
-}
-
-IntelliToolsettings::LineStyle IntelliToolsettings::getLinestyle(){
-		return Linestyle;
 }

@@ -7,9 +7,9 @@ src/IntelliHelper/IntelliColorPicker.cpp:5:3: performance: Variable 'secondColor
 src/IntelliHelper/IntelliTriangulation.cpp:116:63: style: Parameter 'triangles' can be declared with const [constParameter]
 bool IntelliTriangulation::isInPolygon(std::vector<Triangle> &triangles, QPoint &point){
                                                               ^
-src/Layer/PaintingArea.cpp:334:28: style: Redundant condition: If 'activeLayer > 0', the comparison 'activeLayer != -1' is always true. [redundantCondition]
-        if(activeLayer!=-1 && activeLayer>0) {
-                           ^
+src/Layer/PaintingArea.cpp:334:22: style: Redundant condition: If 'activeLayer > 0', the comparison 'activeLayer != -1' is always true. [redundantCondition]
+  if(activeLayer!=-1 && activeLayer>0) {
+                     ^
 src/Tool/IntelliTool.cpp:4:14: warning: Member variable 'IntelliTool::ActiveType' is not initialized in the constructor. [uninitMemberVar]
 IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings){
              ^
@@ -20,26 +20,23 @@ src/Tool/IntelliTool.cpp:4:14: warning: Member variable 'IntelliTool::Canvas' is
 IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings){
              ^
 src/Tool/IntelliToolCircle.cpp:42:9: style: Local variable 'yMin' shadows outer variable [shadowVariable]
-    int yMin = static_cast<int>(centerPoint.y()-sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
+    int yMin = static_cast<int>(centerPoint.y() - sqrt(pow(radius,2) - pow(i - centerPoint.x(),2)));
         ^
 src/Tool/IntelliToolCircle.cpp:18:7: note: Shadowed declaration
   int yMin, yMax, xMin, xMax;
       ^
 src/Tool/IntelliToolCircle.cpp:42:9: note: Shadow variable
-    int yMin = static_cast<int>(centerPoint.y()-sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
+    int yMin = static_cast<int>(centerPoint.y() - sqrt(pow(radius,2) - pow(i - centerPoint.x(),2)));
         ^
 src/Tool/IntelliToolCircle.cpp:43:9: style: Local variable 'yMax' shadows outer variable [shadowVariable]
-    int yMax = static_cast<int>(centerPoint.y()+sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
+    int yMax = static_cast<int>(centerPoint.y() + sqrt(pow(radius,2) - pow(i - centerPoint.x(),2)));
         ^
 src/Tool/IntelliToolCircle.cpp:18:13: note: Shadowed declaration
   int yMin, yMax, xMin, xMax;
             ^
 src/Tool/IntelliToolCircle.cpp:43:9: note: Shadow variable
-    int yMax = static_cast<int>(centerPoint.y()+sqrt(pow(radius,2)-pow(i-centerPoint.x(),2)));
+    int yMax = static_cast<int>(centerPoint.y() + sqrt(pow(radius,2) - pow(i - centerPoint.x(),2)));
         ^
-src/Tool/IntelliToolLine.cpp:51:13: style: Variable 'c' is assigned a value that is never used. [unreadVariable]
-      int c = lineStartingPoint.y()-lineStartingPoint.x()*m;
-            ^
 src/Tool/IntelliToolPolygon.h:25:6: warning: The class 'IntelliToolPolygon' defines member variable with name 'isDrawing' also defined in its parent class 'IntelliTool'. [duplInheritedMember]
 bool isDrawing;
      ^

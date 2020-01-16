@@ -101,8 +101,8 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
 										}
 								}
 						}
-						for(int i=0; i<static_cast<int>(QPointList.size()); i++) {
-								int next = static_cast<int>((i+static_cast<int>(1))%static_cast<int>(QPointList.size()));
+						for(int i = 0; i<static_cast<int>(QPointList.size()); i++) {
+								int next = static_cast<int>((i + static_cast<int>(1)) % static_cast<int>(QPointList.size()));
 								this->Canvas->image->drawLine(QPointList[static_cast<unsigned long long>(i)], QPointList[static_cast<unsigned long long>(next)], colorPicker->getFirstColor(), Toolsettings->getLineWidth());
 						}
 

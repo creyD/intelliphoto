@@ -21,7 +21,7 @@ namespace IntelliTriangulation {
  * \return Returns the area of the traingle*2
  */
 inline float sign(QPoint& p1, QPoint& p2, QPoint& p3){
-		return (p1.x()-p3.x())*(p2.y()-p3.y())-(p2.x()-p3.x())*(p1.y()-p3.y());
+		return (p1.x() - p3.x()) * (p2.y() - p3.y()) - (p2.x() - p3.x()) * (p1.y() - p3.y());
 }
 
 /*!

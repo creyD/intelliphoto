@@ -61,4 +61,4 @@ QColor firstColor;
 QColor secondColor;
 };
 
-#endif // INTELLITOOLSETCOLORTOOL_H
+#endif

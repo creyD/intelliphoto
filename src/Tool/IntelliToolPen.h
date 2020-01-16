@@ -67,4 +67,4 @@ virtual void onWheelScrolled(int value) override;
 virtual void onMouseMoved(int x, int y) override;
 };
 
-#endif // INTELLITOOLPEN_H
+#endif

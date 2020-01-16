@@ -36,8 +36,8 @@ void IntelliShapedImage::calculateVisiblity(){
 
 		if(polygonData.size()<=2) {
 				QColor clr;
-				for(int y=0; y<imageData.height(); y++) {
-						for(int x=0; x<imageData.width(); x++) {
+				for(int y = 0; y<imageData.height(); y++) {
+						for(int x = 0; x<imageData.width(); x++) {
 								clr = imageData.pixel(x,y);
 								clr.setAlpha(255);
 								imageData.setPixelColor(x,y,clr);
@@ -49,8 +49,8 @@ void IntelliShapedImage::calculateVisiblity(){
 				return;
 		}
 		QColor clr;
-		for(int y=0; y<imageData.height(); y++) {
-				for(int x=0; x<imageData.width(); x++) {
+		for(int y = 0; y<imageData.height(); y++) {
+				for(int x = 0; x<imageData.width(); x++) {
 						QPoint ptr(x,y);
 						clr = imageData.pixelColor(x,y);
 						bool isInPolygon = IntelliTriangulation::isInPolygon(triangles, ptr);
