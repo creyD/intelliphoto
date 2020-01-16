@@ -75,7 +75,7 @@ void IntelliPhotoGui::slotCreateNewRasterLayer(){
 		// Define the standard Value, min, max, step and ok button
         int width = IntelliInputDialog::getInt("New Layer", "Width:", 200, 1, paintingArea->getMaxWidth(), 1, &ok1);
 
-		int height = IntelliInputDialog::getInt("New Layer", "Height:", 200, 1, paintingArea->getMaxHeight(), 1, &ok2);
+        int height = IntelliInputDialog::getInt("New Layer", "Height:", 200, 1, paintingArea->getMaxHeight(), 1, &ok2);
 
 		// Create New Layer
 		if (ok1&&ok2) {
