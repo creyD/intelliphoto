@@ -26,4 +26,4 @@ private:
 bool fastRenderering = true;
 };
 
-#endif // INTELLIRENDERSETTINGS_H
+#endif

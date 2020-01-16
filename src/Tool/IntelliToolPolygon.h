@@ -104,4 +104,4 @@ virtual void onMouseMoved(int x, int y) override;
 
 };
 
-#endif // INTELLITOOLPOLYGON_H
+#endif

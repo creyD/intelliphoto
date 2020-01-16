@@ -20,7 +20,7 @@ void IntelliToolRectangle::drawRectangle(QPoint otherCorner){
 
 		QColor clr = colorPicker->getSecondColor();
 		clr.setAlpha(Toolsettings->getInnerAlpha());
-		for(int y=yMin; y<=yMax; y++) {
+		for(int y = yMin; y<=yMax; y++) {
 				this->Canvas->image->drawLine(QPoint(xMin,y), QPoint(xMax, y), clr, 1);
 		}
 		this->Canvas->image->drawLine(QPoint(xMin, yMin),QPoint(xMin, yMax), this->colorPicker->getFirstColor(), Toolsettings->getLineWidth());
@@ -39,7 +39,7 @@ void IntelliToolRectangle::onMouseRightReleased(int x, int y){
 
 void IntelliToolRectangle::onMouseLeftPressed(int x, int y){
 		IntelliTool::onMouseLeftPressed(x,y);
-		this->originCorner=QPoint(x,y);
+		this->originCorner = QPoint(x,y);
 		drawRectangle(originCorner);
 		Canvas->image->calculateVisiblity();
 }
@@ -59,5 +59,5 @@ void IntelliToolRectangle::onMouseMoved(int x, int y){
 
 void IntelliToolRectangle::onWheelScrolled(int value){
 		IntelliTool::onWheelScrolled(value);
-		Toolsettings->setLineWidth(Toolsettings->getLineWidth()+value);
+		Toolsettings->setLineWidth(Toolsettings->getLineWidth() + value);
 }

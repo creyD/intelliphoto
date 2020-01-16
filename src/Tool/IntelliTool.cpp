@@ -2,10 +2,10 @@
 #include "Layer/PaintingArea.h"
 
 IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings){
-		this->Area=Area;
-		this->colorPicker=colorPicker;
-		this->Toolsettings=Toolsettings;
-        this->isDrawing = false;
+		this->Area = Area;
+		this->colorPicker = colorPicker;
+		this->Toolsettings = Toolsettings;
+		this->isDrawing = false;
 }
 
 IntelliTool::~IntelliTool(){
@@ -14,7 +14,7 @@ IntelliTool::~IntelliTool(){
 
 void IntelliTool::onMouseRightPressed(int x, int y){
 		if(isDrawing) {
-				isDrawing=false;
+				isDrawing = false;
 				this->deleteToolLayer();
 		}
 }
@@ -24,7 +24,7 @@ void IntelliTool::onMouseRightReleased(int x, int y){
 }
 
 void IntelliTool::onMouseLeftPressed(int x, int y){
-		this->isDrawing=this->createToolLayer();
+		this->isDrawing = this->createToolLayer();
 		if(isDrawing) {
 				Canvas->image->calculateVisiblity();
 		}
@@ -32,7 +32,7 @@ void IntelliTool::onMouseLeftPressed(int x, int y){
 
 void IntelliTool::onMouseLeftReleased(int x, int y){
 		if(isDrawing) {
-				isDrawing=false;
+				isDrawing = false;
 				this->mergeToolLayer();
 				this->deleteToolLayer();
 				activeLayer->image->calculateVisiblity();
@@ -47,12 +47,13 @@ void IntelliTool::onMouseMoved(int x, int y){
 
 void IntelliTool::onWheelScrolled(int value){
 		//if needed for future general tasks implement in here
+		Area->DummyGui->setToolWidth(value + Toolsettings->getLineWidth());
 }
 
 bool IntelliTool::createToolLayer(){
 		if(Area->createTempTopLayer(Area->activeLayer)) {
-				this->activeLayer=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer)];
-				this->Canvas=&Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer+1)];
+				this->activeLayer = &Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer)];
+				this->Canvas = &Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer + 1)];
 				return true;
 		}
 		return false;
@@ -63,15 +64,15 @@ void IntelliTool::mergeToolLayer(){
 		QColor clr_1;
 		QImage updatedImage = activeLayer->image->getImageData();
 
-		for(int y=0; y<activeLayer->height; y++) {
-				for(int x=0; x<activeLayer->width; x++) {
-						clr_0=updatedImage.pixelColor(x,y);
-						clr_1=Canvas->image->imageData.pixelColor(x,y);
-						float t = static_cast<float>(clr_1.alpha())/255.f;
-						int r =static_cast<int>(static_cast<float>(clr_1.red())*(t)+static_cast<float>(clr_0.red())*(1.f-t)+0.5f);
-						int g =static_cast<int>(static_cast<float>(clr_1.green())*(t)+static_cast<float>(clr_0.green())*(1.f-t)+0.5f);
-						int b =static_cast<int>(static_cast<float>(clr_1.blue())*(t)+static_cast<float>(clr_0.blue()*(1.f-t))+0.5f);
-						int a =std::min(clr_0.alpha()+clr_1.alpha(), 255);
+		for(int y = 0; y<activeLayer->height; y++) {
+				for(int x = 0; x<activeLayer->width; x++) {
+						clr_0 = updatedImage.pixelColor(x,y);
+						clr_1 = Canvas->image->imageData.pixelColor(x,y);
+						float t = static_cast<float>(clr_1.alpha()) / 255.f;
+						int r = static_cast<int>(static_cast<float>(clr_1.red()) * (t) + static_cast<float>(clr_0.red()) * (1.f - t) + 0.5f);
+						int g = static_cast<int>(static_cast<float>(clr_1.green()) * (t) + static_cast<float>(clr_0.green()) * (1.f - t) + 0.5f);
+						int b = static_cast<int>(static_cast<float>(clr_1.blue()) * (t) + static_cast<float>(clr_0.blue() * (1.f - t)) + 0.5f);
+						int a = std::min(clr_0.alpha() + clr_1.alpha(), 255);
 						clr_0.setRed(r);
 						clr_0.setGreen(g);
 						clr_0.setBlue(b);
@@ -88,8 +89,8 @@ void IntelliTool::mergeToolLayer(){
 }
 
 void IntelliTool::deleteToolLayer(){
-		Area->deleteLayer(Area->activeLayer+1, true);
-		this->Canvas=nullptr;
+		Area->deleteLayer(Area->activeLayer + 1, true);
+		this->Canvas = nullptr;
 }
 
 IntelliTool::Tooltype IntelliTool::getTooltype(){

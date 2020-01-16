@@ -44,7 +44,7 @@ virtual QImage getDisplayable(const QSize& displaySize,int alpha) override;
  * @param alpha - The maximum alpha value, a pixel can have.
  * @return A QImage which is ready to be displayed.
  */
-virtual QImage getDisplayable(int alpha=255) override;
+virtual QImage getDisplayable(int alpha = 255) override;
 
 /*!
  * \brief A function that copys all that returns a [allocated] Image

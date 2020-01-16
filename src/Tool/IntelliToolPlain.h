@@ -67,4 +67,4 @@ virtual void onMouseMoved(int x, int y) override;
 
 };
 
-#endif // INTELLITOOLFLOODFILLTOOL_H
+#endif
