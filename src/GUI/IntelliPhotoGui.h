@@ -111,8 +111,6 @@ void setDefaultToolValue();
 
 // What we'll draw on
 PaintingArea* paintingArea;
-int maxHeight;
-int maxWidth;
 
 const QSize Buttonsize = QSize(35,35);
 QPixmap preview;
