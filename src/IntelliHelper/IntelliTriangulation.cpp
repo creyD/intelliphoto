@@ -113,7 +113,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 		return Triangles;
 }
 
-bool IntelliTriangulation::isInPolygon(std::vector<Triangle> &triangles, QPoint &point){
+bool IntelliTriangulation::isInPolygon(const std::vector<Triangle> &triangles, QPoint &point){
 		for(auto triangle : triangles) {
 				if(IntelliTriangulation::isInTriangle(triangle, point)) {
 						return true;

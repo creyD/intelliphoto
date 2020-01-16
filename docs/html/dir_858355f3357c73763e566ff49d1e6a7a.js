@@ -1,6 +1,5 @@
 var dir_858355f3357c73763e566ff49d1e6a7a =
 [
-    [ "IntelliColorPicker.cpp", "_tool_2_intelli_color_picker_8cpp.html", null ],
     [ "IntelliTool.cpp", "_intelli_tool_8cpp.html", null ],
     [ "IntelliTool.h", "_intelli_tool_8h.html", [
       [ "IntelliTool", "class_intelli_tool.html", "class_intelli_tool" ]

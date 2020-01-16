@@ -19,18 +19,31 @@ class UnitTest;
 
 /*!
  * \brief The LayerObject struct holds all the information needed to construct a layer
- * \param width         - Stores the width of a layer in pixels
- * \param height        - Stores the height of a layer in pixels
- * \param alpha         - Stores the alpha value of the layer (default=255)
- * \param widthOffset   - Stores the number of pixles from the left side of the painting area
- * \param heightOffset  - Stores the number of pixles from the top of the painting area
  */
 struct LayerObject {
+        /*!
+         * \brief image -   Stores the imageData of the current LayerObject.
+         */
 		IntelliImage* image;
+        /*!
+         * \brief width - Stores the width of a layer in pixels.
+         */
 		int width;
+        /*!
+         * \brief height - Stores the height of a layer in pixels.
+         */
 		int height;
+        /*!
+         * \brief  widthOffset - Stores the number of pixles from the left side of the painting area.
+         */
 		int widthOffset;
+        /*!
+         * \brief heightOffset - Stores the number of pixles from the top of the painting area.
+         */
 		int heightOffset;
+        /*!
+         * \brief alpha - Stores the alpha value of the layer (default=255).
+         */
 		int alpha = 255;
 };
 
@@ -67,15 +80,15 @@ PaintingArea(int maxWidth = 600, int maxHeight = 600, QWidget*parent = nullptr);
 void setRenderSettings(bool isFastRenderingOn);
 
 /*!
- * \brief The open method is used for loading a picture into the current layer
- * \param fileName  - Path and filename which are used to determine where the to-be-opened file is stored
- * \return Returns a boolean variable whether the file was successfully opened or not
+ * \brief The open method is used for loading a picture into the current layer.
+ * \param filePath  - Path and Name which are used to determine where the to-be-opened file is stored.
+ * \return Returns a boolean variable whether the file was successfully opened or not.
  */
 bool open(const QString &filePath);
 /*!
  * \brief The save method is used for exporting the current project as one picture
- * \param fileName
- * \param fileFormat
+ * \param filePath - Specifies the path and name of the file to create.
+ * \param fileFormat - Specifies the format of the file to create.
  * \return Returns a boolean variable, true if the file was saved successfully, false if not
  */
 bool save(const QString &filePath, const char*fileFormat);
@@ -208,8 +221,6 @@ void wheelEvent(QWheelEvent*event) override;
 
 void paintEvent(QPaintEvent*event) override;
 
-void resizeEvent(QResizeEvent*event) override;
-
 private:
 void setLayerDimensions(int maxWidth, int maxHeight);
 void selectLayerUp();
@@ -230,8 +241,6 @@ std::vector<LayerObject> layerBundle;
 int activeLayer = -1;
 
 void drawLayers(bool forSaving = false);
-
-void resizeLayer(QImage*image_res, const QSize &newSize);
 
 bool createTempTopLayer(int idx);
 

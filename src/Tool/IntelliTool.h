@@ -24,7 +24,8 @@ enum class Tooltype {
 		PEN,
 		PLAIN,
 		POLYGON,
-		RECTANGLE
+        RECTANGLE,
+        NONE
 };
 private:
 /*!

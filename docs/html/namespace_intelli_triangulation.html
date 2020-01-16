@@ -100,9 +100,9 @@ Functions</h2></td></tr>
 <tr class="memitem:acdaf1ed598e868b25e9e06d580da32e5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_triangle.html">Triangle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_intelli_triangulation.html#acdaf1ed598e868b25e9e06d580da32e5">calculateTriangles</a> (std::vector&lt; QPoint &gt; polyPoints)</td></tr>
 <tr class="memdesc:acdaf1ed598e868b25e9e06d580da32e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to split a polygon in its spanning traingles by using Meisters Theorem of graph theory by clipping ears of a planar graph.  <a href="namespace_intelli_triangulation.html#acdaf1ed598e868b25e9e06d580da32e5">More...</a><br /></td></tr>
 <tr class="separator:acdaf1ed598e868b25e9e06d580da32e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00621e2d8708fe2e8966d7d79b64e186"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_intelli_triangulation.html#a00621e2d8708fe2e8966d7d79b64e186">isInPolygon</a> (std::vector&lt; <a class="el" href="struct_triangle.html">Triangle</a> &gt; &amp;triangles, QPoint &amp;point)</td></tr>
-<tr class="memdesc:a00621e2d8708fe2e8966d7d79b64e186"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to check if a point lies in a polygon by checking its spanning triangles.  <a href="namespace_intelli_triangulation.html#a00621e2d8708fe2e8966d7d79b64e186">More...</a><br /></td></tr>
-<tr class="separator:a00621e2d8708fe2e8966d7d79b64e186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac276696f29d141ed34614c1c3b1c040f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_intelli_triangulation.html#ac276696f29d141ed34614c1c3b1c040f">isInPolygon</a> (const std::vector&lt; <a class="el" href="struct_triangle.html">Triangle</a> &gt; &amp;triangles, QPoint &amp;point)</td></tr>
+<tr class="memdesc:ac276696f29d141ed34614c1c3b1c040f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to check if a point lies in a polygon by checking its spanning triangles.  <a href="namespace_intelli_triangulation.html#ac276696f29d141ed34614c1c3b1c040f">More...</a><br /></td></tr>
+<tr class="separator:ac276696f29d141ed34614c1c3b1c040f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="acdaf1ed598e868b25e9e06d580da32e5"></a>
@@ -134,8 +134,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a00621e2d8708fe2e8966d7d79b64e186"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00621e2d8708fe2e8966d7d79b64e186">&#9670;&nbsp;</a></span>isInPolygon()</h2>
+<a id="ac276696f29d141ed34614c1c3b1c040f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac276696f29d141ed34614c1c3b1c040f">&#9670;&nbsp;</a></span>isInPolygon()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,7 +143,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">bool IntelliTriangulation::isInPolygon </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="struct_triangle.html">Triangle</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_triangle.html">Triangle</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>triangles</em>, </td>
         </tr>
         <tr>
@@ -218,7 +218,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the point is in the triangle, false otheriwse </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_triangulation_8h_source.html#l00033">33</a> of file <a class="el" href="_intelli_triangulation_8h_source.html">IntelliTriangulation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_triangulation_8h_source.html#l00036">36</a> of file <a class="el" href="_intelli_triangulation_8h_source.html">IntelliTriangulation.h</a>.</p>
 
 </div>
 </div>
@@ -273,7 +273,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the area of the traingle*2 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_triangulation_8h_source.html#l00023">23</a> of file <a class="el" href="_intelli_triangulation_8h_source.html">IntelliTriangulation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_triangulation_8h_source.html#l00026">26</a> of file <a class="el" href="_intelli_triangulation_8h_source.html">IntelliTriangulation.h</a>.</p>
 
 </div>
 </div>

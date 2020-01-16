@@ -73,7 +73,7 @@ virtual ~IntelliImage() = 0;
 virtual void drawPixel(const QPoint &p1, const QColor& color);
 
 /*!
- * \brief A function that draws A Line between two given Points in a given color.
+ * \brief A function that draws a line between two given points in a given color.
  * \param p1        - The coordinates of the first Point.
  * \param p2        - The coordinates of the second Point.
  * \param color     - The color of the line.
@@ -82,10 +82,10 @@ virtual void drawPixel(const QPoint &p1, const QColor& color);
 virtual void drawLine(const QPoint &p1, const QPoint& p2, const QColor& color, const int& penWidth);
 
 /*!
- * \brief A
- * \param p1
- * \param color
- * \param penWidth
+ * \brief A function that draws a point between on a given point in a given color.
+ * \param p1        - The coordinates of the first Point.
+ * \param color     - The color of the point.
+ * \param penWidth  - The size of the point.
  */
 virtual void drawPoint(const QPoint &p1, const QColor& color, const int& penWidth);
 

@@ -63,6 +63,11 @@ QColor firstColor;
  * \brief The secondary color.
  */
 QColor secondColor;
+
+/*!
+ * \brief initializeColors initializes the first and second color.
+ */
+void initializeColors();
 };
 
 #endif

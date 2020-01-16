@@ -4,7 +4,7 @@ var searchData=
   ['imagedata_57',['imageData',['../class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2',1,'IntelliImage']]],
   ['imagetype_58',['ImageType',['../class_intelli_image.html#a5274ce9fcdcb2659c148e7ff916b680e',1,'IntelliImage']]],
   ['intellicolorpicker_59',['IntelliColorPicker',['../class_intelli_color_picker.html',1,'IntelliColorPicker'],['../class_intelli_color_picker.html#a0d1247bdd87add1396ea5d9acaad79ae',1,'IntelliColorPicker::IntelliColorPicker()']]],
-  ['intellicolorpicker_2ecpp_60',['IntelliColorPicker.cpp',['../_intelli_helper_2_intelli_color_picker_8cpp.html',1,'(Global Namespace)'],['../_tool_2_intelli_color_picker_8cpp.html',1,'(Global Namespace)']]],
+  ['intellicolorpicker_2ecpp_60',['IntelliColorPicker.cpp',['../_intelli_color_picker_8cpp.html',1,'']]],
   ['intellicolorpicker_2eh_61',['IntelliColorPicker.h',['../_intelli_color_picker_8h.html',1,'']]],
   ['intelliimage_62',['IntelliImage',['../class_intelli_image.html',1,'IntelliImage'],['../class_intelli_image.html#a2c6632ff35ee0a7094a8a289eb3a8652',1,'IntelliImage::IntelliImage()']]],
   ['intelliimage_2ecpp_63',['IntelliImage.cpp',['../_intelli_image_8cpp.html',1,'']]],
@@ -56,6 +56,6 @@ var searchData=
   ['intellitriangulation_2eh_109',['IntelliTriangulation.h',['../_intelli_triangulation_8h.html',1,'']]],
   ['isdrawing_110',['isDrawing',['../class_intelli_tool.html#a555aa8a74992327f740dd69b3bb0ccca',1,'IntelliTool']]],
   ['isfastrenderering_111',['isFastRenderering',['../class_intelli_render_settings.html#a5d0eb9a5a3bf788dd87509386dea8dcd',1,'IntelliRenderSettings']]],
-  ['isinpolygon_112',['isInPolygon',['../namespace_intelli_triangulation.html#a00621e2d8708fe2e8966d7d79b64e186',1,'IntelliTriangulation']]],
+  ['isinpolygon_112',['isInPolygon',['../namespace_intelli_triangulation.html#ac276696f29d141ed34614c1c3b1c040f',1,'IntelliTriangulation']]],
   ['isintriangle_113',['isInTriangle',['../namespace_intelli_triangulation.html#ac150fee67fd41a451bd2592f10e00197',1,'IntelliTriangulation']]]
 ];

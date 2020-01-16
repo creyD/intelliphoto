@@ -60,7 +60,7 @@ std::vector<Triangle> calculateTriangles(std::vector<QPoint> polyPoints);
  * \param point     - The point to checl, if it lies in the polygon.
  * \return Returns true if the point lies in the üpolygon, otherwise false.
  */
-bool isInPolygon(std::vector<Triangle> &triangles, QPoint &point);
+bool isInPolygon(const std::vector<Triangle> &triangles, QPoint &point);
 }
 
 #endif
