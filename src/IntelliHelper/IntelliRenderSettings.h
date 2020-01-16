@@ -7,7 +7,7 @@ class UnitTest;
 
 class IntelliRenderSettings
 {
-    friend UnitTest;
+friend UnitTest;
 public:
 IntelliRenderSettings();
 

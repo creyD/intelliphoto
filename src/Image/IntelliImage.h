@@ -20,7 +20,7 @@ class IntelliTool;
  * \brief An abstract class which manages the basic IntelliImage operations.
  */
 class IntelliImage {
-    friend UnitTest;
+friend UnitTest;
 friend IntelliTool;
 public:
 

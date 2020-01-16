@@ -24,7 +24,7 @@ IntelliToolPolygon::~IntelliToolPolygon(){
 }
 
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
-        if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
+		if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
 				if(Area->getPolygonDataOfRealLayer().size()>2) {
 						std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(Area->getPolygonDataOfRealLayer());
 						QPoint Point(x,y);
@@ -53,7 +53,7 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 						this->Canvas->image->calculateVisiblity();
 				}
 		}
-        else if(drawingOfPolygon && QPointList.size() > 0 && isNearStart(x,y,QPointList.front())) {
+		else if(drawingOfPolygon && QPointList.size() > 0 && isNearStart(x,y,QPointList.front())) {
 				if(QPointList.size() > 2) {
 						isPointNearStart = true;
 						this->Canvas->image->drawLine(QPointList.back(), QPointList.front(), colorPicker->getFirstColor(), Toolsettings->getLineWidth());
@@ -81,7 +81,7 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 }
 
 void IntelliToolPolygon::onMouseRightPressed(int x, int y){
-        drawingOfPolygon = false;
+		drawingOfPolygon = false;
 		isInside = false;
 		isPointNearStart = false;
 		QPointList.clear();
@@ -92,7 +92,7 @@ void IntelliToolPolygon::onMouseLeftReleased(int x, int y){
 		if(isPointNearStart) {
 				isInside = false;
 				isPointNearStart = false;
-                drawingOfPolygon = false;
+				drawingOfPolygon = false;
 				if(!isSettingPolygon) {
 						std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(QPointList);
 						QPoint Point;
@@ -145,7 +145,7 @@ bool IntelliToolPolygon::isNearStart(int x, int y, QPoint Startpoint){
 		int StartY = Startpoint.y();
 		int valueToNear = 5;
 
-        float euklid = sqrt(pow(static_cast<float>(StartX-x),2.f)+pow(static_cast<float>(StartY-y),2.f));
+		float euklid = sqrt(pow(static_cast<float>(StartX - x),2.f) + pow(static_cast<float>(StartY - y),2.f));
 
-        return static_cast<int>(euklid)<valueToNear;
+		return static_cast<int>(euklid)<valueToNear;
 }

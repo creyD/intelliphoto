@@ -332,15 +332,15 @@ void PaintingArea::paintEvent(QPaintEvent*event){
 
 void PaintingArea::selectLayerUp(){
 		updateTools();
-        if(activeLayer != -1 && static_cast<size_t>(activeLayer)<layerBundle.size() - 1) {
-                std::swap(layerBundle[static_cast<size_t>(activeLayer)], layerBundle[static_cast<size_t>(activeLayer + 1)]);
+		if(activeLayer != -1 && static_cast<size_t>(activeLayer)<layerBundle.size() - 1) {
+				std::swap(layerBundle[static_cast<size_t>(activeLayer)], layerBundle[static_cast<size_t>(activeLayer + 1)]);
 				activeLayer++;
 		}
 }
 
 void PaintingArea::selectLayerDown(){
 		updateTools();
-        if(activeLayer>0) {
+		if(activeLayer>0) {
 				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer - 1)]);
 				activeLayer--;
 		}

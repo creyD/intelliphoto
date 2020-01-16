@@ -282,7 +282,7 @@ void UnitTest::test_moveActive(){
 		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
 		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
 
-        area->layerBundle[1].image->drawPlain(QColor(0, 0, 0, 255));
+		area->layerBundle[1].image->drawPlain(QColor(0, 0, 0, 255));
 		QPoint point(0,0);
 
 		area->moveActiveLayer(-1);
@@ -449,9 +449,9 @@ void UnitTest::test_RasterImage_getDisplayable(){
 		area->layerBundle[0].image->drawPlain(QColor(255, 255, 255, 255));
 		QImage img = area->layerBundle[0].image->getDisplayable(QSize(200,200),255);
 		QPoint point;
-		for(size_t i=0; i<200; i++) {
+		for(size_t i = 0; i<200; i++) {
 				point.setX(static_cast<int>(i));
-				for(size_t j=0; j<200; j++) {
+				for(size_t j = 0; j<200; j++) {
 						point.setY(static_cast<int>(j));
 						QVERIFY(img.pixelColor(point) == QColor(255,255,255,255));
 				}
@@ -1136,20 +1136,20 @@ void UnitTest::bench_moveActive(){
 }
 
 void UnitTest::bench_setPolygon(){
-        area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
 
-        std::vector<QPoint> polygon{
-                QPoint(10,00),
-                QPoint(00,10),
-                QPoint(10,10),
-                QPoint(00,10)
-        };
+		std::vector<QPoint> polygon{
+				QPoint(10,00),
+				QPoint(00,10),
+				QPoint(10,10),
+				QPoint(00,10)
+		};
 
-        QBENCHMARK{
-                area->layerBundle[0].image->setPolygon(polygon);
-        }
+		QBENCHMARK{
+				area->layerBundle[0].image->setPolygon(polygon);
+		}
 
-        area->deleteLayer(0);
+		area->deleteLayer(0);
 }
 
 void UnitTest::bench_setLayerUp(){
@@ -1561,65 +1561,65 @@ void UnitTest::bench_Plain_interruptedDraw(){
 }
 
 void UnitTest::bench_Polygon_fullDraw(){
-        area->addLayer(21,21,10,20,IntelliImage::ImageType::RASTERIMAGE);
-        std::vector<QPoint> points{
-                QPoint(10,00),
-                QPoint(00,10),
-                QPoint(10,20),
-                QPoint(20,10)
-        };
+		area->addLayer(21,21,10,20,IntelliImage::ImageType::RASTERIMAGE);
+		std::vector<QPoint> points{
+				QPoint(10,00),
+				QPoint(00,10),
+				QPoint(10,20),
+				QPoint(20,10)
+		};
 
-        area->colorPicker.setFirstColor(QColor(255,255,255,255));
-        area->colorPicker.setSecondColor(QColor(0,0,0,255));
-        area->createPolygonTool();
-        area->layerBundle[0].image->drawPlain(QColor(255, 0, 0, 255));
+		area->colorPicker.setFirstColor(QColor(255,255,255,255));
+		area->colorPicker.setSecondColor(QColor(0,0,0,255));
+		area->createPolygonTool();
+		area->layerBundle[0].image->drawPlain(QColor(255, 0, 0, 255));
 
-        QBENCHMARK{
-                area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
-                area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
-                area->Tool->onMouseMoved(points[1].x(), points[1].y());
+		QBENCHMARK{
+				area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
+				area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
+				area->Tool->onMouseMoved(points[1].x(), points[1].y());
 
-                area->Tool->onMouseLeftPressed(points[1].x(), points[1].y());
-                area->Tool->onMouseLeftReleased(points[1].x(), points[1].y());
-                area->Tool->onMouseMoved(points[2].x(), points[2].y());
+				area->Tool->onMouseLeftPressed(points[1].x(), points[1].y());
+				area->Tool->onMouseLeftReleased(points[1].x(), points[1].y());
+				area->Tool->onMouseMoved(points[2].x(), points[2].y());
 
-                area->Tool->onMouseLeftPressed(points[2].x(), points[2].y());
-                area->Tool->onMouseLeftReleased(points[2].x(), points[2].y());
-                area->Tool->onMouseMoved(points[3].x(), points[3].y());
+				area->Tool->onMouseLeftPressed(points[2].x(), points[2].y());
+				area->Tool->onMouseLeftReleased(points[2].x(), points[2].y());
+				area->Tool->onMouseMoved(points[3].x(), points[3].y());
 
-                area->Tool->onMouseLeftPressed(points[3].x(), points[3].y());
-                area->Tool->onMouseLeftReleased(points[3].x(), points[3].y());
-                area->Tool->onMouseMoved(points[0].x(), points[0].y());
+				area->Tool->onMouseLeftPressed(points[3].x(), points[3].y());
+				area->Tool->onMouseLeftReleased(points[3].x(), points[3].y());
+				area->Tool->onMouseMoved(points[0].x(), points[0].y());
 
-                area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
-                area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
-        }
+				area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
+				area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
+		}
 
-        area->deleteLayer(0);
+		area->deleteLayer(0);
 }
 
 
 void UnitTest::bench_Polygon_interruptedDraw(){
-        area->addLayer(201,201,10,20,IntelliImage::ImageType::RASTERIMAGE);
-        std::vector<QPoint> points{
-                QPoint(100,000)
-        };
+		area->addLayer(201,201,10,20,IntelliImage::ImageType::RASTERIMAGE);
+		std::vector<QPoint> points{
+				QPoint(100,000)
+		};
 
 
-        area->colorPicker.setFirstColor(QColor(255,255,255,255));
-        area->colorPicker.setSecondColor(QColor(0,0,0,255));
-        area->createPolygonTool();
-        area->layerBundle[0].image->drawPlain(QColor(255, 0, 0, 255));
+		area->colorPicker.setFirstColor(QColor(255,255,255,255));
+		area->colorPicker.setSecondColor(QColor(0,0,0,255));
+		area->createPolygonTool();
+		area->layerBundle[0].image->drawPlain(QColor(255, 0, 0, 255));
 
-        QBENCHMARK{
-                area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
-                area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
+		QBENCHMARK{
+				area->Tool->onMouseLeftPressed(points[0].x(), points[0].y());
+				area->Tool->onMouseLeftReleased(points[0].x(), points[0].y());
 
-                area->Tool->onMouseRightPressed(points[0].x(), points[0].y());
-                area->Tool->onMouseRightReleased(points[0].x(), points[0].y());
-        }
+				area->Tool->onMouseRightPressed(points[0].x(), points[0].y());
+				area->Tool->onMouseRightReleased(points[0].x(), points[0].y());
+		}
 
-        area->deleteLayer(0);
+		area->deleteLayer(0);
 }
 
 
@@ -1681,9 +1681,9 @@ void UnitTest::bench_Triangulation_Coverage(){
 		QBENCHMARK{
 				std::vector<Triangle> tria = IntelliTriangulation::calculateTriangles(points);
 				QPoint point;
-				for(int i=0; i<200; i++) {
+				for(int i = 0; i<200; i++) {
 						point.setX(i);
-						for(int j=0; j<200; j++) {
+						for(int j = 0; j<200; j++) {
 								point.setY(j);
 								IntelliTriangulation::isInPolygon(tria, point);
 						}

@@ -12,7 +12,7 @@ class UnitTest;
  * \brief The IntelliToolCircle class represents a tool to draw a circle.
  */
 class IntelliToolCircle : public IntelliTool {
-    friend UnitTest;
+friend UnitTest;
 /*!
  * \brief A function that implements a circle drawing algorithm.
  * \param radius    - The radius of the circle.
