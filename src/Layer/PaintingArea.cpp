@@ -233,11 +233,11 @@ void PaintingArea::createFloodFillTool(){
 }
 
 int PaintingArea::getWidthOfActive(){
-		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].width;
+        return this->layerBundle[static_cast<size_t>(activeLayer)].width;
 }
 
 int PaintingArea::getHeightOfActive(){
-		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].height;
+        return this->layerBundle[static_cast<size_t>(activeLayer)].height;
 }
 
 int PaintingArea::getMaxWidth(){
@@ -249,11 +249,11 @@ int PaintingArea::getMaxHeight(){
 }
 
 IntelliImage::ImageType PaintingArea::getTypeOfImageRealLayer(){
-		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].image->getTypeOfImage();
+        return this->layerBundle[static_cast<size_t>(activeLayer)].image->getTypeOfImage();
 }
 
 std::vector<QPoint> PaintingArea::getPolygonDataOfRealLayer(){
-		return this->layerBundle[static_cast<unsigned long long>(activeLayer)].image->getPolygonData();
+        return this->layerBundle[static_cast<size_t>(activeLayer)].image->getPolygonData();
 }
 
 // If a mouse button is pressed check if it was the
@@ -265,8 +265,8 @@ void PaintingArea::mousePressEvent(QMouseEvent*event){
 		}
 		if(Tool == nullptr)
 				return;
-		int x = event->x() - layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-		int y = event->y() - layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset;
+        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftPressed(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -284,8 +284,8 @@ void PaintingArea::mouseMoveEvent(QMouseEvent*event){
 		}
 		if(Tool == nullptr)
 				return;
-		int x = event->x() - layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-		int y = event->y() - layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset;
+        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset;
 		Tool->onMouseMoved(x, y);
 		update();
 }
@@ -296,8 +296,8 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 				return;
 		if(Tool == nullptr)
 				return;
-		int x = event->x() - layerBundle[static_cast<unsigned long long>(activeLayer)].widthOffset;
-		int y = event->y() - layerBundle[static_cast<unsigned long long>(activeLayer)].heightOffset;
+        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset;
+        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftReleased(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -341,7 +341,7 @@ void PaintingArea::selectLayerUp(){
 void PaintingArea::selectLayerDown(){
 		updateTools();
 		if(activeLayer>0) {
-				std::swap(layerBundle[static_cast<unsigned long long>(activeLayer)], layerBundle[static_cast<unsigned long long>(activeLayer - 1)]);
+                std::swap(layerBundle[static_cast<size_t>(activeLayer)], layerBundle[static_cast<size_t>(activeLayer - 1)]);
 				activeLayer--;
 		}
 }
@@ -385,11 +385,11 @@ bool PaintingArea::createTempTopLayer(int idx){
 		if(idx>=0) {
 				LayerObject newLayer;
 				newLayer.alpha = 255;
-				newLayer.height = layerBundle[static_cast<unsigned long long>(idx)].height;
-				newLayer.width = layerBundle[static_cast<unsigned long long>(idx)].width;
-				newLayer.heightOffset = layerBundle[static_cast<unsigned long long>(idx)].heightOffset;
-				newLayer.widthOffset = layerBundle[static_cast<unsigned long long>(idx)].widthOffset;
-				newLayer.image = layerBundle[static_cast<unsigned long long>(idx)].image->getDeepCopy();
+                newLayer.height = layerBundle[static_cast<size_t>(idx)].height;
+                newLayer.width = layerBundle[static_cast<size_t>(idx)].width;
+                newLayer.heightOffset = layerBundle[static_cast<size_t>(idx)].heightOffset;
+                newLayer.widthOffset = layerBundle[static_cast<size_t>(idx)].widthOffset;
+                newLayer.image = layerBundle[static_cast<size_t>(idx)].image->getDeepCopy();
 				layerBundle.insert(layerBundle.begin() + idx + 1,newLayer);
 				return true;
 		}
