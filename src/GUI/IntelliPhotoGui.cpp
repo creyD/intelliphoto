@@ -3,6 +3,9 @@
 #include "IntelliPhotoGui.h"
 #include "Layer/PaintingArea.h"
 
+#include "QEvent"
+#include "QCloseEvent"
+
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
 		// create Gui elements and lay them out
