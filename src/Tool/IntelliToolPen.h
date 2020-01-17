@@ -12,7 +12,7 @@ class UnitTest;
  * \brief The IntelliToolPen class represents a tool to draw a line.
  */
 class IntelliToolPen : public IntelliTool {
-    friend UnitTest;
+friend UnitTest;
 /*!
  * \brief point - Represents the previous point to help drawing a line.
  */

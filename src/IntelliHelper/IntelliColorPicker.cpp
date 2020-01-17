@@ -1,7 +1,7 @@
 #include "IntelliColorPicker.h"
 
 IntelliColorPicker::IntelliColorPicker(){
-        initializeColors();
+		initializeColors();
 }
 
 IntelliColorPicker::~IntelliColorPicker(){
@@ -12,11 +12,11 @@ void IntelliColorPicker::swapColors(){
 		std::swap(firstColor, secondColor);
 }
 
-QColor IntelliColorPicker::getFirstColor() const{
+QColor IntelliColorPicker::getFirstColor() const {
 		return this->firstColor;
 }
 
-QColor IntelliColorPicker::getSecondColor() const{
+QColor IntelliColorPicker::getSecondColor() const {
 		return this->secondColor;
 }
 
@@ -29,6 +29,6 @@ void IntelliColorPicker::setSecondColor(QColor Color){
 }
 
 void IntelliColorPicker::initializeColors(){
-        this->firstColor = QColor(255,0,0,255);
-        this->secondColor =  QColor(0,0,0,255);
+		this->firstColor = QColor(255,0,0,255);
+		this->secondColor =  QColor(0,0,0,255);
 }

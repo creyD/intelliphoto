@@ -6,9 +6,9 @@ IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, In
 		this->colorPicker = colorPicker;
 		this->Toolsettings = Toolsettings;
 		this->isDrawing = false;
-        this->ActiveType = Tooltype::NONE;
-        this->activeLayer = nullptr;
-        this->Canvas = nullptr;
+		this->ActiveType = Tooltype::NONE;
+		this->activeLayer = nullptr;
+		this->Canvas = nullptr;
 }
 
 IntelliTool::~IntelliTool(){
@@ -17,7 +17,7 @@ IntelliTool::~IntelliTool(){
 
 void IntelliTool::onMouseRightPressed(int x, int y){
 		if(isDrawing) {
-                isDrawing = false;
+				isDrawing = false;
 				this->deleteToolLayer();
 		}
 }
@@ -96,10 +96,10 @@ void IntelliTool::deleteToolLayer(){
 		this->Canvas = nullptr;
 }
 
-IntelliTool::Tooltype IntelliTool::getTooltype() const{
+IntelliTool::Tooltype IntelliTool::getTooltype() const {
 		return ActiveType;
 }
 
-bool IntelliTool::getIsDrawing() const{
+bool IntelliTool::getIsDrawing() const {
 		return isDrawing;
 }

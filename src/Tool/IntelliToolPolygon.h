@@ -14,7 +14,7 @@ class UnitTest;
  */
 class IntelliToolPolygon : public IntelliTool
 {
-    friend UnitTest;
+friend UnitTest;
 /*!
  * \brief Checks if the given Point lies near the starting Point.
  * \param x             - x coordinate of a point.

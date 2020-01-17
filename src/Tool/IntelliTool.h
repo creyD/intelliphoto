@@ -15,7 +15,7 @@ class PaintingArea;
  * \brief An abstract class that manages the basic events, like mouse clicks or scrolls events.
  */
 class IntelliTool {
-    friend UnitTest;
+friend UnitTest;
 public:
 enum class Tooltype {
 		CIRCLE,
@@ -24,8 +24,8 @@ enum class Tooltype {
 		PEN,
 		PLAIN,
 		POLYGON,
-        RECTANGLE,
-        NONE
+		RECTANGLE,
+		NONE
 };
 private:
 /*!
