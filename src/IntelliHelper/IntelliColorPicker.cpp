@@ -12,11 +12,11 @@ void IntelliColorPicker::swapColors(){
 		std::swap(firstColor, secondColor);
 }
 
-QColor IntelliColorPicker::getFirstColor(){
+QColor IntelliColorPicker::getFirstColor() const{
 		return this->firstColor;
 }
 
-QColor IntelliColorPicker::getSecondColor(){
+QColor IntelliColorPicker::getSecondColor() const{
 		return this->secondColor;
 }
 

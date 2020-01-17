@@ -10,10 +10,10 @@ public:
 IntelliToolsettings();
 virtual ~IntelliToolsettings();
 
-int getLineWidth();
+int getLineWidth() const;
 void setLineWidth(int LineWidth);
 
-int getInnerAlpha();
+int getInnerAlpha() const;
 void setInnerAlpha(int innerAlpha);
 
 private:

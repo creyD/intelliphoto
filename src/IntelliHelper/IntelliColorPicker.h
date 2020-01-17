@@ -33,13 +33,13 @@ void swapColors();
  * \brief A function to read the primary selected color.
  * \return Returns the primary color.
  */
-QColor getFirstColor();
+QColor getFirstColor() const;
 
 /*!
  * \brief A function to read the secondary selected color.
  * \return Returns the secondary color.
  */
-QColor getSecondColor();
+QColor getSecondColor() const;
 
 /*!
  * \brief A function to set the primary color.

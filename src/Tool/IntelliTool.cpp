@@ -96,10 +96,10 @@ void IntelliTool::deleteToolLayer(){
 		this->Canvas = nullptr;
 }
 
-IntelliTool::Tooltype IntelliTool::getTooltype(){
+IntelliTool::Tooltype IntelliTool::getTooltype() const{
 		return ActiveType;
 }
 
-bool IntelliTool::getIsDrawing(){
+bool IntelliTool::getIsDrawing() const{
 		return isDrawing;
 }
