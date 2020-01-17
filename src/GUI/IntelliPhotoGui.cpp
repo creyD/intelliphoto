@@ -3,6 +3,9 @@
 #include "IntelliPhotoGui.h"
 #include "Layer/PaintingArea.h"
 
+#include "QEvent"
+#include "QCloseEvent"
+
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
 		// create Gui elements and lay them out
@@ -774,28 +777,26 @@ void IntelliPhotoGui::setIntelliStyle(){
 
 bool IntelliPhotoGui::maybeSave(){
 		// Check for changes since last save
+#ifdef QT_NO_DEBUG
+		QMessageBox::StandardButton ret;
 
-		// TODO insert variable for modified status here to make an save exit message
-		if (false) {
-				QMessageBox::StandardButton ret;
+		// Painting is the title of the window
+		// Add text and the buttons
+		ret = QMessageBox::warning(this, tr("Painting"),
+		                           tr("The image has been modified.\n"
+		                              "Do you want to save your changes?"),
+		                           QMessageBox::Save | QMessageBox::Discard
+		                           | QMessageBox::Cancel);
 
-				// Painting is the title of the window
-				// Add text and the buttons
-				ret = QMessageBox::warning(this, tr("Painting"),
-				                           tr("The image has been modified.\n"
-				                              "Do you want to save your changes?"),
-				                           QMessageBox::Save | QMessageBox::Discard
-				                           | QMessageBox::Cancel);
+		// If save button clicked call for file to be saved
+		if (ret == QMessageBox::Save) {
+				return saveFile("png");
 
-				// If save button clicked call for file to be saved
-				if (ret == QMessageBox::Save) {
-						return saveFile("png");
-
-						// If cancel do nothing
-				} else if (ret == QMessageBox::Cancel) {
-						return false;
-				}
+				// If cancel do nothing
+		} else if (ret == QMessageBox::Cancel) {
+				return false;
 		}
+#endif
 		return true;
 }
 
