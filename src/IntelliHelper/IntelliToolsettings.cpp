@@ -11,7 +11,7 @@ IntelliToolsettings::~IntelliToolsettings(){
 
 }
 
-int IntelliToolsettings::getLineWidth(){
+int IntelliToolsettings::getLineWidth() const {
 		return lineWidth;
 }
 
@@ -25,7 +25,7 @@ void IntelliToolsettings::setLineWidth(int LineWidth){
 		lineWidth = LineWidth;
 }
 
-int IntelliToolsettings::getInnerAlpha(){
+int IntelliToolsettings::getInnerAlpha() const {
 		return this->innerAlpha;
 }
 

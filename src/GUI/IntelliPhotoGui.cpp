@@ -857,7 +857,9 @@ void IntelliPhotoGui::UpdateGui(){
 		dimCanvas->setText(string);
 
 		if(paintingArea->layerBundle.size() != 0) {
-				string = QString("%1x%2").arg(paintingArea->layerBundle[static_cast<unsigned long long>(paintingArea->getNumberOfActiveLayer())].width).arg(paintingArea->layerBundle[static_cast<unsigned long long>(paintingArea->getNumberOfActiveLayer())].height);
+                string = QString("%1x%2").arg(paintingArea->layerBundle[static_cast<size_t>
+                        (paintingArea->getNumberOfActiveLayer())].width).arg(paintingArea->layerBundle[static_cast<size_t>
+                        (paintingArea->getNumberOfActiveLayer())].height);
 				dimActive->setText(string);
 		}
 		else{

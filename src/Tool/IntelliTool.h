@@ -127,9 +127,9 @@ virtual void onWheelScrolled(int value);
  */
 virtual void onMouseMoved(int x, int y);
 
-Tooltype getTooltype();
+Tooltype getTooltype() const;
 
-bool getIsDrawing();
+bool getIsDrawing() const;
 
 };
 #endif
