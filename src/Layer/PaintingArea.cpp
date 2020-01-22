@@ -20,7 +20,7 @@
 
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
-		: QWidget(parent){
+        : QLabel(parent){
 		this->Tool = nullptr;
 		this->setLayerDimensions(maxWidth, maxHeight);
 
@@ -120,7 +120,7 @@ void PaintingArea::setPolygon(int idx){
 						delete this->Tool;
 						this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
 						isSettingPolygon = true;
-						this->DummyGui->setToolWidth(5);
+						this->guiReference->setToolWidth(5);
 				}
 		}
 }
@@ -174,7 +174,7 @@ void PaintingArea::moveActiveLayer(int idx){
 		}else if(idx==-1) {
 				this->selectLayerDown();
 		}
-		DummyGui->UpdateGui();
+		guiReference->UpdateGui();
 }
 
 void PaintingArea::slotActivateLayer(int a){
@@ -322,11 +322,16 @@ void PaintingArea::wheelEvent(QWheelEvent*event){
 // The QPaintEvent is sent to widgets that need to
 // update themselves
 void PaintingArea::paintEvent(QPaintEvent*event){
+        this->setFixedSize(QSize(maxWidth,maxHeight));
 		this->drawLayers();
 
-		QPainter painter(this);
-		QRect dirtyRec = event->rect();
-		painter.drawImage(dirtyRec, *Canvas, dirtyRec);
+        QPainter painter(this);
+
+        //insert zoom factor here
+        painter.scale(1,1);
+
+        //calulate image here for scroll
+        painter.drawImage(0,0, *Canvas);
 		update();
 }
 

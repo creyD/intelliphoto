@@ -50,7 +50,7 @@ struct LayerObject {
 /*!
  * \brief The PaintingArea class manages the methods and stores information about the current painting area, which is the currently opened project
  */
-class PaintingArea : public QWidget
+class PaintingArea : public QLabel
 {
 friend UnitTest;
 // Declares our class as a QObject which is the base class
@@ -228,6 +228,7 @@ void selectLayerDown();
 IntelliTool* copyActiveTool();
 
 QImage* Canvas;
+QImage ScaledCanvas;
 int maxWidth;
 int maxHeight;
 
@@ -235,7 +236,7 @@ bool isSettingPolygon = false;
 
 IntelliRenderSettings renderSettings;
 IntelliTool* Tool;
-IntelliPhotoGui* DummyGui;
+IntelliPhotoGui* guiReference;
 
 std::vector<LayerObject> layerBundle;
 int activeLayer = -1;
