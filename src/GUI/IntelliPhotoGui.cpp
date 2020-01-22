@@ -5,6 +5,7 @@
 
 #include "QEvent"
 #include "QCloseEvent"
+#include "QScrollBar"
 
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){

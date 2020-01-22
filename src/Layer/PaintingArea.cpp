@@ -322,7 +322,7 @@ void PaintingArea::wheelEvent(QWheelEvent*event){
 // The QPaintEvent is sent to widgets that need to
 // update themselves
 void PaintingArea::paintEvent(QPaintEvent*event){
-        this->setFixedSize(QSize(maxWidth,maxHeight));
+        this->setFixedSize(QSize(maxWidth*2,maxHeight*2));
 		this->drawLayers();
 
         QPainter painter(this);
@@ -331,7 +331,8 @@ void PaintingArea::paintEvent(QPaintEvent*event){
         painter.scale(1,1);
 
         //calulate image here for scroll
-        painter.drawImage(0,0, *Canvas);
+        //Todo set offset in first to parameters and calulate them into mouse position
+        painter.drawImage(0, 0, *Canvas, 0, 0);
 		update();
 }
 
