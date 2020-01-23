@@ -26,7 +26,7 @@ public:
  */
 IntelliRasterImage(int width, int height, bool fastRendererOn);
 
-void copy(const IntelliRasterImage& image);
+IntelliRasterImage* copy(const IntelliRasterImage& image);
 
 /*!
  * \brief An Destructor.

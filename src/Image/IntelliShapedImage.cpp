@@ -10,11 +10,11 @@ IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererO
 		this->fastRenderering = fastRendererOn;
 }
 
-IntelliShapedImage::Copy(const IntelliShapedImage& image)
-        : IntelliRasterImage(image.getWidth(), image.getHeight(), image.isFastRendering()){
+IntelliShapedImage* IntelliShapedImage::copy(const IntelliShapedImage& image){
     this->TypeOfImage = ImageType::SHAPEDIMAGE;
     IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
     shaped->imageData.copy(0,0,image.getWidth(),image.getWidth());
+    return shaped;
 }
 
 IntelliShapedImage::~IntelliShapedImage(){
