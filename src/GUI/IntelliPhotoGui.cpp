@@ -102,7 +102,7 @@ void IntelliPhotoGui::slotCreateNewRasterLayer(){
 
 		// Create New Layer
 		if (ok1&&ok2) {
-				paintingArea->addLayer(width,height,0,0,IntelliImage::ImageType::RASTERIMAGE);
+                paintingArea->addLayer(width,height,0,0,255,ImageType::RASTERIMAGE);
 				UpdateGui();
 		}
 }
@@ -121,7 +121,7 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 
 		// Create New Layer
 		if (ok1&&ok2) {
-				paintingArea->addLayer(width, height, 0, 0, IntelliImage::ImageType::SHAPEDIMAGE);
+                paintingArea->addLayer(width, height, 0, 0,255, ImageType::SHAPEDIMAGE);
 				UpdateGui();
 		}
 }

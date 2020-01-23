@@ -24,7 +24,7 @@ IntelliToolPolygon::~IntelliToolPolygon(){
 }
 
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
-		if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
+        if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
 				if(Area->getPolygonDataOfRealLayer().size()>2) {
 						std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(Area->getPolygonDataOfRealLayer());
 						QPoint Point(x,y);
@@ -37,7 +37,7 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 						isInside = true;
 				}
 		}
-		else if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == IntelliImage::ImageType::RASTERIMAGE && x >= 0 && y >= 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
+        else if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == ImageType::RASTERIMAGE && x >= 0 && y >= 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
 				isInside = true;
 		}
 

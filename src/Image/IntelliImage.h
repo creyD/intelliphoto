@@ -17,20 +17,20 @@ class UnitTest;
 class IntelliTool;
 
 /*!
+ * \brief The Types, which an Image can be.
+ */
+enum class ImageType {
+        RASTERIMAGE,
+        SHAPEDIMAGE
+};
+
+/*!
  * \brief An abstract class which manages the basic IntelliImage operations.
  */
 class IntelliImage {
 friend UnitTest;
 friend IntelliTool;
 public:
-
-/*!
- * \brief The Types, which an Image can be.
- */
-enum class ImageType {
-		RASTERIMAGE,
-		SHAPEDIMAGE
-};
 
 protected:
 void resizeImage(QImage*image, const QSize &newSize);

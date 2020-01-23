@@ -77,6 +77,14 @@ virtual std::vector<QPoint> getPolygonData() override {
  * \param polygonData   - The Vertices of the Polygon. Just Planar Polygons are allowed.
  */
 virtual void setPolygon(const std::vector<QPoint>& polygonData) override;
+
+
+/*!
+ * \brief getPolygon
+ * \return returns the data of the polygon as points
+ */
+virtual std::vector<QPoint> getPolygon() override;
 };
+
 
 #endif

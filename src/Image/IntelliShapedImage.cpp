@@ -6,7 +6,7 @@
 
 IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererOn)
 		: IntelliRasterImage(width, height, fastRendererOn){
-		TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
+        TypeOfImage = ImageType::SHAPEDIMAGE;
 		this->fastRenderering = fastRendererOn;
 }
 
@@ -22,7 +22,7 @@ IntelliImage* IntelliShapedImage::getDeepCopy(){
 		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), false);
 		shaped->setPolygon(this->polygonData);
 		shaped->imageData.fill(Qt::transparent);
-		shaped->TypeOfImage = IntelliImage::ImageType::SHAPEDIMAGE;
+        shaped->TypeOfImage = ImageType::SHAPEDIMAGE;
 		return shaped;
 }
 
@@ -110,4 +110,8 @@ void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
 		}
 		calculateVisiblity();
 		return;
+}
+
+std::vector<QPoint> IntelliShapedImage::getPolygon(){
+    return polygonData;
 }

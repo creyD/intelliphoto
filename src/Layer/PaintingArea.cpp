@@ -49,6 +49,10 @@ void PaintingArea::setRenderSettings(bool isFastRenderingOn){
 		}
 }
 
+bool PaintingArea::getRenderSettings(){
+    return this->renderSettings.isFastRenderering();
+}
+
 void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 		//set standart parameter
 		this->maxWidth = maxWidth;
@@ -60,19 +64,27 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 
 }
 
-int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, IntelliImage::ImageType type){
+void PaintingArea::setPixelToActive(QColor color, QPoint point){
+    layerBundle[static_cast<size_t>(activeLayer)].image->drawPixel(point, color);
+}
+
+void PaintingArea::setPolygonDataToActive(std::vector<QPoint> points){
+    layerBundle[static_cast<size_t>(activeLayer)].image->setPolygon(points);
+}
+
+int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset,int alpha, ImageType type){
 		LayerObject newLayer;
 		updateTools();
 		newLayer.width = width;
 		newLayer.height = height;
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
-		if(type==IntelliImage::ImageType::RASTERIMAGE) {
+        newLayer.alpha = alpha;
+        if(type==ImageType::RASTERIMAGE) {
 				newLayer.image = new IntelliRasterImage(width,height,renderSettings.isFastRenderering());
-		}else if(type==IntelliImage::ImageType::SHAPEDIMAGE) {
+        }else if(type==ImageType::SHAPEDIMAGE) {
 				newLayer.image = new IntelliShapedImage(width, height, renderSettings.isFastRenderering());
 		}
-		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
 		activeLayer = static_cast<int>(layerBundle.size()) - 1;
 		return activeLayer;
@@ -117,7 +129,7 @@ void PaintingArea::setLayerAlpha(int idx, int alpha){
 }
 void PaintingArea::setPolygon(int idx){
 		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-				if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==IntelliImage::ImageType::SHAPEDIMAGE) {
+                if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==ImageType::SHAPEDIMAGE) {
 						delete this->Tool;
 						this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
 						isSettingPolygon = true;
@@ -136,6 +148,13 @@ bool PaintingArea::open(const QString &filePath){
 		active->calculateVisiblity();
 		update();
 		return open;
+}
+
+void PaintingArea::deleteAllLayers(){
+    for(auto layer: layerBundle){
+        delete layer.image;
+    }
+    layerBundle.clear();
 }
 
 // Save the current image
@@ -249,7 +268,7 @@ int PaintingArea::getMaxHeight(){
 		return this->maxHeight;
 }
 
-IntelliImage::ImageType PaintingArea::getTypeOfImageRealLayer(){
+ImageType PaintingArea::getTypeOfImageRealLayer(){
         return this->layerBundle[static_cast<size_t>(activeLayer)].image->getTypeOfImage();
 }
 
