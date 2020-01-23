@@ -38,7 +38,7 @@ public:
  */
 IntelliShapedImage(int width, int height, bool fastRendererOn);
 
-//IntelliShapedImage(const IntelliShapedImage& image);
+void copy(const IntelliShapedImage& image);
 /*!
  * \brief An Destructor.
  */
