@@ -29,7 +29,7 @@ bool IntelliDatamanager::saveProject(PaintingArea* Canvas, QString filePath){
             }
 
         }
-
+        out << "\nFormat designed and approved by IntelliPhoto Team 7. All rigths reserved.";
         openFile.close();
         return true;
     }

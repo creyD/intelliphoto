@@ -65,11 +65,12 @@ void IntelliPhotoGui::slotOpen(){
                         }
 
                     if(rightFileType){
-                        //paintingArea->open(fileName);
-                        //TODO remove datamanager funciton and enable painting area function
                         IntelliDatamanager::loadProject(paintingArea,fileName);
                         UpdateGui();
 
+                    }
+                    else{
+                        paintingArea->open(fileName);
                     }
                 }
         }
