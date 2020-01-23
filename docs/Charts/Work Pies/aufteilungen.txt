@@ -1,0 +1,30 @@
+# UI-Design
+Paul 30
+Mucke 15
+Jan 15
+Basti 40
+
+# Code
+Mucke 35
+Basti 25
+Jan 20
+Conrad 10
+Seb 10
+
+# Dokumentation
+Paul 40
+Mucke 10
+Conrad 10
+Basti 10
+Seb 15
+Jan 15
+
+# Teammanagement
+Mucke 30
+Conrad 50
+Jan 20
+
+# Kundenkommunikation
+Jan 50
+Conrad 25
+Mucke 25

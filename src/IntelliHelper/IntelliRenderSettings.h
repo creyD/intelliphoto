@@ -20,7 +20,7 @@ void setFastRendering(bool Updatedsetting);
  * \brief The getfastRenderer gets the value of the flag for the fastRenderer setting.
  * \return Returns true if fastRenderer is active else false
  */
-bool isFastRenderering();
+bool isFastRenderering() const;
 
 private:
 bool fastRenderering = true;

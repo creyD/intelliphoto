@@ -22,6 +22,7 @@ SOURCES += \
     Image/IntelliRasterImage.cpp \
     Image/IntelliShapedImage.cpp \
     IntelliHelper/IntelliColorPicker.cpp \
+    IntelliHelper/IntelliDatamanager.cpp \
     IntelliHelper/IntelliRenderSettings.cpp \
     IntelliHelper/IntelliToolsettings.cpp \
     IntelliHelper/IntelliTriangulation.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     Image/IntelliRasterImage.h \
     Image/IntelliShapedImage.h \
     IntelliHelper/IntelliColorPicker.h \
+    IntelliHelper/IntelliDatamanager.h \
     IntelliHelper/IntelliRenderSettings.h \
     IntelliHelper/IntelliToolsettings.h \
     IntelliHelper/IntelliTriangulation.h \

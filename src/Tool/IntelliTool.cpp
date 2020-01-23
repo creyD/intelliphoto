@@ -1,5 +1,6 @@
 #include "IntelliTool.h"
 #include "Layer/PaintingArea.h"
+#include "GUI/IntelliPhotoGui.h"
 
 IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings){
 		this->Area = Area;
@@ -50,7 +51,7 @@ void IntelliTool::onMouseMoved(int x, int y){
 
 void IntelliTool::onWheelScrolled(int value){
 		//if needed for future general tasks implement in here
-		Area->DummyGui->setToolWidth(value + Toolsettings->getLineWidth());
+		Area->guiReference->setToolWidth(value + Toolsettings->getLineWidth());
 }
 
 bool IntelliTool::createToolLayer(){
@@ -88,7 +89,8 @@ void IntelliTool::mergeToolLayer(){
 		if(Canvas->image->getPolygonData().size() > 0) {
 				activeLayer->image->setPolygon(Canvas->image->getPolygonData());
 		}
-		Area->DummyGui->UpdateGui();
+		Area->guiReference->UpdateGui();
+        Area->historyadd();
 }
 
 void IntelliTool::deleteToolLayer(){
@@ -96,10 +98,10 @@ void IntelliTool::deleteToolLayer(){
 		this->Canvas = nullptr;
 }
 
-IntelliTool::Tooltype IntelliTool::getTooltype(){
+IntelliTool::Tooltype IntelliTool::getTooltype() const {
 		return ActiveType;
 }
 
-bool IntelliTool::getIsDrawing(){
+bool IntelliTool::getIsDrawing() const {
 		return isDrawing;
 }

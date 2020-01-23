@@ -3,6 +3,11 @@
 #include "IntelliPhotoGui.h"
 #include "Layer/PaintingArea.h"
 
+#include <QEvent>
+#include <QCloseEvent>
+#include <QDebug>
+#include <string>
+
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
 		// create Gui elements and lay them out
@@ -15,8 +20,7 @@ IntelliPhotoGui::IntelliPhotoGui(){
 		setIntelliStyle();
 		// Size the app
 		resize(600,600);
-		showMaximized();
-		setDefaultToolValue();
+        setDefaultValues();
 }
 
 // User tried to close the app
@@ -47,10 +51,28 @@ void IntelliPhotoGui::slotOpen(){
 				// If we have a file name load the image and place
 				// it in the paintingArea
 				if (!fileName.isEmpty()) {
-						paintingArea->open(fileName);
-						UpdateGui();
-				}
-		}
+                    bool rightFileType =true;
+                        if(fileName.size()>=4){
+                            QString endung(".idf");
+                            int length = fileName.size();
+                            for(int i=0; i<4; i++){
+                                if(endung[i]!=fileName[length-4+i]){
+                                    rightFileType = false;
+                                    break;
+                                }
+                            }
+                        }
+
+                    if(rightFileType){
+                        IntelliDatamanager::loadProject(paintingArea,fileName);
+                        UpdateGui();
+
+                    }
+                    else{
+                        paintingArea->open(fileName);
+                    }
+                }
+        }
 }
 
 // Called when the user clicks Save As in the menu
@@ -79,7 +101,7 @@ void IntelliPhotoGui::slotCreateNewRasterLayer(){
 
 		// Create New Layer
 		if (ok1&&ok2) {
-				paintingArea->addLayer(width,height,0,0,IntelliImage::ImageType::RASTERIMAGE);
+                paintingArea->addLayer(width,height,0,0,255,ImageType::RASTERIMAGE);
 				UpdateGui();
 		}
 }
@@ -98,7 +120,7 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 
 		// Create New Layer
 		if (ok1&&ok2) {
-				paintingArea->addLayer(width, height, 0, 0, IntelliImage::ImageType::SHAPEDIMAGE);
+                paintingArea->addLayer(width, height, 0, 0,255, ImageType::SHAPEDIMAGE);
 				UpdateGui();
 		}
 }
@@ -114,6 +136,8 @@ void IntelliPhotoGui::slotChangeDim(){
 		int width = IntelliInputDialog::getInt("New Canvas Size", "Width:", 600, 1, 50000, 1, &ok1);
 
 		int height = IntelliInputDialog::getInt("New Canvas Size", "Height:", 600, 1, 50000, 1, &ok2);
+
+
 
 		// Change dimension
 		if (ok1&&ok2) {
@@ -324,6 +348,14 @@ void IntelliPhotoGui::slotSetInnerAlpha(){
 		}
 }
 
+void IntelliPhotoGui::slotGoBack(){
+        paintingArea->historyGoBack();
+}
+
+void IntelliPhotoGui::slotGoForward(){
+        paintingArea->historyGoForward();
+}
+
 // Define menu actions that call functions
 void IntelliPhotoGui::createActions(){
 		// Get a list of the supported file formats
@@ -352,6 +384,14 @@ void IntelliPhotoGui::createActions(){
 		// Attach each PNG in save Menu
 		actionSaveAs.append(pngSaveAction);
 		pngSaveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
+
+        QAction*projectSaveAction = new QAction("Projekt", this);
+        projectSaveAction->setData("idf");
+        // When clicked call IntelliPhotoGui::save()
+        connect(projectSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
+        // Attach each PNG in save Menu
+        actionSaveAs.append(projectSaveAction);
+        projectSaveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
 
 		// Create exit action and tie to IntelliPhotoGui::close()
 		actionExit = new QAction(tr("&Exit"), this);
@@ -522,6 +562,14 @@ void IntelliPhotoGui::createActions(){
 		actionSetInnerAlpha = new QAction(tr("&Set Inner Alpha"),this);
 		actionSetInnerAlpha->setShortcut(QKeySequence(Qt::ALT + Qt::Key_A));
 		connect(actionSetInnerAlpha, SIGNAL(triggered()), this, SLOT(slotSetInnerAlpha()));
+
+        actionGoBack = new QAction(tr("&Go back"),this);
+        actionGoBack->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+        connect(actionGoBack, SIGNAL(triggered()), this, SLOT(slotGoBack()));
+
+        actionGoForward = new QAction(tr("&Go forward"),this);
+        actionGoForward->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
+        connect(actionGoForward, SIGNAL(triggered()), this, SLOT(slotGoForward()));
 }
 
 // Create the menubar
@@ -547,6 +595,7 @@ void IntelliPhotoGui::createMenus(){
 		layerCreationMenu = new QMenu(tr("&Create new Layer"), this);
 		layerCreationMenu->addAction(actionCreateNewRasterLayer);
 		layerCreationMenu->addAction(actionCreateNewShapedLayer);
+
 		// Attach all actions to Layer
 		layerMenu = new QMenu(tr("&Layer"), this);
 		layerMenu->addMenu(layerCreationMenu);
@@ -594,6 +643,8 @@ void IntelliPhotoGui::createMenus(){
 
 		// Attach all actions to Options
 		optionMenu = new QMenu(tr("&Options"), this);
+        optionMenu->addAction(actionGoBack);
+        optionMenu->addAction(actionGoForward);
 		optionMenu->addMenu(layerMenu);
 		optionMenu->addMenu(toolMenu);
 		optionMenu->addSeparator();
@@ -623,7 +674,7 @@ void IntelliPhotoGui::createGui(){
 		// create Gui elements
 		// get and set max width and height
 		paintingArea = new PaintingArea(1280, 720);
-		paintingArea->DummyGui = this;
+        paintingArea->guiReference = this;
 
 		preview = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
 		CircleButton = new QPushButton();
@@ -737,8 +788,14 @@ void IntelliPhotoGui::createGui(){
 		QString String = QString("%1x%2").arg(paintingArea->Canvas->width()).arg(paintingArea->Canvas->height());
 		dimCanvas->setText(String);
 
+        ScrollArea = new QScrollArea(this);
+        ScrollArea->setBackgroundRole(QPalette::Dark);
+        ScrollArea->setWidget(paintingArea);
+        ScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        ScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
 		// set gui elements
-		mainLayout->addWidget(paintingArea,1,1,20,1);
+        mainLayout->addWidget(ScrollArea,1,1,20,1);
 		mainLayout->addWidget(CircleButton,1,2,1,1);
 		mainLayout->addWidget(FloodFillButton,1,3,1,1);
 		mainLayout->addWidget(LineButton,2,2,1,1);
@@ -758,6 +815,7 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(dimActive,13,2,1,2);
 		mainLayout->addWidget(dimCanvas,14,2,1,2);
 		mainLayout->setHorizontalSpacing(0);
+
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
@@ -774,28 +832,26 @@ void IntelliPhotoGui::setIntelliStyle(){
 
 bool IntelliPhotoGui::maybeSave(){
 		// Check for changes since last save
+#ifdef QT_NO_DEBUG
+		QMessageBox::StandardButton ret;
 
-		// TODO insert variable for modified status here to make an save exit message
-		if (false) {
-				QMessageBox::StandardButton ret;
+		// Painting is the title of the window
+		// Add text and the buttons
+		ret = QMessageBox::warning(this, tr("Painting"),
+		                           tr("The image has been modified.\n"
+		                              "Do you want to save your changes?"),
+		                           QMessageBox::Save | QMessageBox::Discard
+		                           | QMessageBox::Cancel);
 
-				// Painting is the title of the window
-				// Add text and the buttons
-				ret = QMessageBox::warning(this, tr("Painting"),
-				                           tr("The image has been modified.\n"
-				                              "Do you want to save your changes?"),
-				                           QMessageBox::Save | QMessageBox::Discard
-				                           | QMessageBox::Cancel);
+		// If save button clicked call for file to be saved
+		if (ret == QMessageBox::Save) {
+				return saveFile("png");
 
-				// If save button clicked call for file to be saved
-				if (ret == QMessageBox::Save) {
-						return saveFile("png");
-
-						// If cancel do nothing
-				} else if (ret == QMessageBox::Cancel) {
-						return false;
-				}
+				// If cancel do nothing
+		} else if (ret == QMessageBox::Cancel) {
+				return false;
 		}
+#endif
 		return true;
 }
 
@@ -816,11 +872,15 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
 				return false;
 		} else {
 				// Call for the file to be saved
+                 if(fileFormat == "idf"){
+                     return IntelliDatamanager::saveProject(paintingArea, fileName);
+
+                 }
 				return paintingArea->save(fileName, fileFormat.constData());
 		}
 }
 
-void IntelliPhotoGui::setDefaultToolValue(){
+void IntelliPhotoGui::setDefaultValues(){
 		slotEnterPressed();
 }
 
@@ -845,7 +905,9 @@ void IntelliPhotoGui::UpdateGui(){
 				tmp.fill(Qt::transparent);
 				preview = preview.fromImage(tmp);
 		}
-		ActiveLayerImageLabel->setPixmap(preview.scaled(Buttonsize * 2));
+
+
+        ActiveLayerImageLabel->setPixmap(preview.scaled(Buttonsize * 2));
 
 		string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
 		FirstColorButton->setStyleSheet(string);
@@ -856,7 +918,9 @@ void IntelliPhotoGui::UpdateGui(){
 		dimCanvas->setText(string);
 
 		if(paintingArea->layerBundle.size() != 0) {
-				string = QString("%1x%2").arg(paintingArea->layerBundle[static_cast<unsigned long long>(paintingArea->getNumberOfActiveLayer())].width).arg(paintingArea->layerBundle[static_cast<unsigned long long>(paintingArea->getNumberOfActiveLayer())].height);
+                string = QString("%1x%2").arg(paintingArea->layerBundle[static_cast<size_t>
+                        (paintingArea->getNumberOfActiveLayer())].width).arg(paintingArea->layerBundle[static_cast<size_t>
+                        (paintingArea->getNumberOfActiveLayer())].height);
 				dimActive->setText(string);
 		}
 		else{
