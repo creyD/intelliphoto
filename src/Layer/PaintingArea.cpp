@@ -471,7 +471,7 @@ void PaintingArea::updateTools(){
 }
 
 void PaintingArea::historyadd(){
-/*
+
     if (++historyPresent == 100) historyPresent = 0;
     historyMaxFuture = historyPresent;
     if (historyPresent == historyMaxPast) if (++historyMaxPast == 100) historyMaxPast = 0;
@@ -479,7 +479,7 @@ void PaintingArea::historyadd(){
 
     for (unsigned long long i=0;i < layerBundle.size();i++) {
 
-    }*/
+    }
 }
 
 void PaintingArea::historyGoBack(){
