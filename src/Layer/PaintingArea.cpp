@@ -472,26 +472,28 @@ void PaintingArea::updateTools(){
 
 void PaintingArea::historyadd(){
 
-    if (++historyPresent == 100) historyPresent = 0;
-    historyMaxFuture = historyPresent;
-    if (historyPresent == historyMaxPast) if (++historyMaxPast == 100) historyMaxPast = 0;
-    history[static_cast<size_t>(historyPresent)] = layerBundle;
-
-    for (unsigned long long i=0;i < layerBundle.size();i++) {
-
+    if (++historyPresent == 100){
+        historyPresent = 0;
     }
+    historyMaxFuture = historyPresent;
+    if (historyPresent == historyMaxPast)
+        if (++historyMaxPast == 100)
+            historyMaxPast = 0;
+    history[static_cast<size_t>(historyPresent)] = layerBundle;
 }
 
 void PaintingArea::historyGoBack(){
     if (historyPresent != historyMaxPast){
-        if (--historyPresent == -1) historyPresent = 99;
+        if (--historyPresent == -1)
+            historyPresent = 99;
         layerBundle = history[static_cast<size_t>(historyPresent)];
     }
 }
 
 void PaintingArea::historyGoForward(){
     if (historyPresent != historyMaxFuture){
-        if (++historyPresent == 100) historyPresent = 0;
+        if (++historyPresent == 100)
+            historyPresent = 0;
         layerBundle = history[static_cast<size_t>(historyPresent)];
     }
 }
