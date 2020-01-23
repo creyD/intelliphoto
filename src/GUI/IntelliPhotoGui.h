@@ -95,6 +95,9 @@ void slotSetInnerAlpha();
 
 void slotResetTools();
 
+void slotGoBack();
+void slotGoForward();
+
 private:
 void createActions();
 void createMenus();
@@ -195,11 +198,15 @@ QAction* actionMovePositionRight;
 QAction* actionMoveLayerUp;
 QAction* actionMoveLayerDown;
 
-// Actions tied to specific file formats
+// actions tied to specific file formats
 QList<QAction*> actionSaveAs;
 
 QAction* actionSetWidth;
 QAction* actionSetInnerAlpha;
+
+// history actions
+QAction* actionGoBack;
+QAction* actionGoForward;
 
 // main GUI elements
 QWidget* centralGuiWidget;

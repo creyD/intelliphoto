@@ -89,6 +89,7 @@ void IntelliTool::mergeToolLayer(){
 				activeLayer->image->setPolygon(Canvas->image->getPolygonData());
 		}
 		Area->DummyGui->UpdateGui();
+        Area->historyadd();
 }
 
 void IntelliTool::deleteToolLayer(){

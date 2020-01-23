@@ -9,14 +9,14 @@ IntelliRasterImage::IntelliRasterImage(int width, int height, bool fastRendererO
 		this->fastRenderering = fastRendererOn;
 }
 
-/*
-IntelliRasterImage::IntelliRasterImage(const IntelliRasterImage& image)
+
+IntelliRasterImage::Copy(const IntelliRasterImage& image)
         : IntelliImage(image.getWidth(), image.getHeight(), image.isFastRendering()){
     this->TypeOfImage = ImageType::RASTERIMAGE;
     IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height(), this->fastRenderering);
     raster->imageData.copy(0,0,image.getWidth(),image.getWidth());
 }
-*/
+
 
 
 IntelliRasterImage::~IntelliRasterImage(){

@@ -82,7 +82,7 @@ void IntelliPhotoGui::slotCreateNewRasterLayer(){
 
 		// Create New Layer
 		if (ok1&&ok2) {
-				paintingArea->addLayer(width,height,0,0,IntelliImage::ImageType::RASTERIMAGE);
+                paintingArea->addLayer(width,height,0,0,ImageType::RASTERIMAGE);
 				UpdateGui();
 		}
 }
@@ -101,7 +101,7 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 
 		// Create New Layer
 		if (ok1&&ok2) {
-				paintingArea->addLayer(width, height, 0, 0, IntelliImage::ImageType::SHAPEDIMAGE);
+                paintingArea->addLayer(width, height, 0, 0, ImageType::SHAPEDIMAGE);
 				UpdateGui();
 		}
 }
@@ -327,6 +327,14 @@ void IntelliPhotoGui::slotSetInnerAlpha(){
 		}
 }
 
+void IntelliPhotoGui::slotGoBack(){
+        paintingArea->historyGoBack();
+}
+
+void IntelliPhotoGui::slotGoForward(){
+        paintingArea->historyGoForward();
+}
+
 // Define menu actions that call functions
 void IntelliPhotoGui::createActions(){
 		// Get a list of the supported file formats
@@ -525,6 +533,14 @@ void IntelliPhotoGui::createActions(){
 		actionSetInnerAlpha = new QAction(tr("&Set Inner Alpha"),this);
 		actionSetInnerAlpha->setShortcut(QKeySequence(Qt::ALT + Qt::Key_A));
 		connect(actionSetInnerAlpha, SIGNAL(triggered()), this, SLOT(slotSetInnerAlpha()));
+
+        actionGoBack = new QAction(tr("&Go back"),this);
+        actionGoBack->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+        connect(actionGoBack, SIGNAL(triggered()), this, SLOT(slotGoBack()));
+
+        actionGoForward = new QAction(tr("&Go forward"),this);
+        actionGoForward->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
+        connect(actionGoForward, SIGNAL(triggered()), this, SLOT(slotGoForward()));
 }
 
 // Create the menubar
@@ -597,6 +613,8 @@ void IntelliPhotoGui::createMenus(){
 
 		// Attach all actions to Options
 		optionMenu = new QMenu(tr("&Options"), this);
+        optionMenu->addAction(actionGoBack);
+        optionMenu->addAction(actionGoForward);
 		optionMenu->addMenu(layerMenu);
 		optionMenu->addMenu(toolMenu);
 		optionMenu->addSeparator();

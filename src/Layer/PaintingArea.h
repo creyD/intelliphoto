@@ -45,6 +45,10 @@ struct LayerObject {
 		 * \brief alpha - Stores the alpha value of the layer (default=255).
 		 */
 		int alpha = 255;
+
+        LayerObject();
+
+        LayerObject(const LayerObject& layer);
 };
 
 /*!
@@ -102,7 +106,7 @@ bool save(const QString &filePath, const char*fileFormat);
  * \param type          - Defining the ImageType of the new layer
  * \return  Returns the number of layers in the project
  */
-int addLayer(int width, int height, int widthOffset = 0, int heightOffset = 0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
+int addLayer(int width, int height, int widthOffset = 0, int heightOffset = 0, ImageType type = ImageType::RASTERIMAGE);
 /*!
  * \brief The addLayerAt adds a layer to the current project/ painting area at a specific position in the layer stack
  * \param idx           - Index of the position the new layer should be added
@@ -113,7 +117,7 @@ int addLayer(int width, int height, int widthOffset = 0, int heightOffset = 0, I
  * \param type          - Defining the ImageType of the new layer
  * \return  Returns the id of the layer position
  */
-int addLayerAt(int idx, int width, int height, int widthOffset = 0, int heightOffset = 0, IntelliImage::ImageType type = IntelliImage::ImageType::RASTERIMAGE);
+int addLayerAt(int idx, int width, int height, int widthOffset = 0, int heightOffset = 0, ImageType type = ImageType::RASTERIMAGE);
 /*!
  * \brief The deleteLayer method removes a layer at a given idx
  * \param idx - The index of the layer to be removed
@@ -184,7 +188,7 @@ int getMaxWidth();
 
 int getMaxHeight();
 
-IntelliImage::ImageType getTypeOfImageRealLayer();
+ImageType getTypeOfImageRealLayer();
 
 std::vector<QPoint> getPolygonDataOfRealLayer();
 
@@ -200,6 +204,9 @@ QImage getImageDataOfActiveLayer();
 
 IntelliToolsettings Toolsettings;
 IntelliColorPicker colorPicker;
+
+void historyGoBack();
+void historyGoForward();
 
 public slots:
 /*!
@@ -245,6 +252,14 @@ void drawLayers(bool forSaving = false);
 bool createTempTopLayer(int idx);
 
 void updateTools();
+
+std::vector<LayerObject> history[100] = {layerBundle};
+int historyMaxPast = 0;
+int historyMaxFuture = 0;
+int historyPresent = 0;
+
+void historyadd();
+
 };
 
 #endif

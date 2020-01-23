@@ -18,6 +18,22 @@
 #include "Tool/IntelliToolFloodFill.h"
 #include "Tool/IntelliToolPolygon.h"
 
+LayerObject::LayerObject(){
+
+}
+
+LayerObject::LayerObject(const LayerObject& layer){
+    if(layer.image->getTypeOfImage()==ImageType::RASTERIMAGE){
+        this->image = new IntelliRasterImage(*dynamic_cast<IntelliRasterImage*>(layer.image));
+    }else if(layer.image->getTypeOfImage()==ImageType::SHAPEDIMAGE){
+        this->image = new IntelliShapedImage(*dynamic_cast<IntelliShapedImage*>(layer.image));
+    }
+    this->width = layer.width;
+    this->height = layer.height;
+    this->widthOffset = layer.widthOffset;
+    this->heightOffset = layer.heightOffset;
+    this->alpha = layer.alpha;
+}
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QWidget(parent){
@@ -59,21 +75,22 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 
 }
 
-int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, IntelliImage::ImageType type){
+int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, ImageType type){
 		LayerObject newLayer;
 		updateTools();
 		newLayer.width = width;
 		newLayer.height = height;
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
-		if(type==IntelliImage::ImageType::RASTERIMAGE) {
+        if(type==ImageType::RASTERIMAGE) {
 				newLayer.image = new IntelliRasterImage(width,height,renderSettings.isFastRenderering());
-		}else if(type==IntelliImage::ImageType::SHAPEDIMAGE) {
+        }else if(type==ImageType::SHAPEDIMAGE) {
 				newLayer.image = new IntelliShapedImage(width, height, renderSettings.isFastRenderering());
 		}
 		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
 		activeLayer = static_cast<int>(layerBundle.size()) - 1;
+        historyadd();
 		return activeLayer;
 }
 
@@ -98,6 +115,7 @@ void PaintingArea::slotDeleteActiveLayer(){
 				this->layerBundle.erase(layerBundle.begin() + activeLayer);
 				activeLayer--;
 		}
+        historyadd();
 }
 
 void PaintingArea::setLayerActive(int idx){
@@ -116,7 +134,7 @@ void PaintingArea::setLayerAlpha(int idx, int alpha){
 }
 void PaintingArea::setPolygon(int idx){
 		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-				if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==IntelliImage::ImageType::SHAPEDIMAGE) {
+                if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==ImageType::SHAPEDIMAGE) {
 						delete this->Tool;
 						this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
 						isSettingPolygon = true;
@@ -165,6 +183,7 @@ void PaintingArea::movePositionActive(int x, int y){
 		updateTools();
 		layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
+        historyadd();
 }
 
 void PaintingArea::moveActiveLayer(int idx){
@@ -175,6 +194,7 @@ void PaintingArea::moveActiveLayer(int idx){
 				this->selectLayerDown();
 		}
 		DummyGui->UpdateGui();
+        historyadd();
 }
 
 void PaintingArea::slotActivateLayer(int a){
@@ -248,7 +268,7 @@ int PaintingArea::getMaxHeight(){
 		return this->maxHeight;
 }
 
-IntelliImage::ImageType PaintingArea::getTypeOfImageRealLayer(){
+ImageType PaintingArea::getTypeOfImageRealLayer(){
         return this->layerBundle[static_cast<size_t>(activeLayer)].image->getTypeOfImage();
 }
 
@@ -448,4 +468,31 @@ void PaintingArea::updateTools(){
 						isSettingPolygon = false;
 				}
 		}
+}
+
+void PaintingArea::historyadd(){
+    /*
+    if (++historyPresent == 100) historyPresent = 0;
+    historyMaxFuture = historyPresent;
+    if (historyPresent == historyMaxPast) if (++historyMaxPast == 100) historyMaxPast = 0;
+    history[static_cast<size_t>(historyPresent)] = layerBundle;
+
+    for (unsigned long long i=0;i < layerBundle.size();i++) {
+
+    }*/
+
+}
+
+void PaintingArea::historyGoBack(){
+    if (historyPresent != historyMaxPast){
+        if (--historyPresent == -1) historyPresent = 99;
+        layerBundle = history[static_cast<size_t>(historyPresent)];
+    }
+}
+
+void PaintingArea::historyGoForward(){
+    if (historyPresent != historyMaxFuture){
+        if (++historyPresent == 100) historyPresent = 0;
+        layerBundle = history[static_cast<size_t>(historyPresent)];
+    }
 }

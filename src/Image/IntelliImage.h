@@ -17,6 +17,14 @@ class UnitTest;
 class IntelliTool;
 
 /*!
+ * \brief The Types, which an Image can be.
+ */
+enum class ImageType {
+        RASTERIMAGE,
+        SHAPEDIMAGE
+};
+
+/*!
  * \brief An abstract class which manages the basic IntelliImage operations.
  */
 class IntelliImage {
@@ -24,13 +32,6 @@ friend UnitTest;
 friend IntelliTool;
 public:
 
-/*!
- * \brief The Types, which an Image can be.
- */
-enum class ImageType {
-		RASTERIMAGE,
-		SHAPEDIMAGE
-};
 
 protected:
 void resizeImage(QImage*image, const QSize &newSize);
@@ -58,6 +59,7 @@ public:
  * \param fastRendererOn    - Represents the flag for 8bit picture handelling.
  */
 IntelliImage(int width, int height, bool fastRendererOn);
+
 
 /*!
  * \brief An Abstract Destructor.
@@ -169,6 +171,12 @@ virtual QImage getImageData();
  * \param newData - represents the new imageData
  */
 virtual void setImageData(const QImage& newData);
+
+virtual int getWidth() const;
+
+virtual int getHeight() const;
+
+virtual bool isFastRendering() const;
 
 };
 
