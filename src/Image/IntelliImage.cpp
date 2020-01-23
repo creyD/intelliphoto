@@ -2,7 +2,7 @@
 #include <QSize>
 #include <QPainter>
 
-IntelliImage::IntelliImage(int width, int height, bool fastRendererOn)
+IntelliImage:: IntelliImage(int width, int height, bool fastRendererOn)
 		: imageData(QSize(width, height), fastRendererOn ? QImage::Format_Indexed8 : QImage::Format_ARGB32){
 		if(fastRendererOn) {
 				imageData = imageData.convertToFormat(QImage::Format_ARGB32);
@@ -14,6 +14,7 @@ IntelliImage::IntelliImage(int width, int height, bool fastRendererOn)
 		this->fastRenderering = fastRendererOn;
 
 }
+
 
 IntelliImage::~IntelliImage(){
 
@@ -157,4 +158,16 @@ void IntelliImage::updateRendererSetting(bool fastRendererOn){
 		else {
 				this->imageData = imageData.convertToFormat(QImage::Format_ARGB32);
 		}
+}
+
+int IntelliImage::getWidth() const{
+    return imageData.width();
+}
+
+int IntelliImage::getHeight() const{
+    return imageData.height();
+}
+
+bool IntelliImage::isFastRendering() const{
+    return this->fastRenderering;
 }

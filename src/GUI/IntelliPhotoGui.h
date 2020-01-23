@@ -14,7 +14,9 @@
 #include <QTextEdit>
 #include <QLabel>
 #include <QLineEdit>
+#include <QScrollArea>
 #include "IntelliInputDialog.h"
+#include "IntelliHelper/IntelliDatamanager.h"
 
 //for unit testing
 class UnitTest;
@@ -95,11 +97,15 @@ void slotSetInnerAlpha();
 
 void slotResetTools();
 
+void slotGoBack();
+void slotGoForward();
+
 private:
+
+//setup functions for gui
 void createActions();
 void createMenus();
 void createGui();
-// Set the style of the GUI
 void setIntelliStyle();
 
 // Will check if changes have occurred since last save
@@ -107,13 +113,19 @@ bool maybeSave();
 // Opens the Save dialog and saves
 bool saveFile(const QByteArray &fileFormat);
 
-void setDefaultToolValue();
+//basic to set tool values to begin
+void setDefaultValues();
 
 // What we'll draw on
 PaintingArea* paintingArea;
 
-const QSize Buttonsize = QSize(35,35);
+//used to display a preview of the active layer
 QPixmap preview;
+
+//size of all buttons
+const QSize Buttonsize = QSize(35,35);
+
+//buttons used for gui
 QPushButton* CircleButton;
 QPushButton* FloodFillButton;
 QPushButton* LineButton;
@@ -121,35 +133,42 @@ QPushButton* PenButton;
 QPushButton* PlainButton;
 QPushButton* PolygonButton;
 QPushButton* RectangleButton;
-QLabel* WidthLine;
-QLabel* innerAlphaLine;
-QLineEdit* EditLineWidth;
-QLineEdit* EditLineInnerAlpha;
-QIntValidator* ValidatorLineWidth;
-QIntValidator* ValidatorInnerAlpha;
-
 QPushButton* FirstColorButton;
 QPushButton* SecondColorButton;
 QPushButton* SwitchColorButton;
-
-QLabel* ActiveLayerLine;
-QLabel* ActiveLayerImageLabel;
-
 QPushButton* dimActive;
 QPushButton* dimCanvas;
 
+//labels used for gui
+QLabel* WidthLine;
+QLabel* innerAlphaLine;
+QLabel* ActiveLayerLine;
+QLabel* ActiveLayerImageLabel;
+
+//scroll area to display canvas
+QScrollArea* ScrollArea;
+
+//line edits used for gui
+QLineEdit* EditLineWidth;
+QLineEdit* EditLineInnerAlpha;
+
+//int validator used for gui
+QIntValidator* ValidatorLineWidth;
+QIntValidator* ValidatorInnerAlpha;
+
+
 // The menu widgets
-QMenu*saveAsMenu;
-QMenu*fileMenu;
-QMenu*renderMenu;
-QMenu*optionMenu;
-QMenu*layerCreationMenu;
-QMenu*layerMenu;
-QMenu*colorMenu;
-QMenu*toolCreationMenu;
-QMenu*toolSettingsMenu;
-QMenu*toolMenu;
-QMenu*helpMenu;
+QMenu* saveAsMenu;
+QMenu* fileMenu;
+QMenu* renderMenu;
+QMenu* optionMenu;
+QMenu* layerCreationMenu;
+QMenu* layerMenu;
+QMenu* colorMenu;
+QMenu* toolCreationMenu;
+QMenu* toolSettingsMenu;
+QMenu* toolMenu;
+QMenu* helpMenu;
 
 // All the actions that can occur
 // meta image actions (need further modularisation)
@@ -175,7 +194,9 @@ QAction* actionCreatePolygonTool;
 QAction* actionCreateFloodFillTool;
 
 // dimension actions
-QAction*actionChangeDim;
+QAction* actionChangeDim;
+QAction* actionSetWidth;
+QAction* actionSetInnerAlpha;
 
 // dialog actions
 QAction* actionAboutDialog;
@@ -195,11 +216,14 @@ QAction* actionMovePositionRight;
 QAction* actionMoveLayerUp;
 QAction* actionMoveLayerDown;
 
-// Actions tied to specific file formats
+// actions tied to specific file formats
 QList<QAction*> actionSaveAs;
 
-QAction* actionSetWidth;
-QAction* actionSetInnerAlpha;
+
+
+// history actions
+QAction* actionGoBack;
+QAction* actionGoForward;
 
 // main GUI elements
 QWidget* centralGuiWidget;
