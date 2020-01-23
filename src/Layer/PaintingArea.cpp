@@ -17,6 +17,7 @@
 #include "Tool/IntelliToolRectangle.h"
 #include "Tool/IntelliToolFloodFill.h"
 #include "Tool/IntelliToolPolygon.h"
+#include "GUI/IntelliPhotoGui.h"
 
 LayerObject::LayerObject(){
 
@@ -64,6 +65,10 @@ void PaintingArea::setRenderSettings(bool isFastRenderingOn){
 		}
 }
 
+bool PaintingArea::getRenderSettings(){
+    return this->renderSettings.isFastRenderering();
+}
+
 void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 		//set standart parameter
 		this->maxWidth = maxWidth;
@@ -75,19 +80,27 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 
 }
 
-int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset, ImageType type){
+void PaintingArea::setPixelToActive(QColor color, QPoint point){
+    layerBundle[static_cast<size_t>(activeLayer)].image->drawPixel(point, color);
+}
+
+void PaintingArea::setPolygonDataToActive(std::vector<QPoint> points){
+    layerBundle[static_cast<size_t>(activeLayer)].image->setPolygon(points);
+}
+
+int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset,int alpha, ImageType type){
 		LayerObject newLayer;
 		updateTools();
 		newLayer.width = width;
 		newLayer.height = height;
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
+        newLayer.alpha = alpha;
         if(type==ImageType::RASTERIMAGE) {
 				newLayer.image = new IntelliRasterImage(width,height,renderSettings.isFastRenderering());
         }else if(type==ImageType::SHAPEDIMAGE) {
 				newLayer.image = new IntelliShapedImage(width, height, renderSettings.isFastRenderering());
 		}
-		newLayer.alpha = 255;
 		this->layerBundle.push_back(newLayer);
 		activeLayer = static_cast<int>(layerBundle.size()) - 1;
         historyadd();
@@ -153,6 +166,13 @@ bool PaintingArea::open(const QString &filePath){
 		active->calculateVisiblity();
 		update();
 		return open;
+}
+
+void PaintingArea::deleteAllLayers(){
+    for(auto layer: layerBundle){
+        delete layer.image;
+    }
+    layerBundle.clear();
 }
 
 // Save the current image
@@ -453,6 +473,10 @@ QImage PaintingArea::getImageDataOfActiveLayer(){
 				}
 		}
 		return returnImage;
+}
+
+std::vector<LayerObject>* PaintingArea::getLayerBundle(){
+    return &layerBundle;
 }
 
 void PaintingArea::updateTools(){

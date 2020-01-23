@@ -59,6 +59,12 @@ virtual IntelliImage* getDeepCopy() override;
  * \param polygonData   - The Vertices of the Polygon. Nothing happens.
  */
 virtual void setPolygon(const std::vector<QPoint>& polygonData) override;
+
+/*!
+ * \brief getPolygon
+ * \return returns the points of the polygon
+ */
+virtual std::vector<QPoint> getPolygon();
 };
 
 #endif

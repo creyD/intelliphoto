@@ -7,7 +7,6 @@
 #include <QPoint>
 #include <QWidget>
 #include <QList>
-#include "GUI/IntelliPhotoGui.h"
 #include "Image/IntelliImage.h"
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
@@ -16,7 +15,7 @@
 
 //for unit testing
 class UnitTest;
-
+class IntelliPhotoGui;
 /*!
  * \brief The LayerObject struct holds all the information needed to construct a layer
  */
@@ -84,6 +83,12 @@ PaintingArea(int maxWidth = 600, int maxHeight = 600, QWidget*parent = nullptr);
 void setRenderSettings(bool isFastRenderingOn);
 
 /*!
+ * \brief getRenderSettings updates all Images to the new Rendersetting.
+ * \param isFastRenderingOn is the new given flag for the FastRenderer.
+ */
+bool getRenderSettings();
+
+/*!
  * \brief The open method is used for loading a picture into the current layer.
  * \param filePath  - Path and Name which are used to determine where the to-be-opened file is stored.
  * \return Returns a boolean variable whether the file was successfully opened or not.
@@ -98,15 +103,20 @@ bool open(const QString &filePath);
 bool save(const QString &filePath, const char*fileFormat);
 
 /*!
+ * \brief deleteAllLayers deletes all layers
+ */
+void deleteAllLayers();
+/*!
  * \brief The addLayer adds a layer to the current project/ painting area
  * \param width         - Width of the layer in pixles
  * \param height        - Height of the layer in pixles
  * \param widthOffset   - Offset of the layer measured to the left border of the painting area in pixles
  * \param heightOffset  - Offset of the layer measured to the top border of the painting area in pixles
+ * \param alpha         - Transparence of the layer
  * \param type          - Defining the ImageType of the new layer
  * \return  Returns the number of layers in the project
  */
-int addLayer(int width, int height, int widthOffset = 0, int heightOffset = 0, ImageType type = ImageType::RASTERIMAGE);
+int addLayer(int width, int height, int widthOffset = 0, int heightOffset = 0, int alpha=255, ImageType type = ImageType::RASTERIMAGE);
 /*!
  * \brief The addLayerAt adds a layer to the current project/ painting area at a specific position in the layer stack
  * \param idx           - Index of the position the new layer should be added
@@ -202,12 +212,23 @@ IntelliImage* getImageOfActiveLayer();
  */
 QImage getImageDataOfActiveLayer();
 
+/*!
+ * \brief getLayerBundle returns the real active layerbundle (care!)
+ * \return the reference of the currentLayerBundle
+ */
+std::vector<LayerObject>* getLayerBundle();
+
 IntelliToolsettings Toolsettings;
 IntelliColorPicker colorPicker;
 
 void historyGoBack();
 void historyGoForward();
 
+void setLayerDimensions(int maxWidth, int maxHeight);
+
+void setPixelToActive(QColor color, QPoint point);
+
+void setPolygonDataToActive(std::vector<QPoint> points);
 public slots:
 /*!
  * \brief The slotActivateLayer method handles the event of selecting one layer as active
@@ -229,7 +250,6 @@ void wheelEvent(QWheelEvent*event) override;
 void paintEvent(QPaintEvent*event) override;
 
 private:
-void setLayerDimensions(int maxWidth, int maxHeight);
 void selectLayerUp();
 void selectLayerDown();
 IntelliTool* copyActiveTool();

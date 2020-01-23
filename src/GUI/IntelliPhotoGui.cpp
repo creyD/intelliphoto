@@ -3,8 +3,10 @@
 #include "IntelliPhotoGui.h"
 #include "Layer/PaintingArea.h"
 
-#include "QEvent"
-#include "QCloseEvent"
+#include <QEvent>
+#include <QCloseEvent>
+#include <QDebug>
+#include <string>
 
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
@@ -50,10 +52,28 @@ void IntelliPhotoGui::slotOpen(){
 				// If we have a file name load the image and place
 				// it in the paintingArea
 				if (!fileName.isEmpty()) {
-						paintingArea->open(fileName);
-						UpdateGui();
-				}
-		}
+                    bool rightFileType =true;
+                        if(fileName.size()>=4){
+                            QString endung(".idf");
+                            int length = fileName.size();
+                            for(int i=0; i<4; i++){
+                                if(endung[i]!=fileName[length-4+i]){
+                                    rightFileType = false;
+                                    break;
+                                }
+                            }
+                        }
+
+                    if(rightFileType){
+                        IntelliDatamanager::loadProject(paintingArea,fileName);
+                        UpdateGui();
+
+                    }
+                    else{
+                        paintingArea->open(fileName);
+                    }
+                }
+        }
 }
 
 // Called when the user clicks Save As in the menu
@@ -82,7 +102,7 @@ void IntelliPhotoGui::slotCreateNewRasterLayer(){
 
 		// Create New Layer
 		if (ok1&&ok2) {
-                paintingArea->addLayer(width,height,0,0,ImageType::RASTERIMAGE);
+                paintingArea->addLayer(width,height,0,0,255,ImageType::RASTERIMAGE);
 				UpdateGui();
 		}
 }
@@ -101,7 +121,7 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 
 		// Create New Layer
 		if (ok1&&ok2) {
-                paintingArea->addLayer(width, height, 0, 0, ImageType::SHAPEDIMAGE);
+                paintingArea->addLayer(width, height, 0, 0,255, ImageType::SHAPEDIMAGE);
 				UpdateGui();
 		}
 }
@@ -363,6 +383,14 @@ void IntelliPhotoGui::createActions(){
 		// Attach each PNG in save Menu
 		actionSaveAs.append(pngSaveAction);
 		pngSaveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
+
+        QAction*projectSaveAction = new QAction("Projekt", this);
+        projectSaveAction->setData("idf");
+        // When clicked call IntelliPhotoGui::save()
+        connect(projectSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
+        // Attach each PNG in save Menu
+        actionSaveAs.append(projectSaveAction);
+        projectSaveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
 
 		// Create exit action and tie to IntelliPhotoGui::close()
 		actionExit = new QAction(tr("&Exit"), this);
@@ -835,6 +863,10 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
 				return false;
 		} else {
 				// Call for the file to be saved
+                 if(fileFormat == "idf"){
+                     return IntelliDatamanager::saveProject(paintingArea, fileName);
+
+                 }
 				return paintingArea->save(fileName, fileFormat.constData());
 		}
 }

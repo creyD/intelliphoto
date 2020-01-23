@@ -1,5 +1,6 @@
 #include "IntelliTool.h"
 #include "Layer/PaintingArea.h"
+#include "GUI/IntelliPhotoGui.h"
 
 IntelliTool::IntelliTool(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings){
 		this->Area = Area;

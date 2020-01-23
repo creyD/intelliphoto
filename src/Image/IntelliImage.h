@@ -32,7 +32,6 @@ friend UnitTest;
 friend IntelliTool;
 public:
 
-
 protected:
 void resizeImage(QImage*image, const QSize &newSize);
 

@@ -59,3 +59,7 @@ QImage IntelliRasterImage::getDisplayable(const QSize& displaySize, int alpha){
 void IntelliRasterImage::setPolygon(const std::vector<QPoint>& polygonData){
 		return;
 }
+
+std::vector<QPoint> IntelliRasterImage::getPolygon(){
+    return std::vector<QPoint>();
+}

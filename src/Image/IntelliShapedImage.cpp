@@ -118,3 +118,7 @@ void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
 		calculateVisiblity();
 		return;
 }
+
+std::vector<QPoint> IntelliShapedImage::getPolygon(){
+    return polygonData;
+}
