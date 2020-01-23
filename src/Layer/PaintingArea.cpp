@@ -54,6 +54,9 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 		this->maxHeight = maxHeight;
 		Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
 
+        this->offsetXDimension = maxWidth/2;
+        this->offsetYDimension = maxHeight/2;
+
 		// Roots the widget to the top left even if resized
 		setAttribute(Qt::WA_StaticContents);
 
@@ -265,12 +268,12 @@ void PaintingArea::mousePressEvent(QMouseEvent*event){
 		}
 		if(Tool == nullptr)
 				return;
-        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset;
-        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset;
+        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset-offsetXDimension;
+        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset-offsetYDimension;
 		if(event->button() == Qt::LeftButton) {
-				Tool->onMouseLeftPressed(x, y);
+                Tool->onMouseLeftPressed(x, y);
 		}else if(event->button() == Qt::RightButton) {
-				Tool->onMouseRightPressed(x, y);
+                Tool->onMouseRightPressed(x, y);
 		}
 		update();
 }
@@ -284,8 +287,8 @@ void PaintingArea::mouseMoveEvent(QMouseEvent*event){
 		}
 		if(Tool == nullptr)
 				return;
-        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset;
-        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset;
+        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset-offsetXDimension;
+        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset-offsetYDimension;
 		Tool->onMouseMoved(x, y);
 		update();
 }
@@ -296,8 +299,8 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 				return;
 		if(Tool == nullptr)
 				return;
-        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset;
-        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset;
+        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset-offsetXDimension;
+        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset-offsetYDimension;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftReleased(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -332,7 +335,7 @@ void PaintingArea::paintEvent(QPaintEvent*event){
 
         //calulate image here for scroll
         //Todo set offset in first to parameters and calulate them into mouse position
-        painter.drawImage(0, 0, *Canvas, 0, 0);
+        painter.drawImage(0, 0, *Canvas, -offsetXDimension, -offsetYDimension);
 		update();
 }
 

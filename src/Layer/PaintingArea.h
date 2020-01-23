@@ -222,6 +222,10 @@ void wheelEvent(QWheelEvent*event) override;
 void paintEvent(QPaintEvent*event) override;
 
 private:
+//offset for the displayable
+int offsetXDimension;
+int offsetYDimension;
+
 void setLayerDimensions(int maxWidth, int maxHeight);
 void selectLayerUp();
 void selectLayerDown();

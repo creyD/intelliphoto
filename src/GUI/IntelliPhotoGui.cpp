@@ -7,6 +7,8 @@
 #include "QCloseEvent"
 #include "QScrollBar"
 
+#include <QDebug>
+
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
 		// create Gui elements and lay them out
@@ -19,7 +21,7 @@ IntelliPhotoGui::IntelliPhotoGui(){
 		setIntelliStyle();
 		// Size the app
 		resize(600,600);
-		setDefaultToolValue();
+        setDefaultValues();
 }
 
 // User tried to close the app
@@ -117,6 +119,8 @@ void IntelliPhotoGui::slotChangeDim(){
 		int width = IntelliInputDialog::getInt("New Canvas Size", "Width:", 600, 1, 50000, 1, &ok1);
 
 		int height = IntelliInputDialog::getInt("New Canvas Size", "Height:", 600, 1, 50000, 1, &ok2);
+
+
 
 		// Change dimension
 		if (ok1&&ok2) {
@@ -768,6 +772,7 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(dimActive,13,2,1,2);
 		mainLayout->addWidget(dimCanvas,14,2,1,2);
 		mainLayout->setHorizontalSpacing(0);
+
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
@@ -828,7 +833,7 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
 		}
 }
 
-void IntelliPhotoGui::setDefaultToolValue(){
+void IntelliPhotoGui::setDefaultValues(){
 		slotEnterPressed();
 }
 

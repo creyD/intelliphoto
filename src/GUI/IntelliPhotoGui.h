@@ -110,7 +110,7 @@ bool maybeSave();
 bool saveFile(const QByteArray &fileFormat);
 
 //basic to set tool values to begin
-void setDefaultToolValue();
+void setDefaultValues();
 
 // What we'll draw on
 PaintingArea* paintingArea;
