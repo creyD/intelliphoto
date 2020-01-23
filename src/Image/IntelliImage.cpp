@@ -160,14 +160,14 @@ void IntelliImage::updateRendererSetting(bool fastRendererOn){
 		}
 }
 
-int IntelliImage::getWidth() const{
-    return imageData.width();
+int IntelliImage::getWidth() const {
+		return imageData.width();
 }
 
-int IntelliImage::getHeight() const{
-    return imageData.height();
+int IntelliImage::getHeight() const {
+		return imageData.height();
 }
 
-bool IntelliImage::isFastRendering() const{
-    return this->fastRenderering;
+bool IntelliImage::isFastRendering() const {
+		return this->fastRenderering;
 }

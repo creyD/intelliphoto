@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['intellitriangulation_210',['IntelliTriangulation',['../namespace_intelli_triangulation.html',1,'']]]
+  ['intellidatamanager_228',['IntelliDatamanager',['../namespace_intelli_datamanager.html',1,'']]],
+  ['intellitriangulation_229',['IntelliTriangulation',['../namespace_intelli_triangulation.html',1,'']]]
 ];

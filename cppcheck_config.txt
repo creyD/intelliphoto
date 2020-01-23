@@ -58,7 +58,25 @@ src/GUI/IntelliPhotoGui.h:15:0: information: Include file: <QLabel> not found. P
 src/GUI/IntelliPhotoGui.h:16:0: information: Include file: <QLineEdit> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
 
 ^
+src/GUI/IntelliPhotoGui.h:17:0: information: Include file: <QScrollArea> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/GUI/IntelliPhotoGui.h:19:0: information: Include file: "IntelliHelper/IntelliDatamanager.h" not found. [missingInclude]
+
+^
 src/GUI/IntelliPhotoGui.cpp:4:0: information: Include file: "Layer/PaintingArea.h" not found. [missingInclude]
+
+^
+src/GUI/IntelliPhotoGui.cpp:6:0: information: Include file: <QEvent> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/GUI/IntelliPhotoGui.cpp:7:0: information: Include file: <QCloseEvent> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/GUI/IntelliPhotoGui.cpp:8:0: information: Include file: <QDebug> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/GUI/IntelliPhotoGui.cpp:9:0: information: Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
 
 ^
 src/Image/IntelliImage.cpp:1:0: information: Include file: "Image/IntelliImage.h" not found. [missingInclude]
@@ -104,6 +122,15 @@ src/IntelliHelper/IntelliColorPicker.h:5:0: information: Include file: "QPoint" 
 
 ^
 src/IntelliHelper/IntelliColorPicker.h:6:0: information: Include file: "QColorDialog" not found. [missingInclude]
+
+^
+src/IntelliHelper/IntelliDatamanager.h:4:0: information: Include file: <QFile> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/IntelliHelper/IntelliDatamanager.h:5:0: information: Include file: <QDebug> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/IntelliHelper/IntelliDatamanager.cpp:2:0: information: Include file: "Layer/PaintingArea.h" not found. [missingInclude]
 
 ^
 src/IntelliHelper/IntelliToolsettings.cpp:2:0: information: Include file: <QInputDialog> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
@@ -154,7 +181,7 @@ src/Layer/PaintingArea.h:8:0: information: Include file: <QWidget> not found. Pl
 src/Layer/PaintingArea.h:9:0: information: Include file: <QList> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
 
 ^
-src/Layer/PaintingArea.h:10:0: information: Include file: "GUI/IntelliPhotoGui.h" not found. [missingInclude]
+src/Layer/PaintingArea.h:10:0: information: Include file: <QLabel> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
 
 ^
 src/Layer/PaintingArea.h:11:0: information: Include file: "Image/IntelliImage.h" not found. [missingInclude]
@@ -199,6 +226,9 @@ src/Layer/PaintingArea.cpp:18:0: information: Include file: "Tool/IntelliToolFlo
 src/Layer/PaintingArea.cpp:19:0: information: Include file: "Tool/IntelliToolPolygon.h" not found. [missingInclude]
 
 ^
+src/Layer/PaintingArea.cpp:20:0: information: Include file: "GUI/IntelliPhotoGui.h" not found. [missingInclude]
+
+^
 src/Tool/IntelliTool.h:4:0: information: Include file: "IntelliHelper/IntelliColorPicker.h" not found. [missingInclude]
 
 ^
@@ -209,6 +239,9 @@ src/Tool/IntelliTool.h:6:0: information: Include file: <vector> not found. Pleas
 
 ^
 src/Tool/IntelliTool.cpp:2:0: information: Include file: "Layer/PaintingArea.h" not found. [missingInclude]
+
+^
+src/Tool/IntelliTool.cpp:3:0: information: Include file: "GUI/IntelliPhotoGui.h" not found. [missingInclude]
 
 ^
 src/Tool/IntelliToolCircle.h:5:0: information: Include file: "QColor" not found. [missingInclude]
@@ -326,6 +359,9 @@ src/main.cpp:3:0: information: Include file: <QDebug> not found. Please note: Cp
 
 ^
 src/main.cpp:4:0: information: Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/main.cpp:5:0: information: Include file: <fstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
 
 ^
 src/mainUnitTest.cpp:1:0: information: Include file: <QtTest> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]

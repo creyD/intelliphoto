@@ -6,15 +6,15 @@
 
 IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererOn)
 		: IntelliRasterImage(width, height, fastRendererOn){
-        TypeOfImage = ImageType::SHAPEDIMAGE;
+		TypeOfImage = ImageType::SHAPEDIMAGE;
 		this->fastRenderering = fastRendererOn;
 }
 
 IntelliShapedImage* IntelliShapedImage::copy(const IntelliShapedImage& image){
-    this->TypeOfImage = ImageType::SHAPEDIMAGE;
-    IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
-    shaped->imageData.copy(0,0,image.getWidth(),image.getWidth());
-    return shaped;
+		this->TypeOfImage = ImageType::SHAPEDIMAGE;
+		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
+		shaped->imageData.copy(0,0,image.getWidth(),image.getWidth());
+		return shaped;
 }
 
 IntelliShapedImage::~IntelliShapedImage(){
@@ -26,10 +26,10 @@ QImage IntelliShapedImage::getDisplayable(int alpha){
 }
 
 IntelliImage* IntelliShapedImage::getDeepCopy(){
-        IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
+		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
 		shaped->setPolygon(this->polygonData);
 		shaped->imageData.fill(Qt::transparent);
-        shaped->TypeOfImage = ImageType::SHAPEDIMAGE;
+		shaped->TypeOfImage = ImageType::SHAPEDIMAGE;
 		return shaped;
 }
 
@@ -120,5 +120,5 @@ void IntelliShapedImage::setPolygon(const std::vector<QPoint>& polygonData){
 }
 
 std::vector<QPoint> IntelliShapedImage::getPolygon(){
-    return polygonData;
+		return polygonData;
 }

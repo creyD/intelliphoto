@@ -220,7 +220,6 @@ QAction* actionMoveLayerDown;
 QList<QAction*> actionSaveAs;
 
 
-
 // history actions
 QAction* actionGoBack;
 QAction* actionGoForward;

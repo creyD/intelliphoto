@@ -20,8 +20,8 @@ class IntelliTool;
  * \brief The Types, which an Image can be.
  */
 enum class ImageType {
-        RASTERIMAGE,
-        SHAPEDIMAGE
+		RASTERIMAGE,
+		SHAPEDIMAGE
 };
 
 /*!
