@@ -1,16 +1,28 @@
 #include "IntelliDatamanager.h"
+#include "Layer/PaintingArea.h"
 
-IntelliDatamanager::IntelliDatamanager()
-{
 
+bool IntelliDatamanager::saveProject(PaintingArea* Canvas, QString filePath){
+    QFile openFile(filePath);
+
+    if(openFile.open(QIODevice::WriteOnly)){
+        qDebug() << "works.";
+        openFile.write("Hahaha");
+        openFile.close();
+        return true;
+    }
+
+    return false;
 }
 
-void IntelliDatamanager::saveProject(PaintingArea* Canvas, QString filePath){
+bool IntelliDatamanager::loadProject(PaintingArea* Canvas, QString filePath){
+    QFile openFile(filePath);
 
+    if(openFile.open(QIODevice::ReadOnly)){
+        qDebug() << openFile.readAll();
+        openFile.close();
+        return true;
+    }
 
-    return;
-}
-
-void IntelliDatamanager::loadProject(PaintingArea* Canvas, QString filePath){
-    return;
+    return false;
 }

@@ -1,17 +1,16 @@
 #ifndef INTELLIDATAMANAGER_H
 #define INTELLIDATAMANAGER_H
 
-#include "Layer/PaintingArea.h"
 #include <QFile>
+#include <QDebug>
 
-class IntelliDatamanager
-{
-private:
+class PaintingArea;
 
-public:
-    void loadProject(PaintingArea* Canvas, QString filePath = "unnamed.idf");
-    void saveProject(PaintingArea* Canvas, QString filePath = "unnamed.idf");
-    IntelliDatamanager();
-};
+namespace IntelliDatamanager{
+
+    bool loadProject(PaintingArea* Canvas, QString filePath = "unnamed.idf");
+    bool saveProject(PaintingArea* Canvas, QString filePath = "unnamed.idf");
+
+}
 
 #endif // INTELLIDATAMANAGER_H

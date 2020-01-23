@@ -17,6 +17,7 @@
 #include "Tool/IntelliToolRectangle.h"
 #include "Tool/IntelliToolFloodFill.h"
 #include "Tool/IntelliToolPolygon.h"
+#include "GUI/IntelliPhotoGui.h"
 
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)

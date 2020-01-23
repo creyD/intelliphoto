@@ -7,7 +7,6 @@
 #include <QPoint>
 #include <QWidget>
 #include <QList>
-#include "GUI/IntelliPhotoGui.h"
 #include "Image/IntelliImage.h"
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
@@ -16,7 +15,7 @@
 
 //for unit testing
 class UnitTest;
-
+class IntelliPhotoGui;
 /*!
  * \brief The LayerObject struct holds all the information needed to construct a layer
  */

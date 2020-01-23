@@ -15,6 +15,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include "IntelliInputDialog.h"
+#include "IntelliHelper/IntelliDatamanager.h"
 
 //for unit testing
 class UnitTest;
