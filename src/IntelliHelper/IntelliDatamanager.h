@@ -6,10 +6,10 @@
 
 class PaintingArea;
 
-namespace IntelliDatamanager{
+namespace IntelliDatamanager {
 
-    bool loadProject(PaintingArea* Canvas, QString filePath = "unnamed.idf");
-    bool saveProject(PaintingArea* Canvas, QString filePath = "unnamed.idf");
+bool loadProject(PaintingArea* Canvas, QString filePath = "unnamed.idf");
+bool saveProject(PaintingArea* Canvas, QString filePath = "unnamed.idf");
 
 }
 

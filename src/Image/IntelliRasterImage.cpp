@@ -5,18 +5,17 @@
 
 IntelliRasterImage::IntelliRasterImage(int width, int height, bool fastRendererOn)
 		: IntelliImage(width, height, fastRendererOn){
-        TypeOfImage = ImageType::RASTERIMAGE;
+		TypeOfImage = ImageType::RASTERIMAGE;
 		this->fastRenderering = fastRendererOn;
 }
 
 
 IntelliRasterImage* IntelliRasterImage::copy(const IntelliRasterImage& image){
-    this->TypeOfImage = ImageType::RASTERIMAGE;
-    IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height(), this->fastRenderering);
-    raster->imageData.copy(0,0,image.getWidth(),image.getWidth());
-    return raster;
+		this->TypeOfImage = ImageType::RASTERIMAGE;
+		IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height(), this->fastRenderering);
+		raster->imageData.copy(0,0,image.getWidth(),image.getWidth());
+		return raster;
 }
-
 
 
 IntelliRasterImage::~IntelliRasterImage(){
@@ -24,9 +23,9 @@ IntelliRasterImage::~IntelliRasterImage(){
 }
 
 IntelliImage* IntelliRasterImage::getDeepCopy(){
-        IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height(), this->fastRenderering);
+		IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height(), this->fastRenderering);
 		raster->imageData.fill(Qt::transparent);
-        raster->TypeOfImage = ImageType::RASTERIMAGE;
+		raster->TypeOfImage = ImageType::RASTERIMAGE;
 		return raster;
 }
 
@@ -61,5 +60,5 @@ void IntelliRasterImage::setPolygon(const std::vector<QPoint>& polygonData){
 }
 
 std::vector<QPoint> IntelliRasterImage::getPolygon(){
-    return std::vector<QPoint>();
+		return std::vector<QPoint>();
 }

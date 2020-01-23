@@ -1,9 +1,7 @@
 var dir_fdbdd9841f9a730f284bb666ff3d8cfe =
 [
     [ "IntelliImage.cpp", "_intelli_image_8cpp.html", null ],
-    [ "IntelliImage.h", "_intelli_image_8h.html", [
-      [ "IntelliImage", "class_intelli_image.html", "class_intelli_image" ]
-    ] ],
+    [ "IntelliImage.h", "_intelli_image_8h.html", "_intelli_image_8h" ],
     [ "IntelliRasterImage.cpp", "_intelli_raster_image_8cpp.html", null ],
     [ "IntelliRasterImage.h", "_intelli_raster_image_8h.html", [
       [ "IntelliRasterImage", "class_intelli_raster_image.html", "class_intelli_raster_image" ]

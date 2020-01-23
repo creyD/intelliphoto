@@ -46,9 +46,9 @@ struct LayerObject {
 		 */
 		int alpha = 255;
 
-        LayerObject();
+		LayerObject();
 
-        LayerObject(const LayerObject& layer);
+		LayerObject(const LayerObject& layer);
 };
 
 /*!
@@ -117,7 +117,7 @@ void deleteAllLayers();
  * \param type          - Defining the ImageType of the new layer
  * \return  Returns the number of layers in the project
  */
-int addLayer(int width, int height, int widthOffset = 0, int heightOffset = 0, int alpha=255, ImageType type = ImageType::RASTERIMAGE);
+int addLayer(int width, int height, int widthOffset = 0, int heightOffset = 0, int alpha = 255, ImageType type = ImageType::RASTERIMAGE);
 /*!
  * \brief The addLayerAt adds a layer to the current project/ painting area at a specific position in the layer stack
  * \param idx           - Index of the position the new layer should be added

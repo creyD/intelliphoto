@@ -24,20 +24,20 @@ LayerObject::LayerObject(){
 }
 
 LayerObject::LayerObject(const LayerObject& layer){
-    if(layer.image->getTypeOfImage()==ImageType::RASTERIMAGE){
-        this->image = new IntelliRasterImage(*dynamic_cast<IntelliRasterImage*>(layer.image));
-    }else if(layer.image->getTypeOfImage()==ImageType::SHAPEDIMAGE){
-        this->image = new IntelliShapedImage(*dynamic_cast<IntelliShapedImage*>(layer.image));
-    }
-    this->width = layer.width;
-    this->height = layer.height;
-    this->widthOffset = layer.widthOffset;
-    this->heightOffset = layer.heightOffset;
-    this->alpha = layer.alpha;
+		if(layer.image->getTypeOfImage()==ImageType::RASTERIMAGE) {
+				this->image = new IntelliRasterImage(*dynamic_cast<IntelliRasterImage*>(layer.image));
+		}else if(layer.image->getTypeOfImage()==ImageType::SHAPEDIMAGE) {
+				this->image = new IntelliShapedImage(*dynamic_cast<IntelliShapedImage*>(layer.image));
+		}
+		this->width = layer.width;
+		this->height = layer.height;
+		this->widthOffset = layer.widthOffset;
+		this->heightOffset = layer.heightOffset;
+		this->alpha = layer.alpha;
 }
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
-        : QLabel(parent){
+		: QLabel(parent){
 		this->Tool = nullptr;
 		this->setLayerDimensions(maxWidth, maxHeight);
 
@@ -66,7 +66,7 @@ void PaintingArea::setRenderSettings(bool isFastRenderingOn){
 }
 
 bool PaintingArea::getRenderSettings(){
-    return this->renderSettings.isFastRenderering();
+		return this->renderSettings.isFastRenderering();
 }
 
 void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
@@ -75,8 +75,8 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 		this->maxHeight = maxHeight;
 		Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
 
-        this->offsetXDimension = maxWidth/2;
-        this->offsetYDimension = maxHeight/2;
+		this->offsetXDimension = maxWidth / 2;
+		this->offsetYDimension = maxHeight / 2;
 
 		// Roots the widget to the top left even if resized
 		setAttribute(Qt::WA_StaticContents);
@@ -84,11 +84,11 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 }
 
 void PaintingArea::setPixelToActive(QColor color, QPoint point){
-    layerBundle[static_cast<size_t>(activeLayer)].image->drawPixel(point, color);
+		layerBundle[static_cast<size_t>(activeLayer)].image->drawPixel(point, color);
 }
 
 void PaintingArea::setPolygonDataToActive(std::vector<QPoint> points){
-    layerBundle[static_cast<size_t>(activeLayer)].image->setPolygon(points);
+		layerBundle[static_cast<size_t>(activeLayer)].image->setPolygon(points);
 }
 
 int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOffset,int alpha, ImageType type){
@@ -98,15 +98,15 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		newLayer.height = height;
 		newLayer.widthOffset = widthOffset;
 		newLayer.heightOffset = heightOffset;
-        newLayer.alpha = alpha;
-        if(type==ImageType::RASTERIMAGE) {
+		newLayer.alpha = alpha;
+		if(type==ImageType::RASTERIMAGE) {
 				newLayer.image = new IntelliRasterImage(width,height,renderSettings.isFastRenderering());
-        }else if(type==ImageType::SHAPEDIMAGE) {
+		}else if(type==ImageType::SHAPEDIMAGE) {
 				newLayer.image = new IntelliShapedImage(width, height, renderSettings.isFastRenderering());
 		}
 		this->layerBundle.push_back(newLayer);
 		activeLayer = static_cast<int>(layerBundle.size()) - 1;
-        historyadd();
+		historyadd();
 		return activeLayer;
 }
 
@@ -131,7 +131,7 @@ void PaintingArea::slotDeleteActiveLayer(){
 				this->layerBundle.erase(layerBundle.begin() + activeLayer);
 				activeLayer--;
 		}
-        historyadd();
+		historyadd();
 }
 
 void PaintingArea::setLayerActive(int idx){
@@ -150,7 +150,7 @@ void PaintingArea::setLayerAlpha(int idx, int alpha){
 }
 void PaintingArea::setPolygon(int idx){
 		if(idx>=0&&idx<static_cast<int>(layerBundle.size())) {
-                if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==ImageType::SHAPEDIMAGE) {
+				if(layerBundle[static_cast<size_t>(idx)].image->getTypeOfImage()==ImageType::SHAPEDIMAGE) {
 						delete this->Tool;
 						this->Tool = new IntelliToolPolygon(this,&colorPicker,&Toolsettings, true);
 						isSettingPolygon = true;
@@ -172,10 +172,10 @@ bool PaintingArea::open(const QString &filePath){
 }
 
 void PaintingArea::deleteAllLayers(){
-    for(auto layer: layerBundle){
-        delete layer.image;
-    }
-    layerBundle.clear();
+		for(auto layer: layerBundle) {
+				delete layer.image;
+		}
+		layerBundle.clear();
 }
 
 // Save the current image
@@ -206,7 +206,7 @@ void PaintingArea::movePositionActive(int x, int y){
 		updateTools();
 		layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
-        historyadd();
+		historyadd();
 }
 
 void PaintingArea::moveActiveLayer(int idx){
@@ -217,7 +217,7 @@ void PaintingArea::moveActiveLayer(int idx){
 				this->selectLayerDown();
 		}
 		guiReference->UpdateGui();
-        historyadd();
+		historyadd();
 }
 
 void PaintingArea::slotActivateLayer(int a){
@@ -276,11 +276,11 @@ void PaintingArea::createFloodFillTool(){
 }
 
 int PaintingArea::getWidthOfActive(){
-        return this->layerBundle[static_cast<size_t>(activeLayer)].width;
+		return this->layerBundle[static_cast<size_t>(activeLayer)].width;
 }
 
 int PaintingArea::getHeightOfActive(){
-        return this->layerBundle[static_cast<size_t>(activeLayer)].height;
+		return this->layerBundle[static_cast<size_t>(activeLayer)].height;
 }
 
 int PaintingArea::getMaxWidth(){
@@ -292,11 +292,11 @@ int PaintingArea::getMaxHeight(){
 }
 
 ImageType PaintingArea::getTypeOfImageRealLayer(){
-        return this->layerBundle[static_cast<size_t>(activeLayer)].image->getTypeOfImage();
+		return this->layerBundle[static_cast<size_t>(activeLayer)].image->getTypeOfImage();
 }
 
 std::vector<QPoint> PaintingArea::getPolygonDataOfRealLayer(){
-        return this->layerBundle[static_cast<size_t>(activeLayer)].image->getPolygonData();
+		return this->layerBundle[static_cast<size_t>(activeLayer)].image->getPolygonData();
 }
 
 // If a mouse button is pressed check if it was the
@@ -308,12 +308,12 @@ void PaintingArea::mousePressEvent(QMouseEvent*event){
 		}
 		if(Tool == nullptr)
 				return;
-        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset-offsetXDimension;
-        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset-offsetYDimension;
+		int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset - offsetXDimension;
+		int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset - offsetYDimension;
 		if(event->button() == Qt::LeftButton) {
-                Tool->onMouseLeftPressed(x, y);
+				Tool->onMouseLeftPressed(x, y);
 		}else if(event->button() == Qt::RightButton) {
-                Tool->onMouseRightPressed(x, y);
+				Tool->onMouseRightPressed(x, y);
 		}
 		update();
 }
@@ -327,8 +327,8 @@ void PaintingArea::mouseMoveEvent(QMouseEvent*event){
 		}
 		if(Tool == nullptr)
 				return;
-        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset-offsetXDimension;
-        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset-offsetYDimension;
+		int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset - offsetXDimension;
+		int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset - offsetYDimension;
 		Tool->onMouseMoved(x, y);
 		update();
 }
@@ -339,8 +339,8 @@ void PaintingArea::mouseReleaseEvent(QMouseEvent*event){
 				return;
 		if(Tool == nullptr)
 				return;
-        int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset-offsetXDimension;
-        int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset-offsetYDimension;
+		int x = event->x() - layerBundle[static_cast<size_t>(activeLayer)].widthOffset - offsetXDimension;
+		int y = event->y() - layerBundle[static_cast<size_t>(activeLayer)].heightOffset - offsetYDimension;
 		if(event->button() == Qt::LeftButton) {
 				Tool->onMouseLeftReleased(x, y);
 		}else if(event->button() == Qt::RightButton) {
@@ -365,17 +365,17 @@ void PaintingArea::wheelEvent(QWheelEvent*event){
 // The QPaintEvent is sent to widgets that need to
 // update themselves
 void PaintingArea::paintEvent(QPaintEvent*event){
-        this->setFixedSize(QSize(maxWidth*2,maxHeight*2));
+		this->setFixedSize(QSize(maxWidth * 2,maxHeight * 2));
 		this->drawLayers();
 
-        QPainter painter(this);
+		QPainter painter(this);
 
-        //insert zoom factor here
-        painter.scale(1,1);
+		//insert zoom factor here
+		painter.scale(1,1);
 
-        //calulate image here for scroll
-        //Todo set offset in first to parameters and calulate them into mouse position
-        painter.drawImage(0, 0, *Canvas, -offsetXDimension, -offsetYDimension);
+		//calulate image here for scroll
+		//Todo set offset in first to parameters and calulate them into mouse position
+		painter.drawImage(0, 0, *Canvas, -offsetXDimension, -offsetYDimension);
 		update();
 }
 
@@ -390,7 +390,7 @@ void PaintingArea::selectLayerUp(){
 void PaintingArea::selectLayerDown(){
 		updateTools();
 		if(activeLayer>0) {
-                std::swap(layerBundle[static_cast<size_t>(activeLayer)], layerBundle[static_cast<size_t>(activeLayer - 1)]);
+				std::swap(layerBundle[static_cast<size_t>(activeLayer)], layerBundle[static_cast<size_t>(activeLayer - 1)]);
 				activeLayer--;
 		}
 }
@@ -434,11 +434,11 @@ bool PaintingArea::createTempTopLayer(int idx){
 		if(idx>=0) {
 				LayerObject newLayer;
 				newLayer.alpha = 255;
-                newLayer.height = layerBundle[static_cast<size_t>(idx)].height;
-                newLayer.width = layerBundle[static_cast<size_t>(idx)].width;
-                newLayer.heightOffset = layerBundle[static_cast<size_t>(idx)].heightOffset;
-                newLayer.widthOffset = layerBundle[static_cast<size_t>(idx)].widthOffset;
-                newLayer.image = layerBundle[static_cast<size_t>(idx)].image->getDeepCopy();
+				newLayer.height = layerBundle[static_cast<size_t>(idx)].height;
+				newLayer.width = layerBundle[static_cast<size_t>(idx)].width;
+				newLayer.heightOffset = layerBundle[static_cast<size_t>(idx)].heightOffset;
+				newLayer.widthOffset = layerBundle[static_cast<size_t>(idx)].widthOffset;
+				newLayer.image = layerBundle[static_cast<size_t>(idx)].image->getDeepCopy();
 				layerBundle.insert(layerBundle.begin() + idx + 1,newLayer);
 				return true;
 		}
@@ -485,7 +485,7 @@ QImage PaintingArea::getImageDataOfActiveLayer(){
 }
 
 std::vector<LayerObject>* PaintingArea::getLayerBundle(){
-    return &layerBundle;
+		return &layerBundle;
 }
 
 void PaintingArea::updateTools(){
@@ -505,30 +505,30 @@ void PaintingArea::updateTools(){
 
 void PaintingArea::historyadd(){
 
-    if (++historyPresent == 100){
-        historyPresent = 0;
-    }
-    historyMaxFuture = historyPresent;
-    if (historyPresent == historyMaxPast)
-        if (++historyMaxPast == 100)
-            historyMaxPast = 0;
-    history[static_cast<size_t>(historyPresent)] = layerBundle;
+		if (++historyPresent == 100) {
+				historyPresent = 0;
+		}
+		historyMaxFuture = historyPresent;
+		if (historyPresent == historyMaxPast)
+				if (++historyMaxPast == 100)
+						historyMaxPast = 0;
+		history[static_cast<size_t>(historyPresent)] = layerBundle;
 }
 
 void PaintingArea::historyGoBack(){
-    if (historyPresent != historyMaxPast){
-        if (--historyPresent == -1)
-            historyPresent = 99;
-        layerBundle = history[static_cast<size_t>(historyPresent)];
-    }
-    this->guiReference->UpdateGui();
+		if (historyPresent != historyMaxPast) {
+				if (--historyPresent == -1)
+						historyPresent = 99;
+				layerBundle = history[static_cast<size_t>(historyPresent)];
+		}
+		this->guiReference->UpdateGui();
 }
 
 void PaintingArea::historyGoForward(){
-    if (historyPresent != historyMaxFuture){
-        if (++historyPresent == 100)
-            historyPresent = 0;
-        layerBundle = history[static_cast<size_t>(historyPresent)];
-    }
-    this->guiReference->UpdateGui();
+		if (historyPresent != historyMaxFuture) {
+				if (++historyPresent == 100)
+						historyPresent = 0;
+				layerBundle = history[static_cast<size_t>(historyPresent)];
+		}
+		this->guiReference->UpdateGui();
 }

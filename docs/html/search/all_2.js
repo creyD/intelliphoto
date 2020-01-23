@@ -10,11 +10,12 @@ var searchData=
   ['colorpickersetfirstcolor_15',['colorPickerSetFirstColor',['../class_painting_area.html#a4735d4cf1dc58a9096d904e74c39c4df',1,'PaintingArea']]],
   ['colorpickersetsecondcolor_16',['colorPickerSetSecondColor',['../class_painting_area.html#ae261acaaa346610dfed489dbac17e789',1,'PaintingArea']]],
   ['colorpickerswapcolors_17',['colorPickerSwapColors',['../class_painting_area.html#acff4563d006fda491469bd41778d07eb',1,'PaintingArea']]],
-  ['createcircletool_18',['createCircleTool',['../class_painting_area.html#a2d9f4b3585f7dd1acb11f432ca503466',1,'PaintingArea']]],
-  ['createfloodfilltool_19',['createFloodFillTool',['../class_painting_area.html#a0b22e18069b524f3e75857d203baf256',1,'PaintingArea']]],
-  ['createlinetool_20',['createLineTool',['../class_painting_area.html#a240c33a7875addac86080cdfb0db036a',1,'PaintingArea']]],
-  ['createpentool_21',['createPenTool',['../class_painting_area.html#a96c6248e343e44b61cf2625cb6d21353',1,'PaintingArea']]],
-  ['createplaintool_22',['createPlainTool',['../class_painting_area.html#a3de83443d2d5cf460ff48d0602070938',1,'PaintingArea']]],
-  ['createpolygontool_23',['createPolygonTool',['../class_painting_area.html#a13c2f94644bea9c2d3123d0b7898f34b',1,'PaintingArea']]],
-  ['createrectangletool_24',['createRectangleTool',['../class_painting_area.html#a5b04ce62ce024e307f54e0281f7ae4bd',1,'PaintingArea']]]
+  ['copy_18',['copy',['../class_intelli_raster_image.html#a6c27fa0d323a1a81d0c4c93c9161f81e',1,'IntelliRasterImage::copy()'],['../class_intelli_shaped_image.html#aee38adc7db9e3fd40e083247219bef05',1,'IntelliShapedImage::copy()']]],
+  ['createcircletool_19',['createCircleTool',['../class_painting_area.html#a2d9f4b3585f7dd1acb11f432ca503466',1,'PaintingArea']]],
+  ['createfloodfilltool_20',['createFloodFillTool',['../class_painting_area.html#a0b22e18069b524f3e75857d203baf256',1,'PaintingArea']]],
+  ['createlinetool_21',['createLineTool',['../class_painting_area.html#a240c33a7875addac86080cdfb0db036a',1,'PaintingArea']]],
+  ['createpentool_22',['createPenTool',['../class_painting_area.html#a96c6248e343e44b61cf2625cb6d21353',1,'PaintingArea']]],
+  ['createplaintool_23',['createPlainTool',['../class_painting_area.html#a3de83443d2d5cf460ff48d0602070938',1,'PaintingArea']]],
+  ['createpolygontool_24',['createPolygonTool',['../class_painting_area.html#a13c2f94644bea9c2d3123d0b7898f34b',1,'PaintingArea']]],
+  ['createrectangletool_25',['createRectangleTool',['../class_painting_area.html#a5b04ce62ce024e307f54e0281f7ae4bd',1,'PaintingArea']]]
 ];

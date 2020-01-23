@@ -35,7 +35,7 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
         [ "Enumerations", "functions_enum.html", null ]
@@ -46,6 +46,7 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -55,7 +56,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_intelli_color_picker_8cpp.html",
-"class_painting_area.html#a4a8138b9508ee4ec87a7fca9160368a7"
+"class_intelli_toolsettings.html#a9a61f3de61efeba2287f8b32941f4271"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
