@@ -52,21 +52,27 @@ void IntelliPhotoGui::slotOpen(){
 				// If we have a file name load the image and place
 				// it in the paintingArea
 				if (!fileName.isEmpty()) {
-                        if(fileName.length()>3){
-                            if(*(fileName.rend()+1)==QChar('f') &&
-                               *(fileName.rend()+2)==QChar('d') &&
-                               *(fileName.rend()+3)==QChar('i') &&
-                               *(fileName.rend()+4)==QChar('.')){
-                                            qDebug() << "works.";
-                                            IntelliDatamanager::loadProject(paintingArea,fileName);
+                    bool rightFileType =true;
+                        if(fileName.size()>=4){
+                            QString endung(".idf");
+                            int length = fileName.size();
+                            for(int i=0; i<4; i++){
+                                if(endung[i]!=fileName[length-4+i]){
+                                    rightFileType = false;
+                                    break;
+                                }
                             }
                         }
-                }
+
+                    if(rightFileType){
                         //paintingArea->open(fileName);
                         //TODO remove datamanager funciton and enable painting area function
                         IntelliDatamanager::loadProject(paintingArea,fileName);
-						UpdateGui();
+                        UpdateGui();
+
+                    }
                 }
+        }
 }
 
 // Called when the user clicks Save As in the menu

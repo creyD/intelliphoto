@@ -436,6 +436,10 @@ QImage PaintingArea::getImageDataOfActiveLayer(){
 		return returnImage;
 }
 
+std::vector<LayerObject>* PaintingArea::getLayerBundle(){
+    return &layerBundle;
+}
+
 void PaintingArea::updateTools(){
 		if(Tool!=nullptr) {
 				if(Tool->getIsDrawing()) {
