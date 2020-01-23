@@ -177,7 +177,7 @@ void UnitTest::cleanupTestCase()
 
 //test painting area
 void UnitTest::test_addLayer(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		QCOMPARE(area->layerBundle.size(), 1);
 		QCOMPARE(area->activeLayer, 0);
@@ -192,8 +192,8 @@ void UnitTest::test_addLayer(){
 }
 
 void UnitTest::test_deleteLayer(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		area->deleteLayer(3);
 		QCOMPARE(area->layerBundle.size(), 2);
@@ -214,8 +214,8 @@ void UnitTest::test_deleteLayer(){
 }
 
 void UnitTest::test_setActive(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		area->setLayerActive(0);
 		QCOMPARE(area->activeLayer, 0);
@@ -231,8 +231,8 @@ void UnitTest::test_setActive(){
 }
 
 void UnitTest::test_setAlpha(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		area->setLayerAlpha(0,0);
 		QCOMPARE(area->layerBundle[0].alpha, 0);
@@ -254,7 +254,7 @@ void UnitTest::test_setAlpha(){
 }
 
 void UnitTest::test_floodFill(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		area->layerBundle[0].image->drawPlain(QColor(255, 255, 255, 255));
 		QPoint point;
@@ -279,8 +279,8 @@ void UnitTest::test_floodFill(){
 }
 
 void UnitTest::test_moveActive(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		area->layerBundle[1].image->drawPlain(QColor(0, 0, 0, 255));
 		QPoint point(0,0);
@@ -306,8 +306,8 @@ void UnitTest::test_moveActive(){
 }
 
 void UnitTest::test_setPolygon(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		std::vector<QPoint> polygon{
 				QPoint(10,00),
@@ -328,8 +328,8 @@ void UnitTest::test_setPolygon(){
 }
 
 void UnitTest::test_setLayerUp(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		area->selectLayerUp();
 		QCOMPARE(area->activeLayer, 1);
@@ -345,8 +345,8 @@ void UnitTest::test_setLayerUp(){
 }
 
 void UnitTest::test_setLayerDown(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		area->selectLayerDown();
 		QCOMPARE(area->activeLayer, 0);
@@ -386,7 +386,7 @@ void UnitTest::test_createTools(){
 
 //test Raster-Image operations
 void UnitTest::test_RasterImage_drawPixel(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point(0,0);
 
@@ -399,7 +399,7 @@ void UnitTest::test_RasterImage_drawPixel(){
 }
 
 void UnitTest::test_RasterImage_drawLine(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point1(0,0);
 		QPoint point2(10,10);
@@ -424,7 +424,7 @@ void UnitTest::test_RasterImage_drawLine(){
 }
 
 void UnitTest::test_RasterImage_drawPoint(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point1(5,5);
 		QPoint point2(5,6);
@@ -444,7 +444,7 @@ void UnitTest::test_RasterImage_drawPoint(){
 }
 
 void UnitTest::test_RasterImage_getDisplayable(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		area->layerBundle[0].image->drawPlain(QColor(255, 255, 255, 255));
 		QImage img = area->layerBundle[0].image->getDisplayable(QSize(200,200),255);
@@ -461,7 +461,7 @@ void UnitTest::test_RasterImage_getDisplayable(){
 }
 
 void UnitTest::test_RasterImage_getPixelColor(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point(0,0);
 		area->layerBundle[0].image->drawPlain(QColor(0, 0, 0, 255));
@@ -471,7 +471,7 @@ void UnitTest::test_RasterImage_getPixelColor(){
 }
 
 void UnitTest::test_RasterImage_getImageData(){
-		area->addLayer(2,2,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(2,2,10,20,255,ImageType::RASTERIMAGE);
 
 		QImage img(2,2, QImage::Format_ARGB32);
 		img.setPixelColor(0,0, Qt::red);
@@ -496,7 +496,7 @@ void UnitTest::test_RasterImage_getImageData(){
 }
 
 void UnitTest::test_RasterImage_setImageData(){
-		area->addLayer(2,2,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(2,2,10,20,255,ImageType::RASTERIMAGE);
 
 		QImage img(2,2, QImage::Format_ARGB32);
 		img.setPixelColor(0,0, Qt::red);
@@ -521,7 +521,7 @@ void UnitTest::test_RasterImage_setImageData(){
 
 //test Shaped-Image operations
 void UnitTest::test_ShapedImage_drawPixel(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point(0,0);
 
@@ -534,7 +534,7 @@ void UnitTest::test_ShapedImage_drawPixel(){
 }
 
 void UnitTest::test_ShapedImage_drawLine(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point1(0,0);
 		QPoint point2(10,10);
@@ -559,7 +559,7 @@ void UnitTest::test_ShapedImage_drawLine(){
 }
 
 void UnitTest::test_ShapedImage_drawPoint(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point1(5,5);
 		QPoint point2(5,6);
@@ -579,7 +579,7 @@ void UnitTest::test_ShapedImage_drawPoint(){
 }
 
 void UnitTest::test_ShapedImage_getDisplayable(){
-		area->addLayer(21,21,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(21,21,10,20,255,ImageType::SHAPEDIMAGE);
 		std::vector<QPoint> points{
 				QPoint(10,00),
 				QPoint(00,10),
@@ -614,7 +614,7 @@ void UnitTest::test_ShapedImage_getDisplayable(){
 }
 
 void UnitTest::test_ShapedImage_getPixelColor(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point(0,0);
 		area->layerBundle[0].image->drawPlain(QColor(0, 0, 0, 255));
@@ -624,7 +624,7 @@ void UnitTest::test_ShapedImage_getPixelColor(){
 }
 
 void UnitTest::test_ShapedImage_getImageData(){
-		area->addLayer(2,2,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(2,2,10,20,255,ImageType::RASTERIMAGE);
 
 		QImage img(2,2, QImage::Format_ARGB32);
 		img.setPixelColor(0,0, Qt::red);
@@ -649,7 +649,7 @@ void UnitTest::test_ShapedImage_getImageData(){
 }
 
 void UnitTest::test_ShapedImage_setImageData(){
-		area->addLayer(2,2,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(2,2,10,20,255,ImageType::RASTERIMAGE);
 
 		QImage img(2,2, QImage::Format_ARGB32);
 		img.setPixelColor(0,0, Qt::red);
@@ -674,7 +674,7 @@ void UnitTest::test_ShapedImage_setImageData(){
 
 //test tools
 void UnitTest::test_Circle_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createCircleTool();
@@ -694,7 +694,7 @@ void UnitTest::test_Circle_fullDraw(){
 }
 
 void UnitTest::test_Circle_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createCircleTool();
@@ -718,7 +718,7 @@ void UnitTest::test_Circle_interruptedDraw(){
 
 
 void UnitTest::test_FloodFill_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createFloodFillTool();
@@ -738,7 +738,7 @@ void UnitTest::test_FloodFill_fullDraw(){
 }
 
 void UnitTest::test_FloodFill_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createFloodFillTool();
@@ -761,7 +761,7 @@ void UnitTest::test_FloodFill_interruptedDraw(){
 
 
 void UnitTest::test_Line_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createLineTool();
@@ -781,7 +781,7 @@ void UnitTest::test_Line_fullDraw(){
 }
 
 void UnitTest::test_Line_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createLineTool();
@@ -803,7 +803,7 @@ void UnitTest::test_Line_interruptedDraw(){
 }
 
 void UnitTest::test_Pen_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createPenTool();
@@ -823,7 +823,7 @@ void UnitTest::test_Pen_fullDraw(){
 }
 
 void UnitTest::test_Pen_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createPenTool();
@@ -845,7 +845,7 @@ void UnitTest::test_Pen_interruptedDraw(){
 }
 
 void UnitTest::test_Plain_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createPlainTool();
@@ -865,7 +865,7 @@ void UnitTest::test_Plain_fullDraw(){
 }
 
 void UnitTest::test_Plain_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createPlainTool();
@@ -887,7 +887,7 @@ void UnitTest::test_Plain_interruptedDraw(){
 }
 
 void UnitTest::test_Polygon_fullDraw(){
-		area->addLayer(21,21,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(21,21,10,20,255,ImageType::RASTERIMAGE);
 		std::vector<QPoint> points{
 				QPoint(10,00),
 				QPoint(00,10),
@@ -944,7 +944,7 @@ void UnitTest::test_Polygon_fullDraw(){
 
 
 void UnitTest::test_Polygon_interruptedDraw(){
-		area->addLayer(201,201,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(201,201,10,20,255,ImageType::RASTERIMAGE);
 		std::vector<QPoint> points{
 				QPoint(100,000),
 				QPoint(000,100),
@@ -1000,7 +1000,7 @@ void UnitTest::test_Polygon_interruptedDraw(){
 
 
 void UnitTest::test_Rectangle_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createRectangleTool();
@@ -1022,7 +1022,7 @@ void UnitTest::test_Rectangle_fullDraw(){
 }
 
 void UnitTest::test_Rectangle_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createRectangleTool();
@@ -1078,21 +1078,21 @@ void UnitTest::test_Triangulation_Coverage(){
 
 void UnitTest::bench_addLayer(){
 		QBENCHMARK{
-				area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+                area->addLayer(200,200,0,0,255,ImageType::RASTERIMAGE);
 		}
 		area->deleteLayer(0);
 }
 
 void UnitTest::bench_deleteLayer(){
-		area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,0,0,255,ImageType::RASTERIMAGE);
 		QBENCHMARK{
 				area->deleteLayer(0);
 		}
 }
 
 void UnitTest::bench_setActive(){
-		area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
-		area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,0,0,255,ImageType::RASTERIMAGE);
+        area->addLayer(200,200,0,0,255,ImageType::RASTERIMAGE);
 
 		QBENCHMARK{
 				area->setLayerActive(0);
@@ -1103,7 +1103,7 @@ void UnitTest::bench_setActive(){
 }
 
 void UnitTest::bench_setAlpha(){
-		area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,0,0,255,ImageType::RASTERIMAGE);
 
 		QBENCHMARK{
 				area->setLayerAlpha(0,0);
@@ -1113,7 +1113,7 @@ void UnitTest::bench_setAlpha(){
 }
 
 void UnitTest::bench_floodFill(){
-		area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,0,0,255,ImageType::RASTERIMAGE);
 
 		QBENCHMARK{
 				area->layerBundle[0].image->drawPlain(QColor(255, 255, 255, 255));
@@ -1123,8 +1123,8 @@ void UnitTest::bench_floodFill(){
 }
 
 void UnitTest::bench_moveActive(){
-		area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
-		area->addLayer(200,200,0,0,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,0,0,255,ImageType::RASTERIMAGE);
+        area->addLayer(200,200,0,0,255,ImageType::RASTERIMAGE);
 
 		area->setLayerActive(0);
 		QBENCHMARK{
@@ -1136,7 +1136,7 @@ void UnitTest::bench_moveActive(){
 }
 
 void UnitTest::bench_setPolygon(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		std::vector<QPoint> polygon{
 				QPoint(10,00),
@@ -1153,8 +1153,8 @@ void UnitTest::bench_setPolygon(){
 }
 
 void UnitTest::bench_setLayerUp(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		area->setLayerActive(0);
 		QBENCHMARK{
@@ -1166,8 +1166,8 @@ void UnitTest::bench_setLayerUp(){
 }
 
 void UnitTest::bench_setLayerDown(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QBENCHMARK{
 				area->selectLayerDown();
@@ -1208,7 +1208,7 @@ void UnitTest::bench_createTools(){
 }
 
 void UnitTest::bench_RasterImage_drawPixel(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point(0,0);
 
@@ -1220,7 +1220,7 @@ void UnitTest::bench_RasterImage_drawPixel(){
 }
 
 void UnitTest::bench_RasterImage_drawLine(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point1(000,000);
 		QPoint point2(200,200);
@@ -1233,7 +1233,7 @@ void UnitTest::bench_RasterImage_drawLine(){
 }
 
 void UnitTest::bench_RasterImage_drawPoint(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point(000,000);
 
@@ -1245,7 +1245,7 @@ void UnitTest::bench_RasterImage_drawPoint(){
 }
 
 void UnitTest::bench_RasterImage_getDisplayable(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QBENCHMARK{
 				area->layerBundle[0].image->getDisplayable(QSize(200,200),255);
@@ -1255,7 +1255,7 @@ void UnitTest::bench_RasterImage_getDisplayable(){
 }
 
 void UnitTest::bench_RasterImage_getPixelColor(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QPoint point(000,000);
 
@@ -1267,7 +1267,7 @@ void UnitTest::bench_RasterImage_getPixelColor(){
 }
 
 void UnitTest::bench_RasterImage_getImageData(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QBENCHMARK{
 				area->layerBundle[0].image->getImageData();
@@ -1277,7 +1277,7 @@ void UnitTest::bench_RasterImage_getImageData(){
 }
 
 void UnitTest::bench_RasterImage_setImageData(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 
 		QImage img = area->layerBundle[0].image->getImageData();
 		QBENCHMARK{
@@ -1288,7 +1288,7 @@ void UnitTest::bench_RasterImage_setImageData(){
 }
 
 void UnitTest::bench_ShapedImage_drawPixel(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		QPoint point(0,0);
 
@@ -1300,7 +1300,7 @@ void UnitTest::bench_ShapedImage_drawPixel(){
 }
 
 void UnitTest::bench_ShapedImage_drawLine(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		QPoint point1(000,000);
 		QPoint point2(200,200);
@@ -1313,7 +1313,7 @@ void UnitTest::bench_ShapedImage_drawLine(){
 }
 
 void UnitTest::bench_ShapedImage_drawPoint(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		QPoint point(000,000);
 
@@ -1325,7 +1325,7 @@ void UnitTest::bench_ShapedImage_drawPoint(){
 }
 
 void UnitTest::bench_ShapedImage_getDisplayable(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		QBENCHMARK{
 				area->layerBundle[0].image->getDisplayable(QSize(200,200),255);
@@ -1335,7 +1335,7 @@ void UnitTest::bench_ShapedImage_getDisplayable(){
 }
 
 void UnitTest::bench_ShapedImage_getPixelColor(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		QPoint point(000,000);
 
@@ -1347,7 +1347,7 @@ void UnitTest::bench_ShapedImage_getPixelColor(){
 }
 
 void UnitTest::bench_ShapedImage_getImageData(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		QBENCHMARK{
 				area->layerBundle[0].image->getImageData();
@@ -1357,7 +1357,7 @@ void UnitTest::bench_ShapedImage_getImageData(){
 }
 
 void UnitTest::bench_ShapedImage_setImageData(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::SHAPEDIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::SHAPEDIMAGE);
 
 		QImage img = area->layerBundle[0].image->getImageData();
 		QBENCHMARK{
@@ -1368,7 +1368,7 @@ void UnitTest::bench_ShapedImage_setImageData(){
 }
 
 void UnitTest::bench_Circle_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createCircleTool();
@@ -1386,7 +1386,7 @@ void UnitTest::bench_Circle_fullDraw(){
 }
 
 void UnitTest::bench_Circle_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createCircleTool();
@@ -1407,7 +1407,7 @@ void UnitTest::bench_Circle_interruptedDraw(){
 
 
 void UnitTest::bench_FloodFill_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createFloodFillTool();
@@ -1425,7 +1425,7 @@ void UnitTest::bench_FloodFill_fullDraw(){
 }
 
 void UnitTest::bench_FloodFill_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createFloodFillTool();
@@ -1446,7 +1446,7 @@ void UnitTest::bench_FloodFill_interruptedDraw(){
 
 
 void UnitTest::bench_Line_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createLineTool();
@@ -1464,7 +1464,7 @@ void UnitTest::bench_Line_fullDraw(){
 }
 
 void UnitTest::bench_Line_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createLineTool();
@@ -1485,7 +1485,7 @@ void UnitTest::bench_Line_interruptedDraw(){
 }
 
 void UnitTest::bench_Pen_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createPenTool();
@@ -1503,7 +1503,7 @@ void UnitTest::bench_Pen_fullDraw(){
 }
 
 void UnitTest::bench_Pen_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createPenTool();
@@ -1523,7 +1523,7 @@ void UnitTest::bench_Pen_interruptedDraw(){
 }
 
 void UnitTest::bench_Plain_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createPlainTool();
@@ -1541,7 +1541,7 @@ void UnitTest::bench_Plain_fullDraw(){
 }
 
 void UnitTest::bench_Plain_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createPlainTool();
@@ -1561,7 +1561,7 @@ void UnitTest::bench_Plain_interruptedDraw(){
 }
 
 void UnitTest::bench_Polygon_fullDraw(){
-		area->addLayer(21,21,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(21,21,10,20,255,ImageType::RASTERIMAGE);
 		std::vector<QPoint> points{
 				QPoint(10,00),
 				QPoint(00,10),
@@ -1600,7 +1600,7 @@ void UnitTest::bench_Polygon_fullDraw(){
 
 
 void UnitTest::bench_Polygon_interruptedDraw(){
-		area->addLayer(201,201,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(201,201,10,20,255,ImageType::RASTERIMAGE);
 		std::vector<QPoint> points{
 				QPoint(100,000)
 		};
@@ -1624,7 +1624,7 @@ void UnitTest::bench_Polygon_interruptedDraw(){
 
 
 void UnitTest::bench_Rectangle_fullDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createRectangleTool();
@@ -1643,7 +1643,7 @@ void UnitTest::bench_Rectangle_fullDraw(){
 }
 
 void UnitTest::bench_Rectangle_interruptedDraw(){
-		area->addLayer(200,200,10,20,IntelliImage::ImageType::RASTERIMAGE);
+        area->addLayer(200,200,10,20,255,ImageType::RASTERIMAGE);
 		area->colorPicker.setFirstColor(QColor(255,255,255,255));
 		area->colorPicker.setSecondColor(QColor(0,0,0,255));
 		area->createRectangleTool();
