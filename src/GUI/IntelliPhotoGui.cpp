@@ -20,8 +20,7 @@ IntelliPhotoGui::IntelliPhotoGui(){
 		setIntelliStyle();
 		// Size the app
 		resize(600,600);
-		showMaximized();
-		setDefaultToolValue();
+        setDefaultValues();
 }
 
 // User tried to close the app
@@ -137,6 +136,8 @@ void IntelliPhotoGui::slotChangeDim(){
 		int width = IntelliInputDialog::getInt("New Canvas Size", "Width:", 600, 1, 50000, 1, &ok1);
 
 		int height = IntelliInputDialog::getInt("New Canvas Size", "Height:", 600, 1, 50000, 1, &ok2);
+
+
 
 		// Change dimension
 		if (ok1&&ok2) {
@@ -594,6 +595,7 @@ void IntelliPhotoGui::createMenus(){
 		layerCreationMenu = new QMenu(tr("&Create new Layer"), this);
 		layerCreationMenu->addAction(actionCreateNewRasterLayer);
 		layerCreationMenu->addAction(actionCreateNewShapedLayer);
+
 		// Attach all actions to Layer
 		layerMenu = new QMenu(tr("&Layer"), this);
 		layerMenu->addMenu(layerCreationMenu);
@@ -672,7 +674,7 @@ void IntelliPhotoGui::createGui(){
 		// create Gui elements
 		// get and set max width and height
 		paintingArea = new PaintingArea(1280, 720);
-		paintingArea->DummyGui = this;
+        paintingArea->guiReference = this;
 
 		preview = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
 		CircleButton = new QPushButton();
@@ -786,8 +788,14 @@ void IntelliPhotoGui::createGui(){
 		QString String = QString("%1x%2").arg(paintingArea->Canvas->width()).arg(paintingArea->Canvas->height());
 		dimCanvas->setText(String);
 
+        ScrollArea = new QScrollArea(this);
+        ScrollArea->setBackgroundRole(QPalette::Dark);
+        ScrollArea->setWidget(paintingArea);
+        ScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        ScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
 		// set gui elements
-		mainLayout->addWidget(paintingArea,1,1,20,1);
+        mainLayout->addWidget(ScrollArea,1,1,20,1);
 		mainLayout->addWidget(CircleButton,1,2,1,1);
 		mainLayout->addWidget(FloodFillButton,1,3,1,1);
 		mainLayout->addWidget(LineButton,2,2,1,1);
@@ -807,6 +815,7 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(dimActive,13,2,1,2);
 		mainLayout->addWidget(dimCanvas,14,2,1,2);
 		mainLayout->setHorizontalSpacing(0);
+
 }
 
 void IntelliPhotoGui::setIntelliStyle(){
@@ -871,7 +880,7 @@ bool IntelliPhotoGui::saveFile(const QByteArray &fileFormat){
 		}
 }
 
-void IntelliPhotoGui::setDefaultToolValue(){
+void IntelliPhotoGui::setDefaultValues(){
 		slotEnterPressed();
 }
 
@@ -896,7 +905,9 @@ void IntelliPhotoGui::UpdateGui(){
 				tmp.fill(Qt::transparent);
 				preview = preview.fromImage(tmp);
 		}
-		ActiveLayerImageLabel->setPixmap(preview.scaled(Buttonsize * 2));
+
+
+        ActiveLayerImageLabel->setPixmap(preview.scaled(Buttonsize * 2));
 
 		string = QString("background-color: %1").arg(paintingArea->colorPicker.getFirstColor().name());
 		FirstColorButton->setStyleSheet(string);

@@ -7,6 +7,7 @@
 #include <QPoint>
 #include <QWidget>
 #include <QList>
+#include <QLabel>
 #include "Image/IntelliImage.h"
 #include "Image/IntelliRasterImage.h"
 #include "Image/IntelliShapedImage.h"
@@ -53,7 +54,7 @@ struct LayerObject {
 /*!
  * \brief The PaintingArea class manages the methods and stores information about the current painting area, which is the currently opened project
  */
-class PaintingArea : public QWidget
+class PaintingArea : public QLabel
 {
 friend UnitTest;
 // Declares our class as a QObject which is the base class
@@ -250,11 +251,16 @@ void wheelEvent(QWheelEvent*event) override;
 void paintEvent(QPaintEvent*event) override;
 
 private:
+//offset for the displayable
+int offsetXDimension;
+int offsetYDimension;
+
 void selectLayerUp();
 void selectLayerDown();
 IntelliTool* copyActiveTool();
 
 QImage* Canvas;
+QImage ScaledCanvas;
 int maxWidth;
 int maxHeight;
 
@@ -262,7 +268,7 @@ bool isSettingPolygon = false;
 
 IntelliRenderSettings renderSettings;
 IntelliTool* Tool;
-IntelliPhotoGui* DummyGui;
+IntelliPhotoGui* guiReference;
 
 std::vector<LayerObject> layerBundle;
 int activeLayer = -1;

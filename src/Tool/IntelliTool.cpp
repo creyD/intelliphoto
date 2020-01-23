@@ -51,7 +51,7 @@ void IntelliTool::onMouseMoved(int x, int y){
 
 void IntelliTool::onWheelScrolled(int value){
 		//if needed for future general tasks implement in here
-		Area->DummyGui->setToolWidth(value + Toolsettings->getLineWidth());
+		Area->guiReference->setToolWidth(value + Toolsettings->getLineWidth());
 }
 
 bool IntelliTool::createToolLayer(){
@@ -89,7 +89,7 @@ void IntelliTool::mergeToolLayer(){
 		if(Canvas->image->getPolygonData().size() > 0) {
 				activeLayer->image->setPolygon(Canvas->image->getPolygonData());
 		}
-		Area->DummyGui->UpdateGui();
+		Area->guiReference->UpdateGui();
         Area->historyadd();
 }
 
