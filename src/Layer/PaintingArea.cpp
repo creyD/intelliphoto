@@ -521,6 +521,7 @@ void PaintingArea::historyGoBack(){
             historyPresent = 99;
         layerBundle = history[static_cast<size_t>(historyPresent)];
     }
+    this->guiReference->UpdateGui();
 }
 
 void PaintingArea::historyGoForward(){
@@ -529,4 +530,5 @@ void PaintingArea::historyGoForward(){
             historyPresent = 0;
         layerBundle = history[static_cast<size_t>(historyPresent)];
     }
+    this->guiReference->UpdateGui();
 }
