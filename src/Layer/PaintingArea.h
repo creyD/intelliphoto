@@ -197,6 +197,12 @@ IntelliImage* getImageOfActiveLayer();
  */
 QImage getImageDataOfActiveLayer();
 
+/*!
+ * \brief getLayerBundle returns the real active layerbundle (care!)
+ * \return the reference of the currentLayerBundle
+ */
+std::vector<LayerObject>* getLayerBundle();
+
 IntelliToolsettings Toolsettings;
 IntelliColorPicker colorPicker;
 
