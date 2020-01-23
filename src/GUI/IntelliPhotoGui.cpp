@@ -61,10 +61,12 @@ void IntelliPhotoGui::slotOpen(){
                                             IntelliDatamanager::loadProject(paintingArea,fileName);
                             }
                         }
-						paintingArea->open(fileName);
+                }
+                        //paintingArea->open(fileName);
+                        //TODO remove datamanager funciton and enable painting area function
+                        IntelliDatamanager::loadProject(paintingArea,fileName);
 						UpdateGui();
-				}
-		}
+                }
 }
 
 // Called when the user clicks Save As in the menu
