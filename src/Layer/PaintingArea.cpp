@@ -39,7 +39,7 @@ LayerObject::LayerObject(const LayerObject& layer){
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QLabel(parent){
-        this->Tool = new IntelliToolGradient(this,&colorPicker,&Toolsettings);
+        this->Tool = nullptr;
 		this->setLayerDimensions(maxWidth, maxHeight);
 		activeLayer = -1;
 }
@@ -273,6 +273,11 @@ void PaintingArea::createPolygonTool(){
 void PaintingArea::createFloodFillTool(){
 		delete this->Tool;
 		Tool = new IntelliToolFloodFill(this, &colorPicker, &Toolsettings);
+}
+
+void PaintingArea::createGradientTool(){
+        delete this->Tool;
+        Tool = new IntelliToolGradient(this, &colorPicker, &Toolsettings);
 }
 
 int PaintingArea::getWidthOfActive(){

@@ -85,6 +85,7 @@ void slotCreateRectangleTool();
 void slotCreateCircleTool();
 void slotCreatePolygonTool();
 void slotCreateFloodFillTool();
+void slotCreateGradientTool();
 
 void slotAboutDialog();
 
@@ -128,6 +129,7 @@ const QSize Buttonsize = QSize(35,35);
 //buttons used for gui
 QPushButton* CircleButton;
 QPushButton* FloodFillButton;
+QPushButton* GradientButton;
 QPushButton* LineButton;
 QPushButton* PenButton;
 QPushButton* PlainButton;
@@ -144,6 +146,7 @@ QLabel* WidthLine;
 QLabel* innerAlphaLine;
 QLabel* ActiveLayerLine;
 QLabel* ActiveLayerImageLabel;
+QLabel* FastRendererLabel;
 
 //scroll area to display canvas
 QScrollArea* ScrollArea;
@@ -192,6 +195,7 @@ QAction* actionCreateRectangleTool;
 QAction* actionCreateCircleTool;
 QAction* actionCreatePolygonTool;
 QAction* actionCreateFloodFillTool;
+QAction* actionCreateGradientTool;
 
 // dimension actions
 QAction* actionChangeDim;
