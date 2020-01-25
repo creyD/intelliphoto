@@ -17,6 +17,7 @@
 #include "Tool/IntelliToolRectangle.h"
 #include "Tool/IntelliToolFloodFill.h"
 #include "Tool/IntelliToolPolygon.h"
+#include "Tool/IntelliToolGradient.h"
 #include "GUI/IntelliPhotoGui.h"
 
 LayerObject::LayerObject(){
@@ -38,9 +39,8 @@ LayerObject::LayerObject(const LayerObject& layer){
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QLabel(parent){
-		this->Tool = nullptr;
+        this->Tool = new IntelliToolGradient(this,&colorPicker,&Toolsettings);
 		this->setLayerDimensions(maxWidth, maxHeight);
-
 		activeLayer = -1;
 }
 

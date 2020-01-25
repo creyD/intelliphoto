@@ -30,6 +30,7 @@ SOURCES += \
     Tool/IntelliTool.cpp \
     Tool/IntelliToolCircle.cpp \
     Tool/IntelliToolFloodFill.cpp \
+    Tool/IntelliToolGradient.cpp \
     Tool/IntelliToolLine.cpp \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
     Tool/IntelliTool.h \
     Tool/IntelliToolCircle.h \
     Tool/IntelliToolFloodFill.h \
+    Tool/IntelliToolGradient.h \
     Tool/IntelliToolLine.h \
     Tool/IntelliToolPen.h \
     Tool/IntelliToolPlain.h \
