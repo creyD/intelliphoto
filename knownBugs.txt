@@ -1,1 +1,3 @@
 history tool doesnt load polygon data on undo iff project was loaded
+history tool doesnt save delete Layer
+Gradient breaks Heap Size, when big Witdh and Height (appeared on 1280x720)

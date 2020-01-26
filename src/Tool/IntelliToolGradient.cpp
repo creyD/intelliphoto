@@ -21,7 +21,6 @@ void IntelliToolGradient::onMouseLeftPressed(int x, int y){
         B = QPoint(x,y);
         VectorAB[0] = 0;
         VectorAB[1] = 0;
-        Canvas->image->drawPlain(colorPicker->getFirstColor());
         Canvas->image->drawPixel(A,LineColor);
 }
 
@@ -30,14 +29,13 @@ void IntelliToolGradient::onMouseRightPressed(int x, int y){
 }
 
 void IntelliToolGradient::onMouseLeftReleased(int x, int y){
-        if(hasMoved && A != B){
-            for(int i = 0; i < activeLayer->height; i++){
-                for(int j = 0; j < activeLayer->width; j++){
-                    computePixelColor(QPoint(i,j));
-                }
-            }
+        if(hasMoved){
+            computeGradientLayer();
+            IntelliTool::onMouseLeftReleased(x,y);
         }
-        IntelliTool::onMouseLeftReleased(x,y);
+        else{
+            IntelliTool::onMouseRightPressed(x,y);
+        }
 }
 
 void IntelliToolGradient::onMouseRightReleased(int x, int y){
@@ -49,12 +47,11 @@ void IntelliToolGradient::onMouseMoved(int x, int y){
         B = QPoint(x,y);
         VectorAB[0] = static_cast<float>(B.x() - A.x());
         VectorAB[1] = static_cast<float>(B.y() - A.y());
+        NormalVector[0] = VectorAB[1];
+        NormalVector[1] = (-1*VectorAB[0]);
+        NormalDotNormal = dotProduct(NormalVector,NormalVector);
         this->Canvas->image->drawPlain(Qt::transparent);
-        for(int i = 0; i < activeLayer->height; i++){
-            for(int j = 0; j < activeLayer->width; j++){
-                computePixelColor(QPoint(i,j));
-            }
-        }
+        computeGradientLayer();
         Canvas->image->drawLine(A,B,LineColor,1);
         IntelliTool::onMouseMoved(x,y);
 }
@@ -64,9 +61,6 @@ void IntelliToolGradient::onWheelScrolled(int value){
 }
 
 void IntelliToolGradient::computePixelColor(QPoint Point){
-        double NormalVector[2];
-        NormalVector[0] = VectorAB[1];
-        NormalVector[1] = (-1*VectorAB[0]);
         double doublePoint[2];
         doublePoint[0] = static_cast<double>(Point.x());
         doublePoint[1] = static_cast<double>(Point.y());
@@ -75,7 +69,6 @@ void IntelliToolGradient::computePixelColor(QPoint Point){
         doublePointSubA[1] = doublePoint[1] - doubleA[1];
         double Perpendicular[2];
         double PointSubADotNormal = dotProduct(doublePointSubA,NormalVector);
-        double NormalDotNormal = dotProduct(NormalVector,NormalVector);
         Perpendicular[0] = doublePoint[0] - (PointSubADotNormal / NormalDotNormal) * NormalVector[0];
         Perpendicular[1] = doublePoint[1] - (PointSubADotNormal / NormalDotNormal) * NormalVector[1];
         double VectorAPoint[2];
@@ -119,4 +112,21 @@ double IntelliToolGradient::dotProduct(double Vector1[2], double Vector2[2]){
 
 double IntelliToolGradient::lenghtVector(double Vector[2]){
         return static_cast<double>((std::sqrt(Vector[0] * Vector[0] + Vector[1] * Vector[1])));
+}
+
+void IntelliToolGradient::computeGradientLayer(){
+    bool switched = false;
+    if(Canvas->image->isFastRendering()){
+        switched = true;
+        Canvas->image->updateRendererSetting(false);
+    }
+    qDebug() << activeLayer->width << activeLayer->height;
+    for(int i = 0; i < activeLayer->height; i++){
+        for(int j = 0; j < activeLayer->width; j++){
+            computePixelColor(QPoint(i,j));
+        }
+    }
+    if(switched){
+        Canvas->image->updateRendererSetting(true);
+    }
 }

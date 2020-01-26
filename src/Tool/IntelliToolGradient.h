@@ -6,8 +6,10 @@ class IntelliToolGradient : public IntelliTool{
 private:
     QPoint A;
     QPoint B;
-    double VectorAB[2];
     double doubleA[2];
+    double VectorAB[2];
+    double NormalVector[2];
+    double NormalDotNormal;
     QColor LineColor;
     bool hasMoved;
 
@@ -62,6 +64,8 @@ public:
     double dotProduct(double Vector1[2], double Vector2[2]);
 
     double lenghtVector(double Vector[2]);
+
+    void computeGradientLayer();
 };
 
 #endif // INTELLITOOLGRADIENT_H
