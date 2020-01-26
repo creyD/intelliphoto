@@ -183,6 +183,7 @@ void createRectangleTool();
 void createCircleTool();
 void createPolygonTool();
 void createFloodFillTool();
+void createGradientTool();
 
 /*!
  * \brief The getWidthOfActive gets the horizontal dimensions of the active layer

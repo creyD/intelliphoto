@@ -20,6 +20,7 @@ IntelliPhotoGui::IntelliPhotoGui(){
 		setIntelliStyle();
 		// Size the app
 		resize(600,600);
+        showMaximized();
 		setDefaultValues();
 }
 
@@ -241,11 +242,13 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 
 void IntelliPhotoGui::slotUpdateRenderSettingsOn(){
 		paintingArea->setRenderSettings(true);
+        FastRendererLabel->setText("Fast Render: On");
 		UpdateGui();
 }
 
 void IntelliPhotoGui::slotUpdateRenderSettingsOff(){
 		paintingArea->setRenderSettings(false);
+        FastRendererLabel->setText("Fast Render: Off");
 		UpdateGui();
 }
 
@@ -297,6 +300,11 @@ void IntelliPhotoGui::slotCreatePolygonTool(){
 void IntelliPhotoGui::slotCreateFloodFillTool(){
 		FloodFillButton->setChecked(true);
 		paintingArea->createFloodFillTool();
+}
+
+void IntelliPhotoGui::slotCreateGradientTool(){
+        GradientButton->setChecked(true);
+        paintingArea->createGradientTool();
 }
 
 // Open an about dialog
@@ -520,6 +528,10 @@ void IntelliPhotoGui::createActions(){
 		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
 		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotCreateFloodFillTool()));
 
+        actionCreateGradientTool = new QAction(tr("&Gradient"),this);
+        connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotCreateGradientTool()));
+
 		// Create about action and tie to IntelliPhotoGui::about()
 		actionAboutDialog = new QAction(tr("&About"), this);
 		actionAboutDialog->setShortcut(Qt::Key_F2);
@@ -538,6 +550,9 @@ void IntelliPhotoGui::createActions(){
 
 		connect(FloodFillButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
 		connect(FloodFillButton, SIGNAL(clicked()), this, SLOT(slotCreateFloodFillTool()));
+
+        connect(GradientButton, SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(GradientButton, SIGNAL(clicked()), this, SLOT(slotCreateGradientTool()));
 
 		connect(LineButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
 		connect(LineButton, SIGNAL(clicked()), this, SLOT(slotCreateLineTool()));
@@ -621,7 +636,8 @@ void IntelliPhotoGui::createMenus(){
 		//Attach all Tool Creation Actions
 		toolCreationMenu = new QMenu(tr("&Drawingtools"), this);
 		toolCreationMenu->addAction(actionCreateCircleTool);
-		toolCreationMenu->addAction(actionCreateFloodFillTool);
+        toolCreationMenu->addAction(actionCreateFloodFillTool);
+        toolCreationMenu->addAction(actionCreateGradientTool);
 		toolCreationMenu->addAction(actionCreateLineTool);
 		toolCreationMenu->addAction(actionCreatePenTool);
 		toolCreationMenu->addAction(actionCreatePlainTool);
@@ -688,6 +704,13 @@ void IntelliPhotoGui::createGui(){
 		FloodFillButton->setIcon(preview);
 		FloodFillButton->setIconSize(Buttonsize);
 		FloodFillButton->setCheckable(true);
+
+        preview = QPixmap(":/Icons/Buttons/icons/icon.png");
+        GradientButton = new QPushButton();
+        GradientButton->setFixedSize(Buttonsize);
+        GradientButton->setIcon(preview);
+        GradientButton->setIconSize(Buttonsize);
+        GradientButton->setCheckable(true);
 
 		preview = QPixmap(":/Icons/Buttons/icons/line-tool.svg");
 		LineButton = new QPushButton();
@@ -787,6 +810,10 @@ void IntelliPhotoGui::createGui(){
 		QString String = QString("%1x%2").arg(paintingArea->Canvas->width()).arg(paintingArea->Canvas->height());
 		dimCanvas->setText(String);
 
+        FastRendererLabel = new QLabel();
+        FastRendererLabel->setFixedSize(Buttonsize.width() * 2 + 15,(Buttonsize.height() * 2) / 3);
+        FastRendererLabel->setText("Fast Render: On");
+
 		ScrollArea = new QScrollArea(this);
 		ScrollArea->setBackgroundRole(QPalette::Dark);
 		ScrollArea->setWidget(paintingArea);
@@ -802,6 +829,7 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(PlainButton,3,2,1,1);
 		mainLayout->addWidget(PolygonButton,3,3,1,1);
 		mainLayout->addWidget(RectangleButton,4,2,1,1);
+        mainLayout->addWidget(GradientButton,4,3,1,1);
 		mainLayout->addWidget(WidthLine,5,2,1,2);
 		mainLayout->addWidget(EditLineWidth,6,2,1,2);
 		mainLayout->addWidget(innerAlphaLine,7,2,1,2);
@@ -813,6 +841,7 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(ActiveLayerImageLabel,12,2,1,2);
 		mainLayout->addWidget(dimActive,13,2,1,2);
 		mainLayout->addWidget(dimCanvas,14,2,1,2);
+        mainLayout->addWidget(FastRendererLabel,15,2,1,2);
 		mainLayout->setHorizontalSpacing(0);
 
 }
