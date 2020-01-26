@@ -29,12 +29,9 @@ void IntelliToolGradient::onMouseRightPressed(int x, int y){
 }
 
 void IntelliToolGradient::onMouseLeftReleased(int x, int y){
-        if(hasMoved){
+        if(hasMoved && this->isDrawing){
             computeGradientLayer();
             IntelliTool::onMouseLeftReleased(x,y);
-        }
-        else{
-            IntelliTool::onMouseRightPressed(x,y);
         }
 }
 
@@ -43,16 +40,18 @@ void IntelliToolGradient::onMouseRightReleased(int x, int y){
 }
 
 void IntelliToolGradient::onMouseMoved(int x, int y){
-        hasMoved = true;
-        B = QPoint(x,y);
-        VectorAB[0] = static_cast<float>(B.x() - A.x());
-        VectorAB[1] = static_cast<float>(B.y() - A.y());
-        NormalVector[0] = VectorAB[1];
-        NormalVector[1] = (-1*VectorAB[0]);
-        NormalDotNormal = dotProduct(NormalVector,NormalVector);
-        this->Canvas->image->drawPlain(Qt::transparent);
-        computeGradientLayer();
-        Canvas->image->drawLine(A,B,LineColor,1);
+        if(this->isDrawing){
+            hasMoved = true;
+            B = QPoint(x,y);
+            VectorAB[0] = static_cast<float>(B.x() - A.x());
+            VectorAB[1] = static_cast<float>(B.y() - A.y());
+            NormalVector[0] = VectorAB[1];
+            NormalVector[1] = (-1*VectorAB[0]);
+            NormalDotNormal = dotProduct(NormalVector,NormalVector);
+            this->Canvas->image->drawPlain(Qt::transparent);
+            computeGradientLayer();
+            Canvas->image->drawLine(A,B,LineColor,1);
+        }
         IntelliTool::onMouseMoved(x,y);
 }
 
