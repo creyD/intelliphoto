@@ -120,10 +120,9 @@ void IntelliToolGradient::computeGradientLayer(){
         switched = true;
         Canvas->image->updateRendererSetting(false);
     }
-    qDebug() << activeLayer->width << activeLayer->height;
     for(int i = 0; i < activeLayer->height; i++){
         for(int j = 0; j < activeLayer->width; j++){
-            computePixelColor(QPoint(i,j));
+            computePixelColor(QPoint(j,i));
         }
     }
     if(switched){
