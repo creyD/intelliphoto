@@ -226,7 +226,10 @@ src/Layer/PaintingArea.cpp:18:0: information: Include file: "Tool/IntelliToolFlo
 src/Layer/PaintingArea.cpp:19:0: information: Include file: "Tool/IntelliToolPolygon.h" not found. [missingInclude]
 
 ^
-src/Layer/PaintingArea.cpp:20:0: information: Include file: "GUI/IntelliPhotoGui.h" not found. [missingInclude]
+src/Layer/PaintingArea.cpp:20:0: information: Include file: "Tool/IntelliToolGradient.h" not found. [missingInclude]
+
+^
+src/Layer/PaintingArea.cpp:21:0: information: Include file: "GUI/IntelliPhotoGui.h" not found. [missingInclude]
 
 ^
 src/Tool/IntelliTool.h:4:0: information: Include file: "IntelliHelper/IntelliColorPicker.h" not found. [missingInclude]
@@ -275,6 +278,15 @@ src/Tool/IntelliToolFloodFill.cpp:5:0: information: Include file: <functional> n
 
 ^
 src/Tool/IntelliToolFloodFill.cpp:6:0: information: Include file: <queue> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/Tool/IntelliToolGradient.cpp:2:0: information: Include file: "Layer/PaintingArea.h" not found. [missingInclude]
+
+^
+src/Tool/IntelliToolGradient.cpp:3:0: information: Include file: "math.h" not found. [missingInclude]
+
+^
+src/Tool/IntelliToolGradient.cpp:4:0: information: Include file: <QDebug> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
 
 ^
 src/Tool/IntelliToolLine.h:5:0: information: Include file: "QPoint" not found. [missingInclude]
