@@ -110,7 +110,7 @@ double IntelliToolGradient::dotProduct(double Vector1[2], double Vector2[2]){
 }
 
 double IntelliToolGradient::lenghtVector(double Vector[2]){
-        return static_cast<double>((std::sqrt(Vector[0] * Vector[0] + Vector[1] * Vector[1])));
+        return static_cast<double>((sqrt(Vector[0] * Vector[0] + Vector[1] * Vector[1])));
 }
 
 void IntelliToolGradient::computeGradientLayer(){
