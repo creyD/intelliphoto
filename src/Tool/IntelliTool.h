@@ -17,9 +17,13 @@ class PaintingArea;
 class IntelliTool {
 friend UnitTest;
 public:
+/*!
+ * \brief The Tooltype enum categorising the toosl.
+ */
 enum class Tooltype {
 		CIRCLE,
 		FLOODFILL,
+        GRADIENT,
 		LINE,
 		PEN,
 		PLAIN,
@@ -49,6 +53,9 @@ protected:
  */
 PaintingArea* Area;
 
+/*!
+ * \brief ActiveType the type of the active tool.
+ */
 Tooltype ActiveType;
 
 /*!
@@ -56,6 +63,9 @@ Tooltype ActiveType;
  */
 IntelliColorPicker* colorPicker;
 
+/*!
+ * \brief Toolsettings a refrence to the tool settings
+ */
 IntelliToolsettings* Toolsettings;
 
 /*!
@@ -127,8 +137,16 @@ virtual void onWheelScrolled(int value);
  */
 virtual void onMouseMoved(int x, int y);
 
+/*!
+ * \brief getTooltype returns the tools type
+ * \return returns the tool type of the current tool.
+ */
 Tooltype getTooltype() const;
 
+/*!
+ * \brief getIsDrawing returns if the tool is currently drawing
+ * \return returns if the tool is currently drawing
+ */
 bool getIsDrawing() const;
 
 };

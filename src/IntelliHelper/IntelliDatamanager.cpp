@@ -61,7 +61,7 @@ bool IntelliDatamanager::loadProject(PaintingArea* Canvas, QString filePath){
 				in >> widthCanvas >> heightCanvas;
 				in >> numberOffLayers;
 
-				Canvas->setLayerDimensions(widthCanvas, heightCanvas);
+				Canvas->setCanvasDimensions(widthCanvas, heightCanvas);
 				for(int i = 0; i<numberOffLayers; i++) {
 						int width, height, widthOffset, heightOffset, alpha;
 						in >> width >> height >> widthOffset >> heightOffset >> alpha;
@@ -88,7 +88,7 @@ bool IntelliDatamanager::loadProject(PaintingArea* Canvas, QString filePath){
 								for(int k = 0; k<width; k++) {
 										int red, green, blue, alpha;
 										in >> red >> green >> blue >> alpha;
-										Canvas->setPixelToActive(QColor(red, green, blue, alpha), QPoint(j, k));
+										Canvas->drawPixelOntoActive(QColor(red, green, blue, alpha), QPoint(j, k));
 								}
 						}
 				}

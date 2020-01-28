@@ -1,12 +1,23 @@
 #ifndef INTELLITOOLGRADIENT_H
 #define INTELLITOOLGRADIENT_H
 #include "IntelliTool.h"
-
+/*!
+ * \brief The IntelliToolGradient class that represents a gradient call
+ */
 class IntelliToolGradient : public IntelliTool{
 
 public:
+    /*!
+     * \brief IntelliToolGradient basic constructor of the gradient tool.
+     * \param Area          - a reference to the paintingArea
+     * \param colorPicker   - a reference to the colorpicker
+     * \param Toolsettings  - a regerence to the Toolsettings
+     */
     IntelliToolGradient(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings);
 
+    /*!
+     * \brief ~IntelliToolGradient basic destructor.
+     */
     virtual ~IntelliToolGradient() override;
 
     /*!
@@ -51,21 +62,70 @@ public:
     virtual void onMouseMoved(int x, int y) override;
 
 private:
-    QPoint A;
-    QPoint B;
-    double doubleA[2];
-    double VectorAB[2];
+
+    /*!
+     * \brief startPoint of the line
+     */
+    QPoint startPoint;
+
+    /*!
+     * \brief endPoint of the line
+     */
+    QPoint endPoint;
+    /*!
+     * \brief doubleStartPoint startPoint as double Values
+     */
+    double doubleStartPoint[2];
+
+    /*!
+     * \brief VectorStartEnd a vector between start and end point.
+     */
+    double VectorStartEnd[2];
+
+    /*!
+     * \brief NormalVector of the VectorStartEnd
+     */
     double NormalVector[2];
+
+    /*!
+     * \brief NormalDotNormal dot product of Normal*Normal
+     */
     double NormalDotNormal;
+
+    /*!
+     * \brief LineColor color of th line.
+     */
     QColor LineColor;
+
+    /*!
+     * \brief hasMoved indicates a movement
+     */
     bool hasMoved;
 
-    void computePixelColor(QPoint Point);
+    /*!
+     * \brief computeAndDrawPixelColor computes the pixelcolor for a given point and sets it to the image.
+     * \param Point the point which shoud be computed
+     */
+    void computeAndDrawPixelColor(QPoint Point);
 
+    /*!
+     * \brief dotProduct calculates the dot product of 2 vetors.
+     * \param Vector1   - first argument
+     * \param Vector2   - second argument
+     * \return returns the dot product.
+     */
     double dotProduct(double Vector1[2], double Vector2[2]);
 
+    /*!
+     * \brief lenghtVector returns the length of a vector
+     * \param Vector    - Vector to calculate the length
+     * \return returns the length of the vector
+     */
     double lenghtVector(double Vector[2]);
 
+    /*!
+     * \brief computeGradientLayer computes the gradient over all pixels in the image.
+     */
     void computeGradientLayer();
 };
 

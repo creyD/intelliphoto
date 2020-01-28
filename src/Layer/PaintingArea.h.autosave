@@ -326,48 +326,154 @@ void slotActivateLayer(int a);
 void slotDeleteActiveLayer();
 
 protected:
+/*!
+ * \brief mousePressEvent handles a mouse pressed event.
+ * \param event - the specific mouse event.
+ */
 void mousePressEvent(QMouseEvent*event) override;
+
+/*!
+ * \brief mouseMoveEvent handles a mouse moved event
+ * \param event - the specific mouse event.
+ */
 void mouseMoveEvent(QMouseEvent*event) override;
+
+/*!
+ * \brief mouseReleaseEvent handles a mouse released event
+ * \param event - the specific mouse event.
+ */
 void mouseReleaseEvent(QMouseEvent*event) override;
 
+/*!
+ * \brief wheelEvent handles a mouse wheel event
+ * \param event - the specific mouse event.
+ */
 void wheelEvent(QWheelEvent*event) override;
 
+/*!
+ * \brief paintEvent handles a painting event
+ * \param event - the specific paint event.
+ */
 void paintEvent(QPaintEvent*event) override;
 
 private:
-//offset for the displayable
+/*!
+ * \brief offsetXDimension - Offset for drawing the image.
+ */
 int offsetXDimension;
+
+/*!
+ * \brief offsetYDimension - Offset for drawing the image.
+ */
 int offsetYDimension;
 
+/*!
+ * \brief selectLayerUp moves the active Layer one Up.
+ */
 void selectLayerUp();
+
+/*!
+ * \brief selectLayerDown moves the active Layer one Down.
+ */
 void selectLayerDown();
+
+/*!
+ * \brief copyActiveTool copys the activ tool [allocated].
+ * \return returns a allocates copy of the current tool.
+ */
 IntelliTool* copyActiveTool();
 
+/*!
+ * \brief Canvas the underlying Image to display on.
+ */
 QImage* Canvas;
+
+/*!
+ * \brief ScaledCanvas the Canvas saved for output
+ */
 QImage ScaledCanvas;
+
+/*!
+ * \brief maxWidth is the width of the canvas
+ */
 int maxWidth;
+
+/*!
+ * \brief maxHeight is the height of the canvas
+ */
 int maxHeight;
 
+/*!
+ * \brief isSettingPolygon for checking the state of the drawing.
+ */
 bool isSettingPolygon = false;
 
+/*!
+ * \brief renderSettings a class to manage the render settings.
+ */
 IntelliRenderSettings renderSettings;
+
+/*!
+ * \brief Tool a class to manage the Tool.
+ */
 IntelliTool* Tool;
+
+/*!
+ * \brief guiReference to manage communication with the gui.
+ */
 IntelliPhotoGui* guiReference;
 
+/*!
+ * \brief layerBundle a container to save all layers.
+ */
 std::vector<LayerObject> layerBundle;
+
+/*!
+ * \brief activeLayer the index of the active Layer.
+ */
 int activeLayer = -1;
 
+/*!
+ * \brief drawLayers draws the Layers to the Canvas
+ * \param forSaving an indecate if drawing for saving.
+ */
 void drawLayers(bool forSaving = false);
 
+/*!
+ * \brief createTempTopLayer creates a temporary Layer on top of the Layer.
+ * \param idx - the Layer which should get a temp Layer.
+ * \return True if it workes, false otherwise.
+ */
 bool createTempTopLayer(int idx);
 
+/*!
+ * \brief updateTools resets the Tools.
+ */
 void updateTools();
 
+/*!
+  * \brief history - an array out of containers to save history actions.
+  */
 std::vector<LayerObject> history[100] = {layerBundle};
+
+/*!
+ * \brief historyMaxPast a indicator how many steps you can go into the past.
+ */
 int historyMaxPast = 0;
+
+/*!
+ * \brief historyMaxPast a indicator how many steps you can go into the future.
+ */
 int historyMaxFuture = 0;
+
+/*!
+ * \brief historyPresent a indicator where the present is.
+ */
 int historyPresent = 0;
 
+/*!
+ * \brief historyadd adds an past version to the history 
+ */
 void historyadd();
 
 };

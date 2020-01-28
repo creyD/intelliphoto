@@ -141,7 +141,7 @@ void IntelliPhotoGui::slotChangeDim(){
 
 		// Change dimension
 		if (ok1&&ok2) {
-				paintingArea->setLayerDimensions(width,height);
+				paintingArea->setCanvasDimensions(width,height);
 				UpdateGui();
 		}
 }
@@ -153,7 +153,7 @@ void IntelliPhotoGui::slotDeleteLayer(){
 		// "delete Layer" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-		int layerNumber = IntelliInputDialog::getInt("Delete Layer", "Number:", paintingArea->getNumberOfActiveLayer() + 1, 1, static_cast<int>(paintingArea->layerBundle.size()), 1, &ok1);
+		int layerNumber = IntelliInputDialog::getInt("Delete Layer", "Number:", paintingArea->getIndexOfActiveLayer() + 1, 1, static_cast<int>(paintingArea->layerBundle.size()), 1, &ok1);
 
 		// Create New Layer
 		if(ok1) {
@@ -169,7 +169,7 @@ void IntelliPhotoGui::slotSetActiveAlpha(){
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
 
-		int layer = IntelliInputDialog::getInt("Layer to set on", "Layer:", paintingArea->getNumberOfActiveLayer() + 1, 1, static_cast<int>(paintingArea->layerBundle.size()), 1, &ok1);
+		int layer = IntelliInputDialog::getInt("Layer to set on", "Layer:", paintingArea->getIndexOfActiveLayer() + 1, 1, static_cast<int>(paintingArea->layerBundle.size()), 1, &ok1);
 
 		// "New Alpha" is the title of the window
 		int alpha = IntelliInputDialog::getInt("Layer to set on", "Alpha:", 255, 0, 255, 1, &ok2);
@@ -188,7 +188,7 @@ void IntelliPhotoGui::slotSetPolygon(){
 		// "Layer to set on" is the title of the window
 		// the next tr is the text to display
 		// Define the standard Value, min, max, step and ok button
-		int layer = IntelliInputDialog::getInt("Layer to set on", "Layer:", paintingArea->getNumberOfActiveLayer() + 1, 1, static_cast<int>(paintingArea->layerBundle.size()), 1, &ok1);
+		int layer = IntelliInputDialog::getInt("Layer to set on", "Layer:", paintingArea->getIndexOfActiveLayer() + 1, 1, static_cast<int>(paintingArea->layerBundle.size()), 1, &ok1);
 
 		if (ok1)
 		{
@@ -784,7 +784,7 @@ void IntelliPhotoGui::createGui(){
 		SwitchColorButton->setIconSize(QSize(Buttonsize.width() * 2,Buttonsize.height()));
 
 		ActiveLayerLine = new QLabel();
-		QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer() + 1);
+		QString string = QString("Active Layer: %1").arg(paintingArea->getIndexOfActiveLayer() + 1);
 		ActiveLayerLine->setText(string);
 		ActiveLayerLine->setFixedSize(Buttonsize.width() * 2 + 10,(Buttonsize.height() * 2) / 3);
 
@@ -922,7 +922,7 @@ void IntelliPhotoGui::setToolWidth(int value){
 }
 
 void IntelliPhotoGui::UpdateGui(){
-		QString string = QString("Active Layer: %1").arg(paintingArea->getNumberOfActiveLayer() + 1);
+		QString string = QString("Active Layer: %1").arg(paintingArea->getIndexOfActiveLayer() + 1);
 		ActiveLayerLine->setText(string);
 
 		IntelliImage* activePicture = paintingArea->getImageOfActiveLayer();
@@ -947,8 +947,8 @@ void IntelliPhotoGui::UpdateGui(){
 
 		if(paintingArea->layerBundle.size() != 0) {
 				string = QString("%1x%2").arg(paintingArea->layerBundle[static_cast<size_t>
-				                                                        (paintingArea->getNumberOfActiveLayer())].width).arg(paintingArea->layerBundle[static_cast<size_t>
-				                                                                                                                                       (paintingArea->getNumberOfActiveLayer())].height);
+				                                                        (paintingArea->getIndexOfActiveLayer())].width).arg(paintingArea->layerBundle[static_cast<size_t>
+				                                                                                                                                       (paintingArea->getIndexOfActiveLayer())].height);
 				dimActive->setText(string);
 		}
 		else{
