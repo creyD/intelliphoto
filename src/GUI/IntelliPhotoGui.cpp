@@ -158,6 +158,7 @@ void IntelliPhotoGui::slotDeleteLayer(){
 		// Create New Layer
 		if(ok1) {
 				paintingArea->deleteLayer(layerNumber - 1);
+                paintingArea->historyadd();
 				UpdateGui();
 		}
 }

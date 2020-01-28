@@ -524,6 +524,10 @@ void PaintingArea::historyGoBack(){
 		if (historyPresent != historyMaxPast) {
 				if (--historyPresent == -1)
 						historyPresent = 99;
+                if (layerBundle.size() > history[static_cast<size_t>(historyPresent)].size())
+                        activeLayer--;
+                if ((layerBundle.size() == 0) &&  (layerBundle.size() < history[static_cast<size_t>(historyPresent)].size()))
+                        activeLayer++;
 				layerBundle = history[static_cast<size_t>(historyPresent)];
 		}
 		this->guiReference->UpdateGui();
@@ -533,6 +537,10 @@ void PaintingArea::historyGoForward(){
 		if (historyPresent != historyMaxFuture) {
 				if (++historyPresent == 100)
 						historyPresent = 0;
+                if (layerBundle.size() > history[static_cast<size_t>(historyPresent)].size())
+                        activeLayer--;
+                if ((layerBundle.size() == 0) &&  (layerBundle.size() < history[static_cast<size_t>(historyPresent)].size()))
+                        activeLayer++;
 				layerBundle = history[static_cast<size_t>(historyPresent)];
 		}
 		this->guiReference->UpdateGui();
