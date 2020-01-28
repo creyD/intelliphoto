@@ -430,39 +430,39 @@ void IntelliPhotoGui::createActions(){
 		connect(actionChangeDim, SIGNAL(triggered()), this, SLOT(slotChangeDim()));
 		connect(dimCanvas, SIGNAL(clicked()), this, SLOT(slotChangeDim()));
 
-		actionSetActiveLayer = new QAction(tr("&set Active"), this);
+        actionSetActiveLayer = new QAction(tr("&Set Active"), this);
 		actionSetActiveLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_A));
 		connect(actionSetActiveLayer, SIGNAL(triggered()), this, SLOT(slotSetActiveLayer()));
 
-		actionSetActiveAlpha = new QAction(tr("&set Alpha"), this);
+        actionSetActiveAlpha = new QAction(tr("&Set Alpha"), this);
 		actionSetActiveAlpha->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_A));
 		connect(actionSetActiveAlpha, SIGNAL(triggered()), this, SLOT(slotSetActiveAlpha()));
 
-		actionSetPolygon = new QAction(tr("&set new Polygondata"), this);
+        actionSetPolygon = new QAction(tr("&Set new Polygondata"), this);
 		actionSetPolygon->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_P));
 		connect(actionSetPolygon, SIGNAL(triggered()), this, SLOT(slotSetPolygon()));
 
-		actionMovePositionUp = new QAction(tr("&move Up"), this);
+        actionMovePositionUp = new QAction(tr("&Move Up"), this);
 		actionMovePositionUp->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Up));
 		connect(actionMovePositionUp, SIGNAL(triggered()), this, SLOT(slotPositionMoveUp()));
 
-		actionMovePositionDown = new QAction(tr("&move Down"), this);
+        actionMovePositionDown = new QAction(tr("&Move Down"), this);
 		actionMovePositionDown->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Down));
 		connect(actionMovePositionDown, SIGNAL(triggered()), this, SLOT(slotPositionMoveDown()));
 
-		actionMovePositionLeft = new QAction(tr("&move Left"), this);
+        actionMovePositionLeft = new QAction(tr("&Move Left"), this);
 		actionMovePositionLeft->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
 		connect(actionMovePositionLeft, SIGNAL(triggered()), this, SLOT(slotPositionMoveLeft()));
 
-		actionMovePositionRight = new QAction(tr("&move Right"), this);
+        actionMovePositionRight = new QAction(tr("&Move Right"), this);
 		actionMovePositionRight->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Right));
 		connect(actionMovePositionRight, SIGNAL(triggered()), this, SLOT(slotPositionMoveRight()));
 
-		actionMoveLayerUp = new QAction(tr("&move Layer Up"), this);
+        actionMoveLayerUp = new QAction(tr("&Move Layer Up"), this);
 		actionMoveLayerUp->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Up));
 		connect(actionMoveLayerUp, SIGNAL(triggered()), this, SLOT(slotMoveLayerUp()));
 
-		actionMoveLayerDown = new QAction(tr("&move Layer Down"), this);
+        actionMoveLayerDown = new QAction(tr("&Move Layer Down"), this);
 		actionMoveLayerDown->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
 		connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
 
