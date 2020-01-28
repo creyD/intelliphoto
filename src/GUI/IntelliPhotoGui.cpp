@@ -458,11 +458,11 @@ void IntelliPhotoGui::createActions(){
 		actionMovePositionRight->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Right));
 		connect(actionMovePositionRight, SIGNAL(triggered()), this, SLOT(slotPositionMoveRight()));
 
-        actionMoveLayerUp = new QAction(tr("&Move Layer Up"), this);
+        actionMoveLayerUp = new QAction(tr("&Move Forth"), this);
 		actionMoveLayerUp->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Up));
 		connect(actionMoveLayerUp, SIGNAL(triggered()), this, SLOT(slotMoveLayerUp()));
 
-        actionMoveLayerDown = new QAction(tr("&Move Layer Down"), this);
+        actionMoveLayerDown = new QAction(tr("&Move Back"), this);
 		actionMoveLayerDown->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
 		connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
 
