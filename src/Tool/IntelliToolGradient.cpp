@@ -16,12 +16,12 @@ IntelliToolGradient::~IntelliToolGradient(){
 
 void IntelliToolGradient::onMouseLeftPressed(int x, int y){
         IntelliTool::onMouseLeftPressed(x,y);
-        startPoint_double[0] = static_cast<double>(x);
-        startPoint_double[1] = static_cast<double>(y);
+        doubleStartPoint[0] = static_cast<double>(x);
+        doubleStartPoint[1] = static_cast<double>(y);
         startPoint = QPoint(x,y);
         endPoint = QPoint(x,y);
-        endPoint_double[0] = 0;
-        endPoint_double[1] = 0;
+        VectorStartEnd[0] = 0;
+        VectorStartEnd[1] = 0;
         Canvas->image->drawPixel(startPoint,LineColor);
 }
 
@@ -44,10 +44,10 @@ void IntelliToolGradient::onMouseMoved(int x, int y){
         if(this->isDrawing){
             hasMoved = true;
             endPoint = QPoint(x,y);
-            endPoint_double[0] = static_cast<float>(endPoint.x() - startPoint.x());
-            endPoint_double[1] = static_cast<float>(endPoint.y() - startPoint.y());
-            NormalVector[0] = endPoint_double[1];
-            NormalVector[1] = (-1*endPoint_double[0]);
+            VectorStartEnd[0] = static_cast<float>(endPoint.x() - startPoint.x());
+            VectorStartEnd[1] = static_cast<float>(endPoint.y() - startPoint.y());
+            NormalVector[0] = VectorStartEnd[1];
+            NormalVector[1] = (-1*VectorStartEnd[0]);
             NormalDotNormal = dotProduct(NormalVector,NormalVector);
             this->Canvas->image->drawPlain(Qt::transparent);
             computeGradientLayer();
@@ -65,18 +65,18 @@ void IntelliToolGradient::computeAndDrawPixelColor(QPoint Point){
         doublePoint[0] = static_cast<double>(Point.x());
         doublePoint[1] = static_cast<double>(Point.y());
         double doublePointSubA[2];
-        doublePointSubA[0] = doublePoint[0] - startPoint_double[0];
-        doublePointSubA[1] = doublePoint[1] - startPoint_double[1];
+        doublePointSubA[0] = doublePoint[0] - doubleStartPoint[0];
+        doublePointSubA[1] = doublePoint[1] - doubleStartPoint[1];
         double Perpendicular[2];
         double PointSubADotNormal = dotProduct(doublePointSubA,NormalVector);
         Perpendicular[0] = doublePoint[0] - (PointSubADotNormal / NormalDotNormal) * NormalVector[0];
         Perpendicular[1] = doublePoint[1] - (PointSubADotNormal / NormalDotNormal) * NormalVector[1];
         double VectorAPoint[2];
-        VectorAPoint[0] = static_cast<double>(Perpendicular[0] - startPoint_double[0]);
-        VectorAPoint[1] = static_cast<double>(Perpendicular[1] - startPoint_double[1]);
+        VectorAPoint[0] = static_cast<double>(Perpendicular[0] - doubleStartPoint[0]);
+        VectorAPoint[1] = static_cast<double>(Perpendicular[1] - doubleStartPoint[1]);
         double ratio;
-        if(((VectorAPoint[0] < 0 && endPoint_double[0] < 0) || (VectorAPoint[0] > 0 && endPoint_double[0] > 0)) && ((VectorAPoint[1] < 0 && endPoint_double[1] < 0) || (VectorAPoint[1] > 0 && endPoint_double[1] > 0)))
-               ratio = lenghtVector(VectorAPoint)/lenghtVector(endPoint_double);
+        if(((VectorAPoint[0] < 0 && VectorStartEnd[0] < 0) || (VectorAPoint[0] > 0 && VectorStartEnd[0] > 0)) && ((VectorAPoint[1] < 0 && VectorStartEnd[1] < 0) || (VectorAPoint[1] > 0 && VectorStartEnd[1] > 0)))
+               ratio = lenghtVector(VectorAPoint)/lenghtVector(VectorStartEnd);
         else{
                ratio = -1;
         }
