@@ -16,13 +16,13 @@ IntelliToolGradient::~IntelliToolGradient(){
 
 void IntelliToolGradient::onMouseLeftPressed(int x, int y){
         IntelliTool::onMouseLeftPressed(x,y);
-        doubleA[0] = static_cast<double>(x);
-        doubleA[1] = static_cast<double>(y);
-        A = QPoint(x,y);
-        B = QPoint(x,y);
-        VectorAB[0] = 0;
-        VectorAB[1] = 0;
-        Canvas->image->drawPixel(A,LineColor);
+        startPoint_double[0] = static_cast<double>(x);
+        startPoint_double[1] = static_cast<double>(y);
+        startPoint = QPoint(x,y);
+        endPoint = QPoint(x,y);
+        endPoint_double[0] = 0;
+        endPoint_double[1] = 0;
+        Canvas->image->drawPixel(startPoint,LineColor);
 }
 
 void IntelliToolGradient::onMouseRightPressed(int x, int y){
@@ -43,15 +43,15 @@ void IntelliToolGradient::onMouseRightReleased(int x, int y){
 void IntelliToolGradient::onMouseMoved(int x, int y){
         if(this->isDrawing){
             hasMoved = true;
-            B = QPoint(x,y);
-            VectorAB[0] = static_cast<float>(B.x() - A.x());
-            VectorAB[1] = static_cast<float>(B.y() - A.y());
-            NormalVector[0] = VectorAB[1];
-            NormalVector[1] = (-1*VectorAB[0]);
+            endPoint = QPoint(x,y);
+            endPoint_double[0] = static_cast<float>(endPoint.x() - startPoint.x());
+            endPoint_double[1] = static_cast<float>(endPoint.y() - startPoint.y());
+            NormalVector[0] = endPoint_double[1];
+            NormalVector[1] = (-1*endPoint_double[0]);
             NormalDotNormal = dotProduct(NormalVector,NormalVector);
             this->Canvas->image->drawPlain(Qt::transparent);
             computeGradientLayer();
-            Canvas->image->drawLine(A,B,LineColor,1);
+            Canvas->image->drawLine(startPoint,endPoint,LineColor,1);
         }
         IntelliTool::onMouseMoved(x,y);
 }
@@ -60,23 +60,23 @@ void IntelliToolGradient::onWheelScrolled(int value){
         IntelliTool::onWheelScrolled(value);
 }
 
-void IntelliToolGradient::computePixelColor(QPoint Point){
+void IntelliToolGradient::computeAndDrawPixelColor(QPoint Point){
         double doublePoint[2];
         doublePoint[0] = static_cast<double>(Point.x());
         doublePoint[1] = static_cast<double>(Point.y());
         double doublePointSubA[2];
-        doublePointSubA[0] = doublePoint[0] - doubleA[0];
-        doublePointSubA[1] = doublePoint[1] - doubleA[1];
+        doublePointSubA[0] = doublePoint[0] - startPoint_double[0];
+        doublePointSubA[1] = doublePoint[1] - startPoint_double[1];
         double Perpendicular[2];
         double PointSubADotNormal = dotProduct(doublePointSubA,NormalVector);
         Perpendicular[0] = doublePoint[0] - (PointSubADotNormal / NormalDotNormal) * NormalVector[0];
         Perpendicular[1] = doublePoint[1] - (PointSubADotNormal / NormalDotNormal) * NormalVector[1];
         double VectorAPoint[2];
-        VectorAPoint[0] = static_cast<double>(Perpendicular[0] - doubleA[0]);
-        VectorAPoint[1] = static_cast<double>(Perpendicular[1] - doubleA[1]);
+        VectorAPoint[0] = static_cast<double>(Perpendicular[0] - startPoint_double[0]);
+        VectorAPoint[1] = static_cast<double>(Perpendicular[1] - startPoint_double[1]);
         double ratio;
-        if(((VectorAPoint[0] < 0 && VectorAB[0] < 0) || (VectorAPoint[0] > 0 && VectorAB[0] > 0)) && ((VectorAPoint[1] < 0 && VectorAB[1] < 0) || (VectorAPoint[1] > 0 && VectorAB[1] > 0)))
-               ratio = lenghtVector(VectorAPoint)/lenghtVector(VectorAB);
+        if(((VectorAPoint[0] < 0 && endPoint_double[0] < 0) || (VectorAPoint[0] > 0 && endPoint_double[0] > 0)) && ((VectorAPoint[1] < 0 && endPoint_double[1] < 0) || (VectorAPoint[1] > 0 && endPoint_double[1] > 0)))
+               ratio = lenghtVector(VectorAPoint)/lenghtVector(endPoint_double);
         else{
                ratio = -1;
         }
@@ -122,7 +122,7 @@ void IntelliToolGradient::computeGradientLayer(){
     }
     for(int i = 0; i < activeLayer->height; i++){
         for(int j = 0; j < activeLayer->width; j++){
-            computePixelColor(QPoint(j,i));
+            computeAndDrawPixelColor(QPoint(j,i));
         }
     }
     if(switched){
