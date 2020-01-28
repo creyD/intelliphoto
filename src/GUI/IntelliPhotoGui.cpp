@@ -660,7 +660,6 @@ void IntelliPhotoGui::createMenus(){
 		optionMenu = new QMenu(tr("&Options"), this);
 		optionMenu->addAction(actionGoBack);
         optionMenu->addAction(actionGoForward);
-		optionMenu->addMenu(toolMenu);
 		optionMenu->addSeparator();
 		optionMenu->addMenu(renderMenu);
 		optionMenu->addAction(actionChangeDim);
@@ -674,6 +673,7 @@ void IntelliPhotoGui::createMenus(){
 		menuBar()->addMenu(fileMenu);
 		menuBar()->addMenu(optionMenu);
         menuBar()->addMenu(layerMenu);
+        menuBar()->addMenu(toolMenu);
 		menuBar()->addMenu(helpMenu);
 }
 
