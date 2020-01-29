@@ -578,11 +578,11 @@ void IntelliPhotoGui::createActions(){
 		actionSetInnerAlpha->setShortcut(QKeySequence(Qt::ALT + Qt::Key_A));
 		connect(actionSetInnerAlpha, SIGNAL(triggered()), this, SLOT(slotSetInnerAlpha()));
 
-		actionGoBack = new QAction(tr("&Go back"),this);
+        actionGoBack = new QAction(tr("&Undo"),this);
 		actionGoBack->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
 		connect(actionGoBack, SIGNAL(triggered()), this, SLOT(slotGoBack()));
 
-		actionGoForward = new QAction(tr("&Go forward"),this);
+        actionGoForward = new QAction(tr("&Redo"),this);
 		actionGoForward->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
 		connect(actionGoForward, SIGNAL(triggered()), this, SLOT(slotGoForward()));
 }
