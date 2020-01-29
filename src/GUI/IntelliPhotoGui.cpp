@@ -421,7 +421,7 @@ void IntelliPhotoGui::createActions(){
 		connect(actionCreateNewShapedLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewShapedLayer()));
 
 		// Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
-		actionDeleteLayer = new QAction(tr("&Delete Layer..."), this);
+        actionDeleteLayer = new QAction(tr("&Delete Layer"), this);
 		actionDeleteLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_D));
 		connect(actionDeleteLayer, SIGNAL(triggered()), this, SLOT(slotDeleteLayer()));
 
@@ -438,7 +438,7 @@ void IntelliPhotoGui::createActions(){
 		actionSetActiveAlpha->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_A));
 		connect(actionSetActiveAlpha, SIGNAL(triggered()), this, SLOT(slotSetActiveAlpha()));
 
-        actionSetPolygon = new QAction(tr("&Set new Polygondata"), this);
+        actionSetPolygon = new QAction(tr("&Set New Polygondata"), this);
 		actionSetPolygon->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_P));
 		connect(actionSetPolygon, SIGNAL(triggered()), this, SLOT(slotSetPolygon()));
 
@@ -606,7 +606,7 @@ void IntelliPhotoGui::createMenus(){
 		renderMenu->addAction(actionUpdateRenderSettingsOff);
 
 		//Attach all Layer Creations to Menu
-		layerCreationMenu = new QMenu(tr("&Create new Layer"), this);
+        layerCreationMenu = new QMenu(tr("&Create New Layer"), this);
 		layerCreationMenu->addAction(actionCreateNewRasterLayer);
 		layerCreationMenu->addAction(actionCreateNewShapedLayer);
 
