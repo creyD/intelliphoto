@@ -7,6 +7,8 @@
 #include <QCloseEvent>
 #include <QDebug>
 #include <string>
+#include <QScreen>
+#include <QGuiApplication>
 
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
@@ -330,6 +332,7 @@ void IntelliPhotoGui::slotEnterPressed(){
 void IntelliPhotoGui::slotResetTools(){
 		CircleButton->setChecked(false);
 		FloodFillButton->setChecked(false);
+        GradientButton->setChecked(false);
 		LineButton->setChecked(false);
 		PenButton->setChecked(false);
 		PlainButton->setChecked(false);
@@ -689,6 +692,11 @@ void IntelliPhotoGui::createGui(){
 		paintingArea = new PaintingArea(1280, 720);
 		paintingArea->guiReference = this;
 
+        QScreen *screen = QGuiApplication::primaryScreen();
+        QRect  screenGeometry = screen->geometry();
+        Buttonsize.setWidth(screenGeometry.width()/20);
+        Buttonsize.setHeight(screenGeometry.height()/20);
+
 		preview = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
 		CircleButton = new QPushButton();
 		CircleButton->setFixedSize(Buttonsize);
@@ -703,12 +711,12 @@ void IntelliPhotoGui::createGui(){
 		FloodFillButton->setIconSize(Buttonsize);
 		FloodFillButton->setCheckable(true);
 
-		preview = QPixmap(":/Icons/Buttons/icons/icon.png");
-		GradientButton = new QPushButton();
-		GradientButton->setFixedSize(Buttonsize);
-		GradientButton->setIcon(preview);
-		GradientButton->setIconSize(Buttonsize);
-		GradientButton->setCheckable(true);
+        preview = QPixmap(":/Icons/Buttons/icons/gradient-tool.svg");
+        GradientButton = new QPushButton();
+        GradientButton->setFixedSize(Buttonsize);
+        GradientButton->setIcon(preview);
+        GradientButton->setIconSize(Buttonsize);
+        GradientButton->setCheckable(true);
 
 		preview = QPixmap(":/Icons/Buttons/icons/line-tool.svg");
 		LineButton = new QPushButton();
