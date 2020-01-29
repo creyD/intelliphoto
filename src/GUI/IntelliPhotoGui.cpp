@@ -529,6 +529,7 @@ void IntelliPhotoGui::createActions(){
 		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotCreateFloodFillTool()));
 
 		actionCreateGradientTool = new QAction(tr("&Gradient"),this);
+        actionCreateGradientTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_G));
 		connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
 		connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotCreateGradientTool()));
 
@@ -600,12 +601,12 @@ void IntelliPhotoGui::createMenus(){
 		fileMenu->addSeparator();
 		fileMenu->addAction(actionExit);
 
-		//Attach all actions to Render Settings
+        // Attach all actions to Render Settings
 		renderMenu = new QMenu(tr("&Fast Renderer"), this);
 		renderMenu->addAction(actionUpdateRenderSettingsOn);
 		renderMenu->addAction(actionUpdateRenderSettingsOff);
 
-		//Attach all Layer Creations to Menu
+        // Attach all Layer Creations to Menu
         layerCreationMenu = new QMenu(tr("&Create New Layer"), this);
 		layerCreationMenu->addAction(actionCreateNewRasterLayer);
 		layerCreationMenu->addAction(actionCreateNewShapedLayer);
@@ -627,14 +628,14 @@ void IntelliPhotoGui::createMenus(){
 		layerMenu->addSeparator();
 		layerMenu->addAction(actionDeleteLayer);
 
-		//Attach all Color Options
+        // Attach all Color Options
 		colorMenu = new QMenu(tr("&Color"), this);
 		colorMenu->addAction(actionColorPickerFirstColor);
 		colorMenu->addAction(actionColorPickerSecondColor);
 		colorMenu->addAction(actionColorSwap);
 
-		//Attach all Tool Creation Actions
-		toolCreationMenu = new QMenu(tr("&Drawingtools"), this);
+        // Attach all Tool Creation Actions
+        toolCreationMenu = new QMenu(tr("&Tool Selection"), this);
 		toolCreationMenu->addAction(actionCreateCircleTool);
 		toolCreationMenu->addAction(actionCreateFloodFillTool);
 		toolCreationMenu->addAction(actionCreateGradientTool);
@@ -644,17 +645,15 @@ void IntelliPhotoGui::createMenus(){
 		toolCreationMenu->addAction(actionCreatePolygonTool);
 		toolCreationMenu->addAction(actionCreateRectangleTool);
 
-		//Attach all Tool Setting Actions
-		toolSettingsMenu = new QMenu(tr("&Toolsettings"), this);
+        // Attach all Tool Setting Actions
+        toolSettingsMenu = new QMenu(tr("&Tool Settings"), this);
 		toolSettingsMenu->addAction(actionSetWidth);
 		toolSettingsMenu->addAction(actionSetInnerAlpha);
 
-		//Attach all Tool Options
+        // Attach all Tool Options
 		toolMenu = new QMenu(tr("&Tools"), this);
 		toolMenu->addMenu(toolCreationMenu);
-		toolMenu->addMenu(toolSettingsMenu);
-		toolMenu->addSeparator();
-		toolMenu->addMenu(colorMenu);
+        toolMenu->addMenu(toolSettingsMenu);
 
 		// Attach all actions to Options
 		optionMenu = new QMenu(tr("&Options"), this);
@@ -674,6 +673,7 @@ void IntelliPhotoGui::createMenus(){
 		menuBar()->addMenu(optionMenu);
         menuBar()->addMenu(layerMenu);
         menuBar()->addMenu(toolMenu);
+        menuBar()->addMenu(colorMenu);
 		menuBar()->addMenu(helpMenu);
 }
 
