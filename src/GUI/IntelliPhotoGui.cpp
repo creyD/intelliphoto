@@ -438,7 +438,7 @@ void IntelliPhotoGui::createActions(){
 		actionSetActiveAlpha->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_A));
 		connect(actionSetActiveAlpha, SIGNAL(triggered()), this, SLOT(slotSetActiveAlpha()));
 
-        actionSetPolygon = new QAction(tr("&Set New Polygondata"), this);
+        actionSetPolygon = new QAction(tr("&Set Polygon Data"), this);
 		actionSetPolygon->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_P));
 		connect(actionSetPolygon, SIGNAL(triggered()), this, SLOT(slotSetPolygon()));
 
