@@ -705,7 +705,7 @@ void IntelliPhotoGui::createGui(){
 		FloodFillButton->setIconSize(Buttonsize);
 		FloodFillButton->setCheckable(true);
 
-        preview = QPixmap(":/Icons/Buttons/icons/icon.png");
+        preview = QPixmap(":/Icons/Buttons/icons/gradient-tool.svg");
         GradientButton = new QPushButton();
         GradientButton->setFixedSize(Buttonsize);
         GradientButton->setIcon(preview);

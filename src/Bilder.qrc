@@ -10,5 +10,6 @@
         <file>icons/line-tool.svg</file>
         <file>icons/flood-fill-tool.svg</file>
         <file>icons/plain-tool.svg</file>
+        <file>icons/gradient-tool.svg</file>
     </qresource>
 </RCC>
