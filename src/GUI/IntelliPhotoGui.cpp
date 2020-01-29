@@ -534,13 +534,11 @@ void IntelliPhotoGui::createActions(){
 		connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotCreateGradientTool()));
 
 		// Create about action and tie to IntelliPhotoGui::about()
-		actionAboutDialog = new QAction(tr("&About"), this);
-		actionAboutDialog->setShortcut(Qt::Key_F2);
+        actionAboutDialog = new QAction(tr("&About"), this);
 		connect(actionAboutDialog, SIGNAL(triggered()), this, SLOT(slotAboutDialog()));
 
 		// Create about Qt action and tie to IntelliPhotoGui::aboutQt()
-		actionAboutQtDialog = new QAction(tr("About &Qt"), this);
-		actionAboutQtDialog->setShortcut(Qt::Key_F3);
+        actionAboutQtDialog = new QAction(tr("About &Qt"), this);
 		connect(actionAboutQtDialog, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
 		connect(EditLineWidth, SIGNAL(returnPressed()), this, SLOT(slotEnterPressed()));
@@ -607,7 +605,7 @@ void IntelliPhotoGui::createMenus(){
 		renderMenu->addAction(actionUpdateRenderSettingsOff);
 
         // Attach all Layer Creations to Menu
-        layerCreationMenu = new QMenu(tr("&Create New Layer"), this);
+        layerCreationMenu = new QMenu(tr("&Create Layer"), this);
 		layerCreationMenu->addAction(actionCreateNewRasterLayer);
 		layerCreationMenu->addAction(actionCreateNewShapedLayer);
 
