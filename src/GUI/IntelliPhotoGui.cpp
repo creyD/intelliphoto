@@ -7,6 +7,8 @@
 #include <QCloseEvent>
 #include <QDebug>
 #include <string>
+#include <QScreen>
+#include <QGuiApplication>
 
 // IntelliPhotoGui constructor
 IntelliPhotoGui::IntelliPhotoGui(){
@@ -688,6 +690,11 @@ void IntelliPhotoGui::createGui(){
 		// get and set max width and height
 		paintingArea = new PaintingArea(1280, 720);
 		paintingArea->guiReference = this;
+
+        QScreen *screen = QGuiApplication::primaryScreen();
+        QRect  screenGeometry = screen->geometry();
+        Buttonsize.setWidth(screenGeometry.width()/10);
+        Buttonsize.setHeight(screenGeometry.height()/10);
 
 		preview = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
 		CircleButton = new QPushButton();

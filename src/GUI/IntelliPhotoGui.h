@@ -124,7 +124,7 @@ PaintingArea* paintingArea;
 QPixmap preview;
 
 //size of all buttons
-const QSize Buttonsize = QSize(35,35);
+QSize Buttonsize;
 
 //buttons used for gui
 QPushButton* CircleButton;
