@@ -332,6 +332,7 @@ void IntelliPhotoGui::slotEnterPressed(){
 void IntelliPhotoGui::slotResetTools(){
 		CircleButton->setChecked(false);
 		FloodFillButton->setChecked(false);
+        GradientButton->setChecked(false);
 		LineButton->setChecked(false);
 		PenButton->setChecked(false);
 		PlainButton->setChecked(false);
@@ -693,8 +694,8 @@ void IntelliPhotoGui::createGui(){
 
         QScreen *screen = QGuiApplication::primaryScreen();
         QRect  screenGeometry = screen->geometry();
-        Buttonsize.setWidth(screenGeometry.width()/10);
-        Buttonsize.setHeight(screenGeometry.height()/10);
+        Buttonsize.setWidth(screenGeometry.width()/20);
+        Buttonsize.setHeight(screenGeometry.height()/20);
 
 		preview = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
 		CircleButton = new QPushButton();
