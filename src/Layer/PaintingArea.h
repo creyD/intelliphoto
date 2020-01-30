@@ -457,8 +457,8 @@ bool createTempTopLayer(int idx);
 void updateTools();
 
 /*!
-  * \brief history - an array out of containers to save history actions.
-  */
+ * \brief history - an array out of containers to save history actions.
+ */
 std::vector<LayerObject> history[100] = {layerBundle};
 
 /*!

@@ -10,6 +10,7 @@ var annotated_dup =
     [ "IntelliTool", "class_intelli_tool.html", "class_intelli_tool" ],
     [ "IntelliToolCircle", "class_intelli_tool_circle.html", "class_intelli_tool_circle" ],
     [ "IntelliToolFloodFill", "class_intelli_tool_flood_fill.html", "class_intelli_tool_flood_fill" ],
+    [ "IntelliToolGradient", "class_intelli_tool_gradient.html", "class_intelli_tool_gradient" ],
     [ "IntelliToolLine", "class_intelli_tool_line.html", "class_intelli_tool_line" ],
     [ "IntelliToolPen", "class_intelli_tool_pen.html", "class_intelli_tool_pen" ],
     [ "IntelliToolPlainTool", "class_intelli_tool_plain_tool.html", "class_intelli_tool_plain_tool" ],

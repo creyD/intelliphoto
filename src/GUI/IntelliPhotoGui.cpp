@@ -105,7 +105,7 @@ void IntelliPhotoGui::slotCreateNewRasterLayer(){
 		// Create New Layer
 		if (ok1&&ok2) {
 				paintingArea->addLayer(width,height,0,0,255,ImageType::RASTERIMAGE);
-                paintingArea->historyadd();
+				paintingArea->historyadd();
 				UpdateGui();
 		}
 }
@@ -125,7 +125,7 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 		// Create New Layer
 		if (ok1&&ok2) {
 				paintingArea->addLayer(width, height, 0, 0,255, ImageType::SHAPEDIMAGE);
-                paintingArea->historyadd();
+				paintingArea->historyadd();
 				UpdateGui();
 		}
 }
@@ -162,7 +162,7 @@ void IntelliPhotoGui::slotDeleteLayer(){
 		// Create New Layer
 		if(ok1) {
 				paintingArea->deleteLayer(layerNumber - 1);
-                paintingArea->historyadd();
+				paintingArea->historyadd();
 				UpdateGui();
 		}
 }
@@ -335,7 +335,7 @@ void IntelliPhotoGui::slotEnterPressed(){
 void IntelliPhotoGui::slotResetToolButtons(){
 		CircleButton->setChecked(false);
 		FloodFillButton->setChecked(false);
-        GradientButton->setChecked(false);
+		GradientButton->setChecked(false);
 		LineButton->setChecked(false);
 		PenButton->setChecked(false);
 		PlainButton->setChecked(false);
@@ -389,8 +389,8 @@ void IntelliPhotoGui::createActions(){
 				actionSaveAs.append(action);
 		}
 
-        // Set exporter to actions
-        QAction*pngSaveAction = new QAction("PNG-8...", this);
+		// Set exporter to actions
+		QAction*pngSaveAction = new QAction("PNG-8...", this);
 		pngSaveAction->setData("PNG");
 		// When clicked call IntelliPhotoGui::save()
 		connect(pngSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
@@ -419,7 +419,7 @@ void IntelliPhotoGui::createActions(){
 		connect(actionCreateNewShapedLayer, SIGNAL(triggered()), this, SLOT(slotCreateNewShapedLayer()));
 
 		// Delete New Layer action and tie to IntelliPhotoGui::deleteLayer()
-        actionDeleteLayer = new QAction(tr("&Delete Layer"), this);
+		actionDeleteLayer = new QAction(tr("&Delete Layer"), this);
 		actionDeleteLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_D));
 		connect(actionDeleteLayer, SIGNAL(triggered()), this, SLOT(slotDeleteLayer()));
 
@@ -428,52 +428,52 @@ void IntelliPhotoGui::createActions(){
 		connect(actionChangeDim, SIGNAL(triggered()), this, SLOT(slotChangeDim()));
 		connect(dimCanvas, SIGNAL(clicked()), this, SLOT(slotChangeDim()));
 
-        actionSetActiveLayer = new QAction(tr("&Set Active"), this);
+		actionSetActiveLayer = new QAction(tr("&Set Active"), this);
 		actionSetActiveLayer->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_A));
 		connect(actionSetActiveLayer, SIGNAL(triggered()), this, SLOT(slotSetActiveLayer()));
 
-        actionSetActiveAlpha = new QAction(tr("&Set Alpha"), this);
+		actionSetActiveAlpha = new QAction(tr("&Set Alpha"), this);
 		actionSetActiveAlpha->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_A));
 		connect(actionSetActiveAlpha, SIGNAL(triggered()), this, SLOT(slotSetActiveAlpha()));
 
-        actionSetPolygon = new QAction(tr("&Set Polygon Data"), this);
+		actionSetPolygon = new QAction(tr("&Set Polygon Data"), this);
 		actionSetPolygon->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_P));
 		connect(actionSetPolygon, SIGNAL(triggered()), this, SLOT(slotSetPolygon()));
 
-        actionMovePositionUp = new QAction(tr("&Move Up"), this);
+		actionMovePositionUp = new QAction(tr("&Move Up"), this);
 		actionMovePositionUp->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Up));
 		connect(actionMovePositionUp, SIGNAL(triggered()), this, SLOT(slotPositionMoveUp()));
 
-        actionMovePositionDown = new QAction(tr("&Move Down"), this);
+		actionMovePositionDown = new QAction(tr("&Move Down"), this);
 		actionMovePositionDown->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Down));
 		connect(actionMovePositionDown, SIGNAL(triggered()), this, SLOT(slotPositionMoveDown()));
 
-        actionMovePositionLeft = new QAction(tr("&Move Left"), this);
+		actionMovePositionLeft = new QAction(tr("&Move Left"), this);
 		actionMovePositionLeft->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
 		connect(actionMovePositionLeft, SIGNAL(triggered()), this, SLOT(slotPositionMoveLeft()));
 
-        actionMovePositionRight = new QAction(tr("&Move Right"), this);
+		actionMovePositionRight = new QAction(tr("&Move Right"), this);
 		actionMovePositionRight->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Right));
 		connect(actionMovePositionRight, SIGNAL(triggered()), this, SLOT(slotPositionMoveRight()));
 
-        actionMoveLayerUp = new QAction(tr("&Move Forth"), this);
+		actionMoveLayerUp = new QAction(tr("&Move Forth"), this);
 		actionMoveLayerUp->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Up));
 		connect(actionMoveLayerUp, SIGNAL(triggered()), this, SLOT(slotMoveLayerUp()));
 
-        actionMoveLayerDown = new QAction(tr("&Move Back"), this);
+		actionMoveLayerDown = new QAction(tr("&Move Back"), this);
 		actionMoveLayerDown->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
 		connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
 
-        // Create Update RenderSettings Actions here
-        actionUpdateFastRenderSettingsOn = new QAction(tr("&On"), this);
-        actionUpdateFastRenderSettingsOn->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_A));
-        connect(actionUpdateFastRenderSettingsOn, SIGNAL(triggered()),this, SLOT(slotUpdateFastRenderSettingsOn()));
+		// Create Update RenderSettings Actions here
+		actionUpdateFastRenderSettingsOn = new QAction(tr("&On"), this);
+		actionUpdateFastRenderSettingsOn->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_A));
+		connect(actionUpdateFastRenderSettingsOn, SIGNAL(triggered()),this, SLOT(slotUpdateFastRenderSettingsOn()));
 
-        actionUpdateFastRenderSettingsOff = new QAction(tr("&Off"), this);
-        actionUpdateFastRenderSettingsOff->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_D));
-        connect(actionUpdateFastRenderSettingsOff, SIGNAL(triggered()),this, SLOT(slotUpdateFastRenderSettingsOff()));
+		actionUpdateFastRenderSettingsOff = new QAction(tr("&Off"), this);
+		actionUpdateFastRenderSettingsOff->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_D));
+		connect(actionUpdateFastRenderSettingsOff, SIGNAL(triggered()),this, SLOT(slotUpdateFastRenderSettingsOff()));
 
-        // Create Color Actions here
+		// Create Color Actions here
 		actionColorPickerFirstColor = new QAction(tr("&Main"), this);
 		actionColorPickerFirstColor->setShortcut(QKeySequence(Qt::ALT + Qt::Key_N));
 		connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
@@ -489,81 +489,81 @@ void IntelliPhotoGui::createActions(){
 		connect(actionColorSwap, SIGNAL(triggered()), this, SLOT(slotSwapColor()));
 		connect(SwitchColorButton, SIGNAL(clicked()), this, SLOT(slotSwapColor()));
 
-        // Create Tool actions down here
+		// Create Tool actions down here
 		actionCreatePlainTool = new QAction(tr("&Plain"), this);
 		actionCreatePlainTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_P));
-        connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
+		connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotCreatePlainTool()));
 
 
 		actionCreatePenTool = new QAction(tr("&Pen"),this);
 		actionCreatePenTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_S));
-        connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
+		connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotCreatePenTool()));
 
 		actionCreateLineTool = new QAction(tr("&Line"), this);
 		actionCreateLineTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_L));
-        connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
+		connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotCreateLineTool()));
 
 		actionCreateCircleTool = new QAction(tr("&Circle"), this);
 		actionCreateCircleTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_C));
-        connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
+		connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotCreateCircleTool()));
 
 		actionCreateRectangleTool = new QAction(tr("&Rectangle"), this);
 		actionCreateRectangleTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_R));
-        connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
+		connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotCreateRectangleTool()));
 
 		actionCreatePolygonTool = new QAction(tr("&Polygon"), this);
 		actionCreatePolygonTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_V));
-        connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
+		connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotCreatePolygonTool()));
 
 		actionCreateFloodFillTool = new QAction(tr("&FloodFill"), this);
 		actionCreateFloodFillTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_F));
-        connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
+		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotCreateFloodFillTool()));
 
 		actionCreateGradientTool = new QAction(tr("&Gradient"),this);
-        actionCreateGradientTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_G));
-        connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
+		actionCreateGradientTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_G));
+		connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotCreateGradientTool()));
 
 		// Create about action and tie to IntelliPhotoGui::about()
-        actionAboutDialog = new QAction(tr("&About"), this);
+		actionAboutDialog = new QAction(tr("&About"), this);
 		connect(actionAboutDialog, SIGNAL(triggered()), this, SLOT(slotAboutDialog()));
 
 		// Create about Qt action and tie to IntelliPhotoGui::aboutQt()
-        actionAboutQtDialog = new QAction(tr("About &Qt"), this);
+		actionAboutQtDialog = new QAction(tr("About &Qt"), this);
 		connect(actionAboutQtDialog, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
 		connect(EditLineWidth, SIGNAL(returnPressed()), this, SLOT(slotEnterPressed()));
 		connect(EditLineInnerAlpha, SIGNAL(returnPressed()), this, SLOT(slotEnterPressed()));
 
-        connect(CircleButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
+		connect(CircleButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(CircleButton, SIGNAL(clicked()), this, SLOT(slotCreateCircleTool()));
 
-        connect(FloodFillButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
+		connect(FloodFillButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(FloodFillButton, SIGNAL(clicked()), this, SLOT(slotCreateFloodFillTool()));
 
-        connect(GradientButton, SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
+		connect(GradientButton, SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(GradientButton, SIGNAL(clicked()), this, SLOT(slotCreateGradientTool()));
 
-        connect(LineButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
+		connect(LineButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(LineButton, SIGNAL(clicked()), this, SLOT(slotCreateLineTool()));
 
-        connect(PenButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
+		connect(PenButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(PenButton, SIGNAL(clicked()), this, SLOT(slotCreatePenTool()));
 
-        connect(PlainButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
+		connect(PlainButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(PlainButton, SIGNAL(clicked()), this, SLOT(slotCreatePlainTool()));
 
-        connect(PolygonButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
+		connect(PolygonButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(PolygonButton, SIGNAL(clicked()), this, SLOT(slotCreatePolygonTool()));
 
-        connect(RectangleButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
+		connect(RectangleButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(RectangleButton, SIGNAL(clicked()), this, SLOT(slotCreateRectangleTool()));
 
 		actionSetWidth = new QAction(tr("&Set Width"),this);
@@ -574,11 +574,11 @@ void IntelliPhotoGui::createActions(){
 		actionSetInnerAlpha->setShortcut(QKeySequence(Qt::ALT + Qt::Key_A));
 		connect(actionSetInnerAlpha, SIGNAL(triggered()), this, SLOT(slotSetInnerAlpha()));
 
-        actionGoBack = new QAction(tr("&Undo"),this);
+		actionGoBack = new QAction(tr("&Undo"),this);
 		actionGoBack->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
 		connect(actionGoBack, SIGNAL(triggered()), this, SLOT(slotGoBack()));
 
-        actionGoForward = new QAction(tr("&Redo"),this);
+		actionGoForward = new QAction(tr("&Redo"),this);
 		actionGoForward->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
 		connect(actionGoForward, SIGNAL(triggered()), this, SLOT(slotGoForward()));
 }
@@ -586,31 +586,31 @@ void IntelliPhotoGui::createActions(){
 // Create the menubar
 void IntelliPhotoGui::createMenus(){
 		// Create Save As option and the list of file types
-        saveAsMenu = new QMenu(tr("&Export As"), this);
+		saveAsMenu = new QMenu(tr("&Export As"), this);
 		foreach (QAction * action, actionSaveAs)
 		saveAsMenu->addAction(action);
 
-        // Attach all actions to file menu
+		// Attach all actions to file menu
 		fileMenu = new QMenu(tr("&File"), this);
 		fileMenu->addAction(actionOpen);
 		fileMenu->addMenu(saveAsMenu);
 		fileMenu->addSeparator();
 		fileMenu->addAction(actionExit);
 
-        // Attach the save project option to file menu
-        QAction*projectSaveAction = new QAction("Save Project", this);
-        projectSaveAction->setData("idf");
-        connect(projectSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
-        projectSaveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
-        fileMenu->addAction(projectSaveAction);
+		// Attach the save project option to file menu
+		QAction*projectSaveAction = new QAction("Save Project", this);
+		projectSaveAction->setData("idf");
+		connect(projectSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
+		projectSaveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
+		fileMenu->addAction(projectSaveAction);
 
-        // Attach all actions to Render Settings
+		// Attach all actions to Render Settings
 		renderMenu = new QMenu(tr("&Fast Renderer"), this);
-        renderMenu->addAction(actionUpdateFastRenderSettingsOn);
-        renderMenu->addAction(actionUpdateFastRenderSettingsOff);
+		renderMenu->addAction(actionUpdateFastRenderSettingsOn);
+		renderMenu->addAction(actionUpdateFastRenderSettingsOff);
 
-        // Attach all Layer Creations to Menu
-        layerCreationMenu = new QMenu(tr("&Create Layer"), this);
+		// Attach all Layer Creations to Menu
+		layerCreationMenu = new QMenu(tr("&Create Layer"), this);
 		layerCreationMenu->addAction(actionCreateNewRasterLayer);
 		layerCreationMenu->addAction(actionCreateNewShapedLayer);
 
@@ -622,7 +622,7 @@ void IntelliPhotoGui::createMenus(){
 		layerMenu->addAction(actionSetActiveLayer);
 		layerMenu->addAction(actionSetPolygon);
 		layerMenu->addSeparator();
-        layerMenu->addAction(actionMovePositionUp);
+		layerMenu->addAction(actionMovePositionUp);
 		layerMenu->addAction(actionMovePositionDown);
 		layerMenu->addAction(actionMovePositionLeft);
 		layerMenu->addAction(actionMovePositionRight);
@@ -631,14 +631,14 @@ void IntelliPhotoGui::createMenus(){
 		layerMenu->addSeparator();
 		layerMenu->addAction(actionDeleteLayer);
 
-        // Attach all Color Options
+		// Attach all Color Options
 		colorMenu = new QMenu(tr("&Color"), this);
 		colorMenu->addAction(actionColorPickerFirstColor);
 		colorMenu->addAction(actionColorPickerSecondColor);
 		colorMenu->addAction(actionColorSwap);
 
-        // Attach all Tool Creation Actions
-        toolCreationMenu = new QMenu(tr("&Tool Selection"), this);
+		// Attach all Tool Creation Actions
+		toolCreationMenu = new QMenu(tr("&Tool Selection"), this);
 		toolCreationMenu->addAction(actionCreateCircleTool);
 		toolCreationMenu->addAction(actionCreateFloodFillTool);
 		toolCreationMenu->addAction(actionCreateGradientTool);
@@ -648,20 +648,20 @@ void IntelliPhotoGui::createMenus(){
 		toolCreationMenu->addAction(actionCreatePolygonTool);
 		toolCreationMenu->addAction(actionCreateRectangleTool);
 
-        // Attach all Tool Setting Actions
-        toolSettingsMenu = new QMenu(tr("&Tool Settings"), this);
+		// Attach all Tool Setting Actions
+		toolSettingsMenu = new QMenu(tr("&Tool Settings"), this);
 		toolSettingsMenu->addAction(actionSetWidth);
 		toolSettingsMenu->addAction(actionSetInnerAlpha);
 
-        // Attach all Tool Options
+		// Attach all Tool Options
 		toolMenu = new QMenu(tr("&Tools"), this);
 		toolMenu->addMenu(toolCreationMenu);
-        toolMenu->addMenu(toolSettingsMenu);
+		toolMenu->addMenu(toolSettingsMenu);
 
 		// Attach all actions to Options
 		optionMenu = new QMenu(tr("&Options"), this);
 		optionMenu->addAction(actionGoBack);
-        optionMenu->addAction(actionGoForward);
+		optionMenu->addAction(actionGoForward);
 		optionMenu->addSeparator();
 		optionMenu->addMenu(renderMenu);
 		optionMenu->addAction(actionChangeDim);
@@ -674,9 +674,9 @@ void IntelliPhotoGui::createMenus(){
 		// Add menu items to the menubar
 		menuBar()->addMenu(fileMenu);
 		menuBar()->addMenu(optionMenu);
-        menuBar()->addMenu(layerMenu);
-        menuBar()->addMenu(toolMenu);
-        menuBar()->addMenu(colorMenu);
+		menuBar()->addMenu(layerMenu);
+		menuBar()->addMenu(toolMenu);
+		menuBar()->addMenu(colorMenu);
 		menuBar()->addMenu(helpMenu);
 }
 
@@ -694,10 +694,10 @@ void IntelliPhotoGui::createGui(){
 		paintingArea = new PaintingArea(1280, 720);
 		paintingArea->guiReference = this;
 
-        QScreen *screen = QGuiApplication::primaryScreen();
-        QRect  screenGeometry = screen->geometry();
-        Buttonsize.setWidth(screenGeometry.width()/20);
-        Buttonsize.setHeight(screenGeometry.height()/20);
+		QScreen*screen = QGuiApplication::primaryScreen();
+		QRect screenGeometry = screen->geometry();
+		Buttonsize.setWidth(screenGeometry.width() / 20);
+		Buttonsize.setHeight(screenGeometry.height() / 20);
 
 		preview = QPixmap(":/Icons/Buttons/icons/circle-tool.svg");
 		CircleButton = new QPushButton();
@@ -713,12 +713,12 @@ void IntelliPhotoGui::createGui(){
 		FloodFillButton->setIconSize(Buttonsize);
 		FloodFillButton->setCheckable(true);
 
-        preview = QPixmap(":/Icons/Buttons/icons/gradient-tool.svg");
-        GradientButton = new QPushButton();
-        GradientButton->setFixedSize(Buttonsize);
-        GradientButton->setIcon(preview);
-        GradientButton->setIconSize(Buttonsize);
-        GradientButton->setCheckable(true);
+		preview = QPixmap(":/Icons/Buttons/icons/gradient-tool.svg");
+		GradientButton = new QPushButton();
+		GradientButton->setFixedSize(Buttonsize);
+		GradientButton->setIcon(preview);
+		GradientButton->setIconSize(Buttonsize);
+		GradientButton->setCheckable(true);
 
 		preview = QPixmap(":/Icons/Buttons/icons/line-tool.svg");
 		LineButton = new QPushButton();
@@ -791,10 +791,10 @@ void IntelliPhotoGui::createGui(){
 		SwitchColorButton->setIcon(preview);
 		SwitchColorButton->setIconSize(QSize(Buttonsize.width() * 2,Buttonsize.height()));
 
-        ActiveLayerLabel = new QLabel();
+		ActiveLayerLabel = new QLabel();
 		QString string = QString("Active Layer: %1").arg(paintingArea->getIndexOfActiveLayer() + 1);
-        ActiveLayerLabel->setText(string);
-        ActiveLayerLabel->setFixedSize(Buttonsize.width() * 2 + 10,(Buttonsize.height() * 2) / 3);
+		ActiveLayerLabel->setText(string);
+		ActiveLayerLabel->setFixedSize(Buttonsize.width() * 2 + 10,(Buttonsize.height() * 2) / 3);
 
 		IntelliImage* activePicture = paintingArea->getImageOfActiveLayer();
 		if(activePicture) {
@@ -845,7 +845,7 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(FirstColorButton,9,2,1,1);
 		mainLayout->addWidget(SecondColorButton,9,3,1,1);
 		mainLayout->addWidget(SwitchColorButton,10,2,1,2);
-        mainLayout->addWidget(ActiveLayerLabel,11,2,1,2);
+		mainLayout->addWidget(ActiveLayerLabel,11,2,1,2);
 		mainLayout->addWidget(ActiveLayerImageLabel,12,2,1,2);
 		mainLayout->addWidget(dimActive,13,2,1,2);
 		mainLayout->addWidget(dimCanvas,14,2,1,2);
@@ -931,7 +931,7 @@ void IntelliPhotoGui::setToolWidth(int value){
 
 void IntelliPhotoGui::UpdateGui(){
 		QString string = QString("Active Layer: %1").arg(paintingArea->getIndexOfActiveLayer() + 1);
-        ActiveLayerLabel->setText(string);
+		ActiveLayerLabel->setText(string);
 
 		IntelliImage* activePicture = paintingArea->getImageOfActiveLayer();
 		if(activePicture) {
@@ -956,7 +956,7 @@ void IntelliPhotoGui::UpdateGui(){
 		if(paintingArea->layerBundle.size() != 0) {
 				string = QString("%1x%2").arg(paintingArea->layerBundle[static_cast<size_t>
 				                                                        (paintingArea->getIndexOfActiveLayer())].width).arg(paintingArea->layerBundle[static_cast<size_t>
-				                                                                                                                                       (paintingArea->getIndexOfActiveLayer())].height);
+				                                                                                                                                      (paintingArea->getIndexOfActiveLayer())].height);
 				dimActive->setText(string);
 		}
 		else{

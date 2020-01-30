@@ -22,10 +22,10 @@ LayerObject::LayerObject(){
 src/Layer/PaintingArea.cpp:23:14: warning: Member variable 'LayerObject::heightOffset' is not initialized in the constructor. [uninitMemberVar]
 LayerObject::LayerObject(){
              ^
-src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::doubleA' is not initialized in the constructor. [uninitMemberVar]
+src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::doubleStartPoint' is not initialized in the constructor. [uninitMemberVar]
 IntelliToolGradient::IntelliToolGradient(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
                      ^
-src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::VectorAB' is not initialized in the constructor. [uninitMemberVar]
+src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::VectorStartEnd' is not initialized in the constructor. [uninitMemberVar]
 IntelliToolGradient::IntelliToolGradient(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
                      ^
 src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::NormalVector' is not initialized in the constructor. [uninitMemberVar]
@@ -154,28 +154,28 @@ src/tst_unittest.cpp:1138:0: style: The function 'bench_setPolygon' is never use
 src/mainUnitTest.cpp:118:0: style: The function 'cleanupTestCase' is never used. [unusedFunction]
 
 ^
-src/GUI/IntelliPhotoGui.cpp:28:0: style: The function 'closeEvent' is never used. [unusedFunction]
+src/GUI/IntelliPhotoGui.cpp:30:0: style: The function 'closeEvent' is never used. [unusedFunction]
 
 ^
 src/mainUnitTest.cpp:113:0: style: The function 'initTestCase' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:329:0: style: The function 'mouseMoveEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:328:0: style: The function 'mouseMoveEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:310:0: style: The function 'mousePressEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:309:0: style: The function 'mousePressEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:342:0: style: The function 'mouseReleaseEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:341:0: style: The function 'mouseReleaseEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:372:0: style: The function 'paintEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:371:0: style: The function 'paintEvent' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:223:0: style: The function 'slotActivateLayer' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:222:0: style: The function 'slotActivateLayer' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:129:0: style: The function 'slotDeleteActiveLayer' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:128:0: style: The function 'slotDeleteActiveLayer' is never used. [unusedFunction]
 
 ^
 src/mainUnitTest.cpp:211:0: style: The function 'test_Circle_fullDraw' is never used. [unusedFunction]
@@ -328,7 +328,7 @@ src/mainUnitTest.cpp:146:0: style: The function 'test_setLayerUp' is never used.
 src/mainUnitTest.cpp:144:0: style: The function 'test_setPolygon' is never used. [unusedFunction]
 
 ^
-src/Layer/PaintingArea.cpp:357:0: style: The function 'wheelEvent' is never used. [unusedFunction]
+src/Layer/PaintingArea.cpp:356:0: style: The function 'wheelEvent' is never used. [unusedFunction]
 
 ^
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]

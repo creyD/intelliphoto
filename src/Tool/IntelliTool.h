@@ -23,7 +23,7 @@ public:
 enum class Tooltype {
 		CIRCLE,
 		FLOODFILL,
-        GRADIENT,
+		GRADIENT,
 		LINE,
 		PEN,
 		PLAIN,

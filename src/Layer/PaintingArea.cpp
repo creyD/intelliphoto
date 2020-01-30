@@ -39,8 +39,8 @@ LayerObject::LayerObject(const LayerObject& layer){
 
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QLabel(parent){
-        this->Tool = nullptr;
-        this->setCanvasDimensions(maxWidth, maxHeight);
+		this->Tool = nullptr;
+		this->setCanvasDimensions(maxWidth, maxHeight);
 		activeLayer = -1;
 }
 
@@ -275,8 +275,8 @@ void PaintingArea::createFloodFillTool(){
 }
 
 void PaintingArea::createGradientTool(){
-        delete this->Tool;
-        Tool = new IntelliToolGradient(this, &colorPicker, &Toolsettings);
+		delete this->Tool;
+		Tool = new IntelliToolGradient(this, &colorPicker, &Toolsettings);
 }
 
 int PaintingArea::getWidthOfActive(){
@@ -509,30 +509,30 @@ void PaintingArea::updateTools(){
 
 void PaintingArea::historyadd(){
 
-        historyPresent++;
-        if (historyPresent == 100) {
+		historyPresent++;
+		if (historyPresent == 100) {
 				historyPresent = 0;
 		}
 		historyMaxFuture = historyPresent;
-        if (historyPresent == historyMaxPast){
-                historyMaxPast++;
-                if (historyMaxPast == 100){
+		if (historyPresent == historyMaxPast) {
+				historyMaxPast++;
+				if (historyMaxPast == 100) {
 						historyMaxPast = 0;
-                }
-        }
-        history[static_cast<size_t>(historyPresent)] = layerBundle;
+				}
+		}
+		history[static_cast<size_t>(historyPresent)] = layerBundle;
 }
 
 void PaintingArea::historyGoBack(){
 		if (historyPresent != historyMaxPast) {
 				if (--historyPresent == -1)
 						historyPresent = 99;
-                if (activeLayer == -1)
-                        activeLayer = 0;
-                if (layerBundle.size() > history[static_cast<size_t>(historyPresent)].size())
-                        activeLayer = static_cast<int>(history[static_cast<size_t>(historyPresent)].size())-1;
-                if (history[static_cast<size_t>(historyPresent)].size() == 0)
-                        activeLayer = -1;
+				if (activeLayer == -1)
+						activeLayer = 0;
+				if (layerBundle.size() > history[static_cast<size_t>(historyPresent)].size())
+						activeLayer = static_cast<int>(history[static_cast<size_t>(historyPresent)].size()) - 1;
+				if (history[static_cast<size_t>(historyPresent)].size() == 0)
+						activeLayer = -1;
 				layerBundle = history[static_cast<size_t>(historyPresent)];
 		}
 		this->guiReference->UpdateGui();
@@ -542,12 +542,12 @@ void PaintingArea::historyGoForward(){
 		if (historyPresent != historyMaxFuture) {
 				if (++historyPresent == 100)
 						historyPresent = 0;
-                if (activeLayer == -1)
-                        activeLayer = 0;
-                if (layerBundle.size() > history[static_cast<size_t>(historyPresent)].size())
-                        activeLayer = static_cast<int>(history[static_cast<size_t>(historyPresent)].size())-1;
-                if (history[static_cast<size_t>(historyPresent)].size() == 0)
-                        activeLayer = -1;
+				if (activeLayer == -1)
+						activeLayer = 0;
+				if (layerBundle.size() > history[static_cast<size_t>(historyPresent)].size())
+						activeLayer = static_cast<int>(history[static_cast<size_t>(historyPresent)].size()) - 1;
+				if (history[static_cast<size_t>(historyPresent)].size() == 0)
+						activeLayer = -1;
 				layerBundle = history[static_cast<size_t>(historyPresent)];
 		}
 		this->guiReference->UpdateGui();

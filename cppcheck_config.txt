@@ -79,6 +79,12 @@ src/GUI/IntelliPhotoGui.cpp:8:0: information: Include file: <QDebug> not found. 
 src/GUI/IntelliPhotoGui.cpp:9:0: information: Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
 
 ^
+src/GUI/IntelliPhotoGui.cpp:10:0: information: Include file: <QScreen> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
+src/GUI/IntelliPhotoGui.cpp:11:0: information: Include file: <QGuiApplication> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+
+^
 src/Image/IntelliImage.cpp:1:0: information: Include file: "Image/IntelliImage.h" not found. [missingInclude]
 
 ^

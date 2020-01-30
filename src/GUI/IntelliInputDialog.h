@@ -16,7 +16,7 @@ class IntelliInputDialog : public QDialog
 {
 Q_OBJECT
 public:
-    /*!
+/*!
  * \brief IntelliInputDialog is the baisc constructor to for the InputDialog
  * \param Title     - Title of the Input Dialog.
  * \param Label     - A Label for the Iput Dialog, to show further information.

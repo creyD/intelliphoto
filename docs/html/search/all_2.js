@@ -13,9 +13,10 @@ var searchData=
   ['copy_18',['copy',['../class_intelli_raster_image.html#a6c27fa0d323a1a81d0c4c93c9161f81e',1,'IntelliRasterImage::copy()'],['../class_intelli_shaped_image.html#aee38adc7db9e3fd40e083247219bef05',1,'IntelliShapedImage::copy()']]],
   ['createcircletool_19',['createCircleTool',['../class_painting_area.html#a2d9f4b3585f7dd1acb11f432ca503466',1,'PaintingArea']]],
   ['createfloodfilltool_20',['createFloodFillTool',['../class_painting_area.html#a0b22e18069b524f3e75857d203baf256',1,'PaintingArea']]],
-  ['createlinetool_21',['createLineTool',['../class_painting_area.html#a240c33a7875addac86080cdfb0db036a',1,'PaintingArea']]],
-  ['createpentool_22',['createPenTool',['../class_painting_area.html#a96c6248e343e44b61cf2625cb6d21353',1,'PaintingArea']]],
-  ['createplaintool_23',['createPlainTool',['../class_painting_area.html#a3de83443d2d5cf460ff48d0602070938',1,'PaintingArea']]],
-  ['createpolygontool_24',['createPolygonTool',['../class_painting_area.html#a13c2f94644bea9c2d3123d0b7898f34b',1,'PaintingArea']]],
-  ['createrectangletool_25',['createRectangleTool',['../class_painting_area.html#a5b04ce62ce024e307f54e0281f7ae4bd',1,'PaintingArea']]]
+  ['creategradienttool_21',['createGradientTool',['../class_painting_area.html#ad8636e986fdcdd3146f9f72d3cdb1831',1,'PaintingArea']]],
+  ['createlinetool_22',['createLineTool',['../class_painting_area.html#a240c33a7875addac86080cdfb0db036a',1,'PaintingArea']]],
+  ['createpentool_23',['createPenTool',['../class_painting_area.html#a96c6248e343e44b61cf2625cb6d21353',1,'PaintingArea']]],
+  ['createplaintool_24',['createPlainTool',['../class_painting_area.html#a3de83443d2d5cf460ff48d0602070938',1,'PaintingArea']]],
+  ['createpolygontool_25',['createPolygonTool',['../class_painting_area.html#a13c2f94644bea9c2d3123d0b7898f34b',1,'PaintingArea']]],
+  ['createrectangletool_26',['createRectangleTool',['../class_painting_area.html#a5b04ce62ce024e307f54e0281f7ae4bd',1,'PaintingArea']]]
 ];

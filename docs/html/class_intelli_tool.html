@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">IntelliPhoto
-   &#160;<span id="projectnumber">0.6</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
   </td>
  </tr>
@@ -102,13 +102,14 @@ Inheritance diagram for IntelliTool:</div>
  <div class="center">
   <img src="class_intelli_tool.png" usemap="#IntelliTool_map" alt=""/>
   <map id="IntelliTool_map" name="IntelliTool_map">
-<area href="class_intelli_tool_circle.html" title="The IntelliToolCircle class represents a tool to draw a circle." alt="IntelliToolCircle" shape="rect" coords="0,56,121,80"/>
-<area href="class_intelli_tool_flood_fill.html" title="The IntelliToolFloodFill class represents a tool to flood FIll a certian area." alt="IntelliToolFloodFill" shape="rect" coords="131,56,252,80"/>
-<area href="class_intelli_tool_line.html" title="The IntelliToolFloodFill class represents a tool to draw a line." alt="IntelliToolLine" shape="rect" coords="262,56,383,80"/>
-<area href="class_intelli_tool_pen.html" title="The IntelliToolPen class represents a tool to draw a line." alt="IntelliToolPen" shape="rect" coords="393,56,514,80"/>
-<area href="class_intelli_tool_plain_tool.html" title="The IntelliToolPlainTool class represents a tool to fill the whole canvas with one color." alt="IntelliToolPlainTool" shape="rect" coords="524,56,645,80"/>
-<area href="class_intelli_tool_polygon.html" title="The IntelliToolPolygon managed the Drawing of Polygonforms." alt="IntelliToolPolygon" shape="rect" coords="655,56,776,80"/>
-<area href="class_intelli_tool_rectangle.html" title="The IntelliToolRectangle class represents a tool to draw a rectangle." alt="IntelliToolRectangle" shape="rect" coords="786,56,907,80"/>
+<area href="class_intelli_tool_circle.html" title="The IntelliToolCircle class represents a tool to draw a circle." alt="IntelliToolCircle" shape="rect" coords="131,56,252,80"/>
+<area href="class_intelli_tool_flood_fill.html" title="The IntelliToolFloodFill class represents a tool to flood FIll a certian area." alt="IntelliToolFloodFill" shape="rect" coords="131,112,252,136"/>
+<area href="class_intelli_tool_gradient.html" title="The IntelliToolGradient class that represents a gradient call." alt="IntelliToolGradient" shape="rect" coords="131,168,252,192"/>
+<area href="class_intelli_tool_line.html" title="The IntelliToolFloodFill class represents a tool to draw a line." alt="IntelliToolLine" shape="rect" coords="131,224,252,248"/>
+<area href="class_intelli_tool_pen.html" title="The IntelliToolPen class represents a tool to draw a line." alt="IntelliToolPen" shape="rect" coords="131,280,252,304"/>
+<area href="class_intelli_tool_plain_tool.html" title="The IntelliToolPlainTool class represents a tool to fill the whole canvas with one color." alt="IntelliToolPlainTool" shape="rect" coords="131,336,252,360"/>
+<area href="class_intelli_tool_polygon.html" title="The IntelliToolPolygon managed the Drawing of Polygonforms." alt="IntelliToolPolygon" shape="rect" coords="131,392,252,416"/>
+<area href="class_intelli_tool_rectangle.html" title="The IntelliToolRectangle class represents a tool to draw a rectangle." alt="IntelliToolRectangle" shape="rect" coords="131,448,252,472"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -117,15 +118,18 @@ Public Types</h2></td></tr>
 <tr class="memitem:a3fbd2584566b3cefcf3c070ae0b69d8f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8f">Tooltype</a> { <br />
 &#160;&#160;<a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa0af50777920c1401ab975cab64c4d491">Tooltype::CIRCLE</a>, 
 <a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa526904ea67131c56718f9882518b5d93">Tooltype::FLOODFILL</a>, 
+<a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa90f70ea2675c36bd9b0b44a79f37a41f">Tooltype::GRADIENT</a>, 
 <a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa17b8ef2c330f1430e00c9de5469fc7e7">Tooltype::LINE</a>, 
-<a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fad3fa1aa45b9fe56e1fc1b558d8ed6678">Tooltype::PEN</a>, 
 <br />
-&#160;&#160;<a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8faf62eb0bf5e5c72e80983fbbac1cb70e5">Tooltype::PLAIN</a>, 
+&#160;&#160;<a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fad3fa1aa45b9fe56e1fc1b558d8ed6678">Tooltype::PEN</a>, 
+<a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8faf62eb0bf5e5c72e80983fbbac1cb70e5">Tooltype::PLAIN</a>, 
 <a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8faecdc92bf56d960b73b02ee40125758bc">Tooltype::POLYGON</a>, 
 <a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa8e8e58fe94ab307a826e087028a7c01a">Tooltype::RECTANGLE</a>, 
-<a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fab50339a10e1de285ac99d4c3990b8693">Tooltype::NONE</a>
+<br />
+&#160;&#160;<a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fab50339a10e1de285ac99d4c3990b8693">Tooltype::NONE</a>
 <br />
  }</td></tr>
+<tr class="memdesc:a3fbd2584566b3cefcf3c070ae0b69d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Tooltype enum categorising the toosl.  <a href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8f">More...</a><br /></td></tr>
 <tr class="separator:a3fbd2584566b3cefcf3c070ae0b69d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -155,8 +159,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac10e20414cd8855a2f9b103fb6408639"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function managing the mouse moved event. Call this in child classes!  <a href="class_intelli_tool.html#ac10e20414cd8855a2f9b103fb6408639">More...</a><br /></td></tr>
 <tr class="separator:ac10e20414cd8855a2f9b103fb6408639"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf5c06ad2b2c0d745fb68cf80e7e5694"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8f">Tooltype</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_tool.html#adf5c06ad2b2c0d745fb68cf80e7e5694">getTooltype</a> () const</td></tr>
+<tr class="memdesc:adf5c06ad2b2c0d745fb68cf80e7e5694"><td class="mdescLeft">&#160;</td><td class="mdescRight">getTooltype returns the tools type  <a href="class_intelli_tool.html#adf5c06ad2b2c0d745fb68cf80e7e5694">More...</a><br /></td></tr>
 <tr class="separator:adf5c06ad2b2c0d745fb68cf80e7e5694"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af90f0965efbc5c25126691e998f39ca3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_tool.html#af90f0965efbc5c25126691e998f39ca3">getIsDrawing</a> () const</td></tr>
+<tr class="memdesc:af90f0965efbc5c25126691e998f39ca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">getIsDrawing returns if the tool is currently drawing  <a href="class_intelli_tool.html#af90f0965efbc5c25126691e998f39ca3">More...</a><br /></td></tr>
 <tr class="separator:af90f0965efbc5c25126691e998f39ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -165,11 +171,13 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:ab4c2698a0f9f25fb6639ec760d2d0289"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the general <a class="el" href="class_painting_area.html" title="The PaintingArea class manages the methods and stores information about the current painting area,...">PaintingArea</a> to interact with.  <a href="class_intelli_tool.html#ab4c2698a0f9f25fb6639ec760d2d0289">More...</a><br /></td></tr>
 <tr class="separator:ab4c2698a0f9f25fb6639ec760d2d0289"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a631388999f36013628e13b9de87a6f7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8f">Tooltype</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_tool.html#a631388999f36013628e13b9de87a6f7b">ActiveType</a></td></tr>
+<tr class="memdesc:a631388999f36013628e13b9de87a6f7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ActiveType the type of the active tool.  <a href="class_intelli_tool.html#a631388999f36013628e13b9de87a6f7b">More...</a><br /></td></tr>
 <tr class="separator:a631388999f36013628e13b9de87a6f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2e0ac394611a361ab4ef2fe55c03fef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_intelli_color_picker.html">IntelliColorPicker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_tool.html#ae2e0ac394611a361ab4ef2fe55c03fef">colorPicker</a></td></tr>
 <tr class="memdesc:ae2e0ac394611a361ab4ef2fe55c03fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the <a class="el" href="class_intelli_color_picker.html" title="The IntelliColorPicker manages the selected colors for one whole project.">IntelliColorPicker</a> of the <a class="el" href="class_painting_area.html" title="The PaintingArea class manages the methods and stores information about the current painting area,...">PaintingArea</a> to interact with, and get the colors.  <a href="class_intelli_tool.html#ae2e0ac394611a361ab4ef2fe55c03fef">More...</a><br /></td></tr>
 <tr class="separator:ae2e0ac394611a361ab4ef2fe55c03fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f6b45b416b7d790fa8bc09603bf67f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_intelli_toolsettings.html">IntelliToolsettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_tool.html#a55f6b45b416b7d790fa8bc09603bf67f">Toolsettings</a></td></tr>
+<tr class="memdesc:a55f6b45b416b7d790fa8bc09603bf67f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toolsettings a refrence to the tool settings.  <a href="class_intelli_tool.html#a55f6b45b416b7d790fa8bc09603bf67f">More...</a><br /></td></tr>
 <tr class="separator:a55f6b45b416b7d790fa8bc09603bf67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedccdad01b2bc6ec84fad3582251ff5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_layer_object.html">LayerObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_intelli_tool.html#aedccdad01b2bc6ec84fad3582251ff5d">activeLayer</a></td></tr>
 <tr class="memdesc:aedccdad01b2bc6ec84fad3582251ff5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the underlying active Layer, do not work on this. This is used for data grabbing or previews.  <a href="class_intelli_tool.html#aedccdad01b2bc6ec84fad3582251ff5d">More...</a><br /></td></tr>
@@ -205,9 +213,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Tooltype enum categorising the toosl. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3fbd2584566b3cefcf3c070ae0b69d8fa0af50777920c1401ab975cab64c4d491"></a>CIRCLE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3fbd2584566b3cefcf3c070ae0b69d8fa526904ea67131c56718f9882518b5d93"></a>FLOODFILL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3fbd2584566b3cefcf3c070ae0b69d8fa90f70ea2675c36bd9b0b44a79f37a41f"></a>GRADIENT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3fbd2584566b3cefcf3c070ae0b69d8fa17b8ef2c330f1430e00c9de5469fc7e7"></a>LINE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3fbd2584566b3cefcf3c070ae0b69d8fad3fa1aa45b9fe56e1fc1b558d8ed6678"></a>PEN&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3fbd2584566b3cefcf3c070ae0b69d8faf62eb0bf5e5c72e80983fbbac1cb70e5"></a>PLAIN&#160;</td><td class="fielddoc"></td></tr>
@@ -216,7 +227,7 @@ Protected Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a3fbd2584566b3cefcf3c070ae0b69d8fab50339a10e1de285ac99d4c3990b8693"></a>NONE&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00020">20</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00023">23</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
 
 </div>
 </div>
@@ -311,6 +322,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>getIsDrawing returns if the tool is currently drawing </p>
+<dl class="section return"><dt>Returns</dt><dd>returns if the tool is currently drawing </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_intelli_tool_8cpp_source.html#l00105">105</a> of file <a class="el" href="_intelli_tool_8cpp_source.html">IntelliTool.cpp</a>.</p>
 
 </div>
@@ -329,6 +343,9 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>getTooltype returns the tools type </p>
+<dl class="section return"><dt>Returns</dt><dd>returns the tool type of the current tool. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_intelli_tool_8cpp_source.html#l00101">101</a> of file <a class="el" href="_intelli_tool_8cpp_source.html">IntelliTool.cpp</a>.</p>
 
@@ -377,7 +394,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#ad5d3b741be6d0647a9cdc9da2cb8bc3d">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#ae883b8ae833c78a8867e626c600f9639">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#ae03c307ccf66cbe3fd59e3657712368d">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#a155d676a5f98311217eb095be4759846">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#a8ff40aef6d38eb55af31a19322429205">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#ac85e3cb6233508ff9612833a8d9e3961">IntelliToolFloodFill</a>, and <a class="el" href="class_intelli_tool_plain_tool.html#ab786dd5fa80af863246013d43c4b7ac9">IntelliToolPlainTool</a>.</p>
+<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#ad5d3b741be6d0647a9cdc9da2cb8bc3d">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#ae883b8ae833c78a8867e626c600f9639">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#ae03c307ccf66cbe3fd59e3657712368d">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#a155d676a5f98311217eb095be4759846">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#a8ff40aef6d38eb55af31a19322429205">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#ac85e3cb6233508ff9612833a8d9e3961">IntelliToolFloodFill</a>, <a class="el" href="class_intelli_tool_plain_tool.html#ab786dd5fa80af863246013d43c4b7ac9">IntelliToolPlainTool</a>, and <a class="el" href="class_intelli_tool_gradient.html#a47700908dab413203d06d64175a12cc1">IntelliToolGradient</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_intelli_tool_8cpp_source.html#l00030">30</a> of file <a class="el" href="_intelli_tool_8cpp_source.html">IntelliTool.cpp</a>.</p>
 
@@ -426,7 +443,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#a4e1473ff408ae2e11cf6a43f6f575f21">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#ad8e438ec997c57262b5efc2db4cee1a3">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#a94460e3ff1c19e80bde922c55f53cc43">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#ac93f76ff20a1c111a403b298bab02482">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#abda7a22b9766fa4ad254324a53cab94d">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#a7438ef96c6c36068bce76e2364e8594c">IntelliToolFloodFill</a>, and <a class="el" href="class_intelli_tool_plain_tool.html#ac23f5d0f07e42fd7c2ea3fc1347da400">IntelliToolPlainTool</a>.</p>
+<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#a4e1473ff408ae2e11cf6a43f6f575f21">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#ad8e438ec997c57262b5efc2db4cee1a3">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#a94460e3ff1c19e80bde922c55f53cc43">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#ac93f76ff20a1c111a403b298bab02482">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#abda7a22b9766fa4ad254324a53cab94d">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#a7438ef96c6c36068bce76e2364e8594c">IntelliToolFloodFill</a>, <a class="el" href="class_intelli_tool_plain_tool.html#ac23f5d0f07e42fd7c2ea3fc1347da400">IntelliToolPlainTool</a>, and <a class="el" href="class_intelli_tool_gradient.html#a6bbe09b64d8cd69e5ff64a3344725b11">IntelliToolGradient</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_intelli_tool_8cpp_source.html#l00037">37</a> of file <a class="el" href="_intelli_tool_8cpp_source.html">IntelliTool.cpp</a>.</p>
 
@@ -475,7 +492,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#a0e3a1135f04c73c159137ae219a38922">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#a90ee58c5390a86afc75c14ca79b91d7b">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#a4b5931071e21eb6949ffe357315e408b">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#abc6324ef0778823fe7e35aef8ae37f9b">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#a58d1d636497b630647ce0c4d652737c2">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#a3cd42cea99bc7583875abcc0c274c668">IntelliToolFloodFill</a>, and <a class="el" href="class_intelli_tool_plain_tool.html#ad7546a6335bb3bb4cbf0e1883788d41c">IntelliToolPlainTool</a>.</p>
+<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#a0e3a1135f04c73c159137ae219a38922">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#a90ee58c5390a86afc75c14ca79b91d7b">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#a4b5931071e21eb6949ffe357315e408b">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#abc6324ef0778823fe7e35aef8ae37f9b">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#a58d1d636497b630647ce0c4d652737c2">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#a3cd42cea99bc7583875abcc0c274c668">IntelliToolFloodFill</a>, <a class="el" href="class_intelli_tool_plain_tool.html#ad7546a6335bb3bb4cbf0e1883788d41c">IntelliToolPlainTool</a>, and <a class="el" href="class_intelli_tool_gradient.html#aff3ccbecb7a33514765fdb44c7ce9e4e">IntelliToolGradient</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_intelli_tool_8cpp_source.html#l00047">47</a> of file <a class="el" href="_intelli_tool_8cpp_source.html">IntelliTool.cpp</a>.</p>
 
@@ -524,7 +541,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#aa36b012b48311c36e7cd6771a5081427">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#a29d7b9ed4960e6fe1f31ff620363e429">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#a480c6804a4963c5a1c3f7ef84b63c1a8">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#a6cce59f3017936214b10b47252a898a3">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#a1751e3864a0d36ef42ca55021cae73ce">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#ada0f7154d119102410a55038763a17e4">IntelliToolFloodFill</a>, and <a class="el" href="class_intelli_tool_plain_tool.html#acb0c46e16d2c09370a2244a936de38b1">IntelliToolPlainTool</a>.</p>
+<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#aa36b012b48311c36e7cd6771a5081427">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#a29d7b9ed4960e6fe1f31ff620363e429">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#a480c6804a4963c5a1c3f7ef84b63c1a8">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#a6cce59f3017936214b10b47252a898a3">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#a1751e3864a0d36ef42ca55021cae73ce">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#ada0f7154d119102410a55038763a17e4">IntelliToolFloodFill</a>, <a class="el" href="class_intelli_tool_plain_tool.html#acb0c46e16d2c09370a2244a936de38b1">IntelliToolPlainTool</a>, and <a class="el" href="class_intelli_tool_gradient.html#aed5ad1f718d53034d944ff8f1e8f9f36">IntelliToolGradient</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_intelli_tool_8cpp_source.html#l00019">19</a> of file <a class="el" href="_intelli_tool_8cpp_source.html">IntelliTool.cpp</a>.</p>
 
@@ -573,7 +590,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#a47cad87cd02b128b02dc929713bd1d1b">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#aca07540f2f7ccb3d2c0b84890c1afc4c">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#ad43f653256a6516b9398f82054be0d7f">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#a6214918cba5753f89d97de4559a2b9b2">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#abf8562e8cd2da586afdf4d47b3a4ff13">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#a39cf49c0ce46f96be3510f0b70c9d892">IntelliToolFloodFill</a>, and <a class="el" href="class_intelli_tool_plain_tool.html#a2ae458f1b04eb77a47f6dca5e91e33b8">IntelliToolPlainTool</a>.</p>
+<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#a47cad87cd02b128b02dc929713bd1d1b">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#aca07540f2f7ccb3d2c0b84890c1afc4c">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#ad43f653256a6516b9398f82054be0d7f">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#a6214918cba5753f89d97de4559a2b9b2">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#abf8562e8cd2da586afdf4d47b3a4ff13">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#a39cf49c0ce46f96be3510f0b70c9d892">IntelliToolFloodFill</a>, <a class="el" href="class_intelli_tool_plain_tool.html#a2ae458f1b04eb77a47f6dca5e91e33b8">IntelliToolPlainTool</a>, and <a class="el" href="class_intelli_tool_gradient.html#a04315a520c97541d76e7723a07e0a834">IntelliToolGradient</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_intelli_tool_8cpp_source.html#l00026">26</a> of file <a class="el" href="_intelli_tool_8cpp_source.html">IntelliTool.cpp</a>.</p>
 
@@ -611,7 +628,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#a713103300c9f023d64d9eec5ac05dd17">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#ae2d9b0fb6695c184c4cb507a5fb75506">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#a445c53a56e859f970e59f5036e221e0c">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#aaf1d686e1ec43f41b5186ccfd806b125">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#afe3626ddff440ab125f4a2465c45427a">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#ad58cc7c065123beb6b0270f99e99b991">IntelliToolFloodFill</a>, and <a class="el" href="class_intelli_tool_plain_tool.html#adc004ea421e2cc0ac39cc7a6b6d43d0d">IntelliToolPlainTool</a>.</p>
+<p>Reimplemented in <a class="el" href="class_intelli_tool_polygon.html#a713103300c9f023d64d9eec5ac05dd17">IntelliToolPolygon</a>, <a class="el" href="class_intelli_tool_circle.html#ae2d9b0fb6695c184c4cb507a5fb75506">IntelliToolCircle</a>, <a class="el" href="class_intelli_tool_rectangle.html#a445c53a56e859f970e59f5036e221e0c">IntelliToolRectangle</a>, <a class="el" href="class_intelli_tool_line.html#aaf1d686e1ec43f41b5186ccfd806b125">IntelliToolLine</a>, <a class="el" href="class_intelli_tool_pen.html#afe3626ddff440ab125f4a2465c45427a">IntelliToolPen</a>, <a class="el" href="class_intelli_tool_flood_fill.html#ad58cc7c065123beb6b0270f99e99b991">IntelliToolFloodFill</a>, <a class="el" href="class_intelli_tool_plain_tool.html#adc004ea421e2cc0ac39cc7a6b6d43d0d">IntelliToolPlainTool</a>, and <a class="el" href="class_intelli_tool_gradient.html#a11f77ac474b697ebb6bc185560437f6a">IntelliToolGradient</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_intelli_tool_8cpp_source.html#l00052">52</a> of file <a class="el" href="_intelli_tool_8cpp_source.html">IntelliTool.cpp</a>.</p>
 
@@ -640,7 +657,7 @@ Protected Attributes</h2></td></tr>
 
 <p>A pointer to the underlying active Layer, do not work on this. This is used for data grabbing or previews. </p>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00064">64</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00074">74</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
 
 </div>
 </div>
@@ -664,7 +681,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00052">52</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
+<p>ActiveType the type of the active tool. </p>
+
+<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00059">59</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
 
 </div>
 </div>
@@ -690,7 +709,7 @@ Protected Attributes</h2></td></tr>
 
 <p>A pointer to the general <a class="el" href="class_painting_area.html" title="The PaintingArea class manages the methods and stores information about the current painting area,...">PaintingArea</a> to interact with. </p>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00050">50</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00054">54</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
 
 </div>
 </div>
@@ -716,7 +735,7 @@ Protected Attributes</h2></td></tr>
 
 <p>A pointer to the drawing canvas of the tool, work on this. </p>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00069">69</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00079">79</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
 
 </div>
 </div>
@@ -742,7 +761,7 @@ Protected Attributes</h2></td></tr>
 
 <p>A pointer to the <a class="el" href="class_intelli_color_picker.html" title="The IntelliColorPicker manages the selected colors for one whole project.">IntelliColorPicker</a> of the <a class="el" href="class_painting_area.html" title="The PaintingArea class manages the methods and stores information about the current painting area,...">PaintingArea</a> to interact with, and get the colors. </p>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00057">57</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00064">64</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
 
 </div>
 </div>
@@ -768,7 +787,7 @@ Protected Attributes</h2></td></tr>
 
 <p>A flag checking if the user is currently drawing or not. </p>
 
-<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00074">74</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00084">84</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
 
 </div>
 </div>
@@ -792,7 +811,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00059">59</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
+<p>Toolsettings a refrence to the tool settings. </p>
+
+<p class="definition">Definition at line <a class="el" href="_intelli_tool_8h_source.html#l00069">69</a> of file <a class="el" href="_intelli_tool_8h_source.html">IntelliTool.h</a>.</p>
 
 </div>
 </div>
