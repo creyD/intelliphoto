@@ -285,9 +285,7 @@ IntelliToolsettings Toolsettings;
  */
 IntelliColorPicker colorPicker;
 
-/*!
- * \brief historyGoBack a function to return the previous state of the project.
- */
+void historyadd();
 void historyGoBack();
 
 /*!
@@ -470,11 +468,6 @@ int historyMaxFuture = 0;
  * \brief historyPresent a indicator where the present is.
  */
 int historyPresent = 0;
-
-/*!
- * \brief historyadd adds an past version to the history
- */
-void historyadd();
 
 };
 

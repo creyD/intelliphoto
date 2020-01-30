@@ -94,6 +94,7 @@ bool IntelliDatamanager::loadProject(PaintingArea* Canvas, QString filePath){
 				}
 				Canvas->setRenderSettings(static_cast<bool>(rendersetting));
 				openFile.close();
+                Canvas->historyadd();
 				return true;
 		}
 
