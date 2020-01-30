@@ -533,7 +533,7 @@ void IntelliPhotoGui::createActions(){
 
 		actionCreateGradientTool = new QAction(tr("&Gradient"),this);
         actionCreateGradientTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_G));
-		connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotCreateGradientTool()));
 
 		// Create about action and tie to IntelliPhotoGui::about()
@@ -553,7 +553,7 @@ void IntelliPhotoGui::createActions(){
         connect(FloodFillButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(FloodFillButton, SIGNAL(clicked()), this, SLOT(slotCreateFloodFillTool()));
 
-		connect(GradientButton, SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(GradientButton, SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(GradientButton, SIGNAL(clicked()), this, SLOT(slotCreateGradientTool()));
 
         connect(LineButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
