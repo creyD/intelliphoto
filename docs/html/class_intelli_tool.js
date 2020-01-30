@@ -3,6 +3,7 @@ var class_intelli_tool =
     [ "Tooltype", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8f", [
       [ "CIRCLE", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa0af50777920c1401ab975cab64c4d491", null ],
       [ "FLOODFILL", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa526904ea67131c56718f9882518b5d93", null ],
+      [ "GRADIENT", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa90f70ea2675c36bd9b0b44a79f37a41f", null ],
       [ "LINE", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fa17b8ef2c330f1430e00c9de5469fc7e7", null ],
       [ "PEN", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8fad3fa1aa45b9fe56e1fc1b558d8ed6678", null ],
       [ "PLAIN", "class_intelli_tool.html#a3fbd2584566b3cefcf3c070ae0b69d8faf62eb0bf5e5c72e80983fbbac1cb70e5", null ],

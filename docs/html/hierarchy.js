@@ -10,6 +10,7 @@ var hierarchy =
     [ "IntelliTool", "class_intelli_tool.html", [
       [ "IntelliToolCircle", "class_intelli_tool_circle.html", null ],
       [ "IntelliToolFloodFill", "class_intelli_tool_flood_fill.html", null ],
+      [ "IntelliToolGradient", "class_intelli_tool_gradient.html", null ],
       [ "IntelliToolLine", "class_intelli_tool_line.html", null ],
       [ "IntelliToolPen", "class_intelli_tool_pen.html", null ],
       [ "IntelliToolPlainTool", "class_intelli_tool_plain_tool.html", null ],

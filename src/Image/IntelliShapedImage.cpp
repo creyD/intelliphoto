@@ -26,7 +26,7 @@ QImage IntelliShapedImage::getDisplayable(int alpha){
 }
 
 IntelliImage* IntelliShapedImage::getDeepCopy(){
-		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
+		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), false);
 		shaped->setPolygon(this->polygonData);
 		shaped->imageData.fill(Qt::transparent);
 		shaped->TypeOfImage = ImageType::SHAPEDIMAGE;

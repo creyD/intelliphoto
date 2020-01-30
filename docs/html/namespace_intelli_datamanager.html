@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">IntelliPhoto
-   &#160;<span id="projectnumber">0.6</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
   </td>
  </tr>
@@ -92,8 +92,10 @@ $(document).ready(function(){initNavTree('namespace_intelli_datamanager.html',''
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a41920e07aa9e0b2756323779f7fe8de2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_intelli_datamanager.html#a41920e07aa9e0b2756323779f7fe8de2">loadProject</a> (<a class="el" href="class_painting_area.html">PaintingArea</a> *Canvas, QString filePath=&quot;unnamed.idf&quot;)</td></tr>
+<tr class="memdesc:a41920e07aa9e0b2756323779f7fe8de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">loadProject loads a project from a file, closes current project.  <a href="namespace_intelli_datamanager.html#a41920e07aa9e0b2756323779f7fe8de2">More...</a><br /></td></tr>
 <tr class="separator:a41920e07aa9e0b2756323779f7fe8de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac02f6f47ff8785ad9d49588baaca3d54"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_intelli_datamanager.html#ac02f6f47ff8785ad9d49588baaca3d54">saveProject</a> (<a class="el" href="class_painting_area.html">PaintingArea</a> *Canvas, QString filePath=&quot;unnamed.idf&quot;)</td></tr>
+<tr class="memdesc:ac02f6f47ff8785ad9d49588baaca3d54"><td class="mdescLeft">&#160;</td><td class="mdescRight">saveProject saves the current project to a file.  <a href="namespace_intelli_datamanager.html#ac02f6f47ff8785ad9d49588baaca3d54">More...</a><br /></td></tr>
 <tr class="separator:ac02f6f47ff8785ad9d49588baaca3d54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -122,6 +124,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>loadProject loads a project from a file, closes current project. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Canvas</td><td>- Reference to the used Canvas. </td></tr>
+    <tr><td class="paramname">filePath</td><td>- Filepath to the project which should be opened. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if everything worked, false otherwise. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_intelli_datamanager_8cpp_source.html#l00050">50</a> of file <a class="el" href="_intelli_datamanager_8cpp_source.html">IntelliDatamanager.cpp</a>.</p>
 
@@ -152,6 +164,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>saveProject saves the current project to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Canvas</td><td>- Reference to the used Canvas. </td></tr>
+    <tr><td class="paramname">filePath</td><td>- Filepath to the project which should be saved. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if everything worked, false otherwise. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_intelli_datamanager_8cpp_source.html#l00004">4</a> of file <a class="el" href="_intelli_datamanager_8cpp_source.html">IntelliDatamanager.cpp</a>.</p>
 

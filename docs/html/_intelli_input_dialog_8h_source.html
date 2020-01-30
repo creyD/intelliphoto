@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">IntelliPhoto
-   &#160;<span id="projectnumber">0.6</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
   </td>
  </tr>
@@ -97,46 +97,55 @@ $(document).ready(function(){initNavTree('_intelli_input_dialog_8h_source.html',
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QSpinBox&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_intelli_input_dialog.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_intelli_input_dialog.html">IntelliInputDialog</a> : <span class="keyword">public</span> QDialog</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;Q_OBJECT</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<a class="code" href="class_intelli_input_dialog.html#aa276ec605b08b19d70c54654cc606cc5">IntelliInputDialog</a>(QString Title = <span class="keyword">nullptr</span>, QString Label = <span class="keyword">nullptr</span>, <span class="keywordtype">int</span> value = 5, <span class="keywordtype">int</span> minValue = -2147483647, <span class="keywordtype">int</span> maxValue = 2147483647, <span class="keywordtype">int</span> step = 1, <span class="keywordtype">bool</span>* ok = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_intelli_input_dialog.html#a480ac2f5b8f7b9bc1cd7b30df84c2a62">getInt</a>(QString Title = <span class="keyword">nullptr</span>, QString Label = <span class="keyword">nullptr</span>, <span class="keywordtype">int</span> value = 5, <span class="keywordtype">int</span> minValue = -2147483647, <span class="keywordtype">int</span> maxValue = 2147483647, <span class="keywordtype">int</span> step = 1, <span class="keywordtype">bool</span>* ok = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_intelli_input_dialog.html#ae59e68446caab323945ea725f69e89b0">slotCloseEvent</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_intelli_input_dialog.html#a23f837147e6aab3d8e0aff9d0f7012bd">slotEingabe</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> createInputBox(QString Title = <span class="keyword">nullptr</span>, QString Label = <span class="keyword">nullptr</span>, <span class="keywordtype">int</span> value = 5, <span class="keywordtype">int</span> minValue = -2147483647, <span class="keywordtype">int</span> maxValue = 2147483647, <span class="keywordtype">int</span> step = 1);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> createConnections();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> setInputBoxStyle();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">int</span> valueInt;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;QGridLayout* Layout;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;QDialogButtonBox* ButtonBox;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">bool</span>* notClosed;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">const</span> QSize Linesize = QSize(150,20);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">const</span> QSize Buttonsize = QSize(72,20);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;QLabel* InputLabel;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;QSpinBox* Input;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;QPushButton* okButton;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;QPushButton* cancelButton;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_intelli_input_dialog.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_intelli_input_dialog.html">IntelliInputDialog</a> : <span class="keyword">public</span> QDialog</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;Q_OBJECT</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<a class="code" href="class_intelli_input_dialog.html#aa276ec605b08b19d70c54654cc606cc5">IntelliInputDialog</a>(QString Title = <span class="keyword">nullptr</span>, QString Label = <span class="keyword">nullptr</span>, <span class="keywordtype">int</span> value = 5, <span class="keywordtype">int</span> minValue = -2147483647, <span class="keywordtype">int</span> maxValue = 2147483647, <span class="keywordtype">int</span> step = 1, <span class="keywordtype">bool</span>* ok = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_intelli_input_dialog.html#a480ac2f5b8f7b9bc1cd7b30df84c2a62">getInt</a>(QString Title = <span class="keyword">nullptr</span>, QString Label = <span class="keyword">nullptr</span>, <span class="keywordtype">int</span> value = 5, <span class="keywordtype">int</span> minValue = -2147483647, <span class="keywordtype">int</span> maxValue = 2147483647, <span class="keywordtype">int</span> step = 1, <span class="keywordtype">bool</span>* ok = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif // INTELLIINPUTDIALOG_H</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_intelli_input_dialog.html#ae59e68446caab323945ea725f69e89b0">slotCloseEvent</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_intelli_input_dialog.html#a23f837147e6aab3d8e0aff9d0f7012bd">slotEingabe</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> createInputBox(QString Title = <span class="keyword">nullptr</span>, QString Label = <span class="keyword">nullptr</span>, <span class="keywordtype">int</span> value = 5, <span class="keywordtype">int</span> minValue = -2147483647, <span class="keywordtype">int</span> maxValue = 2147483647, <span class="keywordtype">int</span> step = 1);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> createConnections();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> setInputBoxStyle();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">int</span> valueInt;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;QGridLayout* Layout;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;QDialogButtonBox* ButtonBox;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">bool</span>* notClosed;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">const</span> QSize Linesize = QSize(150,20);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">const</span> QSize Buttonsize = QSize(72,20);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;QLabel* InputLabel;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;QSpinBox* Input;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;QPushButton* okButton;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;QPushButton* cancelButton;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;};</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif // INTELLIINPUTDIALOG_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_intelli_input_dialog_html_ae59e68446caab323945ea725f69e89b0"><div class="ttname"><a href="class_intelli_input_dialog.html#ae59e68446caab323945ea725f69e89b0">IntelliInputDialog::slotCloseEvent</a></div><div class="ttdeci">void slotCloseEvent()</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8cpp_source.html#l00074">IntelliInputDialog.cpp:74</a></div></div>
-<div class="ttc" id="aclass_intelli_input_dialog_html"><div class="ttname"><a href="class_intelli_input_dialog.html">IntelliInputDialog</a></div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8h_source.html#l00012">IntelliInputDialog.h:12</a></div></div>
-<div class="ttc" id="aclass_intelli_input_dialog_html_aa276ec605b08b19d70c54654cc606cc5"><div class="ttname"><a href="class_intelli_input_dialog.html#aa276ec605b08b19d70c54654cc606cc5">IntelliInputDialog::IntelliInputDialog</a></div><div class="ttdeci">IntelliInputDialog(QString Title=nullptr, QString Label=nullptr, int value=5, int minValue=-2147483647, int maxValue=2147483647, int step=1, bool *ok=nullptr)</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8cpp_source.html#l00003">IntelliInputDialog.cpp:3</a></div></div>
-<div class="ttc" id="aclass_intelli_input_dialog_html_a480ac2f5b8f7b9bc1cd7b30df84c2a62"><div class="ttname"><a href="class_intelli_input_dialog.html#a480ac2f5b8f7b9bc1cd7b30df84c2a62">IntelliInputDialog::getInt</a></div><div class="ttdeci">static int getInt(QString Title=nullptr, QString Label=nullptr, int value=5, int minValue=-2147483647, int maxValue=2147483647, int step=1, bool *ok=nullptr)</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8cpp_source.html#l00016">IntelliInputDialog.cpp:16</a></div></div>
-<div class="ttc" id="aclass_intelli_input_dialog_html_a23f837147e6aab3d8e0aff9d0f7012bd"><div class="ttname"><a href="class_intelli_input_dialog.html#a23f837147e6aab3d8e0aff9d0f7012bd">IntelliInputDialog::slotEingabe</a></div><div class="ttdeci">void slotEingabe()</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8cpp_source.html#l00078">IntelliInputDialog.cpp:78</a></div></div>
+<div class="ttc" id="aclass_intelli_input_dialog_html_ae59e68446caab323945ea725f69e89b0"><div class="ttname"><a href="class_intelli_input_dialog.html#ae59e68446caab323945ea725f69e89b0">IntelliInputDialog::slotCloseEvent</a></div><div class="ttdeci">void slotCloseEvent()</div><div class="ttdoc">slotCloseEvent is a slot for catching the close Event.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8cpp_source.html#l00074">IntelliInputDialog.cpp:74</a></div></div>
+<div class="ttc" id="aclass_intelli_input_dialog_html"><div class="ttname"><a href="class_intelli_input_dialog.html">IntelliInputDialog</a></div><div class="ttdoc">The IntelliInputDialog class is a customized Input Dialog to get Integers.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8h_source.html#l00015">IntelliInputDialog.h:15</a></div></div>
+<div class="ttc" id="aclass_intelli_input_dialog_html_aa276ec605b08b19d70c54654cc606cc5"><div class="ttname"><a href="class_intelli_input_dialog.html#aa276ec605b08b19d70c54654cc606cc5">IntelliInputDialog::IntelliInputDialog</a></div><div class="ttdeci">IntelliInputDialog(QString Title=nullptr, QString Label=nullptr, int value=5, int minValue=-2147483647, int maxValue=2147483647, int step=1, bool *ok=nullptr)</div><div class="ttdoc">IntelliInputDialog is the baisc constructor to for the InputDialog.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8cpp_source.html#l00003">IntelliInputDialog.cpp:3</a></div></div>
+<div class="ttc" id="aclass_intelli_input_dialog_html_a480ac2f5b8f7b9bc1cd7b30df84c2a62"><div class="ttname"><a href="class_intelli_input_dialog.html#a480ac2f5b8f7b9bc1cd7b30df84c2a62">IntelliInputDialog::getInt</a></div><div class="ttdeci">static int getInt(QString Title=nullptr, QString Label=nullptr, int value=5, int minValue=-2147483647, int maxValue=2147483647, int step=1, bool *ok=nullptr)</div><div class="ttdoc">getInt is a static funktion ´, which creates an Input Dialog and gets an Integer.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8cpp_source.html#l00016">IntelliInputDialog.cpp:16</a></div></div>
+<div class="ttc" id="aclass_intelli_input_dialog_html_a23f837147e6aab3d8e0aff9d0f7012bd"><div class="ttname"><a href="class_intelli_input_dialog.html#a23f837147e6aab3d8e0aff9d0f7012bd">IntelliInputDialog::slotEingabe</a></div><div class="ttdeci">void slotEingabe()</div><div class="ttdoc">slotEingabe is a slot for catching the Input Event.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_input_dialog_8cpp_source.html#l00078">IntelliInputDialog.cpp:78</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

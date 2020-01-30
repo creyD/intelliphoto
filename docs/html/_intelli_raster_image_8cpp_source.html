@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">IntelliPhoto
-   &#160;<span id="projectnumber">0.6</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
   </td>
  </tr>
@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('_intelli_raster_image_8cpp_source.html
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_intelli_raster_image.html#a8f901301b106504de3c27308ade897dc">   25</a></span>&#160;<a class="code" href="class_intelli_image.html">IntelliImage</a>* <a class="code" href="class_intelli_raster_image.html#a8f901301b106504de3c27308ade897dc">IntelliRasterImage::getDeepCopy</a>(){</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="class_intelli_raster_image.html">IntelliRasterImage</a>* raster = <span class="keyword">new</span> <a class="code" href="class_intelli_raster_image.html#ae779b571372296f1922af818ba003413">IntelliRasterImage</a>(<a class="code" href="class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2">imageData</a>.width(), <a class="code" href="class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2">imageData</a>.height(), this-&gt;fastRenderering);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="class_intelli_raster_image.html">IntelliRasterImage</a>* raster = <span class="keyword">new</span> <a class="code" href="class_intelli_raster_image.html#ae779b571372296f1922af818ba003413">IntelliRasterImage</a>(<a class="code" href="class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2">imageData</a>.width(), <a class="code" href="class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2">imageData</a>.height(), <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        raster-&gt;<a class="code" href="class_intelli_image.html#a2431be82e9e85dd34b62a7f7cba053c2">imageData</a>.fill(Qt::transparent);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        raster-&gt;<a class="code" href="class_intelli_image.html#ac460f75e1fa7e44b00a65e7fddac5b80">TypeOfImage</a> = <a class="code" href="_intelli_image_8h.html#a3154c405c975616503bac23f51b78fc0add5823fd73c42c0154fa2abbd70283b9">ImageType::RASTERIMAGE</a>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> raster;</div>
@@ -167,7 +167,7 @@ $(document).ready(function(){initNavTree('_intelli_raster_image_8cpp_source.html
 <div class="ttc" id="aclass_intelli_raster_image_html_a87cf2d360c129d64a5db0db85818eb60"><div class="ttname"><a href="class_intelli_raster_image.html#a87cf2d360c129d64a5db0db85818eb60">IntelliRasterImage::calculateVisiblity</a></div><div class="ttdeci">virtual void calculateVisiblity() override</div><div class="ttdoc">A function that calculates the visibility of the image if a polygon is given. [does nothing in RASTER...</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_raster_image_8cpp_source.html#l00032">IntelliRasterImage.cpp:32</a></div></div>
 <div class="ttc" id="aclass_intelli_raster_image_html_a6462fa5f94c5e64e9e1f0c4658e0507b"><div class="ttname"><a href="class_intelli_raster_image.html#a6462fa5f94c5e64e9e1f0c4658e0507b">IntelliRasterImage::setPolygon</a></div><div class="ttdeci">virtual void setPolygon(const std::vector&lt; QPoint &gt; &amp;polygonData) override</div><div class="ttdoc">An abstract function that sets the data of the visible Polygon, if needed.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_raster_image_8cpp_source.html#l00058">IntelliRasterImage.cpp:58</a></div></div>
 <div class="ttc" id="aclass_intelli_raster_image_html"><div class="ttname"><a href="class_intelli_raster_image.html">IntelliRasterImage</a></div><div class="ttdoc">The IntelliRasterImage manages a RASTERIMAGE.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_raster_image_8h_source.html#l00012">IntelliRasterImage.h:12</a></div></div>
-<div class="ttc" id="aclass_intelli_image_html_aea7b5f173968b330ef034bedb9426520"><div class="ttname"><a href="class_intelli_image.html#aea7b5f173968b330ef034bedb9426520">IntelliImage::getWidth</a></div><div class="ttdeci">virtual int getWidth() const</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_image_8cpp_source.html#l00163">IntelliImage.cpp:163</a></div></div>
+<div class="ttc" id="aclass_intelli_image_html_aea7b5f173968b330ef034bedb9426520"><div class="ttname"><a href="class_intelli_image.html#aea7b5f173968b330ef034bedb9426520">IntelliImage::getWidth</a></div><div class="ttdeci">virtual int getWidth() const</div><div class="ttdoc">getWidth returns the width of the Image.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_image_8cpp_source.html#l00163">IntelliImage.cpp:163</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

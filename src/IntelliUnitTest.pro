@@ -24,6 +24,7 @@ SOURCES +=  tst_unittest.cpp \
     Tool/IntelliTool.cpp \
     Tool/IntelliToolCircle.cpp \
     Tool/IntelliToolFloodFill.cpp \
+    Tool/IntelliToolGradient.cpp \
     Tool/IntelliToolLine.cpp \
     Tool/IntelliToolPen.cpp \
     Tool/IntelliToolPlain.cpp \
@@ -35,6 +36,7 @@ DISTFILES += \
     icons/circle-tool.svg \
     icons/eraser-tool.svg \
     icons/flood-fill-tool.svg \
+    icons/gradient-tool.svg \
     icons/icon.png \
     icons/line-tool.svg \
     icons/pen-tool.svg \
@@ -57,6 +59,7 @@ HEADERS += \
     Tool/IntelliTool.h \
     Tool/IntelliToolCircle.h \
     Tool/IntelliToolFloodFill.h \
+    Tool/IntelliToolGradient.h \
     Tool/IntelliToolLine.h \
     Tool/IntelliToolPen.h \
     Tool/IntelliToolPlain.h \

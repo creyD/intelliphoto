@@ -171,10 +171,22 @@ virtual QImage getImageData();
  */
 virtual void setImageData(const QImage& newData);
 
+/*!
+ * \brief getWidth returns the width of the Image.
+ * \return The width of the Image in pixel.
+ */
 virtual int getWidth() const;
 
+/*!
+ * \brief getHeight returns the height of the Image.
+ * \return The height of the Image in pixel.
+ */
 virtual int getHeight() const;
 
+/*!
+ * \brief isFastRendering returns if the Image is in fast rendering mode.
+ * \return True if the Image is fast rendered, flase otherwiese.
+ */
 virtual bool isFastRendering() const;
 
 };
