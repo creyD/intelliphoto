@@ -115,13 +115,13 @@ void IntelliImage::drawLine(const QPoint &p1, const QPoint& p2, const QColor& co
 }
 
 void IntelliImage::drawPlain(const QColor& color){
-		if(fastRenderering) {
-				this->imageData = this->imageData.convertToFormat(QImage::Format_ARGB32);
-		}
+        if(fastRenderering) {
+                this->imageData = this->imageData.convertToFormat(QImage::Format_ARGB32);
+        }
 		imageData.fill(color);
-		if(fastRenderering) {
-				this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
-		}
+        if(fastRenderering) {
+                this->imageData = this->imageData.convertToFormat(QImage::Format_Indexed8);
+        }
 }
 
 QColor IntelliImage::getPixelColor(QPoint& point){

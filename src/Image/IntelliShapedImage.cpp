@@ -12,7 +12,7 @@ IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererO
 
 IntelliShapedImage* IntelliShapedImage::copy(const IntelliShapedImage& image){
 		this->TypeOfImage = ImageType::SHAPEDIMAGE;
-		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
+        IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
 		shaped->imageData.copy(0,0,image.getWidth(),image.getWidth());
 		return shaped;
 }
@@ -26,7 +26,7 @@ QImage IntelliShapedImage::getDisplayable(int alpha){
 }
 
 IntelliImage* IntelliShapedImage::getDeepCopy(){
-		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
+        IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), false);
 		shaped->setPolygon(this->polygonData);
 		shaped->imageData.fill(Qt::transparent);
 		shaped->TypeOfImage = ImageType::SHAPEDIMAGE;
