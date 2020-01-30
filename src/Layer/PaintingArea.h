@@ -285,7 +285,14 @@ IntelliToolsettings Toolsettings;
  */
 IntelliColorPicker colorPicker;
 
+/*!
+ * \brief historyadd adds an hisotry step
+ */
 void historyadd();
+
+/*!
+ * \brief historyGoBack go back in hisotry
+ */
 void historyGoBack();
 
 /*!
