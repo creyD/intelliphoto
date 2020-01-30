@@ -389,22 +389,14 @@ void IntelliPhotoGui::createActions(){
 				actionSaveAs.append(action);
 		}
 
-		//set exporter to actions
-		QAction*pngSaveAction = new QAction("PNG-8", this);
+        // Set exporter to actions
+        QAction*pngSaveAction = new QAction("PNG-8...", this);
 		pngSaveAction->setData("PNG");
 		// When clicked call IntelliPhotoGui::save()
 		connect(pngSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
 		// Attach each PNG in save Menu
 		actionSaveAs.append(pngSaveAction);
 		pngSaveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
-
-		QAction*projectSaveAction = new QAction("Projekt", this);
-		projectSaveAction->setData("idf");
-		// When clicked call IntelliPhotoGui::save()
-		connect(projectSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
-		// Attach each PNG in save Menu
-		actionSaveAs.append(projectSaveAction);
-		projectSaveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
 
 		// Create exit action and tie to IntelliPhotoGui::close()
 		actionExit = new QAction(tr("&Exit"), this);
@@ -472,7 +464,7 @@ void IntelliPhotoGui::createActions(){
 		actionMoveLayerDown->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_Down));
 		connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
 
-		//Create Update RenderSettings Actions here
+        // Create Update RenderSettings Actions here
         actionUpdateFastRenderSettingsOn = new QAction(tr("&On"), this);
         actionUpdateFastRenderSettingsOn->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_A));
         connect(actionUpdateFastRenderSettingsOn, SIGNAL(triggered()),this, SLOT(slotUpdateFastRenderSettingsOn()));
@@ -481,7 +473,7 @@ void IntelliPhotoGui::createActions(){
         actionUpdateFastRenderSettingsOff->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_D));
         connect(actionUpdateFastRenderSettingsOff, SIGNAL(triggered()),this, SLOT(slotUpdateFastRenderSettingsOff()));
 
-		//Create Color Actions here
+        // Create Color Actions here
 		actionColorPickerFirstColor = new QAction(tr("&Main"), this);
 		actionColorPickerFirstColor->setShortcut(QKeySequence(Qt::ALT + Qt::Key_N));
 		connect(actionColorPickerFirstColor, SIGNAL(triggered()), this, SLOT(slotSetFirstColor()));
@@ -497,7 +489,7 @@ void IntelliPhotoGui::createActions(){
 		connect(actionColorSwap, SIGNAL(triggered()), this, SLOT(slotSwapColor()));
 		connect(SwitchColorButton, SIGNAL(clicked()), this, SLOT(slotSwapColor()));
 
-		//Create Tool actions down here
+        // Create Tool actions down here
 		actionCreatePlainTool = new QAction(tr("&Plain"), this);
 		actionCreatePlainTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_P));
         connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
@@ -594,16 +586,23 @@ void IntelliPhotoGui::createActions(){
 // Create the menubar
 void IntelliPhotoGui::createMenus(){
 		// Create Save As option and the list of file types
-		saveAsMenu = new QMenu(tr("&Save As"), this);
+        saveAsMenu = new QMenu(tr("&Export As"), this);
 		foreach (QAction * action, actionSaveAs)
 		saveAsMenu->addAction(action);
 
-		// Attach all actions to File
+        // Attach all actions to file menu
 		fileMenu = new QMenu(tr("&File"), this);
 		fileMenu->addAction(actionOpen);
 		fileMenu->addMenu(saveAsMenu);
 		fileMenu->addSeparator();
 		fileMenu->addAction(actionExit);
+
+        // Attach the save project option to file menu
+        QAction*projectSaveAction = new QAction("Save Project", this);
+        projectSaveAction->setData("idf");
+        connect(projectSaveAction, SIGNAL(triggered()), this, SLOT(slotSave()));
+        projectSaveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
+        fileMenu->addAction(projectSaveAction);
 
         // Attach all actions to Render Settings
 		renderMenu = new QMenu(tr("&Fast Renderer"), this);
@@ -623,7 +622,7 @@ void IntelliPhotoGui::createMenus(){
 		layerMenu->addAction(actionSetActiveLayer);
 		layerMenu->addAction(actionSetPolygon);
 		layerMenu->addSeparator();
-		layerMenu->addAction(actionMovePositionUp);
+        layerMenu->addAction(actionMovePositionUp);
 		layerMenu->addAction(actionMovePositionDown);
 		layerMenu->addAction(actionMovePositionLeft);
 		layerMenu->addAction(actionMovePositionRight);
