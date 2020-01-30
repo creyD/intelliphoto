@@ -4,7 +4,9 @@
 //for unit testing
 class UnitTest;
 
-
+/*!
+ * \brief The IntelliRenderSettings class which manages the render Settings.
+ */
 class IntelliRenderSettings
 {
 friend UnitTest;
@@ -23,6 +25,9 @@ void setFastRendering(bool Updatedsetting);
 bool isFastRenderering() const;
 
 private:
+/*!
+ * \brief fastRenderering the state of the project, in relation the the render setting.
+ */
 bool fastRenderering = true;
 };
 

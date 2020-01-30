@@ -23,7 +23,7 @@ IntelliRasterImage::~IntelliRasterImage(){
 }
 
 IntelliImage* IntelliRasterImage::getDeepCopy(){
-		IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height(), this->fastRenderering);
+        IntelliRasterImage* raster = new IntelliRasterImage(imageData.width(), imageData.height(), false);
 		raster->imageData.fill(Qt::transparent);
 		raster->TypeOfImage = ImageType::RASTERIMAGE;
 		return raster;

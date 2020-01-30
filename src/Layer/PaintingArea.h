@@ -176,36 +176,91 @@ void colorPickerSetSecondColor();
  */
 void colorPickerSwapColors();
 
+/*!
+ * \brief createPenTool creates a Pen Tool.
+ */
 void createPenTool();
+
+/*!
+ * \brief createPlainTool creates a Plain Tool.
+ */
 void createPlainTool();
+
+/*!
+ * \brief createLineTool creates a Line Tool.
+ */
 void createLineTool();
+
+/*!
+ * \brief createRectangleTool creates a Rectangle Tool.
+ */
 void createRectangleTool();
+
+/*!
+ * \brief createCircleTool creates a Circle Tool.
+ */
 void createCircleTool();
+
+/*!
+ * \brief createPolygonTool creates a Polygon Tool.
+ */
 void createPolygonTool();
+
+/*!
+ * \brief createFloodFillTool creates a Floodfill Tool.
+ */
 void createFloodFillTool();
+
+/*!
+ * \brief createGradientTool creates a Gradient Tool.
+ */
 void createGradientTool();
 
 /*!
- * \brief The getWidthOfActive gets the horizontal dimensions of the active layer
- * \return Returns the horizontal pixle count of the active layer
+ * \brief The getWidthOfActive gets the horizontal dimensions of the active layer.
+ * \return Returns the horizontal pixle count of the active layer.
  */
 int getWidthOfActive();
 /*!
- * \brief The getHeightOfActive gets the vertical dimensions of the active layer
- * \return Returns the vertical pixle count of the active layer
+ * \brief The getHeightOfActive gets the vertical dimensions of the active layer.
+ * \return Returns the vertical pixle count of the active layer.
  */
 int getHeightOfActive();
 
+/*!
+ * \brief getMaxWidth gets the max width of the Canvas.
+ * \return return the width of the Canvas.
+ */
 int getMaxWidth();
 
+/*!
+ * \brief getMaxHeight gets the max height of the Canvas.
+ * \return return the height of the Canvas.
+ */
 int getMaxHeight();
 
-ImageType getTypeOfImageRealLayer();
+/*!
+ * \brief getTypeOfImageActiveLayer get the type of the active Layer.
+ * \return returns the image type of the active layer.
+ */
+ImageType getTypeOfImageActiveLayer();
 
-std::vector<QPoint> getPolygonDataOfRealLayer();
+/*!
+ * \brief getPolygonDataOfActiveLayer get the polygon data of the active Layer.
+ * \return return the polygon data of the active Layer.
+ */
+std::vector<QPoint> getPolygonDataOfActiveLayer();
 
-int getNumberOfActiveLayer();
+/*!
+ * \brief getIndexOfActiveLayer returns the index of athe active Layer.
+ * \return return the index of the active Layer.
+ */
+int getIndexOfActiveLayer();
 
+/*!
+ * \brief getImageOfActiveLayer returns the image of the active Layer.
+ * \return return the image of the active Layer.
+ */
 IntelliImage* getImageOfActiveLayer();
 
 /*!
@@ -220,17 +275,42 @@ QImage getImageDataOfActiveLayer();
  */
 std::vector<LayerObject>* getLayerBundle();
 
+/*!
+ * \brief Toolsettings - a class to manage Tool settings.
+ */
 IntelliToolsettings Toolsettings;
+
+/*!
+ * \brief colorPicker a class to manage Tool color.
+ */
 IntelliColorPicker colorPicker;
 
 void historyadd();
 void historyGoBack();
+
+/*!
+ * \brief historyGoForward a function to undo the return of the previous state of the project.
+ */
 void historyGoForward();
 
-void setLayerDimensions(int maxWidth, int maxHeight);
+/*!
+ * \brief setCanvasDimensions sets the dimension of the Canvas
+ * \param maxWidth  - the width of the Canvas.
+ * \param maxHeight - the height of the Canvas.
+ */
+void setCanvasDimensions(int maxWidth, int maxHeight);
 
-void setPixelToActive(QColor color, QPoint point);
+/*!
+ * \brief drawPixelOntoActive draws a pixel onto the image data of the active Layer.
+ * \param color - the color of the Pixel, which should be created.
+ * \param point - the Pixelposition.
+ */
+void drawPixelOntoActive(QColor color, QPoint point);
 
+/*!
+ * \brief setPolygonDataToActive sets polygondata to the active Layer.
+ * \param points - the points of the polygon data.
+ */
 void setPolygonDataToActive(std::vector<QPoint> points);
 public slots:
 /*!
@@ -244,46 +324,149 @@ void slotActivateLayer(int a);
 void slotDeleteActiveLayer();
 
 protected:
+/*!
+ * \brief mousePressEvent handles a mouse pressed event.
+ * \param event - the specific mouse event.
+ */
 void mousePressEvent(QMouseEvent*event) override;
+
+/*!
+ * \brief mouseMoveEvent handles a mouse moved event
+ * \param event - the specific mouse event.
+ */
 void mouseMoveEvent(QMouseEvent*event) override;
+
+/*!
+ * \brief mouseReleaseEvent handles a mouse released event
+ * \param event - the specific mouse event.
+ */
 void mouseReleaseEvent(QMouseEvent*event) override;
 
+/*!
+ * \brief wheelEvent handles a mouse wheel event
+ * \param event - the specific mouse event.
+ */
 void wheelEvent(QWheelEvent*event) override;
 
+/*!
+ * \brief paintEvent handles a painting event
+ * \param event - the specific paint event.
+ */
 void paintEvent(QPaintEvent*event) override;
 
 private:
-//offset for the displayable
+/*!
+ * \brief offsetXDimension - Offset for drawing the image.
+ */
 int offsetXDimension;
+
+/*!
+ * \brief offsetYDimension - Offset for drawing the image.
+ */
 int offsetYDimension;
 
+/*!
+ * \brief selectLayerUp moves the active Layer one Up.
+ */
 void selectLayerUp();
+
+/*!
+ * \brief selectLayerDown moves the active Layer one Down.
+ */
 void selectLayerDown();
+
+/*!
+ * \brief copyActiveTool copys the activ tool [allocated].
+ * \return returns a allocates copy of the current tool.
+ */
 IntelliTool* copyActiveTool();
 
+/*!
+ * \brief Canvas the underlying Image to display on.
+ */
 QImage* Canvas;
+
+/*!
+ * \brief ScaledCanvas the Canvas saved for output
+ */
 QImage ScaledCanvas;
+
+/*!
+ * \brief maxWidth is the width of the canvas
+ */
 int maxWidth;
+
+/*!
+ * \brief maxHeight is the height of the canvas
+ */
 int maxHeight;
 
+/*!
+ * \brief isSettingPolygon for checking the state of the drawing.
+ */
 bool isSettingPolygon = false;
 
+/*!
+ * \brief renderSettings a class to manage the render settings.
+ */
 IntelliRenderSettings renderSettings;
+
+/*!
+ * \brief Tool a class to manage the Tool.
+ */
 IntelliTool* Tool;
+
+/*!
+ * \brief guiReference to manage communication with the gui.
+ */
 IntelliPhotoGui* guiReference;
 
+/*!
+ * \brief layerBundle a container to save all layers.
+ */
 std::vector<LayerObject> layerBundle;
+
+/*!
+ * \brief activeLayer the index of the active Layer.
+ */
 int activeLayer = -1;
 
+/*!
+ * \brief drawLayers draws the Layers to the Canvas
+ * \param forSaving an indecate if drawing for saving.
+ */
 void drawLayers(bool forSaving = false);
 
+/*!
+ * \brief createTempTopLayer creates a temporary Layer on top of the Layer.
+ * \param idx - the Layer which should get a temp Layer.
+ * \return True if it workes, false otherwise.
+ */
 bool createTempTopLayer(int idx);
 
+/*!
+ * \brief updateTools resets the Tools.
+ */
 void updateTools();
 
+/*!
+  * \brief history - an array out of containers to save history actions.
+  */
 std::vector<LayerObject> history[100] = {layerBundle};
+
+/*!
+ * \brief historyMaxPast a indicator how many steps you can go into the past.
+ */
 int historyMaxPast = 0;
+
+/*!
+ * \brief historyMaxPast a indicator how many steps you can go into the future.
+ */
 int historyMaxFuture = 0;
+
+/*!
+ * \brief historyPresent a indicator where the present is.
+ */
 int historyPresent = 0;
 
 };

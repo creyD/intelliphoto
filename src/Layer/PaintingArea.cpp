@@ -40,7 +40,7 @@ LayerObject::LayerObject(const LayerObject& layer){
 PaintingArea::PaintingArea(int maxWidth, int maxHeight, QWidget*parent)
 		: QLabel(parent){
         this->Tool = nullptr;
-		this->setLayerDimensions(maxWidth, maxHeight);
+        this->setCanvasDimensions(maxWidth, maxHeight);
 		activeLayer = -1;
 }
 
@@ -69,7 +69,7 @@ bool PaintingArea::getRenderSettings(){
 		return this->renderSettings.isFastRenderering();
 }
 
-void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
+void PaintingArea::setCanvasDimensions(int maxWidth, int maxHeight){
 		//set standart parameter
 		this->maxWidth = maxWidth;
 		this->maxHeight = maxHeight;
@@ -83,7 +83,7 @@ void PaintingArea::setLayerDimensions(int maxWidth, int maxHeight){
 
 }
 
-void PaintingArea::setPixelToActive(QColor color, QPoint point){
+void PaintingArea::drawPixelOntoActive(QColor color, QPoint point){
 		layerBundle[static_cast<size_t>(activeLayer)].image->drawPixel(point, color);
 }
 
@@ -295,11 +295,11 @@ int PaintingArea::getMaxHeight(){
 		return this->maxHeight;
 }
 
-ImageType PaintingArea::getTypeOfImageRealLayer(){
+ImageType PaintingArea::getTypeOfImageActiveLayer(){
 		return this->layerBundle[static_cast<size_t>(activeLayer)].image->getTypeOfImage();
 }
 
-std::vector<QPoint> PaintingArea::getPolygonDataOfRealLayer(){
+std::vector<QPoint> PaintingArea::getPolygonDataOfActiveLayer(){
 		return this->layerBundle[static_cast<size_t>(activeLayer)].image->getPolygonData();
 }
 
@@ -462,7 +462,7 @@ IntelliTool* PaintingArea::copyActiveTool(){
 		}
 }
 
-int PaintingArea::getNumberOfActiveLayer(){
+int PaintingArea::getIndexOfActiveLayer(){
 		return activeLayer;
 }
 
@@ -509,14 +509,18 @@ void PaintingArea::updateTools(){
 
 void PaintingArea::historyadd(){
 
-		if (++historyPresent == 100) {
+        historyPresent++;
+        if (historyPresent == 100) {
 				historyPresent = 0;
 		}
 		historyMaxFuture = historyPresent;
-		if (historyPresent == historyMaxPast)
-				if (++historyMaxPast == 100)
+        if (historyPresent == historyMaxPast){
+                historyMaxPast++;
+                if (historyMaxPast == 100){
 						historyMaxPast = 0;
-		history[static_cast<size_t>(historyPresent)] = layerBundle;
+                }
+        }
+        history[static_cast<size_t>(historyPresent)] = layerBundle;
 }
 
 void PaintingArea::historyGoBack(){

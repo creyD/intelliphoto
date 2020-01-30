@@ -24,9 +24,9 @@ IntelliToolPolygon::~IntelliToolPolygon(){
 }
 
 void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
-		if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
-				if(Area->getPolygonDataOfRealLayer().size()>2) {
-						std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(Area->getPolygonDataOfRealLayer());
+		if(!drawingOfPolygon && Area->getTypeOfImageActiveLayer() == ImageType::SHAPEDIMAGE && x > 0 && y > 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
+				if(Area->getPolygonDataOfActiveLayer().size()>2) {
+						std::vector<Triangle> Triangles = IntelliTriangulation::calculateTriangles(Area->getPolygonDataOfActiveLayer());
 						QPoint Point(x,y);
 						isInside = IntelliTriangulation::isInPolygon(Triangles,Point);
 				}
@@ -37,7 +37,7 @@ void IntelliToolPolygon::onMouseLeftPressed(int x, int y){
 						isInside = true;
 				}
 		}
-		else if(!drawingOfPolygon && Area->getTypeOfImageRealLayer() == ImageType::RASTERIMAGE && x >= 0 && y >= 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
+		else if(!drawingOfPolygon && Area->getTypeOfImageActiveLayer() == ImageType::RASTERIMAGE && x >= 0 && y >= 0 && x<Area->getWidthOfActive() && y<Area->getHeightOfActive()) {
 				isInside = true;
 		}
 
