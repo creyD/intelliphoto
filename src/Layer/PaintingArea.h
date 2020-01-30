@@ -223,6 +223,7 @@ std::vector<LayerObject>* getLayerBundle();
 IntelliToolsettings Toolsettings;
 IntelliColorPicker colorPicker;
 
+void historyadd();
 void historyGoBack();
 void historyGoForward();
 
@@ -284,8 +285,6 @@ std::vector<LayerObject> history[100] = {layerBundle};
 int historyMaxPast = 0;
 int historyMaxFuture = 0;
 int historyPresent = 0;
-
-void historyadd();
 
 };
 

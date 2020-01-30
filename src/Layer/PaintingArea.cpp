@@ -106,7 +106,6 @@ int PaintingArea::addLayer(int width, int height, int widthOffset, int heightOff
 		}
 		this->layerBundle.push_back(newLayer);
 		activeLayer = static_cast<int>(layerBundle.size()) - 1;
-		historyadd();
 		return activeLayer;
 }
 
@@ -524,10 +523,12 @@ void PaintingArea::historyGoBack(){
 		if (historyPresent != historyMaxPast) {
 				if (--historyPresent == -1)
 						historyPresent = 99;
+                if (activeLayer == -1)
+                        activeLayer = 0;
                 if (layerBundle.size() > history[static_cast<size_t>(historyPresent)].size())
-                        activeLayer--;
-                if ((layerBundle.size() == 0) &&  (layerBundle.size() < history[static_cast<size_t>(historyPresent)].size()))
-                        activeLayer++;
+                        activeLayer = static_cast<int>(history[static_cast<size_t>(historyPresent)].size())-1;
+                if (history[static_cast<size_t>(historyPresent)].size() == 0)
+                        activeLayer = -1;
 				layerBundle = history[static_cast<size_t>(historyPresent)];
 		}
 		this->guiReference->UpdateGui();
@@ -537,10 +538,12 @@ void PaintingArea::historyGoForward(){
 		if (historyPresent != historyMaxFuture) {
 				if (++historyPresent == 100)
 						historyPresent = 0;
+                if (activeLayer == -1)
+                        activeLayer = 0;
                 if (layerBundle.size() > history[static_cast<size_t>(historyPresent)].size())
-                        activeLayer--;
-                if ((layerBundle.size() == 0) &&  (layerBundle.size() < history[static_cast<size_t>(historyPresent)].size()))
-                        activeLayer++;
+                        activeLayer = static_cast<int>(history[static_cast<size_t>(historyPresent)].size())-1;
+                if (history[static_cast<size_t>(historyPresent)].size() == 0)
+                        activeLayer = -1;
 				layerBundle = history[static_cast<size_t>(historyPresent)];
 		}
 		this->guiReference->UpdateGui();
