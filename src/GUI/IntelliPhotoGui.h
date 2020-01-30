@@ -290,7 +290,7 @@ QPixmap preview;
 /*!
  * \brief Buttonsize the size of all standard buttons
  */
-const QSize Buttonsize = QSize(35,35);
+QSize Buttonsize;
 
 /*!
  * \brief CircleButton for creating a circle Tool
