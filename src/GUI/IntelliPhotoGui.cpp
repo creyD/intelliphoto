@@ -240,13 +240,13 @@ void IntelliPhotoGui::slotSetActiveLayer(){
 		}
 }
 
-void IntelliPhotoGui::slotUpdateRenderSettingsOn(){
+void IntelliPhotoGui::slotUpdateFastRenderSettingsOn(){
 		paintingArea->setRenderSettings(true);
         FastRendererLabel->setText("Fast Render: On");
 		UpdateGui();
 }
 
-void IntelliPhotoGui::slotUpdateRenderSettingsOff(){
+void IntelliPhotoGui::slotUpdateFastRenderSettingsOff(){
 		paintingArea->setRenderSettings(false);
         FastRendererLabel->setText("Fast Render: Off");
 		UpdateGui();
@@ -327,7 +327,7 @@ void IntelliPhotoGui::slotEnterPressed(){
 		paintingArea->Toolsettings.setInnerAlpha(string.toInt());
 }
 
-void IntelliPhotoGui::slotResetTools(){
+void IntelliPhotoGui::slotResetToolButtons(){
 		CircleButton->setChecked(false);
 		FloodFillButton->setChecked(false);
 		LineButton->setChecked(false);
@@ -467,13 +467,13 @@ void IntelliPhotoGui::createActions(){
 		connect(actionMoveLayerDown, SIGNAL(triggered()), this, SLOT(slotMoveLayerDown()));
 
 		//Create Update RenderSettings Actions here
-		actionUpdateRenderSettingsOn = new QAction(tr("&On"), this);
-		actionUpdateRenderSettingsOn->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_A));
-		connect(actionUpdateRenderSettingsOn, SIGNAL(triggered()),this, SLOT(slotUpdateRenderSettingsOn()));
+        actionUpdateFastRenderSettingsOn = new QAction(tr("&On"), this);
+        actionUpdateFastRenderSettingsOn->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_A));
+        connect(actionUpdateFastRenderSettingsOn, SIGNAL(triggered()),this, SLOT(slotUpdateFastRenderSettingsOn()));
 
-		actionUpdateRenderSettingsOff = new QAction(tr("&Off"), this);
-		actionUpdateRenderSettingsOff->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_D));
-		connect(actionUpdateRenderSettingsOff, SIGNAL(triggered()),this, SLOT(slotUpdateRenderSettingsOff()));
+        actionUpdateFastRenderSettingsOff = new QAction(tr("&Off"), this);
+        actionUpdateFastRenderSettingsOff->setShortcut(QKeySequence(Qt::ALT + Qt::SHIFT + +Qt::Key_D));
+        connect(actionUpdateFastRenderSettingsOff, SIGNAL(triggered()),this, SLOT(slotUpdateFastRenderSettingsOff()));
 
 		//Create Color Actions here
 		actionColorPickerFirstColor = new QAction(tr("&Main"), this);
@@ -494,42 +494,42 @@ void IntelliPhotoGui::createActions(){
 		//Create Tool actions down here
 		actionCreatePlainTool = new QAction(tr("&Plain"), this);
 		actionCreatePlainTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_P));
-		connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreatePlainTool, SIGNAL(triggered()), this, SLOT(slotCreatePlainTool()));
 
 
 		actionCreatePenTool = new QAction(tr("&Pen"),this);
 		actionCreatePenTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_S));
-		connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreatePenTool, SIGNAL(triggered()), this, SLOT(slotCreatePenTool()));
 
 		actionCreateLineTool = new QAction(tr("&Line"), this);
 		actionCreateLineTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_L));
-		connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateLineTool, SIGNAL(triggered()), this, SLOT(slotCreateLineTool()));
 
 		actionCreateCircleTool = new QAction(tr("&Circle"), this);
 		actionCreateCircleTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_C));
-		connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateCircleTool, SIGNAL(triggered()), this, SLOT(slotCreateCircleTool()));
 
 		actionCreateRectangleTool = new QAction(tr("&Rectangle"), this);
 		actionCreateRectangleTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_R));
-		connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateRectangleTool, SIGNAL(triggered()), this, SLOT(slotCreateRectangleTool()));
 
 		actionCreatePolygonTool = new QAction(tr("&Polygon"), this);
 		actionCreatePolygonTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_V));
-		connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreatePolygonTool, SIGNAL(triggered()), this, SLOT(slotCreatePolygonTool()));
 
 		actionCreateFloodFillTool = new QAction(tr("&FloodFill"), this);
 		actionCreateFloodFillTool->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::SHIFT + Qt::Key_F));
-		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
 		connect(actionCreateFloodFillTool, SIGNAL(triggered()), this, SLOT(slotCreateFloodFillTool()));
 
         actionCreateGradientTool = new QAction(tr("&Gradient"),this);
-        connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotResetTools()));
+        connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotResetToolButtons()));
         connect(actionCreateGradientTool, SIGNAL(triggered()), this, SLOT(slotCreateGradientTool()));
 
 		// Create about action and tie to IntelliPhotoGui::about()
@@ -545,28 +545,28 @@ void IntelliPhotoGui::createActions(){
 		connect(EditLineWidth, SIGNAL(returnPressed()), this, SLOT(slotEnterPressed()));
 		connect(EditLineInnerAlpha, SIGNAL(returnPressed()), this, SLOT(slotEnterPressed()));
 
-		connect(CircleButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(CircleButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(CircleButton, SIGNAL(clicked()), this, SLOT(slotCreateCircleTool()));
 
-		connect(FloodFillButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(FloodFillButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(FloodFillButton, SIGNAL(clicked()), this, SLOT(slotCreateFloodFillTool()));
 
-        connect(GradientButton, SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(GradientButton, SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
         connect(GradientButton, SIGNAL(clicked()), this, SLOT(slotCreateGradientTool()));
 
-		connect(LineButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(LineButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(LineButton, SIGNAL(clicked()), this, SLOT(slotCreateLineTool()));
 
-		connect(PenButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(PenButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(PenButton, SIGNAL(clicked()), this, SLOT(slotCreatePenTool()));
 
-		connect(PlainButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(PlainButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(PlainButton, SIGNAL(clicked()), this, SLOT(slotCreatePlainTool()));
 
-		connect(PolygonButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(PolygonButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(PolygonButton, SIGNAL(clicked()), this, SLOT(slotCreatePolygonTool()));
 
-		connect(RectangleButton,SIGNAL(pressed()), this, SLOT(slotResetTools()));
+        connect(RectangleButton,SIGNAL(pressed()), this, SLOT(slotResetToolButtons()));
 		connect(RectangleButton, SIGNAL(clicked()), this, SLOT(slotCreateRectangleTool()));
 
 		actionSetWidth = new QAction(tr("&Set Width"),this);
@@ -602,8 +602,8 @@ void IntelliPhotoGui::createMenus(){
 
 		//Attach all actions to Render Settings
 		renderMenu = new QMenu(tr("&Fast Renderer"), this);
-		renderMenu->addAction(actionUpdateRenderSettingsOn);
-		renderMenu->addAction(actionUpdateRenderSettingsOff);
+        renderMenu->addAction(actionUpdateFastRenderSettingsOn);
+        renderMenu->addAction(actionUpdateFastRenderSettingsOff);
 
 		//Attach all Layer Creations to Menu
 		layerCreationMenu = new QMenu(tr("&Create new Layer"), this);
@@ -783,10 +783,10 @@ void IntelliPhotoGui::createGui(){
 		SwitchColorButton->setIcon(preview);
 		SwitchColorButton->setIconSize(QSize(Buttonsize.width() * 2,Buttonsize.height()));
 
-		ActiveLayerLine = new QLabel();
+        ActiveLayerLabel = new QLabel();
 		QString string = QString("Active Layer: %1").arg(paintingArea->getIndexOfActiveLayer() + 1);
-		ActiveLayerLine->setText(string);
-		ActiveLayerLine->setFixedSize(Buttonsize.width() * 2 + 10,(Buttonsize.height() * 2) / 3);
+        ActiveLayerLabel->setText(string);
+        ActiveLayerLabel->setFixedSize(Buttonsize.width() * 2 + 10,(Buttonsize.height() * 2) / 3);
 
 		IntelliImage* activePicture = paintingArea->getImageOfActiveLayer();
 		if(activePicture) {
@@ -837,7 +837,7 @@ void IntelliPhotoGui::createGui(){
 		mainLayout->addWidget(FirstColorButton,9,2,1,1);
 		mainLayout->addWidget(SecondColorButton,9,3,1,1);
 		mainLayout->addWidget(SwitchColorButton,10,2,1,2);
-		mainLayout->addWidget(ActiveLayerLine,11,2,1,2);
+        mainLayout->addWidget(ActiveLayerLabel,11,2,1,2);
 		mainLayout->addWidget(ActiveLayerImageLabel,12,2,1,2);
 		mainLayout->addWidget(dimActive,13,2,1,2);
 		mainLayout->addWidget(dimCanvas,14,2,1,2);
@@ -923,7 +923,7 @@ void IntelliPhotoGui::setToolWidth(int value){
 
 void IntelliPhotoGui::UpdateGui(){
 		QString string = QString("Active Layer: %1").arg(paintingArea->getIndexOfActiveLayer() + 1);
-		ActiveLayerLine->setText(string);
+        ActiveLayerLabel->setText(string);
 
 		IntelliImage* activePicture = paintingArea->getImageOfActiveLayer();
 		if(activePicture) {
