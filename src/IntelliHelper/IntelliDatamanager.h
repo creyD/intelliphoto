@@ -1,4 +1,4 @@
-#ifndef INTELLIDATAMANAGER_H
+    #ifndef INTELLIDATAMANAGER_H
 #define INTELLIDATAMANAGER_H
 
 #include <QFile>

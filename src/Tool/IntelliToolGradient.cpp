@@ -44,11 +44,6 @@ void IntelliToolGradient::onMouseMoved(int x, int y){
 		if(this->isDrawing) {
 				hasMoved = true;
 				endPoint = QPoint(x,y);
-				VectorStartEnd[0] = static_cast<float>(endPoint.x() - startPoint.x());
-				VectorStartEnd[1] = static_cast<float>(endPoint.y() - startPoint.y());
-				NormalVector[0] = VectorStartEnd[1];
-				NormalVector[1] = (-1 * VectorStartEnd[0]);
-				NormalDotNormal = dotProduct(NormalVector,NormalVector);
 				this->Canvas->image->drawPlain(Qt::transparent);
 				computeGradientLayer();
 				Canvas->image->drawLine(startPoint,endPoint,LineColor,1);
@@ -60,7 +55,7 @@ void IntelliToolGradient::onWheelScrolled(int value){
 		IntelliTool::onWheelScrolled(value);
 }
 
-void IntelliToolGradient::computeAndDrawPixelColor(QPoint Point){
+void IntelliToolGradient::computeAndDrawPixelColor(QPoint Point, int FirstColor[4], int SecondColor[4], double NormalVector[2], double NormalDotNormal){
 		double doublePoint[2];
 		doublePoint[0] = static_cast<double>(Point.x());
 		doublePoint[1] = static_cast<double>(Point.y());
@@ -88,20 +83,10 @@ void IntelliToolGradient::computeAndDrawPixelColor(QPoint Point){
 				computedColor = colorPicker->getSecondColor();
 		}
 		else{
-				int red;
-				int green;
-				int blue;
-				int alpha;
-				int red2;
-				int green2;
-				int blue2;
-				int alpha2;
-				colorPicker->getFirstColor().getRgb(&red,&green,&blue,&alpha);
-				colorPicker->getSecondColor().getRgb(&red2,&green2,&blue2,&alpha2);
-				computedColor.setRed(static_cast<int>(ratio * red2 + (1 - ratio) * red));
-				computedColor.setGreen(static_cast<int>(ratio * green2 + (1 - ratio) * green));
-				computedColor.setBlue(static_cast<int>(ratio * blue2 + (1 - ratio) * blue));
-				computedColor.setAlpha(static_cast<int>(ratio * alpha2 + (1 - ratio) * alpha));
+                computedColor.setRed(static_cast<int>(ratio * SecondColor[0] + (1 - ratio) * FirstColor[0]));
+                computedColor.setGreen(static_cast<int>(ratio * SecondColor[1] + (1 - ratio) * FirstColor[1]));
+                computedColor.setBlue(static_cast<int>(ratio * SecondColor[2] + (1 - ratio) * FirstColor[2]));
+                computedColor.setAlpha(static_cast<int>(ratio * SecondColor[3] + (1 - ratio) * FirstColor[3]));
 		}
 		Canvas->image->drawPixel(Point,computedColor);
 }
@@ -115,17 +100,23 @@ double IntelliToolGradient::lenghtVector(double Vector[2]){
 }
 
 void IntelliToolGradient::computeGradientLayer(){
-		bool switched = false;
-		if(Canvas->image->isFastRendering()) {
-				switched = true;
-				Canvas->image->updateRendererSetting(false);
-		}
-		for(int i = 0; i < activeLayer->height; i++) {
+        int FirstColor[4];
+        colorPicker->getFirstColor().getRgb(&FirstColor[0],&FirstColor[1],&FirstColor[2],&FirstColor[3]);
+        int SecondColor[4];
+        colorPicker->getSecondColor().getRgb(&SecondColor[0],&SecondColor[1],&SecondColor[2],&SecondColor[3]);
+
+        double NormalVector[2];
+        double NormalDotNormal;
+
+        VectorStartEnd[0] = static_cast<double>(endPoint.x() - startPoint.x());
+        VectorStartEnd[1] = static_cast<double>(endPoint.y() - startPoint.y());
+        NormalVector[0] = VectorStartEnd[1];
+        NormalVector[1] = (-1 * VectorStartEnd[0]);
+        NormalDotNormal = dotProduct(NormalVector,NormalVector);
+
+        for(int i = 0; i < activeLayer->height; i++) {
 				for(int j = 0; j < activeLayer->width; j++) {
-						computeAndDrawPixelColor(QPoint(j,i));
+                        computeAndDrawPixelColor(QPoint(j,i), FirstColor, SecondColor, NormalVector, NormalDotNormal);
 				}
-		}
-		if(switched) {
-				Canvas->image->updateRendererSetting(true);
 		}
 }
