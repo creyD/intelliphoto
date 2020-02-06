@@ -1,0 +1,30 @@
+Req-ID:
+    0007
+Req-Type:
+    Nicht-Funktional
+Events/UCs:
+    - Speicherung des Projektfiles
+    - Laden eines Projektfiles
+Description:
+    - Ermöglicht es das aktuelle Projekt zu speichern, dabei sind Layerdaten und Canvas Dimensionen gemeint
+	- Ermöglicht das laden eines gespeicherten Projekts, dabei sind Layerdaten und Canvas DImensionen gemeint
+	- File Format ist wie folgt anzulegen:
+		Versionnumber Rendersettings Canvas-Dimensions Layernumber 
+			(Layer)
+			Layer-dimensions Layer-Metadata ImageType PolygonSize PolygonData ImageData
+Originator:
+    Jonas Mucke
+Fit Criterion:
+    - Speichern von Projekten mit 10 Layern a 200x200 funktioniert
+	- Polygondaten werden richtig gespeichert und geladen
+	- Laden von Projekten mit 10 Layern a 200x200 funktioniert
+	- Speichern und Laden von 10 Layern der Dimensionen 200x200 soll in unter 1 Sekunden funktionieren
+Priority:
+    5
+Support Material:
+    
+Conflicts:
+    - Keine bekannten Konflikte, Stand: 06.02.2020
+History:
+    - Erstellt am 14.01.2020
+	- Start der Implementierung 24.01.2020 (zu langsam und nicht bugfrei)

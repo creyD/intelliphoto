@@ -1,0 +1,25 @@
+Req-ID:
+    0008
+Req-Type:
+    Funktional
+Events/UCs:
+    - Vertikale Scrollen der Canvas
+	- Horizontales Scrollen der Canvas
+Description:
+    - Ermöglicht es die Canvas Horizontal zu Scrollen
+	- Ermöglicht es die Canvas Vertikal zu Scrollen
+Originator:
+    Jonas Mucke
+Fit Criterion:
+    - Das Scrollen der Canvas soll in horizontaler Richtung um 100% der Bildbreite (1000px) in 0.2 Sekunden funktionieren
+    - Das Scrollen der Canvas soll in vertikaler Richtung um 100% der Bildhöhe (1000px) in 0.2 Sekunden funktionieren
+	- Es soll möglich sein sowohl horizontal als auch vertiakl mindestens um 50% aus dem Bild zu Scrollen
+Priority:
+    5
+Support Material:
+    
+Conflicts:
+    - Keine bekannten Konflikte, Stand: 06.02.2020
+History:
+    - Erstellt am 14.01.2020
+	- Fertigstellung der Implementierung 22.01.2020
