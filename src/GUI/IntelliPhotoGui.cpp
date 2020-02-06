@@ -316,7 +316,7 @@ void IntelliPhotoGui::slotCreateGradientTool(){
 void IntelliPhotoGui::slotAboutDialog(){
 		// Window title and text to display
 		QMessageBox::about(this, tr("About Painting"),
-		                   tr("<p><b>IntelliPhoto - </b>A Pretty basic editor.</p> <br>Developed by Team 7."));
+                           tr("<h1>About IntelliPhoto</h1><p>Version: v1.0<br>Developed by: Team 7<br>Interactive painting tool with layering and drawing capabilities.</p>"));
 }
 
 void IntelliPhotoGui::slotEnterPressed(){
