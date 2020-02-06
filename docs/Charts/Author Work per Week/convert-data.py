@@ -56,12 +56,15 @@ class AuthorWeek:
         for person, peline in all.items():
             fac = factors.get(person, 1)
 
-            sum = summands_min.get(person, 0)
-
+            if (len(self.lines) > 3):
+                sum = summands_min.get(person, 0)
+            else:
+                sum = 0
+            
             if sum != summands_max.get(person, 0):
                 sum = random.randrange(sum, summands_max.get(person, 0))
 
-            final[person] = int(fac * (peline + sum))
+            final[person] = min(int(fac * (peline + sum)), 7000)
 
         return str(self.week) + " " + " ".join([str(v) for v in final.values()])
 

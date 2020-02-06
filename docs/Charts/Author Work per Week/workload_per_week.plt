@@ -4,7 +4,7 @@ set style data histogram
 set style fill solid border rgb "black"
 
 set auto x
-set yrange[0:18000]
+set yrange[0:*]
 unset ytics
 set xlabel "Kalenderwoche"
 set ylabel "Änderungen"
