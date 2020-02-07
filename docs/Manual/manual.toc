@@ -1,0 +1,23 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{1}% 
+\contentsline {section}{\numberline {2}User Guide}{1}% 
+\contentsline {subsection}{\numberline {2.1}Image setup}{1}% 
+\contentsline {subsubsection}{\numberline {2.1.1}Loading images}{1}% 
+\contentsline {subsubsection}{\numberline {2.1.2}Exporting images}{2}% 
+\contentsline {subsubsection}{\numberline {2.1.3}Saving projects}{2}% 
+\contentsline {subsection}{\numberline {2.2}Working with layers}{2}% 
+\contentsline {subsubsection}{\numberline {2.2.1}Creating a new layer}{2}% 
+\contentsline {subsubsection}{\numberline {2.2.2}Setting the active layer}{2}% 
+\contentsline {subsubsection}{\numberline {2.2.3}Moving layers}{2}% 
+\contentsline {subsubsection}{\numberline {2.2.4}Transparency and layers}{3}% 
+\contentsline {subsection}{\numberline {2.3}Color Management}{3}% 
+\contentsline {subsubsection}{\numberline {2.3.1}Setting the main and secondary color}{3}% 
+\contentsline {subsubsection}{\numberline {2.3.2}Switching main and secondary color}{3}% 
+\contentsline {subsubsection}{\numberline {2.3.3}Drawing with the pen tool}{4}% 
+\contentsline {subsubsection}{\numberline {2.3.4}Drawing straight lines}{4}% 
+\contentsline {subsubsection}{\numberline {2.3.5}Drawing circles}{4}% 
+\contentsline {subsubsection}{\numberline {2.3.6}Drawing rectangles}{4}% 
+\contentsline {subsubsection}{\numberline {2.3.7}Drawing polygons}{4}% 
+\contentsline {subsubsection}{\numberline {2.3.8}Using gradients}{5}% 
+\contentsline {subsubsection}{\numberline {2.3.9}Fill the active layer in one color}{5}% 
+\contentsline {subsection}{\numberline {2.4}Closing the program}{5}% 
