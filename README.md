@@ -6,10 +6,9 @@ For the user manual see `docs/manual.pdf`
 
 - `src` - Source Code
 - `docs` - Documentation of the source code and user manual
-- `Examples` - Temporary folder for example pictures
 - `Abgabe` - Files that were submitted prior to the development start
 
-## Presentations
+## Presentations and Changelog
 
 - since `0.3`: https://prezi.com/view/M593VBJhmfwQzuqt3t6f/
 

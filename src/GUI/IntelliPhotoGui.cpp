@@ -125,7 +125,7 @@ void IntelliPhotoGui::slotCreateNewShapedLayer(){
 		// Create New Layer
 		if (ok1&&ok2) {
 				paintingArea->addLayer(width, height, 0, 0,255, ImageType::SHAPEDIMAGE);
-                paintingArea->historyadd();
+				paintingArea->historyadd();
 				UpdateGui();
 		}
 }
@@ -315,8 +315,8 @@ void IntelliPhotoGui::slotCreateGradientTool(){
 // Open an about dialog
 void IntelliPhotoGui::slotAboutDialog(){
 		// Window title and text to display
-        QMessageBox::about(this, tr("About Us"),
-                           tr("<h1>About IntelliPhoto</h1><p>Version: v1.0<br>Developed by: Team 7<br>Interactive painting tool with layering and drawing capabilities.</p>"));
+		QMessageBox::about(this, tr("About Us"),
+		                   tr("<h1>About IntelliPhoto</h1><p>Version: v1.0<br>Developed by: Team 7<br>Interactive painting tool with layering and drawing capabilities.</p>"));
 }
 
 void IntelliPhotoGui::slotEnterPressed(){
@@ -856,7 +856,7 @@ void IntelliPhotoGui::createGui(){
 
 void IntelliPhotoGui::setIntelliStyle(){
 		// Set the title
-        setWindowTitle("IntelliPhoto v1.0");
+		setWindowTitle("IntelliPhoto v1.0");
 		// Set style sheet
 		this->setStyleSheet("color: white;" "background-color: rgb(64, 64, 64);" "selection-color: rgb(200, 10, 10);" "selection-background-color: rgb(64, 64, 64);");
 

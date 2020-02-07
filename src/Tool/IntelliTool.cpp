@@ -40,7 +40,7 @@ void IntelliTool::onMouseLeftReleased(int x, int y){
 				this->mergeToolLayer();
 				this->deleteToolLayer();
 				activeLayer->image->calculateVisiblity();
-                Area->historyadd();
+				Area->historyadd();
 
 		}
 }

@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1338</x>
+      <y>84</y>
+      <w>192</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>/*IntelliImage*/
+--
+#imageData: QImage
+-isFastRendering: Boolean
+--
+#resizeImage(image, newSize): void
++drawPixel(p1, color): void
++drawLine(p1, p2, color, penWidth): void
++drawPlain(color): void
+/+getDisplayable(displaySize, alpha): QImage/
++loadImage(fileName): Boolean
++getPixelColor(point): QColor
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1344</x>
+      <y>270</y>
+      <w>186</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>*IntelliRasterImage*
+--
+--
+#calculateVisibility(): void
++getDisplayable(displaySize, alpha): QImage
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1338</x>
+      <y>438</y>
+      <w>192</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*IntelliShapedImage*
+--
+-triangles: vector&lt;Triangle&gt;
+#polygonData: vector&lt;QPoint&gt;
+--
+-calculateVisibility(): void
++getDisplayable(displaySize, alpha): QImage
++getPolygonData(): vector&lt;QPoint&gt;
++setPolygon(polygonData): void
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>744</x>
+      <y>366</y>
+      <w>174</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>/*IntelliTool*/
+--
+#Area: PaintingArea
+#colorPicker: IntelliColorPicker
+#Active: LayerObject
+#Canvas: LayerObject
+#drawing: Boolean
+#ActiveType: Tooltype
+--
+/+onMouseRightPressed(x,y): void/
+/+onMouseLeftPressed(x,y): void/
+/+onMouseRightReleased(x,y): void/
+/+onMousLeftReleased(x,y): void/
+/+onWheelScrolled(value): void/
+/+onMouseMoved(x,y): void/
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1392</x>
+      <y>198</y>
+      <w>18</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1392</x>
+      <y>312</y>
+      <w>18</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>210</y>
+      <w>144</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+*ImageType*
+--
+   RASTERIMAGE
+   SHAPEDIMAGE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>810</y>
+      <w>150</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*IntelliToolFloodFill*
+--
+--
++onMouseRightPressed(x,y): void
++onMouseLeftPressed(x,y): void
++onMouseRightReleased(x,y): void
++onMousLeftReleased(x,y): void
++onWheelScrolled(value): void
++onMouseMoved(x,y): void
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>564</y>
+      <w>150</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*IntelliToolPlain*
+--
+--
++onMouseRightPressed(x,y): void
++onMouseLeftPressed(x,y): void
++onMouseRightReleased(x,y): void
++onMousLeftReleased(x,y): void
++onWheelScrolled(value): void
++onMouseMoved(x,y): void
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>876</x>
+      <y>774</y>
+      <w>144</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>*IntelliToolGradient*
+--
+-startPoint: QPoint
+-endPoint: QPoint
+-LineColor: QColor
+--
++onMouseRightPressed(x,y): void
++onMouseLeftPressed(x,y): void
++onMouseRightReleased(x,y): void
++onMousLeftReleased(x,y): void
++onWheelScrolled(value): void
++onMouseMoved(x,y): void
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1122</x>
+      <y>780</y>
+      <w>150</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>*IntelliToolRectangle*
+--
+-alphaInner: Integer
+-edgeWidth: Integer
+--
++onMouseRightPressed(x,y): void
++onMouseLeftPressed(x,y): void
++onMouseRightReleased(x,y): void
++onMousLeftReleased(x,y): void
++onWheelScrolled(value): void
++onMouseMoved(x,y): void
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1128</x>
+      <y>642</y>
+      <w>144</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>*IntelliToolLine*
+--
+-start: QPoint
+-lineWidth: Integer
+-lineStyle: LineStyle
+--
++onMouseRightPressed(x,y): void
++onMouseLeftPressed(x,y): void
++onMouseRightReleased(x,y): void
++onMousLeftReleased(x,y): void
++onWheelScrolled(value): void
++onMouseMoved(x,y): void
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>768</y>
+      <w>150</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>*IntelliToolPolygon*
+--
+-lineWidth: Integer
+-isDrawingOfPolygon: Boolean
+-PointIsNearStart: Boolean
+-alphaInner: Integer
+--
++onMouseRightPressed(x,y): void
++onMouseLeftPressed(x,y): void
++onMouseRightReleased(x,y): void
++onMousLeftReleased(x,y): void
++onWheelScrolled(value): void
++onMouseMoved(x,y): void
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>816</x>
+      <y>510</y>
+      <w>210</w>
+      <h>276</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;330.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>510</y>
+      <w>228</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>360.0;10.0;10.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>498</x>
+      <y>510</y>
+      <w>264</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>420.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>834</x>
+      <y>510</y>
+      <w>306</w>
+      <h>282</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;490.0;450.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>510</y>
+      <w>282</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;450.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>732</x>
+      <y>510</y>
+      <w>90</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>684</y>
+      <w>150</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>*IntelliToolCircle*
+--
+-Middle: QPoint
+-alphaInner: Integer
+-edgeWidth: Integer
+--
++onMouseRightPressed(x,y): void
++onMouseLeftPressed(x,y): void
++onMouseRightReleased(x,y): void
++onMousLeftReleased(x,y): void
++onWheelScrolled(value): void
++onMouseMoved(x,y): void
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>510</y>
+      <w>216</w>
+      <h>186</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>340.0;10.0;10.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1164</x>
+      <y>84</y>
+      <w>168</w>
+      <h>246</h>
+    </coordinates>
+    <panel_attributes>*PaintingArea*
+--
+-Canvas: QImage
+-maxWidth: Integer
+-maxHeigth: Integer
+-Tool: IntelliTool
+-colorPicker: IntelliColorPicker
+-layerBundle: vector&lt;LayerObject&gt;
+-activeLayer: Integer
+--
++open(fileName): Boolean
++save(fileName, fileFormat): void
++addLayer(width, heigth, widthOffset,
+heigthOffset, ImageType): Integer
++addLayerAt(idx, width, heigth, widthOffset,
+heigthOffset, ImageType): Integer
++deleteLayer(index): void
++setLayerToActive(index): void
++movePositionActive(x,y): void
++moveActiveLayer(idx): void
++setAlphaOfLayer(index, alpha): void
++floodFill(r,g,b,a): void
++getWidthOfActive(): Integer
++getHeigthOfActive(): Integer
+--
+   Also overrides every Inputevent and
+   creates every Tool.
+
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>84</y>
+      <w>138</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dataType&gt;&gt;
+*LayerObject*
+--
++image: IntelliImage
++width: Integer
++heigth: Integer
++widthOffset: Integer
++heigthOffset: Integer
++alpha: Integer
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>324</x>
+      <y>150</y>
+      <w>192</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>/*IntelliToolSetttings*/
+--
+-lineWidth: Integer
+-innerAlpha: Integer
+--
++getInnerAlpha(): Integer
++setInnerAlpha( innerAlpha): void
++getLineWidth(): Integer
++setLineWidth( LineWidth): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>522</x>
+      <y>84</y>
+      <w>150</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/*IntelliColorPicker*/
+--
+-firstColor: QColor
+-secondColor: QColor
+--
++switchColors(): void
++setFirstColor(Color): void
++setSecondColor(Color): void
++getFirstColor(): QColor
++getSecondColor(): QColor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>180</y>
+      <w>138</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dataType&gt;&gt;
+*Triangle*
+--
++A: QPoint
++B: QPoint
++C: QPoint
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>246</y>
+      <w>138</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dataType&gt;&gt;
+*QImage*
+--
+--
+--
+   Handles the ImageData</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>294</y>
+      <w>138</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dataType&gt;&gt;
+*QPoint*
+--
+--
+--
+   Handles points with x,y,z.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>348</y>
+      <w>138</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dataType&gt;&gt;
+*QColor*
+--
+--
+--
+   Cotains RGBA Color Data.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1128</x>
+      <y>516</y>
+      <w>144</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>*IntelliToolPen*
+--
+-penWidth: Integer
+-point: QPoint
+--
++onMouseRightPressed(x,y): void
++onMouseLeftPressed(x,y): void
++onMouseRightReleased(x,y): void
++onMousLeftReleased(x,y): void
++onWheelScrolled(value): void
++onMouseMoved(x,y): void
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>912</x>
+      <y>498</y>
+      <w>228</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;360.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>84</y>
+      <w>144</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+*Tooltype*
+--
+   CIRCLE
+   FLOODFILL
+   GRADIENT
+   LINE
+   PEN
+   PLAIN
+   POLYGON
+   RECTANGLE
+   NONE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>408</y>
+      <w>138</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dataType&gt;&gt;
+*vector&lt;T&gt;*
+--
+--
+--
+   Is a Vector of witch contains
+   data with equal type as type T.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>324</x>
+      <y>84</y>
+      <w>192</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>/*IntelliRenderSettings*/
+--
+-fastRendering: Boolean
+--
++isFastRendering(): Boolean
++setFastRendering(Updatesetting): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>324</x>
+      <y>240</y>
+      <w>192</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>/*IntelliTriangulation*/
+--
+--
++isInTriangle(tri, P): Boolean
++calculateTriangles(polyPoints): vector&lt;Triangle&gt;
++isInPolygon(triangles, point): Boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>684</x>
+      <y>84</y>
+      <w>174</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;NAMESPACE&gt;&gt;
+*IntelliDatamanager*
+--
+   ::loadProject(Canvas, filePath): Boolean
+   ::saveProject(Canvas, filePath): Boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

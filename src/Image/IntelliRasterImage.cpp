@@ -9,7 +9,6 @@ IntelliRasterImage::IntelliRasterImage(int width, int height, bool fastRendererO
 }
 
 
-
 IntelliRasterImage::~IntelliRasterImage(){
 
 }

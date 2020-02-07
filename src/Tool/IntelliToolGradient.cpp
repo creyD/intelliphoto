@@ -83,10 +83,10 @@ void IntelliToolGradient::computeAndDrawPixelColor(QPoint Point, int FirstColor[
 				computedColor = colorPicker->getSecondColor();
 		}
 		else{
-                computedColor.setRed(static_cast<int>(ratio * SecondColor[0] + (1 - ratio) * FirstColor[0]));
-                computedColor.setGreen(static_cast<int>(ratio * SecondColor[1] + (1 - ratio) * FirstColor[1]));
-                computedColor.setBlue(static_cast<int>(ratio * SecondColor[2] + (1 - ratio) * FirstColor[2]));
-                computedColor.setAlpha(static_cast<int>(ratio * SecondColor[3] + (1 - ratio) * FirstColor[3]));
+				computedColor.setRed(static_cast<int>(ratio * SecondColor[0] + (1 - ratio) * FirstColor[0]));
+				computedColor.setGreen(static_cast<int>(ratio * SecondColor[1] + (1 - ratio) * FirstColor[1]));
+				computedColor.setBlue(static_cast<int>(ratio * SecondColor[2] + (1 - ratio) * FirstColor[2]));
+				computedColor.setAlpha(static_cast<int>(ratio * SecondColor[3] + (1 - ratio) * FirstColor[3]));
 		}
 		Canvas->image->drawPixel(Point,computedColor);
 }
@@ -100,23 +100,23 @@ double IntelliToolGradient::lenghtVector(double Vector[2]){
 }
 
 void IntelliToolGradient::computeGradientLayer(){
-        int FirstColor[4];
-        colorPicker->getFirstColor().getRgb(&FirstColor[0],&FirstColor[1],&FirstColor[2],&FirstColor[3]);
-        int SecondColor[4];
-        colorPicker->getSecondColor().getRgb(&SecondColor[0],&SecondColor[1],&SecondColor[2],&SecondColor[3]);
+		int FirstColor[4];
+		colorPicker->getFirstColor().getRgb(&FirstColor[0],&FirstColor[1],&FirstColor[2],&FirstColor[3]);
+		int SecondColor[4];
+		colorPicker->getSecondColor().getRgb(&SecondColor[0],&SecondColor[1],&SecondColor[2],&SecondColor[3]);
 
-        double NormalVector[2];
-        double NormalDotNormal;
+		double NormalVector[2];
+		double NormalDotNormal;
 
-        VectorStartEnd[0] = static_cast<double>(endPoint.x() - startPoint.x());
-        VectorStartEnd[1] = static_cast<double>(endPoint.y() - startPoint.y());
-        NormalVector[0] = VectorStartEnd[1];
-        NormalVector[1] = (-1 * VectorStartEnd[0]);
-        NormalDotNormal = dotProduct(NormalVector,NormalVector);
+		VectorStartEnd[0] = static_cast<double>(endPoint.x() - startPoint.x());
+		VectorStartEnd[1] = static_cast<double>(endPoint.y() - startPoint.y());
+		NormalVector[0] = VectorStartEnd[1];
+		NormalVector[1] = (-1 * VectorStartEnd[0]);
+		NormalDotNormal = dotProduct(NormalVector,NormalVector);
 
-        for(int i = 0; i < activeLayer->height; i++) {
+		for(int i = 0; i < activeLayer->height; i++) {
 				for(int j = 0; j < activeLayer->width; j++) {
-                        computeAndDrawPixelColor(QPoint(j,i), FirstColor, SecondColor, NormalVector, NormalDotNormal);
+						computeAndDrawPixelColor(QPoint(j,i), FirstColor, SecondColor, NormalVector, NormalDotNormal);
 				}
 		}
 }

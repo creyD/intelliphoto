@@ -26,9 +26,9 @@ LayerObject::LayerObject(){
 
 LayerObject::LayerObject(const LayerObject& layer){
 		if(layer.image->getTypeOfImage()==ImageType::RASTERIMAGE) {
-                this->image = new IntelliRasterImage(*dynamic_cast<IntelliRasterImage*>(layer.image));
+				this->image = new IntelliRasterImage(*dynamic_cast<IntelliRasterImage*>(layer.image));
 		}else if(layer.image->getTypeOfImage()==ImageType::SHAPEDIMAGE) {
-                this->image = new IntelliShapedImage(*dynamic_cast<IntelliShapedImage*>(layer.image));
+				this->image = new IntelliShapedImage(*dynamic_cast<IntelliShapedImage*>(layer.image));
 		}
 		this->width = layer.width;
 		this->height = layer.height;
@@ -130,7 +130,7 @@ void PaintingArea::slotDeleteActiveLayer(){
 				this->layerBundle.erase(layerBundle.begin() + activeLayer);
 				activeLayer--;
 		}
-        historyadd();
+		historyadd();
 }
 
 void PaintingArea::setLayerActive(int idx){
@@ -205,7 +205,7 @@ void PaintingArea::movePositionActive(int x, int y){
 		updateTools();
 		layerBundle[static_cast<size_t>(activeLayer)].widthOffset += x;
 		layerBundle[static_cast<size_t>(activeLayer)].heightOffset += y;
-        historyadd();
+		historyadd();
 }
 
 void PaintingArea::moveActiveLayer(int idx){
@@ -216,7 +216,7 @@ void PaintingArea::moveActiveLayer(int idx){
 				this->selectLayerDown();
 		}
 		guiReference->UpdateGui();
-        historyadd();
+		historyadd();
 }
 
 void PaintingArea::slotActivateLayer(int a){
@@ -511,18 +511,18 @@ void PaintingArea::updateTools(){
 
 void PaintingArea::historyadd(){
 
-        history.erase(history.begin()+historyPresent+1,history.end());
-        historyPresent++;
-        history.push_back(layerBundle);
+		history.erase(history.begin() + historyPresent + 1,history.end());
+		historyPresent++;
+		history.push_back(layerBundle);
 }
 
 void PaintingArea::historyGoBack(){
-    historyPresent--;
-    if( historyPresent<0){
-        historyPresent=0;
-    }
-    layerBundle = history[static_cast<size_t>(historyPresent)];
-    this->guiReference->UpdateGui();
+		historyPresent--;
+		if( historyPresent<0) {
+				historyPresent = 0;
+		}
+		layerBundle = history[static_cast<size_t>(historyPresent)];
+		this->guiReference->UpdateGui();
 }
 
 void PaintingArea::historyGoForward(){
