@@ -49,30 +49,41 @@ class AuthorWeek:
         self.lines = lines
     
     def __repr__(self):
-        print(self.week)
         all = {**dict(newCounter()), **dict(self.lines)}
         final = {}
+        numZeros = 0
+
+        for line_c in all.values():
+            if line_c == 0:
+                numZeros += 1
+
+        print(all)
+        print(f"numZeros: {numZeros}")
 
         for person, peline in all.items():
+            # print(person)
             fac = factors.get(person, 1)
 
-            if (len(self.lines) > 3):
-                sum = summands_min.get(person, 0)
+            if numZeros > 2 and peline == 0:
+                final[person] = 0
             else:
-                sum = 0
+                sum_n = summands_min.get(person, 0)
             
-            if sum != summands_max.get(person, 0):
-                sum = random.randrange(sum, summands_max.get(person, 0))
+                if sum_n != summands_max.get(person, 0):
+                    sum_n = random.randrange(sum_n, summands_max.get(person, 0))
+                
+                final[person] = min(int(fac * (peline + sum_n)), 7000)
 
-            final[person] = min(int(fac * (peline + sum)), 7000)
-
-        return str(self.week) + " " + " ".join([str(v) for v in final.values()])
+        print("final.values")
+        print(final.values())
+        finished_line = str(self.week) + " " + " ".join([str(v) for v in final.values()])
+        print(finished_line)
+        return finished_line
 
 if __name__ == "__main__":
     if len(sys.argv) >= 3:
         with open(sys.argv[1], "r", encoding="utf-8") as f:
             for line in f:
-                print(line)
                 timepoints.append(AuthorTimepoint(line))
 
         cur_week = ""
