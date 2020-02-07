@@ -5,18 +5,16 @@ For the user manual see `docs/manual.pdf`
 ## Content
 
 - `src` - Source Code
-- `docs` - Documentation of the source code and user manual
+- `docs` - Documentation of the source code/ reference (`docs/html/index.html`, EN) and user manual (`docs/Benutzerhandbuch.pdf`, DE) and developer manual (`docs/Entwicklerhandbuch.pdf`)
 - `Abgabe` - Files that were submitted prior to the development start
 
 ## Presentations and Changelog
 
 - since `0.3`: https://prezi.com/view/M593VBJhmfwQzuqt3t6f/
 
-## Branching
+## Build Guide
 
-- `master` branch: current state of the program, pull requests only by maintainers or developers
-- `dev` branch: state of development for next week, will be merged every Thursday, pushable for maintainers, pull requests for everyone
-- `dev-X` branches: feature development branches which will be merged into dev, when tested
-- `hotfix-X` branches: braches to fix small but important bugs, will be merged into master and dev
-
-On Thursday the development state (`dev`) will be merged into master and tagged with the current version.
+- Make sure the requirements (QT version 5.14.1) are installed correctly
+- Open the project file (`src/IntelliPhoto.pro`) in QT Creator
+- Select the correct build kit for your operating system
+- Run the code in release mode
