@@ -66,11 +66,11 @@ friend IntelliPhotoGui;
 public:
 /*!
  * \brief PaintingArea is the constructor of the PaintingArea class, which initiates the working environment
- * \param maxWidth      - The maximum amount of pixles that are inside painting area from left to right (default=600px)
- * \param maxHeight     - The maximum amount of pixles that are inside painting area from top to bottom (default=600px)
+ * \param newMaxWidth      - The maximum amount of pixles that are inside painting area from left to right (default=600px)
+ * \param newMaxHeight     - The maximum amount of pixles that are inside painting area from top to bottom (default=600px)
  * \param parent        - The parent window of the main window (default=nullptr)
  */
-PaintingArea(int maxWidth = 600, int maxHeight = 600, QWidget*parent = nullptr);
+PaintingArea(int newMaxWidth = 600, int newMaxHeight = 600, QWidget*parent = nullptr);
 
 /*!
  * \brief This deconstructor is used to clear up the memory and remove the currently active window
@@ -85,7 +85,7 @@ void setRenderSettings(bool isFastRenderingOn);
 
 /*!
  * \brief getRenderSettings updates all Images to the new Rendersetting.
- * \param isFastRenderingOn is the new given flag for the FastRenderer.
+ * \return Returns if the flag for the FastRendererin is enabled.
  */
 bool getRenderSettings();
 
@@ -302,10 +302,10 @@ void historyGoForward();
 
 /*!
  * \brief setCanvasDimensions sets the dimension of the Canvas
- * \param maxWidth  - the width of the Canvas.
- * \param maxHeight - the height of the Canvas.
+ * \param newMaxWidth  - the width of the Canvas.
+ * \param newMaxHeight - the height of the Canvas.
  */
-void setCanvasDimensions(int maxWidth, int maxHeight);
+void setCanvasDimensions(int newMaxWidth, int newMaxHeight);
 
 /*!
  * \brief drawPixelOntoActive draws a pixel onto the image data of the active Layer.
