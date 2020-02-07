@@ -1,5 +1,5 @@
 Req-ID:
-    0005
+    0006
 Req-Type:
     Nicht-Funktional
 Events/UCs:
@@ -15,11 +15,10 @@ Description:
     -2 Use-Case-Diagramme
 Originator:
     Paul Norberger
-Fit Criterion: auf Referenzsystem
 Priority:
     50
 Support Material:
-
+    Ubungsblat_01.pdf
 Conflicts:
     - Keine bekannten Konflikte, Stand: 06.02.2020
 History:
