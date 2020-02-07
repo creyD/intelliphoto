@@ -88,7 +88,7 @@ std::vector<Triangle> IntelliTriangulation::calculateTriangles(std::vector<QPoin
 				}
 
 				// update post und prev idx
-				post = getPrev(post, Vertices.size());
+				post = static_cast<int>(getPrev(post, Vertices.size()));
 				prev = prev<smallest.idx ? prev : (prev - 1);
 
 				// calcultae neighboors of prev and post to calculate new interior angles

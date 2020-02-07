@@ -1,8 +1,0 @@
-history tool doesnt load polygon data on undo iff project was loaded
-history tool doesnt save delete Layer
-history tool creates to many layers
-history tool resets polygon data to late and on the wrong possition
-
-
-Gradient breaks Heap Size, when big Witdh and Height (appeared on 1280x720)
-Heap block at 0000000025422990 modified at 0000000025422A28 past requested size of 88

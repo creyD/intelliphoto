@@ -1,0 +1,35 @@
+Req-ID:
+    0005
+Req-Type:
+    Funktional
+Events/UCs:
+    -Rückgängigmachen eines vorherigen Fehlers
+    -Rückgängigmachen einer versehntlichen Korrektur
+    -Einen rückgängig gemachten Schritt wiederholen
+Description:
+    -Es werden insgesamt 20 Bearbeitungschritte gespeichert
+    -Die gesamten Pixeldaten der Ebenen werden für jeden Schritt gespeichert
+    -Wird der Undo aktiviert, wird zunächst bestimmt ob sich die Daten für den Schritt direkt
+    davor im Speicher befinden. Ist dies der Fall, werden die Daten geladen und der intern 
+    gespeicherte Index des geladenen Statuses verschiebt sich nach vorn, so kann mehrfach
+    geundoed und redoed werden. Ist dies nicht der Fall, gibt es ein audiovisuelles Feedback,
+    dass der Schritt nicht geladen werden kann.
+    -Wird der Undo aktiviert, wird zunächst bestimmt ob sich die Daten für den Schritt direkt
+    davor im Speicher befinden Ist dies der Fall, werden die Daten geladen und der intern 
+    gespeicherte Index des geladenen Statuses verschiebt sich nach hinten, so kann mehrfach
+    geundoed und redoed werden. Ist dies nicht der Fall, gibt es ein audiovisuelles Feedback,
+    dass der Schritt nicht geladen werden kann.
+Originator:
+    Paul Norberger
+Fit Criterion:
+    -Bis zu 20 Schritte können geundoed und redoed werden
+    -Das Laden der einzelnen Schritte dauert für ein 512x512px Bild nicht länger als 0.2 Sekunden auf Referenzsystem
+Priority:
+    50
+Support Material:
+    Ubungsblat_01.pdf
+Conflicts:
+    - Keine bekannten Konflikte, Stand: 06.02.2020
+History:
+    - Erstellt am 18.12.2019, von Paul Norberger
+    - Vollständig implementiert, Stand: 06.02.2020

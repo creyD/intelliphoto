@@ -1,6 +1,6 @@
 var class_painting_area =
 [
-    [ "PaintingArea", "class_painting_area.html#a4fa0ec23e78cc59f28c823584c721460", null ],
+    [ "PaintingArea", "class_painting_area.html#a3f6d5f8e544ecc73e84828ac15ab28d8", null ],
     [ "~PaintingArea", "class_painting_area.html#aa32adc113f77031945f73e33051931e8", null ],
     [ "addLayer", "class_painting_area.html#abd5e3e4d3f2f026383d0a275dc55cbbd", null ],
     [ "addLayerAt", "class_painting_area.html#a1274e60a912d2f1dfabcdd1b767fb029", null ],
@@ -40,7 +40,7 @@ var class_painting_area =
     [ "open", "class_painting_area.html#a88c7e759aa8375a56129791645f46ea5", null ],
     [ "paintEvent", "class_painting_area.html#a4a8138b9508ee4ec87a7fca9160368a7", null ],
     [ "save", "class_painting_area.html#aa2463d4f403224086acab02903ae407e", null ],
-    [ "setCanvasDimensions", "class_painting_area.html#a3bfc63de27c54f3edf9feb3af538343c", null ],
+    [ "setCanvasDimensions", "class_painting_area.html#a641a654451d5883fc43e7f7563e64f7e", null ],
     [ "setLayerActive", "class_painting_area.html#a79eb059829f27e8cdb3a54c5cd3d12c9", null ],
     [ "setLayerAlpha", "class_painting_area.html#a6c7e0865e684ae1089ee283b4399d055", null ],
     [ "setPolygon", "class_painting_area.html#aa409492ac26483d618bb33616f2e3f81", null ],

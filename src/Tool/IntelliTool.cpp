@@ -40,6 +40,7 @@ void IntelliTool::onMouseLeftReleased(int x, int y){
 				this->mergeToolLayer();
 				this->deleteToolLayer();
 				activeLayer->image->calculateVisiblity();
+				Area->historyadd();
 
 		}
 }
@@ -56,8 +57,8 @@ void IntelliTool::onWheelScrolled(int value){
 
 bool IntelliTool::createToolLayer(){
 		if(Area->createTempTopLayer(Area->activeLayer)) {
-				this->activeLayer = &Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer)];
-				this->Canvas = &Area->layerBundle[static_cast<unsigned long long>(Area->activeLayer + 1)];
+				this->activeLayer = &Area->layerBundle[static_cast<size_t>(Area->activeLayer)];
+				this->Canvas = &Area->layerBundle[static_cast<size_t>(Area->activeLayer + 1)];
 				return true;
 		}
 		return false;
@@ -90,7 +91,6 @@ void IntelliTool::mergeToolLayer(){
 				activeLayer->image->setPolygon(Canvas->image->getPolygonData());
 		}
 		Area->guiReference->UpdateGui();
-		Area->historyadd();
 }
 
 void IntelliTool::deleteToolLayer(){

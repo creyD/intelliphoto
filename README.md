@@ -1,23 +1,28 @@
 # IntelliPhoto
 
-For the user manual see `docs/manual.pdf`
+For the user manual see `docs/Benutzerhandbuch.pdf`
 
 ## Content
 
+- `Intelliphoto.app` - MacOS App
 - `src` - Source Code
-- `docs` - Documentation of the source code and user manual
-- `Examples` - Temporary folder for example pictures
+- `docs` - Documentation of the source code/ reference (`docs/html/index.html`, EN) and user manual (`docs/Benutzerhandbuch.pdf`, DE) and developer manual (`docs/Entwicklerhandbuch.pdf`)
 - `Abgabe` - Files that were submitted prior to the development start
 
-## Presentations
+## Presentations and Changelog
 
 - since `0.3`: https://prezi.com/view/M593VBJhmfwQzuqt3t6f/
 
-## Branching
+## Build Guide for Windows
 
-- `master` branch: current state of the program, pull requests only by maintainers or developers
-- `dev` branch: state of development for next week, will be merged every Thursday, pushable for maintainers, pull requests for everyone
-- `dev-X` branches: feature development branches which will be merged into dev, when tested
-- `hotfix-X` branches: braches to fix small but important bugs, will be merged into master and dev
+- Make sure the requirements (QT version 5.14.1 and QT Creator) are installed correctly
+- Open the project file (`src/IntelliPhoto.pro`) in QT Creator
+- Select the correct build kit for your operating system
+- Run the code in release mode
 
-On Thursday the development state (`dev`) will be merged into master and tagged with the current version.
+## Build Guide für Windows (DE)
+
+- Sicherstellen, dass QT (v5.14.1) und QT installiert sind
+- Projektdatei (`src/IntelliPhoto.pro`) in QT Creator öffnen
+- Korrektes Build Kit für das derzeitige Betriebssystem auswählen
+- Links unten auf "Run" klicken oder STRG + R

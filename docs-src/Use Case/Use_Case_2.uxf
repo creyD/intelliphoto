@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>16</zoom_level>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>128</x>
+      <y>16</y>
+      <w>160</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>3D-Künstler
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>144</x>
+      <y>208</y>
+      <w>128</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Einsteiger
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>496</x>
+      <y>256</y>
+      <w>288</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>Hervorrheben bestimmter
+Bildbereiche
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>464</x>
+      <y>560</y>
+      <w>352</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Erstellung komplexer Diagramme
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>496</x>
+      <y>416</y>
+      <w>304</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Erstellung einfacher Motive
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>128</x>
+      <y>384</y>
+      <w>160</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Casual User
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>192</y>
+      <w>336</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>190.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>368</y>
+      <w>336</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>190.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>176</x>
+      <y>336</y>
+      <w>368</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>210.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>48</x>
+      <y>592</y>
+      <w>288</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Freiberufliche Fotografen
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>0</y>
+      <w>352</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>200.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>0</y>
+      <w>320</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>180.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>480</x>
+      <y>96</y>
+      <w>304</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>Anfertigen von
+ortographischen Skizzen
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>416</x>
+      <y>16</y>
+      <w>432</w>
+      <h>704</h>
+    </coordinates>
+    <panel_attributes>lw=2
+CircleTool
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>176</x>
+      <y>560</y>
+      <w>320</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>180.0;30.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>368</y>
+      <w>320</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>180.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

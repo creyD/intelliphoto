@@ -1,0 +1,26 @@
+Req-ID:
+    0006
+Req-Type:
+    Nicht-Funktional
+Events/UCs:
+    -Dokumentation
+    -Designdokumentation
+Description:
+    -1 UML-Diagramm
+    -2 Sequenzdiagramme
+    -2 Zustandsdiagramme
+    -1 User Manual
+    -10 CRC-Karten
+    -8 Volere Snow Cards
+    -2 Use-Case-Diagramme
+Originator:
+    Paul Norberger
+Priority:
+    50
+Support Material:
+    Ubungsblat_01.pdf
+Conflicts:
+    - Keine bekannten Konflikte, Stand: 06.02.2020
+History:
+    - Erstellt am 18.12.2019, von Paul Norberger
+    - Vollständig umgesetzt, Stand: 06.02.2020
