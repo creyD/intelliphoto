@@ -1,0 +1,11 @@
+digraph "intelliphoto/src/Image" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_83a4347d11f2ba6343d546ab133722d2 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_83a4347d11f2ba6343d546ab133722d2.html"]
+  dir_544f9dcb748f922e4bb3be2540380bf2 [shape=box, label="Image", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_544f9dcb748f922e4bb3be2540380bf2.html"];
+  }
+  dir_f50aa5156fe016a259583c412dbf440c [shape=box label="IntelliHelper" URL="dir_f50aa5156fe016a259583c412dbf440c.html"];
+  dir_544f9dcb748f922e4bb3be2540380bf2->dir_f50aa5156fe016a259583c412dbf440c [headlabel="3", labeldistance=1.5 headhref="dir_000003_000004.html"];
+}
