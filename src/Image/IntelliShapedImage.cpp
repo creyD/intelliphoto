@@ -5,16 +5,8 @@
 #include <QDebug>
 
 IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererOn)
-		: IntelliRasterImage(width, height, fastRendererOn){
+        : IntelliRasterImage(width, height, fastRendererOn){
 		TypeOfImage = ImageType::SHAPEDIMAGE;
-		this->fastRenderering = fastRendererOn;
-}
-
-IntelliShapedImage* IntelliShapedImage::copy(const IntelliShapedImage& image){
-		this->TypeOfImage = ImageType::SHAPEDIMAGE;
-		IntelliShapedImage* shaped = new IntelliShapedImage(imageData.width(), imageData.height(), this->fastRenderering);
-		shaped->imageData.copy(0,0,image.getWidth(),image.getWidth());
-		return shaped;
 }
 
 IntelliShapedImage::~IntelliShapedImage(){

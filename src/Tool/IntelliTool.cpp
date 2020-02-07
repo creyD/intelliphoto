@@ -40,6 +40,7 @@ void IntelliTool::onMouseLeftReleased(int x, int y){
 				this->mergeToolLayer();
 				this->deleteToolLayer();
 				activeLayer->image->calculateVisiblity();
+                Area->historyadd();
 
 		}
 }
@@ -90,7 +91,6 @@ void IntelliTool::mergeToolLayer(){
 				activeLayer->image->setPolygon(Canvas->image->getPolygonData());
 		}
 		Area->guiReference->UpdateGui();
-		Area->historyadd();
 }
 
 void IntelliTool::deleteToolLayer(){

@@ -459,17 +459,7 @@ void updateTools();
 /*!
  * \brief history - an array out of containers to save history actions.
  */
-std::vector<LayerObject> history[100] = {layerBundle};
-
-/*!
- * \brief historyMaxPast a indicator how many steps you can go into the past.
- */
-int historyMaxPast = 0;
-
-/*!
- * \brief historyMaxPast a indicator how many steps you can go into the future.
- */
-int historyMaxFuture = 0;
+std::vector<std::vector<LayerObject>> history = {layerBundle};
 
 /*!
  * \brief historyPresent a indicator where the present is.
