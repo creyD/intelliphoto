@@ -1,0 +1,329 @@
+src/IntelliHelper/IntelliDatamanager.cpp:89:33: style: Local variable 'alpha' shadows outer variable [shadowVariable]
+          int red, green, blue, alpha;
+                                ^
+src/IntelliHelper/IntelliDatamanager.cpp:66:53: note: Shadowed declaration
+      int width, height, widthOffset, heightOffset, alpha;
+                                                    ^
+src/IntelliHelper/IntelliDatamanager.cpp:89:33: note: Shadow variable
+          int red, green, blue, alpha;
+                                ^
+src/Layer/PaintingArea.cpp:23:14: warning: Member variable 'LayerObject::image' is not initialized in the constructor. [uninitMemberVar]
+LayerObject::LayerObject(){
+             ^
+src/Layer/PaintingArea.cpp:23:14: warning: Member variable 'LayerObject::width' is not initialized in the constructor. [uninitMemberVar]
+LayerObject::LayerObject(){
+             ^
+src/Layer/PaintingArea.cpp:23:14: warning: Member variable 'LayerObject::height' is not initialized in the constructor. [uninitMemberVar]
+LayerObject::LayerObject(){
+             ^
+src/Layer/PaintingArea.cpp:23:14: warning: Member variable 'LayerObject::widthOffset' is not initialized in the constructor. [uninitMemberVar]
+LayerObject::LayerObject(){
+             ^
+src/Layer/PaintingArea.cpp:23:14: warning: Member variable 'LayerObject::heightOffset' is not initialized in the constructor. [uninitMemberVar]
+LayerObject::LayerObject(){
+             ^
+src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::doubleStartPoint' is not initialized in the constructor. [uninitMemberVar]
+IntelliToolGradient::IntelliToolGradient(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
+                     ^
+src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::VectorStartEnd' is not initialized in the constructor. [uninitMemberVar]
+IntelliToolGradient::IntelliToolGradient(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
+                     ^
+src/tst_unittest.cpp:1370:0: style: The function 'bench_Circle_fullDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1388:0: style: The function 'bench_Circle_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1409:0: style: The function 'bench_FloodFill_fullDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1427:0: style: The function 'bench_FloodFill_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1448:0: style: The function 'bench_Line_fullDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1466:0: style: The function 'bench_Line_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1487:0: style: The function 'bench_Pen_fullDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1505:0: style: The function 'bench_Pen_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1525:0: style: The function 'bench_Plain_fullDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1543:0: style: The function 'bench_Plain_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1563:0: style: The function 'bench_Polygon_fullDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1602:0: style: The function 'bench_Polygon_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1222:0: style: The function 'bench_RasterImage_drawLine' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1210:0: style: The function 'bench_RasterImage_drawPixel' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1235:0: style: The function 'bench_RasterImage_drawPoint' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1247:0: style: The function 'bench_RasterImage_getDisplayable' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1269:0: style: The function 'bench_RasterImage_getImageData' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1257:0: style: The function 'bench_RasterImage_getPixelColor' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1279:0: style: The function 'bench_RasterImage_setImageData' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1626:0: style: The function 'bench_Rectangle_fullDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1645:0: style: The function 'bench_Rectangle_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1302:0: style: The function 'bench_ShapedImage_drawLine' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1290:0: style: The function 'bench_ShapedImage_drawPixel' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1315:0: style: The function 'bench_ShapedImage_drawPoint' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1327:0: style: The function 'bench_ShapedImage_getDisplayable' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1349:0: style: The function 'bench_ShapedImage_getImageData' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1337:0: style: The function 'bench_ShapedImage_getPixelColor' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1359:0: style: The function 'bench_ShapedImage_setImageData' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1666:0: style: The function 'bench_Triangulation_Coverage' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1079:0: style: The function 'bench_addLayer' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1180:0: style: The function 'bench_createTools' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1086:0: style: The function 'bench_deleteLayer' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1115:0: style: The function 'bench_floodFill' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1125:0: style: The function 'bench_moveActive' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1093:0: style: The function 'bench_setActive' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1105:0: style: The function 'bench_setAlpha' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1168:0: style: The function 'bench_setLayerDown' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1155:0: style: The function 'bench_setLayerUp' is never used. [unusedFunction]
+
+^
+src/tst_unittest.cpp:1138:0: style: The function 'bench_setPolygon' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:118:0: style: The function 'cleanupTestCase' is never used. [unusedFunction]
+
+^
+src/GUI/IntelliPhotoGui.cpp:30:0: style: The function 'closeEvent' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:113:0: style: The function 'initTestCase' is never used. [unusedFunction]
+
+^
+src/Layer/PaintingArea.cpp:328:0: style: The function 'mouseMoveEvent' is never used. [unusedFunction]
+
+^
+src/Layer/PaintingArea.cpp:309:0: style: The function 'mousePressEvent' is never used. [unusedFunction]
+
+^
+src/Layer/PaintingArea.cpp:341:0: style: The function 'mouseReleaseEvent' is never used. [unusedFunction]
+
+^
+src/Layer/PaintingArea.cpp:371:0: style: The function 'paintEvent' is never used. [unusedFunction]
+
+^
+src/Layer/PaintingArea.cpp:222:0: style: The function 'slotActivateLayer' is never used. [unusedFunction]
+
+^
+src/Layer/PaintingArea.cpp:128:0: style: The function 'slotDeleteActiveLayer' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:211:0: style: The function 'test_Circle_fullDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:213:0: style: The function 'test_Circle_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:216:0: style: The function 'test_FloodFill_fullDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:218:0: style: The function 'test_FloodFill_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:221:0: style: The function 'test_Line_fullDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:223:0: style: The function 'test_Line_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:226:0: style: The function 'test_Pen_fullDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:228:0: style: The function 'test_Pen_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:231:0: style: The function 'test_Plain_fullDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:233:0: style: The function 'test_Plain_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:236:0: style: The function 'test_Polygon_fullDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:238:0: style: The function 'test_Polygon_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:157:0: style: The function 'test_RasterImage_drawLine' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:155:0: style: The function 'test_RasterImage_drawPixel' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:159:0: style: The function 'test_RasterImage_drawPoint' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:161:0: style: The function 'test_RasterImage_getDisplayable' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:169:0: style: The function 'test_RasterImage_getImageData' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:167:0: style: The function 'test_RasterImage_getPixelColor' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:165:0: style: The function 'test_RasterImage_loadImage' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:171:0: style: The function 'test_RasterImage_setImageData' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:163:0: style: The function 'test_RasterImage_setPolygon' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:241:0: style: The function 'test_Rectangle_fullDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:243:0: style: The function 'test_Rectangle_interruptedDraw' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:177:0: style: The function 'test_ShapedImage_drawLine' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:175:0: style: The function 'test_ShapedImage_drawPixel' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:179:0: style: The function 'test_ShapedImage_drawPoint' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:181:0: style: The function 'test_ShapedImage_getDisplayable' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:189:0: style: The function 'test_ShapedImage_getImageData' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:187:0: style: The function 'test_ShapedImage_getPixelColor' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:185:0: style: The function 'test_ShapedImage_loadImage' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:191:0: style: The function 'test_ShapedImage_setImageData' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:183:0: style: The function 'test_ShapedImage_setPolygon' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:247:0: style: The function 'test_Triangulation_Coverage' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:132:0: style: The function 'test_addLayer' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:195:0: style: The function 'test_createTool_Circle' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:197:0: style: The function 'test_createTool_FloodFill' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:199:0: style: The function 'test_createTool_Line' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:201:0: style: The function 'test_createTool_Pen' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:203:0: style: The function 'test_createTool_Plain' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:205:0: style: The function 'test_createTool_Polygon' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:207:0: style: The function 'test_createTool_Rectangle' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:151:0: style: The function 'test_createTools' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:134:0: style: The function 'test_deleteLayer' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:140:0: style: The function 'test_floodFill' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:142:0: style: The function 'test_moveActive' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:136:0: style: The function 'test_setActive' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:138:0: style: The function 'test_setAlpha' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:148:0: style: The function 'test_setLayerDown' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:146:0: style: The function 'test_setLayerUp' is never used. [unusedFunction]
+
+^
+src/mainUnitTest.cpp:144:0: style: The function 'test_setPolygon' is never used. [unusedFunction]
+
+^
+src/Layer/PaintingArea.cpp:356:0: style: The function 'wheelEvent' is never used. [unusedFunction]
+
+^
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
+

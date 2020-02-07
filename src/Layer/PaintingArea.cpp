@@ -40,7 +40,7 @@ LayerObject::LayerObject(const LayerObject& layer){
 PaintingArea::PaintingArea(int newMaxWidth, int newMaxHeight, QWidget*parent)
 		: QLabel(parent){
 		this->Tool = nullptr;
-        this->setCanvasDimensions(newMaxWidth, newMaxHeight);
+		this->setCanvasDimensions(newMaxWidth, newMaxHeight);
 		activeLayer = -1;
 }
 
@@ -71,8 +71,8 @@ bool PaintingArea::getRenderSettings(){
 
 void PaintingArea::setCanvasDimensions(int newMaxWidth, int newMaxHeight){
 		//set standart parameter
-        this->maxWidth = newMaxWidth;
-        this->maxHeight = newMaxHeight;
+		this->maxWidth = newMaxWidth;
+		this->maxHeight = newMaxHeight;
 		Canvas = new QImage(maxWidth,maxHeight, QImage::Format_ARGB32);
 
 		this->offsetXDimension = maxWidth / 2;
@@ -453,14 +453,14 @@ IntelliTool* PaintingArea::copyActiveTool(){
 		switch(Tool->getTooltype()) {
 		case IntelliTool::Tooltype::CIRCLE: return new IntelliToolCircle(this,&colorPicker, &Toolsettings);
 		case IntelliTool::Tooltype::FLOODFILL: return new IntelliToolFloodFill(this,&colorPicker, &Toolsettings);
-        case IntelliTool::Tooltype::GRADIENT: return new IntelliToolGradient(this,&colorPicker, &Toolsettings);
+		case IntelliTool::Tooltype::GRADIENT: return new IntelliToolGradient(this,&colorPicker, &Toolsettings);
 		case IntelliTool::Tooltype::LINE: return new IntelliToolLine(this,&colorPicker, &Toolsettings);
 		case IntelliTool::Tooltype::PEN: return new IntelliToolPen(this,&colorPicker, &Toolsettings);
 		case IntelliTool::Tooltype::PLAIN: return new IntelliToolPlainTool(this,&colorPicker, &Toolsettings);
 		case IntelliTool::Tooltype::POLYGON: return new IntelliToolPolygon(this,&colorPicker, &Toolsettings);
 		case IntelliTool::Tooltype::RECTANGLE: return new IntelliToolRectangle(this,&colorPicker, &Toolsettings);
-        case IntelliTool::Tooltype::NONE: return nullptr;
-        default: return nullptr;
+		case IntelliTool::Tooltype::NONE: return nullptr;
+		default: return nullptr;
 		}
 }
 
@@ -526,10 +526,10 @@ void PaintingArea::historyGoBack(){
 }
 
 void PaintingArea::historyGoForward(){
-    historyPresent++;
-    if(historyPresent>=static_cast<int>(history.size())){
-        historyPresent=static_cast<int>(history.size()-1);
-    }
-    layerBundle = history[static_cast<size_t>(historyPresent)];
+		historyPresent++;
+		if(historyPresent>=static_cast<int>(history.size())) {
+				historyPresent = static_cast<int>(history.size() - 1);
+		}
+		layerBundle = history[static_cast<size_t>(historyPresent)];
 		this->guiReference->UpdateGui();
 }

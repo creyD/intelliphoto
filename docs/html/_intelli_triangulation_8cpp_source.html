@@ -176,7 +176,7 @@ $(document).ready(function(){initNavTree('_intelli_triangulation_8cpp_source.htm
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                }</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="comment">// update post und prev idx</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                post = getPrev(post, Vertices.size());</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                post = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(getPrev(post, Vertices.size()));</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                prev = prev&lt;smallest.idx ? prev : (prev - 1);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <span class="comment">// calcultae neighboors of prev and post to calculate new interior angles</span></div>

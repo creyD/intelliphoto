@@ -2,7 +2,7 @@ var searchData=
 [
   ['save_165',['save',['../class_painting_area.html#aa2463d4f403224086acab02903ae407e',1,'PaintingArea']]],
   ['saveproject_166',['saveProject',['../namespace_intelli_datamanager.html#ac02f6f47ff8785ad9d49588baaca3d54',1,'IntelliDatamanager']]],
-  ['setcanvasdimensions_167',['setCanvasDimensions',['../class_painting_area.html#a3bfc63de27c54f3edf9feb3af538343c',1,'PaintingArea']]],
+  ['setcanvasdimensions_167',['setCanvasDimensions',['../class_painting_area.html#a641a654451d5883fc43e7f7563e64f7e',1,'PaintingArea']]],
   ['setfastrendering_168',['setFastRendering',['../class_intelli_render_settings.html#a5ffb878b77e5d448ffe4eb03a8397ac2',1,'IntelliRenderSettings']]],
   ['setfirstcolor_169',['setFirstColor',['../class_intelli_color_picker.html#a7e2ddbbbfbed383f06b24e5bf6b27ae8',1,'IntelliColorPicker']]],
   ['setimagedata_170',['setImageData',['../class_intelli_image.html#ab09c64e7559f3db32ca3b20ba6339268',1,'IntelliImage']]],
