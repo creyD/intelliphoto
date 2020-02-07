@@ -1,6 +1,6 @@
 # IntelliPhoto
 
-For the user manual see `docs/manual.pdf`
+For the user manual see `docs/Benutzerhandbuch.pdf`
 
 ## Content
 
@@ -14,7 +14,14 @@ For the user manual see `docs/manual.pdf`
 
 ## Build Guide
 
-- Make sure the requirements (QT version 5.14.1) are installed correctly
+- Make sure the requirements (QT version 5.14.1 and QT Creator) are installed correctly
 - Open the project file (`src/IntelliPhoto.pro`) in QT Creator
 - Select the correct build kit for your operating system
 - Run the code in release mode
+
+## Build Guide (DE)
+
+- Sicherstellen, dass QT (v5.14.1) und QT installiert sind
+- Projektdatei (`src/IntelliPhoto.pro`) in QT Creator öffnen
+- Korrektes Build Kit für das derzeitige Betriebssystem auswählen
+- Links unten auf "Run" klicken oder STRG + R
