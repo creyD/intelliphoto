@@ -5,7 +5,7 @@
 #include <QDebug>
 
 IntelliShapedImage::IntelliShapedImage(int width, int height, bool fastRendererOn)
-        : IntelliRasterImage(width, height, fastRendererOn){
+		: IntelliRasterImage(width, height, fastRendererOn){
 		TypeOfImage = ImageType::SHAPEDIMAGE;
 }
 

@@ -28,12 +28,6 @@ IntelliToolGradient::IntelliToolGradient(PaintingArea* Area, IntelliColorPicker*
 src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::VectorStartEnd' is not initialized in the constructor. [uninitMemberVar]
 IntelliToolGradient::IntelliToolGradient(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
                      ^
-src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::NormalVector' is not initialized in the constructor. [uninitMemberVar]
-IntelliToolGradient::IntelliToolGradient(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
-                     ^
-src/Tool/IntelliToolGradient.cpp:6:22: warning: Member variable 'IntelliToolGradient::NormalDotNormal' is not initialized in the constructor. [uninitMemberVar]
-IntelliToolGradient::IntelliToolGradient(PaintingArea* Area, IntelliColorPicker* colorPicker, IntelliToolsettings* Toolsettings)
-                     ^
 src/tst_unittest.cpp:1370:0: style: The function 'bench_Circle_fullDraw' is never used. [unusedFunction]
 
 ^

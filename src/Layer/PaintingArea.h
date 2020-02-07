@@ -459,7 +459,7 @@ void updateTools();
 /*!
  * \brief history - an array out of containers to save history actions.
  */
-std::vector<std::vector<LayerObject>> history = {layerBundle};
+std::vector<std::vector<LayerObject> > history = {layerBundle};
 
 /*!
  * \brief historyPresent a indicator where the present is.

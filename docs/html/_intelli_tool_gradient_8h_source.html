@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">IntelliPhoto
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">1</span>
    </div>
   </td>
  </tr>
@@ -117,24 +117,20 @@ $(document).ready(function(){initNavTree('_intelli_tool_gradient_8h_source.html'
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">double</span> VectorStartEnd[2];</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">double</span> NormalVector[2];</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;QColor LineColor;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keywordtype">double</span> NormalDotNormal;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keywordtype">bool</span> hasMoved;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;QColor LineColor;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">bool</span> hasMoved;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">void</span> computeAndDrawPixelColor(QPoint Point);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordtype">double</span> dotProduct(<span class="keywordtype">double</span> Vector1[2], <span class="keywordtype">double</span> Vector2[2]);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keywordtype">double</span> lenghtVector(<span class="keywordtype">double</span> Vector[2]);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="keywordtype">void</span> computeGradientLayer();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;};</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif // INTELLITOOLGRADIENT_H</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">void</span> computeAndDrawPixelColor(QPoint Point, <span class="keywordtype">int</span> FirstColor[4], <span class="keywordtype">int</span> SecondColor[4], <span class="keywordtype">double</span> NormalVector[2], <span class="keywordtype">double</span> NormalDotNormal);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">double</span> dotProduct(<span class="keywordtype">double</span> Vector1[2], <span class="keywordtype">double</span> Vector2[2]);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordtype">double</span> lenghtVector(<span class="keywordtype">double</span> Vector[2]);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keywordtype">void</span> computeGradientLayer();</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;};</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif // INTELLITOOLGRADIENT_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_intelli_tool_gradient_html_a6bbe09b64d8cd69e5ff64a3344725b11"><div class="ttname"><a href="class_intelli_tool_gradient.html#a6bbe09b64d8cd69e5ff64a3344725b11">IntelliToolGradient::onMouseLeftReleased</a></div><div class="ttdeci">virtual void onMouseLeftReleased(int x, int y) override</div><div class="ttdoc">A function managing the left click Released of a Mouse. Call this in child classes!</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_gradient_8cpp_source.html#l00032">IntelliToolGradient.cpp:32</a></div></div>
@@ -146,7 +142,7 @@ $(document).ready(function(){initNavTree('_intelli_tool_gradient_8h_source.html'
 <div class="ttc" id="aclass_intelli_tool_gradient_html_a7d5c812815872b7e394e36362358b539"><div class="ttname"><a href="class_intelli_tool_gradient.html#a7d5c812815872b7e394e36362358b539">IntelliToolGradient::~IntelliToolGradient</a></div><div class="ttdeci">virtual ~IntelliToolGradient() override</div><div class="ttdoc">~IntelliToolGradient basic destructor.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_gradient_8cpp_source.html#l00013">IntelliToolGradient.cpp:13</a></div></div>
 <div class="ttc" id="aclass_intelli_tool_gradient_html_aed5ad1f718d53034d944ff8f1e8f9f36"><div class="ttname"><a href="class_intelli_tool_gradient.html#aed5ad1f718d53034d944ff8f1e8f9f36">IntelliToolGradient::onMouseRightPressed</a></div><div class="ttdeci">virtual void onMouseRightPressed(int x, int y) override</div><div class="ttdoc">A function managing the right click Pressed of a Mouse. Constructing the Canvas to draw on....</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_gradient_8cpp_source.html#l00028">IntelliToolGradient.cpp:28</a></div></div>
 <div class="ttc" id="aclass_painting_area_html"><div class="ttname"><a href="class_painting_area.html">PaintingArea</a></div><div class="ttdoc">The PaintingArea class manages the methods and stores information about the current painting area,...</div><div class="ttdef"><b>Definition:</b> <a href="_painting_area_8h_source.html#l00057">PaintingArea.h:57</a></div></div>
-<div class="ttc" id="aclass_intelli_tool_gradient_html_a11f77ac474b697ebb6bc185560437f6a"><div class="ttname"><a href="class_intelli_tool_gradient.html#a11f77ac474b697ebb6bc185560437f6a">IntelliToolGradient::onWheelScrolled</a></div><div class="ttdeci">virtual void onWheelScrolled(int value) override</div><div class="ttdoc">A function managing the scroll event. A positive value means scrolling outwards. Call this in child c...</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_gradient_8cpp_source.html#l00059">IntelliToolGradient.cpp:59</a></div></div>
+<div class="ttc" id="aclass_intelli_tool_gradient_html_a11f77ac474b697ebb6bc185560437f6a"><div class="ttname"><a href="class_intelli_tool_gradient.html#a11f77ac474b697ebb6bc185560437f6a">IntelliToolGradient::onWheelScrolled</a></div><div class="ttdeci">virtual void onWheelScrolled(int value) override</div><div class="ttdoc">A function managing the scroll event. A positive value means scrolling outwards. Call this in child c...</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_gradient_8cpp_source.html#l00054">IntelliToolGradient.cpp:54</a></div></div>
 <div class="ttc" id="aclass_intelli_tool_gradient_html_ad29617596a4dcf09aa8bcc633d627203"><div class="ttname"><a href="class_intelli_tool_gradient.html#ad29617596a4dcf09aa8bcc633d627203">IntelliToolGradient::IntelliToolGradient</a></div><div class="ttdeci">IntelliToolGradient(PaintingArea *Area, IntelliColorPicker *colorPicker, IntelliToolsettings *Toolsettings)</div><div class="ttdoc">IntelliToolGradient basic constructor of the gradient tool.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_gradient_8cpp_source.html#l00006">IntelliToolGradient.cpp:6</a></div></div>
 <div class="ttc" id="aclass_intelli_tool_gradient_html_a47700908dab413203d06d64175a12cc1"><div class="ttname"><a href="class_intelli_tool_gradient.html#a47700908dab413203d06d64175a12cc1">IntelliToolGradient::onMouseLeftPressed</a></div><div class="ttdeci">virtual void onMouseLeftPressed(int x, int y) override</div><div class="ttdoc">A function managing the left click Pressed of a Mouse. Resetting the current draw....</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_gradient_8cpp_source.html#l00017">IntelliToolGradient.cpp:17</a></div></div>
 <div class="ttc" id="aclass_intelli_tool_html"><div class="ttname"><a href="class_intelli_tool.html">IntelliTool</a></div><div class="ttdoc">An abstract class that manages the basic events, like mouse clicks or scrolls events.</div><div class="ttdef"><b>Definition:</b> <a href="_intelli_tool_8h_source.html#l00017">IntelliTool.h:17</a></div></div>
