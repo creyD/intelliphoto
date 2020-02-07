@@ -10,7 +10,10 @@
 \usepackage{graphicx}
 \usepackage{svg}
 
-\title{intelliPhoto 0.8 - Manual}
+\title{%
+		intelliPhoto 1.0 - Manual \\
+		\large "Shooting Star" }
+
 \author{Paul Norberger \& the intelliPhoto team}
 
 \begin{document}
@@ -18,21 +21,21 @@
 \maketitle
 \thispagestyle{empty}
 \begin{center}
-\includegraphics[width=0.18\linewidth,keepaspectratio]{assets/icon}
+\includegraphics[width=0.15\linewidth,keepaspectratio]{assets/icon}
 \end{center}
 \tableofcontents
 \end{titlepage}
 \section{Introduction}
-intelliPhoto is a software for creating and editing graphics of various kinds. It uses 1 byte per pixel and is ideal for cases where this sort of limitation is required, because of various reasons, we will not go into. It has an extensive feature set, which includes, but is not limited to:
+intelliPhoto is a software for creating and editing graphics of various kinds. It uses 1 byte storage per pixel and is ideal for cases where this sort of limitation is required. It has an extensive feature set, which includes, but is not limited to:
 \begin{itemize}
 \item An advanced, highly usable user interface
-\item Loading and Saving images from and to standardized formats (such as .png, .bmp or .jpg)
-\item Drawing with a pen with adjustable width and color, clearing the whole canvas with one color and drawing lines, flood-filling similiar pixels, creating rectangles, circles and polygons
-\item A layer structure, that allows for creating, deleting, moving and changing the order of layers
+\item Loading and Saving images from and to standardised formats (such as .png, .bmp or .jpg)
+\item Drawing with a pen with adjustable width and color, clearing the whole canvas with one color and drawing lines, flood-filling similar pixels, creating rectangles, circles and polygons
+\item A layering structure, that allows creating, deleting, moving and changing the order of layers
 \end{itemize}
 
 \section{User Guide}
-After startup the following window opens:
+After startup the following window opens (OS: Windows):
 \begin{center}
 \includegraphics[width=0.55\linewidth,keepaspectratio]{assets/startup}
 \end{center}
@@ -41,15 +44,18 @@ After startup the following window opens:
 \subsubsection{Loading images}
 To load a preexisting image, click on \texttt{File} in the top menu bar and then on \texttt{Open...} in the appearing context menu.
 
-A file explorer window opens. Navigate to the image you want to open and click on \texttt{Open} or the equivalent in your system language. The image will now be imported and displayed.
+A file explorer window opens. Navigate to the image you want to open and click on \texttt{Open}. The image will now be imported and displayed.
 
-\subsubsection{Saving images}
+\subsubsection{Exporting images}
 To save the current canvas as an image, click on \texttt{File} in the top menu bar then hover over \texttt{Save As} and click on your preferred file format in the appearing context menu.
 \begin{center}
 \includegraphics[width=0.3\linewidth,keepaspectratio]{assets/file-save}
 \end{center}
 
 A file explorer window opens. Navigate to your preferred save location, input a file name and click on \texttt{Save} or the equivalent in your system language. The image will be saved at that location in the selected file format.
+
+\subsubsection{Saving projects}
+To save the current project state click on \texttt{File > Save Project} or alternatively use the shortcut \texttt{CTRL+S} (or on \texttt{cmd+S} on MacOS). You may then select a location where to save your project.
 
 \subsection{Working with layers}
 \subsubsection{Creating a new layer}
@@ -79,7 +85,7 @@ After the click, a popup will appear. The popup will allow you to specify a new 
 
 \subsubsection{Switching main and secondary color}
 An often desired use case is to switch the main and secondary color. So that you don't have to this manually, which would be time consuming there is an easy command to do it under the color icons on the right-hand-side toolbar, besides the canvas.
-It is also bound to the keyboard shortcut \texttt{Ctrl+Shift+S}.
+It is also bound to the keyboard shortcut \texttt{Ctrl+Alt+S}.
 
 \subsubsection{Drawing with the pen tool}
 To activate the pen tool simply click on the pen tool icon on the right-hand-side  toolbar.
@@ -108,7 +114,7 @@ The main color dictates the color of the edge, while the secondary color is used
 
 \subsubsection{Using gradients}
 To activate the gradient tool just click on the gradient tool icon on the right-hand-side toolbar. The gradient interpolates linearly from the main color to the second hand color. To change them refer to the section "Setting the main and secondary color".
-The use of this tool is very similiar to the line tool: Simply click and hold on the starting point of the gradient, move to the end location and release the mouse button. The pixels on the active layer will change accordingly.
+The use of this tool is very similar to the line tool: Simply click and hold on the starting point of the gradient, move to the end location and release the mouse button. The pixels on the active layer will change accordingly.
 
 \subsubsection{Fill the active layer in one color}
 To activate the plain tool just click on the plain tool icon on the right-hand-side toolbar.
@@ -120,6 +126,6 @@ For Windows 10, the desired symbol looks like this when hovered:
 \begin{center}
 \includegraphics[width=0.9\linewidth,keepaspectratio]{assets/close-window}
 \end{center}
-Alternatively you can press \texttt{CTR+Q}.
+Alternatively you can press \texttt{CTRL+Q} (Windows) (or \texttt{cmd+Q} on MacOS).
 
 \end{document}

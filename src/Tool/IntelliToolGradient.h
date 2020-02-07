@@ -83,16 +83,6 @@ double doubleStartPoint[2];
 double VectorStartEnd[2];
 
 /*!
- * \brief NormalVector of the VectorStartEnd
- */
-double NormalVector[2];
-
-/*!
- * \brief NormalDotNormal dot product of Normal*Normal
- */
-double NormalDotNormal;
-
-/*!
  * \brief LineColor color of th line.
  */
 QColor LineColor;
@@ -106,7 +96,7 @@ bool hasMoved;
  * \brief computeAndDrawPixelColor computes the pixelcolor for a given point and sets it to the image.
  * \param Point the point which shoud be computed
  */
-void computeAndDrawPixelColor(QPoint Point);
+void computeAndDrawPixelColor(QPoint Point, int FirstColor[4], int SecondColor[4], double NormalVector[2], double NormalDotNormal);
 
 /*!
  * \brief dotProduct calculates the dot product of 2 vetors.

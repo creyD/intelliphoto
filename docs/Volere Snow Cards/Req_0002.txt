@@ -62,3 +62,4 @@ History:
     - Aktualisiert am 17.12.2019, von Paul Norberger
     - Aktualisiert am 16.01.2019, von Paul Norberger, Gradiations-Tool, Cuttool, Selektionstool, Korrekturtool
       wurde gestrichen
+    - Vollständig umgesetzt, Stand: 06.02.2020
